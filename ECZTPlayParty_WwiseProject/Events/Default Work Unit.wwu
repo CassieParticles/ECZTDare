@@ -17,6 +17,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Player_Voice_Tester" ID="{9D7C6121-E6FA-4ECF-BA78-DE021B1547A4}">
+					<ChildrenList>
+						<Action Name="" ID="{427B8BE2-1AE6-422C-90F3-327C156214AA}" ShortID="541819892">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Player_VO_1_Trial" ID="{B6CC9350-9253-4F07-931C-0E0784C23D11}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
