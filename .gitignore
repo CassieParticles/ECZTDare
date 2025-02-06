@@ -71,3 +71,18 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+#WWise integration, needs a few files to be ignored
+.backup*
+WWiseProject/.cache/
+WwiseProject/**/*.akd
+WWiseProject/*.prof
+WwiseProject/*_WwiseProject.*.validationcache
+WwiseProject/*_WwiseProject.*.wsettings
+IncrementalSoundBankData.xml
+
+WwiseUnityIntegration_*_Src.zip
+
+
+
+
