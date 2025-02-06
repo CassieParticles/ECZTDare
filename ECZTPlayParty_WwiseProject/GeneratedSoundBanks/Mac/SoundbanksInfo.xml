@@ -22,10 +22,26 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{3B51E889-948F-7EDA-A1E8-111109B087A1}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{94984723-F8C7-533A-2FCB-27E11034D04F}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="890523791" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Title_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3467352528" Name="Music_Tester" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="890523791"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2453392179" Name="Player_Footstep" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1305133589" Name="Player_Jump" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="3629196698" Name="Player_Land" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{6505E63A-D812-4B79-2012-B607387F2E2F}</FileHash>
+	<FileHash>{3B8CA2E2-C8A3-42B3-A77F-429E1419D056}</FileHash>
 </SoundBanksInfo>

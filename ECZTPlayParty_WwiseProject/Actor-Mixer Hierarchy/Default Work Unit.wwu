@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{E79BFA34-42B2-441A-951A-8570DDEF2286}" SchemaVersion="119">
 	<AudioObjects>
-		<WorkUnit Name="Default Work Unit" ID="{E79BFA34-42B2-441A-951A-8570DDEF2286}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{E79BFA34-42B2-441A-951A-8570DDEF2286}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="Title_Track_Trial" ID="{F0236874-EDC2-4B70-9CC5-F94810B3C0C1}" ShortID="812821326">
+					<PropertyList>
+						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Title_Track_Trial" ID="{3F3D8A1B-E4B3-406F-94DA-F726FDB59323}">
+							<Language>SFX</Language>
+							<AudioFile>Title_Track_Trial.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="890523791"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="Title_Track_Trial" ID="{3F3D8A1B-E4B3-406F-94DA-F726FDB59323}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
 	</AudioObjects>
 </WwiseDocument>

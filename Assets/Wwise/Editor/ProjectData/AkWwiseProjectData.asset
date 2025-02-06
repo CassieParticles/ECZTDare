@@ -66,8 +66,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 5480d18d8e66d14a9cc980d86a5a59c1
     GuidInternal: 
-    m_lastTime: -8584627624463486090
-    List: []
+    m_lastTime: -8584627614999169194
+    List:
+    - name: Main
+      guid: 4414c9905cba2642bb0eaa7972afa65f
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 5480d18d8e66d14a9cc980d86a5a59c1
+      - ElementName: Main
+        ObjectType: 7
+        guid: 4414c9905cba2642bb0eaa7972afa65f
+      Path: SoundBanks\Default Work Unit\Main
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -80,8 +94,76 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 0ce8610ce54e584cbb88336642b88671
     GuidInternal: 
-    m_lastTime: -8584627624463566087
-    List: []
+    m_lastTime: -8584627614999073974
+    List:
+    - name: Music_Tester
+      guid: 23a32b66c40008498586d537f515c644
+      id: 3467352528
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ce8610ce54e584cbb88336642b88671
+      - ElementName: Music_Tester
+        ObjectType: 3
+        guid: 23a32b66c40008498586d537f515c644
+      Path: Events\Default Work Unit\Music_Tester
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Player_Footstep
+      guid: 3a7995f7eddb6e4d8affc7205147702c
+      id: 2453392179
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ce8610ce54e584cbb88336642b88671
+      - ElementName: Player_Footstep
+        ObjectType: 3
+        guid: 3a7995f7eddb6e4d8affc7205147702c
+      Path: Events\Default Work Unit\Player_Footstep
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Player_Jump
+      guid: 3ffdf6e3c0260e4b85cd848368598098
+      id: 1305133589
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ce8610ce54e584cbb88336642b88671
+      - ElementName: Player_Jump
+        ObjectType: 3
+        guid: 3ffdf6e3c0260e4b85cd848368598098
+      Path: Events\Default Work Unit\Player_Jump
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Player_Land
+      guid: 8b75abb60e95624180d0e63773950c9e
+      id: 3629196698
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 0ce8610ce54e584cbb88336642b88671
+      - ElementName: Player_Land
+        ObjectType: 3
+        guid: 8b75abb60e95624180d0e63773950c9e
+      Path: Events\Default Work Unit\Player_Land
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -139,7 +221,7 @@ MonoBehaviour:
     m_lastTime: -8584627624462668416
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 0d0000000e000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

@@ -6,6 +6,17 @@
 				<Event Name="Player_Footstep" ID="{F795793A-DBED-4D6E-8AFF-C7205147702C}"/>
 				<Event Name="Player_Jump" ID="{E3F6FD3F-26C0-4B0E-85CD-848368598098}"/>
 				<Event Name="Player_Land" ID="{B6AB758B-950E-4162-80D0-E63773950C9E}"/>
+				<Event Name="Music_Tester" ID="{662BA323-00C4-4908-8586-D537F515C644}">
+					<ChildrenList>
+						<Action Name="" ID="{CDB1E45E-277F-4417-9555-EF3ADFC44333}" ShortID="312317790">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Title_Track_Trial" ID="{F0236874-EDC2-4B70-9CC5-F94810B3C0C1}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
