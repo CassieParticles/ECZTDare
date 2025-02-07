@@ -5,18 +5,13 @@ using UnityEngine.UIElements;
 
 public class VisionCone : MonoBehaviour
 {
-    [SerializeField]
-    private int sectorCount = 30;
+    [SerializeField, Range(1,40)]
+    private int sectorCount = 10;
 
     [SerializeField]
     private float radius = 30;
     [SerializeField]
     private float distance = 4;
-
-    [SerializeField]
-    private Color EyeColour = Color.white;
-    [SerializeField]
-    private Color EndColour = new Color(1,1,1,0.2f);
 
     private MeshFilter visionConeMeshFilter;
     private PolygonCollider2D visionConeCollider;
@@ -27,12 +22,10 @@ public class VisionCone : MonoBehaviour
     {
         //Get the required components
         visionConeMeshFilter = GetComponent<MeshFilter>();
-        PolygonCollider2D visionConeCollider = GetComponent<PolygonCollider2D>();
+        visionConeCollider = GetComponent<PolygonCollider2D>();
 
-        visionConeMesh = new Mesh();
+        visionConeMesh = visionConeMeshFilter.mesh;
         visionConeMesh.MarkDynamic();
-
-        visionConeMeshFilter.mesh = visionConeMesh;
 
         GenerateConeMesh();
     }
@@ -43,12 +36,16 @@ public class VisionCone : MonoBehaviour
 
         //Create arrays for mesh
         Vector3[] newVertices =  new Vector3[2 + sectorCount];
+        Vector2[] newUVs = new Vector2[2 + sectorCount];
         int[] newTriangles= new int[3 * sectorCount];
-        Color[] colours = new Color[2 + sectorCount];
+
+        //Create array for colldider
+        Vector2[] colliderVertices = new Vector2[2 + sectorCount];
         
         //Create vertices
         newVertices[0] = new Vector3(0,0,0);
-        colours[0] = EyeColour;
+        newUVs[0] = new Vector2(0, 0);
+        colliderVertices[0] = new Vector2(0, 0);
         for (int i = 0; i < sectorCount; i++)
         {
             //Get the angle of the line out (in radians)
@@ -59,7 +56,9 @@ public class VisionCone : MonoBehaviour
             //Get the vertex position
             Vector3 vertex = new Vector3(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
             newVertices[i+1] = vertex;
-            colours[i + 1] = EndColour;
+            newUVs[i + 1] = new Vector2(1, 0);
+            colliderVertices[i + 1] = vertex;
+
 
             //Get indices for that triangle
             newTriangles[i * 3 + 0] = 0;
@@ -71,12 +70,16 @@ public class VisionCone : MonoBehaviour
         Vector3 finalVertex = new Vector3(Mathf.Cos(finalAngle) * distance, Mathf.Sin(finalAngle) * distance);
 
         newVertices[sectorCount + 1] = finalVertex;
-        colours[sectorCount+1] = EndColour;
+        colliderVertices[sectorCount + 1] = finalVertex;
+        newUVs[sectorCount + 1] = new Vector2(1, 0);
 
+        //Update mesh
         visionConeMesh.vertices = newVertices;
         visionConeMesh.triangles = newTriangles;
-        visionConeMesh.colors = colours;
+        visionConeMesh.uv = newUVs;
         visionConeMesh.RecalculateBounds();
+
+        visionConeCollider.points = colliderVertices;
     }
 
     private void Update()
