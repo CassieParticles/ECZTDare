@@ -10,10 +10,11 @@ public class VisionCone : MonoBehaviour
     [SerializeField, Range(1,40)]
     private int sectorCount = 30;
 
+    //Accessible in editor to tweak, but also directly modifiable 
     [SerializeField]
-    private float angle = 30;
+    public float angle = 30;
     [SerializeField]
-    private float distance = 15;
+    public float distance = 15;
 
 
     private LayerMask rayMask;
@@ -22,20 +23,6 @@ public class VisionCone : MonoBehaviour
     private PolygonCollider2D visionConeCollider;
 
     private Mesh visionConeMesh;
-
-    private void Start()
-    {
-        //Get the required components
-        visionConeMeshFilter = GetComponent<MeshFilter>();
-        visionConeCollider = GetComponent<PolygonCollider2D>();
-
-        visionConeMesh = visionConeMeshFilter.mesh;
-        visionConeMesh.MarkDynamic();
-
-        GenerateConeMesh();
-
-        rayMask = 0b110011; //Ignore player and "ignoreCast" layers
-    }
 
     private float GetDistance(float angle)
     {
@@ -105,6 +92,20 @@ public class VisionCone : MonoBehaviour
 
         //Update collider
         visionConeCollider.points = colliderVertices;
+    }
+
+    private void Start()
+    {
+        //Get the required components
+        visionConeMeshFilter = GetComponent<MeshFilter>();
+        visionConeCollider = GetComponent<PolygonCollider2D>();
+
+        visionConeMesh = visionConeMeshFilter.mesh;
+        visionConeMesh.MarkDynamic();
+
+        rayMask = 0b110011; //Ignore player and "ignoreCast" layers
+
+        GenerateConeMesh();
     }
 
     private void Update()
