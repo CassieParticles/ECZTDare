@@ -111,21 +111,12 @@ public class VisionCone : MonoBehaviour
         GenerateConeMesh();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("Triggering");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("Triggering with player");
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Colliding");
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            Debug.Log("Colliding with player");
         }
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6593436992310412370}
   - component: {fileID: 7768783327530867036}
   - component: {fileID: 5866923783213529587}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: VisionCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -153,4 +153,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sectorCount: 30
   radius: 30
-  distance: 4
+  distance: 15
