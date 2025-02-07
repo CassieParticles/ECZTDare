@@ -121,13 +121,14 @@ public class VisionCone : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        float angleRad = angle * Mathf.Deg2Rad;
+        float angleRad = (angle) * Mathf.Deg2Rad;
+        float angleOffset = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
         Vector3[] lineStrip = new Vector3[3];
         lineStrip[0] = transform.position;
-        lineStrip[1] = transform.position + new Vector3(Mathf.Cos(angleRad / 2) * distance,Mathf.Sin(angleRad / 2) * distance);
-        lineStrip[2] = transform.position + new Vector3(Mathf.Cos(-angleRad / 2) * distance,Mathf.Sin(-angleRad / 2) * distance);
+        lineStrip[1] = transform.position + new Vector3(Mathf.Cos(angleRad / 2 + angleOffset) * distance,Mathf.Sin(angleRad / 2 + angleOffset) * distance);
+        lineStrip[2] = transform.position + new Vector3(Mathf.Cos(-angleRad / 2 + angleOffset) * distance,Mathf.Sin(-angleRad / 2 + angleOffset) * distance);
 
         Gizmos.DrawLineStrip(lineStrip,true);
     }
