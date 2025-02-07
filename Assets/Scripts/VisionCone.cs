@@ -16,7 +16,7 @@ public class VisionCone : MonoBehaviour
     [SerializeField]
     public float distance = 15;
 
-
+    [SerializeField]
     private LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
@@ -103,7 +103,7 @@ public class VisionCone : MonoBehaviour
         visionConeMesh = visionConeMeshFilter.mesh;
         visionConeMesh.MarkDynamic();
 
-        rayMask = 0b110011; //Ignore player and "ignoreCast" layers
+        rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
         GenerateConeMesh();
     }
