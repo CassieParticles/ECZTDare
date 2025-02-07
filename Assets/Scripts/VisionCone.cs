@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,9 @@ public class VisionCone : MonoBehaviour
     private float radius = 30;
     [SerializeField]
     private float distance = 4;
+
+
+    LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
     private PolygonCollider2D visionConeCollider;
@@ -28,6 +32,23 @@ public class VisionCone : MonoBehaviour
         visionConeMesh.MarkDynamic();
 
         GenerateConeMesh();
+
+        rayMask = 0b110011; //Ignore player and "ignoreCast" layers
+    }
+
+    private float GetDistance(float angle)
+    {
+        //Add offset for object rotation
+        float angleOffset = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
+
+        //Cast a ray in the direction of the vertex
+        Vector2 direction = new Vector2(Mathf.Cos(angle + angleOffset), Mathf.Sin(angle + angleOffset));
+        RaycastHit2D rayHit = Physics2D.Raycast(transform.position, direction, distance,rayMask);
+        if(rayHit)
+        {
+            return rayHit.distance;
+        }
+        return distance;
     }
 
     private void GenerateConeMesh()
@@ -54,7 +75,8 @@ public class VisionCone : MonoBehaviour
             angle *= Mathf.Deg2Rad;
 
             //Get the vertex position
-            Vector3 vertex = new Vector3(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
+            float pointDistance = GetDistance(angle);
+            Vector3 vertex = new Vector3(Mathf.Cos(angle) * pointDistance, Mathf.Sin(angle) * pointDistance);
             newVertices[i+1] = vertex;
             newUVs[i + 1] = new Vector2(1, 0);
             colliderVertices[i + 1] = vertex;
@@ -67,7 +89,8 @@ public class VisionCone : MonoBehaviour
         }
         //Calculate final vertex 
         float finalAngle = (radius / 2) * Mathf.Deg2Rad;   //SectorCount cancels out
-        Vector3 finalVertex = new Vector3(Mathf.Cos(finalAngle) * distance, Mathf.Sin(finalAngle) * distance);
+        float finalPointDistance = GetDistance(finalAngle);
+        Vector3 finalVertex = new Vector3(Mathf.Cos(finalAngle) * finalPointDistance, Mathf.Sin(finalAngle) * finalPointDistance);
 
         newVertices[sectorCount + 1] = finalVertex;
         colliderVertices[sectorCount + 1] = finalVertex;
@@ -79,11 +102,30 @@ public class VisionCone : MonoBehaviour
         visionConeMesh.uv = newUVs;
         visionConeMesh.RecalculateBounds();
 
+        //Update collider
         visionConeCollider.points = colliderVertices;
     }
 
     private void Update()
     {
         GenerateConeMesh();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Triggering");
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Debug.Log("Triggering with player");
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Colliding");
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            Debug.Log("Colliding with player");
+        }
     }
 }
