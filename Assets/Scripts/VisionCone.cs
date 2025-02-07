@@ -6,16 +6,17 @@ using UnityEngine.UIElements;
 
 public class VisionCone : MonoBehaviour
 {
+    //Fields for controlling vision cone
     [SerializeField, Range(1,40)]
-    private int sectorCount = 10;
+    private int sectorCount = 30;
 
     [SerializeField]
-    private float radius = 30;
+    private float angle = 30;
     [SerializeField]
-    private float distance = 4;
+    private float distance = 15;
 
 
-    LayerMask rayMask;
+    private LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
     private PolygonCollider2D visionConeCollider;
@@ -70,13 +71,13 @@ public class VisionCone : MonoBehaviour
         for (int i = 0; i < sectorCount; i++)
         {
             //Get the angle of the line out (in radians)
-            float angle = i * (radius / sectorCount);
-            angle -= radius / 2;
-            angle *= Mathf.Deg2Rad;
+            float lineAngle = i * (this.angle / sectorCount);
+            lineAngle -= this.angle / 2;
+            lineAngle *= Mathf.Deg2Rad;
 
             //Get the vertex position
-            float pointDistance = GetDistance(angle);
-            Vector3 vertex = new Vector3(Mathf.Cos(angle) * pointDistance, Mathf.Sin(angle) * pointDistance);
+            float pointDistance = GetDistance(lineAngle);
+            Vector3 vertex = new Vector3(Mathf.Cos(lineAngle) * pointDistance, Mathf.Sin(lineAngle) * pointDistance);
             newVertices[i+1] = vertex;
             newUVs[i + 1] = new Vector2(1, 0);
             colliderVertices[i + 1] = vertex;
@@ -88,7 +89,7 @@ public class VisionCone : MonoBehaviour
             newTriangles[i * 3 + 2] = i+1;
         }
         //Calculate final vertex 
-        float finalAngle = (radius / 2) * Mathf.Deg2Rad;   //SectorCount cancels out
+        float finalAngle = (angle / 2) * Mathf.Deg2Rad;   //SectorCount cancels out
         float finalPointDistance = GetDistance(finalAngle);
         Vector3 finalVertex = new Vector3(Mathf.Cos(finalAngle) * finalPointDistance, Mathf.Sin(finalAngle) * finalPointDistance);
 
@@ -113,10 +114,21 @@ public class VisionCone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Triggering");
+        //Get if colliding with player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("Triggering with player");
+            Debug.Log("Player visible");
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        float angleRad = angle * Mathf.Deg2Rad;
+        Vector3[] lineStrip = new Vector3[3];
+        lineStrip[0] = transform.position;
+        lineStrip[1] = transform.position + new Vector3(Mathf.Cos(angleRad / 2) * distance,Mathf.Sin(angleRad / 2) * distance);
+        lineStrip[2] = transform.position + new Vector3(Mathf.Cos(-angleRad / 2) * distance,Mathf.Sin(-angleRad / 2) * distance);
+
+        Gizmos.DrawLineStrip(lineStrip,true);
     }
 }

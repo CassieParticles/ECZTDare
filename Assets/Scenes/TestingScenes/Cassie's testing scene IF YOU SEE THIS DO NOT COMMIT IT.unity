@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 135272334}
   - component: {fileID: 135272333}
   - component: {fileID: 135272335}
+  - component: {fileID: 135272336}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -256,6 +257,33 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!50 &135272336
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135272332}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &441954255
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -266,15 +294,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.22
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.42
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.3
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -303,6 +331,34 @@ PrefabInstance:
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866923783213529587, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: angle
+      value: 33.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866923783213529587, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: distance
+      value: 15.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768783327530867036, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768783327530867036, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
+      value: 0.33788037
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768783327530867036, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
+      value: 0.65471345
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768783327530867036, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
+      value: -0.08426559
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768783327530867036, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].y
+      value: 0.6065232
       objectReference: {fileID: 0}
     - target: {fileID: 7986164374567372972, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_Name
@@ -381,6 +437,7 @@ GameObject:
   - component: {fileID: 794524239}
   - component: {fileID: 794524238}
   - component: {fileID: 794524240}
+  - component: {fileID: 794524241}
   m_Layer: 0
   m_Name: Triangle (1)
   m_TagString: Untagged
@@ -507,6 +564,33 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!50 &794524241
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794524237}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1015099872
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,8 +793,9 @@ GameObject:
   - component: {fileID: 1291307345}
   - component: {fileID: 1291307344}
   - component: {fileID: 1291307346}
-  m_Layer: 0
-  m_Name: Triangle (2)
+  - component: {fileID: 1291307347}
+  m_Layer: 3
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -760,7 +845,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.06793785, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -835,6 +920,33 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!50 &1291307347
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291307343}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
