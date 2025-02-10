@@ -23,6 +23,8 @@ public class VisionCone : MonoBehaviour
 
     private Mesh visionConeMesh;
 
+    private CameraBehavior CameraEnemy;
+
     private float GetDistance(float angle)
     {
         //Add offset for object rotation
@@ -93,7 +95,7 @@ public class VisionCone : MonoBehaviour
         visionConeCollider.points = colliderVertices;
     }
 
-    private void Start()
+    private void Awake()
     {
         //Get the required components
         visionConeMeshFilter = GetComponent<MeshFilter>();
@@ -104,7 +106,10 @@ public class VisionCone : MonoBehaviour
 
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
+        CameraEnemy = transform.parent.GetComponent<CameraBehavior>();
+
         GenerateConeMesh();
+        
     }
 
     private void Update()
@@ -117,7 +122,8 @@ public class VisionCone : MonoBehaviour
         //Get if colliding with player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("Player visible");
+            //Will be handled better in full game (Will likely have a base "Enemy" script
+            CameraEnemy.SeePlayer(collision.gameObject);
         }
     }
 

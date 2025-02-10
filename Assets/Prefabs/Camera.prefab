@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4408064128929954087}
   - component: {fileID: 3751253523449891044}
+  - component: {fileID: 6660897373190108923}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6660897373190108923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693024268319714723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d53169bcb325e6449b7d1c2edb2ea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3042851839940567985
 PrefabInstance:
   m_ObjectHideFlags: 0
