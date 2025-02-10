@@ -58,10 +58,6 @@ public class CameraBehavior : MonoBehaviour
 
         turnCCW = true;
         initialAngle = transform.GetChild(0).rotation.eulerAngles.z;
-        if (initialAngle > 180)
-        {
-            initialAngle -= 360;
-        }
         turnPause = true;
     }
 
@@ -81,19 +77,33 @@ public class CameraBehavior : MonoBehaviour
 
         //Turning handling
         Vector3 visionAngle = visionCone.transform.rotation.eulerAngles;
+        float boundary = initialAngle + maxTurnAngle * (turnCCW ? 1 : -1);
 
-        //Prevent angle wrapping messing up maths (scales maths to be between -180 -> 180, rather then 0 -> 360)
         if (visionAngle.z > 180)
         {
-            visionAngle.z -= 360;
+            boundary += 360;
         }
 
+
         //If camera is past max angle
-        if (Mathf.Abs(visionAngle.z - initialAngle) > maxTurnAngle && turnPause) 
+        if(turnCCW) //Turning CCW, check using upper bound
         {
-            visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);    //Take a step back, to prevent immediately firing again once it's started back up
-            StartCoroutine(PauseCamera());
+            if(visionAngle.z > boundary)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * -1;    //Take a step back, to prevent immediately firing again once it's started back up
+                StartCoroutine(PauseCamera());
+            }
         }
+        else    //Turning CW, check using lower bound
+        {
+            if(visionAngle.z < boundary)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime;    //Take a step back, to prevent immediately firing again once it's started back up
+                StartCoroutine(PauseCamera());
+            }
+        }
+
+
 
         visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? 1 : -1) * (turnPause ? 1 : 0);  //Rotate by
         visionCone.transform.rotation = Quaternion.Euler(visionAngle);
