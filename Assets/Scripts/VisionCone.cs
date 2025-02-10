@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class VisionCone : MonoBehaviour
 {
     //Fields for controlling vision cone
-    [SerializeField, Range(1,40)]
-    private int sectorCount = 30;
+    [SerializeField, Range(1,100)]
+    private int sectorCount = 50;
 
     //Accessible in editor to tweak, but also directly modifiable 
     [SerializeField]
@@ -16,13 +16,14 @@ public class VisionCone : MonoBehaviour
     [SerializeField]
     public float distance = 15;
 
-    [SerializeField]
     private LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
     private PolygonCollider2D visionConeCollider;
 
     private Mesh visionConeMesh;
+
+    private CameraBehavior CameraEnemy;
 
     private float GetDistance(float angle)
     {
@@ -94,7 +95,7 @@ public class VisionCone : MonoBehaviour
         visionConeCollider.points = colliderVertices;
     }
 
-    private void Start()
+    private void Awake()
     {
         //Get the required components
         visionConeMeshFilter = GetComponent<MeshFilter>();
@@ -105,7 +106,10 @@ public class VisionCone : MonoBehaviour
 
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
+        CameraEnemy = transform.parent.GetComponent<CameraBehavior>();
+
         GenerateConeMesh();
+        
     }
 
     private void Update()
@@ -118,7 +122,8 @@ public class VisionCone : MonoBehaviour
         //Get if colliding with player
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("Player visible");
+            //Will be handled better in full game (Will likely have a base "Enemy" script
+            CameraEnemy.SeePlayer(collision.gameObject);
         }
     }
 
