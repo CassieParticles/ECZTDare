@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class VisionCone : MonoBehaviour
 {
     //Fields for controlling vision cone
-    [SerializeField, Range(1,40)]
-    private int sectorCount = 30;
+    [SerializeField, Range(1,100)]
+    private int sectorCount = 50;
 
     //Accessible in editor to tweak, but also directly modifiable 
     [SerializeField]
