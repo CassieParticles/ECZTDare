@@ -79,9 +79,13 @@ public class CameraBehavior : MonoBehaviour
         Vector3 visionAngle = visionCone.transform.rotation.eulerAngles;
         float boundary = initialAngle + maxTurnAngle * (turnCCW ? 1 : -1);
 
-        if (visionAngle.z > 180)
+        if (visionAngle.z > 180 && boundary < 0)
         {
             boundary += 360;
+        }
+        if(visionAngle.z < 180 && boundary > 360)
+        {
+            boundary -= 360;
         }
 
 
