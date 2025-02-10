@@ -16,7 +16,6 @@ public class VisionCone : MonoBehaviour
     [SerializeField]
     public float distance = 15;
 
-    [SerializeField]
     private LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
