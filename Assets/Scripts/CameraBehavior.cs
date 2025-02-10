@@ -41,13 +41,15 @@ public class CameraBehavior : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(suspicionLevel != SuspicionLevel.Alarm)
+        if(suspicionLevel == SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
+            Debug.Log("Alarm is being raised");
         }
         else if(suspicion > thresholds[(int)suspicionLevel])
         {
-
+            suspicionLevel++;
+            Debug.Log("Gotten more suspicious");
         }
     }
 }

@@ -77,15 +77,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -9174377198135126436, guid: 9fbcabd92cf62a348937d3eb35af0a7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.55, y: 1.98}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &6660897373190108923
@@ -100,6 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d53169bcb325e6449b7d1c2edb2ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thresholds:
+  - 33.3
+  - 66.6
+  - 100
+  suspicionScalar: 20
 --- !u!1001 &3042851839940567985
 PrefabInstance:
   m_ObjectHideFlags: 0
