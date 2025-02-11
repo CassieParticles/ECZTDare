@@ -18,9 +18,8 @@ public class CameraBehavior : MonoBehaviour
     private float maxTurnAngle = 45;
     [SerializeField, Range(0, 60)]
     private float turnSpeed = 30;
-
-
-
+    [SerializeField, Range(0.1f, 20)]
+    private float pauseDuration = 1;
 
     public enum SuspicionLevel
     {
@@ -36,10 +35,19 @@ public class CameraBehavior : MonoBehaviour
     private GameObject visionCone;
     private float initialAngle;
     bool turnCCW;
+    bool turnPause;
 
     public void SeePlayer(GameObject player)
     {
         suspicion += suspicionScalar * Time.fixedDeltaTime;
+    }
+
+    private IEnumerator PauseCamera()
+    {
+        turnPause = false;
+        yield return new WaitForSeconds(pauseDuration);
+        turnPause = true;
+        turnCCW = !turnCCW;
     }
 
     private void Awake()
@@ -47,12 +55,10 @@ public class CameraBehavior : MonoBehaviour
         suspicion = 0.0f;
         suspicionLevel = SuspicionLevel.Idle;
         visionCone = transform.GetChild(0).gameObject;
+
         turnCCW = true;
         initialAngle = transform.GetChild(0).rotation.eulerAngles.z;
-        if (initialAngle > 180)
-        {
-            initialAngle -= 360;
-        }
+        turnPause = true;
     }
 
     private void FixedUpdate()
@@ -71,16 +77,35 @@ public class CameraBehavior : MonoBehaviour
 
         //Turning handling
         Vector3 visionAngle = visionCone.transform.rotation.eulerAngles;
+        float boundary = initialAngle + maxTurnAngle * (turnCCW ? 1 : -1);
 
         if (visionAngle.z > 180)
         {
-            visionAngle.z -= 360;
+            boundary += 360;
         }
 
-        if (Mathf.Abs(visionAngle.z - initialAngle) > maxTurnAngle) {
-            turnCCW = !turnCCW; 
+
+        //If camera is past max angle
+        if(turnCCW) //Turning CCW, check using upper bound
+        {
+            if(visionAngle.z > boundary)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * -1;    //Take a step back, to prevent immediately firing again once it's started back up
+                StartCoroutine(PauseCamera());
+            }
         }
-        visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? 1 : -1);  //Rotate by
+        else    //Turning CW, check using lower bound
+        {
+            if(visionAngle.z < boundary)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime;    //Take a step back, to prevent immediately firing again once it's started back up
+                StartCoroutine(PauseCamera());
+            }
+        }
+
+
+
+        visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? 1 : -1) * (turnPause ? 1 : 0);  //Rotate by
         visionCone.transform.rotation = Quaternion.Euler(visionAngle);
     }
 
