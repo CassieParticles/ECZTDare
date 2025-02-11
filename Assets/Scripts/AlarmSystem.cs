@@ -1,0 +1,63 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditorInternal;
+using UnityEngine;
+
+public class AlarmSystem : MonoBehaviour
+{
+    public delegate void AlarmEnable(Vector3 playerPosition);
+    public delegate void AlarmDisable();
+    
+    public static AlarmSystem GetAlarmSystem()
+    {
+        return GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+    }
+
+    public void AddAlarmFunc(AlarmEnable alarmFunc)
+    {
+        alarmEnableFuncs.Add(alarmFunc);
+    }
+
+    public void AddAlarmFunc(AlarmDisable alarmFunc)
+    {
+        alarmDisableFuncs.Add(alarmFunc);
+    }
+
+    public void StartAlarm(Vector3 playerPosition)
+    {
+        if(!alarm)
+        {
+            for (int i = 0; i < alarmEnableFuncs.Count; ++i)
+            {
+                alarmEnableFuncs[i](playerPosition);
+            }
+            alarm = true;
+        }
+
+    }
+
+    public void StopAlarm()
+    {
+        if (alarm)
+        {
+            for (int i = 0; i < alarmDisableFuncs.Count; ++i)
+            {
+                alarmDisableFuncs[i]();
+            }
+            alarm = false;
+        }
+    }
+
+
+    private List<AlarmEnable> alarmEnableFuncs = new List<AlarmEnable>();
+    private List<AlarmDisable> alarmDisableFuncs = new List<AlarmDisable>();
+
+    //Whether the alarm is current being sounded
+    bool alarm;
+
+    private void Awake()
+    {
+        alarm = false;
+    }
+}

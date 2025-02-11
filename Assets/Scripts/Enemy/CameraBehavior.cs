@@ -42,6 +42,11 @@ public class CameraBehavior : MonoBehaviour
         suspicion += suspicionScalar * Time.fixedDeltaTime;
     }
 
+    private void Alarm(Vector3 playerPosition)
+    {
+        Debug.Log("Alarm has been sounded");
+    }
+
     private IEnumerator PauseCamera()
     {
         turnPause = false;
@@ -61,13 +66,20 @@ public class CameraBehavior : MonoBehaviour
         turnPause = true;
     }
 
+    private void Start()
+    {
+        //Add the alarm function to the camera
+        AlarmSystem.GetAlarmSystem().AddAlarmFunc(Alarm);
+    }
+
     private void FixedUpdate()
     {
         //suspicion handling
         if(suspicionLevel == SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
-            Debug.Log("Alarm is being raised");
+            //TODO: Get player position
+            AlarmSystem.GetAlarmSystem().StartAlarm(new Vector3(0,0,0));
         }
         else if(suspicion > thresholds[(int)suspicionLevel])
         {
