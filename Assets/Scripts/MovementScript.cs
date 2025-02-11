@@ -10,6 +10,7 @@ public class MovementScript : MonoBehaviour
 
     [NonSerialized] public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private BoxCollider2D collider;
 
     [SerializeField] private float maxRunSpeed = 8;
     [SerializeField] private float acceleration = 20; //Speeding up when running
@@ -43,6 +44,7 @@ public class MovementScript : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -53,10 +55,10 @@ public class MovementScript : MonoBehaviour
     }
 
     void CheckGrounded() {
-        Vector2 rightRayStart = transform.position + new Vector3(transform.localScale.x * 0.99f / 2f,
-                                                                -transform.localScale.y * 0.99f / 2f);
-        Vector2 leftRayStart = transform.position + new Vector3(-transform.localScale.x * 0.99f / 2f,
-                                                                -transform.localScale.y * 0.99f / 2f);
+        Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
+                                                                           -collider.size.y * 0.99f / 2f);
+        Vector2 leftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
+                                                                           -collider.size.y * 0.99f / 2f);
         if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.1f, layers) ||
         Physics2D.Raycast(leftRayStart, Vector2.down, 0.1f, layers)) {
             grounded = true;
