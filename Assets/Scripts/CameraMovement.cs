@@ -11,9 +11,11 @@ public class CameraMovement : MonoBehaviour
     private MovementScript player;
     private Rigidbody2D rb;
 
-    [SerializeField] float exponentX = 2f;
-    [SerializeField] float exponentY = 2f;
-    [SerializeField] float directionalOffset = 2f;
+    [SerializeField] float turningMult = 2f; //Multiplier for how quick the camera moves between facing left and right
+    [SerializeField] float exponentX = 2f; //How quickly the camera speeds up with distance horizontally
+    [SerializeField] float exponentY = 2f; //How quickly the camera speeds up with distance vertically
+    [SerializeField] float directionalOffset = 2f; //How far in front of the player the camera settles at
+    [SerializeField] float verticalOffset = 2f; //How far above the player the camera settles at
 
     void Awake()
     {
@@ -26,9 +28,9 @@ public class CameraMovement : MonoBehaviour
     {
         int playerDir = Convert.ToInt32(player.facingRight) * 2 - 1;
         if (MathF.Abs(smoothTurning + playerDir * 0.1f) <= 1f) {
-            smoothTurning += playerDir * 0.1f;
+            smoothTurning += playerDir * 0.1f * turningMult;
         } 
-        targetPos = player.transform.position + (Vector3.right * smoothTurning * directionalOffset);
+        targetPos = player.rb.position + (Vector2.right * smoothTurning * directionalOffset) + Vector2.up * verticalOffset;
 
         //rb.velocity += (targetPos - rb.position) * 0.5f;
         if (Vector2.Distance(rb.position, targetPos) < 0.1f) {
