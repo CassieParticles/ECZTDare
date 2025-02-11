@@ -77,32 +77,48 @@ public class CameraBehavior : MonoBehaviour
 
         //Turning handling
         Vector3 visionAngle = visionCone.transform.rotation.eulerAngles;
-        float boundary = initialAngle + maxTurnAngle * (turnCCW ? 1 : -1);
-
-        if (visionAngle.z > 180 && boundary < 0)
-        {
-            boundary += 360;
-        }
-        if(visionAngle.z < 180 && boundary > 360)
-        {
-            boundary -= 360;
-        }
+        float upperBound = initialAngle + maxTurnAngle * +1;
+        float lowerBound = initialAngle + maxTurnAngle * -1;
+        float usedBound = turnCCW ? upperBound : lowerBound;
 
 
-        //If camera is past max angle
-        if(turnCCW) //Turning CCW, check using upper bound
+        //3 cases
+        //1.) Turning range doesn't cross 0/360 bound
+        //2.) Upper bound crosses 0/360 bound
+        //3.) Lower bound crosses 0/360 bound
+
+        //Case 1, check can be simplified
+        if (upperBound < 360 && lowerBound > 0)
         {
-            if(visionAngle.z > boundary)
+            if(Mathf.Abs(visionAngle.z - initialAngle) > maxTurnAngle)
             {
-                visionAngle.z += turnSpeed * Time.fixedDeltaTime * -1;    //Take a step back, to prevent immediately firing again once it's started back up
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
                 StartCoroutine(PauseCamera());
             }
         }
-        else    //Turning CW, check using lower bound
+        //Case 2 (case 3 doesn't affect this)
+        else if (upperBound > 360)
         {
-            if(visionAngle.z < boundary)
+            if(visionAngle.z < lowerBound)
             {
-                visionAngle.z += turnSpeed * Time.fixedDeltaTime;    //Take a step back, to prevent immediately firing again once it's started back up
+                upperBound -= 360;
+            }
+            if(visionAngle.z > upperBound)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
+                StartCoroutine(PauseCamera());
+            }
+        }
+        //Case 3(case 2 doesn't affect this)
+        else
+        {
+            if(visionAngle.z > upperBound)
+            {
+                lowerBound += 360;
+            }
+            if(visionAngle.z < lowerBound)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
                 StartCoroutine(PauseCamera());
             }
         }
