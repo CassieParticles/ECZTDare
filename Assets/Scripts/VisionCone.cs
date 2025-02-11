@@ -116,14 +116,21 @@ public class VisionCone : MonoBehaviour
     {
         GenerateConeMesh();
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Get if colliding with player
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //Will be handled better in full game (Will likely have a base "Enemy" script
+            //Will be handled through inheritance in full game
             CameraEnemy.SeePlayer(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            //Will be handled through inheritance in full game
+            CameraEnemy.LosePlayer();
         }
     }
 

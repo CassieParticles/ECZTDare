@@ -31,6 +31,8 @@ public class CameraBehavior : MonoBehaviour
     private float suspicion;
     private SuspicionLevel suspicionLevel;
 
+    private GameObject player;
+
 
     private GameObject visionCone;
     private float initialAngle;
@@ -39,7 +41,12 @@ public class CameraBehavior : MonoBehaviour
 
     public void SeePlayer(GameObject player)
     {
-        suspicion += suspicionScalar * Time.fixedDeltaTime;
+        this.player = player;
+    }
+
+    public void LosePlayer()
+    {
+        this.player = null;
     }
 
     private void Alarm(Vector3 playerPosition)
@@ -75,11 +82,18 @@ public class CameraBehavior : MonoBehaviour
     private void FixedUpdate()
     {
         //suspicion handling
+
+        //Can see player, increase suspicion
+        if(player !=null)
+        {
+            suspicion += suspicionScalar * Time.fixedDeltaTime;
+        }
+
+        //Increase suspicion level and raise alarm if full
         if(suspicionLevel == SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
-            //TODO: Get player position
-            AlarmSystem.GetAlarmSystem().StartAlarm(new Vector3(0,0,0));
+            AlarmSystem.GetAlarmSystem().StartAlarm(player.transform.position);
         }
         else if(suspicion > thresholds[(int)suspicionLevel])
         {

@@ -49,9 +49,9 @@ public class AlarmSystem : MonoBehaviour
         }
     }
 
-
-    private List<AlarmEnable> alarmEnableFuncs = new List<AlarmEnable>();
-    private List<AlarmDisable> alarmDisableFuncs = new List<AlarmDisable>();
+    //List of functions to be called
+    private List<AlarmEnable> alarmEnableFuncs;
+    private List<AlarmDisable> alarmDisableFuncs;
 
     //Whether the alarm is current being sounded
     bool alarm;
@@ -59,5 +59,7 @@ public class AlarmSystem : MonoBehaviour
     private void Awake()
     {
         alarm = false;
+        alarmEnableFuncs = new List<AlarmEnable>();
+        alarmDisableFuncs = new List<AlarmDisable>();
     }
 }
