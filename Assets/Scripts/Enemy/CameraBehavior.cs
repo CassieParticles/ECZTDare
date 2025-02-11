@@ -12,6 +12,8 @@ public class CameraBehavior : MonoBehaviour
     private float[] thresholds = new float[3] { 33.3f, 66.6f, 100.0f };
     [SerializeField, Range(0, 200)]
     private float suspicionScalar = 20.0f;
+    [SerializeField]
+    private bool ConnectedToAlarm = true;
 
     //Camera rotation
     [SerializeField,Range(0,180)]
@@ -33,11 +35,12 @@ public class CameraBehavior : MonoBehaviour
 
     private GameObject player;
 
-
     private GameObject visionCone;
     private float initialAngle;
     bool turnCCW;
     bool turnPause;
+
+    AlarmSystem alarm;
 
     public void SeePlayer(GameObject player)
     {
@@ -71,12 +74,20 @@ public class CameraBehavior : MonoBehaviour
         turnCCW = true;
         initialAngle = transform.GetChild(0).rotation.eulerAngles.z;
         turnPause = true;
+
+        if (ConnectedToAlarm)
+        {
+            alarm = AlarmSystem.GetAlarmSystem();
+        }
     }
 
     private void Start()
     {
         //Add the alarm function to the camera
-        AlarmSystem.GetAlarmSystem().AddAlarmFunc(Alarm);
+        if (alarm)
+        {
+            alarm.AddAlarmEnableFunc(Alarm);
+        }
     }
 
     private void FixedUpdate()
@@ -93,12 +104,14 @@ public class CameraBehavior : MonoBehaviour
         if(suspicionLevel == SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
-            AlarmSystem.GetAlarmSystem().StartAlarm(player.transform.position);
+            if(alarm && !alarm.AlarmGoingOff())
+            {
+                alarm.StartAlarm(player.transform.position);
+            }
         }
         else if(suspicion > thresholds[(int)suspicionLevel])
         {
             suspicionLevel++;
-            Debug.Log("Gotten more suspicious");
         }
 
         //Turning handling

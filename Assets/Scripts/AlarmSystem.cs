@@ -14,15 +14,17 @@ public class AlarmSystem : MonoBehaviour
         return GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
     }
 
-    public void AddAlarmFunc(AlarmEnable alarmFunc)
+    public void AddAlarmEnableFunc(AlarmEnable alarmFunc)
     {
         alarmEnableFuncs.Add(alarmFunc);
     }
 
-    public void AddAlarmFunc(AlarmDisable alarmFunc)
+    public void AddAlarmDisableFunc(AlarmDisable alarmFunc)
     {
         alarmDisableFuncs.Add(alarmFunc);
     }
+
+    public bool AlarmGoingOff() { return alarm; }
 
     public void StartAlarm(Vector3 playerPosition)
     {
