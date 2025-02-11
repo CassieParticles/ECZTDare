@@ -1,14 +1,13 @@
 {
   "dependencies": {
     "com.abertay.analytics": {
-      "version": "https://github.com/Abertay-University-SDI/AbertayAnalytics.git",
+      "version": "file:../Assets/LocalPacks/AbertayAnalytics-main",
       "depth": 0,
-      "source": "git",
+      "source": "local",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.services.analytics": "5.0.0"
-      },
-      "hash": "4ec9491fb82ab4aca3f6130ab8b8d8a8a27ccb1a"
+      }
     },
     "com.h8man.2d.navmeshplus": {
       "version": "file:../Assets/LocalPacks/NavMeshPlus-master",
