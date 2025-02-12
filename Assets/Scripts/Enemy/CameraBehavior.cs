@@ -45,11 +45,13 @@ public class CameraBehavior : MonoBehaviour
     public void SeePlayer(GameObject player)
     {
         this.player = player;
+        //Start inside vision cone sound
     }
 
     public void LosePlayer()
     {
         this.player = null;
+        //Stio inside vision cone sound
     }
 
     private void Alarm(Vector3 playerPosition)
@@ -59,10 +61,13 @@ public class CameraBehavior : MonoBehaviour
 
     private IEnumerator PauseCamera()
     {
+        //Stop camera moving sound
+        //Play camera stop moving sound
         turnPause = false;
         yield return new WaitForSeconds(pauseDuration);
         turnPause = true;
         turnCCW = !turnCCW;
+        //Start camera moving sound
     }
 
     private void Awake()
@@ -79,6 +84,8 @@ public class CameraBehavior : MonoBehaviour
         {
             alarm = AlarmSystem.GetAlarmSystem();
         }
+
+        //Start camera moving sound
     }
 
     private void Start()
@@ -106,6 +113,7 @@ public class CameraBehavior : MonoBehaviour
             //Alarm is currently being raised
             if(alarm && !alarm.AlarmGoingOff())
             {
+                //Play enemy alerted sound (currently it instantly raises the alarm, but a delay can be added)
                 alarm.StartAlarm(player.transform.position);
             }
         }
