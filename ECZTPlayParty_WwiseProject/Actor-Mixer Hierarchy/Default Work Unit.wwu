@@ -8,7 +8,7 @@
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-14</Value>
+								<Value>-26</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -225,6 +225,20 @@
 								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
 							</StateGroupInfo>
 						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Alert" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<CustomState Name="" ID="{6DE55C29-0B51-4AB0-B5C6-10D60B092E7D}" ShortID="395453002"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+								<CustomState Name="" ID="{E360222A-4D02-4DCA-B3C7-CE85E68B58A5}" ShortID="613185542">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+						</CustomStateList>
 					</StateInfo>
 					<ActiveSourceList>
 						<ActiveSource Name="Alarm_Track_Trial" ID="{26B3509F-64EB-4DC7-8F98-1081E737F8A8}" Platform="Linked"/>
@@ -257,6 +271,20 @@
 								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
 							</StateGroupInfo>
 						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="Alert" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<CustomState Name="" ID="{42E42A23-056A-41B7-B899-747F6811E8BB}" ShortID="387250202">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+								<CustomState Name="" ID="{ED79349E-21CF-4254-96C0-E4753661E8DD}" ShortID="13237314"/>
+							</CustomState>
+						</CustomStateList>
 					</StateInfo>
 					<ActiveSourceList>
 						<ActiveSource Name="Hidden_Track_Trial" ID="{9478924D-85E5-4471-8653-C9B7AA9BF3E5}" Platform="Linked"/>
