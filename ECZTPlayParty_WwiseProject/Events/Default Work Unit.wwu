@@ -3,32 +3,84 @@
 	<Events>
 		<WorkUnit Name="Default Work Unit" ID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" PersistMode="Standalone">
 			<ChildrenList>
-				<Event Name="Player_Footstep" ID="{F795793A-DBED-4D6E-8AFF-C7205147702C}"/>
-				<Event Name="Player_Jump" ID="{E3F6FD3F-26C0-4B0E-85CD-848368598098}"/>
-				<Event Name="Player_Land" ID="{B6AB758B-950E-4162-80D0-E63773950C9E}"/>
-				<Event Name="Music_Tester" ID="{662BA323-00C4-4908-8586-D537F515C644}">
+				<Event Name="Player_Footstep" ID="{F795793A-DBED-4D6E-8AFF-C7205147702C}">
 					<ChildrenList>
-						<Action Name="" ID="{CDB1E45E-277F-4417-9555-EF3ADFC44333}" ShortID="312317790">
+						<Action Name="" ID="{71C8D8C9-4BCA-4812-8C50-63D7AFE68217}" ShortID="1013421581">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Title_Track_Trial" ID="{F0236874-EDC2-4B70-9CC5-F94810B3C0C1}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Player_Footsteps" ID="{47AA31F3-D0C1-4266-A8B7-80BBD1C50384}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Player_Voice_Tester" ID="{9D7C6121-E6FA-4ECF-BA78-DE021B1547A4}">
+				<Event Name="Player_Jump" ID="{E3F6FD3F-26C0-4B0E-85CD-848368598098}">
 					<ChildrenList>
-						<Action Name="" ID="{427B8BE2-1AE6-422C-90F3-327C156214AA}" ShortID="541819892">
+						<Action Name="" ID="{098F8223-9C1D-4B3D-9115-49AB4EA806A2}" ShortID="993345200">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Player_VO_1_Trial" ID="{B6CC9350-9253-4F07-931C-0E0784C23D11}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Jump" ID="{168ECB23-AE35-4F37-B419-6335F0CC74F2}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Camera_Turn" ID="{F0B55DAE-63A3-4D60-9CDA-F2C00686F8BD}"/>
+				<Event Name="Player_Land" ID="{B6AB758B-950E-4162-80D0-E63773950C9E}">
+					<ChildrenList>
+						<Action Name="" ID="{92DD60DA-9874-4307-8F96-64FC92AB4299}" ShortID="920357378">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Land" ID="{DD60CAB0-A3C4-4D6A-B2C4-FCAACF8FEB30}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Camera_Moving" ID="{F0B55DAE-63A3-4D60-9CDA-F2C00686F8BD}">
+					<ChildrenList>
+						<Action Name="" ID="{40A16639-A019-43ED-A292-5F311F6EF4FB}" ShortID="355363751">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Camera_Moving" ID="{7F198A8B-36E9-4BE5-B33A-749B812CA54A}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Camera_Stop" ID="{1F66A7E7-2F8B-4DA4-A788-E9BA8CD65A50}">
+					<ChildrenList>
+						<Action Name="" ID="{D86DD497-7C91-4E06-8A56-B5414A3949F8}" ShortID="661380949">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Music" ID="{DF437E1B-6BB3-4723-82D9-A33E782E5F59}"/>
+				<Event Name="In_View_Cone" ID="{074B566E-2344-44AF-B9E3-DE08E923D0D4}">
+					<ChildrenList>
+						<Action Name="" ID="{C272479A-7C27-4B6C-9AF4-D5AC8EF82554}" ShortID="54685633">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="In_View_Cone" ID="{0FC97A0C-4D6D-4D92-AD58-6909CA01BB73}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Enemy_Alerted" ID="{630551CD-1155-46D2-AD41-A599ECF04F5C}">
+					<ChildrenList>
+						<Action Name="" ID="{2E377902-5743-4E32-9F31-382D8659E720}" ShortID="426241939">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Enemy_Alerted" ID="{AE849E50-3AE8-4DB4-B0CD-0895E9E6CDD6}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
