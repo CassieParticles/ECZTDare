@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D326F752-7CA2-0A14-FDB1-63ECE89D0199}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{8E3F4FC2-50E0-48AD-C0BB-D1F48F9F0495}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -21,36 +21,125 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<StateGroups>
+				<StateGroup Id="3991942870" Name="Music">
+					<States>
+						<State Id="721787521" Name="Alert"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="3621873013" Name="Hidden"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B7DADC72-6A14-450E-24DE-864685DF8DC0}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{EF3F196D-9C57-E32A-CC67-28C3A30CF9AD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
-				<File Id="54174024" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Player_VO_1_Trial.wav</ShortName>
-					<CachePath>SFX/Player_VO_1_Trial_818F3B66.wem</CachePath>
+				<File Id="28568543" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ambience_Boom_Bass.wav</ShortName>
+					<CachePath>SFX/Ambience_Boom_Bass_11A93380.wem</CachePath>
 				</File>
-				<File Id="890523791" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Title_Track_Trial.wav</ShortName>
-					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
+				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Hidden_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>In_View_Cone.wav</ShortName>
+					<CachePath>SFX/In_View_Cone_1317BE68.wem</CachePath>
+				</File>
+				<File Id="135470174" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Alarm_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="183914577" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps_Metal_4.wav</ShortName>
+					<CachePath>SFX/Footsteps_Metal_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="516303827" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps_Metal_2.wav</ShortName>
+					<CachePath>SFX/Footsteps_Metal_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Camera_Moving.wav</ShortName>
+					<CachePath>SFX/Camera_Moving_11A93380.wem</CachePath>
+				</File>
+				<File Id="679137891" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Camera_Stop.wav</ShortName>
+					<CachePath>SFX/Camera_Stop_818F3B66.wem</CachePath>
+				</File>
+				<File Id="817103883" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps_Metal_3.wav</ShortName>
+					<CachePath>SFX/Footsteps_Metal_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="973686233" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Land.wav</ShortName>
+					<CachePath>SFX/Land_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1008874514" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Footsteps_Metal_1.wav</ShortName>
+					<CachePath>SFX/Footsteps_Metal_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1010966096" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Enemy_Alerted.wav</ShortName>
+					<CachePath>SFX/Enemy_Alerted_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1069903293" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Jump.wav</ShortName>
+					<CachePath>SFX/Jump_818F3B66.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="3467352528" Name="Music_Tester" DurationType="Infinite">
+				<Event Id="1720356053" Name="Ambience_Bass" DurationType="Infinite">
 					<MediaRefs>
-						<MediaRef Id="890523791"/>
+						<MediaRef Id="28568543"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2453392179" Name="Player_Footstep" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="1305133589" Name="Player_Jump" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="3629196698" Name="Player_Land" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="2747200681" Name="Player_Voice_Tester" DurationType="OneShot" DurationMin="6.5" DurationMax="6.5">
+				<Event Id="3353320293" Name="Camera_Moving" DurationType="Infinite">
 					<MediaRefs>
-						<MediaRef Id="54174024"/>
+						<MediaRef Id="630056515"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1515494175" Name="Camera_Stop" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+					<MediaRefs>
+						<MediaRef Id="679137891"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="359728807" Name="Enemy_Alerted" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
+					<MediaRefs>
+						<MediaRef Id="1010966096"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2249657186" Name="In_View_Cone" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="118186165"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3991942870" Name="Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="40011298"/>
+						<MediaRef Id="135470174"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.5466667" DurationMax="0.59466666">
+					<MediaRefs>
+						<MediaRef Id="183914577"/>
+						<MediaRef Id="516303827"/>
+						<MediaRef Id="817103883"/>
+						<MediaRef Id="1008874514"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.33416668" DurationMax="0.33416668">
+					<MediaRefs>
+						<MediaRef Id="1069903293"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.39970833" DurationMax="0.39970833">
+					<MediaRefs>
+						<MediaRef Id="973686233"/>
 					</MediaRefs>
 				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{0C2E73D7-66D6-4A68-0DBC-DA34A6B4DE42}</FileHash>
+	<FileHash>{CF268311-5234-215B-E551-FD9E5CA3C991}</FileHash>
 </SoundBanksInfo>

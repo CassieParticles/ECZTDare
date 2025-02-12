@@ -55,13 +55,20 @@ public class MovementScript : MonoBehaviour
     }
 
     void CheckGrounded() {
+        bool wasGrounded = grounded;
+
         Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
                                                                            -collider.size.y * 0.99f / 2f);
         Vector2 leftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
                                                                            -collider.size.y * 0.99f / 2f);
+
         if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.1f, layers) ||
         Physics2D.Raycast(leftRayStart, Vector2.down, 0.1f, layers)) {
             grounded = true;
+            if (!wasGrounded) {
+                //Plays the Player_Land sound
+                AkSoundEngine.PostEvent("Player_Land", this.gameObject);
+            }
         } else {
             grounded = false;
         }
@@ -70,6 +77,8 @@ public class MovementScript : MonoBehaviour
     void JumpAndFall() {
         if (Input.GetKeyDown(KeyCode.Space) && grounded) {
             rb.velocityY = jumpStrength;
+            //Plays the Player_Jump sound
+            AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
         }
         if (rb.velocityY < fastFallActivationSpeed) {
             rb.velocityY += (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
@@ -105,5 +114,10 @@ public class MovementScript : MonoBehaviour
             rb.velocityX = maxRunSpeed * Mathf.Sign(rb.velocityX); //Sets the speed to either runSpeed or -runSpeed
         }
         spriteRenderer.flipX = !facingRight;
+
+        if (grounded && MathF.Abs(rb.velocityX) > 0.1) {
+            //Footstep code goes below here :)
+
+        }
     }
 }

@@ -13,12 +13,32 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID MUSIC_TESTER = 3467352528U;
+        static const AkUniqueID AMBIENCE_BASS = 1720356053U;
+        static const AkUniqueID CAMERA_MOVING = 3353320293U;
+        static const AkUniqueID CAMERA_STOP = 1515494175U;
+        static const AkUniqueID ENEMY_ALERTED = 359728807U;
+        static const AkUniqueID IN_VIEW_CONE = 2249657186U;
+        static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_LAND = 3629196698U;
-        static const AkUniqueID PLAYER_VOICE_TESTER = 2747200681U;
     } // namespace EVENTS
+
+    namespace STATES
+    {
+        namespace MUSIC
+        {
+            static const AkUniqueID GROUP = 3991942870U;
+
+            namespace STATE
+            {
+                static const AkUniqueID ALERT = 721787521U;
+                static const AkUniqueID HIDDEN = 3621873013U;
+                static const AkUniqueID NONE = 748895195U;
+            } // namespace STATE
+        } // namespace MUSIC
+
+    } // namespace STATES
 
     namespace BANKS
     {

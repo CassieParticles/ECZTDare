@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 
 public class CameraBehavior : MonoBehaviour
 {
+    public AK.Wwise.Event inViewCone;
+    public AK.Wwise.Event cameraMoving;
+
     //Suspicion
     [SerializeField]
     private float[] thresholds = new float[3] { 33.3f, 66.6f, 100.0f };
@@ -46,12 +49,18 @@ public class CameraBehavior : MonoBehaviour
     {
         this.player = player;
         //Start inside vision cone sound
+        inViewCone.Post(gameObject);
     }
 
     public void LosePlayer()
     {
         this.player = null;
-        //Stio inside vision cone sound
+        //Stop inside vision cone sound
+        inViewCone.Stop(gameObject);
+
+        //BELOW IS A NOTE
+        //Sets the "Music" State Group's active State to "Alarm"
+        //AkSoundEngine.SetState("Music", "Alarm");
     }
 
     private void Alarm(Vector3 playerPosition)
@@ -62,12 +71,15 @@ public class CameraBehavior : MonoBehaviour
     private IEnumerator PauseCamera()
     {
         //Stop camera moving sound
+        cameraMoving.Stop(gameObject);
         //Play camera stop moving sound
+        AkSoundEngine.PostEvent("Camera_Stop", this.gameObject);
         turnPause = false;
         yield return new WaitForSeconds(pauseDuration);
         turnPause = true;
         turnCCW = !turnCCW;
         //Start camera moving sound
+        cameraMoving.Post(gameObject);
     }
 
     private void Awake()
@@ -86,6 +98,7 @@ public class CameraBehavior : MonoBehaviour
         }
 
         //Start camera moving sound
+        cameraMoving.Post(gameObject);
     }
 
     private void Start()
