@@ -51,6 +51,7 @@ MonoBehaviour:
   - 66.6
   - 100
   suspicionScalar: 20
+  ConnectedToAlarm: 1
   maxTurnAngle: 30
   turnSpeed: 30
   pauseDuration: 1
@@ -130,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -138,11 +139,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -154,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1005028330450232886, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 270
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7986164374567372972, guid: 3858656d6a13b3f468958ab3f3e731c7, type: 3}
       propertyPath: m_Name

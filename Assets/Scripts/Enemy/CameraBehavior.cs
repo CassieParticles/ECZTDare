@@ -12,6 +12,8 @@ public class CameraBehavior : MonoBehaviour
     private float[] thresholds = new float[3] { 33.3f, 66.6f, 100.0f };
     [SerializeField, Range(0, 200)]
     private float suspicionScalar = 20.0f;
+    [SerializeField]
+    private bool ConnectedToAlarm = true;
 
     //Camera rotation
     [SerializeField,Range(0,180)]
@@ -31,15 +33,28 @@ public class CameraBehavior : MonoBehaviour
     private float suspicion;
     private SuspicionLevel suspicionLevel;
 
+    private GameObject player;
 
     private GameObject visionCone;
     private float initialAngle;
     bool turnCCW;
     bool turnPause;
 
+    AlarmSystem alarm;
+
     public void SeePlayer(GameObject player)
     {
-        suspicion += suspicionScalar * Time.fixedDeltaTime;
+        this.player = player;
+    }
+
+    public void LosePlayer()
+    {
+        this.player = null;
+    }
+
+    private void Alarm(Vector3 playerPosition)
+    {
+        Debug.Log("Alarm has been sounded");
     }
 
     private IEnumerator PauseCamera()
@@ -59,46 +74,90 @@ public class CameraBehavior : MonoBehaviour
         turnCCW = true;
         initialAngle = transform.GetChild(0).rotation.eulerAngles.z;
         turnPause = true;
+
+        if (ConnectedToAlarm)
+        {
+            alarm = AlarmSystem.GetAlarmSystem();
+        }
+    }
+
+    private void Start()
+    {
+        //Add the alarm function to the camera
+        if (alarm)
+        {
+            alarm.AddAlarmEnableFunc(Alarm);
+        }
     }
 
     private void FixedUpdate()
     {
         //suspicion handling
+
+        //Can see player, increase suspicion
+        if(player !=null)
+        {
+            suspicion += suspicionScalar * Time.fixedDeltaTime;
+        }
+
+        //Increase suspicion level and raise alarm if full
         if(suspicionLevel == SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
-            Debug.Log("Alarm is being raised");
+            if(alarm && !alarm.AlarmGoingOff())
+            {
+                alarm.StartAlarm(player.transform.position);
+            }
         }
         else if(suspicion > thresholds[(int)suspicionLevel])
         {
             suspicionLevel++;
-            Debug.Log("Gotten more suspicious");
         }
 
         //Turning handling
         Vector3 visionAngle = visionCone.transform.rotation.eulerAngles;
-        float boundary = initialAngle + maxTurnAngle * (turnCCW ? 1 : -1);
+        float upperBound = initialAngle + maxTurnAngle * +1;
+        float lowerBound = initialAngle + maxTurnAngle * -1;
+        float usedBound = turnCCW ? upperBound : lowerBound;
 
-        if (visionAngle.z > 180)
+
+        //3 cases
+        //1.) Turning range doesn't cross 0/360 bound
+        //2.) Upper bound crosses 0/360 bound
+        //3.) Lower bound crosses 0/360 bound
+
+        //Case 1, check can be simplified
+        if (upperBound < 360 && lowerBound > 0)
         {
-            boundary += 360;
-        }
-
-
-        //If camera is past max angle
-        if(turnCCW) //Turning CCW, check using upper bound
-        {
-            if(visionAngle.z > boundary)
+            if(Mathf.Abs(visionAngle.z - initialAngle) > maxTurnAngle)
             {
-                visionAngle.z += turnSpeed * Time.fixedDeltaTime * -1;    //Take a step back, to prevent immediately firing again once it's started back up
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
                 StartCoroutine(PauseCamera());
             }
         }
-        else    //Turning CW, check using lower bound
+        //Case 2 (case 3 doesn't affect this)
+        else if (upperBound > 360)
         {
-            if(visionAngle.z < boundary)
+            if(visionAngle.z < lowerBound)
             {
-                visionAngle.z += turnSpeed * Time.fixedDeltaTime;    //Take a step back, to prevent immediately firing again once it's started back up
+                upperBound -= 360;
+            }
+            if(visionAngle.z > upperBound)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
+                StartCoroutine(PauseCamera());
+            }
+        }
+        //Case 3(case 2 doesn't affect this)
+        else
+        {
+            if(visionAngle.z > upperBound)
+            {
+                lowerBound += 360;
+            }
+            if(visionAngle.z < lowerBound)
+            {
+                visionAngle.z += turnSpeed * Time.fixedDeltaTime * (turnCCW ? -1 : 1);
                 StartCoroutine(PauseCamera());
             }
         }
