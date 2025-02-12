@@ -9,6 +9,8 @@ public class CameraBehavior : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
     public AK.Wwise.Event cameraMoving;
+    public AK.Wwise.Event cameraStop;
+    public AK.Wwise.Event enemyAlerted;
 
     //Suspicion
     [SerializeField]
@@ -73,7 +75,7 @@ public class CameraBehavior : MonoBehaviour
         //Stop camera moving sound
         cameraMoving.Stop(gameObject);
         //Play camera stop moving sound
-        AkSoundEngine.PostEvent("Camera_Stop", this.gameObject);
+        cameraStop.Post(gameObject);
         turnPause = false;
         yield return new WaitForSeconds(pauseDuration);
         turnPause = true;
@@ -127,6 +129,7 @@ public class CameraBehavior : MonoBehaviour
             if(alarm && !alarm.AlarmGoingOff())
             {
                 //Play enemy alerted sound (currently it instantly raises the alarm, but a delay can be added)
+                enemyAlerted.Post(gameObject);
                 alarm.StartAlarm(player.transform.position);
             }
         }
