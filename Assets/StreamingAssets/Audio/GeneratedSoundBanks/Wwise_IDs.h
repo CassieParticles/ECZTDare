@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID AMBIENCE_BASS = 1720356053U;
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;

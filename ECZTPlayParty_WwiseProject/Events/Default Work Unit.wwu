@@ -81,6 +81,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Ambience_Bass" ID="{335B74C5-166F-402D-BF5A-C589C5DCC58A}">
+					<ChildrenList>
+						<Action Name="" ID="{0B311596-AF70-4924-97FB-1175A945ED5A}" ShortID="898035083">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Boom_Bass" ID="{E6791ED4-A5C3-4FB1-8420-B1A761B18301}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

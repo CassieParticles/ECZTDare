@@ -29,10 +29,14 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4197FA64-FBBC-341F-8997-D2C2447D5692}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{57152BF8-66AB-EAE7-D168-2472DC8355F5}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
+				<File Id="28568543" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Ambience_Boom_Bass.wav</ShortName>
+					<CachePath>SFX/Ambience_Boom_Bass_11A93380.wem</CachePath>
+				</File>
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
 					<CachePath>SFX/In_View_Cone_17CC5F90.wem</CachePath>
@@ -75,6 +79,11 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="1720356053" Name="Ambience_Bass" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="28568543"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="3353320293" Name="Camera_Moving" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="630056515"/>
@@ -117,5 +126,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{48D9EE9D-E83A-2185-C1E8-986CD6750280}</FileHash>
+	<FileHash>{20EAAC0A-E85F-F479-AECC-99BE6732FBF9}</FileHash>
 </SoundBanksInfo>
