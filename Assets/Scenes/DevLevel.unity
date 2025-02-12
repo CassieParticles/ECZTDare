@@ -11876,10 +11876,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPos: {x: 0, y: 0}
-  turningMult: 2
+  turningMult: 1
   exponentX: 2
   exponentY: 2
   directionalOffset: 2.2
+  runningOffsetMult: 1
   verticalOffset: 2
 --- !u!50 &519420037
 Rigidbody2D:
