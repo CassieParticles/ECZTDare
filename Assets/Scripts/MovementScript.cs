@@ -55,7 +55,6 @@ public class MovementScript : MonoBehaviour
     }
 
     void CheckGrounded() {
-        Vector2 rightRayStart = transform.position + new Vector3(transform.localScale.x * 0.99f / 2f,
         bool wasGrounded = grounded;
 
         Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
