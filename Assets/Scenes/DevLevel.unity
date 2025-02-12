@@ -15950,7 +15950,7 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
---- !u!1001 &1423812726
+--- !u!1001 &1643759927
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -15958,17 +15958,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3751253523449891044, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8201590158919968317, guid: 397fed07a1b0b4f46b09f3d8b5f7069a, type: 3}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.20000076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31000042
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.95950454
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.2816934
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866807594649748871, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -32.723
+      objectReference: {fileID: 0}
     - target: {fileID: 4408064128929954087, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.25
+      value: -17.580463
       objectReference: {fileID: 0}
     - target: {fileID: 4408064128929954087, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -9.84
+      value: -9.639728
       objectReference: {fileID: 0}
     - target: {fileID: 4408064128929954087, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16006,9 +16030,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 6660897373190108923, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
-      propertyPath: maxTurnAngle
-      value: 12.8
+    - target: {fileID: 8886131723817359938, guid: 5473c01f88e6dbe4a9b98a8226958c04, type: 3}
+      propertyPath: distance
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16205,6 +16229,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 565990201}
   - {fileID: 1148951690}
-  - {fileID: 1423812726}
   - {fileID: 2143170207}
   - {fileID: 1177744423}
+  - {fileID: 1643759927}
