@@ -20,7 +20,12 @@ public class AlarmMusicHandler : MonoBehaviour
 
     private void Awake()
     {
-        alarm = AlarmSystem.GetAlarmSystem();
+        alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+
+    }
+
+    private void Start()
+    {
         alarm.AddAlarmEnableFunc(AlarmOn);
         alarm.AddAlarmDisableFunc(AlarmOff);
     }

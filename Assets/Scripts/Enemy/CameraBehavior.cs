@@ -96,7 +96,7 @@ public class CameraBehavior : MonoBehaviour
 
         if (ConnectedToAlarm)
         {
-            alarm = AlarmSystem.GetAlarmSystem();
+            alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
         }
 
         //Start camera moving sound
