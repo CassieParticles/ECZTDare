@@ -24,6 +24,16 @@ public class AlarmSystem : MonoBehaviour
         alarmDisableFuncs.Add(alarmFunc);
     }
 
+    public void RemoveAlarmEnableFunc(AlarmEnable alarmFunc)
+    {
+        alarmEnableFuncs.Remove(alarmFunc);
+    }
+
+    public void RemoveAlarmDisableFunc(AlarmDisable alarmFunc)
+    {
+        alarmDisableFuncs.Remove(alarmFunc);
+    }
+
     public bool AlarmGoingOff() { return alarm; }
 
     public void StartAlarm(Vector3 playerPosition)
