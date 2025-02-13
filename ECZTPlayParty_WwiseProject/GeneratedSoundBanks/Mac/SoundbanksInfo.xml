@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{8E3F4FC2-50E0-48AD-C0BB-D1F48F9F0495}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{37B65A7E-769D-2D3A-84FC-35A0A344737C}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -26,12 +26,13 @@
 					<States>
 						<State Id="721787521" Name="Alert"/>
 						<State Id="748895195" Name="None"/>
+						<State Id="1862135557" Name="NoMusic"/>
 						<State Id="3621873013" Name="Hidden"/>
 					</States>
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{EF3F196D-9C57-E32A-CC67-28C3A30CF9AD}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{FD5484A6-EAFB-AE9B-B21F-E842BDD5B7C4}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -45,7 +46,7 @@
 				</File>
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
-					<CachePath>SFX/In_View_Cone_1317BE68.wem</CachePath>
+					<CachePath>SFX/In_View_Cone_DE9EFA1B.wem</CachePath>
 				</File>
 				<File Id="135470174" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Track_Trial.wav</ShortName>
@@ -141,5 +142,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{CF268311-5234-215B-E551-FD9E5CA3C991}</FileHash>
+	<FileHash>{E14A4A7B-61F3-BB7F-7E62-FBD6DF08CC5F}</FileHash>
 </SoundBanksInfo>

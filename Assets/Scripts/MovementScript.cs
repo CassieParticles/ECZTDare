@@ -7,6 +7,14 @@ using UnityEngine.InputSystem;
 
 public class MovementScript : MonoBehaviour
 {
+    /// The speed at which footstep sounds are triggered.
+	[Range(0.01f, 1.0f)]
+    public float footstepRate = 0.3f;
+    ///	Used to determine when to trigger footstep sounds.
+    private float walkCount = 0.0f;
+
+    //ADELE!!!! BELOW THIS LINE, IS THE LINE THAT POSTS THE AUDIO. :3
+	//public AK.Wwise.Event footstepSound = new AK.Wwise.Event();
 
     [NonSerialized] public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -114,10 +122,5 @@ public class MovementScript : MonoBehaviour
             rb.velocityX = maxRunSpeed * Mathf.Sign(rb.velocityX); //Sets the speed to either runSpeed or -runSpeed
         }
         spriteRenderer.flipX = !facingRight;
-
-        if (grounded && MathF.Abs(rb.velocityX) > 0.1) {
-            //Footstep code goes below here :)
-
-        }
     }
 }
