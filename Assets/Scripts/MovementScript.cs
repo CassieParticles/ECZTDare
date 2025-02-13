@@ -73,8 +73,10 @@ public class MovementScript : MonoBehaviour
         Vector2 leftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
                                                                            -collider.size.y * 0.99f / 2f);
 
+
         if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.15f, layers) ||
         Physics2D.Raycast(leftRayStart, Vector2.down, 0.15f, layers)) {
+
             if (!grounded) {
                 //Plays the Player_Land sound
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);

@@ -33,7 +33,6 @@ public class CameraMovement : MonoBehaviour
         int playerDir = Convert.ToInt32(player.facingRight) * 2 - 1;
         if (MathF.Abs(smoothTurning + playerDir * 0.1f) <= 1f) {
             smoothTurning += playerDir * 0.1f * turningMult;
-
         } 
 
         int isPlayerFalling = 0;
@@ -46,7 +45,6 @@ public class CameraMovement : MonoBehaviour
                     + Vector2.up * verticalOffset
                     + Vector2.right * player.rb.velocityX * runningOffsetMult * 0.1f
                     + Vector2.up * isPlayerFalling * (player.rb.velocityY - fallingOffsetThreshold) * fallingOffsetMult;
-
 
         //rb.velocity += (targetPos - rb.position) * 0.5f;
         if (Vector2.Distance(rb.position, targetPos) < 0.1f) {
