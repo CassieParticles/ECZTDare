@@ -21,6 +21,7 @@ public class MovementScript : MonoBehaviour
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     [SerializeField] private float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] private float acceleration = 20; //Speeding up when running
@@ -57,6 +58,7 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
     }
@@ -67,7 +69,11 @@ public class MovementScript : MonoBehaviour
         JumpAndFall();
         WalkRun();
 
-        if(Input.GetKey(KeyCode.L))
+        animator.SetBool("Grounded", grounded);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
+        animator.SetFloat("yVelocity", rb.velocityY);
+
+        if (Input.GetKey(KeyCode.L))
         {
             alarm.StopAlarm();
         }
@@ -88,6 +94,7 @@ public class MovementScript : MonoBehaviour
             if (!grounded && landingCooldown <= 0) {
                 //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
                 landingCooldown = 0.1f;
+                
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
             grounded = true;
