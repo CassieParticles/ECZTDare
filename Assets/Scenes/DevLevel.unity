@@ -11950,7 +11950,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.9296875
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12060,6 +12060,8 @@ MonoBehaviour:
   directionalOffset: 2.2
   runningOffsetMult: 3
   verticalOffset: 2
+  fallingOffsetMult: 0.1
+  fallingOffsetThreshold: -2
 --- !u!50 &519420037
 Rigidbody2D:
   serializedVersion: 4
@@ -17731,8 +17733,6 @@ Tilemap:
     m_Data: {fileID: 7482667652216324306, guid: baaec104b62dbf24a8e7a7caea5968a1, type: 3}
   - m_RefCount: 193
     m_Data: {fileID: 21300000, guid: d038fb9bd47d90348b5db7690fc84110, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 440
     m_Data:
@@ -17752,42 +17752,6 @@ Tilemap:
       e31: 0
       e32: 0
       e33: 1
-  - m_RefCount: 0
-    m_Data:
-      e00: 4.1008863e-15
-      e01: 0
-      e02: 1e-45
-      e03: -2.98156e-19
-      e10: 1.25e-43
-      e11: 0
-      e12: 0
-      e13: 5.97e-43
-      e20: -1.0649348e-13
-      e21: -2.98156e-19
-      e22: -3.7594994e+19
-      e23: 4.998425e-19
-      e30: 4.5907e-41
-      e31: 5.97e-43
-      e32: 6e-43
-      e33: 5.98e-43
-  - m_RefCount: 0
-    m_Data:
-      e00: 4.1008863e-15
-      e01: 0
-      e02: 1e-45
-      e03: -2.98156e-19
-      e10: 1.25e-43
-      e11: 0
-      e12: 0
-      e13: 5.97e-43
-      e20: -1.0649348e-13
-      e21: -2.98156e-19
-      e22: -3.7594994e+19
-      e23: 2.1581111e-19
-      e30: 4.5907e-41
-      e31: 5.97e-43
-      e32: 6e-43
-      e33: 5.98e-43
   m_TileColorArray:
   - m_RefCount: 440
     m_Data: {r: 1, g: 1, b: 1, a: 1}
@@ -18442,7 +18406,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbe0d1d0cb56484d8ab8a2be903ba8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   footstepRate: 0.3
+  footstepRateScaler: 1
   maxRunSpeed: 11
   acceleration: 20
   deceleration: 15
