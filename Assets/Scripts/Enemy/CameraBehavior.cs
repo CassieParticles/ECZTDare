@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 
 
@@ -15,7 +15,7 @@ public class CameraBehavior : MonoBehaviour
     //Suspicion
     [SerializeField]
     private float[] thresholds = new float[3] { 33.3f, 66.6f, 100.0f };
-    [SerializeField, Range(0, 200)]
+    [SerializeField, Range(0, 1000)]
     private float suspicionScalar = 20.0f;
     [SerializeField]
     private bool ConnectedToAlarm = true;
@@ -52,6 +52,10 @@ public class CameraBehavior : MonoBehaviour
         this.player = player;
         //Start inside vision cone sound
         inViewCone.Post(gameObject);
+        if(!alarm.AlarmGoingOff())
+        {
+            visionCone.GetComponent<VisionCone>().SetColour(Color.yellow);
+        }
     }
 
     public void LosePlayer()
@@ -59,6 +63,11 @@ public class CameraBehavior : MonoBehaviour
         this.player = null;
         //Stop inside vision cone sound
         inViewCone.Stop(gameObject);
+
+        if (!alarm.AlarmGoingOff())
+        {
+            visionCone.GetComponent<VisionCone>().SetColour(Color.white);
+        }
 
         //BELOW IS A NOTE
         //Sets the "Music" State Group's active State to "Alarm"
@@ -68,6 +77,14 @@ public class CameraBehavior : MonoBehaviour
     private void Alarm(Vector3 playerPosition)
     {
         Debug.Log("Alarm has been sounded");
+        visionCone.GetComponent<VisionCone>().SetColour(Color.red);
+    }
+
+    private void AlarmOff()
+    {
+        suspicion = 0;
+        suspicionLevel = SuspicionLevel.Idle;
+        visionCone.GetComponent<VisionCone>().SetColour(Color.white);
     }
 
     private IEnumerator PauseCamera()
@@ -82,6 +99,15 @@ public class CameraBehavior : MonoBehaviour
         turnCCW = !turnCCW;
         //Start camera moving sound
         cameraMoving.Post(gameObject);
+    }
+
+    private float increaseSuspicion(GameObject player)
+    {
+        //Get distance as a scalar of 0-1
+        float distance = (player.transform.position - transform.position).magnitude;
+        float distanceScaled = distance / visionCone.GetComponent<VisionCone>().distance;
+
+        return distanceScaled * suspicionScalar;
     }
 
     private void Awake()
@@ -109,8 +135,11 @@ public class CameraBehavior : MonoBehaviour
         if (alarm)
         {
             alarm.AddAlarmEnableFunc(Alarm);
+            alarm.AddAlarmDisableFunc(AlarmOff);
         }
     }
+
+
 
     private void FixedUpdate()
     {
@@ -119,7 +148,11 @@ public class CameraBehavior : MonoBehaviour
         //Can see player, increase suspicion
         if(player !=null)
         {
-            suspicion += suspicionScalar * Time.fixedDeltaTime;
+            suspicion += increaseSuspicion(player) * Time.fixedDeltaTime;
+        }
+        else if(!alarm.AlarmGoingOff())
+        {
+            suspicion -= 10 * Time.fixedDeltaTime;
         }
 
         //Increase suspicion level and raise alarm if full
