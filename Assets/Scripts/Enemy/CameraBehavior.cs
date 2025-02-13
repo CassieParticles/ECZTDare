@@ -150,6 +150,10 @@ public class CameraBehavior : MonoBehaviour
         {
             suspicion += increaseSuspicion(player) * Time.fixedDeltaTime;
         }
+        else if(!alarm.AlarmGoingOff())
+        {
+            suspicion -= 10 * Time.fixedDeltaTime;
+        }
 
         //Increase suspicion level and raise alarm if full
         if(suspicionLevel == SuspicionLevel.Alarm)
