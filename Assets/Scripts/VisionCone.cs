@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class VisionCone : MonoBehaviour
 {
@@ -24,6 +20,13 @@ public class VisionCone : MonoBehaviour
     private Mesh visionConeMesh;
 
     private CameraBehavior CameraEnemy;
+
+    private Material coneMaterial;
+
+    public void SetColour(Color colour)
+    {
+        coneMaterial.color = colour;
+    }
 
     private float GetDistance(float angle)
     {
@@ -107,6 +110,9 @@ public class VisionCone : MonoBehaviour
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
         CameraEnemy = transform.parent.GetComponent<CameraBehavior>();
+
+        coneMaterial = GetComponent<MeshRenderer>().material;
+        SetColour(Color.white);
 
         GenerateConeMesh();
         
