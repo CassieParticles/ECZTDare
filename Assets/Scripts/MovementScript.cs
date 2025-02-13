@@ -1,26 +1,28 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class MovementScript : MonoBehaviour
 {
-    /// The speed at which footstep sounds are triggered.
-	[Range(0.01f, 1.0f)]
-    public float footstepRate = 0.3f;
-    ///	Used to determine when to trigger footstep sounds.
-    private float walkCount = 0.0f;
+    public AK.Wwise.Event playerFootstep;
 
-    //ADELE!!!! BELOW THIS LINE, IS THE LINE THAT POSTS THE AUDIO. :3
-	//public AK.Wwise.Event footstepSound = new AK.Wwise.Event();
+    //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
+	[SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
+
+    //How much the velocity of the player affects the footstep frequency
+	[SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
+
+    //Used to determine when to trigger footstep sounds.
+    private float footstepCount = 0.0f;
+
+    //Cooldown for playing the landing sound effect in seconds
+    private float landingCooldown = 0.5f;
 
     [NonSerialized] public Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
     private BoxCollider2D collider;
+    private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float maxRunSpeed = 8;
+    [SerializeField] private float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
@@ -33,6 +35,8 @@ public class MovementScript : MonoBehaviour
     [NonSerialized] public bool facingRight;
 
     private LayerMask layers;
+
+    AlarmSystem alarm;
 
     //PlayerControls controls;
 
@@ -53,17 +57,26 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
+
+        alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         CheckGrounded();
         JumpAndFall();
         WalkRun();
+
+        if(Input.GetKey(KeyCode.L))
+        {
+            alarm.StopAlarm();
+        }
     }
 
     void CheckGrounded() {
-        bool wasGrounded = grounded;
+        if (landingCooldown > 0) {
+            landingCooldown -= Time.deltaTime;
+        }
 
         Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
                                                                            -collider.size.y * 0.99f / 2f);
@@ -72,18 +85,19 @@ public class MovementScript : MonoBehaviour
 
         if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.1f, layers) ||
         Physics2D.Raycast(leftRayStart, Vector2.down, 0.1f, layers)) {
-            grounded = true;
-            if (!wasGrounded) {
-                //Plays the Player_Land sound
+            if (!grounded && landingCooldown <= 0) {
+                //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
+                landingCooldown = 0.1f;
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
+            grounded = true;
         } else {
             grounded = false;
         }
     }
 
     void JumpAndFall() {
-        if (Input.GetKeyDown(KeyCode.Space) && grounded) {
+        if (Input.GetKey(KeyCode.Space) && grounded) {
             rb.velocityY = jumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
@@ -94,9 +108,6 @@ public class MovementScript : MonoBehaviour
                 rb.velocityY = -maxFallSpeed;
             }
         } 
-        //else if (rb.velocityY > 0 && !Input.GetKey(KeyCode.Space)) {
-        //    rb.velocityY += (fallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
-        //}
     }
 
     void WalkRun() {
@@ -120,6 +131,14 @@ public class MovementScript : MonoBehaviour
         }
         if (Mathf.Abs(rb.velocityX) > maxRunSpeed) {
             rb.velocityX = maxRunSpeed * Mathf.Sign(rb.velocityX); //Sets the speed to either runSpeed or -runSpeed
+        }
+
+        if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
+            footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
+            if (footstepCount > 1) {
+                playerFootstep.Post(gameObject);
+                footstepCount--;
+            }           
         }
         spriteRenderer.flipX = !facingRight;
     }

@@ -9,10 +9,13 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{D9AB7088-C64C-4847-83C1-658C125F7889}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{564039E6-40E2-FBC6-E904-CC3E0E08227C}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
+				<ShareSets>
+					<Plugin Id="1904434771" Name="Medium_Room1" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+				</ShareSets>
 				<AudioDevices>
 					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
 					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
@@ -21,6 +24,15 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<AuxBusses>
+				<AuxBus Id="2347912553" Name="MediumRoomReverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1904434771"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
 			<StateGroups>
 				<StateGroup Id="3991942870" Name="Music">
 					<States>
@@ -32,7 +44,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{FD5484A6-EAFB-AE9B-B21F-E842BDD5B7C4}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8B7B33F7-10C3-83E5-A40D-511BB46B1557}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -54,11 +66,11 @@
 				</File>
 				<File Id="183914577" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps_Metal_4.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_4_818F3B66.wem</CachePath>
+					<CachePath>SFX/Footsteps_Metal_4_CBBE0290.wem</CachePath>
 				</File>
 				<File Id="516303827" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps_Metal_2.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_2_818F3B66.wem</CachePath>
+					<CachePath>SFX/Footsteps_Metal_2_84B1941E.wem</CachePath>
 				</File>
 				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Moving.wav</ShortName>
@@ -70,7 +82,7 @@
 				</File>
 				<File Id="817103883" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps_Metal_3.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_3_818F3B66.wem</CachePath>
+					<CachePath>SFX/Footsteps_Metal_3_C20EE8B7.wem</CachePath>
 				</File>
 				<File Id="973686233" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Land.wav</ShortName>
@@ -78,7 +90,7 @@
 				</File>
 				<File Id="1008874514" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps_Metal_1.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_1_818F3B66.wem</CachePath>
+					<CachePath>SFX/Footsteps_Metal_1_983ED43A.wem</CachePath>
 				</File>
 				<File Id="1010966096" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemy_Alerted.wav</ShortName>
@@ -99,11 +111,17 @@
 					<MediaRefs>
 						<MediaRef Id="630056515"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="1515494175" Name="Camera_Stop" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="359728807" Name="Enemy_Alerted" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
@@ -121,26 +139,35 @@
 						<MediaRef Id="135470174"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.5466667" DurationMax="0.59466666">
+				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.31699407" DurationMax="0.4077941">
 					<MediaRefs>
 						<MediaRef Id="183914577"/>
 						<MediaRef Id="516303827"/>
 						<MediaRef Id="817103883"/>
 						<MediaRef Id="1008874514"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+					</AuxBusRefs>
 				</Event>
-				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.33416668" DurationMax="0.33416668">
+				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.332242" DurationMax="0.3361025">
 					<MediaRefs>
 						<MediaRef Id="1069903293"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+					</AuxBusRefs>
 				</Event>
-				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.39970833" DurationMax="0.39970833">
+				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.39511728" DurationMax="0.40435272">
 					<MediaRefs>
 						<MediaRef Id="973686233"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+					</AuxBusRefs>
 				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2198826E-7CEB-6D5D-9CAA-A0ABD9E342B0}</FileHash>
+	<FileHash>{D75BE6E7-E0C2-F863-FE96-696EA86599A7}</FileHash>
 </SoundBanksInfo>

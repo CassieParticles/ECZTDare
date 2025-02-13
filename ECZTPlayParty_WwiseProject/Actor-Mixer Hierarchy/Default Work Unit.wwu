@@ -6,6 +6,7 @@
 				<Sound Name="Ambience_Boom_Bass" ID="{E6791ED4-A5C3-4FB1-8420-B1A761B18301}" ShortID="476156417">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-18</Value>
@@ -39,6 +40,7 @@
 				<Sound Name="Camera_Moving" ID="{7F198A8B-36E9-4BE5-B33A-749B812CA54A}" ShortID="541146369">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -46,6 +48,9 @@
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -66,6 +71,7 @@
 				</Sound>
 				<Sound Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" ShortID="284629122">
 					<PropertyList>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
 								<Value>-2</Value>
@@ -78,6 +84,9 @@
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -97,7 +106,7 @@
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-5</Value>
+								<Value>-10</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -159,9 +168,23 @@
 				</Sound>
 				<Sound Name="Jump" ID="{168ECB23-AE35-4F37-B419-6335F0CC74F2}" ShortID="442838738">
 					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{CA533BC3-C1B8-49AD-96F2-06E118487925}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="10"/>
+											<Property Name="Min" Type="Real64" Value="-10"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-5</Value>
+								<Value>-4</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -171,6 +194,9 @@
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -188,11 +214,20 @@
 				</Sound>
 				<Sound Name="Land" ID="{DD60CAB0-A3C4-4D6A-B2C4-FCAACF8FEB30}" ShortID="314159866">
 					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-5</Value>
-							</ValueList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{02BF8DF1-5607-4155-923F-72E760FA1F1D}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="20"/>
+											<Property Name="Min" Type="Real64" Value="-20"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
 						</Property>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -200,6 +235,9 @@
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -220,7 +258,7 @@
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
 							<ValueList>
-								<Value>-5</Value>
+								<Value>-10</Value>
 							</ValueList>
 						</Property>
 					</PropertyList>
@@ -277,11 +315,6 @@
 				<Sound Name="Hidden_Track_Trial" ID="{DCA58697-E378-4DB7-BFD2-2C114C62DBF7}" ShortID="559946206">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-3</Value>
-							</ValueList>
-						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -334,12 +367,47 @@
 					</ActiveSourceList>
 				</Sound>
 				<RandomSequenceContainer Name="Player_Footsteps" ID="{47AA31F3-D0C1-4266-A8B7-80BBD1C50384}" ShortID="27263875">
+					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{58E2A166-0D92-4A26-B64F-AC3DD61980B0}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="50"/>
+											<Property Name="Min" Type="Real64" Value="-50"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+						<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>6</Value>
+							</ValueList>
+							<ModifierList>
+								<ModifierInfo>
+									<Modifier Name="" ID="{66261B17-2279-440D-913C-33F75461C00D}">
+										<PropertyList>
+											<Property Name="Enabled" Type="bool" Value="True"/>
+											<Property Name="Max" Type="Real64" Value="3"/>
+										</PropertyList>
+									</Modifier>
+								</ModifierInfo>
+							</ModifierList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -354,6 +422,12 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="Footsteps_Metal_1" ID="{57DD1779-4A0B-4D8F-94F0-6E62F73DEEF6}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0443664921465969"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.190698080279232"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.396184991273997"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>Footsteps_Metal_1.wav</AudioFile>
 									<MediaIDList>
@@ -376,6 +450,12 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="Footsteps_Metal_2" ID="{BA68D63D-B37B-4A27-9595-87F1F26E6C94}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0587329842931937"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.234931937172774"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.385853403141361"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>Footsteps_Metal_2.wav</AudioFile>
 									<MediaIDList>
@@ -398,6 +478,12 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="Footsteps_Metal_3" ID="{9D2F2171-F9EE-42DB-9DF8-8510BCF5BF5B}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0271902268760907"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.1717277486911"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.326282722513089"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>Footsteps_Metal_3.wav</AudioFile>
 									<MediaIDList>
@@ -420,6 +506,12 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="Footsteps_Metal_4" ID="{43F75D3B-BC6E-44E3-BD24-393771217EC9}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0627526178010472"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.203946007853403"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.366803992146597"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>Footsteps_Metal_4.wav</AudioFile>
 									<MediaIDList>
