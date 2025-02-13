@@ -11950,7 +11950,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.9296875
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12060,6 +12060,8 @@ MonoBehaviour:
   directionalOffset: 2.2
   runningOffsetMult: 3
   verticalOffset: 2
+  fallingOffsetMult: 0.1
+  fallingOffsetThreshold: -2
 --- !u!50 &519420037
 Rigidbody2D:
   serializedVersion: 4
@@ -19567,7 +19569,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cbe0d1d0cb56484d8ab8a2be903ba8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   footstepRate: 0.3
+  footstepRateScaler: 1
   maxRunSpeed: 11
   acceleration: 20
   deceleration: 15
