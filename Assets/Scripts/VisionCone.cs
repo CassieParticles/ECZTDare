@@ -21,6 +21,13 @@ public class VisionCone : MonoBehaviour
 
     private CameraBehavior CameraEnemy;
 
+    private Material coneMaterial;
+
+    public void SetColour(Color colour)
+    {
+        coneMaterial.color = colour;
+    }
+
     private float GetDistance(float angle)
     {
         //Add offset for object rotation
@@ -103,6 +110,9 @@ public class VisionCone : MonoBehaviour
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
         CameraEnemy = transform.parent.GetComponent<CameraBehavior>();
+
+        coneMaterial = GetComponent<MeshRenderer>().material;
+        SetColour(Color.white);
 
         GenerateConeMesh();
         
