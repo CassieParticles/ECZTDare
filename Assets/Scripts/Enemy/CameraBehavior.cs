@@ -51,6 +51,10 @@ public class CameraBehavior : MonoBehaviour
         this.player = player;
         //Start inside vision cone sound
         inViewCone.Post(gameObject);
+        if(!alarm.AlarmGoingOff())
+        {
+            visionCone.GetComponent<VisionCone>().SetColour(Color.yellow);
+        }
     }
 
     public void LosePlayer()
@@ -58,6 +62,11 @@ public class CameraBehavior : MonoBehaviour
         this.player = null;
         //Stop inside vision cone sound
         inViewCone.Stop(gameObject);
+
+        if (!alarm.AlarmGoingOff())
+        {
+            visionCone.GetComponent<VisionCone>().SetColour(Color.white);
+        }
 
         //BELOW IS A NOTE
         //Sets the "Music" State Group's active State to "Alarm"
@@ -67,6 +76,7 @@ public class CameraBehavior : MonoBehaviour
     private void Alarm(Vector3 playerPosition)
     {
         Debug.Log("Alarm has been sounded");
+        visionCone.GetComponent<VisionCone>().SetColour(Color.red);
     }
 
     private IEnumerator PauseCamera()
