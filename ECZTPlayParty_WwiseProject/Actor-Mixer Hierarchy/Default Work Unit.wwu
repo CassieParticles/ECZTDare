@@ -315,11 +315,6 @@
 				<Sound Name="Hidden_Track_Trial" ID="{DCA58697-E378-4DB7-BFD2-2C114C62DBF7}" ShortID="559946206">
 					<PropertyList>
 						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-3</Value>
-							</ValueList>
-						</Property>
 					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
