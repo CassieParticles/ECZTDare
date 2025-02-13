@@ -46,11 +46,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d53169bcb325e6449b7d1c2edb2ea04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inViewCone:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  cameraMoving:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  cameraStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  enemyAlerted:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   thresholds:
   - 33.3
   - 66.6
   - 100
-  suspicionScalar: 20
+  suspicionScalar: 100
   ConnectedToAlarm: 1
   maxTurnAngle: 30
   turnSpeed: 30
