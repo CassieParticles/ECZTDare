@@ -14,7 +14,9 @@ public class MovementScript : MonoBehaviour
 
     //Used to determine when to trigger footstep sounds.
     private float footstepCount = 0.0f;
-	
+
+    //Cooldown for playing the landing sound effect in seconds
+    private float landingCooldown = 0.1f;
 
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
@@ -63,6 +65,9 @@ public class MovementScript : MonoBehaviour
     }
 
     void CheckGrounded() {
+        if (landingCooldown > 0) {
+            landingCooldown -= Time.deltaTime;
+        }
 
         Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
                                                                            -collider.size.y * 0.99f / 2f);
@@ -71,8 +76,9 @@ public class MovementScript : MonoBehaviour
 
         if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.1f, layers) ||
         Physics2D.Raycast(leftRayStart, Vector2.down, 0.1f, layers)) {
-            if (!grounded) {
-                //Plays the Player_Land sound
+            if (!grounded && landingCooldown <= 0) {
+                //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
+                landingCooldown = 0.1f;
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
             grounded = true;
