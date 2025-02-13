@@ -83,6 +83,8 @@ public class CameraBehavior : MonoBehaviour
     private void AlarmOff()
     {
         suspicion = 0;
+        suspicionLevel = SuspicionLevel.Idle;
+        visionCone.GetComponent<VisionCone>().SetColour(Color.white);
     }
 
     private IEnumerator PauseCamera()
@@ -147,6 +149,10 @@ public class CameraBehavior : MonoBehaviour
         if(player !=null)
         {
             suspicion += increaseSuspicion(player) * Time.fixedDeltaTime;
+        }
+        else if(!alarm.AlarmGoingOff())
+        {
+            suspicion -= 10 * Time.fixedDeltaTime;
         }
 
         //Increase suspicion level and raise alarm if full
