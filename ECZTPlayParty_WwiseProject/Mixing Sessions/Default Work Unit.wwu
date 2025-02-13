@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{5305A9AC-458B-4C99-9E75-288C79DA64E5}" SchemaVersion="119">
 	<MixingSessions>
-		<WorkUnit Name="Default Work Unit" ID="{5305A9AC-458B-4C99-9E75-288C79DA64E5}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{5305A9AC-458B-4C99-9E75-288C79DA64E5}" PersistMode="Standalone">
+			<ChildrenList>
+				<MixingSession Name="FinalMix" ID="{C64A7DB2-E626-440A-A241-D161F6B5A3C3}">
+					<ObjectList>
+						<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+					</ObjectList>
+				</MixingSession>
+			</ChildrenList>
+		</WorkUnit>
 	</MixingSessions>
 </WwiseDocument>

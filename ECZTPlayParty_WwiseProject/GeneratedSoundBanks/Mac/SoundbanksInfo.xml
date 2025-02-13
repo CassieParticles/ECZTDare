@@ -9,10 +9,13 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{37B65A7E-769D-2D3A-84FC-35A0A344737C}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{44B5B1DE-6748-C256-4580-CBAB6D9FCB23}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
+				<ShareSets>
+					<Plugin Id="1904434771" Name="Medium_Room1" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+				</ShareSets>
 				<AudioDevices>
 					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
 					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
@@ -21,6 +24,15 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<AuxBusses>
+				<AuxBus Id="2347912553" Name="MediumRoomReverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1904434771"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+			</AuxBusses>
 			<StateGroups>
 				<StateGroup Id="3991942870" Name="Music">
 					<States>
@@ -32,7 +44,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{FD5484A6-EAFB-AE9B-B21F-E842BDD5B7C4}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{74FC05BC-0F7F-CBBD-C953-6A98C0E4BDB3}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -142,5 +154,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{E14A4A7B-61F3-BB7F-7E62-FBD6DF08CC5F}</FileHash>
+	<FileHash>{AE82F0BC-B239-7B80-FCEF-1AF456A75CB0}</FileHash>
 </SoundBanksInfo>
