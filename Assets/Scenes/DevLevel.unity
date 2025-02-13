@@ -12185,6 +12185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6530670497264977195, guid: f98563d21446bb24c8ad24dbf3f967f9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7680657108624308150, guid: f98563d21446bb24c8ad24dbf3f967f9, type: 3}
       propertyPath: m_Name
       value: AlarmObject
@@ -18881,10 +18885,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepRate: 0.3
-  footstepSound:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   maxRunSpeed: 11
   acceleration: 20
   deceleration: 15
