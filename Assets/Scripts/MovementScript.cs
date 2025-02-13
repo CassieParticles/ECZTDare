@@ -8,10 +8,23 @@ using UnityEngine.InputSystem;
 public class MovementScript : MonoBehaviour
 {
 
+    public AK.Wwise.Event playerFootstep;
+
+    //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
+	[SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
+
+    //How much the velocity of the player affects the footstep frequency
+	[SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
+
+    //Used to determine when to trigger footstep sounds.
+    private float footstepCount = 0.0f;
+	
+
     [NonSerialized] public Rigidbody2D rb;
+    private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
 
-    [SerializeField] private float maxRunSpeed = 8;
+    [SerializeField] private float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
@@ -43,22 +56,29 @@ public class MovementScript : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         CheckGrounded();
         JumpAndFall();
         WalkRun();
     }
 
     void CheckGrounded() {
-        Vector2 rightRayStart = transform.position + new Vector3(transform.localScale.x * 0.99f / 2f,
-                                                                -transform.localScale.y * 0.99f / 2f);
-        Vector2 leftRayStart = transform.position + new Vector3(-transform.localScale.x * 0.99f / 2f,
-                                                                -transform.localScale.y * 0.99f / 2f);
-        if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.1f, layers) ||
-        Physics2D.Raycast(leftRayStart, Vector2.down, 0.1f, layers)) {
+
+        Vector2 rightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
+                                                                           -collider.size.y * 0.99f / 2f);
+        Vector2 leftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
+                                                                           -collider.size.y * 0.99f / 2f);
+
+        if (Physics2D.Raycast(rightRayStart, Vector2.down, 0.15f, layers) ||
+        Physics2D.Raycast(leftRayStart, Vector2.down, 0.15f, layers)) {
+            if (!grounded) {
+                //Plays the Player_Land sound
+                AkSoundEngine.PostEvent("Player_Land", this.gameObject);
+            }
             grounded = true;
         } else {
             grounded = false;
@@ -75,9 +95,6 @@ public class MovementScript : MonoBehaviour
                 rb.velocityY = -maxFallSpeed;
             }
         } 
-        //else if (rb.velocityY > 0 && !Input.GetKey(KeyCode.Space)) {
-        //    rb.velocityY += (fallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
-        //}
     }
 
     void WalkRun() {
@@ -101,6 +118,15 @@ public class MovementScript : MonoBehaviour
         }
         if (Mathf.Abs(rb.velocityX) > maxRunSpeed) {
             rb.velocityX = maxRunSpeed * Mathf.Sign(rb.velocityX); //Sets the speed to either runSpeed or -runSpeed
+        }
+
+        if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
+            footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
+            if (footstepCount > 1) {
+                Debug.Log(rb.position);
+                playerFootstep.Post(gameObject);
+                footstepCount--;
+            }           
         }
         spriteRenderer.flipX = !facingRight;
     }
