@@ -121,7 +121,6 @@ public class MovementScript : MonoBehaviour
         if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
             footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
             if (footstepCount > 1) {
-                Debug.Log(rb.position);
                 playerFootstep.Post(gameObject);
                 footstepCount--;
             }           
