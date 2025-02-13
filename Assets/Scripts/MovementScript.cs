@@ -36,6 +36,8 @@ public class MovementScript : MonoBehaviour
 
     private LayerMask layers;
 
+    AlarmSystem alarm;
+
     //PlayerControls controls;
 
     //public void OnEnable() {
@@ -55,6 +57,8 @@ public class MovementScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
+
+        alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
     }
 
     // Update is called once per frame
@@ -62,6 +66,11 @@ public class MovementScript : MonoBehaviour
         CheckGrounded();
         JumpAndFall();
         WalkRun();
+
+        if(Input.GetKey(KeyCode.L))
+        {
+            alarm.StopAlarm();
+        }
     }
 
     void CheckGrounded() {
