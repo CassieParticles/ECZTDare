@@ -16,7 +16,7 @@ public class MovementScript : MonoBehaviour
     private float footstepCount = 0.0f;
 
     //Cooldown for playing the landing sound effect in seconds
-    private float landingCooldown = 0.1f;
+    private float landingCooldown = 0.5f;
 
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
