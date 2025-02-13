@@ -78,6 +78,7 @@ public class MovementScript : MonoBehaviour
                 //Plays the Player_Land sound
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
+            grounded = true;
         } else {
             grounded = false;
         }
