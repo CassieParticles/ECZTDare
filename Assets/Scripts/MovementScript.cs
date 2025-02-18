@@ -18,6 +18,9 @@ public class MovementScript : MonoBehaviour
     //Cooldown for playing the landing sound effect in seconds
     private float landingCooldown = 0.5f;
 
+    //The highest velocity the player can reach, affected by the serialized value as well as other factors
+    private float dynamicMaxRunSpeed = 0;
+
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -26,11 +29,14 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
+    [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
     [SerializeField] private float coyoteTime = 0.12f; //Time in seconds that the player can jump after walking off a ledge
+    [SerializeField] private float gravityMult = 1; //Gravity multiplier when not fastfalling
     [SerializeField] private float fastFallActivationSpeed = 1; //At what vertical speed the fast fall kicks in at
     [SerializeField] private float fastFallMult = 2; //Fast fall multiplier
     [SerializeField] private float maxFallSpeed = 5; //Needs to be higher if fastfallmult is higher also
+    [SerializeField][Range(0.01f, 1f)] private float fallSlowsRunMult = 1; //Multiplier for how much falling speed slows down horizontal speed.
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
     [NonSerialized] public bool facingRight;
@@ -69,7 +75,7 @@ public class MovementScript : MonoBehaviour
         JumpAndFall();
         WalkRun();
 
-        animator.SetBool("Grounded", grounded);
+        
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
         animator.SetFloat("yVelocity", rb.velocityY);
 
@@ -101,6 +107,7 @@ public class MovementScript : MonoBehaviour
         } else {
             grounded = false;
         }
+        animator.SetBool("Grounded", grounded);
     }
 
     void JumpAndFall() {
@@ -108,13 +115,16 @@ public class MovementScript : MonoBehaviour
             rb.velocityY = jumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
+            animator.SetBool("Grounded", false);
         }
-        if (rb.velocityY < fastFallActivationSpeed) {
+        if (rb.velocityY < fastFallActivationSpeed || !Input.GetKey(KeyCode.Space)) {
             rb.velocityY += (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
             if (rb.velocityY < -maxFallSpeed) { //Less than because its negative
                 rb.velocityY = -maxFallSpeed;
             }
-        } 
+        } else {
+            rb.velocityY += (gravityMult - 1) * Physics2D.gravity.y * Time.deltaTime;
+        }
     }
 
     void WalkRun() {
@@ -136,10 +146,17 @@ public class MovementScript : MonoBehaviour
                 rb.velocityX = 0;
             }
         }
-        if (Mathf.Abs(rb.velocityX) > maxRunSpeed) {
-            rb.velocityX = maxRunSpeed * Mathf.Sign(rb.velocityX); //Sets the speed to either runSpeed or -runSpeed
+        if (rb.velocityY < 0) {
+            dynamicMaxRunSpeed = maxRunSpeed *
+                                 (1 - (fallSlowsRunMult * -rb.velocityY / maxFallSpeed)); //Falling slows down the horizontal speed
+        } else {
+            dynamicMaxRunSpeed = maxRunSpeed;
+        }
+        if (Mathf.Abs(rb.velocityX) > dynamicMaxRunSpeed) {
+            rb.velocityX -= (rb.velocityX - (dynamicMaxRunSpeed * Mathf.Sign(rb.velocityX))) * snapToMaxRunSpeedMult / 10; //Sets the speed to maxRunSpeed
         }
 
+        //Footstep sound effect
         if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
             footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
             if (footstepCount > 1) {
