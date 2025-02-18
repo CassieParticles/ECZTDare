@@ -20236,11 +20236,11 @@ MonoBehaviour:
   maxRunSpeed: 11
   acceleration: 20
   deceleration: 15
-  jumpStrength: 9
+  jumpStrength: 12
   coyoteTime: 0.12
-  fastFallActivationSpeed: 5
-  fastFallMult: 5
-  maxFallSpeed: 8
+  fastFallActivationSpeed: 8
+  fastFallMult: 8
+  maxFallSpeed: 16
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4
