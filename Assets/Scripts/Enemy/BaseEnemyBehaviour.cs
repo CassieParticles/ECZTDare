@@ -27,13 +27,13 @@ public class BaseEnemyBehaviour : MonoBehaviour
     protected GameObject Player;
 
     //Call when the enemy first sees the player
-    protected void SeePlayer(GameObject player)
+    public void SeePlayer(GameObject player)
     {
         Player = player;
     }
 
     //Call when the enemy stops being able to see the player
-    protected void LosePlayer()
+    public void LosePlayer()
     {
         Player = null;
     }

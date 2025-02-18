@@ -19,7 +19,7 @@ public class VisionCone : MonoBehaviour
 
     private Mesh visionConeMesh;
 
-    private CameraBehavior CameraEnemy;
+    private BaseEnemyBehaviour Enemy;
 
     private Material coneMaterial;
 
@@ -109,7 +109,7 @@ public class VisionCone : MonoBehaviour
 
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
 
-        CameraEnemy = transform.parent.GetComponent<CameraBehavior>();
+        Enemy = transform.parent.GetComponent<BaseEnemyBehaviour>();
 
         coneMaterial = GetComponent<MeshRenderer>().material;
         SetColour(Color.white);
@@ -126,8 +126,7 @@ public class VisionCone : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //Will be handled through inheritance in full game
-            CameraEnemy.SeePlayer(collision.gameObject);
+            Enemy.SeePlayer(collision.gameObject);
         }
     }
 
@@ -135,8 +134,7 @@ public class VisionCone : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            //Will be handled through inheritance in full game
-            CameraEnemy.LosePlayer();
+            Enemy.LosePlayer();
         }
     }
 
