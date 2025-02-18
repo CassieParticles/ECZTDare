@@ -11,6 +11,50 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AuxBus Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}">
+							<StateInfo>
+								<StatePropertyList>
+									<Property Name="BusVolume"/>
+									<Property Name="GameAuxSendVolume"/>
+								</StatePropertyList>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+										<CustomState Name="" ID="{F98A24CF-946A-4505-B392-BD10B25F11B3}" ShortID="789405201"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+										<CustomState Name="" ID="{501B418D-4286-45C0-9293-86B5D70FA65C}" ShortID="95508225">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+										<CustomState Name="" ID="{1B5F0510-00C3-44F7-933C-FD05BB5065AD}" ShortID="853932861">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+										<CustomState Name="" ID="{284CA8F8-AA7D-4D99-8026-33EBC69F01F3}" ShortID="270902782">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>
@@ -21,6 +65,26 @@
 														<ObjectRef Name="Room_Medium" ID="{F5C06EC1-E4A4-4332-A7D3-A89E2986B74F}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
+												<StateInfo>
+													<CustomStateList>
+														<CustomState>
+															<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+															<CustomState Name="" ID="{87DA0C05-BA23-4B15-939F-91B3CEE56C7E}" ShortID="632317543"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+															<CustomState Name="" ID="{1CEE6831-C383-4A0D-A95F-1C3DC4853A4F}" ShortID="167899847"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+															<CustomState Name="" ID="{E2A25579-8478-4051-8393-877888FB9422}" ShortID="849600797"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+															<CustomState Name="" ID="{249D6BB6-1730-42B2-914F-FEDEE83BEF97}" ShortID="692368533"/>
+														</CustomState>
+													</CustomStateList>
+												</StateInfo>
 											</EffectSlot>
 										</Local>
 									</Reference>
@@ -28,6 +92,50 @@
 							</ObjectLists>
 						</AuxBus>
 						<AuxBus Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}">
+							<StateInfo>
+								<StatePropertyList>
+									<Property Name="BusVolume"/>
+									<Property Name="GameAuxSendVolume"/>
+								</StatePropertyList>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+										<CustomState Name="" ID="{410744AE-7A14-4877-B883-3B36C3583367}" ShortID="993606472">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+										<CustomState Name="" ID="{6AC21E5B-47F0-4E98-B471-9C017FE8C4BA}" ShortID="921786536">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+										<CustomState Name="" ID="{1754658F-EF11-4DFF-BDBD-2B3D7B7DDEBD}" ShortID="784885771"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+										<CustomState Name="" ID="{4F95C05A-5567-453E-8FEA-4D2F23AA07DC}" ShortID="1067150929">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>
@@ -38,6 +146,26 @@
 														<ObjectRef Name="Have_U_Ever_Been_Outside" ID="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
+												<StateInfo>
+													<CustomStateList>
+														<CustomState>
+															<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+															<CustomState Name="" ID="{6E4F0691-C5D0-419F-9910-3469565030A3}" ShortID="334706889"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+															<CustomState Name="" ID="{DEFD7123-765E-4A74-A758-A570B9B12BE8}" ShortID="735026544"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+															<CustomState Name="" ID="{12D4DAAC-E925-4598-9023-D9D4E43C6849}" ShortID="253975491"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+															<CustomState Name="" ID="{44BCDE67-FEE1-442E-88B2-2354A3B578B1}" ShortID="246398868"/>
+														</CustomState>
+													</CustomStateList>
+												</StateInfo>
 											</EffectSlot>
 										</Local>
 									</Reference>
@@ -45,6 +173,50 @@
 							</ObjectLists>
 						</AuxBus>
 						<AuxBus Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}">
+							<StateInfo>
+								<StatePropertyList>
+									<Property Name="BusVolume"/>
+									<Property Name="GameAuxSendVolume"/>
+								</StatePropertyList>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+										<CustomState Name="" ID="{F0591C29-B775-4D76-874F-DB0D94A06153}" ShortID="670730073">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+										<CustomState Name="" ID="{2386A353-E8A3-48B1-A93B-CA2B7B55BE59}" ShortID="243437730"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+										<CustomState Name="" ID="{C02E1AF2-DF82-4BD5-9963-28363A1811AE}" ShortID="1045622640">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+										<CustomState Name="" ID="{17A9336E-3D2A-449C-A20C-55C958991A89}" ShortID="1002301534">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>
@@ -52,9 +224,29 @@
 											<EffectSlot Name="" ID="{A5D00F96-5644-4206-873C-45729D7834EA}" ShortID="920287432">
 												<ReferenceList>
 													<Reference Name="Effect" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
-														<ObjectRef Name="Room_Small" ID="{577F1466-A63B-47F7-98BD-C56E433F8B5D}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														<ObjectRef Name="My_Closet" ID="{384A82A1-3C92-4AC5-AFC2-474F2080642C}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
+												<StateInfo>
+													<CustomStateList>
+														<CustomState>
+															<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+															<CustomState Name="" ID="{3A6FB6B6-6F59-4B8F-95B2-FB204D21493F}" ShortID="107532611"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+															<CustomState Name="" ID="{DF6A9DAA-DFC9-44B5-AA9B-A9AA64F06C42}" ShortID="949455671"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+															<CustomState Name="" ID="{BAC5F5FA-08EE-4F1D-822D-74DCC9A13E63}" ShortID="45285042"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+															<CustomState Name="" ID="{60205A92-C88E-4D88-A9A3-3354960A2BC9}" ShortID="1005184664"/>
+														</CustomState>
+													</CustomStateList>
+												</StateInfo>
 											</EffectSlot>
 										</Local>
 									</Reference>
@@ -62,6 +254,50 @@
 							</ObjectLists>
 						</AuxBus>
 						<AuxBus Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}">
+							<StateInfo>
+								<StatePropertyList>
+									<Property Name="BusVolume"/>
+									<Property Name="GameAuxSendVolume"/>
+								</StatePropertyList>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+										<CustomState Name="" ID="{6CCAB299-7F2F-46A8-8622-1ABC06296436}" ShortID="1031904537">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+										<CustomState Name="" ID="{5F127D6C-318C-404C-85ED-E55891AC6B7C}" ShortID="424325030">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+										<CustomState Name="" ID="{E250E582-89C5-4F75-83B3-BEDE90B6FAF5}" ShortID="396945542">
+											<PropertyList>
+												<Property Name="BusVolume" Type="Real64" Value="-108"/>
+												<Property Name="GameAuxSendVolume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+										<CustomState Name="" ID="{1DFF3DAF-E486-487D-9357-CBBEF0CD0428}" ShortID="553252325"/>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
 							<ObjectLists>
 								<ObjectList Name="Effects">
 									<Reference>
@@ -72,6 +308,26 @@
 														<ObjectRef Name="Room_Large" ID="{AD8EFAFC-7121-4D5F-BE4D-B13FBD6CEBAE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
 													</Reference>
 												</ReferenceList>
+												<StateInfo>
+													<CustomStateList>
+														<CustomState>
+															<StateRef Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+															<CustomState Name="" ID="{03FEA296-DB25-47B6-AE03-034FAFB4C267}" ShortID="1070677532"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+															<CustomState Name="" ID="{A6D157B9-A56B-431E-8741-E451A7B553BB}" ShortID="639337242"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+															<CustomState Name="" ID="{E9C2ADAF-FD31-43B0-852E-731224F489B0}" ShortID="456274452"/>
+														</CustomState>
+														<CustomState>
+															<StateRef Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+															<CustomState Name="" ID="{82928A5A-415E-478E-804D-189E965E269A}" ShortID="973280672"/>
+														</CustomState>
+													</CustomStateList>
+												</StateInfo>
 											</EffectSlot>
 										</Local>
 									</Reference>

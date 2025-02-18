@@ -1,7 +1,13 @@
 State Group	ID	Name			Wwise Object Path	Notes
+	348963605	Reverb			\Default Work Unit\Reverb	
 	3991942870	Music			\Default Work Unit\Music	
 
 State	ID	Name	State Group			Notes
+	438105790	Outside	Reverb			
+	748895195	None	Reverb			
+	1846755610	Small	Reverb			
+	2849147824	Medium	Reverb			
+	4284352190	Large	Reverb			
 	721787521	Alert	Music			
 	748895195	None	Music			
 	1862135557	NoMusic	Music			
@@ -11,10 +17,16 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	1409684747	LargeRoomReverb			\Default Work Unit\Master Audio Bus\LargeRoomReverb	
+	2227188135	SmallRoomReverb			\Default Work Unit\Master Audio Bus\SmallRoomReverb	
 	2347912553	MediumRoomReverb			\Default Work Unit\Master Audio Bus\MediumRoomReverb	
+	3370640258	OutsideReverb			\Default Work Unit\Master Audio Bus\OutsideReverb	
 
 Effect plug-ins	ID	Name	Type				Notes
-	1904434771	Medium_Room1	Wwise Matrix Reverb			
+	602546716	Room_Large	Wwise RoomVerb			
+	1590660382	Nearly_Forever	Wwise Delay			
+	1990128658	Room_Medium	Wwise RoomVerb			
+	2995775460	Room_Small	Wwise RoomVerb			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			

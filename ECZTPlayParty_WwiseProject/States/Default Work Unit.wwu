@@ -34,6 +34,44 @@
 						</Transition>
 					</TransitionList>
 				</StateGroup>
+				<StateGroup Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.25"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+						<State Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+						<State Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+						<State Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+						<State Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+							<EndState Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+							<EndState Name="Medium" ID="{C6F2DAF5-F612-450B-BCC1-319F97E56A70}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+							<EndState Name="Small" ID="{F8595827-47BF-48DD-9FA9-9DF0FC7901CD}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+							<EndState Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>
