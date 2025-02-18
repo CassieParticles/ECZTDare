@@ -28,15 +28,9 @@ public class CameraBehavior : MonoBehaviour
     [SerializeField, Range(0.1f, 20)]
     private float pauseDuration = 1;
 
-    public enum SuspicionLevel
-    {
-        Idle,
-        Suspect,
-        HighAlert,
-        Alarm
-    };
+
     private float suspicion;
-    private SuspicionLevel suspicionLevel;
+    private BaseEnemyBehaviour.SuspicionLevel suspicionLevel;
 
     private GameObject player;
 
@@ -83,7 +77,7 @@ public class CameraBehavior : MonoBehaviour
     private void AlarmOff()
     {
         suspicion = 0;
-        suspicionLevel = SuspicionLevel.Idle;
+        suspicionLevel = BaseEnemyBehaviour.SuspicionLevel.Idle;
         visionCone.GetComponent<VisionCone>().SetColour(Color.white);
     }
 
@@ -113,7 +107,7 @@ public class CameraBehavior : MonoBehaviour
     private void Awake()
     {
         suspicion = 0.0f;
-        suspicionLevel = SuspicionLevel.Idle;
+        suspicionLevel = BaseEnemyBehaviour.SuspicionLevel.Idle;
         visionCone = transform.GetChild(0).gameObject;
 
         turnCCW = true;
@@ -156,7 +150,7 @@ public class CameraBehavior : MonoBehaviour
         }
 
         //Increase suspicion level and raise alarm if full
-        if(suspicionLevel == SuspicionLevel.Alarm)
+        if(suspicionLevel == BaseEnemyBehaviour.SuspicionLevel.Alarm)
         {
             //Alarm is currently being raised
             if(alarm && !alarm.AlarmGoingOff())
