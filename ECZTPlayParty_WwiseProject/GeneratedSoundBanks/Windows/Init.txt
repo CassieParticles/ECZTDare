@@ -11,10 +11,16 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	1409684747	LargeRoomReverb			\Default Work Unit\Master Audio Bus\LargeRoomReverb	
+	2227188135	SmallRoomReverb			\Default Work Unit\Master Audio Bus\SmallRoomReverb	
 	2347912553	MediumRoomReverb			\Default Work Unit\Master Audio Bus\MediumRoomReverb	
+	3370640258	OutsideReverb			\Default Work Unit\Master Audio Bus\OutsideReverb	
 
 Effect plug-ins	ID	Name	Type				Notes
-	1904434771	Medium_Room1	Wwise Matrix Reverb			
+	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
+	602546716	Room_Large	Wwise RoomVerb			
+	1990128658	Room_Medium	Wwise RoomVerb			
+	2995775460	Room_Small	Wwise RoomVerb			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			
