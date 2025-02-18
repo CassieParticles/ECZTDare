@@ -24,10 +24,26 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
     protected VisionCone visionCone;
 
+    protected GameObject Player;
+
+    //Call when the enemy first sees the player
+    protected void SeePlayer(GameObject player)
+    {
+        Player = player;
+    }
+
+    //Call when the enemy stops being able to see the player
+    protected void LosePlayer()
+    {
+        Player = null;
+    }
+
+    //Called on awake of overriden classes
     protected void Setup()
     {
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
         suspicionState = SuspicionLevel.Idle;
+        Player = null;
     }
 }
