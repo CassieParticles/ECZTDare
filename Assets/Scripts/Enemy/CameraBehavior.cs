@@ -8,9 +8,9 @@ using UnityEngine;
 public class CameraBehavior : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
+    public AK.Wwise.Event enemyAlerted;
     public AK.Wwise.Event cameraMoving;
     public AK.Wwise.Event cameraStop;
-    public AK.Wwise.Event enemyAlerted;
 
     //Suspicion
     [SerializeField]

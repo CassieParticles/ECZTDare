@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class CameraBehaviour : BaseEnemyBehaviour
 {
+    public AK.Wwise.Event cameraMoving;
+    public AK.Wwise.Event cameraStop;
+    public AK.Wwise.Event enemyAlerted;
+
     [SerializeField, Range(0,180)] private float maxAngle;
     [SerializeField, Range(0, 60)] private float turnSpeed = 30;
     [SerializeField, Range(0.1f, 20)] private float pauseDuration = 1;
-
-    [SerializeField] private float[] thresholds;
 
     private float initialAngle;
     private bool turningCCW;
@@ -21,6 +23,9 @@ public class CameraBehaviour : BaseEnemyBehaviour
         initialAngle = visionCone.transform.rotation.eulerAngles.z;
         turningCCW = true;
         turningPaused = maxAngle == 0;
+
+        //Start camera moving sound
+        cameraMoving.Post(gameObject);
     }
 
     private void Start()
@@ -44,21 +49,24 @@ public class CameraBehaviour : BaseEnemyBehaviour
             else
             {
                 //Raise alarm
+                if(alarm && !alarm.AlarmGoingOff())
+                {
+                    enemyAlerted.Post(gameObject);
+                    alarm.StartAlarm(Player.transform.position);
+                }
             }
         }
         else if(suspicion > 0)
         {
             if (alarm && !alarm.AlarmGoingOff())
             {
-                suspicion -= 10 * Time.fixedDeltaTime;
+                suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
             }
             else if(!alarm)
             {
-                suspicion -= 10 * Time.fixedDeltaTime;
+                suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
             }
         }
-
-        Debug.Log(suspicion);
 
 
         //Handle camera rotation
@@ -111,8 +119,15 @@ public class CameraBehaviour : BaseEnemyBehaviour
         turningCCW = !turningCCW;
         RotateCamera(turnSpeed * Time.fixedDeltaTime * (turningCCW ? 1 : -1));
         turningPaused = true;
+
+        //Stop camera moving sound
+        cameraMoving.Stop(gameObject);
+        //Play camera stop moving sound
+        cameraStop.Post(gameObject);
         yield return new WaitForSeconds(pauseDuration);
         turningPaused = false;
+        //Start camera moving sound
+        cameraMoving.Post(gameObject);
     }
 
     private void RotateCamera(float angle)
@@ -129,11 +144,24 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
     private void Alarm(Vector3 playerPosition)
     {
-
+        Debug.Log("Alarm going off!");
     }
 
     private void AlarmOff()
     {
 
     }
+    private void OnDrawGizmosSelected()
+    {
+        float initialAngle = transform.GetChild(0).rotation.eulerAngles.z * Mathf.Deg2Rad;
+        Vector3 initialPos = transform.GetChild(0).position;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(initialPos, initialPos + new Vector3(Mathf.Cos(initialAngle), Mathf.Sin(initialAngle)) * 15);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(initialPos, initialPos + new Vector3(Mathf.Cos(initialAngle + maxAngle * Mathf.Deg2Rad), Mathf.Sin(initialAngle + maxAngle * Mathf.Deg2Rad)) * 15);
+        Gizmos.DrawLine(initialPos, initialPos + new Vector3(Mathf.Cos(initialAngle - maxAngle * Mathf.Deg2Rad), Mathf.Sin(initialAngle - maxAngle * Mathf.Deg2Rad)) * 15);
+    }
+
 }

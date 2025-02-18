@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
+    public AK.Wwise.Event inViewCone;
+
     public enum SuspicionLevel
     {
         Idle,
@@ -17,6 +19,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
     //Parameters for suspicion rate
     [SerializeField, Range(0, 1000)] protected float suspicionScaleRate;
+    [SerializeField, Range(0, 1000)] protected float suspicionDecayRate;
 
     //Fields used in enemy suspicion meter
     protected float suspicion;
@@ -30,6 +33,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SeePlayer(GameObject player)
     {
         Player = player;
+        inViewCone.Post(gameObject);
         //Handle other "seeing the player" stuff
     }
 
