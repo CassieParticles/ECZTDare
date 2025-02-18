@@ -9,12 +9,15 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{44B5B1DE-6748-C256-4580-CBAB6D9FCB23}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{383DFC4C-D200-8C81-6B2B-DD3916729F3C}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
 				<ShareSets>
-					<Plugin Id="1904434771" Name="Medium_Room1" LibName="Wwise Matrix Reverb" LibId="7536643"/>
+					<Plugin Id="602546716" Name="Room_Large" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="1590660382" Name="Nearly_Forever" LibName="Wwise Delay" LibId="6946819"/>
+					<Plugin Id="1990128658" Name="Room_Medium" LibName="Wwise RoomVerb" LibId="7733251"/>
+					<Plugin Id="2995775460" Name="Room_Small" LibName="Wwise RoomVerb" LibId="7733251"/>
 				</ShareSets>
 				<AudioDevices>
 					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
@@ -25,15 +28,45 @@
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
 			<AuxBusses>
+				<AuxBus Id="1409684747" Name="LargeRoomReverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="602546716"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="2227188135" Name="SmallRoomReverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="2995775460"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
 				<AuxBus Id="2347912553" Name="MediumRoomReverb">
 					<PluginRefs>
 						<ShareSets>
-							<PluginRef Id="1904434771"/>
+							<PluginRef Id="1990128658"/>
+						</ShareSets>
+					</PluginRefs>
+				</AuxBus>
+				<AuxBus Id="3370640258" Name="OutsideReverb">
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1590660382"/>
 						</ShareSets>
 					</PluginRefs>
 				</AuxBus>
 			</AuxBusses>
 			<StateGroups>
+				<StateGroup Id="348963605" Name="Reverb">
+					<States>
+						<State Id="438105790" Name="Outside"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="1846755610" Name="Small"/>
+						<State Id="2849147824" Name="Medium"/>
+						<State Id="4284352190" Name="Large"/>
+					</States>
+				</StateGroup>
 				<StateGroup Id="3991942870" Name="Music">
 					<States>
 						<State Id="721787521" Name="Alert"/>
@@ -44,7 +77,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8B7B33F7-10C3-83E5-A40D-511BB46B1557}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A5BE2D27-59FE-8F0D-A5D5-66C3DBEA7A1D}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -58,7 +91,7 @@
 				</File>
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
-					<CachePath>SFX/In_View_Cone_DE9EFA1B.wem</CachePath>
+					<CachePath>SFX/In_View_Cone_CE70BCCE.wem</CachePath>
 				</File>
 				<File Id="135470174" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Track_Trial.wav</ShortName>
@@ -107,28 +140,22 @@
 						<MediaRef Id="28568543"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3353320293" Name="Camera_Moving" DurationType="Infinite">
+				<Event Id="3353320293" Name="Camera_Moving" MaxAttenuation="40" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="630056515"/>
 					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-					</AuxBusRefs>
 				</Event>
-				<Event Id="1515494175" Name="Camera_Stop" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-					</AuxBusRefs>
 				</Event>
-				<Event Id="359728807" Name="Enemy_Alerted" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
+				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2249657186" Name="In_View_Cone" DurationType="Infinite">
+				<Event Id="2249657186" Name="In_View_Cone" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="118186165"/>
 					</MediaRefs>
@@ -146,28 +173,19 @@
 						<MediaRef Id="817103883"/>
 						<MediaRef Id="1008874514"/>
 					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-					</AuxBusRefs>
 				</Event>
 				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.332242" DurationMax="0.3361025">
 					<MediaRefs>
 						<MediaRef Id="1069903293"/>
 					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-					</AuxBusRefs>
 				</Event>
 				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.39511728" DurationMax="0.40435272">
 					<MediaRefs>
 						<MediaRef Id="973686233"/>
 					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-					</AuxBusRefs>
 				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2112C466-F024-42A9-452E-8DD65115DF25}</FileHash>
+	<FileHash>{75C623FB-7CCD-7239-C4A4-D59D0D946FA0}</FileHash>
 </SoundBanksInfo>

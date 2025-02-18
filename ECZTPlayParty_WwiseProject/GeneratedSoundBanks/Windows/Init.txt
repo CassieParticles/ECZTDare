@@ -1,7 +1,13 @@
 State Group	ID	Name			Wwise Object Path	Notes
+	348963605	Reverb			\Default Work Unit\Reverb	
 	3991942870	Music			\Default Work Unit\Music	
 
 State	ID	Name	State Group			Notes
+	438105790	Outside	Reverb			
+	748895195	None	Reverb			
+	1846755610	Small	Reverb			
+	2849147824	Medium	Reverb			
+	4284352190	Large	Reverb			
 	721787521	Alert	Music			
 	748895195	None	Music			
 	1862135557	NoMusic	Music			
@@ -20,7 +26,7 @@ Effect plug-ins	ID	Name	Type				Notes
 	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
 	602546716	Room_Large	Wwise RoomVerb			
 	1990128658	Room_Medium	Wwise RoomVerb			
-	2995775460	Room_Small	Wwise RoomVerb			
+	2945072214	My_Closet	Wwise RoomVerb			
 
 Audio Devices	ID	Name	Type				Notes
 	2317455096	No_Output	No Output			

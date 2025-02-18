@@ -39,12 +39,21 @@ namespace AK
             } // namespace STATE
         } // namespace MUSIC
 
-    } // namespace STATES
+        namespace REVERB
+        {
+            static const AkUniqueID GROUP = 348963605U;
 
-    namespace GAME_PARAMETERS
-    {
-        static const AkUniqueID MEDIUMROOMREVERB = 2347912553U;
-    } // namespace GAME_PARAMETERS
+            namespace STATE
+            {
+                static const AkUniqueID LARGE = 4284352190U;
+                static const AkUniqueID MEDIUM = 2849147824U;
+                static const AkUniqueID NONE = 748895195U;
+                static const AkUniqueID OUTSIDE = 438105790U;
+                static const AkUniqueID SMALL = 1846755610U;
+            } // namespace STATE
+        } // namespace REVERB
+
+    } // namespace STATES
 
     namespace BANKS
     {
