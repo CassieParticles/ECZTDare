@@ -70,7 +70,6 @@ public class CameraBehavior : MonoBehaviour
 
     private void Alarm(Vector3 playerPosition)
     {
-        Debug.Log("Alarm has been sounded");
         visionCone.GetComponent<VisionCone>().SetColour(Color.red);
     }
 

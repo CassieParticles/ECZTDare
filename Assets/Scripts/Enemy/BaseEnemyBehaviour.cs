@@ -30,12 +30,14 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SeePlayer(GameObject player)
     {
         Player = player;
+        //Handle other "seeing the player" stuff
     }
 
     //Call when the enemy stops being able to see the player
     public void LosePlayer()
     {
         Player = null;
+        //Handle other "losing the player" stuff
     }
 
     //Called on awake of overriden classes
