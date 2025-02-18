@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}" SchemaVersion="119">
 	<GameParameters>
-		<WorkUnit Name="Default Work Unit" ID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}" PersistMode="Standalone">
+			<ChildrenList>
+				<GameParameter Name="MediumRoomReverb" ID="{B493CC0B-28BE-40D8-A34D-C12340932FCE}"/>
+			</ChildrenList>
+		</WorkUnit>
 	</GameParameters>
 </WwiseDocument>

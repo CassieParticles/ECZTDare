@@ -41,6 +41,11 @@ namespace AK
 
     } // namespace STATES
 
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID MEDIUMROOMREVERB = 2347912553U;
+    } // namespace GAME_PARAMETERS
+
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
@@ -54,7 +59,10 @@ namespace AK
 
     namespace AUX_BUSSES
     {
+        static const AkUniqueID LARGEROOMREVERB = 1409684747U;
         static const AkUniqueID MEDIUMROOMREVERB = 2347912553U;
+        static const AkUniqueID OUTSIDEREVERB = 3370640258U;
+        static const AkUniqueID SMALLROOMREVERB = 2227188135U;
     } // namespace AUX_BUSSES
 
     namespace AUDIO_DEVICES
