@@ -7,6 +7,7 @@ public class GuardBehaviour : MonoBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
     private bool recalcDelay = true;
+    private bool patrolPaused = false;
 
     // Start is called before the first frame update
     private NavMeshAgent agent;
@@ -35,14 +36,37 @@ public class GuardBehaviour : MonoBehaviour
         recalcDelay = true;
     }
 
+    private void InterruptPatrol()
+    {
+        if (patrolPaused) { return; }
+        agent.SetDestination(transform.position);
+        patrolPaused = true;
+    }
+
+    private void ResumePatrol()
+    {
+        if (!patrolPaused) { return; }
+        agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+        StartCoroutine(calcDelay());
+        patrolPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f && recalcDelay)
+        if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
         {
             agent.SetDestination(patrolRoute.GetNextNode(gameObject));
             StartCoroutine(calcDelay());
         }
 
+        if(Input.GetKey(KeyCode.G))
+        {
+            InterruptPatrol();
+        }
+        else
+        {
+            ResumePatrol();
+        }
     }
 }
