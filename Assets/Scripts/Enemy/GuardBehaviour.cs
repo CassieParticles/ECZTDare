@@ -24,7 +24,7 @@ public class GuardBehaviour : MonoBehaviour
         if(patrolRoute != null)
         {
             patrolRoute.AddGuard(gameObject);
-            agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+            agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
         }
         StartCoroutine(calcDelay());
     }
@@ -46,7 +46,7 @@ public class GuardBehaviour : MonoBehaviour
     private void ResumePatrol()
     {
         if (!patrolPaused) { return; }
-        agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+        agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
         StartCoroutine(calcDelay());
         patrolPaused = false;
     }
@@ -56,7 +56,7 @@ public class GuardBehaviour : MonoBehaviour
     {
         if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
         {
-            agent.SetDestination(patrolRoute.GetNextNode(gameObject));
+            agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
             StartCoroutine(calcDelay());
         }
 
