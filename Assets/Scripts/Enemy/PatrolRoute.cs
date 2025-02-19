@@ -6,7 +6,7 @@ public class PatrolRoute : MonoBehaviour
 {
     private Vector3[] patrolNodes;
 
-    private readonly Dictionary<GameObject, int> guardPatrolNode;
+    private readonly Dictionary<GameObject, int> guardPatrolNode = new();
     public void AddGuard(GameObject guard)
     {
         guardPatrolNode.Add(guard, 0);
