@@ -24691,10 +24691,10 @@ MonoBehaviour:
   jumpStrength: 12
   coyoteTime: 0.12
   gravityMult: 1
-  fastFallActivationSpeed: 8
-  fastFallMult: 8
-  maxFallSpeed: 16
-  fallSlowsRunMult: 1
+  fastFallActivationSpeed: 7
+  fastFallMult: 6
+  maxFallSpeed: 20
+  fallSlowsRunMult: 0.55
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4
