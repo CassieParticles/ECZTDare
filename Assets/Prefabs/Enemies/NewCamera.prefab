@@ -80,9 +80,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc7e33b9550d6440aebfadc9358cd75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inViewCone:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b0f689b3a04b4234a844aadb615a2f80, type: 2}
   alarm: {fileID: 0}
   suspicionScaleRate: 200
   suspicionDecayRate: 10
+  cameraMoving:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e41be3e28a0e456448eba8329d89fa13, type: 2}
+  cameraStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 48f9a0cb7141b5d489c312cd3dadde8d, type: 2}
+  enemyAlerted:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4f042ddc73787a34895f16e35538e71d, type: 2}
   maxAngle: 45
   turnSpeed: 30
   pauseDuration: 1
