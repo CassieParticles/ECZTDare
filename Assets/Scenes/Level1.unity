@@ -13558,14 +13558,14 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   footstepRate: 0.3
   footstepRateScaler: 1
-  maxRunSpeed: 11
-  acceleration: 20
+  maxRunSpeed: 13
+  acceleration: 30
   deceleration: 15
   snapToMaxRunSpeedMult: 1
-  jumpStrength: 12
+  jumpStrength: 16
   coyoteTime: 0.12
-  gravityMult: 1
-  fastFallActivationSpeed: 8
+  gravityMult: 3
+  fastFallActivationSpeed: 5
   fastFallMult: 8
   maxFallSpeed: 16
   fallSlowsRunMult: 1
