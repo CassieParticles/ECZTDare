@@ -49,19 +49,19 @@ MonoBehaviour:
   inViewCone:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  cameraMoving:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  cameraStop:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: b0f689b3a04b4234a844aadb615a2f80, type: 2}
   enemyAlerted:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 4f042ddc73787a34895f16e35538e71d, type: 2}
+  cameraMoving:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e41be3e28a0e456448eba8329d89fa13, type: 2}
+  cameraStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 48f9a0cb7141b5d489c312cd3dadde8d, type: 2}
   thresholds:
   - 33.3
   - 66.6
