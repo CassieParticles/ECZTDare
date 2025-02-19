@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class PatrolRoute : MonoBehaviour
 {
-    private Vector3[] patrolNodes;
+    public struct PatrolNode
+    {
+        public Vector3 position;
+        public float delay;
+    }
+
+
+    private PatrolNode[] patrolNodes;
 
     private readonly Dictionary<GameObject, int> guardPatrolNode = new();
     public void AddGuard(GameObject guard)
@@ -13,12 +20,12 @@ public class PatrolRoute : MonoBehaviour
     }
 
     //Get the node this guard is trying to reach
-    public Vector3 GetCurrNode(GameObject guard)
+    public PatrolNode GetCurrNode(GameObject guard)
     {
         return patrolNodes[guardPatrolNode[guard]];
     }
     //Increment the node the guard is reaching, then get the new current
-    public Vector3 GetNextNode(GameObject guard)
+    public PatrolNode GetNextNode(GameObject guard)
     {
         //Increment the node that guard neds to reach next, wrap around if needed
         guardPatrolNode[guard] = ++guardPatrolNode[guard] % patrolNodes.Length;
@@ -30,10 +37,15 @@ public class PatrolRoute : MonoBehaviour
     {
         //Get patrol nodes that make up the patrol route
         int childCount = transform.childCount;
-        patrolNodes = new Vector3[childCount];
+        patrolNodes = new PatrolNode[childCount];
         for (int i = 0; i < childCount; i++)
         {
-            patrolNodes[i] = transform.GetChild(i).position;
+            patrolNodes[i].position = transform.GetChild(i).position;
+            PatrolNodeDelay delay = transform.GetChild(i).GetComponent<PatrolNodeDelay>();
+            if (delay)
+            {
+                patrolNodes[i].delay = delay.getDelay();
+            }
         }
     }
 }

@@ -24,7 +24,7 @@ public class GuardBehaviour : MonoBehaviour
         if(patrolRoute != null)
         {
             patrolRoute.AddGuard(gameObject);
-            agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+            agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
         }
         StartCoroutine(calcDelay());
     }
@@ -34,6 +34,15 @@ public class GuardBehaviour : MonoBehaviour
         recalcDelay = false;
         yield return new WaitForSeconds(0.1f);
         recalcDelay = true;
+    }
+
+    private IEnumerator pauseAtNode(float pause)
+    {
+        patrolPaused = true;
+        yield return new WaitForSeconds(pause);
+        patrolPaused = false;
+        agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
+        StartCoroutine(calcDelay());
     }
 
     private void InterruptPatrol()
@@ -46,7 +55,7 @@ public class GuardBehaviour : MonoBehaviour
     private void ResumePatrol()
     {
         if (!patrolPaused) { return; }
-        agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+        agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
         StartCoroutine(calcDelay());
         patrolPaused = false;
     }
@@ -56,8 +65,7 @@ public class GuardBehaviour : MonoBehaviour
     {
         if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
         {
-            agent.SetDestination(patrolRoute.GetNextNode(gameObject));
-            StartCoroutine(calcDelay());
+            StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
         }
 
         if(Input.GetKey(KeyCode.G))
