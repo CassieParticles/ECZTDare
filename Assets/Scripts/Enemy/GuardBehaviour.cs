@@ -36,6 +36,15 @@ public class GuardBehaviour : MonoBehaviour
         recalcDelay = true;
     }
 
+    private IEnumerator pauseAtNode(float pause)
+    {
+        patrolPaused = true;
+        yield return new WaitForSeconds(pause);
+        patrolPaused = false;
+        agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
+        StartCoroutine(calcDelay());
+    }
+
     private void InterruptPatrol()
     {
         if (patrolPaused) { return; }
@@ -56,8 +65,7 @@ public class GuardBehaviour : MonoBehaviour
     {
         if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
         {
-            agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
-            StartCoroutine(calcDelay());
+            StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
         }
 
         if(Input.GetKey(KeyCode.G))
