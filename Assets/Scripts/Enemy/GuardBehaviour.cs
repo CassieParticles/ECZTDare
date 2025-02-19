@@ -5,35 +5,44 @@ using UnityEngine.AI;
 
 public class GuardBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
+    [SerializeField] private PatrolRoute patrolRoute;
+    private bool recalcDelay = true;
+
     // Start is called before the first frame update
     private NavMeshAgent agent;
-    void Start()
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
 
-    
+    void Start()
+    {
+        if(patrolRoute != null)
+        {
+            patrolRoute.AddGuard(gameObject);
+            agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+        }
+        StartCoroutine(calcDelay());
+    }
+
+    private IEnumerator calcDelay()
+    {
+        recalcDelay = false;
+        yield return new WaitForSeconds(0.1f);
+        recalcDelay = true;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.transform.position);
-
-        float distRemain = agent.remainingDistance;
-
-        //Get shortest distance between points, to compare to distance on path, if shortest distance is shorter then distance to destination, player is not reacahble
-        float sqrShortestDistance = ((Vector2)target.transform.position - (Vector2)transform.position).sqrMagnitude;
-
-        if(distRemain != Mathf.Infinity && sqrShortestDistance - distRemain * distRemain  > 0.1f)
+        if(agent.remainingDistance < 0.01f && recalcDelay)
         {
-            Debug.Log("Cannot be reached");
+            agent.SetDestination(patrolRoute.GetNextNode(gameObject));
+            StartCoroutine(calcDelay());
         }
-        else 
-        {
-            //Debug.Log("Can be reached");
-        }
+
     }
 }
