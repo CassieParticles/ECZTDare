@@ -13528,10 +13528,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2143170207}
-  - component: {fileID: 2143170206}
+  - component: {fileID: 2143170203}
   - component: {fileID: 2143170205}
   - component: {fileID: 2143170204}
-  - component: {fileID: 2143170203}
+  - component: {fileID: 2143170206}
   - component: {fileID: 2143170208}
   m_Layer: 3
   m_Name: Player
@@ -13558,17 +13558,21 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   footstepRate: 0.3
   footstepRateScaler: 1
-  maxRunSpeed: 13
-  acceleration: 30
-  deceleration: 15
+  maxRunSpeed: 25
+  acceleration: 20
+  deceleration: 4.5
   snapToMaxRunSpeedMult: 1
-  jumpStrength: 16
-  coyoteTime: 0.12
+  jumpStrength: 13.5
+  minJumpTime: 0.02
   gravityMult: 3
   fastFallActivationSpeed: 5
   fastFallMult: 8
-  maxFallSpeed: 16
-  fallSlowsRunMult: 1
+  maxFallSpeed: 27.9
+  fallSlowsRunMult: 0.55
+  walljumpRayGap: 0.8
+  horizontalWalljumpStrength: 13.5
+  verticalWalljumpStrength: 13.5
+  walljumpInputDelay: 0.02
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4
