@@ -237,4 +237,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d671f53a2d9266641a053d7973d0aed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inViewCone:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  alarm: {fileID: 0}
+  suspicionScaleRate: 200
+  suspicionDecayRate: 10
   patrolRoute: {fileID: 0}
