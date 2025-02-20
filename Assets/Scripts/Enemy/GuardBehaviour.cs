@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void InterruptPatrol()
     {
         if (patrolPaused) { return; }
-        MoveTo(transform.position);
+        Stop();
         patrolPaused = true;
     }
 
@@ -69,6 +70,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
         Vector3 moveDirection = point - transform.position;
         float moveAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
         transform.GetChild(0).rotation = Quaternion.Euler(0, 0, moveAngle);
+    }
+
+    private void Stop()
+    {
+        agent.SetDestination(transform.position);
     }
 
 
@@ -119,6 +125,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
             pointOfInterest = Player.transform.position;
         }
         MoveTo(pointOfInterest);
+        if(!Player)
+        {
+            Stop();
+            currentState = GuardStates.RaiseAlarm;
+        }
     }
 
     private void RaiseAlarmBehaviour()
@@ -126,7 +137,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //If there is no alarm, immediately leave state
         if(!alarm)
         {
-
+            currentState = GuardStates.Patrol;
+            ResumePatrol();
+            return;
         }
         if(!alarmRaiseBegin)
         {
@@ -134,7 +147,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
             StartCoroutine(RaiseAlarm());
         }
         //Once alarm goes off, resume behaviour
-        if(alarm.AlarmGoingOff())
+        if(!alarm.AlarmGoingOff())
         {
             currentState = GuardStates.Patrol;
             ResumePatrol();
@@ -151,11 +164,12 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         minimumSuspicion = 90;
         suspicion = Mathf.Min(suspicion, minimumSuspicion);
+        Debug.Log("Alarm on");
     }
 
     private void AlarmOff()
     {
-        
+        Debug.Log("Alarm off");
     }
 
     // Update is called once per frame
@@ -191,7 +205,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         if(alarm)
         {
-
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
         }
     }
 
