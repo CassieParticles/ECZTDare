@@ -109,6 +109,39 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Boost_Start" ID="{1F4133B0-CEC5-4BAE-AF87-95F99AC03EBC}">
+					<ChildrenList>
+						<Action Name="" ID="{46A3DCD3-F074-4B6E-BE95-7CB5668D7550}" ShortID="170599368">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boost_Start" ID="{103DB555-E58E-41C9-92D6-626EA14C6A2B}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Boost_Stop" ID="{4B306739-2B38-4B7E-9607-3FC50D3A25E4}">
+					<ChildrenList>
+						<Action Name="" ID="{185AA125-63A9-4F6B-918F-E356CBBFAEEE}" ShortID="1071729632">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boost_Stop" ID="{4868FA7A-EC5A-446E-A5BF-B741996C7A5C}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Boost_Rush" ID="{392675AE-D581-497B-BBB4-B1748C3002E8}">
+					<ChildrenList>
+						<Action Name="" ID="{BEC79902-6660-4CBB-AB9D-0015BEC4CC9F}" ShortID="59499392">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Boost_Rush" ID="{0F06B11D-2191-4274-B82D-3E57803A3102}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

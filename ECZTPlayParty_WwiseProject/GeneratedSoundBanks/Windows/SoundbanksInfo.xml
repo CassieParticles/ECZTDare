@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{CD6EE21B-9D1C-1970-364B-984F7D33B076}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F02F305B-E752-F5EF-5303-5E360060B498}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -57,6 +57,9 @@
 					</PluginRefs>
 				</AuxBus>
 			</AuxBusses>
+			<GameParameters>
+				<GameParameter Id="474239254" Name="Boost_Speed"/>
+			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="348963605" Name="Reverb">
 					<States>
@@ -77,7 +80,7 @@
 				</StateGroup>
 			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{BA6D4F55-8C76-515E-B32D-E1A7A7447519}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{713956F3-B8C8-A1E2-6273-1DF27EAFF60B}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -105,6 +108,10 @@
 					<ShortName>Footsteps_Metal_2.wav</ShortName>
 					<CachePath>SFX/Footsteps_Metal_2_84B1941E.wem</CachePath>
 				</File>
+				<File Id="598826268" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Boost_Rush.wav</ShortName>
+					<CachePath>SFX/Boost_Rush_B9B63185.wem</CachePath>
+				</File>
 				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Moving.wav</ShortName>
 					<CachePath>SFX/Camera_Moving_11A93380.wem</CachePath>
@@ -117,9 +124,17 @@
 					<ShortName>Footsteps_Metal_3.wav</ShortName>
 					<CachePath>SFX/Footsteps_Metal_3_C20EE8B7.wem</CachePath>
 				</File>
+				<File Id="908405812" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Boost_Start.wav</ShortName>
+					<CachePath>SFX/Boost_Start_818F3B66.wem</CachePath>
+				</File>
 				<File Id="973686233" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Land.wav</ShortName>
 					<CachePath>SFX/Land_818F3B66.wem</CachePath>
+				</File>
+				<File Id="977181348" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Boost_Stop.wav</ShortName>
+					<CachePath>SFX/Boost_Stop_818F3B66.wem</CachePath>
 				</File>
 				<File Id="1008874514" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Footsteps_Metal_1.wav</ShortName>
@@ -138,6 +153,39 @@
 				<Event Id="1720356053" Name="Ambience_Bass" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="28568543"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="4043448287" Name="Boost_Rush" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="598826268"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2188867727" Name="Boost_Start" DurationType="OneShot" DurationMin="0.3125" DurationMax="0.3125">
+					<MediaRefs>
+						<MediaRef Id="908405812"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1751967765" Name="Boost_Stop" DurationType="OneShot" DurationMin="0.28125" DurationMax="0.28125">
+					<MediaRefs>
+						<MediaRef Id="977181348"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -221,7 +269,10 @@
 					</AuxBusRefs>
 				</Event>
 			</Events>
+			<GameParameters>
+				<GameParameter Id="474239254" Name="Boost_Speed"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{69DE1A1F-397D-7F5B-0E03-07BF0EA98A95}</FileHash>
+	<FileHash>{E0495494-CF05-10B5-809D-7F3CE9D08077}</FileHash>
 </SoundBanksInfo>
