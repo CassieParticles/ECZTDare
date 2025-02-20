@@ -19711,7 +19711,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.9453125
+  orthographic size: 8.4375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -19820,8 +19820,8 @@ MonoBehaviour:
   exponentY: 2
   directionalOffset: 2.2
   runningOffsetMult: 3
-  verticalOffset: 1.7
-  fallingOffsetMult: 0.15
+  verticalOffset: 2
+  fallingOffsetMult: 0.1
   fallingOffsetThreshold: -2
 --- !u!50 &519420037
 Rigidbody2D:
@@ -27721,11 +27721,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2143170207}
-  - component: {fileID: 2143170203}
+  - component: {fileID: 2143170206}
   - component: {fileID: 2143170205}
   - component: {fileID: 2143170204}
+  - component: {fileID: 2143170203}
   - component: {fileID: 2143170208}
-  - component: {fileID: 2143170206}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -27751,17 +27751,17 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
   footstepRate: 0.3
   footstepRateScaler: 1
-  maxRunSpeed: 13
-  acceleration: 30
+  maxRunSpeed: 11
+  acceleration: 20
   deceleration: 15
   snapToMaxRunSpeedMult: 1
-  jumpStrength: 16
+  jumpStrength: 12
   coyoteTime: 0.12
-  gravityMult: 3
-  fastFallActivationSpeed: 5
+  gravityMult: 1
+  fastFallActivationSpeed: 8
   fastFallMult: 8
-  maxFallSpeed: 20
-  fallSlowsRunMult: 0.55
+  maxFallSpeed: 16
+  fallSlowsRunMult: 1
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4
