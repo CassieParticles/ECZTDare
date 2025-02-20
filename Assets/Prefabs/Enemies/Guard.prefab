@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.32
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -237,4 +237,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d671f53a2d9266641a053d7973d0aed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  patrolRoute: {fileID: 0}
