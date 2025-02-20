@@ -33,7 +33,7 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
     
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
-    [SerializeField] private float coyoteTime = 0.12f; //Time in seconds that the player can jump after walking off a ledge
+    [SerializeField][Range(0f, 0.5f)] private float minJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
     [SerializeField] private float gravityMult = 1; //Gravity multiplier when not fastfalling
     [SerializeField] private float fastFallActivationSpeed = 1; //At what vertical speed the fast fall kicks in at
     [SerializeField] private float fastFallMult = 2; //Fast fall multiplier
@@ -43,9 +43,10 @@ public class MovementScript : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float walljumpRayGap = 0.8f; //Position of rays, smaller gaps mean smaller range the player can walljump from
     [SerializeField] private float horizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] private float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
-    [SerializeField][Range(0.01f, 2f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
+    [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
+    [NonSerialized] public bool minJumpActive;
     [NonSerialized] public bool onWall;
     [NonSerialized] public bool onRightWall;
     [NonSerialized] public int jumpedOffWall; //-1 for left wall, 0 for neither, and 1 for right wall
@@ -173,6 +174,7 @@ public class MovementScript : MonoBehaviour
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
             animator.SetBool("Grounded", false);
+            StartCoroutine(MinJumpDuration());
         } else if (Input.GetKey(KeyCode.Space) && onWall) { //Walljumping
             int whichWallJump = Convert.ToInt32(onRightWall) * 2 - 1;
             if (whichWallJump == -1 && jumpedOffWall != -1) { //Jumping off a left wall
@@ -192,7 +194,7 @@ public class MovementScript : MonoBehaviour
             }
 
         }
-        if (rb.velocityY < fastFallActivationSpeed || !Input.GetKey(KeyCode.Space)) {
+        if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
             rb.velocityY += (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
             if (rb.velocityY < -maxFallSpeed) { //Less than because its negative
                 rb.velocityY = -maxFallSpeed;
@@ -200,6 +202,11 @@ public class MovementScript : MonoBehaviour
         } else {
             rb.velocityY += (gravityMult - 1) * Physics2D.gravity.y * Time.deltaTime;
         }
+    }
+    IEnumerator MinJumpDuration() {
+        minJumpActive = true;
+        yield return new WaitForSeconds(minJumpTime);
+        minJumpActive = false;
     }
 
     IEnumerator WalljumpInputDelay(int direction) {
