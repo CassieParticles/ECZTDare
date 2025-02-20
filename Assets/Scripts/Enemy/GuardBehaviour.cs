@@ -126,6 +126,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void RaiseAlarmBehaviour()
     {
         //If there is no alarm, immediately leave state
+        Stop();
         if(!alarm)
         {
             currentState = GuardStates.Patrol;
@@ -138,7 +139,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
             StartCoroutine(RaiseAlarm());
         }
         //Once alarm goes off, resume behaviour
-        if(!alarm.AlarmGoingOff())
+        if(alarm.AlarmGoingOff())
         {
             currentState = GuardStates.Patrol;
             ResumePatrol();
@@ -160,7 +161,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void AlarmOff()
     {
-        Debug.Log("Alarm off");
+        alarmRaiseBegin = false;
+        minimumSuspicion = 0;
     }
     
 
@@ -179,8 +181,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
-
-        stateMachine.AddState(GuardStates.Patrol, new PatrolState());
     }
 
     void Start()
