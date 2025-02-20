@@ -11,9 +11,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         Patrol,
         Observe,
-        Chase
+        Chase,
+        RaiseAlarm
     };
-
 
     [SerializeField] private PatrolRoute patrolRoute;
     private bool recalcDelay = true;
@@ -24,6 +24,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     GuardStates currentState;
     Vector3 pointOfInterest;    //Used for any position the guard is interested in (look at, investigate,etc)
+
+    bool alarmRaiseBegin=false;
 
     private IEnumerator calcDelay()
     {
@@ -79,7 +81,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
             StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
         }
 
-        suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
+        if(suspicion > minimumSuspicion)
+        { 
+            suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
+        }
 
         //Exit patrol into observing if it sees the player
         if(Player)
@@ -106,7 +111,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         //TODO: Make scale based on distance
         suspicion += suspicionScaleRate * Time.fixedDeltaTime;
-
     }
     private void ChaseBehaviour()
     {
@@ -117,7 +121,42 @@ public class GuardBehaviour : BaseEnemyBehaviour
         MoveTo(pointOfInterest);
     }
 
+    private void RaiseAlarmBehaviour()
+    {
+        //If there is no alarm, immediately leave state
+        if(!alarm)
+        {
 
+        }
+        if(!alarmRaiseBegin)
+        {
+            alarmRaiseBegin = true;
+            StartCoroutine(RaiseAlarm());
+        }
+        //Once alarm goes off, resume behaviour
+        if(alarm.AlarmGoingOff())
+        {
+            currentState = GuardStates.Patrol;
+            ResumePatrol();
+        }
+    }
+
+    private IEnumerator RaiseAlarm()
+    {
+        yield return new WaitForSeconds(1);
+        alarm.StartAlarm(pointOfInterest);
+    }
+
+    private void AlarmOn(Vector3 playerPosition)
+    {
+        minimumSuspicion = 90;
+        suspicion = Mathf.Min(suspicion, minimumSuspicion);
+    }
+
+    private void AlarmOff()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -133,11 +172,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
             case GuardStates.Chase:
                 ChaseBehaviour();
             break;
-        
+            case GuardStates.RaiseAlarm:
+                RaiseAlarmBehaviour();
+                
+            break;
         }
-
-
-
     }
 
     private void Awake()
@@ -149,6 +188,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateUpAxis = false;
 
         currentState = GuardStates.Patrol;
+
+        if(alarm)
+        {
+
+        }
     }
 
     void Start()

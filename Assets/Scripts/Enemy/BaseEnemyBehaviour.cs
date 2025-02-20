@@ -24,6 +24,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Fields used in enemy suspicion meter
     protected float suspicion;
     protected SuspicionLevel suspicionState;
+    protected float minimumSuspicion;
 
     protected VisionCone visionCone;
 
@@ -49,6 +50,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
+        minimumSuspicion = 0;
         suspicionState = SuspicionLevel.Idle;
         Player = null;
     }
