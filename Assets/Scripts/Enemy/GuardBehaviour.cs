@@ -7,6 +7,7 @@ public class GuardBehaviour : MonoBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
     private bool recalcDelay = true;
+    private bool patrolPaused = false;
 
     // Start is called before the first frame update
     private NavMeshAgent agent;
@@ -23,7 +24,7 @@ public class GuardBehaviour : MonoBehaviour
         if(patrolRoute != null)
         {
             patrolRoute.AddGuard(gameObject);
-            agent.SetDestination(patrolRoute.GetCurrNode(gameObject));
+            agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
         }
         StartCoroutine(calcDelay());
     }
@@ -35,14 +36,45 @@ public class GuardBehaviour : MonoBehaviour
         recalcDelay = true;
     }
 
+    private IEnumerator pauseAtNode(float pause)
+    {
+        patrolPaused = true;
+        yield return new WaitForSeconds(pause);
+        patrolPaused = false;
+        agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
+        StartCoroutine(calcDelay());
+    }
+
+    private void InterruptPatrol()
+    {
+        if (patrolPaused) { return; }
+        agent.SetDestination(transform.position);
+        patrolPaused = true;
+    }
+
+    private void ResumePatrol()
+    {
+        if (!patrolPaused) { return; }
+        agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
+        StartCoroutine(calcDelay());
+        patrolPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f && recalcDelay)
+        if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
         {
-            agent.SetDestination(patrolRoute.GetNextNode(gameObject));
-            StartCoroutine(calcDelay());
+            StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
         }
 
+        if(Input.GetKey(KeyCode.G))
+        {
+            InterruptPatrol();
+        }
+        else
+        {
+            ResumePatrol();
+        }
     }
 }
