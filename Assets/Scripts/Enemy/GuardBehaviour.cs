@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GuardBehaviour : MonoBehaviour
+public class GuardBehaviour : BaseEnemyBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
     private bool recalcDelay = true;
@@ -12,21 +11,68 @@ public class GuardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     private NavMeshAgent agent;
 
-    private void Awake()
+    GuardStates currentState;
+    Vector3 pointOfInterest;    //Used for any position the guard is interested in (look at, investigate,etc)
+
+    bool alarmRaiseBegin=false;
+
+    StateMachine stateMachine = new StateMachine();
+
+
+    private void InterruptPatrol()
     {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
+        if (patrolPaused) { return; }
+        Stop();
+        patrolPaused = true;
     }
 
-    void Start()
+    private void ResumePatrol()
     {
-        if(patrolRoute != null)
-        {
-            patrolRoute.AddGuard(gameObject);
-            agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
-        }
+        if (!patrolPaused) { return; }
+        MoveTo(patrolRoute.GetCurrNode(gameObject).position);
         StartCoroutine(calcDelay());
+        patrolPaused = false;
+    }
+
+    private void MoveTo(Vector3 point)
+    {
+        agent.SetDestination(point);
+        LookAt(point);
+    }
+
+    private void LookAt(Vector3 point)
+    {
+        Vector3 moveDirection = point - transform.position;
+        float moveAngle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        transform.GetChild(0).rotation = Quaternion.Euler(0, 0, moveAngle);
+    }
+
+    private void Stop()
+    {
+        agent.SetDestination(transform.position);
+    }
+
+
+    private void PatrolBehaviour()
+    {
+        //If it has reached it's current patrol node, travel to the next one
+        if (agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
+        {
+            patrolPaused = true;
+            StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
+        }
+
+        if(suspicion > minimumSuspicion)
+        { 
+            suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
+        }
+
+        //Exit patrol into observing if it sees the player
+        if(Player)
+        {
+            currentState = GuardStates.Observe;
+            InterruptPatrol();
+        }
     }
 
     private IEnumerator calcDelay()
@@ -41,40 +87,129 @@ public class GuardBehaviour : MonoBehaviour
         patrolPaused = true;
         yield return new WaitForSeconds(pause);
         patrolPaused = false;
-        agent.SetDestination(patrolRoute.GetNextNode(gameObject).position);
+        MoveTo(patrolRoute.GetNextNode(gameObject).position);
         StartCoroutine(calcDelay());
     }
 
-    private void InterruptPatrol()
+    private void ObserveBehaviour()
     {
-        if (patrolPaused) { return; }
-        agent.SetDestination(transform.position);
-        patrolPaused = true;
+        //If it loses track of the player
+        if(!Player)
+        {
+            currentState = GuardStates.Patrol;
+            ResumePatrol();
+        }
+        if(suspicion > 100)
+        {
+            currentState = GuardStates.Chase;
+        }
+
+        LookAt(pointOfInterest);
+
+        //TODO: Make scale based on distance
+        suspicion += suspicionScaleRate * Time.fixedDeltaTime;
+    }
+    private void ChaseBehaviour()
+    {
+        if(Player)
+        {
+            pointOfInterest = Player.transform.position;
+        }
+        MoveTo(pointOfInterest);
+        if(!Player)
+        {
+            Stop();
+            currentState = GuardStates.RaiseAlarm;
+        }
     }
 
-    private void ResumePatrol()
+    private void RaiseAlarmBehaviour()
     {
-        if (!patrolPaused) { return; }
-        agent.SetDestination(patrolRoute.GetCurrNode(gameObject).position);
+        //If there is no alarm, immediately leave state
+        Stop();
+        if(!alarm)
+        {
+            currentState = GuardStates.Patrol;
+            ResumePatrol();
+            return;
+        }
+        if(!alarmRaiseBegin)
+        {
+            alarmRaiseBegin = true;
+            StartCoroutine(RaiseAlarm());
+        }
+        //Once alarm goes off, resume behaviour
+        if(alarm.AlarmGoingOff())
+        {
+            currentState = GuardStates.Patrol;
+            ResumePatrol();
+        }
+    }
+
+    private IEnumerator RaiseAlarm()
+    {
+        yield return new WaitForSeconds(1);
+        alarm.StartAlarm(pointOfInterest);
+    }
+
+    private void AlarmOn(Vector3 playerPosition)
+    {
+        minimumSuspicion = 90;
+        suspicion = Mathf.Min(suspicion, minimumSuspicion);
+        Debug.Log("Alarm on");
+    }
+
+    private void AlarmOff()
+    {
+        alarmRaiseBegin = false;
+        minimumSuspicion = 0;
+    }
+    
+
+    private void Awake()
+    {
+        Setup();
+
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        currentState = GuardStates.Patrol;
+
+        if(alarm)
+        {
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
+        }
+    }
+
+    void Start()
+    {
+        if (patrolRoute != null)
+        {
+            patrolRoute.AddGuard(gameObject);
+            MoveTo(patrolRoute.GetCurrNode(gameObject).position);
+        }
         StartCoroutine(calcDelay());
-        patrolPaused = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(agent.remainingDistance < 0.01f && recalcDelay && !patrolPaused)
+        switch (currentState)
         {
-            StartCoroutine(pauseAtNode(patrolRoute.GetCurrNode(gameObject).delay));
-        }
+            case GuardStates.Patrol:
+                PatrolBehaviour();
+                break;
+            case GuardStates.Observe:
+                ObserveBehaviour();
+                break;
+            case GuardStates.Chase:
+                ChaseBehaviour();
+                break;
+            case GuardStates.RaiseAlarm:
+                RaiseAlarmBehaviour();
 
-        if(Input.GetKey(KeyCode.G))
-        {
-            InterruptPatrol();
-        }
-        else
-        {
-            ResumePatrol();
+                break;
         }
     }
 }
