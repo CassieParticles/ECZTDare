@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
@@ -29,6 +31,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     protected VisionCone visionCone;
 
     protected GameObject Player;
+
+
 
     //Call when the enemy first sees the player
     public void SeePlayer(GameObject player)

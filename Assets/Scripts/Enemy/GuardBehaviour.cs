@@ -1,21 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GuardBehaviour : BaseEnemyBehaviour
 {
-    public enum GuardStates
-    {
-        Patrol,
-        Observe,
-        Chase,
-        RaiseAlarm
-    };
-
     [SerializeField] private PatrolRoute patrolRoute;
     private bool recalcDelay = true;
     private bool patrolPaused = false;
@@ -28,21 +16,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     bool alarmRaiseBegin=false;
 
-    private IEnumerator calcDelay()
-    {
-        recalcDelay = false;
-        yield return new WaitForSeconds(0.1f);
-        recalcDelay = true;
-    }
+    StateMachine stateMachine = new StateMachine();
 
-    private IEnumerator pauseAtNode(float pause)
-    {
-        patrolPaused = true;
-        yield return new WaitForSeconds(pause);
-        patrolPaused = false;
-        MoveTo(patrolRoute.GetNextNode(gameObject).position);
-        StartCoroutine(calcDelay());
-    }
 
     private void InterruptPatrol()
     {
@@ -98,6 +73,22 @@ public class GuardBehaviour : BaseEnemyBehaviour
             currentState = GuardStates.Observe;
             InterruptPatrol();
         }
+    }
+
+    private IEnumerator calcDelay()
+    {
+        recalcDelay = false;
+        yield return new WaitForSeconds(0.1f);
+        recalcDelay = true;
+    }
+
+    private IEnumerator pauseAtNode(float pause)
+    {
+        patrolPaused = true;
+        yield return new WaitForSeconds(pause);
+        patrolPaused = false;
+        MoveTo(patrolRoute.GetNextNode(gameObject).position);
+        StartCoroutine(calcDelay());
     }
 
     private void ObserveBehaviour()
@@ -171,27 +162,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         Debug.Log("Alarm off");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        switch (currentState)
-        {
-            case GuardStates.Patrol:
-                PatrolBehaviour();
-            break;
-            case GuardStates.Observe:
-                ObserveBehaviour();
-            break;
-            case GuardStates.Chase:
-                ChaseBehaviour();
-            break;
-            case GuardStates.RaiseAlarm:
-                RaiseAlarmBehaviour();
-                
-            break;
-        }
-    }
+    
 
     private void Awake()
     {
@@ -208,6 +179,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
+
+        stateMachine.AddState(GuardStates.Patrol, new PatrolState());
     }
 
     void Start()
@@ -218,5 +191,25 @@ public class GuardBehaviour : BaseEnemyBehaviour
             MoveTo(patrolRoute.GetCurrNode(gameObject).position);
         }
         StartCoroutine(calcDelay());
+    }
+
+    void Update()
+    {
+        switch (currentState)
+        {
+            case GuardStates.Patrol:
+                PatrolBehaviour();
+                break;
+            case GuardStates.Observe:
+                ObserveBehaviour();
+                break;
+            case GuardStates.Chase:
+                ChaseBehaviour();
+                break;
+            case GuardStates.RaiseAlarm:
+                RaiseAlarmBehaviour();
+
+                break;
+        }
     }
 }
