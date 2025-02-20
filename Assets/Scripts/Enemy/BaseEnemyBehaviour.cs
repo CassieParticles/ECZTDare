@@ -46,6 +46,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void LosePlayer()
     {
         Player = null;
+        inViewCone.Stop(gameObject);
         //Handle other "losing the player" stuff
     }
 
