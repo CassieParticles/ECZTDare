@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
@@ -24,10 +26,13 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Fields used in enemy suspicion meter
     protected float suspicion;
     protected SuspicionLevel suspicionState;
+    protected float minimumSuspicion;
 
     protected VisionCone visionCone;
 
     protected GameObject Player;
+
+
 
     //Call when the enemy first sees the player
     public void SeePlayer(GameObject player)
@@ -49,6 +54,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
+        minimumSuspicion = 0;
         suspicionState = SuspicionLevel.Idle;
         Player = null;
     }
