@@ -20,11 +20,14 @@ namespace AK
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
+        static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
         static const AkUniqueID IN_VIEW_CONE = 2249657186U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_LAND = 3629196698U;
+        static const AkUniqueID PLAYER_SLIDE = 2609528332U;
+        static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
     } // namespace EVENTS
 
     namespace STATES
