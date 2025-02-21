@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static PlayerMovement;
 
-public class MovementScript : MonoBehaviour
-{
+public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event playerFootstep;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
@@ -65,7 +66,7 @@ public class MovementScript : MonoBehaviour
     [NonSerialized] public int jumpedOffWall; //-1 for left wall, 0 for neither, and 1 for right wall
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight; //Is facing to the right
-    [NonSerialized] public bool sliding;
+    [NonSerialized] public bool sliding; //If the player is currently sliding
 
     //All raycasts that get used
     Vector2 rightGroundRayStart;
@@ -76,10 +77,18 @@ public class MovementScript : MonoBehaviour
     Vector2 bottomLeftWallRayStart;
 
     //All inputs that are used
-    InputAction moveAction;
+    PlayerMovement controls;
+    InputAction runAction;
     InputAction jumpAction;
     InputAction slideAction;
     InputAction boostAction;
+
+    int movementDir;
+    bool jumpInput;
+    bool hasJumped; //If the player has jumped while holding the jump key
+    bool slideInput;
+    bool hasSlid; //If the player has slid while holding the slide key
+    bool boostInput;
 
 
     private LayerMask layers;
@@ -113,10 +122,23 @@ public class MovementScript : MonoBehaviour
 
         colliderSize = collider.size;
         effectiveDeceleration = deceleration;
+
+        if (controls == null) {
+            controls = new PlayerMovement();
+            controls.KeyboardWASD.SetCallbacks(this);
+        }
+        controls.KeyboardWASD.Enable();
+        runAction = controls.FindAction("Running");
+        jumpAction = controls.FindAction("Jumping");
+        slideAction = controls.FindAction("Sliding");
+        boostAction = controls.FindAction("Boosting");
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+
+        //Checks inputs
+        HandleInputs();
         //Checks if grounded, on wall, and other raycasts
         CheckGrounded();
         //Calculates jumping and falling, all vertical velocity
@@ -132,6 +154,22 @@ public class MovementScript : MonoBehaviour
         {
             alarm.StopAlarm();
         }
+    }
+
+    void HandleInputs() {
+        movementDir = Mathf.RoundToInt(runAction.ReadValue<float>());
+
+        jumpInput = jumpAction.ReadValue<float>() > 0;
+        if (!jumpInput) {
+            hasJumped = false;
+        }
+
+        slideInput = slideAction.ReadValue<float>() > 0;
+        if (!slideInput) {
+            hasSlid = false;
+        }
+
+        boostInput = boostAction.ReadValue<float>() > 0;
     }
 
     void CheckGrounded() {
@@ -203,14 +241,16 @@ public class MovementScript : MonoBehaviour
                                                                             -collider.size.y * walljumpRayGap / 2f);
     }
     void JumpAndFall() {
-        if (Input.GetKey(KeyCode.Space) && grounded) { //Normal Jumping
+        if (jumpInput && grounded && !hasJumped) { //Normal Jumping
             rb.velocityY = jumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
             animator.SetBool("Grounded", false);
+            hasJumped = true;
             StartCoroutine(MinJumpDuration());
-        } else if (Input.GetKey(KeyCode.Space) && onWall) { //Walljumping
+        } else if (jumpInput && onWall && !hasJumped) { //Walljumping
             int whichWallJump = Convert.ToInt32(onRightWall) * 2 - 1;
+            hasJumped = true;
             if (whichWallJump == -1 && jumpedOffWall != -1) { //Jumping off a left wall
                 rb.velocityX = horizontalWalljumpStrength;
                 rb.velocityY = verticalWalljumpStrength;
@@ -275,14 +315,14 @@ public class MovementScript : MonoBehaviour
             effectiveDeceleration = deceleration;
         }
 
-        if (Input.GetKey(KeyCode.A) && postWalljumpInputs != -1 && !sliding) { //If not recently jumped off a left wall
+        if (movementDir == -1 && postWalljumpInputs != -1 && !sliding) { //If not recently jumped off a left wall
             facingRight = false;
             rb.velocityX += -acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == 1) {
                 rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
                 
             }
-        } else if (Input.GetKey(KeyCode.D) && postWalljumpInputs != 1 && !sliding) { //If not recently jumped off a right wall
+        } else if (movementDir == 1 && postWalljumpInputs != 1 && !sliding) { //If not recently jumped off a right wall
             facingRight = true;
             rb.velocityX += acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == -1) {
@@ -315,5 +355,21 @@ public class MovementScript : MonoBehaviour
         if (postWalljumpInputs == 0) {
             spriteRenderer.flipX = !facingRight;
         }
+    }
+
+    public void OnRunning(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnJumping(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnSliding(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnBoosting(InputAction.CallbackContext context) {
+        
     }
 }
