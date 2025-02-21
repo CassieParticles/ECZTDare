@@ -7,7 +7,7 @@ using UnityEngine;
 public enum GuardStates
 {
     Patrol,
-    Observe,
+    ObservePlayer,
     Chase,
     RaiseAlarm
 };
