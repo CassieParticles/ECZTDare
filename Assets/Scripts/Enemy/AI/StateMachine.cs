@@ -1,20 +1,29 @@
 using AK.Wwise;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEngine;
 
 //State machine used by guards, so has enum for each state
 public enum GuardStates
 {
     Patrol,
-    Observe,
+    ObservePlayer,
     Chase,
     RaiseAlarm
 };
 public abstract class BaseState
 {
+    public BaseState(GameObject guard)
+    {
+        guardAttached = guard;
+        guardBehaviour = guardAttached.GetComponent<GuardBehaviour>(); 
+    }
     public abstract void Start();
     public abstract void Stop();
     public abstract GuardStates RunTick();
+
+    protected GameObject guardAttached;
+    protected GuardBehaviour guardBehaviour;
 }
 
 public class StateMachine
@@ -23,10 +32,21 @@ public class StateMachine
 
     GuardStates currentState;
 
+    public StateMachine()
+    {
+        
+    }
+
     public void AddState(GuardStates state, BaseState StateObj)
     {
         if(states.ContainsKey(state)){ return; }
         states.Add(state, StateObj);
+    }
+
+    public void Start(GuardStates intialState)
+    {
+        currentState = intialState;
+        states[currentState].Start();
     }
     public void BehaviourTick()
     {
