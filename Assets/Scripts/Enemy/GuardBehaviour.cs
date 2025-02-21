@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -47,7 +49,8 @@ public class PatrolState : BaseState
         //Has seen player, switch to observing them
         if (guardBehaviour.Player!=null)
         {
-            return GuardStates.ObservePlayer;
+            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+            return GuardStates.Observe;
         }
 
         return GuardStates.Patrol;
@@ -69,26 +72,22 @@ public class PatrolState : BaseState
     }
 }
 
-public class ObservePlayerState : BaseState
+public class ObserveState : BaseState
 {
-    public ObservePlayerState(GameObject guard) : base(guard)
-    {
-    }
+    public ObserveState(GameObject guard) : base(guard){}
 
-    public override void Start()
-    {
-        
-    }
+    public override void Start(){}
 
-    public override void Stop()
-    {
-        
-    }
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
         if(!guardBehaviour.Player)
         {
+            if(guardBehaviour.suspicion > 70)
+            {
+                return GuardStates.Investigate;
+            }
             return GuardStates.Patrol;
         }
 
@@ -97,13 +96,13 @@ public class ObservePlayerState : BaseState
             return GuardStates.Chase;
         }
 
-        guardBehaviour.LookAt(guardBehaviour.Player.transform.position);
+        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
 
         guardBehaviour.suspicion += calcSuspiconIncreaseRate();
 
         guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
 
-        return GuardStates.ObservePlayer;
+        return GuardStates.Observe;
     }
 
     private float calcSuspiconIncreaseRate()
@@ -120,21 +119,59 @@ public class ObservePlayerState : BaseState
     }
 }
 
-public class ChaseState : BaseState
+public class InvestigateState : BaseState
 {
-    public ChaseState(GameObject guard) : base(guard)
-    {
-    }
+    private bool lookingAround=false;
+    private bool finished = false;
+
+    public InvestigateState(GameObject guard) : base(guard){}
 
     public override void Start()
     {
-        
+        guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
     }
 
     public override void Stop()
     {
-        
+        guardBehaviour.StopMoving();
     }
+
+    public override GuardStates RunTick()
+    {
+        //If it sees the player
+        if(guardBehaviour.Player)
+        {
+            return GuardStates.Observe;
+        }
+
+        if(guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
+        {
+            guardBehaviour.StartCoroutine(lookAround());
+        }
+        if(finished)
+        {
+            return GuardStates.Patrol;
+        }
+
+        return GuardStates.Investigate;
+    }
+
+    private IEnumerator lookAround()
+    {
+        lookingAround = true;
+        yield return new WaitForSeconds(3);
+        finished = true;
+    }
+}
+
+
+public class ChaseState : BaseState
+{
+    public ChaseState(GameObject guard) : base(guard){}
+
+    public override void Start(){}
+
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
@@ -168,10 +205,7 @@ public class RaiseAlarmState : BaseState
         }
     }
 
-    public override void Stop()
-    {
-
-    }
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
@@ -242,7 +276,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateUpAxis = false;
 
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
-        guardBehaviour.AddState(GuardStates.ObservePlayer,new ObservePlayerState(gameObject));
+        guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
+        guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
     }
