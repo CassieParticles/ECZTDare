@@ -61,6 +61,75 @@ namespace AK
 
     } // namespace STATES
 
+    namespace SWITCHES
+    {
+        namespace GUARD_FOOTSTEP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1980337323U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace GUARD_FOOTSTEP_MATERIAL
+
+        namespace PLAYER_FOOTSTEP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 4145461805U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_FOOTSTEP_MATERIAL
+
+        namespace PLAYER_JUMP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1085835795U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_JUMP_MATERIAL
+
+        namespace PLAYER_LAND_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1536569246U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_LAND_MATERIAL
+
+        namespace PLAYER_SLIDE_MATERIAL
+        {
+            static const AkUniqueID GROUP = 4130691716U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_SLIDE_MATERIAL
+
+    } // namespace SWITCHES
+
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID BOOST_SPEED = 474239254U;

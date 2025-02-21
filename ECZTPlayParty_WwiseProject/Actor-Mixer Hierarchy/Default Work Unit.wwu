@@ -529,8 +529,14 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
+						<Reference Name="DefaultSwitchOrState">
+							<ObjectRef Name="Concrete" ID="{931DDD67-C9DF-4C58-B491-8560373B81D9}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="SwitchGroupOrStateGroup">
+							<ObjectRef Name="Guard_Footstep_Material" ID="{036DA068-D2FF-4075-A4EA-1DF88BF55FDF}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
 						<Reference Name="UserAuxSend0">
 							<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
@@ -1383,6 +1389,32 @@
 								<ItemRef Name="G_D_Footsteps" ID="{7092B7C2-6C20-4BB4-803A-2CF91897993F}"/>
 							</GroupingBehavior>
 						</GroupingBehaviorList>
+						<GroupingList>
+							<Grouping>
+								<SwitchRef Name="Metal" ID="{316E7E4C-93B3-4108-B359-E20EACF2399D}"/>
+								<ItemList>
+									<ItemRef Name="G_M_Footsteps" ID="{0F2B69B7-172B-4AF2-BEAC-B403710B578D}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Dirt" ID="{D905F951-88ED-49D2-B15B-9896722E323E}"/>
+								<ItemList>
+									<ItemRef Name="G_D_Footsteps" ID="{7092B7C2-6C20-4BB4-803A-2CF91897993F}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Concrete" ID="{931DDD67-C9DF-4C58-B491-8560373B81D9}"/>
+								<ItemList>
+									<ItemRef Name="G_C_Footsteps" ID="{745D9652-EDFC-4CA8-B84F-A475706C79AF}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Rubber" ID="{1C1D099D-EC64-44BD-B272-62DB6A87FBBD}"/>
+								<ItemList>
+									<ItemRef Name="G_R_Footsteps" ID="{1C248D5F-2180-4F5B-86D2-BE508C1D702D}"/>
+								</ItemList>
+							</Grouping>
+						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
 				<SwitchContainer Name="Player_Footsteps" ID="{C43F3486-4C50-472D-8EF2-9E52E1E42563}" ShortID="165612465">
@@ -1418,16 +1450,27 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
+						<Reference Name="DefaultSwitchOrState">
+							<ObjectRef Name="Concrete" ID="{EEEBC127-81CD-4A86-9745-545BCD8A4F79}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="SwitchGroupOrStateGroup">
+							<ObjectRef Name="Player_Footstep_Material" ID="{398807C9-C873-4097-8070-338993101B1E}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="P_C_Footsteps" ID="{FAE417AE-E004-4619-AE00-F876195F03D6}" ShortID="456543697">
 							<PropertyList>
-								<Property Name="Pitch" Type="int32">
+								<Property Name="Highpass" Type="int16">
 									<ValueList>
-										<Value>120</Value>
+										<Value>22</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>34</Value>
 									</ValueList>
 								</Property>
 								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="5"/>
@@ -2253,6 +2296,32 @@
 								<ItemRef Name="P_D_Footsteps" ID="{061C92DE-F428-4D80-BE2F-BB89DBC3765F}"/>
 							</GroupingBehavior>
 						</GroupingBehaviorList>
+						<GroupingList>
+							<Grouping>
+								<SwitchRef Name="Dirt" ID="{955F9E26-3B7A-4F39-BA4B-67C80CB72CA4}"/>
+								<ItemList>
+									<ItemRef Name="P_D_Footsteps" ID="{061C92DE-F428-4D80-BE2F-BB89DBC3765F}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Concrete" ID="{EEEBC127-81CD-4A86-9745-545BCD8A4F79}"/>
+								<ItemList>
+									<ItemRef Name="P_C_Footsteps" ID="{FAE417AE-E004-4619-AE00-F876195F03D6}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Rubber" ID="{5B248FBD-9701-424B-99E0-6269AFA617A6}"/>
+								<ItemList>
+									<ItemRef Name="P_R_Footsteps" ID="{E0933597-6071-42F9-9821-A1D53B6FA131}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Metal" ID="{5E6A5CEC-2C74-4474-9D06-0CFC7736AC09}"/>
+								<ItemList>
+									<ItemRef Name="P_M_Footsteps" ID="{C5E9664C-C7AB-4874-A76E-82F2D2418DE9}"/>
+								</ItemList>
+							</Grouping>
+						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
 				<SwitchContainer Name="Player_Jump" ID="{C0C8A6F8-BED5-4AF6-A154-88BE8680377D}" ShortID="839582128">
@@ -2288,8 +2357,14 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
+						<Reference Name="DefaultSwitchOrState">
+							<ObjectRef Name="Concrete" ID="{76F3FAC4-04C5-4C6B-A343-210833D66539}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="SwitchGroupOrStateGroup">
+							<ObjectRef Name="Player_Jump_Material" ID="{BB04D1BA-E0A1-4BCC-A491-E17AA621FC9B}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -2302,15 +2377,20 @@
 								</Property>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
-										<Value>33</Value>
+										<Value>37</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>280</Value>
+										<Value>80</Value>
 									</ValueList>
 								</Property>
 								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -2756,6 +2836,32 @@
 								<ItemRef Name="P_C_Jump" ID="{558B51CB-628E-460B-A7AA-82DCE4842D8C}"/>
 							</GroupingBehavior>
 						</GroupingBehaviorList>
+						<GroupingList>
+							<Grouping>
+								<SwitchRef Name="Dirt" ID="{B1ED1E01-8AF0-480F-AE32-3845235FC793}"/>
+								<ItemList>
+									<ItemRef Name="P_D_Jump" ID="{44724E97-0D61-4D19-AE53-BC8235E11583}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Metal" ID="{CAD3A353-39FE-4B19-A014-36C01AE2586D}"/>
+								<ItemList>
+									<ItemRef Name="P_M_Jump" ID="{D2D6238A-2D2A-4A0E-B3D7-CAC4ECDF9613}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Rubber" ID="{7314FBB0-3777-4A14-ABDA-82B221D40F34}"/>
+								<ItemList>
+									<ItemRef Name="P_R_Jump" ID="{3F800995-38FB-45C5-AEC2-DC8BE1183C8B}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Concrete" ID="{76F3FAC4-04C5-4C6B-A343-210833D66539}"/>
+								<ItemList>
+									<ItemRef Name="P_C_Jump" ID="{558B51CB-628E-460B-A7AA-82DCE4842D8C}"/>
+								</ItemList>
+							</Grouping>
+						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
 				<SwitchContainer Name="Player_Land" ID="{A7FA5D1E-E755-4D0E-B53B-B4E120C8344C}" ShortID="231057692">
@@ -2791,8 +2897,14 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
+						<Reference Name="DefaultSwitchOrState">
+							<ObjectRef Name="Concrete" ID="{6BEBE080-140B-4433-A006-85B9BC2CC138}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="SwitchGroupOrStateGroup">
+							<ObjectRef Name="Player_Land_Material" ID="{2BED720D-8BAF-4C33-BD3C-A4B3AA7D53EB}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -3167,6 +3279,32 @@
 								<ItemRef Name="P_C_Land" ID="{DA46CF89-2B99-43C3-8D4C-618E2961D5C3}"/>
 							</GroupingBehavior>
 						</GroupingBehaviorList>
+						<GroupingList>
+							<Grouping>
+								<SwitchRef Name="Rubber" ID="{6D2CED0E-BB77-41DA-8472-AD589F76620D}"/>
+								<ItemList>
+									<ItemRef Name="P_R_Land" ID="{A5E7D449-2DA8-4A9B-82A2-2806FECC6562}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Concrete" ID="{6BEBE080-140B-4433-A006-85B9BC2CC138}"/>
+								<ItemList>
+									<ItemRef Name="P_C_Land" ID="{DA46CF89-2B99-43C3-8D4C-618E2961D5C3}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Dirt" ID="{46D3CEDA-167B-4C85-A8D1-5F8565CB53DA}"/>
+								<ItemList>
+									<ItemRef Name="P_D_Land" ID="{D37F993A-D0E5-4314-A03B-02E58A399B81}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Metal" ID="{5A26F0EF-5E9D-47F0-BBCB-638CECB6AE48}"/>
+								<ItemList>
+									<ItemRef Name="P_M_Land" ID="{5E71532C-7F0B-41E4-B7BB-4EFA869FB0AB}"/>
+								</ItemList>
+							</Grouping>
+						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
 				<SwitchContainer Name="Player_Slide" ID="{8392B93E-BBB9-4D82-86C2-32B709D80DE0}" ShortID="301846156">
@@ -3202,8 +3340,14 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 						</Reference>
+						<Reference Name="DefaultSwitchOrState">
+							<ObjectRef Name="Concrete" ID="{5CC76E07-AD36-4277-900A-A84749A2DC19}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="SwitchGroupOrStateGroup">
+							<ObjectRef Name="Player_Slide_Material" ID="{DB13A849-2D95-474B-AEE6-294D5D4EA07C}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -3573,6 +3717,32 @@
 								<ItemRef Name="P_R_Slide" ID="{4256109F-1E42-4C00-96AD-C1528438048C}"/>
 							</GroupingBehavior>
 						</GroupingBehaviorList>
+						<GroupingList>
+							<Grouping>
+								<SwitchRef Name="Concrete" ID="{5CC76E07-AD36-4277-900A-A84749A2DC19}"/>
+								<ItemList>
+									<ItemRef Name="P_C_Slide" ID="{B666F843-2EBF-4732-9AFD-587D18A02E12}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Metal" ID="{C1F6826A-8D3D-4079-8A6E-BB86B33AC581}"/>
+								<ItemList>
+									<ItemRef Name="P_M_Slide" ID="{7575029E-228B-4859-8822-69E0027E9A74}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Dirt" ID="{69F093B2-58F5-45F2-A412-F6F98FB1CEEF}"/>
+								<ItemList>
+									<ItemRef Name="P_D_Slide" ID="{667A9A29-EC73-45A9-8C99-22F53769752E}"/>
+								</ItemList>
+							</Grouping>
+							<Grouping>
+								<SwitchRef Name="Rubber" ID="{18FB15E7-9CF1-4C92-A5DB-C57C3902F8F4}"/>
+								<ItemList>
+									<ItemRef Name="P_R_Slide" ID="{4256109F-1E42-4C00-96AD-C1528438048C}"/>
+								</ItemList>
+							</Grouping>
+						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
 			</ChildrenList>
