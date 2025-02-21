@@ -17,8 +17,11 @@ public class PatrolState : BaseState
 
     public override void Start()
     {
-        Vector3 nextNode = patrolRoute.GetCurrNode(guardAttached).position;
-        guardBehaviour.MoveTo(nextNode);
+        if(patrolRoute)
+        {
+            Vector3 nextNode = patrolRoute.GetCurrNode(guardAttached).position;
+            guardBehaviour.MoveTo(nextNode);
+        }
     }
 
     public override void Stop()
@@ -28,18 +31,21 @@ public class PatrolState : BaseState
 
     public override GuardStates RunTick()
     {
-        if(guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
+        if(patrolRoute)
         {
-            guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetNextNode(guardAttached).delay));
+            if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
+            {
+                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetNextNode(guardAttached).delay));
+            }
         }
 
-        if(guardBehaviour.suspicion > guardBehaviour.minimumSuspicion)
+        if (guardBehaviour.suspicion > guardBehaviour.minimumSuspicion)
         {
             guardBehaviour.suspicion -= guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime;
         }
 
         //Has seen player, switch to observing them
-        if(guardBehaviour.Player!=null)
+        if (guardBehaviour.Player!=null)
         {
             return GuardStates.ObservePlayer;
         }
@@ -95,6 +101,8 @@ public class ObservePlayerState : BaseState
 
         guardBehaviour.suspicion += calcSuspiconIncreaseRate();
 
+        guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+
         return GuardStates.ObservePlayer;
     }
 
@@ -132,11 +140,52 @@ public class ChaseState : BaseState
     {
         if(!guardBehaviour.Player)
         {
-            return GuardStates.Patrol;
+            return GuardStates.RaiseAlarm;
         }
+
+        guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
 
         guardBehaviour.MoveTo(guardBehaviour.Player.transform.position);
         return GuardStates.Chase;
+    }
+}
+
+public class RaiseAlarmState : BaseState
+{
+    private AlarmSystem alarm;
+    public RaiseAlarmState(GameObject guard,AlarmSystem alarm) : base(guard)
+    {
+        this.alarm = alarm;
+    }
+
+    public override void Start()
+    {
+        guardBehaviour.StopMoving();
+        if(alarm && !alarm.AlarmGoingOff())
+        {
+            //Start coroutine to set off alarm
+            guardBehaviour.StartCoroutine(RaiseAlarm());
+        }
+    }
+
+    public override void Stop()
+    {
+
+    }
+
+    public override GuardStates RunTick()
+    {
+        if(!alarm || alarm.AlarmGoingOff())
+        {
+            return GuardStates.Patrol;
+        }
+        return GuardStates.RaiseAlarm;
+    }
+
+    private IEnumerator RaiseAlarm()
+    {
+        yield return new WaitForSeconds(3);
+        alarm.StartAlarm(guardBehaviour.PointOfInterest);
     }
 }
 
@@ -147,6 +196,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
     // Start is called before the first frame update
     private NavMeshAgent agent;
     private StateMachine guardBehaviour = new StateMachine();
+
+    public Vector3 PointOfInterest;
 
     public void MoveTo(Vector3 position)
     {
@@ -161,7 +212,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
         visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-
     public void StopMoving()
     {
         agent.SetDestination(transform.position);
@@ -171,6 +221,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         return agent.remainingDistance;
     }
+
+    private void AlarmOn(Vector3 playerPosition)
+    {
+        Debug.Log("Alarm enabled");
+    }
+
+    private void AlarmOff()
+    {
+
+    }
+
 
     private void Awake()
     {
@@ -183,17 +244,26 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
         guardBehaviour.AddState(GuardStates.ObservePlayer,new ObservePlayerState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
+        guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
     }
 
     void Start()
     {
-        patrolRoute.AddGuard(gameObject);
+        if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
+        
         guardBehaviour.Start(GuardStates.Patrol);
+
+        if(alarm)
+        {
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
+        }
     }
 
     void Update()
     {
         guardBehaviour.BehaviourTick();
+
         //Put guard on "high alert" (won't go lower)
         if(suspicion > 80)
         {
