@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
@@ -18,16 +20,25 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] protected AlarmSystem alarm = null;
 
     //Parameters for suspicion rate
-    [SerializeField, Range(0, 1000)] protected float suspicionScaleRate;
-    [SerializeField, Range(0, 1000)] protected float suspicionDecayRate;
+    [SerializeField, Range(0, 1000)] public float suspicionScaleRate;
+    [SerializeField, Range(0, 1000)] public float suspicionDecayRate;
 
     //Fields used in enemy suspicion meter
-    protected float suspicion;
+    /// <summary>
+    /// Level of suspicion of the enemy
+    /// </summary>
+    public float suspicion;
+    public float minimumSuspicion;
     protected SuspicionLevel suspicionState;
 
-    protected VisionCone visionCone;
+    public VisionCone visionCone{ get; protected set; }
 
-    protected GameObject Player;
+    /// <summary>
+    /// Player according to the enemy, null when player is not visible
+    /// </summary>
+    public GameObject Player { get; protected set; }
+
+
 
     //Call when the enemy first sees the player
     public void SeePlayer(GameObject player)
@@ -41,6 +52,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void LosePlayer()
     {
         Player = null;
+        inViewCone.Stop(gameObject);
         //Handle other "losing the player" stuff
     }
 
@@ -49,6 +61,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
+        minimumSuspicion = 0;
         suspicionState = SuspicionLevel.Idle;
         Player = null;
     }
