@@ -1,19 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
 
-    public enum SuspicionLevel
+    public enum SuspicionState
     {
         Idle,
         Suspect,
-        HighAlert,
-        Alarm
+        HighAlert
+    };
+
+    /// <summary>
+    /// Idle, Suspect, high alert and chasing thresholds, make sure they are in ascending order
+    /// </summary>
+    public float[] SuspicionLevel = new float[4] 
+    {
+        0,
+        40,
+        70,
+        100
     };
 
     //Alarm system attached to enemy, set up by designed if alarm is wanted
@@ -29,7 +38,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     /// </summary>
     public float suspicion;
     public float minimumSuspicion;
-    protected SuspicionLevel suspicionState;
+    [NonSerialized] public SuspicionState suspicionState;
 
     public VisionCone visionCone{ get; protected set; }
 
@@ -62,7 +71,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
         minimumSuspicion = 0;
-        suspicionState = SuspicionLevel.Idle;
+        suspicionState = SuspicionState.Idle;
         Player = null;
     }
 }
