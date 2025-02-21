@@ -302,8 +302,9 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     }
 
     void RunAndSlide() {
-        if (Input.GetKey(KeyCode.S) && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide) {
+        if (Input.GetKey(KeyCode.S) && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
             sliding = true;
+            hasSlid = true;
             collider.size = new Vector2(colliderSize.x * 1.5f, colliderSize.y * 0.3f);
             transform.position = new Vector2(transform.position.x, transform.position.y - colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
             effectiveDeceleration = slideDeceleration;
