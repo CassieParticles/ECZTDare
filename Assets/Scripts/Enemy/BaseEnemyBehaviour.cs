@@ -31,7 +31,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public float minimumSuspicion;
     protected SuspicionLevel suspicionState;
 
-    protected VisionCone visionCone;
+    public VisionCone visionCone{ get; protected set; }
 
     /// <summary>
     /// Player according to the enemy, null when player is not visible

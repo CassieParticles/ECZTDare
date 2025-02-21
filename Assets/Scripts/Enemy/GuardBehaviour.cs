@@ -33,6 +33,11 @@ public class PatrolState : BaseState
             guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetNextNode(guardAttached).delay));
         }
 
+        if(guardBehaviour.suspicion > guardBehaviour.minimumSuspicion)
+        {
+            guardBehaviour.suspicion -= guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime;
+        }
+
         //Has seen player, switch to observing them
         if(guardBehaviour.Player!=null)
         {
@@ -76,13 +81,62 @@ public class ObservePlayerState : BaseState
 
     public override GuardStates RunTick()
     {
-        if(guardBehaviour.Player == null)
+        if(!guardBehaviour.Player)
         {
             return GuardStates.Patrol;
         }
+
+        if(guardBehaviour.suspicion > 100)
+        {
+            return GuardStates.Chase;
+        }
+
         guardBehaviour.LookAt(guardBehaviour.Player.transform.position);
 
+        guardBehaviour.suspicion += calcSuspiconIncreaseRate();
+
         return GuardStates.ObservePlayer;
+    }
+
+    private float calcSuspiconIncreaseRate()
+    {
+        Vector3 playerPos = guardBehaviour.Player.transform.position;
+        Vector3 enemyPos = guardAttached.transform.position;
+
+        //Get a scalar from 1 to 0 based for player's distance affecting scale rate
+        float distance = (playerPos - enemyPos).magnitude;
+        float visionConeLength = guardBehaviour.visionCone.distance;
+        float distScalar = 1 - distance / visionConeLength;
+
+        return distScalar * guardBehaviour.suspicionScaleRate * Time.fixedDeltaTime;
+    }
+}
+
+public class ChaseState : BaseState
+{
+    public ChaseState(GameObject guard) : base(guard)
+    {
+    }
+
+    public override void Start()
+    {
+        
+    }
+
+    public override void Stop()
+    {
+        
+    }
+
+    public override GuardStates RunTick()
+    {
+        if(!guardBehaviour.Player)
+        {
+            return GuardStates.Patrol;
+        }
+
+        guardBehaviour.MoveTo(guardBehaviour.Player.transform.position);
+        return GuardStates.Chase;
     }
 }
 
@@ -128,6 +182,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
         guardBehaviour.AddState(GuardStates.ObservePlayer,new ObservePlayerState(gameObject));
+        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
     }
 
     void Start()
@@ -139,5 +194,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
     void Update()
     {
         guardBehaviour.BehaviourTick();
+        //Put guard on "high alert" (won't go lower)
+        if(suspicion > 80)
+        {
+            minimumSuspicion = 80;
+        }
     }
 }
