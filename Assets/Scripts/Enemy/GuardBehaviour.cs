@@ -35,7 +35,7 @@ public class PatrolState : BaseState
         {
             if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
             {
-                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetNextNode(guardAttached).delay));
+                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
             }
         }
 
@@ -62,7 +62,7 @@ public class PatrolState : BaseState
     }
     private IEnumerator RecalculatePath()
     {
-        guardBehaviour.MoveTo(patrolRoute.GetCurrNode(guardAttached).position);
+        guardBehaviour.MoveTo(patrolRoute.GetNextNode(guardAttached).position);
         recalcDelay = false;
         yield return new WaitForSeconds(0.1f);
         recalcDelay = true;
