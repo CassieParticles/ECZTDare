@@ -17,7 +17,6 @@ public class CameraBehaviour : BaseEnemyBehaviour
     private float initialAngle;
     private bool turningCCW;
     private bool turningPaused;
-
    
 
     private IEnumerator ChangeCameraDirection()
@@ -41,6 +40,20 @@ public class CameraBehaviour : BaseEnemyBehaviour
         Vector3 rotation = visionCone.transform.rotation.eulerAngles;
         rotation.z += angle;
         visionCone.transform.rotation = Quaternion.Euler(rotation);
+    }
+
+    private void FollowPlayer()
+    {
+        if(!Player)
+        {
+            return;
+        }
+        Vector3 position = Player.transform.position;
+        Vector3 direction = position - transform.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void Alarm(Vector3 playerPosition)
@@ -75,17 +88,18 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
     private void FixedUpdate()
     {
+        //If suspicion is high and can see the player, follow the player rather than turn normally
+        bool FollowingPlayer = false;
         //Handle seeing the player
         if (Player)
         {
+            FollowingPlayer = suspicionState == SuspicionState.Chase && Player;
             if (suspicion <= 100)
             {
                 CalcSuspicionIncrease();
-                
             }
             else
             {
-                visionCone.SetColour(Color.red);
                 //Raise alarm
                 if (alarm && !alarm.AlarmGoingOff())
                 {
@@ -106,47 +120,23 @@ public class CameraBehaviour : BaseEnemyBehaviour
         BaseUpdate();
 
         //Handle camera rotation
-        float visionAngle = visionCone.transform.rotation.eulerAngles.z;
-        float upperBound = initialAngle + maxAngle * +1;
-        float lowerBound = initialAngle + maxAngle * -1;
+        float target = initialAngle + (turningCCW ? maxAngle : -maxAngle);
+        if(target > 360){ target -= 360; }
+        if(target < 0){ target += 360; }
 
-        //Case 1: Area between upper and lower bound is continuous
-        if (upperBound < 360 && lowerBound > 0)
+        if(FollowingPlayer)
         {
-            if (Mathf.Abs(visionAngle - initialAngle) > maxAngle)
-            {
-                StartCoroutine(ChangeCameraDirection());
-            }
+            FollowPlayer();
         }
-        //Case 2: Upper bound goes past 360 degrees
-        else if (upperBound > 360)
-        {
-            if (visionAngle < lowerBound)
-            {
-                upperBound -= 360;
-            }
-            if (visionAngle > upperBound)
-            {
-                StartCoroutine(ChangeCameraDirection());
-            }
-        }
-        //Case 3: Lower bound goes past 0 degrees
-        else
-        {
-            if (visionAngle > upperBound)
-            {
-                lowerBound += 360;
-            }
-            if (visionAngle < lowerBound)
-            {
-                StartCoroutine(ChangeCameraDirection());
-            }
-        }
-
-        //Turn camera
-        if (!turningPaused)
-        {
+        else if(!turningPaused)
+        { 
             RotateCamera(turnSpeed * Time.fixedDeltaTime * (turningCCW ? 1 : -1));
+        }
+
+        //Change directions
+        if(Mathf.Abs(visionCone.transform.rotation.eulerAngles.z - target) < 1f)
+        {
+            StartCoroutine(ChangeCameraDirection());
         }
     }
     private void OnDrawGizmosSelected()
