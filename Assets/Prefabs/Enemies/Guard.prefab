@@ -114,6 +114,11 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 0}
+  SuspicionLevel:
+  - 0
+  - 40
+  - 70
+  - 100
   alarm: {fileID: 0}
   suspicionScaleRate: 200
   suspicionDecayRate: 10

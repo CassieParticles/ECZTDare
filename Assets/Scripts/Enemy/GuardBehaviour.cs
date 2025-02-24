@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,7 +41,7 @@ public class PatrolState : BaseState
             }
         }
 
-        if (guardBehaviour.suspicion > guardBehaviour.minimumSuspicion)
+        if (guardBehaviour.suspicion > guardBehaviour.minimumSuspicion + guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime)
         {
             guardBehaviour.suspicion -= guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime;
         }
@@ -47,7 +49,8 @@ public class PatrolState : BaseState
         //Has seen player, switch to observing them
         if (guardBehaviour.Player!=null)
         {
-            return GuardStates.ObservePlayer;
+            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+            return GuardStates.Observe;
         }
 
         return GuardStates.Patrol;
@@ -69,44 +72,40 @@ public class PatrolState : BaseState
     }
 }
 
-public class ObservePlayerState : BaseState
+public class ObserveState : BaseState
 {
-    public ObservePlayerState(GameObject guard) : base(guard)
-    {
-    }
+    public ObserveState(GameObject guard) : base(guard){}
 
-    public override void Start()
-    {
-        
-    }
+    public override void Start(){}
 
-    public override void Stop()
-    {
-        
-    }
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
         if(!guardBehaviour.Player)
         {
+            if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
+            {
+                return GuardStates.Investigate;
+            }
             return GuardStates.Patrol;
         }
 
-        if(guardBehaviour.suspicion > 100)
+        if(guardBehaviour.suspicion > guardBehaviour.SuspicionLevel[3])
         {
             return GuardStates.Chase;
         }
 
-        guardBehaviour.LookAt(guardBehaviour.Player.transform.position);
+        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
 
-        guardBehaviour.suspicion += calcSuspiconIncreaseRate();
+        guardBehaviour.suspicion += calcSuspicionIncreaseRate();
 
         guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
 
-        return GuardStates.ObservePlayer;
+        return GuardStates.Observe;
     }
 
-    private float calcSuspiconIncreaseRate()
+    private float calcSuspicionIncreaseRate()
     {
         Vector3 playerPos = guardBehaviour.Player.transform.position;
         Vector3 enemyPos = guardAttached.transform.position;
@@ -114,27 +113,68 @@ public class ObservePlayerState : BaseState
         //Get a scalar from 1 to 0 based for player's distance affecting scale rate
         float distance = (playerPos - enemyPos).magnitude;
         float visionConeLength = guardBehaviour.visionCone.distance;
-        float distScalar = 1 - distance / visionConeLength;
+        float distScalar = Mathf.Clamp(1 - distance / visionConeLength,0.05f,1);
 
         return distScalar * guardBehaviour.suspicionScaleRate * Time.fixedDeltaTime;
     }
 }
 
-public class ChaseState : BaseState
+public class InvestigateState : BaseState
 {
-    public ChaseState(GameObject guard) : base(guard)
-    {
-    }
+    private bool lookingAround=false;
+    private bool finished = false;
+
+    public InvestigateState(GameObject guard) : base(guard){}
 
     public override void Start()
     {
-        
+        guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
     }
 
     public override void Stop()
     {
-        
+        guardBehaviour.StopMoving();
     }
+
+    public override GuardStates RunTick()
+    {
+        //If it sees the player
+        if(guardBehaviour.Player)
+        {
+            return GuardStates.Observe;
+        }
+
+        if(guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
+        {
+            guardBehaviour.StartCoroutine(lookAround());
+        }
+        if(finished)
+        {
+            return GuardStates.Patrol;
+        }
+
+        return GuardStates.Investigate;
+    }
+
+    private IEnumerator lookAround()
+    {
+        lookingAround = true;
+        yield return new WaitForSeconds(3);
+        finished = true;
+    }
+}
+
+
+public class ChaseState : BaseState
+{
+    public ChaseState(GameObject guard) : base(guard){}
+
+    public override void Start()
+    {
+        guardBehaviour.visionCone.SetColour(Color.red);
+    }
+
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
@@ -168,10 +208,7 @@ public class RaiseAlarmState : BaseState
         }
     }
 
-    public override void Stop()
-    {
-
-    }
+    public override void Stop(){}
 
     public override GuardStates RunTick()
     {
@@ -224,7 +261,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void AlarmOn(Vector3 playerPosition)
     {
-        Debug.Log("Alarm enabled");
+        SetSuspicionState(SuspicionState.HighAlert);
     }
 
     private void AlarmOff()
@@ -232,6 +269,16 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     }
 
+    public void SetSuspicionState(SuspicionState level)
+    {
+        suspicionState = level;
+        suspicion = SuspicionLevel[(int)level]+1;
+    }
+
+    private void CatchPlayer()
+    {
+
+    }
 
     private void Awake()
     {
@@ -242,10 +289,13 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateUpAxis = false;
 
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
-        guardBehaviour.AddState(GuardStates.ObservePlayer,new ObservePlayerState(gameObject));
+        guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
+        guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
     }
+
+
 
     void Start()
     {
@@ -264,10 +314,37 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         guardBehaviour.BehaviourTick();
 
-        //Put guard on "high alert" (won't go lower)
-        if(suspicion > 80)
+        if (suspicion < SuspicionLevel[1])  //Below suspect threshold
         {
-            minimumSuspicion = 80;
+            suspicionState = SuspicionState.Idle;
+            visionCone.SetColour(Color.white);
+        }
+        else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
+        {
+            suspicionState = SuspicionState.Suspect;
+            visionCone.SetColour(Color.yellow);
+        }
+        else if(suspicion < SuspicionLevel[3])  //Below chase threshold
+        {
+            suspicionState = SuspicionState.HighAlert;
+            visionCone.SetColour(new Color(1,0.5f,0));
+        }
+        
+
+
+        //Put guard on "high alert" (won't go lower)
+        if(suspicionState==SuspicionState.HighAlert)
+        {
+            minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            CatchPlayer();
+        }
+    }
+
 }
