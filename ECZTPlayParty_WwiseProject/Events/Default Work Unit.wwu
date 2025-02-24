@@ -8,7 +8,7 @@
 						<Action Name="" ID="{71C8D8C9-4BCA-4812-8C50-63D7AFE68217}" ShortID="1013421581">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Player_Footsteps" ID="{47AA31F3-D0C1-4266-A8B7-80BBD1C50384}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Player_Footsteps" ID="{C43F3486-4C50-472D-8EF2-9E52E1E42563}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -19,7 +19,7 @@
 						<Action Name="" ID="{098F8223-9C1D-4B3D-9115-49AB4EA806A2}" ShortID="993345200">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Jump" ID="{168ECB23-AE35-4F37-B419-6335F0CC74F2}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Player_Jump" ID="{C0C8A6F8-BED5-4AF6-A154-88BE8680377D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -30,7 +30,7 @@
 						<Action Name="" ID="{92DD60DA-9874-4307-8F96-64FC92AB4299}" ShortID="920357378">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Land" ID="{DD60CAB0-A3C4-4D6A-B2C4-FCAACF8FEB30}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Player_Land" ID="{A7FA5D1E-E755-4D0E-B53B-B4E120C8344C}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -137,6 +137,29 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Boost_Rush" ID="{0F06B11D-2191-4274-B82D-3E57803A3102}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}"/>
+				<Event Name="Player_Wall_Jump" ID="{96A96DCE-B14B-4591-8204-08E22597295E}">
+					<ChildrenList>
+						<Action Name="" ID="{9F770804-D725-49C5-8E2E-F54E12456F8E}" ShortID="20926198">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Player_Jump" ID="{C0C8A6F8-BED5-4AF6-A154-88BE8680377D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Slide" ID="{96CD1F9E-3634-4D12-9FCF-555ADD3269B1}">
+					<ChildrenList>
+						<Action Name="" ID="{582719A1-4ED5-42B7-B4A5-EB0A0FC76067}" ShortID="367390236">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Player_Slide" ID="{8392B93E-BBB9-4D82-86C2-32B709D80DE0}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

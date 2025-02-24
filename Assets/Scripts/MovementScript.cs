@@ -206,11 +206,19 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             if (Physics2D.Raycast(topRightWallRayStart, Vector2.right, 0.1f, layers) || 
                 Physics2D.Raycast(bottomRightWallRayStart, Vector2.right, 0.1f, layers)) 
             { //If the player is on a wall to their right
+                if (!onWall)
+                {
+                    AkSoundEngine.PostEvent("Player_Land", this.gameObject);
+                }
                 onWall = true;
                 onRightWall = true;
             } else if (Physics2D.Raycast(topLeftWallRayStart, Vector2.left, 0.1f, layers) ||
                        Physics2D.Raycast(bottomLeftWallRayStart, Vector2.left, 0.1f, layers))
             { //If the player is on a wall to their left
+                if (!onWall)
+                {
+                    AkSoundEngine.PostEvent("Player_Land", this.gameObject);
+                }
                 onWall = true;
                 onRightWall = false;
             } else 

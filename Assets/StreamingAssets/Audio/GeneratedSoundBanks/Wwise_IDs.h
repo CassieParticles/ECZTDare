@@ -20,11 +20,14 @@ namespace AK
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
+        static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
         static const AkUniqueID IN_VIEW_CONE = 2249657186U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_LAND = 3629196698U;
+        static const AkUniqueID PLAYER_SLIDE = 2609528332U;
+        static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
     } // namespace EVENTS
 
     namespace STATES
@@ -57,6 +60,75 @@ namespace AK
         } // namespace REVERB
 
     } // namespace STATES
+
+    namespace SWITCHES
+    {
+        namespace GUARD_FOOTSTEP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1980337323U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace GUARD_FOOTSTEP_MATERIAL
+
+        namespace PLAYER_FOOTSTEP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 4145461805U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_FOOTSTEP_MATERIAL
+
+        namespace PLAYER_JUMP_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1085835795U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_JUMP_MATERIAL
+
+        namespace PLAYER_LAND_MATERIAL
+        {
+            static const AkUniqueID GROUP = 1536569246U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_LAND_MATERIAL
+
+        namespace PLAYER_SLIDE_MATERIAL
+        {
+            static const AkUniqueID GROUP = 4130691716U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID CONCRETE = 841620460U;
+                static const AkUniqueID DIRT = 2195636714U;
+                static const AkUniqueID METAL = 2473969246U;
+                static const AkUniqueID RUBBER = 437659151U;
+            } // namespace SWITCH
+        } // namespace PLAYER_SLIDE_MATERIAL
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {

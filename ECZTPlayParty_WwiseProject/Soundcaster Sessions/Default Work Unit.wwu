@@ -11,10 +11,16 @@
 						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
-						<CurrentStateRef Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
+						<CurrentStateRef Name="Outside" ID="{9CDDEBC6-8B6C-4A0D-A2BB-85DC4A2CF17E}"/>
 						<CurrentStateRef Name="None" ID="{FDFD89A3-AAEF-4080-B076-12518B815B67}"/>
 					</CurrentStateList>
-					<CurrentSwitchList ShowAll="true"/>
+					<CurrentSwitchList ShowAll="true">
+						<CurrentSwitchRef Name="Concrete" ID="{931DDD67-C9DF-4C58-B491-8560373B81D9}"/>
+						<CurrentSwitchRef Name="Concrete" ID="{EEEBC127-81CD-4A86-9745-545BCD8A4F79}"/>
+						<CurrentSwitchRef Name="Concrete" ID="{5CC76E07-AD36-4277-900A-A84749A2DC19}"/>
+						<CurrentSwitchRef Name="Concrete" ID="{76F3FAC4-04C5-4C6B-A343-210833D66539}"/>
+						<CurrentSwitchRef Name="Concrete" ID="{6BEBE080-140B-4433-A006-85B9BC2CC138}"/>
+					</CurrentSwitchList>
 				</SoundcasterSession>
 			</ChildrenList>
 		</WorkUnit>

@@ -79,11 +79,61 @@
 					</States>
 				</StateGroup>
 			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="1085835795" Name="Player_Jump_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1536569246" Name="Player_Land_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1980337323" Name="Guard_Footstep_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4130691716" Name="Player_Slide_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4145461805" Name="Player_Footstep_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{713956F3-B8C8-A1E2-6273-1DF27EAFF60B}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{147FF910-5280-E372-AC63-8575A5BE5627}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
+				<File Id="20598704" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_6.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="25523959" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_5.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_5_818F3B66.wem</CachePath>
+				</File>
 				<File Id="28568543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ambience_Boom_Bass.wav</ShortName>
 					<CachePath>SFX/Ambience_Boom_Bass_11A93380.wem</CachePath>
@@ -91,6 +141,34 @@
 				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Hidden_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="44104286" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Jump_4.wav</ShortName>
+					<CachePath>SFX/P_M_Jump_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="52682027" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_3.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="56353747" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_7.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_7_818F3B66.wem</CachePath>
+				</File>
+				<File Id="68586694" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Landing_2.wav</ShortName>
+					<CachePath>SFX/P_R_Landing_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="73045835" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_8.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_8_818F3B66.wem</CachePath>
+				</File>
+				<File Id="82214328" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Jump_1.wav</ShortName>
+					<CachePath>SFX/P_C_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="105685707" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_2.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
@@ -100,53 +178,277 @@
 					<ShortName>Alarm_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Alarm_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
-				<File Id="183914577" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Footsteps_Metal_4.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_4_CBBE0290.wem</CachePath>
+				<File Id="144557377" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Jump_3.wav</ShortName>
+					<CachePath>SFX/P_M_Jump_3_818F3B66.wem</CachePath>
 				</File>
-				<File Id="516303827" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Footsteps_Metal_2.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_2_84B1941E.wem</CachePath>
+				<File Id="152193640" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Sliding_3.wav</ShortName>
+					<CachePath>SFX/P_M_Sliding_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="176338131" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_4.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="189682690" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_4.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="219646802" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Landing_2.wav</ShortName>
+					<CachePath>SFX/P_D_Landing_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="237665786" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_5.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="243988086" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Jump_3.wav</ShortName>
+					<CachePath>SFX/P_C_Jump_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="292283100" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Landing_3.wav</ShortName>
+					<CachePath>SFX/P_R_Landing_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="296530740" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_1.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="298890192" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_8.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_8_818F3B66.wem</CachePath>
+				</File>
+				<File Id="299723195" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Jump_1.wav</ShortName>
+					<CachePath>SFX/P_D_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="347285092" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_1.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="347630337" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Sliding_2.wav</ShortName>
+					<CachePath>SFX/P_R_Sliding_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="372349657" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Sliding_2.wav</ShortName>
+					<CachePath>SFX/P_D_Sliding_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="393978131" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Jump_1.wav</ShortName>
+					<CachePath>SFX/P_R_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="450159016" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_5.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="492016228" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Sliding_1.wav</ShortName>
+					<CachePath>SFX/P_M_Sliding_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="494199292" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Jump_2.wav</ShortName>
+					<CachePath>SFX/P_C_Jump_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="500942086" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Jump_4.wav</ShortName>
+					<CachePath>SFX/P_D_Jump_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="508671079" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Sliding_1.wav</ShortName>
+					<CachePath>SFX/P_R_Sliding_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="545539049" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Jump_2.wav</ShortName>
+					<CachePath>SFX/P_M_Jump_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="572495188" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Jump_3.wav</ShortName>
+					<CachePath>SFX/P_D_Jump_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="577735311" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Sliding_3.wav</ShortName>
+					<CachePath>SFX/P_C_Sliding_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="588932112" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Jump_3.wav</ShortName>
+					<CachePath>SFX/P_R_Jump_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="593670482" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_8.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_8_818F3B66.wem</CachePath>
 				</File>
 				<File Id="598826268" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Boost_Rush.wav</ShortName>
-					<CachePath>SFX/Boost_Rush_B9B63185.wem</CachePath>
+					<CachePath>SFX/Boost_Rush_BE10BA2A.wem</CachePath>
+				</File>
+				<File Id="609776334" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Sliding_1.wav</ShortName>
+					<CachePath>SFX/P_D_Sliding_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="618007706" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_3.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_3_818F3B66.wem</CachePath>
 				</File>
 				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Moving.wav</ShortName>
 					<CachePath>SFX/Camera_Moving_11A93380.wem</CachePath>
 				</File>
+				<File Id="631317935" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Jump_1.wav</ShortName>
+					<CachePath>SFX/P_M_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="631386295" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Sliding_2.wav</ShortName>
+					<CachePath>SFX/P_M_Sliding_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="647360545" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_1.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="679137891" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Stop.wav</ShortName>
 					<CachePath>SFX/Camera_Stop_818F3B66.wem</CachePath>
 				</File>
-				<File Id="817103883" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Footsteps_Metal_3.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_3_C20EE8B7.wem</CachePath>
+				<File Id="679691127" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Jump_2.wav</ShortName>
+					<CachePath>SFX/P_R_Jump_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="685949183" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Landing_3.wav</ShortName>
+					<CachePath>SFX/P_D_Landing_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="696859956" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_2.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="706439460" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_3.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="724971133" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Jump_4.wav</ShortName>
+					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="767938678" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Landing_3.wav</ShortName>
+					<CachePath>SFX/P_C_Landing_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="768608407" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_4.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="774161018" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_7.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_7_818F3B66.wem</CachePath>
+				</File>
+				<File Id="775535011" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Landing_1.wav</ShortName>
+					<CachePath>SFX/P_M_Landing_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="790896873" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_6.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="797407288" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Landing_1.wav</ShortName>
+					<CachePath>SFX/P_D_Landing_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="801547988" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Sliding_3.wav</ShortName>
+					<CachePath>SFX/P_R_Sliding_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="803380777" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_6.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="820003054" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_7.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_7_818F3B66.wem</CachePath>
+				</File>
+				<File Id="820910994" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_1.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="850933855" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Landing_3.wav</ShortName>
+					<CachePath>SFX/P_M_Landing_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="873232323" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Jump_2.wav</ShortName>
+					<CachePath>SFX/P_D_Jump_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="879620409" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_4.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="892620616" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_2.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="908405812" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Boost_Start.wav</ShortName>
 					<CachePath>SFX/Boost_Start_818F3B66.wem</CachePath>
 				</File>
-				<File Id="973686233" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Land.wav</ShortName>
-					<CachePath>SFX/Land_818F3B66.wem</CachePath>
+				<File Id="910263220" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Landing_1.wav</ShortName>
+					<CachePath>SFX/P_R_Landing_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="934683240" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Footstep_5.wav</ShortName>
+					<CachePath>SFX/P_M_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="940217380" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Landing_1.wav</ShortName>
+					<CachePath>SFX/P_C_Landing_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="940448307" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Sliding_1.wav</ShortName>
+					<CachePath>SFX/P_C_Sliding_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="953102257" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Footstep_7.wav</ShortName>
+					<CachePath>SFX/P_C_Footstep_7_818F3B66.wem</CachePath>
+				</File>
+				<File Id="967268690" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_8.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_8_818F3B66.wem</CachePath>
 				</File>
 				<File Id="977181348" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Boost_Stop.wav</ShortName>
 					<CachePath>SFX/Boost_Stop_818F3B66.wem</CachePath>
 				</File>
-				<File Id="1008874514" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Footsteps_Metal_1.wav</ShortName>
-					<CachePath>SFX/Footsteps_Metal_1_983ED43A.wem</CachePath>
+				<File Id="978517589" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_3.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="985939584" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Sliding_3.wav</ShortName>
+					<CachePath>SFX/P_D_Sliding_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="994456261" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_M_Landing_2.wav</ShortName>
+					<CachePath>SFX/P_M_Landing_2_818F3B66.wem</CachePath>
 				</File>
 				<File Id="1010966096" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemy_Alerted.wav</ShortName>
 					<CachePath>SFX/Enemy_Alerted_818F3B66.wem</CachePath>
 				</File>
-				<File Id="1069903293" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Jump.wav</ShortName>
-					<CachePath>SFX/Jump_818F3B66.wem</CachePath>
+				<File Id="1026799594" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_R_Footstep_2.wav</ShortName>
+					<CachePath>SFX/P_R_Footstep_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1031402310" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Sliding_2.wav</ShortName>
+					<CachePath>SFX/P_C_Sliding_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1042868905" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_D_Footstep_6.wav</ShortName>
+					<CachePath>SFX/P_D_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1066419268" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>P_C_Landing_2.wav</ShortName>
+					<CachePath>SFX/P_C_Landing_2_818F3B66.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -221,6 +523,7 @@
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="2249657186" Name="In_View_Cone" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="118186165"/>
@@ -232,47 +535,251 @@
 						<MediaRef Id="135470174"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.31699407" DurationMax="0.4077941">
-					<MediaRefs>
-						<MediaRef Id="183914577"/>
-						<MediaRef Id="516303827"/>
-						<MediaRef Id="817103883"/>
-						<MediaRef Id="1008874514"/>
-					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
-						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
-					</AuxBusRefs>
+				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.2387104" DurationMax="0.25881624">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4145461805" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="56353747"/>
+								<MediaRef Id="176338131"/>
+								<MediaRef Id="237665786"/>
+								<MediaRef Id="647360545"/>
+								<MediaRef Id="696859956"/>
+								<MediaRef Id="706439460"/>
+								<MediaRef Id="967268690"/>
+								<MediaRef Id="1042868905"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4145461805" Id="841620460" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="20598704"/>
+								<MediaRef Id="105685707"/>
+								<MediaRef Id="296530740"/>
+								<MediaRef Id="298890192"/>
+								<MediaRef Id="450159016"/>
+								<MediaRef Id="618007706"/>
+								<MediaRef Id="879620409"/>
+								<MediaRef Id="953102257"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4145461805" Id="437659151"/>
+							<MediaRefs>
+								<MediaRef Id="25523959"/>
+								<MediaRef Id="73045835"/>
+								<MediaRef Id="347285092"/>
+								<MediaRef Id="768608407"/>
+								<MediaRef Id="803380777"/>
+								<MediaRef Id="820003054"/>
+								<MediaRef Id="978517589"/>
+								<MediaRef Id="1026799594"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4145461805" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="52682027"/>
+								<MediaRef Id="189682690"/>
+								<MediaRef Id="593670482"/>
+								<MediaRef Id="774161018"/>
+								<MediaRef Id="790896873"/>
+								<MediaRef Id="820910994"/>
+								<MediaRef Id="892620616"/>
+								<MediaRef Id="934683240"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
-				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.332242" DurationMax="0.3361025">
-					<MediaRefs>
-						<MediaRef Id="1069903293"/>
-					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
-						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
-					</AuxBusRefs>
+				<Event Id="1305133589" Name="Player_Jump" DurationType="OneShot" DurationMin="0.4204482" DurationMax="0.48296815">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="299723195"/>
+								<MediaRef Id="500942086"/>
+								<MediaRef Id="572495188"/>
+								<MediaRef Id="873232323"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="44104286"/>
+								<MediaRef Id="144557377"/>
+								<MediaRef Id="545539049"/>
+								<MediaRef Id="631317935"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="437659151"/>
+							<MediaRefs>
+								<MediaRef Id="393978131"/>
+								<MediaRef Id="588932112"/>
+								<MediaRef Id="679691127"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="841620460" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="82214328"/>
+								<MediaRef Id="243988086"/>
+								<MediaRef Id="494199292"/>
+								<MediaRef Id="724971133"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
-				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.39511728" DurationMax="0.40435272">
-					<MediaRefs>
-						<MediaRef Id="973686233"/>
-					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
-						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
-					</AuxBusRefs>
+				<Event Id="3629196698" Name="Player_Land" DurationType="OneShot" DurationMin="0.494257" DurationMax="0.5058097">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1536569246" Id="437659151"/>
+							<MediaRefs>
+								<MediaRef Id="68586694"/>
+								<MediaRef Id="292283100"/>
+								<MediaRef Id="910263220"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1536569246" Id="841620460" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="767938678"/>
+								<MediaRef Id="940217380"/>
+								<MediaRef Id="1066419268"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1536569246" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="219646802"/>
+								<MediaRef Id="685949183"/>
+								<MediaRef Id="797407288"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1536569246" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="775535011"/>
+								<MediaRef Id="850933855"/>
+								<MediaRef Id="994456261"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="2609528332" Name="Player_Slide" DurationType="OneShot" DurationMin="1.7921191" DurationMax="2.7030687">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4130691716" Id="841620460" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="577735311"/>
+								<MediaRef Id="940448307"/>
+								<MediaRef Id="1031402310"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4130691716" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="152193640"/>
+								<MediaRef Id="492016228"/>
+								<MediaRef Id="631386295"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4130691716" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="372349657"/>
+								<MediaRef Id="609776334"/>
+								<MediaRef Id="985939584"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="4130691716" Id="437659151"/>
+							<MediaRefs>
+								<MediaRef Id="347630337"/>
+								<MediaRef Id="508671079"/>
+								<MediaRef Id="801547988"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="4245309516" Name="Player_Wall_Jump" DurationType="OneShot" DurationMin="0.4204482" DurationMax="0.48296815">
+					<SwitchContainers>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="2195636714"/>
+							<MediaRefs>
+								<MediaRef Id="299723195"/>
+								<MediaRef Id="500942086"/>
+								<MediaRef Id="572495188"/>
+								<MediaRef Id="873232323"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="2473969246"/>
+							<MediaRefs>
+								<MediaRef Id="44104286"/>
+								<MediaRef Id="144557377"/>
+								<MediaRef Id="545539049"/>
+								<MediaRef Id="631317935"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="437659151"/>
+							<MediaRefs>
+								<MediaRef Id="393978131"/>
+								<MediaRef Id="588932112"/>
+								<MediaRef Id="679691127"/>
+							</MediaRefs>
+						</SwitchContainer>
+						<SwitchContainer>
+							<SwitchValue GroupType="Switch" GroupId="1085835795" Id="841620460" Default="true"/>
+							<MediaRefs>
+								<MediaRef Id="82214328"/>
+								<MediaRef Id="243988086"/>
+								<MediaRef Id="494199292"/>
+								<MediaRef Id="724971133"/>
+							</MediaRefs>
+						</SwitchContainer>
+					</SwitchContainers>
 				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="474239254" Name="Boost_Speed"/>
 			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="1085835795" Name="Player_Jump_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="1536569246" Name="Player_Land_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4130691716" Name="Player_Slide_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+				<SwitchGroup Id="4145461805" Name="Player_Footstep_Material">
+					<Switches>
+						<Switch Id="437659151" Name="Rubber"/>
+						<Switch Id="841620460" Name="Concrete"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="2473969246" Name="Metal"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{E0495494-CF05-10B5-809D-7F3CE9D08077}</FileHash>
+	<FileHash>{9F3DB404-3CD4-CAB9-7CEE-2C89D6F1852D}</FileHash>
 </SoundBanksInfo>

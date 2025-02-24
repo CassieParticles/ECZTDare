@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{AE198DAE-4649-45F3-8047-269D51D183C7}" SchemaVersion="119">
 	<Switches>
-		<WorkUnit Name="Default Work Unit" ID="{AE198DAE-4649-45F3-8047-269D51D183C7}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{AE198DAE-4649-45F3-8047-269D51D183C7}" PersistMode="Standalone">
+			<ChildrenList>
+				<SwitchGroup Name="Player_Footstep_Material" ID="{398807C9-C873-4097-8070-338993101B1E}">
+					<ChildrenList>
+						<Switch Name="Concrete" ID="{EEEBC127-81CD-4A86-9745-545BCD8A4F79}"/>
+						<Switch Name="Dirt" ID="{955F9E26-3B7A-4F39-BA4B-67C80CB72CA4}"/>
+						<Switch Name="Metal" ID="{5E6A5CEC-2C74-4474-9D06-0CFC7736AC09}"/>
+						<Switch Name="Rubber" ID="{5B248FBD-9701-424B-99E0-6269AFA617A6}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Player_Jump_Material" ID="{BB04D1BA-E0A1-4BCC-A491-E17AA621FC9B}">
+					<ChildrenList>
+						<Switch Name="Concrete" ID="{76F3FAC4-04C5-4C6B-A343-210833D66539}"/>
+						<Switch Name="Dirt" ID="{B1ED1E01-8AF0-480F-AE32-3845235FC793}"/>
+						<Switch Name="Metal" ID="{CAD3A353-39FE-4B19-A014-36C01AE2586D}"/>
+						<Switch Name="Rubber" ID="{7314FBB0-3777-4A14-ABDA-82B221D40F34}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Guard_Footstep_Material" ID="{036DA068-D2FF-4075-A4EA-1DF88BF55FDF}">
+					<ChildrenList>
+						<Switch Name="Concrete" ID="{931DDD67-C9DF-4C58-B491-8560373B81D9}"/>
+						<Switch Name="Dirt" ID="{D905F951-88ED-49D2-B15B-9896722E323E}"/>
+						<Switch Name="Metal" ID="{316E7E4C-93B3-4108-B359-E20EACF2399D}"/>
+						<Switch Name="Rubber" ID="{1C1D099D-EC64-44BD-B272-62DB6A87FBBD}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Player_Land_Material" ID="{2BED720D-8BAF-4C33-BD3C-A4B3AA7D53EB}">
+					<ChildrenList>
+						<Switch Name="Concrete" ID="{6BEBE080-140B-4433-A006-85B9BC2CC138}"/>
+						<Switch Name="Dirt" ID="{46D3CEDA-167B-4C85-A8D1-5F8565CB53DA}"/>
+						<Switch Name="Metal" ID="{5A26F0EF-5E9D-47F0-BBCB-638CECB6AE48}"/>
+						<Switch Name="Rubber" ID="{6D2CED0E-BB77-41DA-8472-AD589F76620D}"/>
+					</ChildrenList>
+				</SwitchGroup>
+				<SwitchGroup Name="Player_Slide_Material" ID="{DB13A849-2D95-474B-AEE6-294D5D4EA07C}">
+					<ChildrenList>
+						<Switch Name="Concrete" ID="{5CC76E07-AD36-4277-900A-A84749A2DC19}"/>
+						<Switch Name="Dirt" ID="{69F093B2-58F5-45F2-A412-F6F98FB1CEEF}"/>
+						<Switch Name="Metal" ID="{C1F6826A-8D3D-4079-8A6E-BB86B33AC581}"/>
+						<Switch Name="Rubber" ID="{18FB15E7-9CF1-4C92-A5DB-C57C3902F8F4}"/>
+					</ChildrenList>
+				</SwitchGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</Switches>
 </WwiseDocument>
