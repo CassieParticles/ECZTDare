@@ -93,14 +93,13 @@ public class CameraBehaviour : BaseEnemyBehaviour
         //Handle seeing the player
         if (Player)
         {
-            FollowingPlayer = suspicionState == SuspicionState.HighAlert && Player;
+            FollowingPlayer = suspicionState == SuspicionState.Chase && Player;
             if (suspicion <= 100)
             {
                 CalcSuspicionIncrease();
             }
             else
             {
-                visionCone.SetColour(Color.red);
                 //Raise alarm
                 if (alarm && !alarm.AlarmGoingOff())
                 {

@@ -11,7 +11,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         Idle,
         Suspect,
-        HighAlert
+        HighAlert,
+        Chase
     };
 
     /// <summary>
@@ -93,6 +94,11 @@ public class BaseEnemyBehaviour : MonoBehaviour
         {
             suspicionState = SuspicionState.HighAlert;
             visionCone.SetColour(new Color(1, 0.5f, 0));
+        }
+        else
+        {
+            suspicionState = SuspicionState.Chase;
+            visionCone.SetColour(new Color(1, 0, 0));
         }
 
 
