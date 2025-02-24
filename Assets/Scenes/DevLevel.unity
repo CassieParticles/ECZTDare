@@ -26985,7 +26985,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 3.9453125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -49942,11 +49942,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2143170207}
   - component: {fileID: 2143170203}
+  - component: {fileID: 2143170208}
+  - component: {fileID: 2143170209}
   - component: {fileID: 2143170205}
   - component: {fileID: 2143170204}
-  - component: {fileID: 2143170208}
   - component: {fileID: 2143170206}
-  - component: {fileID: 2143170209}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -49983,9 +49983,9 @@ MonoBehaviour:
   fastFallMult: 8
   maxFallSpeed: 27.9
   fallSlowsRunMult: 0.55
-  walljumpRayGap: 0.8
-  horizontalWalljumpStrength: 13.5
-  verticalWalljumpStrength: 13.5
+  walljumpRayGap: 0.5
+  horizontalWalljumpStrength: 15
+  verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
 --- !u!50 &2143170204
 Rigidbody2D:
@@ -50212,6 +50212,15 @@ TrailRenderer:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
