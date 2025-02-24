@@ -23,7 +23,7 @@ public class AudioDetectionSystem : MonoBehaviour
         foreach (KeyValuePair<GameObject, HearNoise> listener in listeners)
         {
             //If gameObject is within range to hear noise
-            if (noiseRadius * noiseRadius < (noiseLocation - listener.Key.transform.position).sqrMagnitude)
+            if (noiseRadius * noiseRadius > (noiseLocation - listener.Key.transform.position).sqrMagnitude)
             {
                 listener.Value(noiseLocation,suspicionIncrease);
             }
