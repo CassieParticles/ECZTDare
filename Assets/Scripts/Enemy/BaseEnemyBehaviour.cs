@@ -32,6 +32,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField, Range(0, 1000)] public float suspicionScaleRate;
     [SerializeField, Range(0, 1000)] public float suspicionDecayRate;
 
+
     //Fields used in enemy suspicion meter
     /// <summary>
     /// Level of suspicion of the enemy
