@@ -212,6 +212,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
 
+    //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
+    [SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
+
+    //How much the velocity of the player affects the footstep frequency
+    [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
+
+    //Used to determine when to trigger footstep sounds.
+    private float footstepCount = 0.0f;
+
+    public AK.Wwise.Event guardFootstep;
+
     // Start is called before the first frame update
     private NavMeshAgent agent;
     private StateMachine guardBehaviour = new StateMachine();
@@ -293,11 +304,25 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         guardBehaviour.BehaviourTick();
 
         BaseUpdate();
+
+        if(agent.velocity != Vector3.zero)
+        {
+            //Footstep sound effect
+            if (Mathf.Abs(agent.velocity.x) > 0.1)
+            {
+                footstepCount += (Mathf.Abs(agent.velocity.x) * footstepRateScaler) * footstepRate * Time.deltaTime;
+                if (footstepCount > 1)
+                {
+                    guardFootstep.Post(gameObject);
+                    footstepCount--;
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

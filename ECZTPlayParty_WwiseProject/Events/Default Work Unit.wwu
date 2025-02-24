@@ -142,7 +142,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}"/>
+				<Event Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}">
+					<ChildrenList>
+						<Action Name="" ID="{2856A6B6-328A-40CA-B289-1CEA3FE7C7D4}" ShortID="734433489">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Guard_Footsteps" ID="{B167FB39-A330-453A-94BB-1B89D95024F0}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 				<Event Name="Player_Wall_Jump" ID="{96A96DCE-B14B-4591-8204-08E22597295E}">
 					<ChildrenList>
 						<Action Name="" ID="{9F770804-D725-49C5-8E2E-F54E12456F8E}" ShortID="20926198">
