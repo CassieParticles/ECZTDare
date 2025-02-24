@@ -1,36 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
 
-    public enum SuspicionLevel
+    public enum SuspicionState
     {
         Idle,
         Suspect,
-        HighAlert,
-        Alarm
+        HighAlert
+    };
+
+    /// <summary>
+    /// Idle, Suspect, high alert and chasing thresholds, make sure they are in ascending order
+    /// </summary>
+    public float[] SuspicionLevel = new float[4] 
+    {
+        0,
+        40,
+        70,
+        100
     };
 
     //Alarm system attached to enemy, set up by designed if alarm is wanted
     [SerializeField] protected AlarmSystem alarm = null;
 
     //Parameters for suspicion rate
-    [SerializeField, Range(0, 1000)] protected float suspicionScaleRate;
-    [SerializeField, Range(0, 1000)] protected float suspicionDecayRate;
+    [SerializeField, Range(0, 1000)] public float suspicionScaleRate;
+    [SerializeField, Range(0, 1000)] public float suspicionDecayRate;
 
     //Fields used in enemy suspicion meter
-    protected float suspicion;
-    protected SuspicionLevel suspicionState;
-    protected float minimumSuspicion;
+    /// <summary>
+    /// Level of suspicion of the enemy
+    /// </summary>
+    public float suspicion;
+    public float minimumSuspicion;
+    [NonSerialized] public SuspicionState suspicionState;
 
-    protected VisionCone visionCone;
+    public VisionCone visionCone{ get; protected set; }
 
-    protected GameObject Player;
+    /// <summary>
+    /// Player according to the enemy, null when player is not visible
+    /// </summary>
+    public GameObject Player { get; protected set; }
 
 
 
@@ -56,7 +71,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
         suspicion = 0;
         minimumSuspicion = 0;
-        suspicionState = SuspicionLevel.Idle;
+        suspicionState = SuspicionState.Idle;
         Player = null;
     }
 }

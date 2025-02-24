@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using static PlayerMovement;
 
-
-public class MovementScript : MonoBehaviour
-{
+public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event playerFootstep;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
@@ -22,6 +23,15 @@ public class MovementScript : MonoBehaviour
     //The highest velocity the player can reach, affected by the serialized value as well as other factors
     private float dynamicMaxRunSpeed = 0;
 
+    //How fast the player is currently sliding down the wall
+    private float wallClingVelocity;
+
+    //Effective deceleration for when sliding
+    private float effectiveDeceleration;
+
+    //Simple short timer so that the player doesnt stop being grounded when crouching
+    private float slideGroundedTimer;
+    
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -31,7 +41,10 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
-    
+    [SerializeField] private float slideDeceleration = 1; //Slowing down when no longer running / running in opposite direction
+    [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
+    [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
+
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
     [SerializeField][Range(0f, 0.5f)] private float minJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
     [SerializeField] private float gravityMult = 1; //Gravity multiplier when not fastfalling
@@ -40,18 +53,20 @@ public class MovementScript : MonoBehaviour
     [SerializeField] private float maxFallSpeed = 5; //Needs to be higher if fastfallmult is higher also
     [SerializeField][Range(0.01f, 1f)] private float fallSlowsRunMult = 1; //Multiplier for how much falling speed slows down horizontal speed.
 
+    [SerializeField] private float wallClingSpeed; //How quickly the player falls when clinging to a wall
     [SerializeField][Range(0f, 1f)] private float walljumpRayGap = 0.8f; //Position of rays, smaller gaps mean smaller range the player can walljump from
     [SerializeField] private float horizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] private float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
-    [NonSerialized] public bool minJumpActive;
-    [NonSerialized] public bool onWall;
-    [NonSerialized] public bool onRightWall;
+    [NonSerialized] public bool minJumpActive; //If the player is in the first part of a jump where they cant fastfall
+    [NonSerialized] public bool onWall; //If the player is on a wall
+    [NonSerialized] public bool onRightWall; //If the wall the player is on is to the right
     [NonSerialized] public int jumpedOffWall; //-1 for left wall, 0 for neither, and 1 for right wall
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
-    [NonSerialized] public bool facingRight;
+    [NonSerialized] public bool facingRight; //Is facing to the right
+    [NonSerialized] public bool sliding; //If the player is currently sliding
 
     //All raycasts that get used
     Vector2 rightGroundRayStart;
@@ -61,8 +76,24 @@ public class MovementScript : MonoBehaviour
     Vector2 topLeftWallRayStart;
     Vector2 bottomLeftWallRayStart;
 
+    //All inputs that are used
+    PlayerMovement controls;
+    InputAction runAction;
+    InputAction jumpAction;
+    InputAction slideAction;
+    InputAction boostAction;
+
+    int movementDir;
+    bool jumpInput;
+    bool hasJumped; //If the player has jumped while holding the jump key
+    bool slideInput;
+    bool hasSlid; //If the player has slid while holding the slide key
+    bool boostInput;
+
 
     private LayerMask layers;
+
+    Vector2 colliderSize;
 
     AlarmSystem alarm;
 
@@ -88,13 +119,32 @@ public class MovementScript : MonoBehaviour
         animator = GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+
+        colliderSize = collider.size;
+        effectiveDeceleration = deceleration;
+
+        if (controls == null) {
+            controls = new PlayerMovement();
+            controls.KeyboardWASD.SetCallbacks(this);
+        }
+        controls.KeyboardWASD.Enable();
+        runAction = controls.FindAction("Running");
+        jumpAction = controls.FindAction("Jumping");
+        slideAction = controls.FindAction("Sliding");
+        boostAction = controls.FindAction("Boosting");
     }
 
     // Update is called once per frame
     void FixedUpdate() {
+
+        //Checks inputs
+        HandleInputs();
+        //Checks if grounded, on wall, and other raycasts
         CheckGrounded();
+        //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
-        WalkRun();
+        //Running and Sliding, all horizontal velocity
+        RunAndSlide();
 
         
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
@@ -104,6 +154,22 @@ public class MovementScript : MonoBehaviour
         {
             alarm.StopAlarm();
         }
+    }
+
+    void HandleInputs() {
+        movementDir = Mathf.RoundToInt(runAction.ReadValue<float>());
+
+        jumpInput = jumpAction.ReadValue<float>() > 0;
+        if (!jumpInput) {
+            hasJumped = false;
+        }
+
+        slideInput = slideAction.ReadValue<float>() > 0;
+        if (!slideInput) {
+            hasSlid = false;
+        }
+
+        boostInput = boostAction.ReadValue<float>() > 0;
     }
 
     void CheckGrounded() {
@@ -126,6 +192,12 @@ public class MovementScript : MonoBehaviour
         } else {
             grounded = false;
         }
+
+        if (slideGroundedTimer > 0) {
+            slideGroundedTimer -= Time.deltaTime;
+            grounded = true;
+        }
+
         animator.SetBool("Grounded", grounded);
 
 
@@ -169,14 +241,16 @@ public class MovementScript : MonoBehaviour
                                                                             -collider.size.y * walljumpRayGap / 2f);
     }
     void JumpAndFall() {
-        if (Input.GetKey(KeyCode.Space) && grounded) { //Normal Jumping
+        if (jumpInput && grounded && !hasJumped) { //Normal Jumping
             rb.velocityY = jumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
             animator.SetBool("Grounded", false);
+            hasJumped = true;
             StartCoroutine(MinJumpDuration());
-        } else if (Input.GetKey(KeyCode.Space) && onWall) { //Walljumping
+        } else if (jumpInput && onWall && !hasJumped) { //Walljumping
             int whichWallJump = Convert.ToInt32(onRightWall) * 2 - 1;
+            hasJumped = true;
             if (whichWallJump == -1 && jumpedOffWall != -1) { //Jumping off a left wall
                 rb.velocityX = horizontalWalljumpStrength;
                 rb.velocityY = verticalWalljumpStrength;
@@ -194,13 +268,24 @@ public class MovementScript : MonoBehaviour
             }
 
         }
-        if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
-            rb.velocityY += (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
-            if (rb.velocityY < -maxFallSpeed) { //Less than because its negative
-                rb.velocityY = -maxFallSpeed;
-            }
-        } else {
-            rb.velocityY += (gravityMult - 1) * Physics2D.gravity.y * Time.deltaTime;
+        bool cantSlideOnRightWall = false;
+        if (jumpedOffWall != 0) {
+            cantSlideOnRightWall = Convert.ToBoolean((jumpedOffWall + 1) / 2);
+        } 
+        //If you arent on a wall or you are against a wall you jumped off of, or you are moving upwards
+        if (!onWall || (jumpedOffWall != 0 && cantSlideOnRightWall == onRightWall) || rb.velocityY > 0) {
+            if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
+                rb.velocityY += (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
+                if (rb.velocityY < -maxFallSpeed) { //Less than because its negative
+                    rb.velocityY = -maxFallSpeed;
+                }
+            } else {
+                rb.velocityY += (gravityMult - 1) * Physics2D.gravity.y * Time.deltaTime;
+            }   
+        } else { //If you are sliding down a wall
+            wallClingVelocity += wallClingSpeed * 0.01f;
+            rb.velocityY += wallClingVelocity * (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime;
+            spriteRenderer.flipX = !onRightWall;
         }
     }
     IEnumerator MinJumpDuration() {
@@ -211,26 +296,41 @@ public class MovementScript : MonoBehaviour
 
     IEnumerator WalljumpInputDelay(int direction) {
         postWalljumpInputs = direction;
+        spriteRenderer.flipX = Convert.ToBoolean((direction + 1) / 2);
         yield return new WaitForSeconds(walljumpInputDelay);
         postWalljumpInputs = 0;
     }
 
-    void WalkRun() {
-        if (Input.GetKey(KeyCode.A) && postWalljumpInputs != -1) { //If not recently jumped off a left wall
+    void RunAndSlide() {
+        if (Input.GetKey(KeyCode.S) && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
+            sliding = true;
+            hasSlid = true;
+            collider.size = new Vector2(colliderSize.x * 1.5f, colliderSize.y * 0.3f);
+            transform.position = new Vector2(transform.position.x, transform.position.y - colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
+            effectiveDeceleration = slideDeceleration;
+            slideGroundedTimer = 0.02f;
+        } else if ((!Input.GetKey(KeyCode.S)  || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
+            sliding = false;
+            transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
+            collider.size = colliderSize;
+            effectiveDeceleration = deceleration;
+        }
+
+        if (movementDir == -1 && postWalljumpInputs != -1 && !sliding) { //If not recently jumped off a left wall
             facingRight = false;
             rb.velocityX += -acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == 1) {
-                rb.velocityX += deceleration * -rb.velocityX * Time.deltaTime;
+                rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
                 
             }
-        } else if (Input.GetKey(KeyCode.D) && postWalljumpInputs != 1) { //If not recently jumped off a right wall
+        } else if (movementDir == 1 && postWalljumpInputs != 1 && !sliding) { //If not recently jumped off a right wall
             facingRight = true;
             rb.velocityX += acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == -1) {
-                rb.velocityX += deceleration * -rb.velocityX * Time.deltaTime;
+                rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
             }
         } else if (rb.velocityX != 0 && postWalljumpInputs == 0){
-            rb.velocityX += deceleration * -rb.velocityX * Time.deltaTime; //Decelerate when not holding left or right
+            rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime; //Decelerate when not holding left or right
             if (Mathf.Abs(rb.velocityX) < 0.1) {
                 rb.velocityX = 0;
             }
@@ -241,7 +341,7 @@ public class MovementScript : MonoBehaviour
         } else {
             dynamicMaxRunSpeed = maxRunSpeed;
         }
-        if (Mathf.Abs(rb.velocityX) > dynamicMaxRunSpeed) {
+        if (Mathf.Abs(rb.velocityX) > dynamicMaxRunSpeed && !sliding) {
             rb.velocityX -= (rb.velocityX - (dynamicMaxRunSpeed * Mathf.Sign(rb.velocityX))) * snapToMaxRunSpeedMult / 10; //Sets the speed to maxRunSpeed
         }
 
@@ -253,6 +353,24 @@ public class MovementScript : MonoBehaviour
                 footstepCount--;
             }           
         }
-        spriteRenderer.flipX = !facingRight;
+        if (postWalljumpInputs == 0) {
+            spriteRenderer.flipX = !facingRight;
+        }
+    }
+
+    public void OnRunning(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnJumping(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnSliding(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnBoosting(InputAction.CallbackContext context) {
+        
     }
 }
