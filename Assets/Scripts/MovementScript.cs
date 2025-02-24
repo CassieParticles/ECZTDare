@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using static PlayerMovement;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
@@ -364,6 +363,14 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         if (postWalljumpInputs == 0) {
             spriteRenderer.flipX = !facingRight;
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(bottomLeftWallRayStart, bottomLeftWallRayStart + new Vector2(-0.1f, 0));
+        Gizmos.DrawLine(topLeftWallRayStart, topLeftWallRayStart + new Vector2(-0.1f, 0));
+        Gizmos.DrawLine(bottomRightWallRayStart, bottomRightWallRayStart + new Vector2(0.1f, 0));
+        Gizmos.DrawLine(topRightWallRayStart, topRightWallRayStart + new Vector2(0.1f, 0));
     }
 
     public void OnRunning(InputAction.CallbackContext context) {
