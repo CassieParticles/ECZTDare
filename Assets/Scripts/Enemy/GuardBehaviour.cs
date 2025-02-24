@@ -251,7 +251,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     }
 
-
+    private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
+    {
+        Debug.Log("What was that?");
+    }
 
     private void CatchPlayer()
     {
@@ -271,6 +274,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
+
+        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
     }
 
 

@@ -95,7 +95,7 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Dirt", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Dirt", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Dirt", guard.gameObject);
-                        //AkSoundEngine.GetState("Reverb", out currentState);
+                        Debug.Log("Dirt");
                 }
 
                 if (materialType == MaterialTypes.Rubber)
@@ -106,6 +106,7 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Rubber", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Rubber", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Rubber", guard.gameObject);
+                        Debug.Log("Rubber");
                 }
 
                 if (materialType == MaterialTypes.Metal)
