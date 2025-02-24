@@ -43,14 +43,9 @@ public class CameraBehaviour : BaseEnemyBehaviour
         visionCone.transform.rotation = Quaternion.Euler(rotation);
     }
 
-    private float GetSuspicionIncrease(Vector3 playerPosition)
-    {
-        return 50;
-    }
-
     private void Alarm(Vector3 playerPosition)
     {
-        Debug.Log("Alarm going off!");
+        SetSuspicionState(SuspicionState.HighAlert);
     }
 
     private void AlarmOff()
@@ -85,10 +80,12 @@ public class CameraBehaviour : BaseEnemyBehaviour
         {
             if (suspicion <= 100)
             {
-                suspicion += GetSuspicionIncrease(Player.transform.position) * Time.fixedDeltaTime;
+                CalcSuspicionIncrease();
+                
             }
             else
             {
+                visionCone.SetColour(Color.red);
                 //Raise alarm
                 if (alarm && !alarm.AlarmGoingOff())
                 {
@@ -99,16 +96,14 @@ public class CameraBehaviour : BaseEnemyBehaviour
         }
         else if (suspicion > 0)
         {
-            if (alarm && !alarm.AlarmGoingOff())
+            if(!alarm||!alarm.AlarmGoingOff())
             {
-                suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
-            }
-            else if (!alarm)
-            {
-                suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
+                CalcSuspicionDecay();
             }
         }
 
+        //Handle state and colour changes
+        BaseUpdate();
 
         //Handle camera rotation
         float visionAngle = visionCone.transform.rotation.eulerAngles.z;

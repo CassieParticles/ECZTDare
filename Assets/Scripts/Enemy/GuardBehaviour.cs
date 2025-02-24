@@ -39,10 +39,7 @@ public class PatrolState : BaseState
             }
         }
 
-        if (guardBehaviour.suspicion > guardBehaviour.minimumSuspicion + guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime)
-        {
-            guardBehaviour.suspicion -= guardBehaviour.suspicionDecayRate * Time.fixedDeltaTime;
-        }
+        guardBehaviour.CalcSuspicionDecay();
 
         //Has seen player, switch to observing them
         if (guardBehaviour.Player!=null)
@@ -96,24 +93,11 @@ public class ObserveState : BaseState
 
         guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
 
-        guardBehaviour.suspicion += calcSuspicionIncreaseRate();
+        guardBehaviour.CalcSuspicionIncrease();
 
         guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
 
         return GuardStates.Observe;
-    }
-
-    private float calcSuspicionIncreaseRate()
-    {
-        Vector3 playerPos = guardBehaviour.Player.transform.position;
-        Vector3 enemyPos = guardAttached.transform.position;
-
-        //Get a scalar from 1 to 0 based for player's distance affecting scale rate
-        float distance = (playerPos - enemyPos).magnitude;
-        float visionConeLength = guardBehaviour.visionCone.distance;
-        float distScalar = Mathf.Clamp(1 - distance / visionConeLength,0.05f,1);
-
-        return distScalar * guardBehaviour.suspicionScaleRate * Time.fixedDeltaTime;
     }
 }
 
@@ -267,11 +251,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     }
 
-    public void SetSuspicionState(SuspicionState level)
-    {
-        suspicionState = level;
-        suspicion = SuspicionLevel[(int)level]+1;
-    }
+
 
     private void CatchPlayer()
     {
@@ -312,29 +292,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         guardBehaviour.BehaviourTick();
 
-        if (suspicion < SuspicionLevel[1])  //Below suspect threshold
-        {
-            suspicionState = SuspicionState.Idle;
-            visionCone.SetColour(Color.white);
-        }
-        else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
-        {
-            suspicionState = SuspicionState.Suspect;
-            visionCone.SetColour(Color.yellow);
-        }
-        else if(suspicion < SuspicionLevel[3])  //Below chase threshold
-        {
-            suspicionState = SuspicionState.HighAlert;
-            visionCone.SetColour(new Color(1,0.5f,0));
-        }
-        
-
-
-        //Put guard on "high alert" (won't go lower)
-        if(suspicionState==SuspicionState.HighAlert)
-        {
-            minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
-        }
+        BaseUpdate();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

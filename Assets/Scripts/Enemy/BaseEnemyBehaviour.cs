@@ -74,4 +74,76 @@ public class BaseEnemyBehaviour : MonoBehaviour
         suspicionState = SuspicionState.Idle;
         Player = null;
     }
+
+    //Should be called by all inheriting from BaseEnemy
+    protected void BaseUpdate()
+    {
+        if (suspicion < SuspicionLevel[1])  //Below suspect threshold
+        {
+            suspicionState = SuspicionState.Idle;
+            visionCone.SetColour(Color.white);
+        }
+        else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
+        {
+            suspicionState = SuspicionState.Suspect;
+            visionCone.SetColour(Color.yellow);
+        }
+        else if (suspicion < SuspicionLevel[3])  //Below chase threshold
+        {
+            suspicionState = SuspicionState.HighAlert;
+            visionCone.SetColour(new Color(1, 0.5f, 0));
+        }
+
+
+
+        //Put guard on "high alert" (won't go lower)
+        if (suspicionState == SuspicionState.HighAlert)
+        {
+            minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
+        }
+    }
+
+    private float calcSuspicionIncreaseRate(GameObject player)
+    {
+        if(!player)
+        {
+            return 0;
+        }
+        Vector3 playerPos = player.transform.position;
+        Vector3 enemyPos = transform.position;
+
+        //Get a scalar from 1 to 0 based for player's distance affecting scale rate
+        float distance = (playerPos - enemyPos).magnitude;
+        float visionConeLength = visionCone.distance;
+        float distScalar = Mathf.Clamp(1 - distance / visionConeLength, 0.05f, 1);
+
+        return distScalar * suspicionScaleRate * Time.fixedDeltaTime;
+    }
+    /// <summary>
+    /// Sets the enemy's suspicion state to the level specified and sets suspicion to that amount
+    /// </summary>
+    /// <param name="level"> The level of ssupicion the enemy should be at</param>
+    public void SetSuspicionState(SuspicionState level)
+    {
+        suspicionState = level;
+        suspicion = SuspicionLevel[(int)level] + 1;
+    }
+
+    /// <summary>
+    /// Increase the suspicion of the enemy
+    /// </summary>
+    public void CalcSuspicionIncrease()
+    {
+        suspicion += calcSuspicionIncreaseRate(Player);
+    }
+    /// <summary>
+    /// Check if the suspicion should decay, and if so, handle suspicion decay
+    /// </summary>
+    public void CalcSuspicionDecay()
+    {
+        if (suspicion > minimumSuspicion + suspicionDecayRate * Time.fixedDeltaTime)
+        {
+            suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
+        }
+    }
 }
