@@ -1,6 +1,3 @@
-using AK.Wwise;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReverbStateChanger : MonoBehaviour
