@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 using static PlayerMovement;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
@@ -324,20 +323,20 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             effectiveDeceleration = deceleration;
         }
 
-        if (movementDir == -1 && postWalljumpInputs != -1 && !sliding) { //If not recently jumped off a left wall
+        if (movementDir == -1 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
             facingRight = false;
             rb.velocityX += -acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == 1) {
                 rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
                 
             }
-        } else if (movementDir == 1 && postWalljumpInputs != 1 && !sliding) { //If not recently jumped off a right wall
+        } else if (movementDir == 1 && postWalljumpInputs != 1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a right wall
             facingRight = true;
             rb.velocityX += acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == -1) {
                 rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
             }
-        } else if (rb.velocityX != 0 && postWalljumpInputs == 0){
+        } else if (rb.velocityX != 0 && postWalljumpInputs == 0 && grounded){
             rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime; //Decelerate when not holding left or right
             if (Mathf.Abs(rb.velocityX) < 0.1) {
                 rb.velocityX = 0;
@@ -364,6 +363,14 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         if (postWalljumpInputs == 0) {
             spriteRenderer.flipX = !facingRight;
         }
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(bottomLeftWallRayStart, bottomLeftWallRayStart + new Vector2(-0.1f, 0));
+        Gizmos.DrawLine(topLeftWallRayStart, topLeftWallRayStart + new Vector2(-0.1f, 0));
+        Gizmos.DrawLine(bottomRightWallRayStart, bottomRightWallRayStart + new Vector2(0.1f, 0));
+        Gizmos.DrawLine(topRightWallRayStart, topRightWallRayStart + new Vector2(0.1f, 0));
     }
 
     public void OnRunning(InputAction.CallbackContext context) {
