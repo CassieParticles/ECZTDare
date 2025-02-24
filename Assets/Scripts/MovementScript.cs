@@ -30,7 +30,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
     private float slideGroundedTimer;
-    
+
+    //Effective deceleration for when sliding
+    private float effectiveAcceleration;
+
     [NonSerialized] public Rigidbody2D rb;
     private BoxCollider2D collider;
     private SpriteRenderer spriteRenderer;
@@ -40,9 +43,16 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
-    [SerializeField] private float slideDeceleration = 1; //Slowing down when no longer running / running in opposite direction
+    
+    [SerializeField] private float slideDeceleration = 1; //Slowing down sliding
     [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
     [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
+
+    [SerializeField] private float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
+    [SerializeField] private float boostAcceleration = 25; //New acceleration when boosting
+    [SerializeField] private float boostRecharge = 50f; //Boost recharge rate
+    [SerializeField] private float boostDepletion = 10f; //Boost depletion rate
+    [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
     [SerializeField][Range(0f, 0.5f)] private float minJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
@@ -66,6 +76,9 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight; //Is facing to the right
     [NonSerialized] public bool sliding; //If the player is currently sliding
+    [NonSerialized] public bool boosting; //If the player is currently boosting
+    [NonSerialized] public float boostingMaxRunSpeedMultiplier; //If the player is currently boosting
+    [NonSerialized] public float boostCharge; //The current boosting charge the player has
 
     //All raycasts that get used
     Vector2 rightGroundRayStart;
@@ -82,12 +95,13 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     InputAction slideAction;
     InputAction boostAction;
 
-    int movementDir;
+    int runInput;
     bool jumpInput;
     bool hasJumped; //If the player has jumped while holding the jump key
     bool slideInput;
     bool hasSlid; //If the player has slid while holding the slide key
     bool boostInput;
+    bool hasBoosted; //If the player has boosted while holding the boost key
 
 
     private LayerMask layers;
@@ -95,18 +109,6 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     Vector2 colliderSize;
 
     AlarmSystem alarm;
-
-    //PlayerControls controls;
-
-    //public void OnEnable() {
-    //    if (controls == null) {
-    //        controls = new PlayerControls();
-    //        // Tell the "gameplay" action map that we want to get told about
-    //        // when actions get triggered.
-    //        controls.Gameplay.SetCallbacks();
-    //    }
-    //    controls.Gameplay.Enable();
-    //}
 
     private void Awake() {
         layers = new LayerMask();
@@ -121,7 +123,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
         colliderSize = collider.size;
         effectiveDeceleration = deceleration;
+        effectiveAcceleration = acceleration;
+        boostCharge = 100;
 
+        //Setup inputs
         if (controls == null) {
             controls = new PlayerMovement();
             controls.KeyboardWASD.SetCallbacks(this);
@@ -143,7 +148,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
         //Running and Sliding, all horizontal velocity
-        RunAndSlide();
+        RunBoostSlide();
 
         
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
@@ -156,7 +161,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     }
 
     void HandleInputs() {
-        movementDir = Mathf.RoundToInt(runAction.ReadValue<float>());
+        runInput = Mathf.RoundToInt(runAction.ReadValue<float>());
 
         jumpInput = jumpAction.ReadValue<float>() > 0;
         if (!jumpInput) {
@@ -169,6 +174,9 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         }
 
         boostInput = boostAction.ReadValue<float>() > 0;
+        if (!boostInput) {
+            hasBoosted = false;
+        }
     }
 
     void CheckGrounded() {
@@ -258,6 +266,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         } else if (jumpInput && onWall && !hasJumped) { //Walljumping
             int whichWallJump = Convert.ToInt32(onRightWall) * 2 - 1;
             hasJumped = true;
+            facingRight = !onRightWall;
             if (whichWallJump == -1 && jumpedOffWall != -1) { //Jumping off a left wall
                 rb.velocityX = horizontalWalljumpStrength;
                 rb.velocityY = verticalWalljumpStrength;
@@ -292,7 +301,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         } else { //If you are sliding down a wall
             wallClingVelocity += wallClingSpeed * 0.01f;
             rb.velocityY += wallClingVelocity * (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime;
-            spriteRenderer.flipX = !onRightWall;
+            facingRight = !onRightWall;
         }
     }
     IEnumerator MinJumpDuration() {
@@ -308,29 +317,66 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         postWalljumpInputs = 0;
     }
 
-    void RunAndSlide() {
-        if (Input.GetKey(KeyCode.S) && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
+    void RunBoostSlide() {
+        //Handle Sliding
+        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
             sliding = true;
             hasSlid = true;
             collider.size = new Vector2(colliderSize.x * 1.5f, colliderSize.y * 0.3f);
             transform.position = new Vector2(transform.position.x, transform.position.y - colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
             effectiveDeceleration = slideDeceleration;
             slideGroundedTimer = 0.02f;
-        } else if ((!Input.GetKey(KeyCode.S)  || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
+        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
             sliding = false;
             transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
             collider.size = colliderSize;
             effectiveDeceleration = deceleration;
         }
 
-        if (movementDir == -1 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
+        
+        //Handle Boosting
+        if (boostInput && runInput != 0 && boostCharge > minimumBoostCharge && grounded && !hasBoosted) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
+            if (sliding) { //Stops the player from sliding
+                sliding = false;
+                transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
+                collider.size = colliderSize;
+                effectiveDeceleration = deceleration;
+            }
+            boosting = true;
+            hasBoosted = true;
+        } else if (!boostInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
+            boosting = false;
+        }
+        if (boosting) {
+            spriteRenderer.color = Color.red;
+            if (boostCharge - boostRecharge * Time.deltaTime > 0) {
+                boostCharge -= boostRecharge * Time.deltaTime;
+            } else {
+                boostCharge = 0;
+            }
+            effectiveAcceleration = boostAcceleration;
+            boostingMaxRunSpeedMultiplier = boostMaxRunSpeedMultiplier;
+        } else {
+            spriteRenderer.color = Color.white;
+            if (boostCharge + boostDepletion * Time.deltaTime < 100f) {
+                boostCharge += boostDepletion * Time.deltaTime;
+            } else {
+                boostCharge = 100f;
+            }
+            boostingMaxRunSpeedMultiplier = 1;
+            effectiveAcceleration = acceleration;
+        }
+        Debug.Log(boostCharge);
+        
+        //Handle left/right movement with inputs
+        if (runInput == -1 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
             facingRight = false;
             rb.velocityX += -acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == 1) {
                 rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
                 
             }
-        } else if (movementDir == 1 && postWalljumpInputs != 1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a right wall
+        } else if (runInput == 1 && postWalljumpInputs != 1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a right wall
             facingRight = true;
             rb.velocityX += acceleration * Time.deltaTime;
             if (Mathf.Sign(rb.velocityX) == -1) {
@@ -342,11 +388,14 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
                 rb.velocityX = 0;
             }
         }
+
+        //Decide what the max velocity is and cap the player if necessary
         if (rb.velocityY < 0) {
-            dynamicMaxRunSpeed = maxRunSpeed *
+            dynamicMaxRunSpeed = maxRunSpeed * //Base max run speed
+                                 boostingMaxRunSpeedMultiplier * //Boosting makes this multiplier not 1
                                  (1 - (fallSlowsRunMult * -rb.velocityY / maxFallSpeed)); //Falling slows down the horizontal speed
         } else {
-            dynamicMaxRunSpeed = maxRunSpeed;
+            dynamicMaxRunSpeed = maxRunSpeed * boostingMaxRunSpeedMultiplier;
         }
         if (Mathf.Abs(rb.velocityX) > dynamicMaxRunSpeed && !sliding) {
             rb.velocityX -= (rb.velocityX - (dynamicMaxRunSpeed * Mathf.Sign(rb.velocityX))) * snapToMaxRunSpeedMult / 10; //Sets the speed to maxRunSpeed
@@ -360,9 +409,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
                 footstepCount--;
             }           
         }
-        if (postWalljumpInputs == 0) {
-            spriteRenderer.flipX = !facingRight;
-        }
+
+        spriteRenderer.flipX = !facingRight;
     }
 
     private void OnDrawGizmosSelected() {
