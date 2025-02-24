@@ -122,7 +122,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{147FF910-5280-E372-AC63-8575A5BE5627}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8AA1772F-7446-47E4-4612-45F4449AFDFF}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -535,7 +535,7 @@
 						<MediaRef Id="135470174"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.2387104" DurationMax="0.25881624">
+				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
 					<SwitchContainers>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="4145461805" Id="2195636714"/>
@@ -781,5 +781,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9F3DB404-3CD4-CAB9-7CEE-2C89D6F1852D}</FileHash>
+	<FileHash>{585A159B-D007-A1C6-4128-000776F5FE71}</FileHash>
 </SoundBanksInfo>
