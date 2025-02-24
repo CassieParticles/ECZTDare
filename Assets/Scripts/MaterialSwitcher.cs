@@ -1,10 +1,5 @@
-using AK.Wwise;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.Diagnostics;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public class MaterialSwitcher : MonoBehaviour
 {
