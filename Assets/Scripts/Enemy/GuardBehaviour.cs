@@ -153,7 +153,7 @@ public class ChaseState : BaseState
 
     public override void Start()
     {
-        guardBehaviour.visionCone.SetColour(Color.red);
+
     }
 
     public override void Stop(){}
