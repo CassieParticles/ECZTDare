@@ -42,6 +42,20 @@ public class CameraBehaviour : BaseEnemyBehaviour
         visionCone.transform.rotation = Quaternion.Euler(rotation);
     }
 
+    private void FollowPlayer()
+    {
+        if(!Player)
+        {
+            return;
+        }
+        Vector3 position = Player.transform.position;
+        Vector3 direction = position - transform.position;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
     private void Alarm(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
@@ -111,13 +125,17 @@ public class CameraBehaviour : BaseEnemyBehaviour
         if(target > 360){ target -= 360; }
         if(target < 0){ target += 360; }
 
-        if(!turningPaused)
+        if(FollowingPlayer)
+        {
+            FollowPlayer();
+        }
+        else if(!turningPaused)
         { 
             RotateCamera(turnSpeed * Time.fixedDeltaTime * (turningCCW ? 1 : -1));
         }
 
         //Change directions
-        if(Mathf.Abs(visionCone.transform.rotation.eulerAngles.z - target) < 0.1f)
+        if(Mathf.Abs(visionCone.transform.rotation.eulerAngles.z - target) < 1f)
         {
             StartCoroutine(ChangeCameraDirection());
         }
