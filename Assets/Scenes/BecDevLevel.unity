@@ -24656,6 +24656,22 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 845616d59a74e1a4ab1a3b56b180ef5a, type: 2}
+  playerSlide:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1fc63ee9caf886b4196f3fe6c9ae69f9, type: 2}
+  boostStart:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b9956338225f2e948bdc9767ff29c4dd, type: 2}
+  boostRush:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: f4d998cbbc8c61e42bc8ed3c337ad00b, type: 2}
+  boostStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 1
   maxRunSpeed: 25
@@ -24665,6 +24681,11 @@ MonoBehaviour:
   slideDeceleration: 1
   velocityToSlide: 20
   velocityEndSlide: 5
+  boostMaxRunSpeedMultiplier: 1.5
+  boostAcceleration: 25
+  boostRecharge: 50
+  boostDepletion: 10
+  minimumBoostCharge: 5
   jumpStrength: 13.5
   minJumpTime: 0.02
   gravityMult: 3
@@ -24818,7 +24839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1014099844108341505, guid: f7d43f8306c90af46930d830502cc950, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.94
+      value: 72.299995
       objectReference: {fileID: 0}
     - target: {fileID: 1014099844108341505, guid: f7d43f8306c90af46930d830502cc950, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24893,9 +24914,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 4935825828034518257, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_TagString
+      value: Metal
+      objectReference: {fileID: 0}
     - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.84
+      value: 72.2
       objectReference: {fileID: 0}
     - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25364,6 +25389,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 844150077}
     m_Modifications:
+    - target: {fileID: 646221157367713675, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
+      propertyPath: reverbType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4762396030686188705, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.50314
@@ -25445,9 +25474,8 @@ SceneRoots:
   - {fileID: 1274768342}
   - {fileID: 619394802}
   - {fileID: 565990201}
-  - {fileID: 523581086}
   - {fileID: 1739255134}
-  - {fileID: 177950855}
+  - {fileID: 523581086}
   - {fileID: 1914334015}
   - {fileID: 511857602}
   - {fileID: 1128868242}
@@ -25455,3 +25483,4 @@ SceneRoots:
   - {fileID: 1474104199}
   - {fileID: 1098200396}
   - {fileID: 433768729}
+  - {fileID: 177950855}
