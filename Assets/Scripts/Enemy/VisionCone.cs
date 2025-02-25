@@ -130,6 +130,7 @@ public class VisionCone : MonoBehaviour
         coneMaterial = GetComponent<MeshRenderer>().material;
         coneMaterial.mainTexture = new Texture2D(128, 1);
         coneTexture = (Texture2D)coneMaterial.mainTexture;
+        coneTexture.filterMode = FilterMode.Point;
         SetColour(Color.white);
 
         GenerateConeMesh();
