@@ -68,6 +68,41 @@ public class PatrolState : BaseState
     }
 }
 
+public class HeardNoiseState : BaseState
+{
+    public HeardNoiseState(GameObject guard) : base(guard)
+    {
+    }
+
+
+
+    public override void Start()
+    {
+        
+    }
+
+    public override void Stop()
+    {
+        
+    }
+
+    public override GuardStates RunTick()
+    {
+        if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.Chase)
+        {
+            return GuardStates.Chase;
+        }
+        else if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
+        {
+            return GuardStates.Investigate; //Enemy is on edge, investigate
+        }
+        else
+        {
+            return GuardStates.Observe;
+        }
+    }
+}
+
 public class ObserveState : BaseState
 {
     public ObserveState(GameObject guard) : base(guard){}
@@ -265,7 +300,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
     {
-        Debug.Log("What was that?");
+        PointOfInterest = noiseLocation;
+        guardBehaviour.MoveToState(GuardStates.HearNoise);
     }
 
     private void CatchPlayer()
@@ -285,6 +321,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateUpAxis = false;
 
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
+        guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
@@ -312,11 +349,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void FixedUpdate()
     {
-        guardBehaviour.BehaviourTick();
-
         BaseUpdate();
 
-        if(agent.velocity != Vector3.zero)
+        guardBehaviour.BehaviourTick();
+
+        if (agent.velocity != Vector3.zero)
         {
             //Footstep sound effect
             if (Mathf.Abs(agent.velocity.x) > 0.1)
