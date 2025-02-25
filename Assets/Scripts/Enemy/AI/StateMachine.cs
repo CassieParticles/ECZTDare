@@ -7,6 +7,7 @@ using UnityEngine;
 public enum GuardStates
 {
     Patrol,
+    HearNoise,  //Dev one, immediately transition to whichever behaviour should be performed
     Observe,
     Investigate,
     Chase,
@@ -58,5 +59,12 @@ public class StateMachine
             currentState = newState;
             states[currentState].Start();
         }
+    }
+
+    public void MoveToState(GuardStates state)
+    {
+        states[currentState].Stop();
+        currentState = state;
+        states[currentState].Start();
     }
 }
