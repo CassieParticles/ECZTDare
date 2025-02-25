@@ -132,7 +132,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
-        static const AkUniqueID BOOST_SPEED = 474239254U;
+        static const AkUniqueID HORIZONTALVELOCITY = 2816179192U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

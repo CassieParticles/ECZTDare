@@ -107,6 +107,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     bool boostInput;
     bool hasBoosted; //If the player has boosted while holding the boost key
 
+    float horizontalVelocity;
 
     private LayerMask layers;
 
@@ -154,9 +155,11 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Running and Sliding, all horizontal velocity
         RunBoostSlide();
 
-        
+        //Set up variables for animation and audio
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
         animator.SetFloat("yVelocity", rb.velocityY);
+
+        horizontalVelocity = Mathf.Abs(rb.velocityX);
 
         if (Input.GetKey(KeyCode.L))
         {
@@ -354,11 +357,24 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             }
             boosting = true;
             hasBoosted = true;
+            //Plays the boost start sound.
+            boostStart.Post(gameObject);
+            //Plays the boost rush sound.
+            boostRush.Post(gameObject);
         } else if (!boostInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
+            if(boosting)
+            {
+                //Stops the boost rush sound.
+                boostRush.Stop(gameObject);
+                //Plays the boost stop sound.
+                boostStop.Post(gameObject);
+            }
             boosting = false;
         }
         if (boosting) {
             spriteRenderer.color = Color.red;
+            //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
+            AkSoundEngine.SetRTPCValue("horizontalVelocity", horizontalVelocity);
             if (boostCharge - boostRecharge * Time.deltaTime > 0) {
                 boostCharge -= boostRecharge * Time.deltaTime;
             } else {

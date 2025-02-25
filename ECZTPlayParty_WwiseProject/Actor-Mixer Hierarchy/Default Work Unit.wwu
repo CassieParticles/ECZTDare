@@ -377,7 +377,7 @@
 										</PropertyList>
 										<ReferenceList>
 											<Reference Name="ControlInput">
-												<ObjectRef Name="Boost_Speed" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}" WorkUnitID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}"/>
+												<ObjectRef Name="horizontalVelocity" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}" WorkUnitID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}"/>
 											</Reference>
 											<Reference Name="Curve">
 												<Custom>
@@ -393,7 +393,7 @@
 																<SegmentShape>Log3</SegmentShape>
 															</Point>
 															<Point>
-																<XPos>100</XPos>
+																<XPos>50</XPos>
 																<YPos>1200</YPos>
 																<Flags>37</Flags>
 															</Point>

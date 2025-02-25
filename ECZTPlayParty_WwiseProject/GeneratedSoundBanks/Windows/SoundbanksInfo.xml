@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{F02F305B-E752-F5EF-5303-5E360060B498}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{2E4FEEC3-C306-4C19-4A8C-427B1C7CB025}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -58,7 +58,7 @@
 				</AuxBus>
 			</AuxBusses>
 			<GameParameters>
-				<GameParameter Id="474239254" Name="Boost_Speed"/>
+				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="348963605" Name="Reverb">
@@ -122,7 +122,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{501B1FE1-E966-427C-A801-E7F47986194C}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{2C417664-0B0E-3F51-7D60-93687892B93B}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -204,7 +204,7 @@
 				</File>
 				<File Id="152193640" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_3.wav</ShortName>
-					<CachePath>SFX/P_M_Sliding_3_A210EC31.wem</CachePath>
+					<CachePath>SFX/P_M_Sliding_3_8F338B28.wem</CachePath>
 				</File>
 				<File Id="176338131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_4.wav</ShortName>
@@ -280,7 +280,7 @@
 				</File>
 				<File Id="347630337" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Sliding_2.wav</ShortName>
-					<CachePath>SFX/P_R_Sliding_2_B5A920F7.wem</CachePath>
+					<CachePath>SFX/P_R_Sliding_2_AB0DE62F.wem</CachePath>
 				</File>
 				<File Id="350571898" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_4.wav</ShortName>
@@ -292,7 +292,7 @@
 				</File>
 				<File Id="372349657" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_2.wav</ShortName>
-					<CachePath>SFX/P_D_Sliding_2_27A54F13.wem</CachePath>
+					<CachePath>SFX/P_D_Sliding_2_D7086770.wem</CachePath>
 				</File>
 				<File Id="393978131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Jump_1.wav</ShortName>
@@ -324,7 +324,7 @@
 				</File>
 				<File Id="492016228" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_1.wav</ShortName>
-					<CachePath>SFX/P_M_Sliding_1_2E47B274.wem</CachePath>
+					<CachePath>SFX/P_M_Sliding_1_3AF63341.wem</CachePath>
 				</File>
 				<File Id="494199292" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Jump_2.wav</ShortName>
@@ -336,7 +336,7 @@
 				</File>
 				<File Id="508671079" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Sliding_1.wav</ShortName>
-					<CachePath>SFX/P_R_Sliding_1_3ADC02CA.wem</CachePath>
+					<CachePath>SFX/P_R_Sliding_1_CC02D225.wem</CachePath>
 				</File>
 				<File Id="545539049" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_2.wav</ShortName>
@@ -352,7 +352,7 @@
 				</File>
 				<File Id="577735311" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Sliding_3.wav</ShortName>
-					<CachePath>SFX/P_C_Sliding_3_13B0AB9F.wem</CachePath>
+					<CachePath>SFX/P_C_Sliding_3_3664C6B6.wem</CachePath>
 				</File>
 				<File Id="588932112" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Jump_3.wav</ShortName>
@@ -368,7 +368,7 @@
 				</File>
 				<File Id="609776334" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_1.wav</ShortName>
-					<CachePath>SFX/P_D_Sliding_1_92CE574B.wem</CachePath>
+					<CachePath>SFX/P_D_Sliding_1_19FB47D3.wem</CachePath>
 				</File>
 				<File Id="618007706" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_3.wav</ShortName>
@@ -384,7 +384,7 @@
 				</File>
 				<File Id="631386295" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_2.wav</ShortName>
-					<CachePath>SFX/P_M_Sliding_2_A1461FB8.wem</CachePath>
+					<CachePath>SFX/P_M_Sliding_2_67AEBF41.wem</CachePath>
 				</File>
 				<File Id="647360545" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_1.wav</ShortName>
@@ -456,7 +456,7 @@
 				</File>
 				<File Id="801547988" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Sliding_3.wav</ShortName>
-					<CachePath>SFX/P_R_Sliding_3_680CBB31.wem</CachePath>
+					<CachePath>SFX/P_R_Sliding_3_65B0FC4F.wem</CachePath>
 				</File>
 				<File Id="803380777" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_6.wav</ShortName>
@@ -524,7 +524,7 @@
 				</File>
 				<File Id="940448307" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Sliding_1.wav</ShortName>
-					<CachePath>SFX/P_C_Sliding_1_14F786BD.wem</CachePath>
+					<CachePath>SFX/P_C_Sliding_1_63B46C72.wem</CachePath>
 				</File>
 				<File Id="953102257" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_7.wav</ShortName>
@@ -544,7 +544,7 @@
 				</File>
 				<File Id="985939584" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_3.wav</ShortName>
-					<CachePath>SFX/P_D_Sliding_3_567F145E.wem</CachePath>
+					<CachePath>SFX/P_D_Sliding_3_4363A682.wem</CachePath>
 				</File>
 				<File Id="994456261" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Landing_2.wav</ShortName>
@@ -560,7 +560,7 @@
 				</File>
 				<File Id="1031402310" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Sliding_2.wav</ShortName>
-					<CachePath>SFX/P_C_Sliding_2_8B51449F.wem</CachePath>
+					<CachePath>SFX/P_C_Sliding_2_61AB1538.wem</CachePath>
 				</File>
 				<File Id="1031678536" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_R_Footstep_1.wav</ShortName>
@@ -962,7 +962,7 @@
 				</Event>
 			</Events>
 			<GameParameters>
-				<GameParameter Id="474239254" Name="Boost_Speed"/>
+				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<SwitchGroups>
 				<SwitchGroup Id="1085835795" Name="Player_Jump_Material">
@@ -1008,5 +1008,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{34E56619-9ED8-389B-C1BB-4E2DD7283AF8}</FileHash>
+	<FileHash>{1918E485-D822-935A-23D8-19B05798D67E}</FileHash>
 </SoundBanksInfo>

@@ -3,7 +3,11 @@
 	<GameParameters>
 		<WorkUnit Name="Default Work Unit" ID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}" PersistMode="Standalone">
 			<ChildrenList>
-				<GameParameter Name="Boost_Speed" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}"/>
+				<GameParameter Name="horizontalVelocity" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}">
+					<PropertyList>
+						<Property Name="Max" Type="Real64" Value="50"/>
+					</PropertyList>
+				</GameParameter>
 			</ChildrenList>
 		</WorkUnit>
 	</GameParameters>
