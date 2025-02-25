@@ -2387,6 +2387,18 @@
 						<Reference Name="SwitchGroupOrStateGroup">
 							<ObjectRef Name="Player_Jump_Material" ID="{BB04D1BA-E0A1-4BCC-A491-E17AA621FC9B}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend1">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend2">
+							<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend3">
+							<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="P_C_Jump" ID="{558B51CB-628E-460B-A7AA-82DCE4842D8C}" ShortID="976575678">
@@ -2937,6 +2949,18 @@
 						<Reference Name="SwitchGroupOrStateGroup">
 							<ObjectRef Name="Player_Land_Material" ID="{2BED720D-8BAF-4C33-BD3C-A4B3AA7D53EB}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend1">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend2">
+							<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend3">
+							<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="P_C_Land" ID="{DA46CF89-2B99-43C3-8D4C-618E2961D5C3}" ShortID="712562411">
@@ -3390,6 +3414,18 @@
 						<Reference Name="SwitchGroupOrStateGroup">
 							<ObjectRef Name="Player_Slide_Material" ID="{DB13A849-2D95-474B-AEE6-294D5D4EA07C}" WorkUnitID="{AE198DAE-4649-45F3-8047-269D51D183C7}"/>
 						</Reference>
+						<Reference Name="UserAuxSend0">
+							<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend1">
+							<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend2">
+							<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+						<Reference Name="UserAuxSend3">
+							<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="P_C_Slide" ID="{B666F843-2EBF-4732-9AFD-587D18A02E12}" ShortID="783322057">
@@ -3410,6 +3446,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="P_C_Sliding_1" ID="{D1611DB4-C913-4C17-8FA7-303CE0CAB62E}" ShortID="1059046725">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3420,6 +3459,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_C_Sliding_1" ID="{7011BE3E-40BE-420C-94DC-6FD8338436E4}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.111910994764398"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.66099476439791"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_C_Sliding_1.wav</AudioFile>
 											<MediaIDList>
@@ -3432,6 +3476,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_C_Sliding_2" ID="{D338DE52-364F-40CF-ACFE-6B498C132CEE}" ShortID="575849194">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3442,6 +3489,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_C_Sliding_2" ID="{FDB1EA34-52FA-439D-85D3-AC9DCE96628A}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0603730366492147"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.93529123036649"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_C_Sliding_2.wav</AudioFile>
 											<MediaIDList>
@@ -3454,6 +3506,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_C_Sliding_3" ID="{C2D7AD13-041E-4FA2-9462-BC8D76016643}" ShortID="328815147">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3464,6 +3519,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_C_Sliding_3" ID="{5F8A701D-74C4-4BE1-8AC8-5DA826FD1217}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0237238219895288"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.54204842931937"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_C_Sliding_3.wav</AudioFile>
 											<MediaIDList>
@@ -3495,6 +3555,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="P_D_Sliding_1" ID="{B4667448-B7AC-4562-A747-35BF580330D4}" ShortID="561215037">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3505,6 +3568,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_D_Sliding_1" ID="{77807AE8-61C7-4CC9-881F-D901157CF00F}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.854057591623037"/>
+												<Property Name="LoopEnd" Type="Real64" Value="2.07035340314136"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_D_Sliding_1.wav</AudioFile>
 											<MediaIDList>
@@ -3517,6 +3585,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_D_Sliding_2" ID="{0A1B9E98-B8E7-4E37-9B8E-78A785484077}" ShortID="896426881">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3527,6 +3598,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_D_Sliding_2" ID="{537EE71A-E2D5-46A0-8A53-2DAF6032E15E}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.584096858638743"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.8190445026178"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_D_Sliding_2.wav</AudioFile>
 											<MediaIDList>
@@ -3539,6 +3615,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_D_Sliding_3" ID="{26A9BD5B-8F88-45D2-AE4D-3EC1FBD76579}" ShortID="184450821">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3549,6 +3628,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_D_Sliding_3" ID="{DEE16C62-116D-4A1F-A9C0-9011189C631C}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.443226439790576"/>
+												<Property Name="LoopEnd" Type="Real64" Value="2.33221531413613"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_D_Sliding_3.wav</AudioFile>
 											<MediaIDList>
@@ -3580,6 +3664,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="P_M_Sliding_1" ID="{71059BC5-E98E-4C6E-89F9-AD0BE000DF93}" ShortID="402859370">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3590,6 +3677,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_M_Sliding_1" ID="{AEC3915E-1E54-4DF3-83C3-03A5A2C5C12C}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0912958115183246"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.2663612565445"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_M_Sliding_1.wav</AudioFile>
 											<MediaIDList>
@@ -3602,6 +3694,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_M_Sliding_2" ID="{411AB0ED-6C5F-4E7A-819C-5DB33FEA33B7}" ShortID="960924967">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3612,6 +3707,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_M_Sliding_2" ID="{1899AFE5-E831-4765-A7D0-C5F059B1A6BC}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0305955497382199"/>
+												<Property Name="LoopEnd" Type="Real64" Value="0.959587696335079"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_M_Sliding_2.wav</AudioFile>
 											<MediaIDList>
@@ -3624,6 +3724,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_M_Sliding_3" ID="{D67EF89A-3700-4339-A3FA-6428C26F9D71}" ShortID="419708273">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3634,6 +3737,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_M_Sliding_3" ID="{F078CF7E-F5A5-4808-919C-939FE74201A0}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0418848167539267"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.44240837696335"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_M_Sliding_3.wav</AudioFile>
 											<MediaIDList>
@@ -3675,6 +3783,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="P_R_Sliding_1" ID="{671DE3B1-26B1-43E7-A966-CB6202E77E32}" ShortID="135880170">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3685,6 +3796,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_R_Sliding_1" ID="{375CC6F2-7604-463C-921D-F725A382081F}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0530104712041885"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.68160994764398"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_R_Sliding_1.wav</AudioFile>
 											<MediaIDList>
@@ -3697,6 +3813,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_R_Sliding_2" ID="{BA6BE846-D8A9-45A1-B116-F396782D96E4}" ShortID="392829862">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3707,6 +3826,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_R_Sliding_2" ID="{7120C417-EF5F-4774-A357-2DEAC7FF4BAC}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0778795811518325"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.49640052356021"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_R_Sliding_2.wav</AudioFile>
 											<MediaIDList>
@@ -3719,6 +3843,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="P_R_Sliding_3" ID="{9C633127-D0C2-4293-A0D0-3DADA1AAB2C8}" ShortID="982787140">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3729,6 +3856,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="P_R_Sliding_3" ID="{54579953-818A-47A4-9AC5-0DEC9570A6ED}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.424083769633508"/>
+												<Property Name="LoopEnd" Type="Real64" Value="1.36125654450262"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>P_R_Sliding_3.wav</AudioFile>
 											<MediaIDList>

@@ -6,6 +6,10 @@ using static PlayerMovement;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event playerFootstep;
+    public AK.Wwise.Event playerSlide;
+    public AK.Wwise.Event boostStart;
+    public AK.Wwise.Event boostRush;
+    public AK.Wwise.Event boostStop;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
 	[SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
@@ -320,6 +324,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     void RunBoostSlide() {
         //Handle Sliding
         if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
+            //Plays the slide sound.
+            playerSlide.Post(gameObject);
             sliding = true;
             hasSlid = true;
             collider.size = new Vector2(colliderSize.x * 1.5f, colliderSize.y * 0.3f);
@@ -327,6 +333,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             effectiveDeceleration = slideDeceleration;
             slideGroundedTimer = 0.02f;
         } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
+            //Stops the slide sound.
+            playerSlide.Stop(gameObject);
             sliding = false;
             transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
             collider.size = colliderSize;
@@ -337,6 +345,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Handle Boosting
         if (boostInput && runInput != 0 && boostCharge > minimumBoostCharge && grounded && !hasBoosted) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
             if (sliding) { //Stops the player from sliding
+                //Stops the slide sound.
+                playerSlide.Stop(gameObject);
                 sliding = false;
                 transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
                 collider.size = colliderSize;
