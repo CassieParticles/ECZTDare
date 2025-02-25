@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{ED169730-91A9-16D9-A825-0FD5B86A9A4A}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{C7B6E8D9-FEB7-05EB-6E64-4FF39CCE0F00}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -58,7 +58,7 @@
 				</AuxBus>
 			</AuxBusses>
 			<GameParameters>
-				<GameParameter Id="474239254" Name="Boost_Speed"/>
+				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="348963605" Name="Reverb">
@@ -122,7 +122,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A912D5F7-0F51-31FE-B58C-51400222E172}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4C905FA0-268A-33FC-EA32-E68276903733}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -962,7 +962,7 @@
 				</Event>
 			</Events>
 			<GameParameters>
-				<GameParameter Id="474239254" Name="Boost_Speed"/>
+				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<SwitchGroups>
 				<SwitchGroup Id="1085835795" Name="Player_Jump_Material">
@@ -1008,5 +1008,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{559434A8-3A43-8F6D-BFC0-8F8DDBD9EC32}</FileHash>
+	<FileHash>{1F829A99-629A-9FA3-B636-63A4260A91A6}</FileHash>
 </SoundBanksInfo>
