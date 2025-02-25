@@ -24698,6 +24698,7 @@ MonoBehaviour:
   horizontalWalljumpStrength: 25
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
+  boostCharge: 0
 --- !u!4 &1274768342
 Transform:
   m_ObjectHideFlags: 0
@@ -24906,6 +24907,10 @@ PrefabInstance:
       propertyPath: patrolRoute
       value: 
       objectReference: {fileID: 1098200398}
+    - target: {fileID: 4720913152620039959, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: footstepRate
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4720913152620039959, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
       propertyPath: guardFootstep.WwiseObjectReference
       value: 
