@@ -79,7 +79,6 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Concrete", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Concrete", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Concrete", guard.gameObject);
-                        Debug.Log("Concrete");
                 }
 
                 if (materialType == MaterialTypes.Dirt)
@@ -90,7 +89,6 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Dirt", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Dirt", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Dirt", guard.gameObject);
-                        Debug.Log("Dirt");
                 }
 
                 if (materialType == MaterialTypes.Rubber)
@@ -101,7 +99,6 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Rubber", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Rubber", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Rubber", guard.gameObject);
-                        Debug.Log("Rubber");
                 }
 
                 if (materialType == MaterialTypes.Metal)
@@ -112,7 +109,6 @@ public class MaterialSwitcher : MonoBehaviour
                         AkSoundEngine.SetSwitch("Player_Land_Material", "Metal", player.gameObject);
                         AkSoundEngine.SetSwitch("Player_Slide_Material", "Metal", player.gameObject);
                         //AkSoundEngine.SetSwitch("Guard_Footstep_Material", "Metal", guard.gameObject);
-                        Debug.Log("Metal");
                 }
             }
         }
