@@ -22,10 +22,26 @@ public class VisionCone : MonoBehaviour
     private BaseEnemyBehaviour Enemy;
 
     private Material coneMaterial;
+    private Texture2D coneTexture;
+    private Color coneColour;
 
     public void SetColour(Color colour)
     {
-        coneMaterial.color = colour;
+        coneColour = colour;
+        RecalcCone();
+    }
+
+    private void RecalcCone()
+    {
+        Color[] colourArray = new Color[128];
+        float susRange = 128 * Enemy.suspicion / 100.0f;
+        for(int i=0;i<128;++i)
+        {
+            colourArray[i] = coneColour;
+            colourArray[i].a = i < susRange ? 0.9f : 0.3f;
+        }
+        coneTexture.SetPixels(colourArray);
+        coneTexture.Apply();
     }
 
     private float GetDistance(float angle)
@@ -112,6 +128,8 @@ public class VisionCone : MonoBehaviour
         Enemy = transform.parent.GetComponent<BaseEnemyBehaviour>();
 
         coneMaterial = GetComponent<MeshRenderer>().material;
+        coneMaterial.mainTexture = new Texture2D(128, 1);
+        coneTexture = (Texture2D)coneMaterial.mainTexture;
         SetColour(Color.white);
 
         GenerateConeMesh();
