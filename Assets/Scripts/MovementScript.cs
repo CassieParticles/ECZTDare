@@ -82,7 +82,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier; //If the player is currently boosting
-    [NonSerialized] public float boostCharge; //The current boosting charge the player has
+    public float boostCharge; //The current boosting charge the player has
 
     //All raycasts that get used
     Vector2 rightGroundRayStart;
@@ -392,7 +392,6 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             boostingMaxRunSpeedMultiplier = 1;
             effectiveAcceleration = acceleration;
         }
-        Debug.Log(boostCharge);
         
         //Handle left/right movement with inputs
         if (runInput == -1 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
