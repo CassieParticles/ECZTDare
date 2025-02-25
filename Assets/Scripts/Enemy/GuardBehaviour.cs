@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PatrolState : BaseState
 {
@@ -269,7 +270,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void CatchPlayer()
     {
-
+        if(suspicionState == SuspicionState.Chase)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 
     private void Awake()
@@ -286,7 +290,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
-        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
+        
     }
 
 
@@ -302,6 +306,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
+
+        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
     }
 
     void FixedUpdate()
