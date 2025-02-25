@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 242.06487
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -9.4677105
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +56,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3415921933695408445, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.696845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415921933695408445, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415921933695408445, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415921933695408445, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7172218
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415921933695408445, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -91.651
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358356620541576952, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      propertyPath: distance
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -96,7 +120,7 @@ MonoBehaviour:
   alarm: {fileID: 0}
   suspicionScaleRate: 200
   suspicionDecayRate: 10
-  suspicion: 0
+  suspicion: 100
   minimumSuspicion: 0
   cameraMoving:
     idInternal: 0
@@ -110,9 +134,9 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 4f042ddc73787a34895f16e35538e71d, type: 2}
-  maxAngle: 45
-  turnSpeed: 30
-  pauseDuration: 1
+  maxAngle: 30
+  turnSpeed: 45
+  pauseDuration: 1.5
 --- !u!212 &6685413627625869697
 SpriteRenderer:
   m_ObjectHideFlags: 0
