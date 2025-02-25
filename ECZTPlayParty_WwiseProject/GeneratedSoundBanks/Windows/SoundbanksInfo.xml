@@ -122,7 +122,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{2C417664-0B0E-3F51-7D60-93687892B93B}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{7D745E40-8BDD-D849-1F67-0E0AE7C8E7A6}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -602,7 +602,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="2188867727" Name="Boost_Start" DurationType="OneShot" DurationMin="0.3125" DurationMax="0.3125">
+				<Event Id="2188867727" Name="Boost_Start" DurationType="OneShot" DurationMin="0.30360374" DurationMax="0.31704542">
 					<MediaRefs>
 						<MediaRef Id="908405812"/>
 					</MediaRefs>
@@ -613,7 +613,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1751967765" Name="Boost_Stop" DurationType="OneShot" DurationMin="0.28125" DurationMax="0.28125">
+				<Event Id="1751967765" Name="Boost_Stop" DurationType="OneShot" DurationMin="0.27721778" DurationMax="0.28949127">
 					<MediaRefs>
 						<MediaRef Id="977181348"/>
 					</MediaRefs>
@@ -1008,5 +1008,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1918E485-D822-935A-23D8-19B05798D67E}</FileHash>
+	<FileHash>{7523D2C6-29AF-1D09-C572-92C084130385}</FileHash>
 </SoundBanksInfo>
