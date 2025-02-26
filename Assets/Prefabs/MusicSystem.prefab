@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7680657108624308150
+--- !u!1 &3657578203181626773
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3403512215831532349}
-  - component: {fileID: 5882243783853979509}
+  - component: {fileID: 2504642489385795160}
+  - component: {fileID: 5606231303506147099}
   m_Layer: 0
-  m_Name: AlarmObject
+  m_Name: MusicSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3403512215831532349
+--- !u!4 &2504642489385795160
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7680657108624308150}
+  m_GameObject: {fileID: 3657578203181626773}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,15 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5882243783853979509
+--- !u!114 &5606231303506147099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7680657108624308150}
+  m_GameObject: {fileID: 3657578203181626773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f043e9ba2539249bcb74ea4c5bc697, type: 3}
+  m_Script: {fileID: 11500000, guid: 87a09e866d419474bbf2338e67bf2565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
