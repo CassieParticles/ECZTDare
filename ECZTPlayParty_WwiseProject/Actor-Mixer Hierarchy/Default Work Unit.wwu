@@ -2742,6 +2742,84 @@
 										</Sound>
 									</ChildrenList>
 								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="P_C_Slide_01" ID="{C68D1248-D178-48F1-B67B-BCE0897CB9E2}" ShortID="967431861">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="P_C_Sliding_1" ID="{0E97E71B-660A-4F98-A0F6-2DADC103FEE2}" ShortID="83469621">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="P_C_Sliding_1" ID="{DB03405A-06A9-4410-A7B0-41301A627CEA}">
+													<Language>SFX</Language>
+													<AudioFile>P_C_Sliding_1.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="508553430"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="P_C_Sliding_1" ID="{DB03405A-06A9-4410-A7B0-41301A627CEA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="P_C_Sliding_2" ID="{22B27921-2ECF-4C71-8352-DDB7F5155535}" ShortID="144548643">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="P_C_Sliding_2" ID="{2C64F9DD-1236-490D-BE46-CDA3B3CD74E3}">
+													<Language>SFX</Language>
+													<AudioFile>P_C_Sliding_2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="213453956"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="P_C_Sliding_2" ID="{2C64F9DD-1236-490D-BE46-CDA3B3CD74E3}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="P_C_Sliding_3" ID="{75990C4C-491C-42A9-B788-13151C7E20D0}" ShortID="375078037">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="P_C_Sliding_3" ID="{D5C35EC0-E654-4FC3-8C5D-DC7E3FF1E0B9}">
+													<Language>SFX</Language>
+													<AudioFile>P_C_Sliding_3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="429296321"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="P_C_Sliding_3" ID="{D5C35EC0-E654-4FC3-8C5D-DC7E3FF1E0B9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
 							</ChildrenList>
 							<ObjectLists>
 								<ObjectList Name="RTPC">
@@ -2814,6 +2892,9 @@
 									</GroupingBehavior>
 									<GroupingBehavior>
 										<ItemRef Name="P_C_Slide" ID="{B666F843-2EBF-4732-9AFD-587D18A02E12}"/>
+									</GroupingBehavior>
+									<GroupingBehavior>
+										<ItemRef Name="P_C_Slide_01" ID="{C68D1248-D178-48F1-B67B-BCE0897CB9E2}"/>
 									</GroupingBehavior>
 									<GroupingBehavior>
 										<ItemRef Name="P_M_Slide" ID="{7575029E-228B-4859-8822-69E0027E9A74}"/>
@@ -4179,6 +4260,12 @@
 																		<YPos>-200</YPos>
 																		<Flags>5</Flags>
 																		<SegmentShape>Log2</SegmentShape>
+																	</Point>
+																	<Point>
+																		<XPos>16.32653</XPos>
+																		<YPos>-2.9946</YPos>
+																		<Flags>0</Flags>
+																		<SegmentShape>Exp2</SegmentShape>
 																	</Point>
 																	<Point>
 																		<XPos>70</XPos>
