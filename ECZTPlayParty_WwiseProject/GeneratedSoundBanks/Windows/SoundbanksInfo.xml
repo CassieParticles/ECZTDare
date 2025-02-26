@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{2E4FEEC3-C306-4C19-4A8C-427B1C7CB025}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{3F032E7E-5126-9288-083B-B4DC5598F0C1}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -58,6 +58,7 @@
 				</AuxBus>
 			</AuxBusses>
 			<GameParameters>
+				<GameParameter Id="2268126698" Name="suspicion"/>
 				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<StateGroups>
@@ -72,10 +73,12 @@
 				</StateGroup>
 				<StateGroup Id="3991942870" Name="Music">
 					<States>
-						<State Id="721787521" Name="Alert"/>
+						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1862135557" Name="NoMusic"/>
+						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
+						<State Id="4009708623" Name="Alarm_Low"/>
 					</States>
 				</StateGroup>
 			</StateGroups>
@@ -122,7 +125,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{2B24C71B-3033-D512-C342-8AE91D70FB16}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4D37E3EC-C43A-302D-83BE-EE104553BC3F}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -193,10 +196,6 @@
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
 					<CachePath>SFX/In_View_Cone_CE70BCCE.wem</CachePath>
-				</File>
-				<File Id="135470174" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Alarm_Track_Trial.wav</ShortName>
-					<CachePath>SFX/Alarm_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="144557377" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_3.wav</ShortName>
@@ -285,6 +284,10 @@
 				<File Id="350571898" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_4.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_Low.wav</ShortName>
+					<CachePath>SFX/Alarm_Low_818F3B66.wem</CachePath>
 				</File>
 				<File Id="365276779" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_8.wav</ShortName>
@@ -430,6 +433,10 @@
 					<ShortName>P_C_Jump_4.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
 				</File>
+				<File Id="763308751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_Middle.wav</ShortName>
+					<CachePath>SFX/Alarm_Middle_818F3B66.wem</CachePath>
+				</File>
 				<File Id="767938678" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Landing_3.wav</ShortName>
 					<CachePath>SFX/P_C_Landing_3_818F3B66.wem</CachePath>
@@ -461,6 +468,10 @@
 				<File Id="803380777" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_6.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="807658381" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_High.wav</ShortName>
+					<CachePath>SFX/Alarm_High_818F3B66.wem</CachePath>
 				</File>
 				<File Id="807950240" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_6.wav</ShortName>
@@ -721,7 +732,9 @@
 				<Event Id="3991942870" Name="Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="40011298"/>
-						<MediaRef Id="135470174"/>
+						<MediaRef Id="356683109"/>
+						<MediaRef Id="763308751"/>
+						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
@@ -962,6 +975,7 @@
 				</Event>
 			</Events>
 			<GameParameters>
+				<GameParameter Id="2268126698" Name="suspicion"/>
 				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<SwitchGroups>
@@ -1008,5 +1022,5 @@
 			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{E04043E5-8191-00AD-3868-DA1D4CE36B94}</FileHash>
+	<FileHash>{11E36847-9C05-B8C2-B0CD-6EC63AC58697}</FileHash>
 </SoundBanksInfo>

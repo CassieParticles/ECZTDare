@@ -7,8 +7,8 @@ public class AlarmMusicHandler : MonoBehaviour
 
     private void AlarmOn(Vector3 playerPosition)
     {
-        //Sets the "Music" State Group's active State to "Alert"
-        AkSoundEngine.SetState("Music", "Alert");
+        //Sets the "Music" State Group's active State to "Alarm_Low"
+        AkSoundEngine.SetState("Music", "Alarm_Low");
     }
 
     private void AlarmOff()

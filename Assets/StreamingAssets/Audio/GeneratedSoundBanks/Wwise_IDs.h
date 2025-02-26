@@ -38,7 +38,9 @@ namespace AK
 
             namespace STATE
             {
-                static const AkUniqueID ALERT = 721787521U;
+                static const AkUniqueID ALARM_HIGH = 3599981451U;
+                static const AkUniqueID ALARM_LOW = 4009708623U;
+                static const AkUniqueID ALARM_MIDDLE = 122271732U;
                 static const AkUniqueID HIDDEN = 3621873013U;
                 static const AkUniqueID NOMUSIC = 1862135557U;
                 static const AkUniqueID NONE = 748895195U;
@@ -133,6 +135,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID HORIZONTALVELOCITY = 2816179192U;
+        static const AkUniqueID SUSPICION = 2268126698U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

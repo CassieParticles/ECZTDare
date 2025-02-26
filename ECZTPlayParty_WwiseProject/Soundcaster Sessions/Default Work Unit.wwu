@@ -6,6 +6,10 @@
 				<SoundcasterSession Name="FinalMix" ID="{DDAA708A-0E5D-4825-A22B-2499C4214AD1}">
 					<RTPCValueList ShowAll="true">
 						<RTPCValue>
+							<GameParameterRef Name="suspicion" ID="{CD9104A3-56C1-4446-AE38-72D0F1DB5091}"/>
+							<Value>0</Value>
+						</RTPCValue>
+						<RTPCValue>
 							<GameParameterRef Name="horizontalVelocity" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}"/>
 							<Value>0</Value>
 						</RTPCValue>
