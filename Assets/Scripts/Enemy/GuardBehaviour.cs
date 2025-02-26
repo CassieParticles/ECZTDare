@@ -232,10 +232,13 @@ public class ChaseState : BaseState
 
     public override void Start()
     {
-
+        AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
     }
 
-    public override void Stop(){}
+    public override void Stop()
+    {
+        AlarmMusicHandler.GetMusicHandler().EndChase(guardBehaviour);
+    }
 
     public override GuardStates RunTick()
     {
