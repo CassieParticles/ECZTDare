@@ -80,6 +80,9 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Should be called by all inheriting from BaseEnemy
     protected void BaseUpdate()
     {
+        //Sets the RTPC Value of suspicion to the suspicion float value.
+        AkSoundEngine.SetRTPCValue("suspicion", suspicion, this.gameObject);
+
         if (suspicion < SuspicionLevel[1])  //Below suspect threshold
         {
             suspicionState = SuspicionState.Idle;
