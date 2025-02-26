@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PatrolState : BaseState
 {
@@ -64,6 +65,41 @@ public class PatrolState : BaseState
         recalcDelay = false;
         yield return new WaitForSeconds(0.1f);
         recalcDelay = true;
+    }
+}
+
+public class HeardNoiseState : BaseState
+{
+    public HeardNoiseState(GameObject guard) : base(guard)
+    {
+    }
+
+
+
+    public override void Start()
+    {
+        
+    }
+
+    public override void Stop()
+    {
+        
+    }
+
+    public override GuardStates RunTick()
+    {
+        if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.Chase)
+        {
+            return GuardStates.Chase;
+        }
+        else if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
+        {
+            return GuardStates.Investigate; //Enemy is on edge, investigate
+        }
+        else
+        {
+            return GuardStates.Observe;
+        }
     }
 }
 
@@ -264,12 +300,21 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
     {
-        Debug.Log("What was that?");
+        PointOfInterest = noiseLocation;
+        suspicion += suspicionIncrease;
+        if(suspicion > 100)
+        {
+            suspicion = 99;
+        }
+        guardBehaviour.MoveToState(GuardStates.HearNoise);
     }
 
     private void CatchPlayer()
     {
-
+        if(suspicionState == SuspicionState.Chase)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 
     private void Awake()
@@ -281,12 +326,13 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateUpAxis = false;
 
         guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
+        guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
-        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
+        
     }
 
 
@@ -302,15 +348,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
+
+        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
     }
 
     void FixedUpdate()
     {
-        guardBehaviour.BehaviourTick();
-
         BaseUpdate();
 
-        if(agent.velocity != Vector3.zero)
+        guardBehaviour.BehaviourTick();
+
+        if (agent.velocity != Vector3.zero)
         {
             //Footstep sound effect
             if (Mathf.Abs(agent.velocity.x) > 0.1)
