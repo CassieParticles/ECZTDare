@@ -9,8 +9,8 @@ public class PatrolState : BaseState
 
     //Recalculatign the path doesn't recalculate everything instantly,
     //to avoid issues with distance recalc delay, don't recalculate immediately
-    private bool recalcDelay = true;
-    private bool paused = false;
+    private bool recalcDelay;
+    private bool paused;
     public PatrolState(GameObject guard, PatrolRoute patrolRoute) : base(guard)
     {
         this.patrolRoute = patrolRoute;
@@ -23,6 +23,8 @@ public class PatrolState : BaseState
             Vector3 nextNode = patrolRoute.GetCurrNode(guardAttached).position;
             guardBehaviour.MoveTo(nextNode);
         }
+        recalcDelay = true;
+        paused = false;
     }
 
     public override void Stop()
@@ -107,20 +109,57 @@ public class ObserveState : BaseState
 {
     public ObserveState(GameObject guard) : base(guard){}
 
-    public override void Start(){}
+    Coroutine observePointCoroutine;
+    bool observationFinished = false;
 
-    public override void Stop(){}
+    private IEnumerator ObservePoint()
+    {
+        yield return new WaitForSeconds(3);
+        observationFinished = true;
+    }
+
+    public override void Start()
+    {
+        observationFinished = false;
+    }
+
+    public override void Stop()
+    {
+        if (observePointCoroutine != null)
+        {
+            guardBehaviour.StopCoroutine(observePointCoroutine);
+            observePointCoroutine = null;
+        }
+    }
 
     public override GuardStates RunTick()
     {
-        if(!guardBehaviour.Player)
+        //If the guard can see the player, the player is the point of interest now
+        if(guardBehaviour.Player)
         {
+            //End the guard observing coroutine if it sees the player again
+            if(observePointCoroutine!=null)
+            {
+                guardBehaviour.StopCoroutine(observePointCoroutine);
+                observePointCoroutine = null;
+            }
+            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
             if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
             {
                 return GuardStates.Investigate;
             }
+        }
+        //If it cannot see the player, start a 3 second countdown, if it reaches this limit, move to patrol 
+        else if(observePointCoroutine == null)
+        {
+            observePointCoroutine = guardBehaviour.StartCoroutine(ObservePoint());
+        }
+
+        if(observationFinished)
+        {
             return GuardStates.Patrol;
         }
+        
 
         if(guardBehaviour.suspicion > guardBehaviour.SuspicionLevel[3])
         {
@@ -129,9 +168,7 @@ public class ObserveState : BaseState
 
         guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
 
-        guardBehaviour.CalcSuspicionIncrease();
-
-        guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+        
 
         return GuardStates.Observe;
     }
@@ -139,14 +176,16 @@ public class ObserveState : BaseState
 
 public class InvestigateState : BaseState
 {
-    private bool lookingAround=false;
-    private bool finished = false;
+    private bool lookingAround;
+    private bool finished;
 
     public InvestigateState(GameObject guard) : base(guard){}
 
     public override void Start()
     {
         guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        finished = false;
+        lookingAround = false;
     }
 
     public override void Stop()
@@ -157,9 +196,13 @@ public class InvestigateState : BaseState
     public override GuardStates RunTick()
     {
         //If it sees the player
-        if(guardBehaviour.Player)
+        if(guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
         {
             return GuardStates.Observe;
+        }
+        if(guardBehaviour.suspicion > 100)
+        {
+            return GuardStates.Chase;
         }
 
         if(guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
@@ -247,6 +290,7 @@ public class RaiseAlarmState : BaseState
 public class GuardBehaviour : BaseEnemyBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
+    [SerializeField] private bool investigateAlarmLoc = false;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
@@ -291,6 +335,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
+        if(investigateAlarmLoc)
+        {
+            PointOfInterest = playerPosition;
+            guardBehaviour.MoveToState(GuardStates.Investigate);
+        }
     }
 
     private void AlarmOff()
@@ -302,7 +351,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         PointOfInterest = noiseLocation;
         suspicion += suspicionIncrease;
-        if(suspicion > 100)
+        if(suspicion >= 100)
         {
             suspicion = 99;
         }
@@ -357,6 +406,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         BaseUpdate();
 
         guardBehaviour.BehaviourTick();
+        CalcSuspicionIncrease();
 
         if (agent.velocity != Vector3.zero)
         {
