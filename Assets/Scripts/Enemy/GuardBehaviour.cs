@@ -290,6 +290,7 @@ public class RaiseAlarmState : BaseState
 public class GuardBehaviour : BaseEnemyBehaviour
 {
     [SerializeField] private PatrolRoute patrolRoute;
+    [SerializeField] private bool investigateAlarmLoc = false;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
@@ -334,6 +335,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
+        if(investigateAlarmLoc)
+        {
+            PointOfInterest = playerPosition;
+            guardBehaviour.MoveToState(GuardStates.Investigate);
+        }
     }
 
     private void AlarmOff()
