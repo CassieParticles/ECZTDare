@@ -5,7 +5,7 @@ public class AlarmSystem : MonoBehaviour
 {
     public delegate void AlarmEnable(Vector3 playerPosition);
     public delegate void AlarmDisable();
-    
+
     public static AlarmSystem GetAlarmSystem()
     {
         return GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
