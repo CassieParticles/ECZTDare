@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8161024199950438903}
   - component: {fileID: 1317899541143314576}
-  - component: {fileID: 1153922996590625540}
   m_Layer: 0
   m_Name: VirtualFollowerCamera
   m_TagString: Untagged
@@ -53,10 +52,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1340816479304841420, guid: 324d04b3ce6b0db43b0419a6bf7d502a, type: 3}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 61.633614
+    OrthographicSize: 8.44
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -73,18 +72,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 6853194797750218975}
---- !u!114 &1153922996590625540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903231281136827611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5156008261998236083
 GameObject:
   m_ObjectHideFlags: 0
