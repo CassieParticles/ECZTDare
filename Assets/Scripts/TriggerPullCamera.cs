@@ -30,6 +30,8 @@ public class TriggerPullCamera : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
         virtualCamera.Priority = 11;
+        mainCamera.m_DefaultBlend.m_Style = blendType;
+        mainCamera.m_DefaultBlend.m_Time = blendDuration;
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -39,8 +41,7 @@ public class TriggerPullCamera : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        mainCamera.m_DefaultBlend.m_Style = blendType;
-        mainCamera.m_DefaultBlend.m_Time = blendDuration;
+
         targetGroup.m_Targets[0].weight = playerBias;
     }
 }
