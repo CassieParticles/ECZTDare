@@ -207,67 +207,54 @@
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
+					<ObjectLists>
+						<ObjectList Name="RTPC">
+							<Reference>
+								<Local>
+									<RTPC Name="" ID="{076C160B-9B5D-4B5A-A957-C923F0030A81}" ShortID="56921390">
+										<PropertyList>
+											<Property Name="PropertyName" Type="string" Value="Volume"/>
+										</PropertyList>
+										<ReferenceList>
+											<Reference Name="ControlInput">
+												<ObjectRef Name="suspicion" ID="{CD9104A3-56C1-4446-AE38-72D0F1DB5091}" WorkUnitID="{45DF6ABB-6779-4E06-BA08-617A4016B00F}"/>
+											</Reference>
+											<Reference Name="Curve">
+												<Custom>
+													<Curve Name="" ID="{98A13EA2-B5E1-49D2-B74A-4A76EE954F73}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+																<SegmentShape>Log2</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>70</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Exp3</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</Custom>
+											</Reference>
+										</ReferenceList>
+									</RTPC>
+								</Local>
+							</Reference>
+						</ObjectList>
+					</ObjectLists>
 					<ActiveSourceList>
 						<ActiveSource Name="In_View_Cone" ID="{DC29E9C0-291B-4E0F-899F-91893A228FE6}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="Alarm_Track_Trial" ID="{1F753D9E-60CD-4DE0-A197-10DE4242E128}" ShortID="278914934">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-10</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="Alarm_Track_Trial" ID="{26B3509F-64EB-4DC7-8F98-1081E737F8A8}">
-							<Language>SFX</Language>
-							<AudioFile>Alarm_Track_Trial.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="135470174"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<StateInfo>
-						<StateGroupList>
-							<StateGroupInfo>
-								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
-							</StateGroupInfo>
-						</StateGroupList>
-						<CustomStateList>
-							<CustomState>
-								<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
-								<CustomState Name="" ID="{4143143C-E7E1-484D-B112-0DE4EED9C5A9}" ShortID="796085542">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64" Value="-108"/>
-									</PropertyList>
-								</CustomState>
-							</CustomState>
-							<CustomState>
-								<StateRef Name="Alert" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
-								<CustomState Name="" ID="{6DE55C29-0B51-4AB0-B5C6-10D60B092E7D}" ShortID="395453002"/>
-							</CustomState>
-							<CustomState>
-								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-								<CustomState Name="" ID="{E360222A-4D02-4DCA-B3C7-CE85E68B58A5}" ShortID="613185542">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64" Value="-108"/>
-									</PropertyList>
-								</CustomState>
-							</CustomState>
-						</CustomStateList>
-					</StateInfo>
-					<ActiveSourceList>
-						<ActiveSource Name="Alarm_Track_Trial" ID="{26B3509F-64EB-4DC7-8F98-1081E737F8A8}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="Hidden_Track_Trial" ID="{DCA58697-E378-4DB7-BFD2-2C114C62DBF7}" ShortID="559946206">
@@ -307,7 +294,23 @@
 								</CustomState>
 							</CustomState>
 							<CustomState>
-								<StateRef Name="Alert" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+								<CustomState Name="" ID="{0C38B485-DA0F-400C-A66D-6CBA6D60DBBD}" ShortID="1038806801">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+								<CustomState Name="" ID="{66762734-9032-496E-A8E0-04812826C015}" ShortID="15508832">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
 								<CustomState Name="" ID="{42E42A23-056A-41B7-B899-747F6811E8BB}" ShortID="387250202">
 									<PropertyList>
 										<Property Name="Volume" Type="Real64" Value="-108"/>
@@ -4028,6 +4031,207 @@
 						</GroupingList>
 					</GroupingInfo>
 				</SwitchContainer>
+				<Sound Name="Alarm_High" ID="{974A1AFB-27C8-4D08-9C02-7A3521A828BC}" ShortID="1013330842">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Alarm_High" ID="{96B6073A-5390-494C-8993-BBA8B75F5C87}">
+							<Language>SFX</Language>
+							<AudioFile>Alarm_High.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="807658381"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+								<CustomState Name="" ID="{BBEF623F-36F7-4A31-B605-95BECDBE1DA6}" ShortID="887020405">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+								<CustomState Name="" ID="{7534A98F-3EBF-4D8A-B95E-5CEA9BF73D87}" ShortID="841925969"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+								<CustomState Name="" ID="{AC6BDDC1-D9B2-46F6-A1DB-8A8B76C58FBE}" ShortID="349927390">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<CustomState Name="" ID="{154C536C-10D8-4DD1-94E7-E56DADD6A675}" ShortID="746238609">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+								<CustomState Name="" ID="{B4B33D12-E41C-49B1-A4C9-9762B528CEA7}" ShortID="687297147">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
+					<ActiveSourceList>
+						<ActiveSource Name="Alarm_High" ID="{96B6073A-5390-494C-8993-BBA8B75F5C87}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Alarm_Low" ID="{246BCF4B-24D8-4367-B6B1-40629368F8F0}" ShortID="345075093">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Alarm_Low" ID="{8BB3EE91-6954-4150-905B-9295CC388EE7}">
+							<Language>SFX</Language>
+							<AudioFile>Alarm_Low.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="356683109"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+								<CustomState Name="" ID="{1A3793E1-8C19-41B6-A24E-13761D1EC2B1}" ShortID="78172314">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+								<CustomState Name="" ID="{EF28463E-4B24-468A-8507-21A80FF3F90B}" ShortID="264517568">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+								<CustomState Name="" ID="{ACCF7F4A-64BD-4CA6-9060-491B685FEF85}" ShortID="542457328"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<CustomState Name="" ID="{D8CA2D6A-1510-4A7C-A22E-842F2D919B00}" ShortID="292569808">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+								<CustomState Name="" ID="{2252762D-AA89-43EF-BC86-762946BE9020}" ShortID="113572953">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
+					<ActiveSourceList>
+						<ActiveSource Name="Alarm_Low" ID="{8BB3EE91-6954-4150-905B-9295CC388EE7}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="Alarm_Middle" ID="{D0FF3650-E86B-4E3B-94C0-B01F6605092E}" ShortID="672279817">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="Alarm_Middle" ID="{44D6961F-8B17-483C-BDB5-927F3B9BC35F}">
+							<Language>SFX</Language>
+							<AudioFile>Alarm_Middle.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="763308751"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+								<CustomState Name="" ID="{2BBF077E-CB54-4FF8-AB8C-08C3877A2F6B}" ShortID="988692629">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+								<CustomState Name="" ID="{72F1215C-6EE0-4762-923E-111AFFC0AE37}" ShortID="1011888440">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+								<CustomState Name="" ID="{70D53E5F-7459-4D79-ABB1-B4B444A883FE}" ShortID="128052908">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+								<CustomState Name="" ID="{87AB0DA4-85B7-47EB-8B1A-5675953FBE51}" ShortID="192964052"/>
+							</CustomState>
+							<CustomState>
+								<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+								<CustomState Name="" ID="{C32B00DC-80B1-42CA-84BF-604D6ACD984A}" ShortID="429503105">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="-108"/>
+									</PropertyList>
+								</CustomState>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
+					<ActiveSourceList>
+						<ActiveSource Name="Alarm_Middle" ID="{44D6961F-8B17-483C-BDB5-927F3B9BC35F}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

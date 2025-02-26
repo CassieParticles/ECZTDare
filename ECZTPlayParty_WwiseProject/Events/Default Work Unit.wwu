@@ -63,11 +63,25 @@
 						<Action Name="" ID="{B84D7409-A6FF-476B-85D6-EACA09FE0F43}" ShortID="731134994">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Alarm_Track_Trial" ID="{1F753D9E-60CD-4DE0-A197-10DE4242E128}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Alarm_High" ID="{974A1AFB-27C8-4D08-9C02-7A3521A828BC}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
 						<Action Name="" ID="{05508EF7-BB1A-41B4-A0A4-8CE39125AC17}" ShortID="655659162">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Alarm_Low" ID="{246BCF4B-24D8-4367-B6B1-40629368F8F0}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{946FA4CA-46D3-447D-BCBF-264D44058489}" ShortID="520454597">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Alarm_Middle" ID="{D0FF3650-E86B-4E3B-94C0-B01F6605092E}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{7D4B884C-B7D9-4C59-8FDB-D30261E5EB26}" ShortID="1003908092">
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Hidden_Track_Trial" ID="{DCA58697-E378-4DB7-BFD2-2C114C62DBF7}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>

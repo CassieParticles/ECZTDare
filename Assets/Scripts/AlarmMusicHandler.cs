@@ -39,17 +39,13 @@ public class AlarmMusicHandler : MonoBehaviour
 
     private void AlarmOn(Vector3 playerPosition)
     {
-        //Sets the "Music" State Group's active State to "Alert"
-        AkSoundEngine.SetState("Music", "Alert");
         setBit(ref currentStates, alarmOnBitMask);
-        currentStates |= alarmOnBitMask;
         checkMusic();
     }
 
     private void AlarmOff()
     {
         //Sets the "Music" State Group's active State to "Hidden"
-        AkSoundEngine.SetState("Music", "Hidden");
         resetBit(ref currentStates, alarmOnBitMask);
         checkMusic();
     }
