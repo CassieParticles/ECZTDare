@@ -76,14 +76,14 @@ MonoBehaviour:
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
   slideDeceleration: 1
-  velocityToSlide: 20
+  velocityToSlide: 12
   velocityEndSlide: 5
   boostMaxRunSpeedMultiplier: 1.5
   boostAcceleration: 25
   boostRecharge: 50
   boostDepletion: 10
   minimumBoostCharge: 5
-  jumpStrength: 13.5
+  jumpStrength: 16
   minJumpTime: 0.02
   gravityMult: 3
   fastFallActivationSpeed: 5
@@ -91,8 +91,8 @@ MonoBehaviour:
   maxFallSpeed: 27.9
   fallSlowsRunMult: 0.55
   wallClingSpeed: 0
-  walljumpRayGap: 0.5
-  horizontalWalljumpStrength: 25
+  walljumpRayGap: 0.8
+  horizontalWalljumpStrength: 22
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
   boostCharge: 0
