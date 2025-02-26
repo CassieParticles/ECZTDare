@@ -81,13 +81,32 @@ public class AlarmMusicHandler : MonoBehaviour
         }
         
         if(!readBit(currentStates,alarmOnBitMask) && !readBit(currentStates, chasedBitMask))
-        { Debug.Log("00"); }     //Alarm off, not chased
+        {
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "Hidden");
+            Debug.Log("00");
+        }     //Alarm off, not chased
+
         if(!readBit(currentStates,alarmOnBitMask) && readBit(currentStates, chasedBitMask))
-        {Debug.Log("01"); }     //Alarm off, chased
+        {
+            //Sets the "Music" State Group's active State to "Alarm_Middle"
+            AkSoundEngine.SetState("Music", "Alarm_Middle");
+            Debug.Log("01");
+        }     //Alarm off, chased
+
         if (readBit(currentStates, alarmOnBitMask) && !readBit(currentStates, chasedBitMask))
-        {Debug.Log("10"); }     //Alarm on, not chased
+        {
+            //Sets the "Music" State Group's active State to "Alarm_Low"
+            AkSoundEngine.SetState("Music", "Alarm_Low");
+            Debug.Log("10");
+        }     //Alarm on, not chased
+
         if(readBit(currentStates, alarmOnBitMask) && readBit(currentStates, chasedBitMask))
-        {Debug.Log("11"); }     //Alarm on, chased
+        {
+            //Sets the "Music" State Group's active State to "Alarm_High"
+            AkSoundEngine.SetState("Music", "Alarm_High");
+            Debug.Log("11");
+        }     //Alarm on, chased
 
         prevStates = currentStates;
     }
