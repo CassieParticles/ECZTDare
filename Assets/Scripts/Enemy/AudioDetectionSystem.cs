@@ -8,6 +8,8 @@ public class AudioDetectionSystem : MonoBehaviour
 
     private Dictionary<GameObject, HearNoise> listeners;
 
+    [SerializeField] private GameObject SoundVisualizeCirclePrefab;
+
     public static AudioDetectionSystem getAudioSystem()
     {
         return GameObject.Find("AudioDetectionHandler").GetComponent<AudioDetectionSystem>();
@@ -20,6 +22,11 @@ public class AudioDetectionSystem : MonoBehaviour
 
     public void PlaySound(Vector3 noiseLocation, float noiseRadius, float suspicionIncrease)
     {
+        GameObject soundCircle = Instantiate(SoundVisualizeCirclePrefab);
+        soundCircle.transform.position = noiseLocation;
+        soundCircle.GetComponent<CreateCircle>().Setup(0.5f);
+
+
         foreach (KeyValuePair<GameObject, HearNoise> listener in listeners)
         {
             //If gameObject is within range to hear noise
