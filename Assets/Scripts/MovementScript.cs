@@ -343,6 +343,11 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             collider.size = colliderSize;
             effectiveDeceleration = deceleration;
         }
+        if (sliding)
+        {
+            //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
+            AkSoundEngine.SetRTPCValue("horizontalVelocity", horizontalVelocity);
+        }
 
         
         //Handle Boosting

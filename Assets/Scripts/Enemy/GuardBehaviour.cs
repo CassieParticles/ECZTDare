@@ -301,6 +301,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
     {
         PointOfInterest = noiseLocation;
+        suspicion += suspicionIncrease;
+        if(suspicion > 100)
+        {
+            suspicion = 99;
+        }
         guardBehaviour.MoveToState(GuardStates.HearNoise);
     }
 

@@ -86,7 +86,7 @@ public class VisionCone : MonoBehaviour
             float pointDistance = GetDistance(lineAngle);
             Vector3 vertex = new Vector3(Mathf.Cos(lineAngle) * pointDistance, Mathf.Sin(lineAngle) * pointDistance);
             newVertices[i+1] = vertex;
-            newUVs[i + 1] = new Vector2(1, 0);
+            newUVs[i + 1] = new Vector2(pointDistance / distance, 0);
             colliderVertices[i + 1] = vertex;
 
 
@@ -130,6 +130,7 @@ public class VisionCone : MonoBehaviour
         coneMaterial = GetComponent<MeshRenderer>().material;
         coneMaterial.mainTexture = new Texture2D(128, 1);
         coneTexture = (Texture2D)coneMaterial.mainTexture;
+        coneTexture.filterMode = FilterMode.Point;
         SetColour(Color.white);
 
         GenerateConeMesh();
