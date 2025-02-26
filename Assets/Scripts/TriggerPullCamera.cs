@@ -12,9 +12,9 @@ public class TriggerPullCamera : MonoBehaviour
     GameObject player;
 
     [SerializeField] CinemachineBlendDefinition.Style blendType = CinemachineBlendDefinition.Style.HardOut;
-    [SerializeField] float blendDuration = 1;
-    [SerializeField][Range(0, 20f)] float playerBias = 1; //If the camera points more towards the player or the point of interest. 0 is point of interest 20 is player
-    
+    [SerializeField][Range(0.1f, 5f)] float blendDuration = 1;
+    [SerializeField][Range(0f, 20f)] float playerBias = 1; //If the camera points more towards the player or the point of interest. 0 is point of interest 20 is player
+    [SerializeField][Range(5f, 20f)] float zoom = 8.44f;
 
     
 
@@ -41,7 +41,7 @@ public class TriggerPullCamera : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-
         targetGroup.m_Targets[0].weight = playerBias;
+        virtualCamera.m_Lens.OrthographicSize = zoom;
     }
 }
