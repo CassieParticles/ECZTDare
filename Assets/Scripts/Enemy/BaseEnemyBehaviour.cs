@@ -6,6 +6,7 @@ using UnityEngine;
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
+    public AK.Wwise.Event enemyAlerted;
 
     public enum SuspicionState
     {
@@ -41,6 +42,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public float suspicion;
     public float minimumSuspicion;
     [NonSerialized] public SuspicionState suspicionState;
+
+    private bool playedSound = false;
 
     public VisionCone visionCone{ get; protected set; }
 
@@ -87,21 +90,30 @@ public class BaseEnemyBehaviour : MonoBehaviour
         {
             suspicionState = SuspicionState.Idle;
             visionCone.SetColour(Color.white);
+            playedSound = false;
         }
         else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
         {
             suspicionState = SuspicionState.Suspect;
             visionCone.SetColour(Color.yellow);
+            playedSound = false;
         }
         else if (suspicion < SuspicionLevel[3])  //Below chase threshold
         {
             suspicionState = SuspicionState.HighAlert;
             visionCone.SetColour(new Color(1, 0.5f, 0));
+            playedSound = false;
         }
         else
         {
             suspicionState = SuspicionState.Chase;
             visionCone.SetColour(new Color(1, 0, 0));
+            if(!playedSound)
+            {
+                playedSound = true;
+                //Play sound
+                enemyAlerted.Post(this.gameObject);
+            }
         }
 
 

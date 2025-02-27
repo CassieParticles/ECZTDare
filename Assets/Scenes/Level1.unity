@@ -47722,6 +47722,14 @@ PrefabInstance:
       propertyPath: pauseDuration
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7281229318866875785, guid: d0db2894a039fc94ebfd3511946e351b, type: 3}
+      propertyPath: cameraStop.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281229318866875785, guid: d0db2894a039fc94ebfd3511946e351b, type: 3}
+      propertyPath: cameraMoving.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -112290,7 +112298,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2143170207
