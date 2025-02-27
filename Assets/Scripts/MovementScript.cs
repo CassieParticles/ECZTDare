@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 using static PlayerMovement;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
@@ -47,7 +48,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [SerializeField] private float acceleration = 20; //Speeding up when running
     [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
-    
+
+    [SerializeField][Range(0f, 1f)] private float snapToLedgeTopRayHeight = 0.22f; //Height of the ray that needs to be not hitting something to snap to a ledge
+    [SerializeField][Range(0f, 1f)] private float snapToLedgeBottomRayHeight = 0.05f; //Height of the ray that needs to be hitting something to snap to a ledge
+
     [SerializeField] private float slideDeceleration = 1; //Slowing down sliding
     [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
     [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
@@ -85,12 +89,19 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public float boostCharge; //The current boosting charge the player has
 
     //All raycasts that get used
+    //Grounded checks
     Vector2 rightGroundRayStart;
     Vector2 leftGroundRayStart;
+    //OnWall checks
     Vector2 topRightWallRayStart;
     Vector2 bottomRightWallRayStart;
     Vector2 topLeftWallRayStart;
     Vector2 bottomLeftWallRayStart;
+    //Snap to ledges checks
+    Vector2 topRightSnapRayStart;
+    Vector2 bottomRightSnapRayStart;
+    Vector2 topLeftSnapRayStart;
+    Vector2 bottomLeftSnapRayStart;
 
     //All inputs that are used
     PlayerMovement controls;
@@ -114,6 +125,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     Vector2 colliderSize;
 
     AlarmSystem alarm;
+
+    private float distanceSnap = 0.2f;
+    private float predictionSnap = 1.15f;
+    private float offsetSnap = 0.04f;
 
     private void Awake() {
         layers = new LayerMask();
@@ -193,6 +208,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
         doRayCasts();
 
+        //If the player is grounded
         if (Physics2D.Raycast(rightGroundRayStart, Vector2.down, 0.1f, layers) ||
             Physics2D.Raycast(leftGroundRayStart, Vector2.down, 0.1f, layers)) {
             if (!grounded && landingCooldown <= 0) {
@@ -207,6 +223,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             grounded = false;
         }
 
+        //Grounds the player if they start sliding
         if (slideGroundedTimer > 0) {
             slideGroundedTimer -= Time.deltaTime;
             grounded = true;
@@ -214,7 +231,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
         animator.SetBool("Grounded", grounded);
 
-
+        //If the player is on a wall
         if (!grounded) 
         {   
             if (Physics2D.Raycast(topRightWallRayStart, Vector2.right, 0.1f, layers) || 
@@ -242,7 +259,19 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         }
         //animator set bool onWall
 
-
+        //If the player can snap to a ledge
+        if (Mathf.Abs(rb.velocityX) >= 0.099 || runInput != 0) {
+            RaycastHit2D topRightSnap = Physics2D.Raycast(topRightSnapRayStart, Vector2.right, rb.velocityX * Time.fixedDeltaTime * pred + stf, layers);
+            RaycastHit2D bottomRightSnap = Physics2D.Raycast(bottomRightSnapRayStart, Vector2.right, rb.velocityX * Time.fixedDeltaTime * pred + stf, layers);
+            RaycastHit2D topLeftSnap = Physics2D.Raycast(topLeftSnapRayStart, Vector2.left, rb.velocityX * Time.fixedDeltaTime * pred + stf, layers);
+            RaycastHit2D bottomLeftSnap = Physics2D.Raycast(bottomLeftSnapRayStart, Vector2.left, rb.velocityX * Time.fixedDeltaTime * pred + stf, layers);
+            //Check if top ray isnt hitting anything and bottom ray is
+            if ((!topRightSnap && bottomRightSnap) || (!topLeftSnap && bottomLeftSnap)) {
+                //dif ((bottomRightSnap && bottomRightSnap.distance < ) || (bottomLeftSnap && bottomLeftSnap.distance > rb.velocityX * Time.fixedDeltaTime * pred))
+                rb.position += new Vector2(dist * runInput, snapToLedgeTopRayHeight * collider.size.y);
+                
+            }
+        }
     }
 
     void doRayCasts() {
@@ -261,6 +290,16 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
                                                                          collider.size.y * walljumpRayGap / 2f);
         bottomLeftWallRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
                                                                             -collider.size.y * walljumpRayGap / 2f);
+
+        //Rays for snapping up ledges
+        topRightSnapRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
+                                                                          collider.size.y * snapToLedgeTopRayHeight - collider.size.y / 2f);
+        bottomRightSnapRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
+                                                                             collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
+        topLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
+                                                                         collider.size.y * snapToLedgeTopRayHeight - collider.size.y / 2f);
+        bottomLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
+                                                                            collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
     }
     void JumpAndFall() {
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
@@ -449,6 +488,11 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         Gizmos.DrawLine(topLeftWallRayStart, topLeftWallRayStart + new Vector2(-0.1f, 0));
         Gizmos.DrawLine(bottomRightWallRayStart, bottomRightWallRayStart + new Vector2(0.1f, 0));
         Gizmos.DrawLine(topRightWallRayStart, topRightWallRayStart + new Vector2(0.1f, 0));
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(topLeftSnapRayStart, topLeftSnapRayStart + new Vector2(-rb.velocityX * Time.fixedDeltaTime * pred, 0));
+        Gizmos.DrawLine(bottomLeftSnapRayStart, bottomLeftSnapRayStart + new Vector2(-rb.velocityX * Time.fixedDeltaTime * pred, 0));
+        Gizmos.DrawLine(topRightSnapRayStart, topRightSnapRayStart + new Vector2(rb.velocityX * Time.fixedDeltaTime * pred, 0));
+        Gizmos.DrawLine(bottomRightSnapRayStart, bottomRightSnapRayStart + new Vector2(rb.velocityX * Time.fixedDeltaTime * pred, 0));
     }
 
     public void OnRunning(InputAction.CallbackContext context) {
