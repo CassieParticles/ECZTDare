@@ -4482,7 +4482,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.44
+  orthographic size: 9.642858
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -129616,6 +129616,8 @@ MonoBehaviour:
   acceleration: 20
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
+  snapToLedgeTopRayHeight: 0.25
+  snapToLedgeBottomRayHeight: 0.05
   slideDeceleration: 1
   velocityToSlide: 12
   velocityEndSlide: 5
@@ -129637,6 +129639,7 @@ MonoBehaviour:
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
   boostCharge: 0
+  stf: 0.05
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4

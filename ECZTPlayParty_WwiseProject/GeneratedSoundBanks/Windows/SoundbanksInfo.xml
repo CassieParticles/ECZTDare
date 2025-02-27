@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{ED0691BA-F404-81C8-4D74-00F0E74F1003}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{165EDDEC-1CD0-7C4A-3EEA-3E50B39C7CD2}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -125,7 +125,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{411A50E8-EAD2-DD47-BED8-BE1B48C86FF1}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DC4E33A0-2A89-110C-7E88-CCEFA52F68D7}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -183,7 +183,7 @@
 				</File>
 				<File Id="84978133" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_3.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_3_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_3_C2CFDE6B.wem</CachePath>
 				</File>
 				<File Id="105685707" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_2.wav</ShortName>
@@ -215,7 +215,7 @@
 				</File>
 				<File Id="203080600" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_2.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_2_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_2_4EF980A2.wem</CachePath>
 				</File>
 				<File Id="219646802" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Landing_2.wav</ShortName>
@@ -235,7 +235,7 @@
 				</File>
 				<File Id="257673996" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_7.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_7_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_7_B8493857.wem</CachePath>
 				</File>
 				<File Id="259298035" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_1.wav</ShortName>
@@ -307,11 +307,11 @@
 				</File>
 				<File Id="432090891" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_1.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_1_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_1_D45F1CAB.wem</CachePath>
 				</File>
 				<File Id="436902938" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_8.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_8_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_8_7BFC1700.wem</CachePath>
 				</File>
 				<File Id="450159016" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_5.wav</ShortName>
@@ -339,7 +339,7 @@
 				</File>
 				<File Id="559730813" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_5.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_5_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_5_22DA7794.wem</CachePath>
 				</File>
 				<File Id="572495188" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Jump_3.wav</ShortName>
@@ -459,7 +459,7 @@
 				</File>
 				<File Id="807950240" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_6.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_6_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_6_492DF403.wem</CachePath>
 				</File>
 				<File Id="818389537" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_R_Footstep_4.wav</ShortName>
@@ -479,7 +479,7 @@
 				</File>
 				<File Id="857966639" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_4.wav</ShortName>
-					<CachePath>SFX/G_C_Footstep_4_818F3B66.wem</CachePath>
+					<CachePath>SFX/G_C_Footstep_4_75B6681A.wem</CachePath>
 				</File>
 				<File Id="873232323" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Jump_2.wav</ShortName>
@@ -646,7 +646,7 @@
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.2471285" DurationMax="0.28883818">
+				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.02681274" DurationMax="0.28883818">
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -1030,5 +1030,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{BC71C701-BF2A-B24C-0DD8-03F7374EEE65}</FileHash>
+	<FileHash>{7A21E2DF-3372-1E29-8EA7-8E62C1295F93}</FileHash>
 </SoundBanksInfo>
