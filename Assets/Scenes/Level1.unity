@@ -3602,7 +3602,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363084987}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -4482,7 +4482,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 9.642858
+  orthographic size: 8.44
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26630,12 +26630,6 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 319
     m_Data: {fileID: 21300000, guid: 1a44e839f52b6804c9f39091dd4657af, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 357
     m_Data:
@@ -27221,14 +27215,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987289178}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -29118,7 +29112,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128011907}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -35198,7 +35192,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1632580328}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -129638,8 +129632,13 @@ MonoBehaviour:
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
+  boostFootStepSoundRange: 10
+  boostFootStepSoundSuspicionIncrease: 15
+  boostJumpSoundRange: 25
+  boostJumpSoundSuspicionIncrease: 35
+  boostSlideSoundRange: 15
+  boostSlideSoundSuspicionIncrease: 20
   boostCharge: 0
-  stf: 0.05
 --- !u!50 &2143170204
 Rigidbody2D:
   serializedVersion: 4
