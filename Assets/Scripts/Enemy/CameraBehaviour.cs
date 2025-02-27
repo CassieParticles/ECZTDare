@@ -8,7 +8,6 @@ public class CameraBehaviour : BaseEnemyBehaviour
 {
     public AK.Wwise.Event cameraMoving;
     public AK.Wwise.Event cameraStop;
-    public AK.Wwise.Event enemyAlerted;
 
     [SerializeField, Range(0,180)] private float maxAngle;
     [SerializeField, Range(0, 60)] private float turnSpeed = 30;
@@ -103,7 +102,6 @@ public class CameraBehaviour : BaseEnemyBehaviour
                 //Raise alarm
                 if (alarm && !alarm.AlarmGoingOff())
                 {
-                    enemyAlerted.Post(gameObject);
                     alarm.StartAlarm(Player.transform.position);
                 }
             }
