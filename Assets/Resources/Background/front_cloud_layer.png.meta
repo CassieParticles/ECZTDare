@@ -1,0 +1,414 @@
+fileFormatVersion: 2
+guid: 3e9047f78b373d048929b87fcdee2688
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8085854253356081986
+    second: front_cloud_layer_0
+  - first:
+      213: -4869269042181869952
+    second: front_cloud_layer_1
+  - first:
+      213: -9117805763274287344
+    second: front_cloud_layer_2
+  - first:
+      213: -3418283405548971440
+    second: front_cloud_layer_3
+  - first:
+      213: -109553917839674241
+    second: front_cloud_layer_4
+  - first:
+      213: -4588336468512961455
+    second: front_cloud_layer_5
+  - first:
+      213: -5655873411262296252
+    second: front_cloud_layer_6
+  - first:
+      213: 5911747655171923979
+    second: front_cloud_layer_7
+  - first:
+      213: 5154514610479015482
+    second: front_cloud_layer_8
+  - first:
+      213: -2954554612462298291
+    second: front_cloud_layer_9
+  - first:
+      213: 7770687547831695601
+    second: front_cloud_layer_10
+  - first:
+      213: -1374513307350870385
+    second: front_cloud_layer_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: front_cloud_layer_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 464
+        width: 1161
+        height: 457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebc1123b56649cf80800000000000000
+      internalID: -8085854253356081986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_1
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 693
+        width: 616
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e61f8ca91ec6cb0800000000000000
+      internalID: -4869269042181869952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_2
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 779
+        width: 379
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017d60d67fb077180800000000000000
+      internalID: -9117805763274287344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_3
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 694
+        width: 348
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05a14ae7a51df80d0800000000000000
+      internalID: -3418283405548971440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_4
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 525
+        width: 762
+        height: 464
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f74f96bca49ca7ef0800000000000000
+      internalID: -109553917839674241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 441
+        width: 136
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15c805cba44f250c0800000000000000
+      internalID: -4588336468512961455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_6
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 394
+        width: 360
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f422b391d4281b0800000000000000
+      internalID: -5655873411262296252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_7
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 464
+        width: 182
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b00654cab2fba0250800000000000000
+      internalID: 5911747655171923979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_8
+      rect:
+        serializedVersion: 2
+        x: 1326
+        y: 152
+        width: 594
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a36a92b7ab3888740800000000000000
+      internalID: 5154514610479015482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216
+        width: 599
+        height: 226
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b51bedb305ff6d0800000000000000
+      internalID: -2954554612462298291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_10
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 442
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f83f05672707db60800000000000000
+      internalID: 7770687547831695601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: front_cloud_layer_11
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 273
+        width: 758
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86dd40fd6fbcece0800000000000000
+      internalID: -1374513307350870385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      front_cloud_layer_0: -8085854253356081986
+      front_cloud_layer_1: -4869269042181869952
+      front_cloud_layer_10: 7770687547831695601
+      front_cloud_layer_11: -1374513307350870385
+      front_cloud_layer_2: -9117805763274287344
+      front_cloud_layer_3: -3418283405548971440
+      front_cloud_layer_4: -109553917839674241
+      front_cloud_layer_5: -4588336468512961455
+      front_cloud_layer_6: -5655873411262296252
+      front_cloud_layer_7: 5911747655171923979
+      front_cloud_layer_8: 5154514610479015482
+      front_cloud_layer_9: -2954554612462298291
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
