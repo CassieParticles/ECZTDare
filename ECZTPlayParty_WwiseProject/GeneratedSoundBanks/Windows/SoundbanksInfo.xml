@@ -125,7 +125,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{64AD22F1-54C4-AB9E-7855-7E314DB6F092}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{37F1ED0D-7AEC-3BD5-072B-3A5C6BC7613B}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -156,10 +156,6 @@
 				<File Id="36402879" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_3.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_3_818F3B66.wem</CachePath>
-				</File>
-				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Hidden_Track_Trial.wav</ShortName>
-					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="44104286" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_4.wav</ShortName>
@@ -284,10 +280,6 @@
 				<File Id="350571898" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_4.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_4_818F3B66.wem</CachePath>
-				</File>
-				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Alarm_Low.wav</ShortName>
-					<CachePath>SFX/Alarm_Low_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="365276779" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_8.wav</ShortName>
@@ -433,10 +425,6 @@
 					<ShortName>P_C_Jump_4.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
 				</File>
-				<File Id="763308751" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Alarm_Middle.wav</ShortName>
-					<CachePath>SFX/Alarm_Middle_FBC78EF0.wem</CachePath>
-				</File>
 				<File Id="767938678" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Landing_3.wav</ShortName>
 					<CachePath>SFX/P_C_Landing_3_818F3B66.wem</CachePath>
@@ -468,10 +456,6 @@
 				<File Id="803380777" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_6.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_6_818F3B66.wem</CachePath>
-				</File>
-				<File Id="807658381" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Alarm_High.wav</ShortName>
-					<CachePath>SFX/Alarm_High_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="807950240" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_C_Footstep_6.wav</ShortName>
@@ -727,14 +711,6 @@
 				<Event Id="2249657186" Name="In_View_Cone" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="118186165"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="3991942870" Name="Music" DurationType="Infinite">
-					<MediaRefs>
-						<MediaRef Id="40011298"/>
-						<MediaRef Id="356683109"/>
-						<MediaRef Id="763308751"/>
-						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
@@ -1021,6 +997,38 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{7532D31F-1189-D812-750A-665C238E354F}">
+			<ShortName>Music</ShortName>
+			<Path>Music.bnk</Path>
+			<Media>
+				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Hidden_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_Low.wav</ShortName>
+					<CachePath>SFX/Alarm_Low_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="763308751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_Middle.wav</ShortName>
+					<CachePath>SFX/Alarm_Middle_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="807658381" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Alarm_High.wav</ShortName>
+					<CachePath>SFX/Alarm_High_FBC78EF0.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="3991942870" Name="Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="40011298"/>
+						<MediaRef Id="356683109"/>
+						<MediaRef Id="763308751"/>
+						<MediaRef Id="807658381"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C8BC2E99-AB1C-FFE2-9295-EEE92405211D}</FileHash>
+	<FileHash>{5A1D92D0-E2AB-2A80-3CA9-5666573659C5}</FileHash>
 </SoundBanksInfo>
