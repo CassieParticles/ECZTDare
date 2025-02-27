@@ -125,6 +125,13 @@ MonoBehaviour:
   suspicion: 0
   minimumSuspicion: 0
   patrolRoute: {fileID: 0}
+  investigateAlarmLoc: 0
+  footstepRate: 1
+  footstepRateScaler: 1
+  guardFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 78dc46f3fa092684c892a1d580ac65a6, type: 2}
   PointOfInterest: {x: 0, y: 0, z: 0}
 --- !u!212 &8843118248058542516
 SpriteRenderer:
