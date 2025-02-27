@@ -173,6 +173,9 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Set up variables for animation and audio
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
         animator.SetFloat("yVelocity", rb.velocityY);
+        animator.SetBool("Grounded", grounded);
+        animator.SetBool("OnWall", onWall);
+        animator.SetBool("Sliding", sliding);
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
@@ -229,7 +232,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             grounded = true;
         }
 
-        animator.SetBool("Grounded", grounded);
+        
 
         //If the player is on a wall
         if (!grounded) 
@@ -257,7 +260,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
                 onWall = false;
             }
         }
-        //animator set bool onWall
+
 
         //If the player can snap to a ledge
         if (Mathf.Abs(rb.velocityX) >= 0.099 || runInput != 0) {
@@ -387,6 +390,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
             AkSoundEngine.SetRTPCValue("horizontalVelocity", horizontalVelocity);
         }
+        
 
         
         //Handle Boosting
