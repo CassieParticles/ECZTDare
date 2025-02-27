@@ -3345,7 +3345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
-      value: 6
+      value: 8.44
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
@@ -3968,6 +3968,10 @@ PrefabInstance:
       value: Camera Pull Zone (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+      propertyPath: zoom
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
       value: 1
       objectReference: {fileID: 0}
@@ -4322,7 +4326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
-      value: 5
+      value: 8.44
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
@@ -30003,7 +30007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
@@ -33239,6 +33243,10 @@ PrefabInstance:
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
       value: 7.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+      propertyPath: playerBias
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: blendDuration
