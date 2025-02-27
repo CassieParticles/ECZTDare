@@ -304,6 +304,7 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ModifierList>
 										<ModifierInfo>
@@ -1228,6 +1229,7 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ModifierList>
 										<ModifierInfo>
@@ -1790,6 +1792,7 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ModifierList>
 										<ModifierInfo>
@@ -2255,6 +2258,7 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ModifierList>
 										<ModifierInfo>
@@ -3155,6 +3159,16 @@
 						<SwitchContainer Name="Guard_Footsteps" ID="{B167FB39-A330-453A-94BB-1B89D95024F0}" ShortID="713516004">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>13</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MakeUpGain" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ModifierList>
 										<ModifierInfo>
@@ -3215,11 +3229,6 @@
 							<ChildrenList>
 								<RandomSequenceContainer Name="G_C_Footsteps" ID="{745D9652-EDFC-4CA8-B84F-A475706C79AF}" ShortID="591545714">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16">
-											<ValueList>
-												<Value>22</Value>
-											</ValueList>
-										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>-220</Value>
@@ -3257,6 +3266,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_1" ID="{5235F7C0-CE8D-4FBF-A78C-E9AC1768AE3B}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0827879581151832"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_1.wav</AudioFile>
 													<MediaIDList>
@@ -3279,6 +3292,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_2" ID="{2A2DEC1B-0B38-46A4-9971-BA26C9DC92F5}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0919502617801047"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_2.wav</AudioFile>
 													<MediaIDList>
@@ -3301,6 +3318,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_3" ID="{EC9EADAF-C926-4C4C-8E93-E8E7BA607473}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.12303664921466"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_3.wav</AudioFile>
 													<MediaIDList>
@@ -3323,6 +3345,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_4" ID="{3D4A41A8-0725-459B-9F68-7AD1690F3805}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0539921465968586"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_4.wav</AudioFile>
 													<MediaIDList>
@@ -3335,6 +3361,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="G_C_Footstep_5" ID="{DE8324F4-13F4-4903-A85B-22F9D3A60984}" ShortID="529448932">
+											<PropertyList>
+												<Property Name="Highpass" Type="int16">
+													<ValueList>
+														<Value>37</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -3345,6 +3378,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_5" ID="{8A81B05F-0030-406C-BE32-2CB30F4DD605}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0395942408376964"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_5.wav</AudioFile>
 													<MediaIDList>
@@ -3367,6 +3404,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_6" ID="{9FA654EE-506A-4823-88F3-1C36364CE3B9}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.043848167539267"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_6.wav</AudioFile>
 													<MediaIDList>
@@ -3389,6 +3431,12 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_7" ID="{A917153D-F334-460E-9DBA-C10F717F3E05}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.000327225130890053"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.00589005235602094"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0297774869109948"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_7.wav</AudioFile>
 													<MediaIDList>
@@ -3411,6 +3459,11 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="G_C_Footstep_8" ID="{503606D7-10ED-4301-B911-DF665012A172}">
+													<PropertyList>
+														<Property Name="LoopBegin" Type="Real64" Value="0"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.0909685863874346"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>G_C_Footstep_8.wav</AudioFile>
 													<MediaIDList>
@@ -4083,6 +4136,11 @@
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -4129,7 +4187,7 @@
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-2</Value>
+										<Value>2</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>

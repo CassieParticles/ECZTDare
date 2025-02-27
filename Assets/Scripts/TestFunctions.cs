@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MakeNoiseTest : MonoBehaviour
+public class TestFunctions : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,9 +14,9 @@ public class MakeNoiseTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.P))
         {
-            AudioDetectionSystem.getAudioSystem().PlaySound(Vector3.zero, 5, 20);
+            SceneManager.LoadScene("Level1");
         }
     }
 }
