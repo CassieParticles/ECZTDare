@@ -36510,6 +36510,7 @@ GameObject:
   - component: {fileID: 43637219}
   - component: {fileID: 43637218}
   - component: {fileID: 43637217}
+  - component: {fileID: 43637220}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -36582,6 +36583,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 177950855}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &43637220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43637211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b3028fc7e7cd44f84019233260f551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d01b2b7319d220247bad6b280d6d10e6, type: 2}
+  decodeBank: 0
+  overrideLoadSetting: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1001 &48042969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104420,20 +104446,20 @@ MonoBehaviour:
   playerSlide:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 1fc63ee9caf886b4196f3fe6c9ae69f9, type: 2}
   boostStart:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: b9956338225f2e948bdc9767ff29c4dd, type: 2}
   boostRush:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: f4d998cbbc8c61e42bc8ed3c337ad00b, type: 2}
   boostStop:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
-  footstepRate: 0.3
+    WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
+  footstepRate: 0.2
   footstepRateScaler: 1
   maxRunSpeed: 25
   acceleration: 20
