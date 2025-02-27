@@ -8079,7 +8079,7 @@ GameObject:
   - component: {fileID: 852487657}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Metal
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22708,7 +22708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bc756d74ff58fa448341762917a9efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyMaterialType: 3
+  enemyMaterialType: 1
 --- !u!114 &852487660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22721,7 +22721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef8d9ceffbfb5c43a4a0109c22ce7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialType: 3
+  materialType: 1
 --- !u!1001 &867235241
 PrefabInstance:
   m_ObjectHideFlags: 0
