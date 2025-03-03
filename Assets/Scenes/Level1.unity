@@ -3369,7 +3369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (7)
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
@@ -3446,7 +3446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (4)
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3539,6 +3539,11 @@ Transform:
   - {fileID: 1219876054}
   m_Father: {fileID: 1880880750}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &356233239 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+  m_PrefabInstance: {fileID: 945769877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &363084987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4021,7 +4026,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (3)
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -4308,7 +4313,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -4386,7 +4391,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (5)
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
@@ -4786,7 +4791,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (10)
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
@@ -4961,7 +4966,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (9)
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -7649,7 +7654,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1969419780}
     m_Modifications:
     - target: {fileID: 2553540956978271447, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_TrackedObjectOffset.y
@@ -7657,7 +7662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (1)
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7665,11 +7670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 300.83
+      value: 195.24998
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.1239624
+      value: 3.6360378
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7681,15 +7686,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26935,19 +26940,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1969419780}
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 285.49817
+      value: 179.91817
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.404688
+      value: 5.3553123
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.z
@@ -26959,15 +26964,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -29704,7 +29709,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (11)
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followX
@@ -30244,7 +30249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (12)
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -30337,7 +30342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (6)
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -30855,7 +30860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (13)
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4541344623902819050, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Lens.OrthographicSize
@@ -128053,7 +128058,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: Camera Pull Zone (8)
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: followY
@@ -129438,7 +129443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571580492050006457, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Name
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
@@ -129674,6 +129679,8 @@ Transform:
   - {fileID: 1623067013}
   - {fileID: 1841583056}
   - {fileID: 713924829}
+  - {fileID: 356233239}
+  - {fileID: 2064302789}
   - {fileID: 181633289}
   - {fileID: 1667160392}
   - {fileID: 391109833}
@@ -129684,8 +129691,8 @@ Transform:
   - {fileID: 144242785}
   - {fileID: 650564765}
   - {fileID: 2027251825}
-  - {fileID: 1620907970}
   - {fileID: 1711491057}
+  - {fileID: 1620907970}
   - {fileID: 495881493}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129942,6 +129949,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
   m_PrefabInstance: {fileID: 538905096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2064302789 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6340646405997983207, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+  m_PrefabInstance: {fileID: 730703469}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2096610749
 PrefabInstance:
@@ -130290,5 +130302,3 @@ SceneRoots:
   - {fileID: 440556210}
   - {fileID: 177950855}
   - {fileID: 1697261140}
-  - {fileID: 945769877}
-  - {fileID: 730703469}
