@@ -292,6 +292,7 @@ public class RaiseAlarmState : BaseState
 
 public class GuardBehaviour : BaseEnemyBehaviour
 {
+    AlarmMusicHandler musicHandler;
     [SerializeField] private PatrolRoute patrolRoute;
     [SerializeField] private bool investigateAlarmLoc = false;
 
@@ -365,6 +366,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         if(suspicionState == SuspicionState.Chase)
         {
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "NoMusic");
+            musicHandler.music.Stop(gameObject);
             SceneManager.LoadScene("LoseScene");
         }
     }
@@ -391,6 +395,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void Start()
     {
+        musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
         if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
         
         guardBehaviour.Start(GuardStates.Patrol);
