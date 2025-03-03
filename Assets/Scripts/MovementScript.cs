@@ -350,7 +350,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         } else { //If you are sliding down a wall
             wallClingVelocity += wallClingSpeed * 0.01f;
             rb.velocityY += wallClingVelocity * (fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime;
-            facingRight = !onRightWall;
+            //facingRight = !onRightWall;
         }
     }
     IEnumerator MinJumpDuration() {
