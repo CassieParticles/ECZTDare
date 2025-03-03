@@ -30230,9 +30230,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1969419780}
     m_Modifications:
+    - target: {fileID: 1799234929734148051, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2553540956978271447, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_TrackedObjectOffset.x
-      value: 4.56
+      value: 20.06
       objectReference: {fileID: 0}
     - target: {fileID: 2553540956978271447, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_TrackedObjectOffset.y
@@ -30248,11 +30252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5599976
+      value: 20.059998
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.8
+      value: -11.799999
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
@@ -30308,7 +30312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940773588779840157, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_Size.x
-      value: 25
+      value: 27.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 8940773588779840157, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
