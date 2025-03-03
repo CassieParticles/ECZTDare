@@ -7380,6 +7380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7281229318866875785, guid: d0db2894a039fc94ebfd3511946e351b, type: 3}
+      propertyPath: inViewCone.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: b0f689b3a04b4234a844aadb615a2f80, type: 2}
+    - target: {fileID: 7281229318866875785, guid: d0db2894a039fc94ebfd3511946e351b, type: 3}
       propertyPath: cameraMoving.WwiseObjectReference
       value: 
       objectReference: {fileID: 0}
@@ -130179,7 +130183,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2143170207
