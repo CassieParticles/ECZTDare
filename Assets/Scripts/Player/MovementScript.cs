@@ -110,13 +110,14 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     InputAction slideAction;
     InputAction boostAction;
 
-    int runInput;
-    bool jumpInput;
-    bool hasJumped; //If the player has jumped while holding the jump key
-    bool slideInput;
-    bool hasSlid; //If the player has slid while holding the slide key
-    bool boostInput;
-    bool hasBoosted; //If the player has boosted while holding the boost key
+
+    [NonSerialized] public int runInput;
+    [NonSerialized] public bool jumpInput;
+    [NonSerialized] public bool hasJumped; //If the player has jumped while holding the jump key
+    [NonSerialized] public bool slideInput;
+    [NonSerialized] public bool hasSlid; //If the player has slid while holding the slide key
+    [NonSerialized] public bool boostInput;
+    [NonSerialized] public bool hasBoosted; //If the player has boosted while holding the boost key
 
     float horizontalVelocity;
 
@@ -125,6 +126,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     Vector2 colliderSize;
 
     AlarmSystem alarm;
+
+    Boost boostScript;
 
     private float distanceSnap = 0.2f;
     private float predictionSnap = 1.15f;
@@ -140,6 +143,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         animator = GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+
+        boostScript = new Boost();
 
         colliderSize = collider.size;
         effectiveDeceleration = deceleration;
@@ -403,12 +408,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
                 collider.size = colliderSize;
                 effectiveDeceleration = deceleration;
             }
-            boosting = true;
-            hasBoosted = true;
-            //Plays the boost start sound.
-            boostStart.Post(gameObject);
-            //Plays the boost rush sound.
-            boostRush.Post(gameObject);
+            boostScript.StartBoosting();
         } else if (!boostInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
             if(boosting)
             {
