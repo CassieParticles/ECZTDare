@@ -148,7 +148,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SetSuspicionState(SuspicionState level)
     {
         suspicionState = level;
-        suspicion = SuspicionLevel[(int)level] + 1;
+        
+        suspicion = Mathf.Max(SuspicionLevel[(int)level] + 1,suspicion);
     }
 
     /// <summary>
