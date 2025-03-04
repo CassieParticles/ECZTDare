@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 2e48260bc3027694bb1ce8a2c1821436
+guid: 1da2fb801ed08ee40bdda26d0809f0b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8056544828163215615
-    second: Player_Slide_In_0
+      213: 2495896063896760956
+    second: Player_Wall_Jump_Kickoff_V2_0
+  - first:
+      213: -3382946686314881809
+    second: Player_Wall_Jump_Kickoff_V2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Slide_In_0
+      name: Player_Wall_Jump_Kickoff_V2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,14 +111,35 @@ TextureImporter:
         width: 120
         height: 120
       alignment: 9
-      pivot: {x: 0.55, y: 0.1125}
+      pivot: {x: 0.4, y: 0.32000002}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10f22580a27613090800000000000000
-      internalID: -8056544828163215615
+      spriteID: c72bcdc0f3433a220800000000000000
+      internalID: 2495896063896760956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Wall_Jump_Kickoff_V2_1
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.4, y: 0.32000002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fecdd1499eb5d01d0800000000000000
+      internalID: -3382946686314881809
       vertices: []
       indices: 
       edges: []
@@ -123,7 +147,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4215a0f2ea255dc47b18766a7922124e
+    spriteID: 3c2c7d9f07e248947b24f542d0baf0e8
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +155,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Slide_In_0: -8056544828163215615
+      Player_Wall_Jump_Kickoff_V2_0: 2495896063896760956
+      Player_Wall_Jump_Kickoff_V2_1: -3382946686314881809
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
