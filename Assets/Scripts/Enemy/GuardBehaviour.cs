@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,13 @@ public class IdleState : BaseState
 {
     public IdleState(GameObject guard) : base(guard)
     {
-        Camera = GameObject.Find("Main Camera");
+        camera = GameObject.Find("Main Camera");
+        camComp = camera.GetComponent<Camera>();
     }
 
     float minDist = 30;
-    GameObject Camera;
+    GameObject camera;
+    Camera camComp;
     public override void Start()
     {
         
@@ -24,11 +27,12 @@ public class IdleState : BaseState
 
     public override GuardStates RunTick()
     {
-        if((Camera.transform.position - guardAttached.transform.position).sqrMagnitude < minDist * minDist)
+        Vector3 viewPos = camComp.WorldToViewportPoint(guardAttached.transform.position);
+        if(viewPos.x < -0.05 || viewPos.x > 1.05 || viewPos.y < -0.05 || viewPos.y > 1.05)
         {
-            return GuardStates.Patrol;
+            return GuardStates.Idle;
         }
-        return GuardStates.Idle;
+        return GuardStates.Patrol;
     }
 
 
