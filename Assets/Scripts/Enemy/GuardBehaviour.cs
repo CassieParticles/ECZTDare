@@ -8,12 +8,9 @@ public class IdleState : BaseState
 {
     public IdleState(GameObject guard) : base(guard)
     {
-        camera = GameObject.Find("Main Camera");
-        camComp = camera.GetComponent<Camera>();
+        camComp = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
-    float minDist = 30;
-    GameObject camera;
     Camera camComp;
     public override void Start()
     {
