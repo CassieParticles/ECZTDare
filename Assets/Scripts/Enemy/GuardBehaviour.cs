@@ -425,7 +425,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "NoMusic");
         musicHandler.music.Stop(gameObject);
-        SceneManager.LoadScene("LoseScene");
+        SceneChangeTracker.GetTracker().ChangeScene("LoseScene");
     }
 
     private void Awake()

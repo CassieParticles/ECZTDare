@@ -9,4 +9,14 @@ public class GUIButtonScript : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void ReturnToLevel()
+    {
+        SceneChangeTracker.GetTracker().GoBack();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
