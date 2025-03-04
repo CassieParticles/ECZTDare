@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8371112113522891037}
   - component: {fileID: 8805521428832138119}
   - component: {fileID: 7946762260465018441}
+  - component: {fileID: 4193888583768158028}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -75,6 +76,8 @@ MonoBehaviour:
   acceleration: 20
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
+  snapToLedgeTopRayHeight: 0.22
+  snapToLedgeBottomRayHeight: 0.05
   slideDeceleration: 1
   velocityToSlide: 12
   velocityEndSlide: 5
@@ -95,6 +98,12 @@ MonoBehaviour:
   horizontalWalljumpStrength: 22
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.02
+  boostFootStepSoundRange: 10
+  boostFootStepSoundSuspicionIncrease: 15
+  boostJumpSoundRange: 25
+  boostJumpSoundSuspicionIncrease: 35
+  boostSlideSoundRange: 15
+  boostSlideSoundSuspicionIncrease: 20
   boostCharge: 0
 --- !u!95 &6221459911077994701
 Animator:
@@ -369,3 +378,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4193888583768158028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969149523955869045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4b2f182258eb1842b3beb0630850f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -26828,7 +26828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8161024199950438903, guid: aebd50420ee4e2a4fa9498b8ba3baf6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.030445
+      value: -30.428204
       objectReference: {fileID: 0}
     - target: {fileID: 8161024199950438903, guid: aebd50420ee4e2a4fa9498b8ba3baf6c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27140,7 +27140,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.030445, y: -14.3924, z: -10}
+  m_LocalPosition: {x: -30.428204, y: -14.3924, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48189,6 +48189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7946762260465018441, guid: 324d04b3ce6b0db43b0419a6bf7d502a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3082838696239577728, guid: f9cf0a905c51dbe4c829c7e28be704fb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
