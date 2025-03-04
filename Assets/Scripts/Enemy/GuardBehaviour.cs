@@ -1,8 +1,39 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
+public class IdleState : BaseState
+{
+    public IdleState(GameObject guard) : base(guard)
+    {
+        camComp = GameObject.Find("Main Camera").GetComponent<Camera>();
+    }
+
+    Camera camComp;
+    public override void Start()
+    {
+        
+    }
+
+    public override void Stop()
+    {
+        
+    }
+
+    public override GuardStates RunTick()
+    {
+        Vector3 viewPos = camComp.WorldToViewportPoint(guardAttached.transform.position);
+        if(viewPos.x < -0.05 || viewPos.x > 1.05 || viewPos.y < -0.05 || viewPos.y > 1.05)
+        {
+            return GuardStates.Idle;
+        }
+        return GuardStates.Patrol;
+    }
+
+
+}
 public class PatrolState : BaseState
 {
     private PatrolRoute patrolRoute;
@@ -414,6 +445,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
             guardBehaviour.AddState(GuardStates.Patrol, new PatrolState(gameObject, transform.position,visionCone.transform.rotation.eulerAngles.z));
         }
 
+        guardBehaviour.AddState(GuardStates.Idle, new IdleState(gameObject));
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
@@ -430,7 +462,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
         if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
         
-        guardBehaviour.Start(GuardStates.Patrol);
+        guardBehaviour.Start(GuardStates.Idle);
 
         if(alarm)
         {

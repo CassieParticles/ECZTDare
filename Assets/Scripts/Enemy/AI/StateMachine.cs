@@ -6,6 +6,7 @@ using UnityEngine;
 //State machine used by guards, so has enum for each state
 public enum GuardStates
 {
+    Idle,
     Patrol,
     HearNoise,  //Dev one, immediately transition to whichever behaviour should be performed
     Observe,
