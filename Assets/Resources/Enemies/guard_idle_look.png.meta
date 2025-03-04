@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: df394288aafc58f42be26b8e831cc1e7
+guid: e55f36084118ea04f94bbe77b3af39f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -789570963418081775
-    second: guard_idle_0
+      213: -4401115325932429315
+    second: guard_idle_look_0
   - first:
-      213: -5704494570074884988
-    second: guard_idle_1
+      213: -5425585930393006974
+    second: guard_idle_look_1
   - first:
-      213: 4418513713263867637
-    second: guard_idle_2
+      213: 6435832568868517168
+    second: guard_idle_look_2
   - first:
-      213: 4639460331939537153
-    second: guard_idle_3
+      213: -6503093114524568617
+    second: guard_idle_look_3
   - first:
-      213: 8075930914215133491
-    second: guard_idle_4
+      213: -6333403699993386698
+    second: guard_idle_look_4
   - first:
-      213: 7182374596472762478
-    second: guard_idle_5
+      213: -1996117398786602610
+    second: guard_idle_look_5
+  - first:
+      213: -5429141758893327522
+    second: guard_idle_look_6
+  - first:
+      213: -444745736656346503
+    second: guard_idle_look_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_idle_0
+      name: guard_idle_look_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11690806461ea05f0800000000000000
-      internalID: -789570963418081775
+      spriteID: dff154edde81ce2c0800000000000000
+      internalID: -4401115325932429315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_1
+      name: guard_idle_look_1
       rect:
         serializedVersion: 2
         x: 96
@@ -150,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 484ba87896095d0b0800000000000000
-      internalID: -5704494570074884988
+      spriteID: 28c4190a75274b4b0800000000000000
+      internalID: -5425585930393006974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_2
+      name: guard_idle_look_2
       rect:
         serializedVersion: 2
         x: 192
@@ -171,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f6f84adfc6b15d30800000000000000
-      internalID: 4418513713263867637
+      spriteID: 0353c457f9ba05950800000000000000
+      internalID: 6435832568868517168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_3
+      name: guard_idle_look_3
       rect:
         serializedVersion: 2
         x: 288
@@ -192,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 101a5ca479ca26040800000000000000
-      internalID: 4639460331939537153
+      spriteID: 7d37977644f50c5a0800000000000000
+      internalID: -6503093114524568617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_4
+      name: guard_idle_look_4
       rect:
         serializedVersion: 2
         x: 384
@@ -213,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 331836cd068731070800000000000000
-      internalID: 8075930914215133491
+      spriteID: 631efb204ea3b18a0800000000000000
+      internalID: -6333403699993386698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_5
+      name: guard_idle_look_5
       rect:
         serializedVersion: 2
         x: 480
@@ -234,8 +240,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e607c8244abeca360800000000000000
-      internalID: 7182374596472762478
+      spriteID: e89095b3dcd5c44e0800000000000000
+      internalID: -1996117398786602610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_idle_look_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b7ce9c550d7a4b0800000000000000
+      internalID: -5429141758893327522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_idle_look_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972aa3fdb12f3d9f0800000000000000
+      internalID: -444745736656346503
       vertices: []
       indices: 
       edges: []
@@ -243,7 +291,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 017d9e4c84d608e45adc9f056abe9052
+    spriteID: 555e668e88e361542b7e3fa92fba815e
     internalID: 0
     vertices: []
     indices: 
@@ -251,12 +299,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      guard_idle_0: -789570963418081775
-      guard_idle_1: -5704494570074884988
-      guard_idle_2: 4418513713263867637
-      guard_idle_3: 4639460331939537153
-      guard_idle_4: 8075930914215133491
-      guard_idle_5: 7182374596472762478
+      guard_idle_look_0: -4401115325932429315
+      guard_idle_look_1: -5425585930393006974
+      guard_idle_look_2: 6435832568868517168
+      guard_idle_look_3: -6503093114524568617
+      guard_idle_look_4: -6333403699993386698
+      guard_idle_look_5: -1996117398786602610
+      guard_idle_look_6: -5429141758893327522
+      guard_idle_look_7: -444745736656346503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

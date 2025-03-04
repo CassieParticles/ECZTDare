@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: df394288aafc58f42be26b8e831cc1e7
+guid: ab430b7e8644c1b459fc1cb04eddb9cd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -789570963418081775
-    second: guard_idle_0
+      213: 877990581815178479
+    second: guard_run_0
   - first:
-      213: -5704494570074884988
-    second: guard_idle_1
+      213: 1844870566795533049
+    second: guard_run_1
   - first:
-      213: 4418513713263867637
-    second: guard_idle_2
+      213: -3269253504463715920
+    second: guard_run_2
   - first:
-      213: 4639460331939537153
-    second: guard_idle_3
+      213: 7668025738419809354
+    second: guard_run_3
   - first:
-      213: 8075930914215133491
-    second: guard_idle_4
+      213: 6027542479930702663
+    second: guard_run_4
   - first:
-      213: 7182374596472762478
-    second: guard_idle_5
+      213: -8940972969013031115
+    second: guard_run_5
+  - first:
+      213: -40784470529242839
+    second: guard_run_6
+  - first:
+      213: -4841387405152041035
+    second: guard_run_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: guard_idle_0
+      name: guard_run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -129,14 +135,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 11690806461ea05f0800000000000000
-      internalID: -789570963418081775
+      spriteID: fe47b3948cf3f2c00800000000000000
+      internalID: 877990581815178479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_1
+      name: guard_run_1
       rect:
         serializedVersion: 2
         x: 96
@@ -150,14 +156,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 484ba87896095d0b0800000000000000
-      internalID: -5704494570074884988
+      spriteID: 9fadb66810c4a9910800000000000000
+      internalID: 1844870566795533049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_2
+      name: guard_run_2
       rect:
         serializedVersion: 2
         x: 192
@@ -171,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5f6f84adfc6b15d30800000000000000
-      internalID: 4418513713263867637
+      spriteID: 0b14db9424741a2d0800000000000000
+      internalID: -3269253504463715920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_3
+      name: guard_run_3
       rect:
         serializedVersion: 2
         x: 288
@@ -192,14 +198,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 101a5ca479ca26040800000000000000
-      internalID: 4639460331939537153
+      spriteID: a4ca01b38cc4a6a60800000000000000
+      internalID: 7668025738419809354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_4
+      name: guard_run_4
       rect:
         serializedVersion: 2
         x: 384
@@ -213,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 331836cd068731070800000000000000
-      internalID: 8075930914215133491
+      spriteID: 74bb8d043f126a350800000000000000
+      internalID: 6027542479930702663
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: guard_idle_5
+      name: guard_run_5
       rect:
         serializedVersion: 2
         x: 480
@@ -234,8 +240,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e607c8244abeca360800000000000000
-      internalID: 7182374596472762478
+      spriteID: 53fcb9bb4784be380800000000000000
+      internalID: -8940972969013031115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_run_6
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92980c97dba1f6ff0800000000000000
+      internalID: -40784470529242839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_run_7
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b7ccd74ecfefccb0800000000000000
+      internalID: -4841387405152041035
       vertices: []
       indices: 
       edges: []
@@ -243,7 +291,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 017d9e4c84d608e45adc9f056abe9052
+    spriteID: e1ee9baa1d89ee142a7aa6cf93b6ee23
     internalID: 0
     vertices: []
     indices: 
@@ -251,12 +299,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      guard_idle_0: -789570963418081775
-      guard_idle_1: -5704494570074884988
-      guard_idle_2: 4418513713263867637
-      guard_idle_3: 4639460331939537153
-      guard_idle_4: 8075930914215133491
-      guard_idle_5: 7182374596472762478
+      guard_run_0: 877990581815178479
+      guard_run_1: 1844870566795533049
+      guard_run_2: -3269253504463715920
+      guard_run_3: 7668025738419809354
+      guard_run_4: 6027542479930702663
+      guard_run_5: -8940972969013031115
+      guard_run_6: -40784470529242839
+      guard_run_7: -4841387405152041035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
