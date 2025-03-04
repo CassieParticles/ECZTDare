@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PatrolState : BaseState
 {
     private PatrolRoute patrolRoute;
+    private Vector3 StartPosition;
+    private float StartRotation;
 
     //Recalculatign the path doesn't recalculate everything instantly,
     //to avoid issues with distance recalc delay, don't recalculate immediately
@@ -14,6 +16,15 @@ public class PatrolState : BaseState
     public PatrolState(GameObject guard, PatrolRoute patrolRoute) : base(guard)
     {
         this.patrolRoute = patrolRoute;
+        this.StartPosition = Vector3.zero;
+        this.StartRotation = 0;
+    }
+
+    public PatrolState(GameObject guard, Vector3 StartPosition,  float StartRotation):base(guard)
+    {
+        this.patrolRoute = null;
+        this.StartPosition = StartPosition;
+        this.StartRotation = StartRotation;
     }
 
     public override void Start()
@@ -22,6 +33,10 @@ public class PatrolState : BaseState
         {
             Vector3 nextNode = patrolRoute.GetCurrNode(guardAttached).position;
             guardBehaviour.MoveTo(nextNode);
+        }
+        else
+        {
+            guardBehaviour.MoveTo(StartPosition);
         }
         recalcDelay = true;
         paused = false;
@@ -39,6 +54,13 @@ public class PatrolState : BaseState
             if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
             {
                 guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
+            }
+        }
+        else
+        {
+            if(guardBehaviour.getDistLeft() < 0.1f)
+            {
+                guardBehaviour.Look(StartRotation);
             }
         }
 
@@ -323,6 +345,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         Vector3 direction = position - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Look(angle);
+    }
+
+    public void Look(float angle)
+    {
         visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
@@ -378,7 +405,15 @@ public class GuardBehaviour : BaseEnemyBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
-        guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
+        if(patrolRoute)
+        {
+            guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
+        }
+        else
+        {
+            guardBehaviour.AddState(GuardStates.Patrol, new PatrolState(gameObject, transform.position,visionCone.transform.rotation.eulerAngles.z));
+        }
+
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
