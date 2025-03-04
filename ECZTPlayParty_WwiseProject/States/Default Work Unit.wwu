@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<StateGroup Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}">
 					<PropertyList>
-						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.5"/>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="4"/>
 					</PropertyList>
 					<ChildrenList>
 						<State Name="None" ID="{FDFD89A3-AAEF-4080-B076-12518B815B67}"/>
@@ -31,19 +31,49 @@
 						<Transition>
 							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
 							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
 							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 					</TransitionList>

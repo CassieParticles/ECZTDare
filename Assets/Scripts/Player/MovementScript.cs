@@ -76,6 +76,15 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [SerializeField] private float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
+    [SerializeField] private float boostFootStepSoundRange = 10f;
+    [SerializeField] private float boostFootStepSoundSuspicionIncrease = 15f;
+
+    [SerializeField] private float boostJumpSoundRange =25f;
+    [SerializeField] private float boostJumpSoundSuspicionIncrease = 35f;
+
+    [SerializeField] private float boostSlideSoundRange = 15f;
+    [SerializeField] private float boostSlideSoundSuspicionIncrease = 20f;
+
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
     [NonSerialized] public bool minJumpActive; //If the player is in the first part of a jump where they cant fastfall
     [NonSerialized] public bool onWall; //If the player is on a wall
@@ -314,6 +323,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             rb.velocityY = jumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", this.gameObject);
+            if (boosting)
+            {
+                AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, boostJumpSoundRange, boostJumpSoundSuspicionIncrease);
+            }
             animator.SetBool("Grounded", false);
             hasJumped = true;
             StartCoroutine(MinJumpDuration());
@@ -376,6 +389,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
             //Plays the slide sound.
             playerSlide.Post(gameObject);
+            if(boosting)
+            {
+                AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, boostSlideSoundRange, boostSlideSoundSuspicionIncrease);
+            }
             sliding = true;
             hasSlid = true;
             collider.size = new Vector2(colliderSize.x * 1.5f, colliderSize.y * 0.3f);
@@ -480,6 +497,11 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             if (footstepCount > 1) {
                 playerFootstep.Post(gameObject);
                 footstepCount--;
+                //Alert noise
+                if(boosting)
+                {
+                    AudioDetectionSystem.getAudioSystem().PlaySound(transform.position,boostFootStepSoundRange,boostFootStepSoundSuspicionIncrease);
+                }
             }           
         }
 

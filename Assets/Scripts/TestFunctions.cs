@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class TestFunctions : MonoBehaviour
 {
+    AlarmMusicHandler musicHandler;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
     }
 
     // Update is called once per frame
@@ -16,6 +18,9 @@ public class TestFunctions : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "NoMusic");
+            musicHandler.music.Stop(gameObject);
             SceneManager.LoadScene("Level1");
         }
     }
