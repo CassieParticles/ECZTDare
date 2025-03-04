@@ -364,13 +364,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void CatchPlayer()
     {
-        if(suspicionState == SuspicionState.Chase)
-        {
-            //Sets the "Music" State Group's active State to "Hidden"
-            AkSoundEngine.SetState("Music", "NoMusic");
-            musicHandler.music.Stop(gameObject);
-            SceneManager.LoadScene("LoseScene");
-        }
+        //Sets the "Music" State Group's active State to "Hidden"
+        AkSoundEngine.SetState("Music", "NoMusic");
+        musicHandler.music.Stop(gameObject);
+        SceneManager.LoadScene("LoseScene");
     }
 
     private void Awake()
@@ -431,11 +428,14 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            CatchPlayer();
+            if(suspicionState == SuspicionState.Chase)
+            {
+                CatchPlayer();
+            }
         }
     }
 
