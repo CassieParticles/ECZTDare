@@ -31,22 +31,22 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     private float wallClingVelocity;
 
     //Effective deceleration for when sliding
-    private float effectiveDeceleration;
+    [NonSerialized] public float effectiveDeceleration;
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
     private float slideGroundedTimer;
 
     //Effective deceleration for when sliding
-    private float effectiveAcceleration;
+    [NonSerialized] public float effectiveAcceleration;
 
     [NonSerialized] public Rigidbody2D rb;
-    private BoxCollider2D collider;
-    private SpriteRenderer spriteRenderer;
+    [NonSerialized] public BoxCollider2D collider;
+    [NonSerialized] public SpriteRenderer spriteRenderer;
     private Animator animator;
 
     [SerializeField] private float maxRunSpeed = 8; //The fastest the player can go horizontally
-    [SerializeField] private float acceleration = 20; //Speeding up when running
-    [SerializeField] private float deceleration = 15; //Slowing down when no longer running / running in opposite direction
+    [SerializeField] public float acceleration = 20; //Speeding up when running
+    [SerializeField] public float deceleration = 15; //Slowing down when no longer running / running in opposite direction
     [SerializeField] private float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
 
     [SerializeField][Range(0f, 1f)] private float snapToLedgeTopRayHeight = 0.22f; //Height of the ray that needs to be not hitting something to snap to a ledge
@@ -56,10 +56,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
     [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
 
-    [SerializeField] private float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
-    [SerializeField] private float boostAcceleration = 25; //New acceleration when boosting
-    [SerializeField] private float boostRecharge = 50f; //Boost recharge rate
-    [SerializeField] private float boostDepletion = 10f; //Boost depletion rate
+    [SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
+    [SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
+    [SerializeField] public float boostRecharge = 50f; //Boost recharge rate
+    [SerializeField] public float boostDepletion = 10f; //Boost depletion rate
     [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
     [SerializeField] private float jumpStrength = 5; //Initial vertical velocity when jumping
@@ -128,11 +128,11 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public bool boostInput;
     [NonSerialized] public bool hasBoosted; //If the player has boosted while holding the boost key
 
-    float horizontalVelocity;
+    [NonSerialized] public float horizontalVelocity;
 
     private LayerMask layers;
 
-    Vector2 colliderSize;
+    [NonSerialized] public Vector2 colliderSize;
 
     AlarmSystem alarm;
 
@@ -417,45 +417,14 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         
         //Handle Boosting
         if (boostInput && runInput != 0 && boostCharge > minimumBoostCharge && grounded && !hasBoosted) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
-            if (sliding) { //Stops the player from sliding
-                //Stops the slide sound.
-                playerSlide.Stop(gameObject);
-                sliding = false;
-                transform.position = new Vector2(transform.position.x, transform.position.y + colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
-                collider.size = colliderSize;
-                effectiveDeceleration = deceleration;
-            }
             boostScript.StartBoosting();
         } else if (!boostInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
-            if(boosting)
-            {
-                //Stops the boost rush sound.
-                boostRush.Stop(gameObject);
-                //Plays the boost stop sound.
-                boostStop.Post(gameObject);
-            }
-            boosting = false;
+            boostScript.StopBoosting();
         }
         if (boosting) {
-            spriteRenderer.color = Color.red;
-            //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
-            AkSoundEngine.SetRTPCValue("horizontalVelocity", horizontalVelocity);
-            if (boostCharge - boostRecharge * Time.deltaTime > 0) {
-                boostCharge -= boostRecharge * Time.deltaTime;
-            } else {
-                boostCharge = 0;
-            }
-            effectiveAcceleration = boostAcceleration;
-            boostingMaxRunSpeedMultiplier = boostMaxRunSpeedMultiplier;
+            boostScript.WhileBoosting();
         } else {
-            spriteRenderer.color = Color.white;
-            if (boostCharge + boostDepletion * Time.deltaTime < 100f) {
-                boostCharge += boostDepletion * Time.deltaTime;
-            } else {
-                boostCharge = 100f;
-            }
-            boostingMaxRunSpeedMultiplier = 1;
-            effectiveAcceleration = acceleration;
+            boostScript.NotBoosting();
         }
         
         //Handle left/right movement with inputs
