@@ -93,6 +93,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 175983420094448613, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       insertIndex: -1
       addedObject: {fileID: -254821548619263563}
+    - targetCorrespondingSourceObject: {fileID: 175983420094448613, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3411001630871573643}
   m_SourcePrefab: {fileID: 100100000, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
 --- !u!1 &3707265381099530542 stripped
 GameObject:
@@ -140,6 +143,7 @@ MonoBehaviour:
   maxAngle: 30
   turnSpeed: 45
   pauseDuration: 1.5
+  beingHacked: 0
 --- !u!212 &6685413627625869697
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -216,3 +220,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3411001630871573643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3707265381099530542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1634fc69187ea2a44877dec05835b34f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hackTimer: 5
