@@ -1,8 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class IdleState : BaseState
 {
@@ -366,6 +364,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public Vector3 PointOfInterest;
 
+    private Animator guardMoveAnimation;
+    private SpriteRenderer spriteRenderer;
+
     public void MoveTo(Vector3 position)
     {
         agent.SetDestination(position);
@@ -452,7 +453,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
-        
+        guardMoveAnimation = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -475,6 +477,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void FixedUpdate()
     {
+        //Update animation parameters
+        guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
+        if (Mathf.Sign(agent.velocity.x) > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (Mathf.Sign(agent.velocity.x) < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
         BaseUpdate();
 
         guardBehaviour.BehaviourTick();
