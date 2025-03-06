@@ -749,6 +749,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5733198236059695568}
+  - component: {fileID: 4480016849881175179}
   m_Layer: 5
   m_Name: ScoreDisplay
   m_TagString: Untagged
@@ -778,6 +779,19 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &4480016849881175179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2190206062797905480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f34d609aeceb5fc44b393a2133df9c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerScript: {fileID: 0}
 --- !u!1 &2277462491823278948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,16 +1449,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 4122794352297239784}
   movementScript: {fileID: 0}
-  sliderFill: {fileID: 0}
-  fullCharge:
-    serializedVersion: 2
-    rgba: 0
-  twoThirdCharge:
-    serializedVersion: 2
-    rgba: 0
-  oneThirdCharge:
-    serializedVersion: 2
-    rgba: 0
 --- !u!1 &5576027282200176354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,16 +2054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 3391516957506159246}
   movementScript: {fileID: 0}
-  sliderFill: {fileID: 1367512526093880056}
-  fullCharge:
-    serializedVersion: 2
-    rgba: 4285906006
-  twoThirdCharge:
-    serializedVersion: 2
-    rgba: 36863
-  oneThirdCharge:
-    serializedVersion: 2
-    rgba: 255
 --- !u!1 &7799177811351436141
 GameObject:
   m_ObjectHideFlags: 0
