@@ -9,9 +9,15 @@ public class CameraHackable : Hackable
 
     private IEnumerator HackCamera()
     {
+        float dist = cameraAttached.visionCone.distance;    //Store original range
+        //Disable camera
         cameraAttached.beingHacked = true;
+        cameraAttached.visionCone.distance = 0;
+
         yield return new WaitForSeconds(hackTimer);
+        //Enable camera
         cameraAttached.beingHacked = false;
+        cameraAttached.visionCone.distance = dist;
     }
     private void Awake()
     {

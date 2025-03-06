@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TestFunctions : MonoBehaviour
 {
     AlarmMusicHandler musicHandler;
+    [SerializeField] GameObject testCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,12 @@ public class TestFunctions : MonoBehaviour
             AkSoundEngine.SetState("Music", "NoMusic");
             musicHandler.music.Stop(gameObject);
             SceneManager.LoadScene("Level1");
+        }
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("Hacking");
+            testCamera.GetComponent<CameraHackable>().OnHack();
         }
     }
 }
