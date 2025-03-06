@@ -133,7 +133,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{5A437FCA-28CD-DFC0-27CF-547A76AE8580}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{408BDAD5-2047-1427-7F70-BC40BF477EBD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -433,6 +433,10 @@
 					<ShortName>P_C_Jump_4.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
 				</File>
+				<File Id="737925208" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem</CachePath>
+				</File>
 				<File Id="767938678" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Landing_3.wav</ShortName>
 					<CachePath>SFX/P_C_Landing_3_818F3B66.wem</CachePath>
@@ -647,7 +651,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="70" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
@@ -968,7 +972,17 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
-				<Event Id="2283979374" Name="Power_Generator" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="2283979374" Name="Power_Generator" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="737925208"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -1050,5 +1064,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{A35431CE-87DC-CC37-9C64-019911DAF93A}</FileHash>
+	<FileHash>{F7AC9A2C-B523-3DA4-5840-51AEBB366222}</FileHash>
 </SoundBanksInfo>

@@ -209,7 +209,17 @@
 				</Event>
 				<Event Name="Cloak_Start" ID="{07AB31BA-3E37-46C4-8807-38B8BB6D6123}"/>
 				<Event Name="Cloak_Stop" ID="{6F7EFC00-3235-4D08-A96E-6902A58B889C}"/>
-				<Event Name="Power_Generator" ID="{98FA60B0-9794-42AC-A73F-423553F02F1B}"/>
+				<Event Name="Power_Generator" ID="{98FA60B0-9794-42AC-A73F-423553F02F1B}">
+					<ChildrenList>
+						<Action Name="" ID="{0090352D-07E5-4AD2-B002-F91B2D160786}" ShortID="797937018">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Power_Generator" ID="{EA907656-9A76-4DC5-A9AF-33EC5663D0D4}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

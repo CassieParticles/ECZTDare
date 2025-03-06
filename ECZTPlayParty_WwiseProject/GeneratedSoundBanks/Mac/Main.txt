@@ -1,7 +1,7 @@
 Event	ID	Name			Wwise Object Path	Notes
 	359728807	Enemy_Alerted			\Default Work Unit\Enemy_Alerted	
-	562553574	Ambience_Rain_Outside			\Default Work Unit\Ambience_Rain_Outside	
 	638098506	Cloak_Start			\Default Work Unit\Cloak_Start	
+	710389270	Ambience_Rain			\Default Work Unit\Ambience_Rain	
 	1305133589	Player_Jump			\Default Work Unit\Player_Jump	
 	1515494175	Camera_Stop			\Default Work Unit\Camera_Stop	
 	1518276258	Cloak_Stop			\Default Work Unit\Cloak_Stop	
@@ -12,7 +12,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	2283979374	Power_Generator			\Default Work Unit\Power_Generator	
 	2453392179	Player_Footstep			\Default Work Unit\Player_Footstep	
 	2609528332	Player_Slide			\Default Work Unit\Player_Slide	
-	3136294877	Ambience_Rain_Inside			\Default Work Unit\Ambience_Rain_Inside	
 	3149531453	Guard_Footstep			\Default Work Unit\Guard_Footstep	
 	3353320293	Camera_Moving			\Default Work Unit\Camera_Moving	
 	3629196698	Player_Land			\Default Work Unit\Player_Land	
@@ -54,6 +53,7 @@ State Group	ID	Name			Wwise Object Path	Notes
 State	ID	Name	State Group			Notes
 	438105790	Outside	Ambience			
 	748895195	None	Ambience			
+	2065151404	NoAmbience	Ambience			
 	3553349781	Inside	Ambience			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
@@ -135,6 +135,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	696859956	P_D_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_2		48096
 	706439460	P_D_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_3		48096
 	724971133	P_C_Jump_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_4		96096
+	737925208	Power_Generator	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Power_Generator		245904
 	767938678	P_C_Landing_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Landing_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_C_Land\P_C_Landing_3		96096
 	768608407	P_R_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_4		48096
 	774161018	P_M_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_7		48096
