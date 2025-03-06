@@ -10,6 +10,8 @@ public class CameraBehaviour : BaseEnemyBehaviour
     [SerializeField, Range(0, 60)] private float turnSpeed = 30;
     [SerializeField, Range(0.1f, 20)] private float pauseDuration = 1;
 
+    public bool beingHacked;
+
     private float initialAngle;
     private bool turningCCW;
     private bool turningPaused;
