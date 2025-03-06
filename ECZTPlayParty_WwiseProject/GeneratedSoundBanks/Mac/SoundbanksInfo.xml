@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{3503E4F6-09FD-9B62-1E65-57AB53AC0209}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{E826B60C-C23F-3C68-A254-D3CEE1F1AAE6}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -62,6 +62,13 @@
 				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<StateGroups>
+				<StateGroup Id="85412153" Name="Ambience">
+					<States>
+						<State Id="438105790" Name="Outside"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="3553349781" Name="Inside"/>
+					</States>
+				</StateGroup>
 				<StateGroup Id="348963605" Name="Reverb">
 					<States>
 						<State Id="438105790" Name="Outside"/>
@@ -125,7 +132,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{56DF1417-5649-CFB7-CB83-F4715FBA36BC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{C19C0A4B-AAC6-371C-40C5-6589749D94F7}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -505,6 +512,10 @@
 					<ShortName>Boost_Start.wav</ShortName>
 					<CachePath>SFX/Boost_Start_818F3B66.wem</CachePath>
 				</File>
+				<File Id="908573506" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1_66B93D96.wem</CachePath>
+				</File>
 				<File Id="910263220" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Landing_1.wav</ShortName>
 					<CachePath>SFX/P_R_Landing_1_818F3B66.wem</CachePath>
@@ -586,6 +597,16 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="3136294877" Name="Ambience_Rain_Inside" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="908573506"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="562553574" Name="Ambience_Rain_Outside" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="908573506"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4043448287" Name="Boost_Rush" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="598826268"/>
@@ -641,6 +662,8 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="638098506" Name="Cloak_Start" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1518276258" Name="Cloak_Stop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
@@ -949,6 +972,7 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="2283979374" Name="Power_Generator" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -997,7 +1021,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{7532D31F-1189-D812-750A-665C238E354F}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{E26D445E-8A36-D9F5-E1C3-BE9B5437C6D4}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1030,5 +1054,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2CFA4C3C-31D3-032C-4912-F0CBB07028BF}</FileHash>
+	<FileHash>{4D1DB69E-52B5-66F6-6B70-B6E17B60F67B}</FileHash>
 </SoundBanksInfo>

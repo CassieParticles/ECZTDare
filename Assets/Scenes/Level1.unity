@@ -3072,6 +3072,10 @@ PrefabInstance:
       propertyPath: reverbType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6019065150296425303, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
+      propertyPath: ambienceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8626970008505485341, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
       propertyPath: m_Name
       value: VRC S/O
@@ -4724,7 +4728,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.31146, y: -3.8291204, z: -10}
+  m_LocalPosition: {x: -22.099556, y: -11.80912, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8021,6 +8025,10 @@ PrefabInstance:
     - target: {fileID: 646221157367713675, guid: e3e9490ff069fe743af75ece1181552b, type: 3}
       propertyPath: reverbType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 646221157367713675, guid: e3e9490ff069fe743af75ece1181552b, type: 3}
+      propertyPath: ambienceType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762396030686188705, guid: e3e9490ff069fe743af75ece1181552b, type: 3}
       propertyPath: m_LocalScale.y
@@ -31658,11 +31666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8161024199950438903, guid: aebd50420ee4e2a4fa9498b8ba3baf6c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 117.31146
+      value: -22.099556
       objectReference: {fileID: 0}
     - target: {fileID: 8161024199950438903, guid: aebd50420ee4e2a4fa9498b8ba3baf6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8291204
+      value: -11.80912
       objectReference: {fileID: 0}
     - target: {fileID: 8161024199950438903, guid: aebd50420ee4e2a4fa9498b8ba3baf6c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -38279,11 +38287,11 @@ PrefabInstance:
       objectReference: {fileID: 2143170207}
     - target: {fileID: 1799234929734148051, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5099945
+      value: -64.59
       objectReference: {fileID: 0}
     - target: {fileID: 1799234929734148051, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.38
+      value: -1.8900003
       objectReference: {fileID: 0}
     - target: {fileID: 2553540956978271447, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_TrackedObjectOffset.x
@@ -38303,11 +38311,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5099945
+      value: -64.59
       objectReference: {fileID: 0}
     - target: {fileID: 5415125606524111279, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.119999886
+      value: -4.3900003
       objectReference: {fileID: 0}
     - target: {fileID: 6059198135317241195, guid: 0eb8d660e125652409fe28c855ee6590, type: 3}
       propertyPath: zoom
@@ -38491,6 +38499,10 @@ PrefabInstance:
     - target: {fileID: 6019065150296425303, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
       propertyPath: reverbType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6019065150296425303, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
+      propertyPath: ambienceType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8626970008505485341, guid: 7b720f6e73c9f074cb62df98b740e8c5, type: 3}
       propertyPath: m_Name
@@ -137540,6 +137552,10 @@ PrefabInstance:
       propertyPath: reverbType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 646221157367713675, guid: e3e9490ff069fe743af75ece1181552b, type: 3}
+      propertyPath: ambienceType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4762396030686188705, guid: e3e9490ff069fe743af75ece1181552b, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.6300001
@@ -138757,9 +138773,21 @@ PrefabInstance:
       value: MusicSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5606231303506147099, guid: a80009736bc634f4f9210981fc734a22, type: 3}
+      propertyPath: rain.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
+    - target: {fileID: 5606231303506147099, guid: a80009736bc634f4f9210981fc734a22, type: 3}
       propertyPath: music.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 822284d0f2bbdc34caafd2bc2bb37782, type: 2}
+    - target: {fileID: 5606231303506147099, guid: a80009736bc634f4f9210981fc734a22, type: 3}
+      propertyPath: rainInside.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: ccda8c04fff9a4f45b6af0e965c34507, type: 2}
+    - target: {fileID: 5606231303506147099, guid: a80009736bc634f4f9210981fc734a22, type: 3}
+      propertyPath: rainOutside.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -139337,7 +139365,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2143170207
@@ -139349,7 +139377,7 @@ Transform:
   m_GameObject: {fileID: 2143170202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 118.6, y: -6, z: 0}
+  m_LocalPosition: {x: -23.6, y: -14.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -21,6 +21,9 @@ public class TestFunctions : MonoBehaviour
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "NoMusic");
             musicHandler.music.Stop(gameObject);
+            //Sets the "Ambience" State Group's active State to "NoAmbience"
+            AkSoundEngine.SetState("Ambience", "NoAmbience");
+            musicHandler.rain.Stop(gameObject);
             SceneManager.LoadScene("Level1");
         }
     }

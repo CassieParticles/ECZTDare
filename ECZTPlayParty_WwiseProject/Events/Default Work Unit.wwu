@@ -189,6 +189,27 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Ambience_Rain" ID="{77E5C655-4770-45EE-A835-4FDDAADD00DB}">
+					<ChildrenList>
+						<Action Name="" ID="{B5ED1223-98BC-43B7-B261-CD56E64363ED}" ShortID="1064014116">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Rain_Outside" ID="{EA4399B2-AA91-40F0-BCE8-09142D461262}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{EA076B2F-3036-49ED-A4C1-142BC7E9BA03}" ShortID="142665101">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Rain_Inside" ID="{ACAB7827-9989-467E-842F-28430E5B0088}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Cloak_Start" ID="{07AB31BA-3E37-46C4-8807-38B8BB6D6123}"/>
+				<Event Name="Cloak_Stop" ID="{6F7EFC00-3235-4D08-A96E-6902A58B889C}"/>
+				<Event Name="Power_Generator" ID="{98FA60B0-9794-42AC-A73F-423553F02F1B}"/>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

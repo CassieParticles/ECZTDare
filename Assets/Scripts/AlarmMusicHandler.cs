@@ -6,6 +6,8 @@ using UnityEngine;
 public class AlarmMusicHandler : MonoBehaviour
 {
     public AK.Wwise.Event music;
+    public AK.Wwise.Event rain;
+
     AlarmSystem alarm;
 
     private ArrayList guardsChasing = new ArrayList();
@@ -118,7 +120,10 @@ public class AlarmMusicHandler : MonoBehaviour
         alarm.AddAlarmDisableFunc(AlarmOff);
 
         music.Post(gameObject);
+        rain.Post(gameObject);
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "Hidden");
+        //Sets the "Ambience" State Group's active State to "Outside"
+        AkSoundEngine.SetState("Ambience", "Outside");
     }
 }

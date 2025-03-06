@@ -76,6 +76,12 @@
 							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{FDFD89A3-AAEF-4080-B076-12518B815B67}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
 					</TransitionList>
 				</StateGroup>
 				<StateGroup Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}">
@@ -111,6 +117,40 @@
 						<Transition>
 							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
 							<EndState Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+				<StateGroup Name="Ambience" ID="{64F5AA0C-4B5E-4303-80F1-7F5BF18CB337}">
+					<ChildrenList>
+						<State Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+						<State Name="Inside" ID="{27CC63DB-A8FD-407F-AEE4-5FBC0F20CC23}"/>
+						<State Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+						<State Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+							<EndState Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Inside" ID="{27CC63DB-A8FD-407F-AEE4-5FBC0F20CC23}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
 							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>

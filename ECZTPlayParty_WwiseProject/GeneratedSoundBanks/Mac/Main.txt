@@ -1,13 +1,18 @@
 Event	ID	Name			Wwise Object Path	Notes
 	359728807	Enemy_Alerted			\Default Work Unit\Enemy_Alerted	
+	562553574	Ambience_Rain_Outside			\Default Work Unit\Ambience_Rain_Outside	
+	638098506	Cloak_Start			\Default Work Unit\Cloak_Start	
 	1305133589	Player_Jump			\Default Work Unit\Player_Jump	
 	1515494175	Camera_Stop			\Default Work Unit\Camera_Stop	
+	1518276258	Cloak_Stop			\Default Work Unit\Cloak_Stop	
 	1720356053	Ambience_Bass			\Default Work Unit\Ambience_Bass	
 	1751967765	Boost_Stop			\Default Work Unit\Boost_Stop	
 	2188867727	Boost_Start			\Default Work Unit\Boost_Start	
 	2249657186	In_View_Cone			\Default Work Unit\In_View_Cone	
+	2283979374	Power_Generator			\Default Work Unit\Power_Generator	
 	2453392179	Player_Footstep			\Default Work Unit\Player_Footstep	
 	2609528332	Player_Slide			\Default Work Unit\Player_Slide	
+	3136294877	Ambience_Rain_Inside			\Default Work Unit\Ambience_Rain_Inside	
 	3149531453	Guard_Footstep			\Default Work Unit\Guard_Footstep	
 	3353320293	Camera_Moving			\Default Work Unit\Camera_Moving	
 	3629196698	Player_Land			\Default Work Unit\Player_Land	
@@ -42,6 +47,14 @@ Switch	ID	Name	Switch Group			Notes
 	841620460	Concrete	Player_Footstep_Material			
 	2195636714	Dirt	Player_Footstep_Material			
 	2473969246	Metal	Player_Footstep_Material			
+
+State Group	ID	Name			Wwise Object Path	Notes
+	85412153	Ambience			\Default Work Unit\Ambience	
+
+State	ID	Name	State Group			Notes
+	438105790	Outside	Ambience			
+	748895195	None	Ambience			
+	3553349781	Inside	Ambience			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	2268126698	suspicion			\Default Work Unit\suspicion	
@@ -142,6 +155,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	899660334	G_R_Footstep_6	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_R_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_6		48096
 	901982837	G_D_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_2		48096
 	908405812	Boost_Start	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Boost_Start_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Boost_Start		60096
+	908573506	Ambience_Rain_Outside	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1_66B93D96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Rain_Outside		5934524
 	910263220	P_R_Landing_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Landing_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_R_Land\P_R_Landing_1		96096
 	934683240	P_M_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_5		48096
 	940217380	P_C_Landing_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Landing_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_C_Land\P_C_Landing_1		96096
