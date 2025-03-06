@@ -5,6 +5,9 @@ using UnityEngine;
 public class GUIAlarmHandler : MonoBehaviour
 {
     public AlarmSystem alarmSystem;
+    [SerializeField] GameObject unaware;
+    [SerializeField] GameObject alert;
+    [SerializeField] GameObject alarm;
     void Start()
     {
         alarmSystem.AddAlarmEnableFunc(alarmOn);
@@ -15,11 +18,13 @@ public class GUIAlarmHandler : MonoBehaviour
 
     public void alarmOn(Vector3 playerPos)
     {
-
+        alert.SetActive(false);
+        alarm.SetActive(true);
     }
     public void alarmOff()
     {
-
+        alarm.SetActive(false);
+        alert.SetActive(true);
     }
 
     //can be used to change the alarm that is referenced by the script during functions.
