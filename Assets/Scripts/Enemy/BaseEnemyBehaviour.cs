@@ -157,7 +157,12 @@ public class BaseEnemyBehaviour : MonoBehaviour
     /// </summary>
     public void CalcSuspicionIncrease()
     {
-        suspicion += calcSuspicionIncreaseRate(Player);
+        if (suspicion < SuspicionLevel[3])
+        {
+            suspicion += calcSuspicionIncreaseRate(Player);
+        }
+
+        
     }
     /// <summary>
     /// Check if the suspicion should decay, and if so, handle suspicion decay
