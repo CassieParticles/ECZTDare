@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static PlayerMovement;
+using static PlayerControls;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event playerFootstep;
@@ -27,13 +27,13 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     private float dynamicMaxRunSpeed = 0;
 
     //How fast the player is currently sliding down the wall
-    public float wallClingVelocity;
+    [NonSerialized] public float wallClingVelocity;
 
     //Effective deceleration for when sliding
     [NonSerialized] public float effectiveDeceleration;
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
-    public float tempGroundedTimer;
+    [NonSerialized] public float tempGroundedTimer;
 
     //Effective deceleration for when sliding
     [NonSerialized] public float effectiveAcceleration;
@@ -41,7 +41,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public BoxCollider2D collider;
     [NonSerialized] public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    [NonSerialized] public Animator animator;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
@@ -111,7 +111,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     Vector2 bottomLeftSnapRayStart;
 
     //All inputs that are used
-    PlayerMovement controls;
+    PlayerControls controls;
     InputAction runAction;
     InputAction jumpAction;
     InputAction slideAction;
@@ -135,7 +135,6 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     AlarmSystem alarm;
 
     Running runningScript;
-    CappingRunSpeed MaxSpeedScript;
     Jumping jumpScript;
     Sliding slideScript;
     Boost boostScript;
@@ -159,7 +158,6 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         boostScript = new Boost();
         jumpScript = new Jumping();
         runningScript = new Running();
-        MaxSpeedScript = new CappingRunSpeed();
         cloakingScript = new Cloak();
         slideScript = new Sliding();
 
@@ -170,7 +168,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
         //Setup inputs
         if (controls == null) {
-            controls = new PlayerMovement();
+            controls = new PlayerControls();
             controls.KeyboardWASD.SetCallbacks(this);
         }
         controls.KeyboardWASD.Enable();
@@ -381,19 +379,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
             boostScript.NotBoosting();
         }
 
-        //Handle left/right movement with inputs
-        //if (runInput == -1 && postWalljumpInputs != -1 && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
-        //    facingRight = false;
-        //    rb.velocityX += -acceleration * Time.deltaTime;
-        //    if (Mathf.Sign(rb.velocityX) == 1) {
-        //        rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
-        //    }
-        //} else if (runInput == 1 && postWalljumpInputs != 1 && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) { //If not recently jumped off a right wall
-        //    facingRight = true;
-        //    rb.velocityX += acceleration * Time.deltaTime;
-        //    if (Mathf.Sign(rb.velocityX) == -1) {
-        //        rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
-        //    }
+        //Handle Running
         if (runInput != 0 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) {
             runningScript.Accelerate(runInput);
         } else if (rb.velocityX != 0 && postWalljumpInputs == 0 && grounded){
@@ -474,6 +460,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     }
 
     public void OnBoostCloak(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnHacking(InputAction.CallbackContext context) {
         
     }
 }
