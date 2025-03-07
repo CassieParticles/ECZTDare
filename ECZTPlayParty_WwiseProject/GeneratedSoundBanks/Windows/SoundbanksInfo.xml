@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{88B32067-BFD3-071A-CE39-901D5328898B}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{0320A3A9-F307-007E-44C4-68B3EB0ECB2D}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -84,6 +84,7 @@
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1862135557" Name="NoMusic"/>
+						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
 						<State Id="4009708623" Name="Alarm_Low"/>
@@ -1031,13 +1032,17 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{E26D445E-8A36-D9F5-E1C3-BE9B5437C6D4}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{D513DFBB-C33E-B735-ADE5-E9174F8537CE}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
 				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Hidden_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="346157248" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Title_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Low.wav</ShortName>
@@ -1056,13 +1061,19 @@
 				<Event Id="3991942870" Name="Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="40011298"/>
+						<MediaRef Id="346157248"/>
 						<MediaRef Id="356683109"/>
 						<MediaRef Id="763308751"/>
 						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="309205993" Name="Title_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="346157248"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{F7AC9A2C-B523-3DA4-5840-51AEBB366222}</FileHash>
+	<FileHash>{EB6400D5-B927-D029-1185-7E61DC5AA89A}</FileHash>
 </SoundBanksInfo>

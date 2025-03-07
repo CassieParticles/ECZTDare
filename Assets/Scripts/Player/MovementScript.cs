@@ -415,15 +415,34 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Footstep sound effect
         if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
             footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
-            if (footstepCount > 1) {
-                playerFootstep.Post(gameObject);
-                footstepCount--;
-                //Alert noise
-                if(boosting)
+            if (horizontalVelocity < 20f)
+            {
+                if (footstepCount > 1)
                 {
-                    AudioDetectionSystem.getAudioSystem().PlaySound(transform.position,boostFootStepSoundRange,boostFootStepSoundSuspicionIncrease);
+                    footstepRate = 0.1f;
+                    playerFootstep.Post(gameObject);
+                    footstepCount--;
+                    //Alert noise
+                    if (boosting)
+                    {
+                        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, boostFootStepSoundRange, boostFootStepSoundSuspicionIncrease);
+                    }
                 }
-            }           
+            }
+            else if (horizontalVelocity >= 20f)
+            {
+                if (footstepCount > 1)
+                {
+                    footstepRate = 0.04f;
+                    playerFootstep.Post(gameObject);
+                    footstepCount--;
+                    //Alert noise
+                    if (boosting)
+                    {
+                        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, boostFootStepSoundRange, boostFootStepSoundSuspicionIncrease);
+                    }
+                }
+            }
         }
 
         spriteRenderer.flipX = !facingRight;
