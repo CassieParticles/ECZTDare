@@ -17,6 +17,13 @@ public class TimerDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerText.text = timerScript.elapsedTime.ToString("00.00");
+        
+
+        int minutes = Mathf.FloorToInt(timerScript.elapsedTime / 60F);
+        int seconds = Mathf.FloorToInt(timerScript.elapsedTime - minutes * 60);
+
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        timerText.text = niceTime;
     }
 }
