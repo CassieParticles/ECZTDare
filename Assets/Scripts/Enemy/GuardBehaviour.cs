@@ -254,7 +254,7 @@ public class InvestigateState : BaseState
         {
             return GuardStates.Observe;
         }
-        if(guardBehaviour.suspicion > 100)
+        if(guardBehaviour.suspicion > 100 && guardBehaviour.Player)
         {
             return GuardStates.Chase;
         }
@@ -318,6 +318,7 @@ public class ChaseState : BaseState
 public class RaiseAlarmState : BaseState
 {
     private AlarmSystem alarm;
+    bool alarmRaised;
     public RaiseAlarmState(GameObject guard,AlarmSystem alarm) : base(guard)
     {
         this.alarm = alarm;
@@ -326,7 +327,8 @@ public class RaiseAlarmState : BaseState
     public override void Start()
     {
         guardBehaviour.StopMoving();
-        if(alarm && !alarm.AlarmGoingOff())
+        alarmRaised = false;
+        if(alarm)
         {
             //Start coroutine to set off alarm
             guardBehaviour.StartCoroutine(RaiseAlarm());
@@ -337,9 +339,14 @@ public class RaiseAlarmState : BaseState
 
     public override GuardStates RunTick()
     {
-        if(!alarm || alarm.AlarmGoingOff())
+        if(!alarm)
         {
             return GuardStates.Patrol;
+        }
+        if(alarmRaised)
+        {
+            alarm.StartAlarm(guardBehaviour.PointOfInterest);
+            return GuardStates.StateChangedExternally;
         }
         return GuardStates.RaiseAlarm;
     }
@@ -347,7 +354,7 @@ public class RaiseAlarmState : BaseState
     private IEnumerator RaiseAlarm()
     {
         yield return new WaitForSeconds(3);
-        alarm.StartAlarm(guardBehaviour.PointOfInterest);
+        alarmRaised = true;
     }
 }
 
@@ -408,7 +415,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
-        if((playerPosition-transform.position).sqrMagnitude < 20 * 20)
+        if((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
