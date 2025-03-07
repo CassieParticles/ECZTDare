@@ -29,6 +29,7 @@
 				</SoundBank>
 				<SoundBank Name="Music" ID="{E06E7095-5265-48D8-B7CA-BE514AB0E61E}">
 					<ObjectInclusionList>
+						<ObjectRef Name="Title_Music" ID="{1D8476F9-268B-41BE-88D9-0935AC1FC4F0}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Music" ID="{DF437E1B-6BB3-4723-82D9-A33E782E5F59}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

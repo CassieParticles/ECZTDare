@@ -88,6 +88,13 @@
 								</Reference>
 							</ReferenceList>
 						</Action>
+						<Action Name="" ID="{DA793AC3-4FDC-4ADE-88E7-A8B278703A4F}" ShortID="667391912">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Title_Track_Trial" ID="{AF5CDF97-E0C2-4444-AFEA-7D80A6C0C513}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
 					</ChildrenList>
 				</Event>
 				<Event Name="In_View_Cone" ID="{074B566E-2344-44AF-B9E3-DE08E923D0D4}">
@@ -215,6 +222,17 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Power_Generator" ID="{EA907656-9A76-4DC5-A9AF-33EC5663D0D4}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Title_Music" ID="{1D8476F9-268B-41BE-88D9-0935AC1FC4F0}">
+					<ChildrenList>
+						<Action Name="" ID="{D6B07C20-86C7-45FE-8578-0639A0B71DCC}" ShortID="593406020">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Title_Track_Trial" ID="{AF5CDF97-E0C2-4444-AFEA-7D80A6C0C513}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
