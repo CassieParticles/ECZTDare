@@ -13,11 +13,13 @@ public class CameraHackable : Hackable
         //Disable camera
         cameraAttached.beingHacked = true;
         cameraAttached.visionCone.distance = 0;
+        beingHacked = true;
 
         yield return new WaitForSeconds(hackTimer);
         //Enable camera
         cameraAttached.beingHacked = false;
         cameraAttached.visionCone.distance = dist;
+        beingHacked = false;
     }
     private void Awake()
     {
