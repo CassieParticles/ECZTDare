@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{408BDAD5-2047-1427-7F70-BC40BF477EBD}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B3061A5D-3138-7AEE-6C41-58D7539BC0FD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -273,6 +273,10 @@
 				<File Id="299723195" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Jump_1.wav</ShortName>
 					<CachePath>SFX/P_D_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="314968513" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_861B18D9.wem</CachePath>
 				</File>
 				<File Id="332950360" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_7.wav</ShortName>
@@ -457,6 +461,10 @@
 				<File Id="790896873" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Footstep_6.wav</ShortName>
 					<CachePath>SFX/P_M_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="793623686" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_A9C7BDEB.wem</CachePath>
 				</File>
 				<File Id="797407288" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Landing_1.wav</ShortName>
@@ -663,8 +671,28 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="638098506" Name="Cloak_Start" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="1518276258" Name="Cloak_Stop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="638098506" Name="Cloak_Start" DurationType="OneShot" DurationMin="1.130812" DurationMax="1.130812">
+					<MediaRefs>
+						<MediaRef Id="793623686"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1518276258" Name="Cloak_Stop" DurationType="OneShot" DurationMin="0.70565283" DurationMax="0.70565283">
+					<MediaRefs>
+						<MediaRef Id="314968513"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
@@ -1075,5 +1103,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{EB6400D5-B927-D029-1185-7E61DC5AA89A}</FileHash>
+	<FileHash>{27149F03-ABCC-0EED-CF34-179B90F5E2F1}</FileHash>
 </SoundBanksInfo>
