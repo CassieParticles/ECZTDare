@@ -21,8 +21,8 @@ public class TimerDisplay : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(timerScript.elapsedTime / 60F);
         int seconds = Mathf.FloorToInt(timerScript.elapsedTime - minutes * 60);
-
-        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        int milliseconds = Mathf.FloorToInt((timerScript.elapsedTime * 1000) % 1000);
+        string niceTime = string.Format("{0:0}:{1:00}:{2:000}", minutes, seconds, milliseconds);
 
         timerText.text = niceTime;
     }
