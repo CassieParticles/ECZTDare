@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Boost
 {
@@ -23,7 +20,7 @@ public class Boost
         }
 
         player.boosting = true;
-        player.hasBoosted = true;
+        player.hasBoostCloaked = true;
 
         //Plays the boost sfx
         player.boostStart.Post(player.gameObject);

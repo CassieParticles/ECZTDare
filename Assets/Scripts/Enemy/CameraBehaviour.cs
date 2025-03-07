@@ -10,6 +10,8 @@ public class CameraBehaviour : BaseEnemyBehaviour
     [SerializeField, Range(0, 60)] private float turnSpeed = 30;
     [SerializeField, Range(0.1f, 20)] private float pauseDuration = 1;
 
+    public bool beingHacked;
+
     private float initialAngle;
     private bool turningCCW;
     private bool turningPaused;
@@ -84,6 +86,12 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
     private void FixedUpdate()
     {
+        //If the camera is currently being hacked, exit function early and do nothing
+        if(beingHacked)
+        {
+            return; //End of function, do not put lines after this
+        }
+
         //If suspicion is high and can see the player, follow the player rather than turn normally
         bool FollowingPlayer = false;
         //Handle seeing the player

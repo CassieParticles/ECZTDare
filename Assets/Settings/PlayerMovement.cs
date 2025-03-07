@@ -55,7 +55,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Boosting"",
+                    ""name"": ""BoostCloak"",
                     ""type"": ""Button"",
                     ""id"": ""b8836efe-f0ac-4a8c-8aa2-44c79320d10e"",
                     ""expectedControlType"": ""Button"",
@@ -127,7 +127,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Boosting"",
+                    ""action"": ""BoostCloak"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -141,7 +141,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         m_KeyboardWASD_Running = m_KeyboardWASD.FindAction("Running", throwIfNotFound: true);
         m_KeyboardWASD_Jumping = m_KeyboardWASD.FindAction("Jumping", throwIfNotFound: true);
         m_KeyboardWASD_Sliding = m_KeyboardWASD.FindAction("Sliding", throwIfNotFound: true);
-        m_KeyboardWASD_Boosting = m_KeyboardWASD.FindAction("Boosting", throwIfNotFound: true);
+        m_KeyboardWASD_BoostCloak = m_KeyboardWASD.FindAction("BoostCloak", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,7 +206,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
     private readonly InputAction m_KeyboardWASD_Running;
     private readonly InputAction m_KeyboardWASD_Jumping;
     private readonly InputAction m_KeyboardWASD_Sliding;
-    private readonly InputAction m_KeyboardWASD_Boosting;
+    private readonly InputAction m_KeyboardWASD_BoostCloak;
     public struct KeyboardWASDActions
     {
         private @PlayerMovement m_Wrapper;
@@ -214,7 +214,7 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         public InputAction @Running => m_Wrapper.m_KeyboardWASD_Running;
         public InputAction @Jumping => m_Wrapper.m_KeyboardWASD_Jumping;
         public InputAction @Sliding => m_Wrapper.m_KeyboardWASD_Sliding;
-        public InputAction @Boosting => m_Wrapper.m_KeyboardWASD_Boosting;
+        public InputAction @BoostCloak => m_Wrapper.m_KeyboardWASD_BoostCloak;
         public InputActionMap Get() { return m_Wrapper.m_KeyboardWASD; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -233,9 +233,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Sliding.started += instance.OnSliding;
             @Sliding.performed += instance.OnSliding;
             @Sliding.canceled += instance.OnSliding;
-            @Boosting.started += instance.OnBoosting;
-            @Boosting.performed += instance.OnBoosting;
-            @Boosting.canceled += instance.OnBoosting;
+            @BoostCloak.started += instance.OnBoostCloak;
+            @BoostCloak.performed += instance.OnBoostCloak;
+            @BoostCloak.canceled += instance.OnBoostCloak;
         }
 
         private void UnregisterCallbacks(IKeyboardWASDActions instance)
@@ -249,9 +249,9 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
             @Sliding.started -= instance.OnSliding;
             @Sliding.performed -= instance.OnSliding;
             @Sliding.canceled -= instance.OnSliding;
-            @Boosting.started -= instance.OnBoosting;
-            @Boosting.performed -= instance.OnBoosting;
-            @Boosting.canceled -= instance.OnBoosting;
+            @BoostCloak.started -= instance.OnBoostCloak;
+            @BoostCloak.performed -= instance.OnBoostCloak;
+            @BoostCloak.canceled -= instance.OnBoostCloak;
         }
 
         public void RemoveCallbacks(IKeyboardWASDActions instance)
@@ -274,6 +274,6 @@ public partial class @PlayerMovement: IInputActionCollection2, IDisposable
         void OnRunning(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);
         void OnSliding(InputAction.CallbackContext context);
-        void OnBoosting(InputAction.CallbackContext context);
+        void OnBoostCloak(InputAction.CallbackContext context);
     }
 }

@@ -1,0 +1,464 @@
+fileFormatVersion: 2
+guid: a419417bf6967654e93a443463d6482f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9087028413815605410
+    second: guard_walk_n_0
+  - first:
+      213: 4851114528155392895
+    second: guard_walk_n_1
+  - first:
+      213: 4057699225052926178
+    second: guard_walk_n_2
+  - first:
+      213: -6399422620242992151
+    second: guard_walk_n_3
+  - first:
+      213: 771804413764563538
+    second: guard_walk_n_4
+  - first:
+      213: -7622857787387741370
+    second: guard_walk_n_5
+  - first:
+      213: 1349674299646272114
+    second: guard_walk_n_6
+  - first:
+      213: 5931347657762587013
+    second: guard_walk_n_7
+  - first:
+      213: 4480666899482692700
+    second: guard_walk_n_8
+  - first:
+      213: -970532388327720099
+    second: guard_walk_n_9
+  - first:
+      213: 8711985335405478095
+    second: guard_walk_n_10
+  - first:
+      213: -8361164346901457532
+    second: guard_walk_n_11
+  - first:
+      213: 8714256996921803832
+    second: guard_walk_n_12
+  - first:
+      213: -3592905502845455489
+    second: guard_walk_n_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: guard_walk_n_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 10
+        width: 65
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57b3a28dc364e180800000000000000
+      internalID: -9087028413815605410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_1
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 62
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7b507706fe925340800000000000000
+      internalID: 4851114528155392895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_2
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 55
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e058a252f7df4830800000000000000
+      internalID: 4057699225052926178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_3
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 0
+        width: 52
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e321d0580fa037a0800000000000000
+      internalID: -6399422620242992151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 0
+        width: 58
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 252f38e660006ba00800000000000000
+      internalID: 771804413764563538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_5
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 0
+        width: 59
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64bfe61ea3b263690800000000000000
+      internalID: -7622857787387741370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_6
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 3
+        width: 64
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 272e3e8ef910bb210800000000000000
+      internalID: 1349674299646272114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_7
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 0
+        width: 65
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 581c844e441605250800000000000000
+      internalID: 5931347657762587013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_8
+      rect:
+        serializedVersion: 2
+        x: 786
+        y: 0
+        width: 64
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c44843ec68e2e30800000000000000
+      internalID: 4480666899482692700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_9
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 0
+        width: 62
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5bf6b65fe9f782f0800000000000000
+      internalID: -970532388327720099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_10
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 0
+        width: 55
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc08145218037e870800000000000000
+      internalID: 8711985335405478095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_11
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 0
+        width: 55
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 485174a635d27fb80800000000000000
+      internalID: -8361164346901457532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_12
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 1
+        width: 62
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8348cfe81924fe870800000000000000
+      internalID: 8714256996921803832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: guard_walk_n_13
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 5
+        width: 67
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f73b95f2b7f632ec0800000000000000
+      internalID: -3592905502845455489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      guard_walk_n_0: -9087028413815605410
+      guard_walk_n_1: 4851114528155392895
+      guard_walk_n_10: 8711985335405478095
+      guard_walk_n_11: -8361164346901457532
+      guard_walk_n_12: 8714256996921803832
+      guard_walk_n_13: -3592905502845455489
+      guard_walk_n_2: 4057699225052926178
+      guard_walk_n_3: -6399422620242992151
+      guard_walk_n_4: 771804413764563538
+      guard_walk_n_5: -7622857787387741370
+      guard_walk_n_6: 1349674299646272114
+      guard_walk_n_7: 5931347657762587013
+      guard_walk_n_8: 4480666899482692700
+      guard_walk_n_9: -970532388327720099
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
