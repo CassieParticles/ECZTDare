@@ -35,27 +35,20 @@ public class AlarmSystem : MonoBehaviour
 
     public void StartAlarm(Vector3 playerPosition)
     {
-        if(!alarm)
+        for (int i = 0; i < alarmEnableFuncs.Count; ++i)
         {
-            for (int i = 0; i < alarmEnableFuncs.Count; ++i)
-            {
-                alarmEnableFuncs[i](playerPosition);
-            }
-            alarm = true;
+            alarmEnableFuncs[i](playerPosition);
         }
-
+        alarm = true;
     }
 
     public void StopAlarm()
     {
-        if (alarm)
+        for (int i = 0; i < alarmDisableFuncs.Count; ++i)
         {
-            for (int i = 0; i < alarmDisableFuncs.Count; ++i)
-            {
-                alarmDisableFuncs[i]();
-            }
-            alarm = false;
+            alarmDisableFuncs[i]();
         }
+        alarm = false;
     }
 
     //List of functions to be called
