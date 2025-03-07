@@ -229,6 +229,7 @@ public class InvestigateState : BaseState
 {
     private bool lookingAround;
     private bool finished;
+    private bool calcDistLeft;
 
     public InvestigateState(GameObject guard) : base(guard){}
 
@@ -237,6 +238,8 @@ public class InvestigateState : BaseState
         guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
         finished = false;
         lookingAround = false;
+        calcDistLeft = false;
+        guardBehaviour.StartCoroutine(WaitForDistCalc());
     }
 
     public override void Stop()
@@ -247,7 +250,7 @@ public class InvestigateState : BaseState
     public override GuardStates RunTick()
     {
         //If it sees the player
-        if(guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+        if(calcDistLeft && guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
         {
             return GuardStates.Observe;
         }
@@ -273,6 +276,13 @@ public class InvestigateState : BaseState
         lookingAround = true;
         yield return new WaitForSeconds(3);
         finished = true;
+    }
+
+    private IEnumerator WaitForDistCalc()
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        calcDistLeft = true;
     }
 }
 
@@ -398,7 +408,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
-        if(investigateAlarmLoc)
+        if((playerPosition-transform.position).sqrMagnitude < 20 * 20)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
