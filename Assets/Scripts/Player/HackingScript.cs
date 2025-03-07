@@ -7,13 +7,16 @@ using static PlayerControls;
 public class HackingScript: MonoBehaviour, IKeyboardWASDActions {
 
     PlayerControls controls;
-    InputAction hackAction;
     MovementScript movementScript;
 
     public Hackable target;
 
     [SerializeField] float range = 10f;
     [SerializeField] float behindRange = 2f;
+    [SerializeField] float hackChargeRate = 50f;
+    [SerializeField] int hackCharges = 3;
+
+    public float hackCharge = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +28,15 @@ public class HackingScript: MonoBehaviour, IKeyboardWASDActions {
             controls.KeyboardWASD.SetCallbacks(this);
         }
         controls.KeyboardWASD.Enable();
-        hackAction = controls.FindAction("Hacking");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
+            hackCharge += hackChargeRate * Time.deltaTime;
+        }
+
         target = null;
         float distance = range;
         
@@ -48,10 +54,19 @@ public class HackingScript: MonoBehaviour, IKeyboardWASDActions {
         }
     }
 
-    public void OnBoostCloak(InputAction.CallbackContext context) {
+    public void OnHacking(InputAction.CallbackContext context) {
+        if (target != null) {
+            if (hackCharge >= 100f / hackCharges) {
+                //If the target is currently being hacked dont let it
+                target.OnHack();
+                hackCharge -= 100f / hackCharges;
+            } else {
+                //Not enough charge
+            }
+        } //else No target
 
     }
-    public void OnHacking(InputAction.CallbackContext context) {
+    public void OnBoostCloak(InputAction.CallbackContext context) {
 
     }
     public void OnJumping(InputAction.CallbackContext context) {
