@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1340816479304841420}
   - component: {fileID: 4520517879774937824}
-  - component: {fileID: 6221459911077994701}
+  - component: {fileID: 721483411405698296}
   - component: {fileID: 8805521428832138119}
   - component: {fileID: 5663616991774334996}
+  - component: {fileID: 6221459911077994701}
   - component: {fileID: 7946762260465018441}
   - component: {fileID: 8371112113522891037}
   - component: {fileID: 4193888583768158028}
@@ -72,9 +73,6 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 1
-  wallClingVelocity: 0
-  tempGroundedTimer: 0
-  animator: {fileID: 0}
   maxRunSpeed: 25
   acceleration: 20
   deceleration: 4.5
@@ -108,28 +106,20 @@ MonoBehaviour:
   boostSlideSoundRange: 15
   boostSlideSoundSuspicionIncrease: 20
   boostCharge: 0
---- !u!95 &6221459911077994701
-Animator:
-  serializedVersion: 7
+--- !u!114 &721483411405698296
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969149523955869045}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 17aa6a5299b3f3d459a3efbb6914130c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11817622f38d9804ca724b4529ce7591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  range: 10
 --- !u!50 &8805521428832138119
 Rigidbody2D:
   serializedVersion: 4
@@ -281,6 +271,28 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!95 &6221459911077994701
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969149523955869045}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17aa6a5299b3f3d459a3efbb6914130c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &7946762260465018441
 SpriteRenderer:
   m_ObjectHideFlags: 0
