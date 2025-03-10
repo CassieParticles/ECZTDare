@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
@@ -29,14 +30,22 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     //How fast the player is currently sliding down the wall
     [NonSerialized] public float wallClingVelocity;
 
-    //Effective deceleration for when sliding
+     public bool inStealthMode;
+
+    //Effective variables for when there are multiple values they can have depending on situation
+    [NonSerialized] public float effectiveMaxRunSpeed;
+    [NonSerialized] public float effectiveAcceleration;
     [NonSerialized] public float effectiveDeceleration;
+    [NonSerialized] public float effectiveVelocityToSlide;
+    [NonSerialized] public float effectiveVelocityEndSlide;
+    [NonSerialized] public float effectiveJumpStrength;
+    [NonSerialized] public float effectiveMinJumpTime;
+    [NonSerialized] public float effectiveHorizontalWalljumpStrength;
+    [NonSerialized] public float effectiveVerticalWalljumpStrength;
+
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
     [NonSerialized] public float tempGroundedTimer;
-
-    //Effective deceleration for when sliding
-    [NonSerialized] public float effectiveAcceleration;
 
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public BoxCollider2D collider;
@@ -74,6 +83,17 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float horizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
+
+    [SerializeField] public float stealthMaxRunSpeed = 8; //The fastest the player can go horizontally
+    [SerializeField] public float stealthAcceleration = 20; //Speeding up when running
+    [SerializeField] public float stealthDeceleration = 15; //Slowing down when no longer running / running in opposite direction
+    [SerializeField] private float stealthVelocityToSlide = 12; //Velocity the player needs to be to be able to slide
+    [SerializeField] private float stealthVelocityEndSlide = 5; //Velocity the player needs to be to be able to slide
+    [SerializeField] public float stealthJumpStrength = 5; //Initial vertical velocity when jumping
+    [SerializeField][Range(0f, 0.5f)] public float stealthMinJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
+    [SerializeField] public float stealthHorizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
+    [SerializeField] public float stealthVerticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
+
 
     [SerializeField] public float boostFootStepSoundRange = 10f;
     [SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
@@ -163,8 +183,15 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         slideScript = new Sliding();
 
         colliderSize = collider.size;
-        effectiveDeceleration = deceleration;
+        effectiveMaxRunSpeed = maxRunSpeed;
         effectiveAcceleration = acceleration;
+        effectiveDeceleration = deceleration;
+        effectiveVelocityToSlide = velocityToSlide;
+        effectiveVelocityEndSlide = velocityEndSlide;
+        effectiveJumpStrength = jumpStrength;
+        effectiveMinJumpTime = minJumpTime;
+        effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
+        effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
         boostCharge = 100;
 
         //Setup inputs
@@ -201,6 +228,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator.SetBool("Sliding", sliding);
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
+
+        changeModeToStealth(inStealthMode);
 
         if (Input.GetKey(KeyCode.L))
         {
@@ -326,6 +355,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         bottomLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
                                                                             collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
     }
+
     void JumpAndFall() {
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
 
@@ -354,9 +384,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         
         }
     }
+
     public IEnumerator MinJumpDuration() {
         minJumpActive = true;
-        yield return new WaitForSeconds(minJumpTime);
+        yield return new WaitForSeconds(effectiveMinJumpTime);
         minJumpActive = false;
     }
 
@@ -401,11 +432,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         
 
         //Handle Sliding
-        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
+        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= effectiveVelocityToSlide && !hasSlid) {
 
             slideScript.StartSliding();
 
-        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
+        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < effectiveVelocityEndSlide || !grounded) && sliding) {
 
             slideScript.StopSliding();
 
@@ -439,6 +470,39 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //Update the sprite to flip it to the right direction
         spriteRenderer.flipX = !facingRight;
+    }
+
+    public void changeModeToStealth(bool mode) {
+        inStealthMode = mode;
+        if (inStealthMode) {
+            boosting = false;
+            boostScript.NotBoosting();
+
+            effectiveMaxRunSpeed = stealthMaxRunSpeed;
+            effectiveAcceleration = stealthAcceleration;
+            if (!sliding) {
+                effectiveDeceleration = stealthDeceleration;
+            }
+            effectiveVelocityToSlide = stealthVelocityToSlide;
+            effectiveVelocityEndSlide = stealthVelocityEndSlide;
+            effectiveJumpStrength = stealthJumpStrength;
+            effectiveMinJumpTime = stealthMinJumpTime;
+            effectiveHorizontalWalljumpStrength = stealthHorizontalWalljumpStrength;
+            effectiveVerticalWalljumpStrength = stealthVerticalWalljumpStrength;
+
+        } else {
+            effectiveMaxRunSpeed = maxRunSpeed;
+            effectiveAcceleration = acceleration;
+            if (!sliding) {
+                effectiveDeceleration = deceleration;
+            }
+            effectiveVelocityToSlide = velocityToSlide;
+            effectiveVelocityEndSlide = velocityEndSlide;
+            effectiveJumpStrength = jumpStrength;
+            effectiveMinJumpTime = minJumpTime;
+            effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
+            effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
+        }
     }
 
     private void OnDrawGizmosSelected() {

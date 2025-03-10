@@ -13,7 +13,7 @@ public class Running
 
     public void Accelerate(int runInput) {
         player.facingRight = Convert.ToBoolean((runInput + 1) / 2);
-        player.rb.velocityX += runInput * player.acceleration * Time.deltaTime;
+        player.rb.velocityX += runInput * player.effectiveAcceleration * Time.deltaTime;
         if (Mathf.Sign(player.rb.velocityX) == runInput * -1) {
             player.rb.velocityX += player.effectiveDeceleration * -player.rb.velocityX * Time.deltaTime;
         }
@@ -30,11 +30,11 @@ public class Running
     public void CapRunningSpeed() {
         //If the player is falling, slow them down slightly
         if (player.rb.velocityY < 0) {
-            player.dynamicMaxRunSpeed = player.maxRunSpeed * //Base max run speed
+            player.dynamicMaxRunSpeed = player.effectiveMaxRunSpeed * //Base max run speed
                                  player.boostingMaxRunSpeedMultiplier * //Boosting makes this multiplier not 1
                                  (1 - (player.fallSlowsRunMult * -player.rb.velocityY / player.maxFallSpeed)); //Falling slows down the horizontal speed
         } else { //Otherwise, calculate the max run speed as normal
-            player.dynamicMaxRunSpeed = player.maxRunSpeed * player.boostingMaxRunSpeedMultiplier;
+            player.dynamicMaxRunSpeed = player.effectiveMaxRunSpeed * player.boostingMaxRunSpeedMultiplier;
         }
         //Only cap the running speed if the player is not sliding
         if (player.horizontalVelocity > player.dynamicMaxRunSpeed && !player.sliding) {

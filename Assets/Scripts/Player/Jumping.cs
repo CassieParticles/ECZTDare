@@ -12,7 +12,7 @@ public class Jumping
     }
 
     public void BasicJump() {
-        player.rb.velocityY = player.jumpStrength;
+        player.rb.velocityY = player.effectiveJumpStrength;
         //Plays the Player_Jump sound
         AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
         if (player.boosting) {
@@ -28,14 +28,14 @@ public class Jumping
         player.hasJumped = true;
         player.facingRight = !player.onRightWall;
         if (whichWallJump == -1) { //Jumping off a left wall
-            player.rb.velocityX = player.horizontalWalljumpStrength;
-            player.rb.velocityY = player.verticalWalljumpStrength;
+            player.rb.velocityX = player.effectiveHorizontalWalljumpStrength;
+            player.rb.velocityY = player.effectiveVerticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
             player.StartCoroutine("WalljumpInputDelay", -1);
         } else if (whichWallJump == 1) { //Jumping off a right wall
-            player.rb.velocityX = -player.horizontalWalljumpStrength;
-            player.rb.velocityY = player.verticalWalljumpStrength;
+            player.rb.velocityX = -player.effectiveHorizontalWalljumpStrength;
+            player.rb.velocityY = player.effectiveVerticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
             player.StartCoroutine("WalljumpInputDelay", 1);
