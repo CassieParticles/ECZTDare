@@ -16,7 +16,7 @@ public class Jumping
         //Plays the Player_Jump sound
         AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
         if (player.boosting) {
-            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostJumpSoundRange, player.boostJumpSoundSuspicionIncrease);
+            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostJumpSoundRange, player.boostJumpSoundSuspicionIncrease, AudioSource.Player);
         }
         player.animator.SetBool("Grounded", false);
         player.hasJumped = true;

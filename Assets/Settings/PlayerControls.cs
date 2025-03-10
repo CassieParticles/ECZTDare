@@ -24,7 +24,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     ""name"": ""PlayerControls"",
     ""maps"": [
         {
-            ""name"": ""Keyboard WASD"",
+            ""name"": ""Gameplay Controls"",
             ""id"": ""74c0dcec-bbb9-4bd3-8303-a2926d0238ae"",
             ""actions"": [
                 {
@@ -108,9 +108,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Left Stick"",
+                    ""id"": ""e9835ce1-55f8-48de-abb4-608dadb7c58d"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""5c5df20d-2b5d-43e6-b39a-8ac015a87b8c"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""8670e16d-60a8-4c50-8780-f6349d3b9e15"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16ef3ecc-cd76-4c0c-bc81-3042cb738f7f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -131,8 +164,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""16207e4e-8c97-4f4c-b35a-cb76ba7246b7"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sliding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14a75b32-4b66-470d-8ad5-dc3152c32e8e"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sliding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""49f45dda-8f7c-45ea-ad35-64f5b8b288f4"",
                     ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BoostCloak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7aeff7ca-b773-427b-a13b-988c7f9ae178"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BoostCloak"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e1a90c7c-3e3c-4475-8190-88aa82bbf0b7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -150,19 +227,74 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Hacking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acf2ed29-03ef-4665-8cd3-7efdef41e784"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""698c0cf5-1cee-4c81-915f-7d8ee6960b58"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""2274f63c-6fdc-40fc-9887-d90d64220de8"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""cbbc516f-9a39-4573-9666-fdd379f47158"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""b4435cc3-a9e1-4104-b8d8-652717c878c7"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Keyboard WASD
-        m_KeyboardWASD = asset.FindActionMap("Keyboard WASD", throwIfNotFound: true);
-        m_KeyboardWASD_Running = m_KeyboardWASD.FindAction("Running", throwIfNotFound: true);
-        m_KeyboardWASD_Jumping = m_KeyboardWASD.FindAction("Jumping", throwIfNotFound: true);
-        m_KeyboardWASD_Sliding = m_KeyboardWASD.FindAction("Sliding", throwIfNotFound: true);
-        m_KeyboardWASD_BoostCloak = m_KeyboardWASD.FindAction("BoostCloak", throwIfNotFound: true);
-        m_KeyboardWASD_Hacking = m_KeyboardWASD.FindAction("Hacking", throwIfNotFound: true);
+        // Gameplay Controls
+        m_GameplayControls = asset.FindActionMap("Gameplay Controls", throwIfNotFound: true);
+        m_GameplayControls_Running = m_GameplayControls.FindAction("Running", throwIfNotFound: true);
+        m_GameplayControls_Jumping = m_GameplayControls.FindAction("Jumping", throwIfNotFound: true);
+        m_GameplayControls_Sliding = m_GameplayControls.FindAction("Sliding", throwIfNotFound: true);
+        m_GameplayControls_BoostCloak = m_GameplayControls.FindAction("BoostCloak", throwIfNotFound: true);
+        m_GameplayControls_Hacking = m_GameplayControls.FindAction("Hacking", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -221,32 +353,32 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Keyboard WASD
-    private readonly InputActionMap m_KeyboardWASD;
-    private List<IKeyboardWASDActions> m_KeyboardWASDActionsCallbackInterfaces = new List<IKeyboardWASDActions>();
-    private readonly InputAction m_KeyboardWASD_Running;
-    private readonly InputAction m_KeyboardWASD_Jumping;
-    private readonly InputAction m_KeyboardWASD_Sliding;
-    private readonly InputAction m_KeyboardWASD_BoostCloak;
-    private readonly InputAction m_KeyboardWASD_Hacking;
-    public struct KeyboardWASDActions
+    // Gameplay Controls
+    private readonly InputActionMap m_GameplayControls;
+    private List<IGameplayControlsActions> m_GameplayControlsActionsCallbackInterfaces = new List<IGameplayControlsActions>();
+    private readonly InputAction m_GameplayControls_Running;
+    private readonly InputAction m_GameplayControls_Jumping;
+    private readonly InputAction m_GameplayControls_Sliding;
+    private readonly InputAction m_GameplayControls_BoostCloak;
+    private readonly InputAction m_GameplayControls_Hacking;
+    public struct GameplayControlsActions
     {
         private @PlayerControls m_Wrapper;
-        public KeyboardWASDActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Running => m_Wrapper.m_KeyboardWASD_Running;
-        public InputAction @Jumping => m_Wrapper.m_KeyboardWASD_Jumping;
-        public InputAction @Sliding => m_Wrapper.m_KeyboardWASD_Sliding;
-        public InputAction @BoostCloak => m_Wrapper.m_KeyboardWASD_BoostCloak;
-        public InputAction @Hacking => m_Wrapper.m_KeyboardWASD_Hacking;
-        public InputActionMap Get() { return m_Wrapper.m_KeyboardWASD; }
+        public GameplayControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Running => m_Wrapper.m_GameplayControls_Running;
+        public InputAction @Jumping => m_Wrapper.m_GameplayControls_Jumping;
+        public InputAction @Sliding => m_Wrapper.m_GameplayControls_Sliding;
+        public InputAction @BoostCloak => m_Wrapper.m_GameplayControls_BoostCloak;
+        public InputAction @Hacking => m_Wrapper.m_GameplayControls_Hacking;
+        public InputActionMap Get() { return m_Wrapper.m_GameplayControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(KeyboardWASDActions set) { return set.Get(); }
-        public void AddCallbacks(IKeyboardWASDActions instance)
+        public static implicit operator InputActionMap(GameplayControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayControlsActions instance)
         {
-            if (instance == null || m_Wrapper.m_KeyboardWASDActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_KeyboardWASDActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameplayControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayControlsActionsCallbackInterfaces.Add(instance);
             @Running.started += instance.OnRunning;
             @Running.performed += instance.OnRunning;
             @Running.canceled += instance.OnRunning;
@@ -264,7 +396,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hacking.canceled += instance.OnHacking;
         }
 
-        private void UnregisterCallbacks(IKeyboardWASDActions instance)
+        private void UnregisterCallbacks(IGameplayControlsActions instance)
         {
             @Running.started -= instance.OnRunning;
             @Running.performed -= instance.OnRunning;
@@ -283,22 +415,22 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Hacking.canceled -= instance.OnHacking;
         }
 
-        public void RemoveCallbacks(IKeyboardWASDActions instance)
+        public void RemoveCallbacks(IGameplayControlsActions instance)
         {
-            if (m_Wrapper.m_KeyboardWASDActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameplayControlsActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IKeyboardWASDActions instance)
+        public void SetCallbacks(IGameplayControlsActions instance)
         {
-            foreach (var item in m_Wrapper.m_KeyboardWASDActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameplayControlsActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_KeyboardWASDActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameplayControlsActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public KeyboardWASDActions @KeyboardWASD => new KeyboardWASDActions(this);
-    public interface IKeyboardWASDActions
+    public GameplayControlsActions @GameplayControls => new GameplayControlsActions(this);
+    public interface IGameplayControlsActions
     {
         void OnRunning(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);

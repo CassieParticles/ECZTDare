@@ -52,7 +52,7 @@ public class Running
                     player.footstepCount--;
                     //Alert noise
                     if (player.boosting) {
-                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease);
+                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease, AudioSource.Player);
                     }
                 }
             } else if (player.horizontalVelocity >= 20f) {
@@ -62,7 +62,7 @@ public class Running
                     player.footstepCount--;
                     //Alert noise
                     if (player.boosting) {
-                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease);
+                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease, AudioSource.Player);
                     }
                 }
             }
