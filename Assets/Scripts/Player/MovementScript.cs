@@ -159,7 +159,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         boostScript = new Boost();
         jumpScript = new Jumping();
         runningScript = new Running();
-        cloakingScript = new Cloak();
+        cloakScript = new Cloak();
         slideScript = new Sliding();
 
         colliderSize = collider.size;
