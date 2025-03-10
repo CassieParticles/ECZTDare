@@ -6,6 +6,8 @@ public class RaiseAlarmState : BaseState
 {
     private AlarmSystem alarm;
     bool alarmRaised;
+
+    private Coroutine raiseAlarmCoroutine;
     public RaiseAlarmState(GameObject guard, AlarmSystem alarm) : base(guard)
     {
         this.alarm = alarm;
@@ -18,11 +20,17 @@ public class RaiseAlarmState : BaseState
         if (alarm)
         {
             //Start coroutine to set off alarm
-            guardBehaviour.StartCoroutine(RaiseAlarm());
+            raiseAlarmCoroutine = guardBehaviour.StartCoroutine(RaiseAlarm());
         }
     }
 
-    public override void Stop() { }
+    public override void Stop() {
+        if(raiseAlarmCoroutine!=null)
+        {
+            guardBehaviour.StopCoroutine(raiseAlarmCoroutine);
+            raiseAlarmCoroutine = null;
+        }
+    }
 
     public override GuardStates RunTick()
     {
@@ -30,8 +38,15 @@ public class RaiseAlarmState : BaseState
         {
             return GuardStates.Patrol;
         }
+        //If it sees the player again, don't raise alarm, just chase the player
+        if(guardBehaviour.Player)
+        {
+            return GuardStates.Chase;
+        }
+
         if (alarmRaised)
         {
+            raiseAlarmCoroutine = null;
             alarm.StartAlarm(guardBehaviour.PointOfInterest);
             return GuardStates.StateChangedExternally;
         }
