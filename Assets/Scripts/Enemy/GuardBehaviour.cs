@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,12 +13,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
     //How much the velocity of the player affects the footstep frequency
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
 
+    public float walkSpeed = 5.0f;
+    public float chaseSpeed = 25.0f;
+    
+ 
+
     //Used to determine when to trigger footstep sounds.
     private float footstepCount = 0.0f;
 
     public AK.Wwise.Event guardFootstep;
 
-    // Start is called before the first frame update
+    //AI behaviour
     private NavMeshAgent agent;
     private StateMachine guardBehaviour = new StateMachine();
 
