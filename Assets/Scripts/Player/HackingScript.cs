@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
 
-public class HackingScript: MonoBehaviour, IKeyboardWASDActions {
+public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
     PlayerControls controls;
     MovementScript movementScript;
@@ -25,9 +25,9 @@ public class HackingScript: MonoBehaviour, IKeyboardWASDActions {
 
         if (controls == null) {
             controls = new PlayerControls();
-            controls.KeyboardWASD.SetCallbacks(this);
+            controls.GameplayControls.SetCallbacks(this);
         }
-        controls.KeyboardWASD.Enable();
+        controls.GameplayControls.Enable();
     }
 
     // Update is called once per frame

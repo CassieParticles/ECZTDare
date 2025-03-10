@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
 
-public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
+public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     public AK.Wwise.Event playerFootstep;
     public AK.Wwise.Event playerSlide;
     public AK.Wwise.Event boostStart;
@@ -170,9 +170,9 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         //Setup inputs
         if (controls == null) {
             controls = new PlayerControls();
-            controls.KeyboardWASD.SetCallbacks(this);
+            controls.GameplayControls.SetCallbacks(this);
         }
-        controls.KeyboardWASD.Enable();
+        controls.GameplayControls.Enable();
         runAction = controls.FindAction("Running");
         jumpAction = controls.FindAction("Jumping");
         slideAction = controls.FindAction("Sliding");
