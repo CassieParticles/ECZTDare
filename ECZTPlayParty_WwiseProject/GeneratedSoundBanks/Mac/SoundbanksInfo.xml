@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{3503E4F6-09FD-9B62-1E65-57AB53AC0209}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{90F8DB47-9F93-2B27-62F1-A94EF3B135C6}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -62,6 +62,14 @@
 				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
 			</GameParameters>
 			<StateGroups>
+				<StateGroup Id="85412153" Name="Ambience">
+					<States>
+						<State Id="438105790" Name="Outside"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2065151404" Name="NoAmbience"/>
+						<State Id="3553349781" Name="Inside"/>
+					</States>
+				</StateGroup>
 				<StateGroup Id="348963605" Name="Reverb">
 					<States>
 						<State Id="438105790" Name="Outside"/>
@@ -76,6 +84,7 @@
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1862135557" Name="NoMusic"/>
+						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
 						<State Id="4009708623" Name="Alarm_Low"/>
@@ -125,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{56DF1417-5649-CFB7-CB83-F4715FBA36BC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{408BDAD5-2047-1427-7F70-BC40BF477EBD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -425,6 +434,10 @@
 					<ShortName>P_C_Jump_4.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
 				</File>
+				<File Id="737925208" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem</CachePath>
+				</File>
 				<File Id="767938678" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Landing_3.wav</ShortName>
 					<CachePath>SFX/P_C_Landing_3_818F3B66.wem</CachePath>
@@ -504,6 +517,10 @@
 				<File Id="908405812" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Boost_Start.wav</ShortName>
 					<CachePath>SFX/Boost_Start_818F3B66.wem</CachePath>
+				</File>
+				<File Id="908573506" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1_66B93D96.wem</CachePath>
 				</File>
 				<File Id="910263220" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Landing_1.wav</ShortName>
@@ -586,6 +603,11 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="710389270" Name="Ambience_Rain" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="908573506"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4043448287" Name="Boost_Rush" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="598826268"/>
@@ -630,7 +652,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="70" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
@@ -641,6 +663,8 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="638098506" Name="Cloak_Start" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="1518276258" Name="Cloak_Stop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
@@ -949,6 +973,17 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="2283979374" Name="Power_Generator" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="737925208"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -997,13 +1032,17 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{7532D31F-1189-D812-750A-665C238E354F}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{D513DFBB-C33E-B735-ADE5-E9174F8537CE}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
 				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Hidden_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="346157248" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Title_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Low.wav</ShortName>
@@ -1022,13 +1061,19 @@
 				<Event Id="3991942870" Name="Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="40011298"/>
+						<MediaRef Id="346157248"/>
 						<MediaRef Id="356683109"/>
 						<MediaRef Id="763308751"/>
 						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="309205993" Name="Title_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="346157248"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2CFA4C3C-31D3-032C-4912-F0CBB07028BF}</FileHash>
+	<FileHash>{9F514F06-B787-7008-A799-EA851CE59662}</FileHash>
 </SoundBanksInfo>

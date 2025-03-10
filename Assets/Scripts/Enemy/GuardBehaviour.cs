@@ -1,8 +1,6 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 public class IdleState : BaseState
 {
@@ -231,6 +229,7 @@ public class InvestigateState : BaseState
 {
     private bool lookingAround;
     private bool finished;
+    private bool calcDistLeft;
 
     public InvestigateState(GameObject guard) : base(guard){}
 
@@ -239,6 +238,8 @@ public class InvestigateState : BaseState
         guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
         finished = false;
         lookingAround = false;
+        calcDistLeft = false;
+        guardBehaviour.StartCoroutine(WaitForDistCalc());
     }
 
     public override void Stop()
@@ -249,11 +250,11 @@ public class InvestigateState : BaseState
     public override GuardStates RunTick()
     {
         //If it sees the player
-        if(guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+        if(calcDistLeft && guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
         {
             return GuardStates.Observe;
         }
-        if(guardBehaviour.suspicion > 100)
+        if(guardBehaviour.suspicion > 100 && guardBehaviour.Player)
         {
             return GuardStates.Chase;
         }
@@ -275,6 +276,13 @@ public class InvestigateState : BaseState
         lookingAround = true;
         yield return new WaitForSeconds(3);
         finished = true;
+    }
+
+    private IEnumerator WaitForDistCalc()
+    {
+
+        yield return new WaitForSeconds(0.1f);
+        calcDistLeft = true;
     }
 }
 
@@ -310,6 +318,7 @@ public class ChaseState : BaseState
 public class RaiseAlarmState : BaseState
 {
     private AlarmSystem alarm;
+    bool alarmRaised;
     public RaiseAlarmState(GameObject guard,AlarmSystem alarm) : base(guard)
     {
         this.alarm = alarm;
@@ -318,7 +327,8 @@ public class RaiseAlarmState : BaseState
     public override void Start()
     {
         guardBehaviour.StopMoving();
-        if(alarm && !alarm.AlarmGoingOff())
+        alarmRaised = false;
+        if(alarm)
         {
             //Start coroutine to set off alarm
             guardBehaviour.StartCoroutine(RaiseAlarm());
@@ -329,9 +339,14 @@ public class RaiseAlarmState : BaseState
 
     public override GuardStates RunTick()
     {
-        if(!alarm || alarm.AlarmGoingOff())
+        if(!alarm)
         {
             return GuardStates.Patrol;
+        }
+        if(alarmRaised)
+        {
+            alarm.StartAlarm(guardBehaviour.PointOfInterest);
+            return GuardStates.StateChangedExternally;
         }
         return GuardStates.RaiseAlarm;
     }
@@ -339,7 +354,7 @@ public class RaiseAlarmState : BaseState
     private IEnumerator RaiseAlarm()
     {
         yield return new WaitForSeconds(3);
-        alarm.StartAlarm(guardBehaviour.PointOfInterest);
+        alarmRaised = true;
     }
 }
 
@@ -365,6 +380,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private StateMachine guardBehaviour = new StateMachine();
 
     public Vector3 PointOfInterest;
+
+    private Animator guardMoveAnimation;
+    private SpriteRenderer spriteRenderer;
 
     public void MoveTo(Vector3 position)
     {
@@ -397,7 +415,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
-        if(investigateAlarmLoc)
+        if((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
@@ -425,7 +443,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "NoMusic");
         musicHandler.music.Stop(gameObject);
-        SceneManager.LoadScene("LoseScene");
+        SceneChangeTracker.GetTracker().ChangeScene("LoseScene");
     }
 
     private void Awake()
@@ -452,7 +470,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
-        
+        guardMoveAnimation = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 
@@ -475,6 +494,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void FixedUpdate()
     {
+        //Update animation parameters
+        guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
+        if (Mathf.Sign(agent.velocity.x) > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (Mathf.Sign(agent.velocity.x) < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
         BaseUpdate();
 
         guardBehaviour.BehaviourTick();
