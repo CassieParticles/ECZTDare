@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class CreateCircle : MonoBehaviour
 {
-    [SerializeField]private float lifetime=0.2f;
-
-    private float increaseRate;
+    [SerializeField]private float innerSpeed=1f;
+    [SerializeField] private float outerSpeed = 15f;
 
     private bool setUp;
-    private LineRenderer lineRenderer;
-    private float radius;
+    private float lifetime;
+
+    private LineRenderer lineRendererInner;
+    private float innerRadius;
+
+    private LineRenderer lineRendererOuter;
+    private float outerRadius;
+
 
     public void Setup(float maxRadius)
     {
-        this.increaseRate = maxRadius / lifetime;
+        lifetime = maxRadius / outerSpeed;
         setUp = true;
         StartCoroutine(DestroySelf());
     }
@@ -27,19 +32,24 @@ public class CreateCircle : MonoBehaviour
 
     private void GenerateCircle()
     {
-        const float angleInc = 2 * 3.14159f / 38;
-        Vector3[] vecArr = new Vector3[40];
-        for (int i = 0; i < 40; ++i)
+        const float angleInc = 2 * 3.14159f / 79;
+        Vector3[] vecArrIn = new Vector3[80];
+        Vector3[] vecArrOut = new Vector3[80];
+        for (int i = 0; i < 80; ++i)
         {
-            vecArr[i] = new Vector3(Mathf.Cos(i * angleInc), Mathf.Sin(i * angleInc)) * radius;
+            vecArrIn[i] = new Vector3(Mathf.Cos(i * angleInc), Mathf.Sin(i * angleInc)) * innerRadius;
+            vecArrOut[i] = new Vector3(Mathf.Cos(i * angleInc), Mathf.Sin(i * angleInc)) * outerRadius;
         }
-        lineRenderer.SetPositions(vecArr);
+        lineRendererInner.SetPositions(vecArrIn);
+        lineRendererOuter.SetPositions(vecArrOut);
     }
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = 40;
+        lineRendererInner = transform.GetChild(0).GetComponent<LineRenderer>();
+        lineRendererInner.positionCount = 80;
+        lineRendererOuter = transform.GetChild(1).GetComponent<LineRenderer>();
+        lineRendererOuter.positionCount = 80;
 
         setUp = false;
 
@@ -52,7 +62,8 @@ public class CreateCircle : MonoBehaviour
         if(setUp)
         {
             GenerateCircle();
-            radius += Time.deltaTime * increaseRate;
+            innerRadius += Time.deltaTime * innerSpeed;
+            outerRadius += Time.deltaTime * outerSpeed;
         }
     }
 }
