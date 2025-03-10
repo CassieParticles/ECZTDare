@@ -188,6 +188,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         CheckGrounded();
         //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
+        //Boosting and Cloaking, the action that switches between modes
+        BoostCloak();
         //Running and Sliding, all horizontal velocity
         RunSlide();
 
