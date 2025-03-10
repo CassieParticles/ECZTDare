@@ -4,20 +4,35 @@ using UnityEngine.AI;
 
 public class ChaseState : BaseState
 {
+    private Coroutine raiseAlarmCoroutine;
+    private IEnumerator raiseAlarm()
+    {
+        yield return new WaitForSeconds(guardBehaviour.chaseAlarmTimer);
+        shouldRaiseAlarm = true;
+    }
+    bool shouldRaiseAlarm;
 
+    AlarmSystem alarm;
 
-    public ChaseState(GameObject guard) : base(guard) { }
+    public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) { this.alarm = alarm; }
 
     public override void Start()
     {
         AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
         guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
+        raiseAlarmCoroutine = guardBehaviour.StartCoroutine(raiseAlarm());
+        shouldRaiseAlarm = false;
     }
 
     public override void Stop()
     {
         AlarmMusicHandler.GetMusicHandler().EndChase(guardBehaviour);
         guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.walkSpeed;
+        //If chase is exited early, stop the co-routine
+        if(raiseAlarmCoroutine != null ) 
+        {
+            guardBehaviour.StopCoroutine(raiseAlarmCoroutine);
+        }
     }
 
     public override GuardStates RunTick()
@@ -34,6 +49,17 @@ public class ChaseState : BaseState
         if(guardBehaviour.Player)
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+        }
+
+        //Raise the alarm while chasing
+        if(shouldRaiseAlarm)
+        {
+            raiseAlarmCoroutine = null;
+            if(alarm)
+            {
+                alarm.StartAlarm(guardBehaviour.PointOfInterest);
+                return GuardStates.StateChangedExternally;
+            }
         }
 
         guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);

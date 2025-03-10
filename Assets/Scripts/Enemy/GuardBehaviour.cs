@@ -15,8 +15,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public float walkSpeed = 5.0f;
     public float chaseSpeed = 25.0f;
-    
- 
+
+    /// <summary>
+    /// How long will a guard be chasing the player before they call the alarm
+    /// </summary>
+    public float chaseAlarmTimer=1.0f;
 
     //Used to determine when to trigger footstep sounds.
     private float footstepCount = 0.0f;
@@ -120,7 +123,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
-        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
+        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
         guardMoveAnimation = GetComponent<Animator>();
