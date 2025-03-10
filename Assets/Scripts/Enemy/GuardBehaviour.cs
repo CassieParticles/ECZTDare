@@ -60,6 +60,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
         return agent.remainingDistance;
     }
 
+    public Vector3 getCurrentDestination()
+    {
+        return agent.destination;
+    }
+
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);

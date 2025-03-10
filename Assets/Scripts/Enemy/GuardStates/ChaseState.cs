@@ -4,13 +4,7 @@ using UnityEngine.AI;
 
 public class ChaseState : BaseState
 {
-    Coroutine lookingForPlayer;
-    bool callAlarm;
-    private IEnumerator LookForPlayer()
-    {
-        yield return new WaitForSeconds(3);
-        callAlarm = true;
-    }
+
 
     public ChaseState(GameObject guard) : base(guard) { }
 
@@ -18,7 +12,6 @@ public class ChaseState : BaseState
     {
         AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
         guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
-        callAlarm = false;
     }
 
     public override void Stop()
@@ -30,23 +23,17 @@ public class ChaseState : BaseState
     public override GuardStates RunTick()
     {
         //If player is not visible, start searching for them, continue chase if seen again
-        if (!guardBehaviour.Player)
+
+        //If player is not visible, and at target, then call alarm
+        if(!guardBehaviour.Player && (guardBehaviour.getCurrentDestination()-guardAttached.transform.position).sqrMagnitude < 0.15f)
         {
-            lookingForPlayer = guardBehaviour.StartCoroutine(LookForPlayer());
-        }
-        if(lookingForPlayer!=null && guardBehaviour.Player!=null)
-        {
-            guardBehaviour.StopCoroutine(lookingForPlayer);
+            return GuardStates.RaiseAlarm;
         }
 
+       
         if(guardBehaviour.Player)
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-        }
-        
-        if(callAlarm)
-        {
-            return GuardStates.RaiseAlarm;
         }
 
         guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
