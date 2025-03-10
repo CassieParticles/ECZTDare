@@ -51,6 +51,14 @@
 										<CustomState Name="" ID="{7534A98F-3EBF-4D8A-B95E-5CEA9BF73D87}" ShortID="841925969"/>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{8E2D8DCA-F84D-4DA4-89DC-DFC1569E9343}" ShortID="93235417">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 										<CustomState Name="" ID="{AC6BDDC1-D9B2-46F6-A1DB-8A8B76C58FBE}" ShortID="349927390">
 											<PropertyList>
@@ -119,6 +127,14 @@
 									<CustomState>
 										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 										<CustomState Name="" ID="{EF28463E-4B24-468A-8507-21A80FF3F90B}" ShortID="264517568">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{8F6DEC1E-0F85-43D4-A4AF-3C3FFF4DD05C}" ShortID="736320495">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -200,6 +216,14 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{204E206B-FB91-4148-BCAD-76AD30C95EB9}" ShortID="155172228">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 										<CustomState Name="" ID="{70D53E5F-7459-4D79-ABB1-B4B444A883FE}" ShortID="128052908">
 											<PropertyList>
@@ -270,6 +294,14 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{7671CB7C-B46D-4BF8-BFB7-3E8FD8947491}" ShortID="524881620">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 										<CustomState Name="" ID="{66762734-9032-496E-A8E0-04812826C015}" ShortID="15508832">
 											<PropertyList>
@@ -293,6 +325,84 @@
 							</StateInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="Hidden_Track_Trial" ID="{9478924D-85E5-4471-8653-C9B7AA9BF3E5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Title_Track_Trial" ID="{AF5CDF97-E0C2-4444-AFEA-7D80A6C0C513}" ShortID="326594270">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Title_Track_Trial" ID="{3716CAD4-03FB-4A25-882A-CE64E8C22C55}">
+									<Language>SFX</Language>
+									<AudioFile>Title_Track_Trial.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="346157248"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+										<CustomState Name="" ID="{1292ADDE-44A6-4D9E-AD47-D24447663108}" ShortID="165614722">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+										<CustomState Name="" ID="{20C6BFC4-AA09-4E9D-9633-DFF9230EE670}" ShortID="359432888">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+										<CustomState Name="" ID="{59BACC35-3F55-4731-B587-705F57641960}" ShortID="602082157">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+										<CustomState Name="" ID="{04A823AC-3F99-42BD-87E5-330CA6B758DB}" ShortID="92858764">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+										<CustomState Name="" ID="{E01B06D7-9DCF-4ABC-AF1E-E4A8D8E606F0}" ShortID="302693169">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<ActiveSourceList>
+								<ActiveSource Name="Title_Track_Trial" ID="{3716CAD4-03FB-4A25-882A-CE64E8C22C55}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -3079,6 +3189,138 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Boost_Stop" ID="{9A9F6093-AEF9-4A7D-950F-8769AB5208DD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Cloak_Start" ID="{6B419AEA-B822-4C0D-B504-82EF4FCCCF8A}" ShortID="1052419209">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND20301"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://server.soundly.cloud/?Type=GetFile&amp;SessionID=1741361813GfEpeywxu0rZxMYe4wT&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND20301/sfy_iKjmLPBSJWhCtALKUwEsswBYtsDdLU"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="20.17845833333333"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\flynn\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.5559895833333334"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.5865885416666666"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1" ID="{A848959D-CEAB-46E1-A833-BE66B1D5795E}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.347167712606847"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND20301"/>
+										<Property Name="TrimBegin" Type="Real64" Value="11.2377478876837"/>
+										<Property Name="TrimEnd" Type="Real64" Value="12.368559968958"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="793623686"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1" ID="{A848959D-CEAB-46E1-A833-BE66B1D5795E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Cloak_Stop" ID="{C76AA667-522A-4491-A9A8-80F4C78CAEBC}" ShortID="142185031">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>30</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND20301"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://server.soundly.cloud/?Type=GetFile&amp;SessionID=1741361813GfEpeywxu0rZxMYe4wT&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND20301/sfy_iKjmLPBSJWhCtALKUwEsswBYtsDdLU"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="20.17845833333333"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\flynn\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.5559895833333334"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.5865885416666666"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1" ID="{E8157878-BC29-4CF1-8BFD-63C8D3D66969}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.151147737306449"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.347167712606847"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND20301"/>
+										<Property Name="TrimBegin" Type="Real64" Value="7.14455992773262"/>
+										<Property Name="TrimEnd" Type="Real64" Value="7.85021278038976"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="314968513"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1" ID="{E8157878-BC29-4CF1-8BFD-63C8D3D66969}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

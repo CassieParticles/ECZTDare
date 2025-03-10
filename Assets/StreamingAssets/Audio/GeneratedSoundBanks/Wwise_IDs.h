@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID PLAYER_SLIDE = 2609528332U;
         static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
         static const AkUniqueID POWER_GENERATOR = 2283979374U;
+        static const AkUniqueID TITLE_MUSIC = 309205993U;
     } // namespace EVENTS
 
     namespace STATES
@@ -59,6 +60,7 @@ namespace AK
                 static const AkUniqueID ALARM_LOW = 4009708623U;
                 static const AkUniqueID ALARM_MIDDLE = 122271732U;
                 static const AkUniqueID HIDDEN = 3621873013U;
+                static const AkUniqueID MENU = 2607556080U;
                 static const AkUniqueID NOMUSIC = 1862135557U;
                 static const AkUniqueID NONE = 748895195U;
             } // namespace STATE

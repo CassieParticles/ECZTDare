@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Hackable : MonoBehaviour
 {
+    public bool beingHacked;
     public abstract void OnHack();
 }

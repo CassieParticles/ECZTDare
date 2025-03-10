@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{C8284EEE-5313-976E-371D-558D23ABE8A8}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{90F8DB47-9F93-2B27-62F1-A94EF3B135C6}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -84,6 +84,7 @@
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1862135557" Name="NoMusic"/>
+						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
 						<State Id="4009708623" Name="Alarm_Low"/>
@@ -133,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{D06F5039-AD56-86FB-DC3B-62D692E8E3BC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{408BDAD5-2047-1427-7F70-BC40BF477EBD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -1031,13 +1032,17 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{E26D445E-8A36-D9F5-E1C3-BE9B5437C6D4}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{D513DFBB-C33E-B735-ADE5-E9174F8537CE}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
 				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Hidden_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="346157248" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Title_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Low.wav</ShortName>
@@ -1056,13 +1061,19 @@
 				<Event Id="3991942870" Name="Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="40011298"/>
+						<MediaRef Id="346157248"/>
 						<MediaRef Id="356683109"/>
 						<MediaRef Id="763308751"/>
 						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="309205993" Name="Title_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="346157248"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{8CBA51C1-2FD7-C40D-D228-F7FC99921149}</FileHash>
+	<FileHash>{9F514F06-B787-7008-A799-EA851CE59662}</FileHash>
 </SoundBanksInfo>

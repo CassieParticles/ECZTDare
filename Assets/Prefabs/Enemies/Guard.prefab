@@ -132,9 +132,12 @@ MonoBehaviour:
   suspicion: 0
   minimumSuspicion: 0
   patrolRoute: {fileID: 0}
-  investigateAlarmLoc: 0
+  investigateAlarmLoc: 1
   footstepRate: 0.4
   footstepRateScaler: 1
+  walkSpeed: 5
+  chaseSpeed: 15
+  chaseAlarmTimer: 3
   guardFootstep:
     idInternal: 0
     valueGuidInternal: 
@@ -261,7 +264,7 @@ NavMeshAgent:
   m_Height: 1.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!95 &4623136316713770826
 Animator:
   serializedVersion: 7

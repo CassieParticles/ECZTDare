@@ -139,7 +139,13 @@ public class VisionCone : MonoBehaviour
 
     private void Update()
     {
-        GenerateConeMesh();
+        //Only re-calculate vision cones if in main camera
+        Vector2 VPPosition = Camera.main.WorldToViewportPoint(transform.position);
+        if (VPPosition.x > -1 && VPPosition.x < 2 && VPPosition.y > -1 && VPPosition.y < 2)
+        {
+            GenerateConeMesh();
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static PlayerMovement;
+using static PlayerControls;
 
 public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event playerFootstep;
@@ -12,28 +12,28 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     public AK.Wwise.Event boostStop;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
-	[SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
+	[SerializeField][Range(0.01f, 3.0f)] public float footstepRate = 1f;
 
     //How much the velocity of the player affects the footstep frequency
-	[SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
+	[SerializeField][Range(0.01f, 3.0f)] public float footstepRateScaler = 1f;
 
     //Used to determine when to trigger footstep sounds.
-    private float footstepCount = 0.0f;
+    [NonSerialized] public float footstepCount = 0.0f;
 
     //Cooldown for playing the landing sound effect in seconds
     private float landingCooldown = 0.5f;
 
     //The highest velocity the player can reach, affected by the serialized value as well as other factors
-    private float dynamicMaxRunSpeed = 0;
+    [NonSerialized] public float dynamicMaxRunSpeed = 0;
 
     //How fast the player is currently sliding down the wall
-    public float wallClingVelocity;
+    [NonSerialized] public float wallClingVelocity;
 
     //Effective deceleration for when sliding
     [NonSerialized] public float effectiveDeceleration;
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
-    public float tempGroundedTimer;
+    [NonSerialized] public float tempGroundedTimer;
 
     //Effective deceleration for when sliding
     [NonSerialized] public float effectiveAcceleration;
@@ -41,7 +41,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public Rigidbody2D rb;
     [NonSerialized] public BoxCollider2D collider;
     [NonSerialized] public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    [NonSerialized] public Animator animator;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
@@ -75,8 +75,8 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
-    [SerializeField] private float boostFootStepSoundRange = 10f;
-    [SerializeField] private float boostFootStepSoundSuspicionIncrease = 15f;
+    [SerializeField] public float boostFootStepSoundRange = 10f;
+    [SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
 
     [SerializeField] public float boostJumpSoundRange =25f;
     [SerializeField] public float boostJumpSoundSuspicionIncrease = 35f;
@@ -111,13 +111,13 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     Vector2 bottomLeftSnapRayStart;
 
     //All inputs that are used
-    PlayerMovement controls;
+    PlayerControls controls;
     InputAction runAction;
     InputAction jumpAction;
     InputAction slideAction;
     InputAction boostCloakAction;
 
-
+    //The hasActioned variables are so that the player cannot hold in the key to keep jumping forever, or slide many times in a row by just holding in the key
     [NonSerialized] public int runInput;
     [NonSerialized] public bool jumpInput;
     [NonSerialized] public bool hasJumped; //If the player has jumped while holding the jump key
@@ -126,6 +126,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     [NonSerialized] public bool boostCloakInput;
     [NonSerialized] public bool hasBoostCloaked; //If the player has boosted while holding the boost key
 
+    //RB velocityX absolute value
     [NonSerialized] public float horizontalVelocity;
 
     private LayerMask layers;
@@ -135,11 +136,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     AlarmSystem alarm;
 
     Running runningScript;
-    CappingRunSpeed MaxSpeedScript;
     Jumping jumpScript;
     Sliding slideScript;
     Boost boostScript;
-    Cloak cloakingScript;
+    Cloak cloakScript;
 
     private float distanceSnap = 0.2f;
     private float predictionSnap = 1.15f;
@@ -159,8 +159,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         boostScript = new Boost();
         jumpScript = new Jumping();
         runningScript = new Running();
-        MaxSpeedScript = new CappingRunSpeed();
-        cloakingScript = new Cloak();
+        cloakScript = new Cloak();
         slideScript = new Sliding();
 
         colliderSize = collider.size;
@@ -170,7 +169,7 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
 
         //Setup inputs
         if (controls == null) {
-            controls = new PlayerMovement();
+            controls = new PlayerControls();
             controls.KeyboardWASD.SetCallbacks(this);
         }
         controls.KeyboardWASD.Enable();
@@ -189,8 +188,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         CheckGrounded();
         //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
+        //Boosting and Cloaking, the action that switches between modes
+        BoostCloak();
         //Running and Sliding, all horizontal velocity
-        RunBoostSlide();
+        RunSlide();
 
         //Set up variables for animation and audio
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
@@ -327,20 +328,30 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     }
     void JumpAndFall() {
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
+
             jumpScript.BasicJump();
+
         } else if (jumpInput && onWall && !hasJumped) { //Walljumping
+
             jumpScript.WallJump();
+
         }
 
         //If you arent on a wall or you are moving upwards, you wont slide down a wall
         if (!onWall || rb.velocityY > 0) {
             if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
+
                 jumpScript.Falling();
+
             } else {
+
                 jumpScript.FastFalling();
+
             }   
         } else { //If you are sliding down a wall
+
             jumpScript.SlidingDownWall();
+        
         }
     }
     public IEnumerator MinJumpDuration() {
@@ -356,76 +367,77 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
         postWalljumpInputs = 0;
     }
 
-    void RunBoostSlide() {
-        //Handle Sliding
-        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
-            slideScript.StartSliding();
-        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
-            slideScript.StopSliding();
-        }
-        if (sliding) {
-            slideScript.WhileSliding();
-        }
-        
+    void BoostCloak() {
+        //If movement mode active, do boost things
 
-        
+        //They use the same input, and there is a cloakScript already created
+
         //Handle Boosting
         if (boostCloakInput && runInput != 0 && boostCharge > minimumBoostCharge && grounded && !hasBoostCloaked) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
+
             boostScript.StartBoosting();
+
         } else if (!boostCloakInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
+
             boostScript.StopBoosting();
+
         }
         if (boosting) {
+
             boostScript.WhileBoosting();
+
         } else {
+
             boostScript.NotBoosting();
+
         }
 
-        //Handle left/right movement with inputs
-        //if (runInput == -1 && postWalljumpInputs != -1 && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) { //If not recently jumped off a left wall
-        //    facingRight = false;
-        //    rb.velocityX += -acceleration * Time.deltaTime;
-        //    if (Mathf.Sign(rb.velocityX) == 1) {
-        //        rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
-        //    }
-        //} else if (runInput == 1 && postWalljumpInputs != 1 && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) { //If not recently jumped off a right wall
-        //    facingRight = true;
-        //    rb.velocityX += acceleration * Time.deltaTime;
-        //    if (Mathf.Sign(rb.velocityX) == -1) {
-        //        rb.velocityX += effectiveDeceleration * -rb.velocityX * Time.deltaTime;
-        //    }
+        //If stealth  mode active, do cloak things
+
+    }
+
+    void RunSlide() {
+
+        
+
+        //Handle Sliding
+        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
+
+            slideScript.StartSliding();
+
+        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding) {
+
+            slideScript.StopSliding();
+
+        }
+        if (sliding) {
+
+            slideScript.WhileSliding();
+
+        }
+        
+
+        
+
+
+        //Handle Running
         if (runInput != 0 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) {
+
             runningScript.Accelerate(runInput);
-        } else if (rb.velocityX != 0 && postWalljumpInputs == 0 && grounded){
+
+        } else if (rb.velocityX != 0 && postWalljumpInputs == 0 && grounded) {
+
             runningScript.Decelerate();
+
         }
 
         //Decide what the max velocity is and cap the player if necessary
-        if (rb.velocityY < 0) {
-            dynamicMaxRunSpeed = maxRunSpeed * //Base max run speed
-                                 boostingMaxRunSpeedMultiplier * //Boosting makes this multiplier not 1
-                                 (1 - (fallSlowsRunMult * -rb.velocityY / maxFallSpeed)); //Falling slows down the horizontal speed
-        } else {
-            dynamicMaxRunSpeed = maxRunSpeed * boostingMaxRunSpeedMultiplier;
-        }
-        if (Mathf.Abs(rb.velocityX) > dynamicMaxRunSpeed && !sliding) {
-            rb.velocityX -= (rb.velocityX - (dynamicMaxRunSpeed * Mathf.Sign(rb.velocityX))) * snapToMaxRunSpeedMult / 10; //Sets the speed to maxRunSpeed
-        }
+        runningScript.CapRunningSpeed();
 
-        //Footstep sound effect
-        if (Mathf.Abs(rb.velocityX) > 0.1 && grounded) {
-            footstepCount += (Mathf.Abs(rb.velocityX) * footstepRateScaler) * footstepRate * Time.deltaTime;
-            if (footstepCount > 1) {
-                playerFootstep.Post(gameObject);
-                footstepCount--;
-                //Alert noise
-                if(boosting)
-                {
-                    AudioDetectionSystem.getAudioSystem().PlaySound(transform.position,boostFootStepSoundRange,boostFootStepSoundSuspicionIncrease);
-                }
-            }           
-        }
+        //Do sound effects for footsteps
+        runningScript.FootstepSounds();
 
+        //Update the sprite to flip it to the right direction
         spriteRenderer.flipX = !facingRight;
     }
 
@@ -455,6 +467,10 @@ public class MovementScript : MonoBehaviour, IKeyboardWASDActions {
     }
 
     public void OnBoostCloak(InputAction.CallbackContext context) {
+        
+    }
+
+    public void OnHacking(InputAction.CallbackContext context) {
         
     }
 }

@@ -1,345 +1,5 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class IdleState : BaseState
-{
-    public IdleState(GameObject guard) : base(guard)
-    {
-        camComp = GameObject.Find("Main Camera").GetComponent<Camera>();
-    }
-
-    Camera camComp;
-    public override void Start()
-    {
-        
-    }
-
-    public override void Stop()
-    {
-        
-    }
-
-    public override GuardStates RunTick()
-    {
-        Vector3 viewPos = camComp.WorldToViewportPoint(guardAttached.transform.position);
-        if(viewPos.x < -0.05 || viewPos.x > 1.05 || viewPos.y < -0.05 || viewPos.y > 1.05)
-        {
-            return GuardStates.Idle;
-        }
-        return GuardStates.Patrol;
-    }
-
-
-}
-public class PatrolState : BaseState
-{
-    private PatrolRoute patrolRoute;
-    private Vector3 StartPosition;
-    private float StartRotation;
-
-    //Recalculatign the path doesn't recalculate everything instantly,
-    //to avoid issues with distance recalc delay, don't recalculate immediately
-    private bool recalcDelay;
-    private bool paused;
-    public PatrolState(GameObject guard, PatrolRoute patrolRoute) : base(guard)
-    {
-        this.patrolRoute = patrolRoute;
-        this.StartPosition = Vector3.zero;
-        this.StartRotation = 0;
-    }
-
-    public PatrolState(GameObject guard, Vector3 StartPosition,  float StartRotation):base(guard)
-    {
-        this.patrolRoute = null;
-        this.StartPosition = StartPosition;
-        this.StartRotation = StartRotation;
-    }
-
-    public override void Start()
-    {
-        if(patrolRoute)
-        {
-            Vector3 nextNode = patrolRoute.GetCurrNode(guardAttached).position;
-            guardBehaviour.MoveTo(nextNode);
-        }
-        else
-        {
-            guardBehaviour.MoveTo(StartPosition);
-        }
-        recalcDelay = true;
-        paused = false;
-    }
-
-    public override void Stop()
-    {
-        guardBehaviour.StopMoving();
-    }
-
-    public override GuardStates RunTick()
-    {
-        if(patrolRoute)
-        {
-            if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
-            {
-                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
-            }
-        }
-        else
-        {
-            if(guardBehaviour.getDistLeft() < 0.1f)
-            {
-                guardBehaviour.Look(StartRotation);
-            }
-        }
-
-        guardBehaviour.CalcSuspicionDecay();
-
-        //Has seen player, switch to observing them
-        if (guardBehaviour.Player!=null)
-        {
-            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-            return GuardStates.Observe;
-        }
-
-        return GuardStates.Patrol;
-    }
-
-    private IEnumerator PauseAtNode(float pauseTime)
-    {
-        paused = true;
-        yield return new WaitForSeconds(pauseTime);
-        paused = false;
-        guardBehaviour.StartCoroutine(RecalculatePath());
-    }
-    private IEnumerator RecalculatePath()
-    {
-        guardBehaviour.MoveTo(patrolRoute.GetNextNode(guardAttached).position);
-        recalcDelay = false;
-        yield return new WaitForSeconds(0.1f);
-        recalcDelay = true;
-    }
-}
-
-public class HeardNoiseState : BaseState
-{
-    public HeardNoiseState(GameObject guard) : base(guard)
-    {
-    }
-
-
-
-    public override void Start()
-    {
-        
-    }
-
-    public override void Stop()
-    {
-        
-    }
-
-    public override GuardStates RunTick()
-    {
-        if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.Chase)
-        {
-            return GuardStates.Chase;
-        }
-        else if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
-        {
-            return GuardStates.Investigate; //Enemy is on edge, investigate
-        }
-        else
-        {
-            return GuardStates.Observe;
-        }
-    }
-}
-
-public class ObserveState : BaseState
-{
-    public ObserveState(GameObject guard) : base(guard){}
-
-    Coroutine observePointCoroutine;
-    bool observationFinished = false;
-
-    private IEnumerator ObservePoint()
-    {
-        yield return new WaitForSeconds(3);
-        observationFinished = true;
-    }
-
-    public override void Start()
-    {
-        observationFinished = false;
-    }
-
-    public override void Stop()
-    {
-        if (observePointCoroutine != null)
-        {
-            guardBehaviour.StopCoroutine(observePointCoroutine);
-            observePointCoroutine = null;
-        }
-    }
-
-    public override GuardStates RunTick()
-    {
-        //If the guard can see the player, the player is the point of interest now
-        if(guardBehaviour.Player)
-        {
-            //End the guard observing coroutine if it sees the player again
-            if(observePointCoroutine!=null)
-            {
-                guardBehaviour.StopCoroutine(observePointCoroutine);
-                observePointCoroutine = null;
-            }
-            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-            if(guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
-            {
-                return GuardStates.Investigate;
-            }
-        }
-        //If it cannot see the player, start a 3 second countdown, if it reaches this limit, move to patrol 
-        else if(observePointCoroutine == null)
-        {
-            observePointCoroutine = guardBehaviour.StartCoroutine(ObservePoint());
-        }
-
-        if(observationFinished)
-        {
-            return GuardStates.Patrol;
-        }
-        
-
-        if(guardBehaviour.suspicion > guardBehaviour.SuspicionLevel[3])
-        {
-            return GuardStates.Chase;
-        }
-
-        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
-
-        
-
-        return GuardStates.Observe;
-    }
-}
-
-public class InvestigateState : BaseState
-{
-    private bool lookingAround;
-    private bool finished;
-
-    public InvestigateState(GameObject guard) : base(guard){}
-
-    public override void Start()
-    {
-        guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
-        finished = false;
-        lookingAround = false;
-    }
-
-    public override void Stop()
-    {
-        guardBehaviour.StopMoving();
-    }
-
-    public override GuardStates RunTick()
-    {
-        //If it sees the player
-        if(guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
-        {
-            return GuardStates.Observe;
-        }
-        if(guardBehaviour.suspicion > 100)
-        {
-            return GuardStates.Chase;
-        }
-
-        if(guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
-        {
-            guardBehaviour.StartCoroutine(lookAround());
-        }
-        if(finished)
-        {
-            return GuardStates.Patrol;
-        }
-
-        return GuardStates.Investigate;
-    }
-
-    private IEnumerator lookAround()
-    {
-        lookingAround = true;
-        yield return new WaitForSeconds(3);
-        finished = true;
-    }
-}
-
-
-public class ChaseState : BaseState
-{
-    public ChaseState(GameObject guard) : base(guard){}
-
-    public override void Start()
-    {
-        AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
-    }
-
-    public override void Stop()
-    {
-        AlarmMusicHandler.GetMusicHandler().EndChase(guardBehaviour);
-    }
-
-    public override GuardStates RunTick()
-    {
-        if(!guardBehaviour.Player)
-        {
-            return GuardStates.RaiseAlarm;
-        }
-
-        guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-
-        guardBehaviour.MoveTo(guardBehaviour.Player.transform.position);
-        return GuardStates.Chase;
-    }
-}
-
-public class RaiseAlarmState : BaseState
-{
-    private AlarmSystem alarm;
-    public RaiseAlarmState(GameObject guard,AlarmSystem alarm) : base(guard)
-    {
-        this.alarm = alarm;
-    }
-
-    public override void Start()
-    {
-        guardBehaviour.StopMoving();
-        if(alarm && !alarm.AlarmGoingOff())
-        {
-            //Start coroutine to set off alarm
-            guardBehaviour.StartCoroutine(RaiseAlarm());
-        }
-    }
-
-    public override void Stop(){}
-
-    public override GuardStates RunTick()
-    {
-        if(!alarm || alarm.AlarmGoingOff())
-        {
-            return GuardStates.Patrol;
-        }
-        return GuardStates.RaiseAlarm;
-    }
-
-    private IEnumerator RaiseAlarm()
-    {
-        yield return new WaitForSeconds(3);
-        alarm.StartAlarm(guardBehaviour.PointOfInterest);
-    }
-}
 
 public class GuardBehaviour : BaseEnemyBehaviour
 {
@@ -353,12 +13,20 @@ public class GuardBehaviour : BaseEnemyBehaviour
     //How much the velocity of the player affects the footstep frequency
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
 
+    public float walkSpeed = 5.0f;
+    public float chaseSpeed = 25.0f;
+
+    /// <summary>
+    /// How long will a guard be chasing the player before they call the alarm
+    /// </summary>
+    public float chaseAlarmTimer=1.0f;
+
     //Used to determine when to trigger footstep sounds.
     private float footstepCount = 0.0f;
 
     public AK.Wwise.Event guardFootstep;
 
-    // Start is called before the first frame update
+    //AI behaviour
     private NavMeshAgent agent;
     private StateMachine guardBehaviour = new StateMachine();
 
@@ -395,10 +63,15 @@ public class GuardBehaviour : BaseEnemyBehaviour
         return agent.remainingDistance;
     }
 
+    public Vector3 getCurrentDestination()
+    {
+        return agent.destination;
+    }
+
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
-        if(investigateAlarmLoc)
+        if((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
@@ -410,7 +83,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     }
 
-    private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
+    private void HearNoise(Vector3 noiseLocation, float suspicionIncrease, AudioSource source)
     {
         PointOfInterest = noiseLocation;
         suspicion += suspicionIncrease;
@@ -450,7 +123,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
         guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
-        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject));
+        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
 
         guardMoveAnimation = GetComponent<Animator>();
@@ -510,12 +183,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.name=="Player")
         {
-            if(suspicionState == SuspicionState.Chase)
-            {
-                CatchPlayer();
-            }
+            CatchPlayer();
         }
     }
 

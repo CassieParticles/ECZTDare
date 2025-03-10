@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{88B32067-BFD3-071A-CE39-901D5328898B}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{0320A3A9-F307-007E-44C4-68B3EB0ECB2D}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -84,6 +84,7 @@
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1862135557" Name="NoMusic"/>
+						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
 						<State Id="4009708623" Name="Alarm_Low"/>
@@ -133,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{408BDAD5-2047-1427-7F70-BC40BF477EBD}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B3061A5D-3138-7AEE-6C41-58D7539BC0FD}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -272,6 +273,10 @@
 				<File Id="299723195" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Jump_1.wav</ShortName>
 					<CachePath>SFX/P_D_Jump_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="314968513" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_861B18D9.wem</CachePath>
 				</File>
 				<File Id="332950360" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_7.wav</ShortName>
@@ -456,6 +461,10 @@
 				<File Id="790896873" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Footstep_6.wav</ShortName>
 					<CachePath>SFX/P_M_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="793623686" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_A9C7BDEB.wem</CachePath>
 				</File>
 				<File Id="797407288" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Landing_1.wav</ShortName>
@@ -662,8 +671,28 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="638098506" Name="Cloak_Start" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
-				<Event Id="1518276258" Name="Cloak_Stop" MaxAttenuation="0" DurationType="OneShot" DurationMin="0" DurationMax="0"/>
+				<Event Id="638098506" Name="Cloak_Start" DurationType="OneShot" DurationMin="1.130812" DurationMax="1.130812">
+					<MediaRefs>
+						<MediaRef Id="793623686"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1518276258" Name="Cloak_Stop" DurationType="OneShot" DurationMin="0.70565283" DurationMax="0.70565283">
+					<MediaRefs>
+						<MediaRef Id="314968513"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
@@ -1031,13 +1060,17 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{E26D445E-8A36-D9F5-E1C3-BE9B5437C6D4}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{D513DFBB-C33E-B735-ADE5-E9174F8537CE}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
 				<File Id="40011298" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Hidden_Track_Trial.wav</ShortName>
 					<CachePath>SFX/Hidden_Track_Trial_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="346157248" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Title_Track_Trial.wav</ShortName>
+					<CachePath>SFX/Title_Track_Trial_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="356683109" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Alarm_Low.wav</ShortName>
@@ -1056,13 +1089,19 @@
 				<Event Id="3991942870" Name="Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="40011298"/>
+						<MediaRef Id="346157248"/>
 						<MediaRef Id="356683109"/>
 						<MediaRef Id="763308751"/>
 						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="309205993" Name="Title_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="346157248"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{F7AC9A2C-B523-3DA4-5840-51AEBB366222}</FileHash>
+	<FileHash>{27149F03-ABCC-0EED-CF34-179B90F5E2F1}</FileHash>
 </SoundBanksInfo>
