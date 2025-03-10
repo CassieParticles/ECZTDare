@@ -527,12 +527,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if(collision.gameObject.name=="Player")
         {
-            if(suspicionState == SuspicionState.Chase)
-            {
-                CatchPlayer();
-            }
+            CatchPlayer();
         }
     }
 
