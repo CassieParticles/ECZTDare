@@ -75,7 +75,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     }
 
-    private void HearNoise(Vector3 noiseLocation, float suspicionIncrease)
+    private void HearNoise(Vector3 noiseLocation, float suspicionIncrease, AudioSource source)
     {
         PointOfInterest = noiseLocation;
         suspicion += suspicionIncrease;

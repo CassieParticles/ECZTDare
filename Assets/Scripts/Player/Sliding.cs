@@ -14,7 +14,7 @@ public class Sliding
         //Plays the slide sound.
         player.playerSlide.Post(player.gameObject);
         if (player.boosting) {
-            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostSlideSoundRange, player.boostSlideSoundSuspicionIncrease);
+            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostSlideSoundRange, player.boostSlideSoundSuspicionIncrease, AudioSource.Player);
         }
         player.sliding = true;
         player.hasSlid = true;
