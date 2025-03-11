@@ -29,7 +29,11 @@ public class Sliding
         player.sliding = false;
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + player.colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
         player.collider.size = player.colliderSize;
-        player.effectiveDeceleration = player.deceleration;
+        if (player.inStealthMode) {
+            player.effectiveDeceleration = player.stealthDeceleration;
+        } else {
+            player.effectiveDeceleration = player.deceleration;
+        }
     }
     public void WhileSliding() {
         //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.

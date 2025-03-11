@@ -58,6 +58,7 @@ public class Boost
             player.boostCharge = 100f;
         }
         player.boostingMaxRunSpeedMultiplier = 1;
+        //Will never be able to boost while in stealth mode, so can make it be the movement acceleration every time
         player.effectiveAcceleration = player.acceleration;
     }
 

@@ -32,7 +32,7 @@ public class AudioDetectionSystem : MonoBehaviour
     {
         GameObject soundCircle = Instantiate(SoundVisualizeCirclePrefab);
         soundCircle.transform.position = noiseLocation;
-        soundCircle.GetComponent<CreateCircle>().Setup(0.5f);
+        soundCircle.GetComponent<CreateCircle>().Setup(noiseRadius);
 
 
         foreach (KeyValuePair<GameObject, HearNoise> listener in listeners)
