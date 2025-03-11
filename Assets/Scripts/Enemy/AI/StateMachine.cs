@@ -73,4 +73,9 @@ public class StateMachine
         currentState = state;
         states[currentState].Start();
     }
+
+    public GuardStates getCurrentState()
+    {
+        return currentState;
+    }
 }
