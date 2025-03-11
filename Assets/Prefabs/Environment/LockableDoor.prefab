@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4454464688598829113}
   - component: {fileID: 829914114578879023}
   - component: {fileID: -7576103743223536323}
+  - component: {fileID: 1493642875159732419}
   m_Layer: 0
   m_Name: LockableDoor
   m_TagString: Untagged
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surface: {fileID: 0}
+  startLocked: 1
 --- !u!212 &-7576103743223536323
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,3 +166,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1493642875159732419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944726003897983784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9ae0781bc81b994a8d612695757b463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beingHacked: 0

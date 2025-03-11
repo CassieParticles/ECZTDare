@@ -53,6 +53,7 @@ public class LockableDoor : MonoBehaviour
 
     private void Awake()
     {
+        boxCollider = GetComponent<BoxCollider2D>();
         isLocked = startLocked;
         if(surface)
         {
