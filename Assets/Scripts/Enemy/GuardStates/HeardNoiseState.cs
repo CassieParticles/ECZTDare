@@ -8,11 +8,9 @@ public class HeardNoiseState : BaseState
     {
     }
 
-
-
     public override void Start()
     {
-
+        
     }
 
     public override void Stop()
@@ -35,4 +33,6 @@ public class HeardNoiseState : BaseState
             return GuardStates.Observe;
         }
     }
+
+
 }

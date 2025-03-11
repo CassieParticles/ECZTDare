@@ -19,7 +19,6 @@ public class ChaseState : BaseState
     public override void Start()
     {
         AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
-        guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
         raiseAlarmCoroutine = guardBehaviour.StartCoroutine(raiseAlarm());
         shouldRaiseAlarm = false;
     }
@@ -27,7 +26,6 @@ public class ChaseState : BaseState
     public override void Stop()
     {
         AlarmMusicHandler.GetMusicHandler().EndChase(guardBehaviour);
-        guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.walkSpeed;
         //If chase is exited early, stop the co-routine
         if(raiseAlarmCoroutine != null ) 
         {
@@ -45,7 +43,15 @@ public class ChaseState : BaseState
             return GuardStates.RaiseAlarm;
         }
 
-       
+        if (guardAttached.GetComponent<NavMeshAgent>().speed > guardBehaviour.chaseSpeed)
+        {
+            guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
+        }
+        else if (guardAttached.GetComponent<NavMeshAgent>().speed < guardBehaviour.chaseSpeed) 
+        {
+            guardAttached.GetComponent<NavMeshAgent>().speed += guardBehaviour.acceleration * Time.fixedDeltaTime;
+        }
+
         if(guardBehaviour.Player)
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
