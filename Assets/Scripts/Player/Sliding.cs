@@ -39,4 +39,8 @@ public class Sliding
         //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
         AkSoundEngine.SetRTPCValue("horizontalVelocity", player.horizontalVelocity);
     }
+
+    public void CanStopSliding() {
+
+    }
 }

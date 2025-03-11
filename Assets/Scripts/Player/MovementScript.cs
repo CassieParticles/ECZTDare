@@ -77,6 +77,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float fastFallMult = 2; //Fast fall multiplier
     [SerializeField] public float maxFallSpeed = 5; //Needs to be higher if fastfallmult is higher also
     [SerializeField][Range(0.01f, 1f)] public float fallSlowsRunMult = 1; //Multiplier for how much falling speed slows down horizontal speed.
+    [SerializeField][Range(0.01f, 0.5f)] public float coyoteTime = 0.05f;
 
     [SerializeField] public float wallClingSpeed; //How quickly the player falls when clinging to a wall
     [SerializeField][Range(0f, 1f)] private float walljumpRayGap = 0.8f; //Position of rays, smaller gaps mean smaller range the player can walljump from
@@ -129,6 +130,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     Vector2 bottomRightSnapRayStart;
     Vector2 topLeftSnapRayStart;
     Vector2 bottomLeftSnapRayStart;
+    //Make sure the player can stop sliding checks
+    Vector2 rightSlideRayStart;
+    Vector2 leftSlideRayStart;
 
     //All inputs that are used
     PlayerControls controls;
@@ -145,6 +149,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool hasSlid; //If the player has slid while holding the slide key
     [NonSerialized] public bool boostCloakInput;
     [NonSerialized] public bool hasBoostCloaked; //If the player has boosted while holding the boost key
+    [NonSerialized] public bool canEndSlide; //If the player can end their slide
 
     //RB velocityX absolute value
     [NonSerialized] public float horizontalVelocity;
@@ -163,7 +168,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     private float distanceSnap = 0.2f;
     private float predictionSnap = 1.15f;
-    private float offsetSnap = 0.04f;
+    private float offsetSnap = 0.03f;
+
+    private float animationCoyoteTime = 0.167f;
+    private float animationGroundedTimer = -1;
 
     private void Awake() {
         layers = new LayerMask();
@@ -273,13 +281,18 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
             grounded = true;
-        } else {
+            tempGroundedTimer = coyoteTime;
+            //animationGroundedTimer = animationCoyoteTime;
+            //animator.SetFloat("CoyoteTime", animationGroundedTimer);
+        } else {  
             grounded = false;
+            //animationGroundedTimer -= Time.deltaTime;
         }
 
-        //Grounds the player if they start sliding
+        //Grounds the player temporarily, currently is being used if the player starts sliding, and when they fall off a ledge (coyote time)
         if (tempGroundedTimer > 0) {
             tempGroundedTimer -= Time.deltaTime;
+            
             grounded = true;
         }
 
@@ -326,6 +339,17 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 tempGroundedTimer = 0.05f;
             }
         }
+
+        //If the player can stop sliding
+        if (sliding) {
+            RaycastHit2D rightSlide = Physics2D.Raycast(rightSlideRayStart, Vector2.up, colliderSize.y * 0.98f, layers);
+            RaycastHit2D leftSlide = Physics2D.Raycast(leftSlideRayStart, Vector2.up, colliderSize.y * 0.98f, layers);
+            if (rightSlide || leftSlide) {
+                canEndSlide = false;
+            } else {
+                canEndSlide = true;
+            }
+        }
     }
 
     void doRayCasts() {
@@ -354,6 +378,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                                                                          collider.size.y * snapToLedgeTopRayHeight - collider.size.y / 2f);
         bottomLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
                                                                             collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
+
+        //Rays for checking if the player can stop sliding
+        rightSlideRayStart = rb.position + collider.offset + new Vector2(colliderSize.x / 3f,
+                                                                        -collider.size.y * 0.98f / 2f);
+        leftSlideRayStart = rb.position + collider.offset + new Vector2(-colliderSize.x / 3f,
+                                                                       -collider.size.y  * 0.98f / 2f);
+
     }
 
     void JumpAndFall() {
@@ -429,14 +460,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     void RunSlide() {
 
-        
-
         //Handle Sliding
         if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= effectiveVelocityToSlide && !hasSlid) {
 
             slideScript.StartSliding();
 
-        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < effectiveVelocityEndSlide || !grounded) && sliding) {
+        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < effectiveVelocityEndSlide || !grounded) && sliding && canEndSlide) {
 
             slideScript.StopSliding();
 
@@ -447,16 +476,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         }
         
-
-        
-
-
         //Handle Running
-        if (runInput != 0 && postWalljumpInputs != -1 && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) {
+        if (runInput != 0 && postWalljumpInputs != runInput && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) {
 
             runningScript.Accelerate(runInput);
 
-        } else if (rb.velocityX != 0 && postWalljumpInputs == 0 && grounded) {
+        } else if (rb.velocityX != 0 && grounded) {
 
             runningScript.Decelerate();
 

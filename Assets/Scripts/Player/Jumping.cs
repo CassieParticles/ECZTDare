@@ -20,6 +20,7 @@ public class Jumping
         }
         player.animator.SetBool("Grounded", false);
         player.hasJumped = true;
+        player.tempGroundedTimer = 0;
         player.StartCoroutine(player.MinJumpDuration());
     }
 
