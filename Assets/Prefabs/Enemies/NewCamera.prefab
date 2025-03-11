@@ -128,8 +128,8 @@ MonoBehaviour:
   - 70
   - 100
   alarm: {fileID: 0}
-  suspicionScaleRate: 200
-  suspicionDecayRate: 10
+  suspicionScaleRate: 300
+  suspicionDecayRate: 20
   suspicion: 100
   minimumSuspicion: 0
   cameraMoving:
@@ -232,4 +232,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1634fc69187ea2a44877dec05835b34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beingHacked: 0
   hackTimer: 5
