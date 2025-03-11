@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public float walkSpeed = 5.0f;
     public float chaseSpeed = 25.0f;
+
+    public float acceleration=15f;
 
     /// <summary>
     /// How long will a guard be chasing the player before they call the alarm
@@ -34,6 +37,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private Animator guardMoveAnimation;
     private SpriteRenderer spriteRenderer;
+
+
+
 
     public void MoveTo(Vector3 position)
     {
@@ -165,6 +171,18 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         guardBehaviour.BehaviourTick();
         CalcSuspicionIncrease();
+
+        if (guardBehaviour.getCurrentState() != GuardStates.Chase)
+        {
+            if (agent.speed < walkSpeed)
+            {
+                agent.speed = walkSpeed;
+            }
+            else if (agent.speed > walkSpeed)
+            {
+                agent.speed -= acceleration * Time.fixedDeltaTime;
+            }
+        }
 
         if (agent.velocity != Vector3.zero)
         {
