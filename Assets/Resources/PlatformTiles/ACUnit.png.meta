@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a0df0131c17688044b9d6ec00c7e91ba
+guid: a430220ef6a441044a0ef2a00865097a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3222582749800284600
-    second: CleaningDroidV5_0
-  - first:
-      213: -2830320872094297635
-    second: CleaningDroidV5_1
+      213: -747629005615842791
+    second: ACUnit_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,34 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CleaningDroidV5_0
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 52
-        width: 74
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b1c52ddfe9e8bc20800000000000000
-      internalID: 3222582749800284600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CleaningDroidV5_1
+      name: ACUnit_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 51
+        width: 128
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,8 +127,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd1127a992ea8b8d0800000000000000
-      internalID: -2830320872094297635
+      spriteID: 91a3d786163ef95f0800000000000000
+      internalID: -747629005615842791
       vertices: []
       indices: 
       edges: []
@@ -168,8 +144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CleaningDroidV5_0: 3222582749800284600
-      CleaningDroidV5_1: -2830320872094297635
+      ACUnit_0: -747629005615842791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
