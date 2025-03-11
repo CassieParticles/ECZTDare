@@ -14,12 +14,15 @@ public class ChaseState : BaseState
 
     AlarmSystem alarm;
 
+    private float speed;
+    private float acceleration=5;
+
     public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) { this.alarm = alarm; }
 
     public override void Start()
     {
         AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
-        guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
+        speed = guardAttached.GetComponent<NavMeshAgent>().speed;
         raiseAlarmCoroutine = guardBehaviour.StartCoroutine(raiseAlarm());
         shouldRaiseAlarm = false;
     }
@@ -45,7 +48,17 @@ public class ChaseState : BaseState
             return GuardStates.RaiseAlarm;
         }
 
-       
+        if (speed > guardBehaviour.chaseSpeed)
+        {
+            speed = guardBehaviour.chaseSpeed;
+            guardAttached.GetComponent<NavMeshAgent>().speed = speed;
+        }
+        else if (speed < guardBehaviour.chaseSpeed) 
+        {
+            speed += acceleration * Time.fixedDeltaTime;
+            guardAttached.GetComponent<NavMeshAgent>().speed = speed;
+        }
+
         if(guardBehaviour.Player)
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
