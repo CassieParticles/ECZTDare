@@ -97,7 +97,14 @@ public class GuardBehaviour : BaseEnemyBehaviour
         {
             suspicion = 99;
         }
-        guardBehaviour.MoveToState(GuardStates.HearNoise);
+        if (source == AudioSource.Player)
+        {
+            guardBehaviour.MoveToState(GuardStates.HearNoise);
+        }
+        else if (source == AudioSource.Hacked)
+        {
+            guardBehaviour.MoveToState(GuardStates.Investigate);
+        }
     }
 
     private void CatchPlayer()
