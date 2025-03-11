@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1529488054201943467}
   - component: {fileID: 1481871476945400013}
   - component: {fileID: 2852571498626512960}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SimpleTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21303904c30e6a041a293b2eaa10500d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door1: {fileID: 0}
-  door2: {fileID: 0}
-  door3: {fileID: 0}
-  collectible: {fileID: 0}
+  disable1: {fileID: 0}
+  disable2: {fileID: 0}
+  disable3: {fileID: 0}
+  hudEnable1: {fileID: 0}
