@@ -72,12 +72,13 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
   footstepRate: 0.2
-  footstepRateScaler: 1
+  footstepRateScaler: 3
+  inStealthMode: 0
   maxRunSpeed: 25
   acceleration: 20
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
-  snapToLedgeTopRayHeight: 0.25
+  snapToLedgeTopRayHeight: 0.29
   snapToLedgeBottomRayHeight: 0.05
   slideDeceleration: 1
   velocityToSlide: 12
@@ -98,7 +99,16 @@ MonoBehaviour:
   walljumpRayGap: 0.5
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
-  walljumpInputDelay: 0.02
+  walljumpInputDelay: 0.25
+  stealthMaxRunSpeed: 8
+  stealthAcceleration: 20
+  stealthDeceleration: 15
+  stealthVelocityToSlide: 12
+  stealthVelocityEndSlide: 5
+  stealthJumpStrength: 5
+  stealthMinJumpTime: 0.1
+  stealthHorizontalWalljumpStrength: 8
+  stealthVerticalWalljumpStrength: 8
   boostFootStepSoundRange: 10
   boostFootStepSoundSuspicionIncrease: 15
   boostJumpSoundRange: 25
@@ -120,6 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 10
+  behindRange: 2
+  hackChargeRate: 50
+  hackCharges: 3
+  hackCharge: 100
 --- !u!50 &8805521428832138119
 Rigidbody2D:
   serializedVersion: 4
