@@ -38,7 +38,10 @@ public class Boost
     }
 
     public void WhileBoosting() {
-        player.spriteRenderer.color = Color.red;
+        //Change player colour, while respecting regular alpha value
+        Color color = Color.red;
+        color.a = player.spriteRenderer.color.a;
+        player.spriteRenderer.color = color;
         //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
         AkSoundEngine.SetRTPCValue("horizontalVelocity", player.horizontalVelocity);
         if (player.boostCharge - player.boostRecharge * Time.deltaTime > 0) {
@@ -51,7 +54,10 @@ public class Boost
     }
 
     public void NotBoosting() {
-        player.spriteRenderer.color = Color.white;
+        //Change player colour, while respecting regular alpha value
+        Color color = Color.white;
+        color.a = player.spriteRenderer.color.a;
+        player.spriteRenderer.color = color;
         if (player.boostCharge + player.boostDepletion * Time.deltaTime < 100f) {
             player.boostCharge += player.boostDepletion * Time.deltaTime;
         } else {

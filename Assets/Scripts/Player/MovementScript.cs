@@ -204,6 +204,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         jumpAction = controls.FindAction("Jumping");
         slideAction = controls.FindAction("Sliding");
         boostCloakAction = controls.FindAction("BoostCloak");
+
+        cloakScript.Enable();
     }
 
     // Update is called once per frame
