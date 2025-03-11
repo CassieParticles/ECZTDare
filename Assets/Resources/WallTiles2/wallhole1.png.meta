@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: aac93fd5c2c69674388630d6138ae335
+guid: bc1541d574ef655449017ef801343bca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6062053994755470276
-    second: Floortile1_N_0
+      213: 3370296574430287019
+    second: wallhole1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -51,13 +51,13 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Floortile1_N_0
+      name: wallhole1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
+        y: 4
+        width: 89
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3ccc5982024fdba0800000000000000
-      internalID: -6062053994755470276
+      spriteID: ba412aab0e2b5ce20800000000000000
+      internalID: 3370296574430287019
       vertices: []
       indices: 
       edges: []
@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      wallhole1_0: 3370296574430287019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
