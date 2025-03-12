@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{09242536-F079-2B15-9936-A530CA59700D}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{AAD350A0-9FAF-9A0E-C0AE-AAD563EB0200}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -161,6 +161,10 @@
 				<File Id="28568543" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Ambience_Boom_Bass.wav</ShortName>
 					<CachePath>SFX/Ambience_Boom_Bass_11A93380.wem</CachePath>
+				</File>
+				<File Id="31907229" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Machines, Hvac, Ventilation Fan, Big 01 SND1846 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Machines, Hvac, Ventilation Fan, Big 01 SND1846 1_A2FAB834.wem</CachePath>
 				</File>
 				<File Id="36402879" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_3.wav</ShortName>
@@ -257,6 +261,10 @@
 				<File Id="266042559" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_5.wav</ShortName>
 					<CachePath>SFX/G_M_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="286540805" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Button_Activation.wav</ShortName>
+					<CachePath>SFX/Button_Activation_818F3B66.wem</CachePath>
 				</File>
 				<File Id="292283100" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Landing_3.wav</ShortName>
@@ -627,6 +635,17 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="509407971" Name="Ambience_Fan" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="31907229"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="710389270" Name="Ambience_Rain" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="908573506"/>
@@ -664,6 +683,11 @@
 						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
+				</Event>
+				<Event Id="814543256" Name="Button_Click" DurationType="OneShot" DurationMin="1.0319692" DurationMax="1.1583464">
+					<MediaRefs>
+						<MediaRef Id="286540805"/>
+					</MediaRefs>
 				</Event>
 				<Event Id="3353320293" Name="Camera_Moving" MaxAttenuation="40" DurationType="Infinite">
 					<MediaRefs>
@@ -1154,5 +1178,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5D6660B2-7BA2-3117-BECA-D9C1E52FAE7B}</FileHash>
+	<FileHash>{F4AE1ED5-E700-C67B-C0D3-12E3C2BD8424}</FileHash>
 </SoundBanksInfo>
