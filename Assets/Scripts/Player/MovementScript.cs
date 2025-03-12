@@ -66,8 +66,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     [SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
     [SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
-    [SerializeField] public float boostRecharge = 50f; //Boost recharge rate
-    [SerializeField] public float boostDepletion = 10f; //Boost depletion rate
+    [SerializeField] public float boostRecharge = 10f; //Boost recharge rate
+    [SerializeField] public float boostDepletion = 50f; //Boost depletion rate
     [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
     [SerializeField] public float jumpStrength = 5; //Initial vertical velocity when jumping
@@ -95,6 +95,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float stealthHorizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] public float stealthVerticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
 
+    [SerializeField] public float cloakRecharge = 10f;
+    [SerializeField] public float cloakDepletion = 70f;
 
     [SerializeField] public float boostFootStepSoundRange = 10f;
     [SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
@@ -114,7 +116,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier; //If the player is currently boosting
-    public float boostCharge; //The current boosting charge the player has
+    [NonSerialized] public bool cloaking;
+    public float batteryCharge; //The current boosting charge the player has
 
     //All raycasts that get used
     //Grounded checks
@@ -200,7 +203,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         effectiveMinJumpTime = minJumpTime;
         effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
         effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
-        boostCharge = 100;
+        batteryCharge = 100;
 
         //Setup inputs
         if (controls == null) {
@@ -261,6 +264,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
         if (!boostCloakInput) {
             hasBoostCloaked = false;
+            cloakScript.Disable();
         }
     }
 
@@ -433,28 +437,62 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         //If movement mode active, do boost things
 
         //They use the same input, and there is a cloakScript already created
+        
+        if (boostCloakInput) {
+            //Boosting
+            if (!inStealthMode) {
+                if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
 
-        //Handle Boosting
-        if (boostCloakInput && runInput != 0 && boostCharge > minimumBoostCharge && grounded && !hasBoostCloaked) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
+                    boostScript.StartBoosting();
 
-            boostScript.StartBoosting();
+                } else if (batteryCharge < minimumBoostCharge || rb.velocityX == 0) {
 
-        } else if (!boostCloakInput && grounded || boostCharge < minimumBoostCharge || rb.velocityX == 0) {
+                    boostScript.StopBoosting();
 
-            boostScript.StopBoosting();
+                }
+                if (boosting) {
 
-        }
-        if (boosting) {
+                    boostScript.WhileBoosting();
 
-            boostScript.WhileBoosting();
-
+                }
+            } else { //Cloaking
+                if (!cloaking) {
+                    if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
+                        cloakScript.Enable();
+                    } else {
+                        hasBoostCloaked = true;
+                    }
+                } else {
+                    if (batteryCharge > minimumBoostCharge) {
+                        cloakScript.OnTick();
+                    } else {
+                        cloakScript.Disable();
+                    }
+                }
+            }
         } else {
-
-            boostScript.NotBoosting();
-
+            if (inStealthMode) {
+                if (cloaking) {
+                    cloakScript.Disable();
+                }
+            } else {
+                if (boosting && grounded) {
+                    boostScript.StopBoosting();
+                }
+            }
         }
 
-        //If stealth  mode active, do cloak things
+        if (!cloaking && !boosting) {
+            if (inStealthMode) {
+                if (batteryCharge + cloakRecharge * Time.deltaTime < 100f) {
+                    batteryCharge += cloakRecharge * Time.deltaTime;
+                } else {
+                    batteryCharge = 100f;
+                }
+            } else {
+                boostScript.NotBoosting();
+            }
+        }
 
     }
 

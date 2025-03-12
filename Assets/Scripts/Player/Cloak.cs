@@ -15,6 +15,8 @@ public class Cloak
     /// </summary>
     public void Enable()
     {
+        player.cloaking = true;
+        player.hasBoostCloaked = true;
         player.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         //Make player transparent
         Color color = player.GetComponent<SpriteRenderer>().color;
@@ -27,6 +29,8 @@ public class Cloak
     /// </summary>
     public void Disable()
     {
+        player.cloaking = false;
+        player.hasBoostCloaked = false;
         player.gameObject.layer = LayerMask.NameToLayer("Player");
         Color color = player.GetComponent<SpriteRenderer>().color;
         color.a = 1.0f;
@@ -38,6 +42,10 @@ public class Cloak
     /// </summary>
     public void OnTick()
     {
-        //Drain energy
+        if (player.batteryCharge - player.cloakDepletion * Time.deltaTime > 0) {
+            player.batteryCharge -= player.cloakDepletion * Time.deltaTime;
+        } else {
+            player.batteryCharge = 0;
+        }
     }
 }

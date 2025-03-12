@@ -44,10 +44,10 @@ public class Boost
         player.spriteRenderer.color = color;
         //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
         AkSoundEngine.SetRTPCValue("horizontalVelocity", player.horizontalVelocity);
-        if (player.boostCharge - player.boostRecharge * Time.deltaTime > 0) {
-            player.boostCharge -= player.boostRecharge * Time.deltaTime;
+        if (player.batteryCharge - player.boostDepletion * Time.deltaTime > 0) {
+            player.batteryCharge -= player.boostDepletion * Time.deltaTime;
         } else {
-            player.boostCharge = 0;
+            player.batteryCharge = 0;
         }
         player.effectiveAcceleration = player.boostAcceleration;
         player.boostingMaxRunSpeedMultiplier = player.boostMaxRunSpeedMultiplier;
@@ -58,10 +58,10 @@ public class Boost
         Color color = Color.white;
         color.a = player.spriteRenderer.color.a;
         player.spriteRenderer.color = color;
-        if (player.boostCharge + player.boostDepletion * Time.deltaTime < 100f) {
-            player.boostCharge += player.boostDepletion * Time.deltaTime;
+        if (player.batteryCharge + player.boostRecharge * Time.deltaTime < 100f) {
+            player.batteryCharge += player.boostRecharge * Time.deltaTime;
         } else {
-            player.boostCharge = 100f;
+            player.batteryCharge = 100f;
         }
         player.boostingMaxRunSpeedMultiplier = 1;
         //Will never be able to boost while in stealth mode, so can make it be the movement acceleration every time
