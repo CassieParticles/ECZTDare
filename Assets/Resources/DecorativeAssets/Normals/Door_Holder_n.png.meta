@@ -106,10 +106,10 @@ TextureImporter:
       name: Door_Holder_n_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 90
-        width: 22
-        height: 6
+        x: 0
+        y: 0
+        width: 32
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,31 +123,10 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Door_Holder_n_1
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 0
-        width: 22
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9be839f7b5c71bf60800000000000000
-      internalID: 8048350741512031929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3fcca30e7b74fbf44bc4feb2712b7170
     internalID: 0
     vertices: []
     indices: 
@@ -156,7 +135,6 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Door_Holder_n_0: -6381225926548231853
-      Door_Holder_n_1: 8048350741512031929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
