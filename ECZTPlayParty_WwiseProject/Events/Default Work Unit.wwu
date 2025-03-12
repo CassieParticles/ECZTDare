@@ -258,6 +258,39 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Hack_Start" ID="{B7D348B0-F554-44DE-AB9A-76A401E62484}">
+					<ChildrenList>
+						<Action Name="" ID="{544195E1-8C1E-488A-956D-39F8EB6DAB71}" ShortID="313973482">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Start" ID="{7A63B40E-D28A-4D5F-B44A-BF279B262641}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Hack_Stop" ID="{6C0BE5D8-6F86-43EC-BFB4-CEAEE5DB0B3B}">
+					<ChildrenList>
+						<Action Name="" ID="{7817D131-D818-44B0-9351-89302A5441B0}" ShortID="126847969">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Hack_Fail" ID="{80F6E823-3732-42D1-B197-1E428C932AE5}">
+					<ChildrenList>
+						<Action Name="" ID="{0F15B427-78C1-4377-A767-FCFAED49D1EA}" ShortID="603465083">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Fail" ID="{B787CF95-0589-48C8-A496-D2AA5EDE0D06}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

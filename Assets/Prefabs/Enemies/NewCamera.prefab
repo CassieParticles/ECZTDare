@@ -233,4 +233,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beingHacked: 0
+  Hack_Start:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 253958b638b3d914f919f3f67862469c, type: 2}
+  Hack_Stop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9dd35d1e6c88a9e488111eebd9d8a63f, type: 2}
   hackTimer: 5
+  hackDetectionRadius: 8

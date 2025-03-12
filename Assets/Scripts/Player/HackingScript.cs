@@ -6,6 +6,7 @@ using static PlayerControls;
 
 public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
+    public AK.Wwise.Event Hack_Fail;
     PlayerControls controls;
     InputAction hackAction;
     bool hackInput;
@@ -87,6 +88,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
                 hackCharge -= 100f / hackCharges;
             } else {
                 //Not enough charge
+                Hack_Fail.Post(gameObject);
             }
         } //else No target
 

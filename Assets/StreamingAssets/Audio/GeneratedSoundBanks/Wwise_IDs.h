@@ -24,6 +24,9 @@ namespace AK
         static const AkUniqueID CLOAK_STOP = 1518276258U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
+        static const AkUniqueID HACK_FAIL = 3444806577U;
+        static const AkUniqueID HACK_START = 4099402511U;
+        static const AkUniqueID HACK_STOP = 1069300629U;
         static const AkUniqueID IN_VIEW_CONE = 2249657186U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
