@@ -35,6 +35,10 @@ public class AlarmSystem : MonoBehaviour
 
     public void StartAlarm(Vector3 playerPosition)
     {
+        if(!alarm)
+        {
+            StealthScoreTracker.GetTracker().RemoveScore(500);
+        }
         for (int i = 0; i < alarmEnableFuncs.Count; ++i)
         {
             alarmEnableFuncs[i](playerPosition);
