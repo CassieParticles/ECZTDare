@@ -24,7 +24,7 @@ public class SprintBar : MonoBehaviour
     {
         //changes the size of the bar depending on how full it is.
  
-        slider.value = movementScript.boostCharge;
+        slider.value = movementScript.batteryCharge;
 
         //changes the colour of the bar depending on how full it is
       //  if (movementScript.boostCharge < 66 && movementScript.boostCharge > 33)

@@ -1,7 +1,10 @@
 Event	ID	Name			Wwise Object Path	Notes
 	359728807	Enemy_Alerted			\Default Work Unit\Enemy_Alerted	
+	509407971	Ambience_Fan			\Default Work Unit\Ambience_Fan	
 	638098506	Cloak_Start			\Default Work Unit\Cloak_Start	
 	710389270	Ambience_Rain			\Default Work Unit\Ambience_Rain	
+	814543256	Button_Click			\Default Work Unit\Button_Click	
+	1069300629	Hack_Stop			\Default Work Unit\Hack_Stop	
 	1305133589	Player_Jump			\Default Work Unit\Player_Jump	
 	1515494175	Camera_Stop			\Default Work Unit\Camera_Stop	
 	1518276258	Cloak_Stop			\Default Work Unit\Cloak_Stop	
@@ -14,8 +17,10 @@ Event	ID	Name			Wwise Object Path	Notes
 	2609528332	Player_Slide			\Default Work Unit\Player_Slide	
 	3149531453	Guard_Footstep			\Default Work Unit\Guard_Footstep	
 	3353320293	Camera_Moving			\Default Work Unit\Camera_Moving	
+	3444806577	Hack_Fail			\Default Work Unit\Hack_Fail	
 	3629196698	Player_Land			\Default Work Unit\Player_Land	
 	4043448287	Boost_Rush			\Default Work Unit\Boost_Rush	
+	4099402511	Hack_Start			\Default Work Unit\Hack_Start	
 	4245309516	Player_Wall_Jump			\Default Work Unit\Player_Wall_Jump	
 
 Switch Group	ID	Name			Wwise Object Path	Notes
@@ -67,6 +72,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	23973740	G_M_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_1		48096
 	25523959	P_R_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_5		48096
 	28568543	Ambience_Boom_Bass	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Ambience_Boom_Bass_11A93380.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Boom_Bass		3456096
+	31907229	Ambience_Fan	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Machines, Hvac, Ventilation Fan, Big 01 SND1846 1_C8C27272.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Fan		2212352
 	36402879	G_D_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_3		48096
 	44104286	P_M_Jump_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_4		96096
 	52682027	P_M_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_3		48096
@@ -91,17 +97,19 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	259298035	G_D_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_1		48096
 	261965845	G_R_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_R_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_7		48096
 	266042559	G_M_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_5		48096
+	286540805	Button_Click	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Button_Activation_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Button_Click		210016
 	292283100	P_R_Landing_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Landing_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_R_Land\P_R_Landing_3		96096
 	296530740	P_C_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_1		48096
 	298890192	P_C_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_8		48096
 	299723195	P_D_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_D_Jump\P_D_Jump_1		96096
-	314968513	Cloak_Stop	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_861B18D9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Cloak_Stop		135580
+	314968513	Cloak_Stop	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_06102BFF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Cloak_Stop		135580
 	332950360	G_M_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_7		48096
 	347285092	P_R_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_1		48096
 	347630337	P_R_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Sliding_2_AB0DE62F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_R_Slide\P_R_Sliding_2		408144
 	350571898	G_D_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_4		48096
 	365276779	G_M_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_8		48096
 	372349657	P_D_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Sliding_2_D7086770.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_2		408144
+	378817786	Hack_Start_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_3		323568
 	393978131	P_R_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_R_Jump\P_R_Jump_1		96096
 	394477243	G_D_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_7		48096
 	404282586	G_M_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_3		48096
@@ -122,11 +130,13 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	598826268	Boost_Rush	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Boost_Rush_BE10BA2A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Boost_Rush		1920144
 	609776334	P_D_Sliding_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Sliding_1_19FB47D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_1		432144
 	618007706	P_C_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_3		48096
+	625955009	Hack_Start_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_D70B0DD1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_2		412396
 	630056515	Camera_Moving	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Camera_Moving_11A93380.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Camera_Moving		1536096
 	631317935	P_M_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_1		96096
 	631386295	P_M_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Sliding_2_67AEBF41.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_2		408144
 	647360545	P_D_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_1		48096
 	655095140	G_D_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_5		48096
+	656196889	Hack_Fail	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Granular, Futuristic, Long SND121063_402957CB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Fail		299588
 	679137891	Camera_Stop	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Camera_Stop_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Camera_Stop		54024
 	679691127	P_R_Jump_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Jump_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_R_Jump\P_R_Jump_2		96096
 	685949183	P_D_Landing_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Landing_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_D_Land\P_D_Landing_3		96096
@@ -136,13 +146,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	696859956	P_D_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_2		48096
 	706439460	P_D_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_3		48096
 	724971133	P_C_Jump_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_4		96096
+	727420045	Hack_Start_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_5425903F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_1		392284
 	737925208	Power_Generator	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Power_Generator		245904
 	767938678	P_C_Landing_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Landing_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_C_Land\P_C_Landing_3		96096
 	768608407	P_R_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_4		48096
 	774161018	P_M_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_7		48096
 	775535011	P_M_Landing_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Landing_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_M_Land\P_M_Landing_1		96096
 	790896873	P_M_Footstep_6	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_6		48096
-	793623686	Cloak_Start	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_A9C7BDEB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Cloak_Start		217212
+	793623686	Cloak_Start	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_332D77CD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Cloak_Start		217212
 	797407288	P_D_Landing_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Landing_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_D_Land\P_D_Landing_1		96096
 	801547988	P_R_Sliding_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Sliding_3_65B0FC4F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_R_Slide\P_R_Sliding_3		384144
 	803380777	P_R_Footstep_6	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_6		48096

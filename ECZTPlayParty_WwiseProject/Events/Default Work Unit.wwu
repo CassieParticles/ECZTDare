@@ -258,6 +258,61 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Hack_Start" ID="{B7D348B0-F554-44DE-AB9A-76A401E62484}">
+					<ChildrenList>
+						<Action Name="" ID="{544195E1-8C1E-488A-956D-39F8EB6DAB71}" ShortID="313973482">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Start" ID="{7A63B40E-D28A-4D5F-B44A-BF279B262641}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Hack_Stop" ID="{6C0BE5D8-6F86-43EC-BFB4-CEAEE5DB0B3B}">
+					<ChildrenList>
+						<Action Name="" ID="{7817D131-D818-44B0-9351-89302A5441B0}" ShortID="126847969">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Hack_Fail" ID="{80F6E823-3732-42D1-B197-1E428C932AE5}">
+					<ChildrenList>
+						<Action Name="" ID="{0F15B427-78C1-4377-A767-FCFAED49D1EA}" ShortID="603465083">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Fail" ID="{B787CF95-0589-48C8-A496-D2AA5EDE0D06}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Button_Click" ID="{BC1A6B60-8D55-4F04-A9A1-4CD1B521981E}">
+					<ChildrenList>
+						<Action Name="" ID="{89373032-D044-4A74-B292-EDDEDA2A3BE5}" ShortID="77973256">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button_Click" ID="{53A42C12-67B4-420A-9091-13139A7B80E8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Ambience_Fan" ID="{B283C0E7-E588-47B2-A89A-92F645630456}">
+					<ChildrenList>
+						<Action Name="" ID="{9E4B7F66-6F89-452C-812F-2979C750F70F}" ShortID="234932708">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Fan" ID="{FCC2E026-BA24-4E7F-90F4-EE9CEF96DB6D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

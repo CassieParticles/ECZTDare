@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DoorHackable : Hackable
 {
+    public AK.Wwise.Event Hack_Start;
+
     LockableDoor door;
 
     private void Awake()
@@ -14,5 +16,6 @@ public class DoorHackable : Hackable
     {
         AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackingNoiseRadius, 15, AudioSource.Hacked);
         door.ToggleState();
+        Hack_Start.Post(gameObject);
     }
 }

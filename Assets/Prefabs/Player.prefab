@@ -95,6 +95,7 @@ MonoBehaviour:
   fastFallMult: 8
   maxFallSpeed: 27.9
   fallSlowsRunMult: 0.55
+  coyoteTime: 0.05
   wallClingSpeed: 0
   walljumpRayGap: 0.5
   horizontalWalljumpStrength: 15
@@ -128,12 +129,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11817622f38d9804ca724b4529ce7591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Hack_Fail:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 75e9a95650fe1594ea89d445026eb92d, type: 2}
   target: {fileID: 0}
-  range: 10
-  behindRange: 2
   hackChargeRate: 50
   hackCharges: 3
   hackCharge: 100
+  hasHacked: 0
 --- !u!50 &8805521428832138119
 Rigidbody2D:
   serializedVersion: 4
@@ -358,7 +362,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8371112113522891037

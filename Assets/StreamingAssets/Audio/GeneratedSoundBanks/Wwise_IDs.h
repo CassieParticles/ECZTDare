@@ -14,16 +14,21 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID AMBIENCE_BASS = 1720356053U;
+        static const AkUniqueID AMBIENCE_FAN = 509407971U;
         static const AkUniqueID AMBIENCE_RAIN = 710389270U;
         static const AkUniqueID BOOST_RUSH = 4043448287U;
         static const AkUniqueID BOOST_START = 2188867727U;
         static const AkUniqueID BOOST_STOP = 1751967765U;
+        static const AkUniqueID BUTTON_CLICK = 814543256U;
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID CLOAK_START = 638098506U;
         static const AkUniqueID CLOAK_STOP = 1518276258U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
+        static const AkUniqueID HACK_FAIL = 3444806577U;
+        static const AkUniqueID HACK_START = 4099402511U;
+        static const AkUniqueID HACK_STOP = 1069300629U;
         static const AkUniqueID IN_VIEW_CONE = 2249657186U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
