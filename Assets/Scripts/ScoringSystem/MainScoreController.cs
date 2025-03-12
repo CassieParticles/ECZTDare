@@ -18,6 +18,7 @@ public class MainScoreController : MonoBehaviour
         if(instance)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -45,6 +46,7 @@ public class MainScoreController : MonoBehaviour
     public void StartTimer()
     {
         TimerObject = Instantiate(TimerObjectPrefab);
+        timeTaken = 0;
     }
 
     
@@ -53,11 +55,13 @@ public class MainScoreController : MonoBehaviour
     {
         timeTaken = TimerObject.GetComponent<ScoreTimer>().time;
         Debug.Log("Time taken: " + timeTaken);
+        Destroy(TimerObject);
+        TimerObject = null;
     }
 
     private void DisplayScore()
     {
-        TextMeshPro text = GameObject.Find("TimeTaken").GetComponent<TextMeshPro>();
-        text.text = timeTaken.ToString() + "seconds";
+        TextMeshProUGUI text = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
+        text.text = timeTaken.ToString() + " seconds";
     }
 }

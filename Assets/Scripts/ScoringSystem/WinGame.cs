@@ -10,6 +10,7 @@ public class WinGame : MonoBehaviour
         if(scoreController)
         {
             scoreController.StopTimer();
+            Debug.Log("Stop the clock!");
         }
         SceneManager.LoadScene("WinScreen");
     }
