@@ -17,7 +17,7 @@ public class DoorButton : MonoBehaviour
 
     private void Awake()
     {
-        if(!door)
+        if(!door || isCollectable)
         {
             gameObject.SetActive(false);
         }
