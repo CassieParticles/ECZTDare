@@ -13,6 +13,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
     MovementScript movementScript;
     Camera mainCamera;
+    GameObject reticle;
 
     public Hackable target;
 
@@ -28,6 +29,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        reticle = GameObject.Find("HackingReticle");
         movementScript = GetComponent<MovementScript>();
 
         if (controls == null) {
@@ -76,6 +78,12 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
                 target = hackable;
                 distance = MouseToHackableVector.magnitude;
             }
+        }
+        if (target  != null) {
+            reticle.SetActive(true);
+            reticle.transform.position = target.transform.position;
+        } else {
+            reticle.SetActive(false);
         }
     }
 

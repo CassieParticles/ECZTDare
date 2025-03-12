@@ -62,6 +62,7 @@ public class MainScoreController : MonoBehaviour
     private void DisplayScore()
     {
         TextMeshProUGUI text = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
-        text.text = timeTaken.ToString() + " seconds";
+        TimerToGrade gradeCalculator = GameObject.Find("TimerGrade").GetComponent<TimerToGrade>();
+        gradeCalculator.DisplayGrade(timeTaken);
     }
 }
