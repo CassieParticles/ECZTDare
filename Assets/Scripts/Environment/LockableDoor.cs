@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LockableDoor : MonoBehaviour
 {
+    public AK.Wwise.Event doorHum;
+
     [SerializeField] NavMeshSurface surface;
     [SerializeField] private bool startLocked = true;
 
@@ -24,6 +26,7 @@ public class LockableDoor : MonoBehaviour
         RebuildNavMesh();
 
         isLocked = true;
+        doorHum.Post(gameObject);
     }
 
     public void Unlock()
@@ -36,6 +39,8 @@ public class LockableDoor : MonoBehaviour
         RebuildNavMesh();
 
         isLocked = false;
+        doorHum.Stop(gameObject);
+
     }
 
     public void ToggleState()
