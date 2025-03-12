@@ -25,13 +25,9 @@ public class TestFunctions : MonoBehaviour
             //Sets the "Ambience" State Group's active State to "NoAmbience"
             AkSoundEngine.SetState("Ambience", "NoAmbience");
             musicHandler.rain.Stop(gameObject);
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("Main Menu");
         }
 
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log("Hacking");
-            testCamera.GetComponent<CameraHackable>().OnHack();
-        }
+        
     }
 }
