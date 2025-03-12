@@ -7,20 +7,26 @@ using static PlayerControls;
 public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
     PlayerControls controls;
+    InputAction hackAction;
+    bool hackInput;
+
     MovementScript movementScript;
+    Camera mainCamera;
 
     public Hackable target;
 
-    [SerializeField] float range = 10f;
-    [SerializeField] float behindRange = 2f;
+    //[SerializeField] float range = 10f;
+    //[SerializeField] float behindRange = 2f;
     [SerializeField] float hackChargeRate = 50f;
     [SerializeField] int hackCharges = 3;
 
     public float hackCharge = 100;
+    public bool hasHacked = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         movementScript = GetComponent<MovementScript>();
 
         if (controls == null) {
@@ -28,6 +34,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
             controls.GameplayControls.SetCallbacks(this);
         }
         controls.GameplayControls.Enable();
+        hackAction = controls.FindAction("Hacking");
     }
 
     // Update is called once per frame
@@ -37,28 +44,46 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
             hackCharge += hackChargeRate * Time.deltaTime;
         }
 
+        hackInput = hackAction.ReadValue<float>() > 0;
+        if (!hackInput) {
+            hasHacked = false;
+        }
+
         target = null;
-        float distance = range;
+        float distance = 1000;
         
         //Finds the closest hackable object
         foreach (Hackable hackable in FindObjectsByType<Hackable>(FindObjectsSortMode.None)) {
+
+            //Needs to be on screen to be considered
+            if (mainCamera.WorldToViewportPoint(hackable.transform.position).x > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).x < 0.03f ||
+                mainCamera.WorldToViewportPoint(hackable.transform.position).y > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).y < 0.03f) {
+                continue;
+            }
+            
+            //Needs to free so it can be hacked
+            if (hackable.beingHacked == true) {
+                continue;
+            }
+
             //Makes a vector and gets its direction
-            Vector3 PlayerToHackableVector = hackable.transform.position - transform.position;
-            bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
+            Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            //bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
             //If within range and in the direction the player is facing
-            if (PlayerToHackableVector.magnitude < distance && (Mathf.Abs(PlayerToHackableVector.x) <= behindRange || movementScript.facingRight == direction)) {
+            if (MouseToHackableVector.magnitude < distance) {
                 //Debug.Log("Found hackable in range");
                 target = hackable;
-                distance = PlayerToHackableVector.magnitude;
+                distance = MouseToHackableVector.magnitude;
             }
         }
     }
 
     public void OnHacking(InputAction.CallbackContext context) {
-        if (target != null) {
+        if (target != null && !hasHacked) {
             if (hackCharge >= 100f / hackCharges) {
                 //If the target is currently being hacked dont let it
                 target.OnHack();
+                hasHacked = true;
                 hackCharge -= 100f / hackCharges;
             } else {
                 //Not enough charge
