@@ -12,6 +12,13 @@ public class TimerToGrade : MonoBehaviour
             120,
             180
         };
+    //S, A, B, C
+    [SerializeField] private float[] StealthBands = new float[3]
+    {
+        100,
+        80,
+        60
+    };
 
     private TextMeshProUGUI textToChange;
 
@@ -19,7 +26,7 @@ public class TimerToGrade : MonoBehaviour
     {
         textToChange = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
     }
-    public void DisplayGrade(float timeTaken)
+    public void DisplayGrade(float timeTaken, float stealthScore)
     {
         if (timeTaken < TimeBands[0])
         {
@@ -36,6 +43,25 @@ public class TimerToGrade : MonoBehaviour
         else
         {
             textToChange.text = "C";
+        }
+
+        textToChange.text += " : ";
+
+        if(stealthScore > StealthBands[0])
+        {
+            textToChange.text += "S";
+        }
+        else if (stealthScore > StealthBands[1])
+        {
+            textToChange.text += "A";
+        }
+        else if (stealthScore > StealthBands[1])
+        {
+            textToChange.text += "B";
+        }
+        else
+        {
+            textToChange.text += "C";
         }
     }
 }

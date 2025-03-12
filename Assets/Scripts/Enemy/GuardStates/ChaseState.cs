@@ -14,6 +14,8 @@ public class ChaseState : BaseState
 
     AlarmSystem alarm;
 
+    bool hasChasedBefore;
+
     public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) { this.alarm = alarm; }
 
     public override void Start()
@@ -21,6 +23,12 @@ public class ChaseState : BaseState
         AlarmMusicHandler.GetMusicHandler().BeginChase(guardBehaviour);
         raiseAlarmCoroutine = guardBehaviour.StartCoroutine(raiseAlarm());
         shouldRaiseAlarm = false;
+
+        if(!hasChasedBefore)
+        {
+            hasChasedBefore = true;
+            StealthScoreTracker.GetTracker().RemoveScore(100);
+        }
     }
 
     public override void Stop()

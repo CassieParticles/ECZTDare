@@ -110,6 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11d781e75c8e2684ca40214782219990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doorHum:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fa87d1c9358953e40b69d765772372f0, type: 2}
   surface: {fileID: 0}
   startLocked: 1
 --- !u!212 &-7576103743223536323
@@ -178,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ae0781bc81b994a8d612695757b463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beingHacked: 0
+  hackingNoiseRadius: 10
   Hack_Start:
     idInternal: 0
     valueGuidInternal: 
