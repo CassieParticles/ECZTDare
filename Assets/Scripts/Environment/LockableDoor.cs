@@ -11,6 +11,7 @@ public class LockableDoor : MonoBehaviour
     public bool isLocked { get; private set; }
 
     private BoxCollider2D boxCollider;
+    private SpriteRenderer spriteRenderer;
 
     public void Lock()
     {
@@ -18,6 +19,8 @@ public class LockableDoor : MonoBehaviour
 
         //Lock door
         boxCollider.enabled = true;
+        spriteRenderer.enabled = true;
+
         RebuildNavMesh();
 
         isLocked = true;
@@ -29,6 +32,7 @@ public class LockableDoor : MonoBehaviour
 
         //Unlock door
         boxCollider.enabled = false;
+        spriteRenderer.enabled = false;
         RebuildNavMesh();
 
         isLocked = false;
@@ -38,6 +42,7 @@ public class LockableDoor : MonoBehaviour
     {
         //Switch door
         boxCollider.enabled = !boxCollider.enabled;
+        spriteRenderer.enabled = !spriteRenderer.enabled;
         RebuildNavMesh();
 
         isLocked = !isLocked;
@@ -54,6 +59,7 @@ public class LockableDoor : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         isLocked = startLocked;
         if(surface)
         {
