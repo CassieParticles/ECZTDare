@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492170360086042322}
   - component: {fileID: 7495825504182404312}
+  - component: {fileID: 9004087604052896415}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -45,3 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elapsedTime: 0
+--- !u!114 &9004087604052896415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3616865487003931246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094b1a98be926b348a71f0f69dfbb3da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stealthDisplay: {fileID: 0}
+  movementDisplay: {fileID: 0}
+  cloakBar: {fileID: 0}
+  boostBar: {fileID: 0}
+  hasAbilities: 0

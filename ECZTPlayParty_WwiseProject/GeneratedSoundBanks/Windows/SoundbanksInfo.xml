@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{43BE05AB-9770-EDE9-D86D-D349FF012429}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8128383D-9F71-C272-9886-14CFE4AAE1A6}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -261,6 +261,10 @@
 				<File Id="266042559" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_5.wav</ShortName>
 					<CachePath>SFX/G_M_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="269273201" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507_4673BCD3.wem</CachePath>
 				</File>
 				<File Id="286540805" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Button_Activation.wav</ShortName>
@@ -733,6 +737,17 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="269273201"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
@@ -1178,5 +1193,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{A6417A85-76B3-B2B8-2918-60022312295E}</FileHash>
+	<FileHash>{813F12DC-258F-B34B-CCA0-4EB302D9426C}</FileHash>
 </SoundBanksInfo>
