@@ -1,10 +1,25 @@
 fileFormatVersion: 2
-guid: 9e047651e1e866a4682cc36a898c451a
+guid: b076ba0a309e53d419a0789d19af4445
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5707969056953825414
-    second: scaffoldingthick_0
+      213: -8763134511394642283
+    second: hangingplant2_0
+  - first:
+      213: -2117957756328707681
+    second: hangingplant2_1
+  - first:
+      213: -1199304042648590405
+    second: hangingplant2_2
+  - first:
+      213: -926135697967182031
+    second: hangingplant2_3
+  - first:
+      213: 8253523669139125412
+    second: hangingplant2_4
+  - first:
+      213: -5207369964842540864
+    second: hangingplant2_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: scaffoldingthick_0
+      name: hangingplant2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -108,20 +123,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68877ac7d97c63f40800000000000000
-      internalID: 5707969056953825414
+      spriteID: 5962b594797136680800000000000000
+      internalID: -8763134511394642283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: scaffoldingthick_1
+      name: hangingplant2_1
       rect:
         serializedVersion: 2
         x: 0
@@ -129,20 +144,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9058a93b364c56241b5e1f22057de306
-      internalID: 1438342323
+      spriteID: f997ebc54a08b92e0800000000000000
+      internalID: -2117957756328707681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: scaffoldingthick_2
+      name: hangingplant2_2
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +165,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7e16b1fd2a1b8724083ab4feead66793
-      internalID: 1331546159
+      spriteID: bb7ad30d3573b5fe0800000000000000
+      internalID: -1199304042648590405
       vertices: []
       indices: 
       edges: []
@@ -165,19 +180,19 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a3d71e32ed8c5154e9340ba67ef6525e
+    spriteID: 91b86a971bac3dd499b109eee23a6fde
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 843849f6e7912a24a96e65af8432566d, type: 3}
+    - texture: {fileID: 2800000, guid: a16f6b6dfa48e044a99ba03db05b2ca0, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      scaffoldingthick_0: 5707969056953825414
-      scaffoldingthick_1: 1438342323
-      scaffoldingthick_2: 1331546159
+      hangingplant2_0: -8763134511394642283
+      hangingplant2_1: -2117957756328707681
+      hangingplant2_2: -1199304042648590405
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

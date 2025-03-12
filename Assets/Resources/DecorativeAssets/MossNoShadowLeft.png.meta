@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9e047651e1e866a4682cc36a898c451a
+guid: ba7d8770db849be46904ca07ee4416d1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5707969056953825414
-    second: scaffoldingthick_0
+      213: -1339846008846975420
+    second: MossNoShadowLeft_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,64 +100,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: scaffoldingthick_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 68877ac7d97c63f40800000000000000
-      internalID: 5707969056953825414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scaffoldingthick_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9058a93b364c56241b5e1f22057de306
-      internalID: 1438342323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: scaffoldingthick_2
+      name: MossNoShadowLeft_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.34}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7e16b1fd2a1b8724083ab4feead66793
-      internalID: 1331546159
+      spriteID: 44e73fc5729e76de0800000000000000
+      internalID: -1339846008846975420
       vertices: []
       indices: 
       edges: []
@@ -165,19 +123,17 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a3d71e32ed8c5154e9340ba67ef6525e
+    spriteID: 279d45609637123499be1e849cc58c33
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: 843849f6e7912a24a96e65af8432566d, type: 3}
+    - texture: {fileID: 2800000, guid: ce1c3e4b0fbb4d1498f8120ed2968e1c, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      scaffoldingthick_0: 5707969056953825414
-      scaffoldingthick_1: 1438342323
-      scaffoldingthick_2: 1331546159
+      MossNoShadowLeft_0: -1339846008846975420
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
