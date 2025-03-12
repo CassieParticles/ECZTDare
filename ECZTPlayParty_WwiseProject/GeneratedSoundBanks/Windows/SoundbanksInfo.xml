@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B3061A5D-3138-7AEE-6C41-58D7539BC0FD}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{09242536-F079-2B15-9936-A530CA59700D}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -276,7 +276,7 @@
 				</File>
 				<File Id="314968513" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
-					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_861B18D9.wem</CachePath>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_06102BFF.wem</CachePath>
 				</File>
 				<File Id="332950360" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_7.wav</ShortName>
@@ -301,6 +301,10 @@
 				<File Id="372349657" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_2.wav</ShortName>
 					<CachePath>SFX/P_D_Sliding_2_D7086770.wem</CachePath>
+				</File>
+				<File Id="378817786" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem</CachePath>
 				</File>
 				<File Id="393978131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Jump_1.wav</ShortName>
@@ -382,6 +386,10 @@
 					<ShortName>P_C_Footstep_3.wav</ShortName>
 					<CachePath>SFX/P_C_Footstep_3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="625955009" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_D70B0DD1.wem</CachePath>
+				</File>
 				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Moving.wav</ShortName>
 					<CachePath>SFX/Camera_Moving_11A93380.wem</CachePath>
@@ -401,6 +409,10 @@
 				<File Id="655095140" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_5.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="656196889" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Designed, Impact, Hit, Granular, Futuristic, Long SND121063.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Granular, Futuristic, Long SND121063_402957CB.wem</CachePath>
 				</File>
 				<File Id="679137891" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Stop.wav</ShortName>
@@ -438,6 +450,10 @@
 					<ShortName>P_C_Jump_4.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_4_818F3B66.wem</CachePath>
 				</File>
+				<File Id="727420045" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_5425903F.wem</CachePath>
+				</File>
 				<File Id="737925208" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521.wav</ShortName>
 					<CachePath>SFX/Soundly Audio/Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem</CachePath>
@@ -464,7 +480,7 @@
 				</File>
 				<File Id="793623686" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Soundly Audio\Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1.wav</ShortName>
-					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_A9C7BDEB.wem</CachePath>
+					<CachePath>SFX/Soundly Audio/Electricity, Zap, Shock, Impact, Heavy, Short, Long, Various SND20301 1_332D77CD.wem</CachePath>
 				</File>
 				<File Id="797407288" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Landing_1.wav</ShortName>
@@ -759,6 +775,41 @@
 							</MediaRefs>
 						</SwitchContainer>
 					</SwitchContainers>
+				</Event>
+				<Event Id="3444806577" Name="Hack_Fail" DurationType="OneShot" DurationMin="1.5598613" DurationMax="1.5598613">
+					<MediaRefs>
+						<MediaRef Id="656196889"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="4099402511" Name="Hack_Start" MaxAttenuation="100" DurationType="OneShot" DurationMin="1.684753" DurationMax="2.1474051">
+					<MediaRefs>
+						<MediaRef Id="378817786"/>
+						<MediaRef Id="625955009"/>
+						<MediaRef Id="727420045"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1069300629" Name="Hack_Stop" MaxAttenuation="70" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+					<MediaRefs>
+						<MediaRef Id="679137891"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="2249657186" Name="In_View_Cone" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
@@ -1103,5 +1154,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{27149F03-ABCC-0EED-CF34-179B90F5E2F1}</FileHash>
+	<FileHash>{5D6660B2-7BA2-3117-BECA-D9C1E52FAE7B}</FileHash>
 </SoundBanksInfo>
