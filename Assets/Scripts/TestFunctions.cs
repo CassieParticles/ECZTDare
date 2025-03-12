@@ -17,7 +17,8 @@ public class TestFunctions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        //Send player back to main menu
+        if (Input.GetKeyDown(KeyCode.P))
         {
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "NoMusic");
@@ -28,6 +29,16 @@ public class TestFunctions : MonoBehaviour
             SceneManager.LoadScene("Main Menu");
         }
 
-        
+        //Reset Alarm
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            AlarmSystem[] alarms = FindObjectsByType<AlarmSystem>(FindObjectsSortMode.None);
+
+            for (int i = 0; i < alarms.Length; i++)
+            {
+                alarms[i].StopAlarm();
+            }
+        }
     }
+
 }
