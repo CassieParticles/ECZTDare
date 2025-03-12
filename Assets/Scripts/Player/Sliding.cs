@@ -20,6 +20,7 @@ public class Sliding
         player.hasSlid = true;
         player.collider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - player.colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
+        player.rb.velocityY = 0f;
         player.effectiveDeceleration = player.slideDeceleration;
         player.tempGroundedTimer = 0.02f;
     }
