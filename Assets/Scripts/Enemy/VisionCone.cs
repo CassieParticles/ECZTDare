@@ -25,6 +25,12 @@ public class VisionCone : MonoBehaviour
     private Texture2D coneTexture;
     private Color coneColour;
 
+    //Track when player is in vision cone, meant to keep updated when vision cone is used
+    MovementScript playerScript;
+    //2 booleans, when they do not match, player cloaked or uncloaked this frame
+    bool cloakLastFrame;
+    bool cloakThisFrame;
+
     public void SetColour(Color colour)
     {
         coneColour = colour;
@@ -146,12 +152,41 @@ public class VisionCone : MonoBehaviour
             GenerateConeMesh();
         }
         
+        //Check if the player cloaked this frame
+        if(playerScript)
+        {
+            cloakLastFrame = cloakThisFrame;
+            cloakThisFrame = playerScript.cloaking;
+        }
+        else
+        {
+            cloakLastFrame = false;
+            cloakThisFrame = false;
+        }
+
+        //Cloaked/uncloaked this frame
+        if(cloakThisFrame!=cloakLastFrame)
+        {
+            if(cloakThisFrame)
+            {
+                Enemy.LosePlayer();
+            }
+            else
+            {
+                Enemy.SeePlayer(playerScript.gameObject);
+            }
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Enemy.SeePlayer(collision.gameObject);
+            playerScript = collision.GetComponent<MovementScript>();
+            if (!playerScript.cloaking)
+            {
+                Enemy.SeePlayer(collision.gameObject);
+            }
         }
     }
 
@@ -159,7 +194,11 @@ public class VisionCone : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Enemy.LosePlayer();
+            if (!playerScript.cloaking)
+            {
+                Enemy.LosePlayer();
+            }
+            playerScript = null;
         }
     }
 
