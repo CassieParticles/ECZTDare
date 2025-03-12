@@ -291,6 +291,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Button_Click" ID="{BC1A6B60-8D55-4F04-A9A1-4CD1B521981E}">
+					<ChildrenList>
+						<Action Name="" ID="{89373032-D044-4A74-B292-EDDEDA2A3BE5}" ShortID="77973256">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Button_Click" ID="{53A42C12-67B4-420A-9091-13139A7B80E8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Ambience_Fan" ID="{B283C0E7-E588-47B2-A89A-92F645630456}">
+					<ChildrenList>
+						<Action Name="" ID="{9E4B7F66-6F89-452C-812F-2979C750F70F}" ShortID="234932708">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Fan" ID="{FCC2E026-BA24-4E7F-90F4-EE9CEF96DB6D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

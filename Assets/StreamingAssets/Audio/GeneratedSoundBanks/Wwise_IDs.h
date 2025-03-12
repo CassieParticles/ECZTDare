@@ -14,10 +14,12 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID AMBIENCE_BASS = 1720356053U;
+        static const AkUniqueID AMBIENCE_FAN = 509407971U;
         static const AkUniqueID AMBIENCE_RAIN = 710389270U;
         static const AkUniqueID BOOST_RUSH = 4043448287U;
         static const AkUniqueID BOOST_START = 2188867727U;
         static const AkUniqueID BOOST_STOP = 1751967765U;
+        static const AkUniqueID BUTTON_CLICK = 814543256U;
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID CLOAK_START = 638098506U;

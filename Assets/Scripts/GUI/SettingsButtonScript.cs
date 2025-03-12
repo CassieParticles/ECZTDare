@@ -5,7 +5,7 @@ using static PlayerControls;
 
 public class SettingsButtonScript : MonoBehaviour {
     PlayerControls.GameplayControlsActions controls;
-    
+    public AK.Wwise.Event buttonClick;
 
     public enum Controls {
         //RunningLeft,
@@ -17,6 +17,7 @@ public class SettingsButtonScript : MonoBehaviour {
     }
 
     public void RemapInput(Controls reboundAction) {
+        buttonClick.Post(gameObject);
         InputActionRebindingExtensions.RebindingOperation rebinder;
         switch (reboundAction) {
             case Controls.Jumping:
@@ -35,6 +36,7 @@ public class SettingsButtonScript : MonoBehaviour {
     }
 
     public void ResetInput(Controls reboundAction) {
+        buttonClick.Post(gameObject);
         switch (reboundAction) {
             case Controls.Jumping:
                 controls.Jumping.RemoveAllBindingOverrides();
