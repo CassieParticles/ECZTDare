@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using Unity.VisualScripting;
@@ -162,6 +163,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public Vector2 colliderSize;
 
     AlarmSystem alarm;
+    CinemachineVirtualCamera movementCamera;
+    CinemachineVirtualCamera stealthCamera;
 
     Running runningScript;
     Jumping jumpScript;
@@ -188,6 +191,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator = GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+
+        movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
+        stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
 
         boostScript = new Boost();
         jumpScript = new Jumping();
@@ -541,7 +547,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
+            stealthCamera.Priority = 10;
+            movementCamera.Priority = 0;
             uiModeChange.stealthMode();
+
             effectiveMaxRunSpeed = stealthMaxRunSpeed;
             effectiveAcceleration = stealthAcceleration;
             if (!sliding) {
@@ -557,7 +566,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         } else {
             cloakScript.Disable();
+            movementCamera.Priority = 10;
+            stealthCamera.Priority = 0;
             uiModeChange.movementMode();
+
             effectiveMaxRunSpeed = maxRunSpeed;
             effectiveAcceleration = acceleration;
             if (!sliding) {
