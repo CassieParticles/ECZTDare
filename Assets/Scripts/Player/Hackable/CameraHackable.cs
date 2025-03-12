@@ -19,6 +19,7 @@ public class CameraHackable : Hackable
         cameraAttached.visionCone.distance = 0;
         beingHacked = true;
         Hack_Start.Post(gameObject);
+        cameraAttached.cameraMoving.Stop(gameObject);
 
         yield return new WaitForSeconds(hackTimer);
         //Enable camera
