@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinGame : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        //Stop the clock
+        MainScoreController scoreController = MainScoreController.GetInstance();
+        if(scoreController)
+        {
+            scoreController.StopTimer();
+        }
+        SceneManager.LoadScene("WinScreen");
     }
 }

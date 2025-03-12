@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,8 @@ public class MainScoreController : MonoBehaviour
     [SerializeField] GameObject TimerObjectPrefab;
 
     private GameObject TimerObject;
+
+    private float timeTaken;
     private void Awake()
     {
         //Ensure object always exists
@@ -28,6 +31,10 @@ public class MainScoreController : MonoBehaviour
         {
             StartTimer();
         }
+        if(scene.name == "WinScreen")
+        {
+            DisplayScore();
+        }
     }
 
     public static MainScoreController GetInstance()
@@ -44,7 +51,13 @@ public class MainScoreController : MonoBehaviour
 
     public void StopTimer()
     {
-        float timeTaken = TimerObject.GetComponent<ScoreTimer>().time;
+        timeTaken = TimerObject.GetComponent<ScoreTimer>().time;
         Debug.Log("Time taken: " + timeTaken);
+    }
+
+    private void DisplayScore()
+    {
+        TextMeshPro text = GameObject.Find("TimeTaken").GetComponent<TextMeshPro>();
+        text.text = timeTaken.ToString() + "seconds";
     }
 }
