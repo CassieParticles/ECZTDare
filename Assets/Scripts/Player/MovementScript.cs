@@ -118,7 +118,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool facingRight; //Is facing to the right
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
-    [NonSerialized] public float boostingMaxRunSpeedMultiplier; //If the player is currently boosting
+    [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
     public float batteryCharge; //The current boosting charge the player has
 
@@ -182,7 +182,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationGroundedTimer = -1;
 
     //reference to the ui mode change script
-    [SerializeField] private UIModeChange uiModeChange;
+    private UIModeChange uiModeChange;
     private void Awake() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -196,6 +196,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
+        uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
 
         boostScript = new Boost();
         jumpScript = new Jumping();
@@ -204,6 +205,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         slideScript = new Sliding();
 
         colliderSize = collider.size;
+        //inStealthMode = false;
         effectiveMaxRunSpeed = maxRunSpeed;
         effectiveAcceleration = acceleration;
         effectiveDeceleration = deceleration;
@@ -242,11 +244,20 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         RunSlide();
 
         //Set up variables for animation and audio
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
+        if (sliding) {
+            if (canEndSlide) {
+                animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
+            } else {
+                animator.SetFloat("xVelocity", 6.1f);
+            }
+        } else {
+            animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
+        }
         animator.SetFloat("yVelocity", rb.velocityY);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("OnWall", onWall);
         animator.SetBool("Sliding", sliding);
+        animator.SetFloat("CoyoteTime", animationGroundedTimer);
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
@@ -283,7 +294,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     void CheckGrounded() {
         if (landingCooldown > 0) {
-            landingCooldown -= Time.deltaTime;
+            landingCooldown -= Time.fixedDeltaTime;
         }
 
         doRayCasts();
@@ -299,16 +310,16 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             }
             grounded = true;
             tempGroundedTimer = coyoteTime;
-            //animationGroundedTimer = animationCoyoteTime;
+            animationGroundedTimer = animationCoyoteTime;
             //animator.SetFloat("CoyoteTime", animationGroundedTimer);
         } else {  
             grounded = false;
-            //animationGroundedTimer -= Time.deltaTime;
+            animationGroundedTimer -= Time.fixedDeltaTime;
         }
 
         //Grounds the player temporarily, currently is being used if the player starts sliding, and when they fall off a ledge (coyote time)
         if (tempGroundedTimer > 0) {
-            tempGroundedTimer -= Time.deltaTime;
+            tempGroundedTimer -= Time.fixedDeltaTime;
             
             grounded = true;
         }
@@ -318,19 +329,20 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         //If the player is on a wall
         if (!grounded) 
         {   
-            if (Physics2D.Raycast(topRightWallRayStart, Vector2.right, 0.1f, layers) || 
-                Physics2D.Raycast(bottomRightWallRayStart, Vector2.right, 0.1f, layers)) 
+            if ((Physics2D.Raycast(topRightWallRayStart, Vector2.right, 0.1f, layers) || 
+                Physics2D.Raycast(bottomRightWallRayStart, Vector2.right, 0.1f, layers))) 
             { //If the player is on a wall to their right
-                if (!onWall)
+                if (!onWall && facingRight)
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
                 onWall = true;
                 onRightWall = true;
+                animator.SetFloat("CoyoteTime", animationGroundedTimer);
             } else if (Physics2D.Raycast(topLeftWallRayStart, Vector2.left, 0.1f, layers) ||
                        Physics2D.Raycast(bottomLeftWallRayStart, Vector2.left, 0.1f, layers))
             { //If the player is on a wall to their left
-                if (!onWall)
+                if (!onWall && !facingRight)
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
@@ -338,6 +350,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 onRightWall = false;
             } else 
             { //Player is not on a wall
+                onWall = false;
+            }
+            if (onRightWall == !facingRight) {
                 onWall = false;
             }
         }
@@ -408,6 +423,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
 
             jumpScript.BasicJump();
+            animationGroundedTimer = 0;
 
         } else if (jumpInput && onWall && !hasJumped) { //Walljumping
 
@@ -497,8 +513,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         if (!cloaking && !boosting) {
             if (inStealthMode) {
-                if (batteryCharge + cloakRecharge * Time.deltaTime < 100f) {
-                    batteryCharge += cloakRecharge * Time.deltaTime;
+                if (batteryCharge + cloakRecharge * Time.fixedDeltaTime < 100f) {
+                    batteryCharge += cloakRecharge * Time.fixedDeltaTime;
                 } else {
                     batteryCharge = 100f;
                 }
@@ -528,7 +544,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         }
         
         //Handle Running
-        if (runInput != 0 && postWalljumpInputs != runInput && !sliding && (grounded || rb.velocityX < dynamicMaxRunSpeed)) {
+        if (runInput != 0 && postWalljumpInputs != runInput && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) {
 
             runningScript.Accelerate(runInput);
 
@@ -536,6 +552,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
             runningScript.Decelerate();
 
+        }
+        if (!grounded && horizontalVelocity > dynamicMaxRunSpeed) {
+            if (MathF.Sign(rb.velocityX) == -runInput) {
+                runningScript.Accelerate(runInput);
+            }
         }
 
         //Decide what the max velocity is and cap the player if necessary
