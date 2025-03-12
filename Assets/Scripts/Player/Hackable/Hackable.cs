@@ -11,7 +11,7 @@ public abstract class Hackable : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
+        Gizmos.color = new Color(0.8f,0.1f,0.2f);
         Gizmos.DrawWireSphere(transform.position, hackingNoiseRadius);
     }
 }
