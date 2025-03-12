@@ -104,11 +104,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 17
-        height: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -116,6 +116,48 @@ TextureImporter:
       bones: []
       spriteID: 68877ac7d97c63f40800000000000000
       internalID: 5707969056953825414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffoldingthick_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9058a93b364c56241b5e1f22057de306
+      internalID: 1438342323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffoldingthick_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e16b1fd2a1b8724083ab4feead66793
+      internalID: 1331546159
       vertices: []
       indices: 
       edges: []
@@ -134,6 +176,8 @@ TextureImporter:
       name: _NormalMap
     nameFileIdTable:
       scaffoldingthick_0: 5707969056953825414
+      scaffoldingthick_1: 1438342323
+      scaffoldingthick_2: 1331546159
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

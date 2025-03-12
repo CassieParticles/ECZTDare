@@ -104,11 +104,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 13
-        height: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -116,6 +116,48 @@ TextureImporter:
       bones: []
       spriteID: e2ac21c6600a0c2b0800000000000000
       internalID: -5566273189986514386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffoldingbackground_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083e07cb80152c349bda9242ad2f9ff5
+      internalID: 355927623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: scaffoldingbackground_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7d3099194a7d9458d0d9f4d5b4f40c
+      internalID: 874566865
       vertices: []
       indices: 
       edges: []
@@ -134,6 +176,8 @@ TextureImporter:
       name: _NormalMap
     nameFileIdTable:
       scaffoldingbackground_0: -5566273189986514386
+      scaffoldingbackground_1: 355927623
+      scaffoldingbackground_2: 874566865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
