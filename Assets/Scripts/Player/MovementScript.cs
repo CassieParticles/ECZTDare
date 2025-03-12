@@ -12,9 +12,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     public AK.Wwise.Event boostStart;
     public AK.Wwise.Event boostRush;
     public AK.Wwise.Event boostStop;
+    public AK.Wwise.Event cloakStart;
+    public AK.Wwise.Event cloakStop;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
-	[SerializeField][Range(0.01f, 3.0f)] public float footstepRate = 1f;
+    [SerializeField][Range(0.01f, 3.0f)] public float footstepRate = 1f;
 
     //How much the velocity of the player affects the footstep frequency
 	[SerializeField][Range(0.01f, 3.0f)] public float footstepRateScaler = 1f;
@@ -272,7 +274,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
         if (!boostCloakInput) {
             hasBoostCloaked = false;
-            cloakScript.Disable();
+            
+            if (cloaking) {
+                cloakScript.Disable();
+            }
         }
     }
 
@@ -565,7 +570,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
 
         } else {
-            cloakScript.Disable();
+            //cloakScript.Disable();
             movementCamera.Priority = 10;
             stealthCamera.Priority = 0;
             uiModeChange.movementMode();

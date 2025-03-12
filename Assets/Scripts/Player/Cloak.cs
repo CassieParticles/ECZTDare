@@ -15,6 +15,7 @@ public class Cloak
     /// </summary>
     public void Enable()
     {
+        player.cloakStart.Post(player.gameObject);
         player.cloaking = true;
         player.hasBoostCloaked = true;
         player.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -29,6 +30,7 @@ public class Cloak
     /// </summary>
     public void Disable()
     {
+        player.cloakStop.Post(player.gameObject);
         player.cloaking = false;
         player.gameObject.layer = LayerMask.NameToLayer("Player");
         Color color = player.GetComponent<SpriteRenderer>().color;

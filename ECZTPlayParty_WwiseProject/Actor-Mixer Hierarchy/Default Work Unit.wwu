@@ -3213,6 +3213,11 @@
 								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.5559895833333334"/>
 								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.5865885416666666"/>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
