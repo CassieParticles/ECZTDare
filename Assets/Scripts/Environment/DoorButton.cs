@@ -12,6 +12,8 @@ public class DoorButton : MonoBehaviour
 
     [SerializeField] private Action action = Action.Unlock;
     [SerializeField] private LockableDoor door;
+    private UIModeChange uiModeChange;
+    [SerializeField] private bool isCollectable;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class DoorButton : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +40,10 @@ public class DoorButton : MonoBehaviour
                     door.ToggleState();
                     break;
             }
-
+            if (isCollectable)
+            {
+                uiModeChange.collectUpgrade();
+            }
         }
     }
 }
