@@ -8,10 +8,13 @@ public class MainScoreController : MonoBehaviour
 {
     private static MainScoreController instance;
     [SerializeField] GameObject TimerObjectPrefab;
+    [SerializeField] GameObject StealthObjectPrefab;
 
     private GameObject TimerObject;
+    private GameObject StealthObject;
 
     private float timeTaken;
+    private float stealthScore;
     private void Awake()
     {
         //Ensure object always exists
@@ -46,7 +49,9 @@ public class MainScoreController : MonoBehaviour
     public void StartTimer()
     {
         TimerObject = Instantiate(TimerObjectPrefab);
+        StealthObject = Instantiate(StealthObjectPrefab);
         timeTaken = 0;
+        stealthScore = 0;
     }
 
     
@@ -54,15 +59,18 @@ public class MainScoreController : MonoBehaviour
     public void StopTimer()
     {
         timeTaken = TimerObject.GetComponent<ScoreTimer>().time;
+        stealthScore = StealthObject.GetComponent<StealthScoreTracker>().score;
         Debug.Log("Time taken: " + timeTaken);
         Destroy(TimerObject);
+        Destroy(StealthObject);
         TimerObject = null;
+        StealthObject = null;
     }
 
     private void DisplayScore()
     {
-        TextMeshProUGUI text = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
         TimerToGrade gradeCalculator = GameObject.Find("TimerGrade").GetComponent<TimerToGrade>();
-        gradeCalculator.DisplayGrade(timeTaken);
+
+        gradeCalculator.DisplayGrade(timeTaken,stealthScore);
     }
 }
