@@ -4,7 +4,6 @@ using UnityEngine;
 public class CameraHackable : Hackable
 {
     [SerializeField] float hackTimer = 5;
-    [SerializeField] float hackDetectionRadius = 8;
 
     CameraBehaviour cameraAttached;
 
@@ -30,7 +29,7 @@ public class CameraHackable : Hackable
 
     public override void OnHack()
     {
-        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackDetectionRadius, 15, AudioSource.Hacked);
+        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackingNoiseRadius, 15, AudioSource.Hacked);
         StartCoroutine(HackCamera());
     }
 }
