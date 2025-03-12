@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using Unity.VisualScripting;
@@ -162,6 +163,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public Vector2 colliderSize;
 
     AlarmSystem alarm;
+    CinemachineVirtualCamera movementCamera;
+    CinemachineVirtualCamera stealthCamera;
 
     Running runningScript;
     Jumping jumpScript;
@@ -176,6 +179,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationCoyoteTime = 0.167f;
     private float animationGroundedTimer = -1;
 
+    //reference to the ui mode change script
+    [SerializeField] private UIModeChange uiModeChange;
     private void Awake() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -186,6 +191,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator = GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+
+        movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
+        stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
 
         boostScript = new Boost();
         jumpScript = new Jumping();
@@ -539,6 +547,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
+            stealthCamera.Priority = 10;
+            movementCamera.Priority = 0;
+            uiModeChange.stealthMode();
 
             effectiveMaxRunSpeed = stealthMaxRunSpeed;
             effectiveAcceleration = stealthAcceleration;
@@ -551,9 +562,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             effectiveMinJumpTime = stealthMinJumpTime;
             effectiveHorizontalWalljumpStrength = stealthHorizontalWalljumpStrength;
             effectiveVerticalWalljumpStrength = stealthVerticalWalljumpStrength;
+            
 
         } else {
             cloakScript.Disable();
+            movementCamera.Priority = 10;
+            stealthCamera.Priority = 0;
+            uiModeChange.movementMode();
 
             effectiveMaxRunSpeed = maxRunSpeed;
             effectiveAcceleration = acceleration;
@@ -566,6 +581,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             effectiveMinJumpTime = minJumpTime;
             effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
             effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
+            
         }
     }
 
