@@ -176,6 +176,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationCoyoteTime = 0.167f;
     private float animationGroundedTimer = -1;
 
+    //reference to the ui mode change script
+    [SerializeField] private UIModeChange uiModeChange;
     private void Awake() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -539,7 +541,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
-
+            uiModeChange.stealthMode();
             effectiveMaxRunSpeed = stealthMaxRunSpeed;
             effectiveAcceleration = stealthAcceleration;
             if (!sliding) {
@@ -551,10 +553,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             effectiveMinJumpTime = stealthMinJumpTime;
             effectiveHorizontalWalljumpStrength = stealthHorizontalWalljumpStrength;
             effectiveVerticalWalljumpStrength = stealthVerticalWalljumpStrength;
+            
 
         } else {
             cloakScript.Disable();
-
+            uiModeChange.movementMode();
             effectiveMaxRunSpeed = maxRunSpeed;
             effectiveAcceleration = acceleration;
             if (!sliding) {
@@ -566,6 +569,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             effectiveMinJumpTime = minJumpTime;
             effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
             effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
+            
         }
     }
 
