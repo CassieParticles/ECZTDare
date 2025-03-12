@@ -538,8 +538,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     public void changeModeToStealth(bool mode) {
         inStealthMode = mode;
         if (inStealthMode) {
-            boosting = false;
-            boostScript.NotBoosting();
+            boostScript.StopBoosting();
 
             effectiveMaxRunSpeed = stealthMaxRunSpeed;
             effectiveAcceleration = stealthAcceleration;
@@ -554,6 +553,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             effectiveVerticalWalljumpStrength = stealthVerticalWalljumpStrength;
 
         } else {
+            cloakScript.Disable();
+
             effectiveMaxRunSpeed = maxRunSpeed;
             effectiveAcceleration = acceleration;
             if (!sliding) {

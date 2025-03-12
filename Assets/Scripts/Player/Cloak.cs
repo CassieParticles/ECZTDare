@@ -30,7 +30,6 @@ public class Cloak
     public void Disable()
     {
         player.cloaking = false;
-        player.hasBoostCloaked = false;
         player.gameObject.layer = LayerMask.NameToLayer("Player");
         Color color = player.GetComponent<SpriteRenderer>().color;
         color.a = 1.0f;

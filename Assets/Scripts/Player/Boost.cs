@@ -35,6 +35,13 @@ public class Boost
             player.boostStop.Post(player.gameObject);
         }
         player.boosting = false;
+        //Change player colour, while respecting regular alpha value
+        Color color = Color.white;
+        color.a = player.spriteRenderer.color.a;
+        player.spriteRenderer.color = color;
+        player.boostingMaxRunSpeedMultiplier = 1;
+        //Will never be able to boost while in stealth mode, so can make it be the movement acceleration every time
+        player.effectiveAcceleration = player.acceleration;
     }
 
     public void WhileBoosting() {
@@ -54,18 +61,12 @@ public class Boost
     }
 
     public void NotBoosting() {
-        //Change player colour, while respecting regular alpha value
-        Color color = Color.white;
-        color.a = player.spriteRenderer.color.a;
-        player.spriteRenderer.color = color;
+        
         if (player.batteryCharge + player.boostRecharge * Time.deltaTime < 100f) {
             player.batteryCharge += player.boostRecharge * Time.deltaTime;
         } else {
             player.batteryCharge = 100f;
         }
-        player.boostingMaxRunSpeedMultiplier = 1;
-        //Will never be able to boost while in stealth mode, so can make it be the movement acceleration every time
-        player.effectiveAcceleration = player.acceleration;
     }
 
 }
