@@ -138,6 +138,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
+        guardBehaviour.AddState(GuardStates.Bumped, new BumpedState(gameObject));
 
         guardMoveAnimation = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -210,7 +211,16 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         if(collision.gameObject.name=="Player")
         {
-            CatchPlayer();
+            if (guardBehaviour.getCurrentState() == GuardStates.Chase)
+            {
+                CatchPlayer();
+            }
+            else if(guardBehaviour.getCurrentState()!=GuardStates.Bumped)
+            {
+                PointOfInterest = collision.transform.position;
+                guardBehaviour.MoveToState(GuardStates.Bumped);
+            }
+
         }
     }
 
