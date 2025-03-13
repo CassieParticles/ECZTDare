@@ -13,7 +13,8 @@ public enum GuardStates
     Observe,
     Investigate,
     Chase,
-    RaiseAlarm
+    RaiseAlarm,
+    Bumped
 };
 public abstract class BaseState
 {
