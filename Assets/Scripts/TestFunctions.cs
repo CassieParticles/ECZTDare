@@ -27,8 +27,7 @@ public class TestFunctions : MonoBehaviour
             //Sets the "Ambience" State Group's active State to "NoAmbience"
             AkSoundEngine.SetState("Ambience", "NoAmbience");
             musicHandler.rain.Stop(gameObject);
-            buttonScript.titleMusic.Post(gameObject);
-            buttonScript.titleRain.Post(gameObject);
+            AkSoundEngine.StopAll(gameObject);
             SceneManager.LoadScene("Main Menu");
         }
 

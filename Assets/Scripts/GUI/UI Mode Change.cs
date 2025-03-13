@@ -13,6 +13,7 @@ public class UIModeChange : MonoBehaviour
      public bool hasAbilities = false;
     // Start is called before the first frame update
 
+
     private void Start()
     {
         stealthDisplay = GameObject.Find("StealthDisplay");
@@ -21,7 +22,7 @@ public class UIModeChange : MonoBehaviour
         boostBar = GameObject.Find("BoostBar");
         cloakBar.SetActive(false);
         boostBar.SetActive(false);
-        hasAbilities = false;
+        hasAbilities = true;
     }
     public void stealthMode()
     {

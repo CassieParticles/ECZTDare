@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class SprintBar : MonoBehaviour
 {
-    public Slider slider;
+    public Slider HackingSlider;
+    public Slider BatterySlider;
     public MovementScript movementScript;
-   // [SerializeField] private Image sliderFill;
+    public HackingScript hackingScript;
+    // [SerializeField] private Image sliderFill;
     //[SerializeField] Color32 fullCharge;
     //[SerializeField] Color32 twoThirdCharge;
     //[SerializeField] Color32 oneThirdCharge;
@@ -17,6 +19,7 @@ public class SprintBar : MonoBehaviour
     {
         //fetch movement script
         movementScript = GameObject.Find("Player").GetComponent<MovementScript>();
+        hackingScript = GameObject.Find("Player").GetComponent<HackingScript>();
 
     }
 
@@ -24,8 +27,8 @@ public class SprintBar : MonoBehaviour
     {
         //changes the size of the bar depending on how full it is.
  
-        slider.value = movementScript.batteryCharge;
-
+        BatterySlider.value = movementScript.batteryCharge;
+        HackingSlider.value = hackingScript.hackCharge;
         //changes the colour of the bar depending on how full it is
       //  if (movementScript.boostCharge < 66 && movementScript.boostCharge > 33)
       //  {

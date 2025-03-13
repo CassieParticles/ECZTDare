@@ -30,12 +30,17 @@ public class GUIButtonScript : MonoBehaviour
 
     private void Start()
     {
+        AkSoundEngine.StopAll();
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "Menu");
         //Sets the "Ambience" State Group's active State to "NoAmbience"
         AkSoundEngine.SetState("Ambience", "Outside");
+
+        titleMusic.Stop(gameObject);
+        titleRain.Stop(gameObject);
         titleMusic.Post(gameObject);
         titleRain.Post(gameObject);
+
     }
 
     
