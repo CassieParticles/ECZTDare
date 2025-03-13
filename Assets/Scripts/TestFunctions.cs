@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class TestFunctions : MonoBehaviour
 {
+    GUIButtonScript buttonScript;
     AlarmMusicHandler musicHandler;
     [SerializeField] GameObject testCamera;
 
@@ -26,8 +27,9 @@ public class TestFunctions : MonoBehaviour
             //Sets the "Ambience" State Group's active State to "NoAmbience"
             AkSoundEngine.SetState("Ambience", "NoAmbience");
             musicHandler.rain.Stop(gameObject);
+            buttonScript.titleMusic.Post(gameObject);
+            buttonScript.titleRain.Post(gameObject);
             SceneManager.LoadScene("Main Menu");
-
         }
 
         //Reset Alarm
