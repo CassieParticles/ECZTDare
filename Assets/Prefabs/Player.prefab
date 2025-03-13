@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7946762260465018441}
   - component: {fileID: 8371112113522891037}
   - component: {fileID: 4193888583768158028}
+  - component: {fileID: 5445808247974103222}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -71,6 +72,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
+  cloakStart:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  cloakStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   footstepRate: 0.2
   footstepRateScaler: 3
   inStealthMode: 0
@@ -110,13 +119,15 @@ MonoBehaviour:
   stealthMinJumpTime: 0.1
   stealthHorizontalWalljumpStrength: 8
   stealthVerticalWalljumpStrength: 8
+  cloakRecharge: 10
+  cloakDepletion: 70
   boostFootStepSoundRange: 10
   boostFootStepSoundSuspicionIncrease: 15
   boostJumpSoundRange: 25
   boostJumpSoundSuspicionIncrease: 35
   boostSlideSoundRange: 15
   boostSlideSoundSuspicionIncrease: 20
-  boostCharge: 0
+  batteryCharge: 0
 --- !u!114 &721483411405698296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +373,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8371112113522891037
@@ -424,3 +435,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testCamera: {fileID: 0}
+--- !u!114 &5445808247974103222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969149523955869045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad8b74ffd742be4aac70bc9c94a3e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
