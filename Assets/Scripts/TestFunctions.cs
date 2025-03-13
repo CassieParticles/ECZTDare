@@ -18,7 +18,7 @@ public class TestFunctions : MonoBehaviour
     void Update()
     {
         //Send player back to main menu
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "NoMusic");
@@ -27,6 +27,9 @@ public class TestFunctions : MonoBehaviour
             AkSoundEngine.SetState("Ambience", "NoAmbience");
             musicHandler.rain.Stop(gameObject);
             SceneManager.LoadScene("Main Menu");
+            musicHandler.music.Post(gameObject);
+            musicHandler.rain.Post(gameObject);
+
         }
 
         //Reset Alarm
