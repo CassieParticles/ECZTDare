@@ -37,25 +37,22 @@ public class AlarmSystem : MonoBehaviour
     {
         if(!alarm)
         {
-            for (int i = 0; i < alarmEnableFuncs.Count; ++i)
-            {
-                alarmEnableFuncs[i](playerPosition);
-            }
-            alarm = true;
+            StealthScoreTracker.GetTracker().RemoveScore(500);
         }
-
+        for (int i = 0; i < alarmEnableFuncs.Count; ++i)
+        {
+            alarmEnableFuncs[i](playerPosition);
+        }
+        alarm = true;
     }
 
     public void StopAlarm()
     {
-        if (alarm)
+        for (int i = 0; i < alarmDisableFuncs.Count; ++i)
         {
-            for (int i = 0; i < alarmDisableFuncs.Count; ++i)
-            {
-                alarmDisableFuncs[i]();
-            }
-            alarm = false;
+            alarmDisableFuncs[i]();
         }
+        alarm = false;
     }
 
     //List of functions to be called

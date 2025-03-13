@@ -9,8 +9,16 @@ public class ReverbStateChanger : MonoBehaviour
         Medium,
         Large
     }
+    enum AmbienceTypes
+    {
+        Inside,
+        Outside,
+        NoAmbience
+    }
 
     [SerializeField] private ReverbTypes reverbType;
+    [SerializeField] private AmbienceTypes ambienceType;
+
     //BoxCollider2D boxCollider;
     BoxCollider2D player;
 
@@ -21,13 +29,15 @@ public class ReverbStateChanger : MonoBehaviour
 
         //Sets the "Reverb" State Group's active State to "Outside"
         AkSoundEngine.SetState("Reverb", "Outside");
+        //Sets the "Ambience" State Group's active State to "Outside"
+        AkSoundEngine.SetState("Ambience", "Outside");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision == player)
         {
-            //Change reverb to reverbType
+            //Change reverb to reverbType, and ambience to ambienceType
 
             if (reverbType == ReverbTypes.Outside)
             {
@@ -52,7 +62,24 @@ public class ReverbStateChanger : MonoBehaviour
                 //Sets the "Reverb" State Group's active State to "Large"
                 AkSoundEngine.SetState("Reverb", "Large");
             }
-            
+
+            if (ambienceType == AmbienceTypes.Inside)
+            {
+                //Sets the "Ambience" State Group's active State to "Inside"
+                AkSoundEngine.SetState("Ambience", "Inside");
+            }
+
+            if (ambienceType == AmbienceTypes.Outside)
+            {
+                //Sets the "Ambience" State Group's active State to "Outside"
+                AkSoundEngine.SetState("Ambience", "Outside");
+            }
+
+            if (ambienceType == AmbienceTypes.NoAmbience)
+            {
+                //Sets the "Ambience" State Group's active State to "Outside"
+                AkSoundEngine.SetState("Ambience", "NoAmbience");
+            }
         }
     }
 }

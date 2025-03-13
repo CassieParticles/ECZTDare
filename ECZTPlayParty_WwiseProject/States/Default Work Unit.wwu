@@ -5,7 +5,7 @@
 			<ChildrenList>
 				<StateGroup Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}">
 					<PropertyList>
-						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.5"/>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="4"/>
 					</PropertyList>
 					<ChildrenList>
 						<State Name="None" ID="{FDFD89A3-AAEF-4080-B076-12518B815B67}"/>
@@ -14,6 +14,7 @@
 						<State Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
 						<State Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 						<State Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+						<State Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 					</ChildrenList>
 					<TransitionList>
 						<Transition>
@@ -31,19 +32,85 @@
 						<Transition>
 							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
 							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
 							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>3</Time>
+							<Time>5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{FDFD89A3-AAEF-4080-B076-12518B815B67}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 					</TransitionList>
@@ -81,6 +148,40 @@
 						<Transition>
 							<StartState Name="None" ID="{247DB41D-19B8-45B7-9FA4-E3436A9B337A}"/>
 							<EndState Name="Large" ID="{9551C10F-0910-4B3C-9028-AA39FA10170E}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+				<StateGroup Name="Ambience" ID="{64F5AA0C-4B5E-4303-80F1-7F5BF18CB337}">
+					<ChildrenList>
+						<State Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+						<State Name="Inside" ID="{27CC63DB-A8FD-407F-AEE4-5FBC0F20CC23}"/>
+						<State Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+						<State Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+							<EndState Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Inside" ID="{27CC63DB-A8FD-407F-AEE4-5FBC0F20CC23}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Outside" ID="{0DC5AD21-854F-47A5-9AC2-39D5213DD2EF}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="None" ID="{3D0F8114-D7D3-4FEC-84B5-969F2F3760D8}"/>
+							<EndState Name="NoAmbience" ID="{5C740C95-3E2B-4911-B233-B5757CAD1D5B}"/>
 							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>

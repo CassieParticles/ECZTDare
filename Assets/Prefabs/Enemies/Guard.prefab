@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.163
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -132,9 +132,12 @@ MonoBehaviour:
   suspicion: 0
   minimumSuspicion: 0
   patrolRoute: {fileID: 0}
-  investigateAlarmLoc: 0
+  investigateAlarmLoc: 1
   footstepRate: 0.4
   footstepRateScaler: 1
+  walkSpeed: 5
+  chaseSpeed: 15
+  chaseAlarmTimer: 3
   guardFootstep:
     idInternal: 0
     valueGuidInternal: 
@@ -183,7 +186,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9174377198135126436, guid: 9fbcabd92cf62a348937d3eb35af0a7b, type: 3}
+  m_Sprite: {fileID: 7836249351320665054, guid: b3006acc3ea8f234c9705535933bae96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,7 +235,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.55, y: 1.98}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 2.55, y: 1.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -261,7 +264,7 @@ NavMeshAgent:
   m_Height: 1.98
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!95 &4623136316713770826
 Animator:
   serializedVersion: 7

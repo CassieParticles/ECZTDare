@@ -148,7 +148,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SetSuspicionState(SuspicionState level)
     {
         suspicionState = level;
-        suspicion = SuspicionLevel[(int)level] + 1;
+        
+        suspicion = Mathf.Max(SuspicionLevel[(int)level] + 1,suspicion);
     }
 
     /// <summary>
@@ -156,7 +157,12 @@ public class BaseEnemyBehaviour : MonoBehaviour
     /// </summary>
     public void CalcSuspicionIncrease()
     {
-        suspicion += calcSuspicionIncreaseRate(Player);
+        if (suspicion < SuspicionLevel[3])
+        {
+            suspicion += calcSuspicionIncreaseRate(Player);
+        }
+
+        
     }
     /// <summary>
     /// Check if the suspicion should decay, and if so, handle suspicion decay

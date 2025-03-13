@@ -6,6 +6,8 @@ using UnityEngine;
 public class AlarmMusicHandler : MonoBehaviour
 {
     public AK.Wwise.Event music;
+    public AK.Wwise.Event rain;
+
     AlarmSystem alarm;
 
     private ArrayList guardsChasing = new ArrayList();
@@ -84,28 +86,24 @@ public class AlarmMusicHandler : MonoBehaviour
         {
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "Hidden");
-            Debug.Log("00");
         }     //Alarm off, not chased
 
         if(!readBit(currentStates,alarmOnBitMask) && readBit(currentStates, chasedBitMask))
         {
             //Sets the "Music" State Group's active State to "Alarm_Middle"
             AkSoundEngine.SetState("Music", "Alarm_Middle");
-            Debug.Log("01");
         }     //Alarm off, chased
 
         if (readBit(currentStates, alarmOnBitMask) && !readBit(currentStates, chasedBitMask))
         {
             //Sets the "Music" State Group's active State to "Alarm_Low"
             AkSoundEngine.SetState("Music", "Alarm_Low");
-            Debug.Log("10");
         }     //Alarm on, not chased
 
         if(readBit(currentStates, alarmOnBitMask) && readBit(currentStates, chasedBitMask))
         {
             //Sets the "Music" State Group's active State to "Alarm_High"
             AkSoundEngine.SetState("Music", "Alarm_High");
-            Debug.Log("11");
         }     //Alarm on, chased
 
         prevStates = currentStates;
@@ -122,7 +120,10 @@ public class AlarmMusicHandler : MonoBehaviour
         alarm.AddAlarmDisableFunc(AlarmOff);
 
         music.Post(gameObject);
+        rain.Post(gameObject);
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "Hidden");
+        //Sets the "Ambience" State Group's active State to "Outside"
+        AkSoundEngine.SetState("Ambience", "Outside");
     }
 }
