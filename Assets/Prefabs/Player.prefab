@@ -75,11 +75,11 @@ MonoBehaviour:
   cloakStart:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: ce4d21a845c7517438a8276bf8dee335, type: 2}
   cloakStop:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: c15a05f0cd123d34b806d7ed8870b662, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 3
   inStealthMode: 0
@@ -110,15 +110,15 @@ MonoBehaviour:
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  stealthMaxRunSpeed: 8
-  stealthAcceleration: 20
-  stealthDeceleration: 15
+  stealthMaxRunSpeed: 18
+  stealthAcceleration: 27
+  stealthDeceleration: 10
   stealthVelocityToSlide: 12
   stealthVelocityEndSlide: 5
-  stealthJumpStrength: 5
+  stealthJumpStrength: 18
   stealthMinJumpTime: 0.1
-  stealthHorizontalWalljumpStrength: 8
-  stealthVerticalWalljumpStrength: 8
+  stealthHorizontalWalljumpStrength: 10
+  stealthVerticalWalljumpStrength: 16
   cloakRecharge: 10
   cloakDepletion: 70
   boostFootStepSoundRange: 10
