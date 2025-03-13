@@ -56,7 +56,7 @@ public class Jumping
     }
 
     public void SlidingDownWall() {
-        if (player.wallClingVelocity == 0) {
+        if (player.wallClingVelocity < 0) {
             player.rb.velocityX = 0;
         }
         player.wallClingVelocity += player.wallClingSpeed * 0.01f;

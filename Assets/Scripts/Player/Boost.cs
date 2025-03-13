@@ -59,9 +59,6 @@ public class Boost
         }
         player.effectiveAcceleration = player.boostAcceleration;
         player.boostingMaxRunSpeedMultiplier = player.boostMaxRunSpeedMultiplier;
-        if (player.onWall) {
-            StopBoosting();
-        }
     }
 
     public void NotBoosting() {
