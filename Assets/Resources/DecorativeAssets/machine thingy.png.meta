@@ -103,12 +103,12 @@ TextureImporter:
       name: machine thingy_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
-        width: 51
-        height: 64
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -116,6 +116,69 @@ TextureImporter:
       bones: []
       spriteID: fc853764a6fc93700800000000000000
       internalID: 520675287293450447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: machine thingy_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2918a43073506749bdc59ae5f6de879
+      internalID: 1162906114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: machine thingy_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b11b49d546630345adf55c733ddf0c1
+      internalID: 1164047007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: machine thingy_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5e338ad6de49e4bb7129ff22bbe47f
+      internalID: -1204939369
       vertices: []
       indices: 
       edges: []
@@ -134,6 +197,9 @@ TextureImporter:
       name: _NormalMap
     nameFileIdTable:
       machine thingy_0: 520675287293450447
+      machine thingy_1: 1162906114
+      machine thingy_2: 1164047007
+      machine thingy_3: -1204939369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
