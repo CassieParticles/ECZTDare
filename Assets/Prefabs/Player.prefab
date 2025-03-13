@@ -71,6 +71,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 0634d081d2918c248ba823bec748762d, type: 2}
+  cloakStart:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ce4d21a845c7517438a8276bf8dee335, type: 2}
+  cloakStop:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c15a05f0cd123d34b806d7ed8870b662, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 3
   inStealthMode: 0
@@ -101,22 +109,24 @@ MonoBehaviour:
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  stealthMaxRunSpeed: 8
-  stealthAcceleration: 20
-  stealthDeceleration: 15
+  stealthMaxRunSpeed: 18
+  stealthAcceleration: 27
+  stealthDeceleration: 10
   stealthVelocityToSlide: 12
   stealthVelocityEndSlide: 5
-  stealthJumpStrength: 5
+  stealthJumpStrength: 18
   stealthMinJumpTime: 0.1
-  stealthHorizontalWalljumpStrength: 8
-  stealthVerticalWalljumpStrength: 8
+  stealthHorizontalWalljumpStrength: 10
+  stealthVerticalWalljumpStrength: 16
+  cloakRecharge: 10
+  cloakDepletion: 70
   boostFootStepSoundRange: 10
   boostFootStepSoundSuspicionIncrease: 15
   boostJumpSoundRange: 25
   boostJumpSoundSuspicionIncrease: 35
   boostSlideSoundRange: 15
   boostSlideSoundSuspicionIncrease: 20
-  boostCharge: 0
+  batteryCharge: 0
 --- !u!114 &721483411405698296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +372,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &8371112113522891037
