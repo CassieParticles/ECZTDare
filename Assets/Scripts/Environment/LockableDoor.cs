@@ -26,7 +26,6 @@ public class LockableDoor : MonoBehaviour
         RebuildNavMesh();
 
         isLocked = true;
-        doorHum.Post(gameObject);
     }
 
     public void Unlock()
@@ -77,6 +76,7 @@ public class LockableDoor : MonoBehaviour
         if (isLocked)
         {
             RebuildNavMesh();
+            doorHum.Post(gameObject);
         }
     }
 }

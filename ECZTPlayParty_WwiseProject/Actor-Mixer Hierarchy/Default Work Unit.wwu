@@ -3213,6 +3213,11 @@
 								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.5559895833333334"/>
 								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.5865885416666666"/>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -5164,13 +5169,13 @@
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-8</Value>
+										<Value>-4</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
-									<ObjectRef Name="Directional" ID="{F72B9469-C14A-45DC-974C-E03EF7599AD2}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
 								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>

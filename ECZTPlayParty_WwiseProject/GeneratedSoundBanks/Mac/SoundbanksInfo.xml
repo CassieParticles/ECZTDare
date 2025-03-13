@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8128383D-9F71-C272-9886-14CFE4AAE1A6}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{2EEEC5D9-D1D5-3496-532C-CFF32A09E695}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -737,7 +737,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="100" DurationType="Infinite">
+				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="269273201"/>
 					</MediaRefs>
@@ -1193,5 +1193,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{6D050939-3494-90C3-9595-8F8233935AD0}</FileHash>
+	<FileHash>{082835D9-BA46-F0B3-F099-CB102B5CC6E1}</FileHash>
 </SoundBanksInfo>

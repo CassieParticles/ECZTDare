@@ -15,6 +15,7 @@ public class Cloak
     /// </summary>
     public void Enable()
     {
+        player.cloakStart.Post(player.gameObject);
         player.cloaking = true;
         player.hasBoostCloaked = true;
         //Make player transparent
@@ -28,6 +29,7 @@ public class Cloak
     /// </summary>
     public void Disable()
     {
+        player.cloakStop.Post(player.gameObject);
         player.cloaking = false;
         Color color = player.GetComponent<SpriteRenderer>().color;
         color.a = 1.0f;
