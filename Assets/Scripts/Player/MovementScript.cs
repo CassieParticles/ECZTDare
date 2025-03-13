@@ -311,6 +311,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             grounded = true;
             tempGroundedTimer = coyoteTime;
             animationGroundedTimer = animationCoyoteTime;
+            onWall = false;
             //animator.SetFloat("CoyoteTime", animationGroundedTimer);
         } else {  
             grounded = false;
@@ -332,7 +333,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             if ((Physics2D.Raycast(topRightWallRayStart, Vector2.right, 0.1f, layers) || 
                 Physics2D.Raycast(bottomRightWallRayStart, Vector2.right, 0.1f, layers))) 
             { //If the player is on a wall to their right
-                if (!onWall && facingRight)
+                if (!onWall)
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
@@ -342,7 +343,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             } else if (Physics2D.Raycast(topLeftWallRayStart, Vector2.left, 0.1f, layers) ||
                        Physics2D.Raycast(bottomLeftWallRayStart, Vector2.left, 0.1f, layers))
             { //If the player is on a wall to their left
-                if (!onWall && !facingRight)
+                if (!onWall)
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
@@ -352,8 +353,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             { //Player is not on a wall
                 onWall = false;
             }
-            if (onRightWall == !facingRight) {
-                onWall = false;
+            if (onWall && onRightWall == !facingRight) {
+                facingRight = !facingRight;
             }
         }
 
@@ -474,7 +475,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
                     boostScript.StartBoosting();
 
-                } else if (batteryCharge < minimumBoostCharge || rb.velocityX == 0) {
+                } else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
 
                     boostScript.StopBoosting();
 

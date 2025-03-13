@@ -55,9 +55,13 @@ public class Boost
             player.batteryCharge -= player.boostDepletion * Time.deltaTime;
         } else {
             player.batteryCharge = 0;
+            StopBoosting();
         }
         player.effectiveAcceleration = player.boostAcceleration;
         player.boostingMaxRunSpeedMultiplier = player.boostMaxRunSpeedMultiplier;
+        if (player.onWall) {
+            StopBoosting();
+        }
     }
 
     public void NotBoosting() {

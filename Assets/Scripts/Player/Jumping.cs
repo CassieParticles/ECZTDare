@@ -44,6 +44,7 @@ public class Jumping
     }
 
     public void Falling() {
+        player.wallClingVelocity = 0;
         player.rb.velocityY += (player.fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
         if (player.rb.velocityY < -player.maxFallSpeed) { //Less than because its negative
             player.rb.velocityY = -player.maxFallSpeed;
@@ -55,6 +56,9 @@ public class Jumping
     }
 
     public void SlidingDownWall() {
+        if (player.wallClingVelocity == 0) {
+            player.rb.velocityX = 0;
+        }
         player.wallClingVelocity += player.wallClingSpeed * 0.01f;
         player.rb.velocityY += player.wallClingVelocity * (player.fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime;
     }
