@@ -27,8 +27,6 @@ public class TestFunctions : MonoBehaviour
             AkSoundEngine.SetState("Ambience", "NoAmbience");
             musicHandler.rain.Stop(gameObject);
             SceneManager.LoadScene("Main Menu");
-            musicHandler.music.Post(gameObject);
-            musicHandler.rain.Post(gameObject);
 
         }
 
