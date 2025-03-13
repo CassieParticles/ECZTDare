@@ -68,4 +68,22 @@ public class AlarmSystem : MonoBehaviour
         alarmEnableFuncs = new List<AlarmEnable>();
         alarmDisableFuncs = new List<AlarmDisable>();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Is player
+        if(collision.GetComponent<MovementScript>())
+        {
+            FindFirstObjectByType<GUIAlarmHandler>().changeAlarm(this);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //Is player
+        if (collision.GetComponent<MovementScript>())
+        {
+            FindFirstObjectByType<GUIAlarmHandler>().changeAlarm(null);
+        }
+    }
 }
