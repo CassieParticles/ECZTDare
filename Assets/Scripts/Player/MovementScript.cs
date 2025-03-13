@@ -82,7 +82,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField][Range(0.01f, 1f)] public float fallSlowsRunMult = 1; //Multiplier for how much falling speed slows down horizontal speed.
     [SerializeField][Range(0.01f, 0.5f)] public float coyoteTime = 0.05f;
 
-    [SerializeField] public float wallClingSpeed; //How quickly the player falls when clinging to a wall
+    [SerializeField] public float wallClingSpeed = 1; //How quickly the player falls when clinging to a wall
     [SerializeField][Range(0f, 1f)] private float walljumpRayGap = 0.8f; //Position of rays, smaller gaps mean smaller range the player can walljump from
     [SerializeField] public float horizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
@@ -337,6 +337,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
+                    rb.velocityX = 0;
                 onWall = true;
                 onRightWall = true;
                 animator.SetFloat("CoyoteTime", animationGroundedTimer);
@@ -347,6 +348,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
+                    rb.velocityX = 0;
                 onWall = true;
                 onRightWall = false;
             } else 
@@ -506,8 +508,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                     cloakScript.Disable();
                 }
             } else {
-                if (boosting && grounded) {
+                if ((boosting && grounded) || (boosting && onWall)) {
                     boostScript.StopBoosting();
+                } else if (boosting) {
+                    boostScript.WhileBoosting();
                 }
             }
         }
