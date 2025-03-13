@@ -41,6 +41,17 @@ public class TestFunctions : MonoBehaviour
                 alarms[i].StopAlarm();
             }
         }
+
+        //Teleport to building 1
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            GameObject.Find("Player").transform.position = new Vector3(-28.5f,-14.6f);
+        }
+        //Teleport to building 2
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            GameObject.Find("Player").transform.position = new Vector3(752.6f, -22f);
+        }
     }
 
 }

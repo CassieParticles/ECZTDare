@@ -30,7 +30,10 @@ public class CameraBehaviour : BaseEnemyBehaviour
         yield return new WaitForSeconds(pauseDuration);
         turningPaused = false;
         //Start camera moving sound
-        cameraMoving.Post(gameObject);
+        if(!beingHacked)
+        {
+            cameraMoving.Post(gameObject);
+        }
     }
 
     private void RotateCamera(float angle)
