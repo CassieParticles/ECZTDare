@@ -29,15 +29,30 @@ public class GUIAlarmHandler : MonoBehaviour
 
     //can be used to change the alarm that is referenced by the script during functions.
     public void changeAlarm(AlarmSystem newAlarm)
-    {
+    { 
+        //Deregister from old alarm, if it existts   
         if (alarmSystem)
         {
             alarmSystem.RemoveAlarmDisableFunc(alarmOff);
             alarmSystem.RemoveAlarmEnableFunc(alarmOn);
         }
         alarmSystem = newAlarm;
-        alarmSystem.AddAlarmEnableFunc(alarmOn);
-        alarmSystem.AddAlarmDisableFunc(alarmOff);
+        //Register to new alar, if it exists
+        if(alarmSystem)
+        {
+            alarmSystem.AddAlarmEnableFunc(alarmOn);
+            alarmSystem.AddAlarmDisableFunc(alarmOff);
+        }
+
+
+        if(!alarmSystem || !alarmSystem.AlarmGoingOff())
+        {
+            alarmOff();
+        }
+        else
+        {
+            alarmOn(Vector3.zero);
+        }
     }
 
 }
