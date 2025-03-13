@@ -74,7 +74,7 @@ public class AlarmSystem : MonoBehaviour
         //Is player
         if(collision.GetComponent<MovementScript>())
         {
-            FindFirstObjectByType<GUIAlarmHandler>().changeAlarm(this);
+            collision.GetComponent<CurrentAlarmTracker>().AlarmUpdate(this);
         }
     }
 
@@ -83,7 +83,7 @@ public class AlarmSystem : MonoBehaviour
         //Is player
         if (collision.GetComponent<MovementScript>())
         {
-            FindFirstObjectByType<GUIAlarmHandler>().changeAlarm(null);
+            collision.GetComponent<CurrentAlarmTracker>().AlarmUpdate(null);
         }
     }
 }

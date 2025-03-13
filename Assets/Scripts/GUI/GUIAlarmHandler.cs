@@ -8,10 +8,16 @@ public class GUIAlarmHandler : MonoBehaviour
     [SerializeField] GameObject unaware;
     [SerializeField] GameObject alert;
     [SerializeField] GameObject alarm;
+
+
+
     void Start()
     {
         alarmSystem.AddAlarmEnableFunc(alarmOn);
         alarmSystem.AddAlarmDisableFunc(alarmOff);
+
+        CurrentAlarmTracker tracker = FindAnyObjectByType<CurrentAlarmTracker>();
+        tracker.AddListener(changeAlarm);
     }
 
     // Update is called once per frame
@@ -28,8 +34,9 @@ public class GUIAlarmHandler : MonoBehaviour
     }
 
     //can be used to change the alarm that is referenced by the script during functions.
-    public void changeAlarm(AlarmSystem newAlarm)
-    { 
+    private void changeAlarm(AlarmSystem newAlarm)
+    {
+        Debug.Log("Hello, world!");
         //Deregister from old alarm, if it existts   
         if (alarmSystem)
         {

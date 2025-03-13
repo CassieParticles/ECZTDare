@@ -109,15 +109,40 @@ public class AlarmMusicHandler : MonoBehaviour
         prevStates = currentStates;
     }
 
-    private void Awake()
+    private void AlarmUpdate(AlarmSystem newAlarm)
     {
-        alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+        if(alarm)
+        {
+            alarm.RemoveAlarmEnableFunc(AlarmOn);
+            alarm.RemoveAlarmDisableFunc(AlarmOff);
+        }
+        alarm = newAlarm;
+        if (alarm)
+        {
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
+        }
+
+        if (!alarm || !alarm.AlarmGoingOff())
+        {
+            AlarmOff();
+        }
+        else
+        {
+            AlarmOn(Vector3.zero);
+        }
     }
+
 
     private void Start()
     {
-        alarm.AddAlarmEnableFunc(AlarmOn);
-        alarm.AddAlarmDisableFunc(AlarmOff);
+        FindFirstObjectByType<CurrentAlarmTracker>().AddListener(AlarmUpdate);
+        if(alarm)
+        {
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
+        }
+
 
         music.Post(gameObject);
         rain.Post(gameObject);
