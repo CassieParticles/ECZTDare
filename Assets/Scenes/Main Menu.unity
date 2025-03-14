@@ -6231,7 +6231,7 @@ MonoBehaviour:
   overrideLoadSetting: 0
   loadAsynchronous: 0
   saveDecodedBank: 0
-  unloadTriggerList: 
+  unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
 --- !u!114 &802472706
@@ -6256,7 +6256,7 @@ MonoBehaviour:
   overrideLoadSetting: 0
   loadAsynchronous: 0
   saveDecodedBank: 0
-  unloadTriggerList: 
+  unloadTriggerList: 958ca0ea
   bankNameInternal: 
   valueGuidInternal: 
 --- !u!1 &815063228
@@ -11895,6 +11895,7 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
+  hasPlayed: 0
 --- !u!114 &1275026833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12103,7 +12104,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -191, y: 75}
+  m_AnchoredPosition: {x: -191, y: 153}
   m_SizeDelta: {x: 400, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1324362786
@@ -12684,8 +12685,8 @@ Transform:
   m_GameObject: {fileID: 1586678937}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -191, y: -77.41, z: -9720}
-  m_LocalScale: {x: 8.595421, y: 12.562678, z: 108}
+  m_LocalPosition: {x: -191, y: -57.53, z: -9720}
+  m_LocalScale: {x: 8.595421, y: 14.368488, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1077441450}
@@ -12835,7 +12836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -236, y: 26}
+  m_AnchoredPosition: {x: -236, y: 104}
   m_SizeDelta: {x: 400, y: 40}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1665889236
@@ -12874,7 +12875,14 @@ MonoBehaviour:
     Object - click m1 near it
 
 
-    return to main menu - tap escape'
+    return to main menu - tap escape
+
+    TP to Building
+    1 - X
+
+    tp to building 2 - b
+
+    Make guards unaware - m'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dccbd8352f5e2cf40a07c2badd8a935e, type: 2}
   m_sharedMaterial: {fileID: 3315730213134037173, guid: dccbd8352f5e2cf40a07c2badd8a935e, type: 2}

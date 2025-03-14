@@ -7,6 +7,7 @@ public class AlarmMusicHandler : MonoBehaviour
 {
     public AK.Wwise.Event music;
     public AK.Wwise.Event rain;
+    public AK.Wwise.Event ambience;
 
     AlarmSystem alarm;
 
@@ -17,6 +18,11 @@ public class AlarmMusicHandler : MonoBehaviour
 
     private byte currentStates=0;
     private byte prevStates=0;
+
+    private void Awake()
+    {
+        AkSoundEngine.StopAll();
+    }
 
 
     private void setBit(ref byte bytes, byte mask)
@@ -146,6 +152,7 @@ public class AlarmMusicHandler : MonoBehaviour
 
         music.Post(gameObject);
         rain.Post(gameObject);
+        ambience.Post(gameObject);
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "Hidden");
         //Sets the "Ambience" State Group's active State to "Outside"
