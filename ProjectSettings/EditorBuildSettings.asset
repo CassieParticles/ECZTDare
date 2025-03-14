@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/MainGame/Main Menu.unity
     guid: f348b1d1bccc5b044ae911d37e76c3fd
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Scenes/MainGame/Levels/Level1.unity
     guid: 7403fb3ffc5ccb94fa71e5279f72ebed
   - enabled: 1
-    path: Assets/Scenes/LoseScene.unity
+    path: Assets/Scenes/MainGame/LoseScene.unity
     guid: 7dbe5df748e97a644bee952d5e026c7f
   - enabled: 1
-    path: Assets/Scenes/WinScreen.unity
+    path: Assets/Scenes/MainGame/WinScreen.unity
     guid: bd984c04e6618f24f9e4503e00998754
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
