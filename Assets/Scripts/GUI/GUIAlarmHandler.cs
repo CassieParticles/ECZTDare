@@ -1,20 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GUIAlarmHandler : MonoBehaviour
 {
-    public AlarmSystem alarmSystem;
-    [SerializeField] GameObject unaware;
-    [SerializeField] GameObject alert;
-    [SerializeField] GameObject alarm;
+    [NonSerialized]public AlarmSystem alarmSystem;
+    GameObject unaware;
+    GameObject alert;
+    GameObject alarm;
 
 
+    private void Awake()
+    {
+        unaware = transform.GetChild(0).gameObject;
+        alert = transform.GetChild(1).gameObject;
+        alarm = transform.GetChild(2).gameObject;
+    }
 
     void Start()
     {
-        alarmSystem.AddAlarmEnableFunc(alarmOn);
-        alarmSystem.AddAlarmDisableFunc(alarmOff);
+        if(alarmSystem)
+        { 
+            alarmSystem.AddAlarmEnableFunc(alarmOn);
+            alarmSystem.AddAlarmDisableFunc(alarmOff);
+        }
 
         CurrentAlarmTracker tracker = FindAnyObjectByType<CurrentAlarmTracker>();
         tracker.AddListener(changeAlarm);
