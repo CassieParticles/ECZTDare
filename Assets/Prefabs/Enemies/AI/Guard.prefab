@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.163
+      value: -906.62683
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: -28.450377
       objectReference: {fileID: 0}
     - target: {fileID: 105957659929232662, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -137,6 +137,7 @@ MonoBehaviour:
   footstepRateScaler: 1
   walkSpeed: 5
   chaseSpeed: 15
+  acceleration: 15
   chaseAlarmTimer: 3
   guardFootstep:
     idInternal: 0
@@ -231,7 +232,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.337677, y: 0.09470081}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -241,7 +242,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.55, y: 1.98}
+  m_Size: {x: 1.3823853, y: 1.4711323}
   m_EdgeRadius: 0
 --- !u!195 &5655057105731564208
 NavMeshAgent:
