@@ -94,8 +94,8 @@ MonoBehaviour:
   velocityEndSlide: 5
   boostMaxRunSpeedMultiplier: 1.5
   boostAcceleration: 25
-  boostRecharge: 50
-  boostDepletion: 10
+  boostRecharge: 10
+  boostDepletion: 50
   minimumBoostCharge: 5
   jumpStrength: 16
   minJumpTime: 0.02
@@ -103,7 +103,7 @@ MonoBehaviour:
   fastFallActivationSpeed: 5
   fastFallMult: 8
   maxFallSpeed: 27.9
-  fallSlowsRunMult: 0.55
+  fallSlowsRunMult: 0.2
   coyoteTime: 0.05
   wallClingSpeed: 0
   walljumpRayGap: 0.5
