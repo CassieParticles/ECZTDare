@@ -8,6 +8,7 @@ public class StealthScoreTracker : MonoBehaviour
     private void Awake()
     {
         score = 120;
+        DontDestroyOnLoad(gameObject);
     }
 
     public static StealthScoreTracker GetTracker()
