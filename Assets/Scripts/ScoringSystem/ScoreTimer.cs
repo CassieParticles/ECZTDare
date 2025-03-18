@@ -16,5 +16,10 @@ public class ScoreTimer : MonoBehaviour
     void Update()
     {
         time += paused ? 0 : Time.deltaTime;
+        TimerDisplay timerDisplay = FindFirstObjectByType<TimerDisplay>();
+        if (timerDisplay)
+        {
+            timerDisplay.UpdateGUI(time);
+        }
     }
 }
