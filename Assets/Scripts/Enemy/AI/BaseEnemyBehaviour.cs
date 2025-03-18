@@ -123,14 +123,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
             }
         }
-
-
-
-        //Put guard on "high alert" (won't go lower)
-        if (suspicionState == SuspicionState.HighAlert)
-        {
-            minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
-        }
     }
 
     private float calcSuspicionIncreaseRate(GameObject player)
