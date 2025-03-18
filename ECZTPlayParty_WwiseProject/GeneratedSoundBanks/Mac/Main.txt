@@ -1,7 +1,9 @@
 Event	ID	Name			Wwise Object Path	Notes
+	107714672	Guard_Found_Emira			\Default Work Unit\Guard_Found_Emira	
 	359728807	Enemy_Alerted			\Default Work Unit\Enemy_Alerted	
 	509407971	Ambience_Fan			\Default Work Unit\Ambience_Fan	
 	558672050	Door_Hum			\Default Work Unit\Door_Hum	
+	635823140	Guard_Lost_Emira			\Default Work Unit\Guard_Lost_Emira	
 	638098506	Cloak_Start			\Default Work Unit\Cloak_Start	
 	710389270	Ambience_Rain			\Default Work Unit\Ambience_Rain	
 	814543256	Button_Click			\Default Work Unit\Button_Click	
@@ -79,11 +81,13 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	52682027	P_M_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_3		48096
 	56353747	P_D_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_7		48096
 	68586694	P_R_Landing_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Landing_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_R_Land\P_R_Landing_2		96096
+	70646447	G_VO_ILostHer	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_ILostHer_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_ILostHer		150096
 	73045835	P_R_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_8		48096
 	82214328	P_C_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_1		96096
 	84978133	G_C_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_C_Footstep_3_C2CFDE6B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_C_Footsteps\G_C_Footstep_3		23720
 	105685707	P_C_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_2		48096
 	118186165	In_View_Cone	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\In_View_Cone_CE70BCCE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\In_View_Cone		1469752
+	130288872	G_VO_GodDamnIt	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_GodDamnIt_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_GodDamnIt		252096
 	144557377	P_M_Jump_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_3		96096
 	152193640	P_M_Sliding_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Sliding_3_8F338B28.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_3		384144
 	176338131	P_D_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_4		48096
@@ -112,6 +116,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	365276779	G_M_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_8		48096
 	372349657	P_D_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Sliding_2_D7086770.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_2		408144
 	378817786	Hack_Start_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_3		323568
+	378903621	G_VO_SomeonesHere	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_SomeonesHere_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_SomeonesHere		192096
 	393978131	P_R_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_R_Jump\P_R_Jump_1		96096
 	394477243	G_D_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_D_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_7		48096
 	404282586	G_M_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_M_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_3		48096
@@ -119,6 +124,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	432090891	G_C_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_C_Footstep_1_D45F1CAB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_C_Footsteps\G_C_Footstep_1		15992
 	436902938	G_C_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_C_Footstep_8_7BFC1700.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_C_Footsteps\G_C_Footstep_8		17560
 	450159016	P_C_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_5		48096
+	450456830	G_VO_SheDisappeared	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_SheDisappeared_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_SheDisappeared		204096
 	492016228	P_M_Sliding_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Sliding_1_3AF63341.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_1		432144
 	494199292	P_C_Jump_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Jump_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_2		96096
 	500942086	P_D_Jump_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_D_Jump\P_D_Jump_4		96096
@@ -133,9 +139,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	609776334	P_D_Sliding_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Sliding_1_19FB47D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_1		432144
 	618007706	P_C_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_3		48096
 	625955009	Hack_Start_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_D70B0DD1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_2		412396
+	628626341	G_VO_ISeeYou	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_ISeeYou_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_ISeeYou		192096
 	630056515	Camera_Moving	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Camera_Moving_11A93380.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Camera_Moving		1536096
 	631317935	P_M_Jump_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Jump_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_1		96096
 	631386295	P_M_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Sliding_2_67AEBF41.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_2		408144
+	632797106	G_VO_ShesGone	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_ShesGone_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_ShesGone		204096
 	647360545	P_D_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_1		48096
 	655095140	G_D_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_D_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_5		48096
 	656196889	Hack_Fail	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Designed, Impact, Hit, Granular, Futuristic, Long SND121063_402957CB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Fail		299588
@@ -182,10 +190,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	978517589	P_R_Footstep_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_3		48096
 	985939584	P_D_Sliding_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Sliding_3_4363A682.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_3		516144
 	994456261	P_M_Landing_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Landing_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_M_Land\P_M_Landing_2		96096
+	1007922345	G_VO_Intruder	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_Intruder_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_Intruder		192096
 	1010966096	Enemy_Alerted	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Enemy_Alerted_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Enemy_Alerted		816096
 	1026799594	P_R_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_R_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_2		48096
 	1031402310	P_C_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Sliding_2_61AB1538.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_C_Slide\P_C_Sliding_2		492144
 	1031678536	G_R_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_R_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_1		48096
+	1035015420	G_VO_HeyStop	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_VO_HeyStop_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_HeyStop		256644
 	1036630904	G_D_Footstep_6	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_D_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_6		48096
 	1042868905	P_D_Footstep_6	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_D_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_6		48096
 	1066419268	P_C_Landing_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Landing_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_C_Land\P_C_Landing_2		96096
