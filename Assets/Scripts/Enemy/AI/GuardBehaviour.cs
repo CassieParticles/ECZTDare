@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,9 +16,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
 
     public float walkSpeed = 5.0f;
+    public float alertSpeed = 10.0f;
     public float chaseSpeed = 25.0f;
 
     public float acceleration=15f;
+    private float desiredSpeed;
 
     /// <summary>
     /// How long will a guard be chasing the player before they call the alarm
@@ -39,7 +42,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private SpriteRenderer spriteRenderer;
 
 
-
+    public void changeSpeed(float speed)
+    {
+        desiredSpeed = speed;
+    }
 
     public void MoveTo(Vector3 position)
     {
@@ -78,16 +84,19 @@ public class GuardBehaviour : BaseEnemyBehaviour
     {
         SetSuspicionState(SuspicionState.HighAlert);
         minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
+        changeSpeed(alertSpeed);
         if ((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
         }
+
     }
 
     private void AlarmOff()
     {
         minimumSuspicion = 0;
+        changeSpeed(walkSpeed);
     }
 
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease, AudioSource source)
@@ -161,6 +170,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
 
         AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
+
+        desiredSpeed = agent.speed;
     }
 
     void FixedUpdate()
@@ -181,16 +192,13 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.BehaviourTick();
         CalcSuspicionIncrease();
 
-        if (guardBehaviour.getCurrentState() != GuardStates.Chase)
+        if(Math.Abs(agent.speed-desiredSpeed) < acceleration * Time.fixedDeltaTime)
         {
-            if (agent.speed < walkSpeed)
-            {
-                agent.speed = walkSpeed;
-            }
-            else if (agent.speed > walkSpeed)
-            {
-                agent.speed -= acceleration * Time.fixedDeltaTime;
-            }
+            agent.speed = desiredSpeed;
+        }
+        else
+        {
+            agent.speed += acceleration * Time.fixedDeltaTime * Mathf.Sign(desiredSpeed - agent.speed);
         }
 
         if (agent.velocity != Vector3.zero)
