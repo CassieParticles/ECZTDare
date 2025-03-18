@@ -10,8 +10,8 @@ public class MainScoreController : MonoBehaviour
     [SerializeField] GameObject TimerObjectPrefab;
     [SerializeField] GameObject StealthObjectPrefab;
 
-    private GameObject TimerObject;
-    private GameObject StealthObject;
+    private ScoreTimer TimerObject;
+    private StealthScoreTracker StealthObject;
 
     private float timeTaken;
     private float stealthScore;
@@ -39,6 +39,10 @@ public class MainScoreController : MonoBehaviour
         {
             DisplayScore();
         }
+        if(scene.name=="LoseScene")
+        {
+            PauseTimer();
+        }
     }
 
     public static MainScoreController GetInstance()
@@ -48,21 +52,32 @@ public class MainScoreController : MonoBehaviour
 
     public void StartTimer()
     {
-        TimerObject = Instantiate(TimerObjectPrefab);
-        StealthObject = Instantiate(StealthObjectPrefab);
-        timeTaken = 0;
-        stealthScore = 0;
+        //First load
+        if(TimerObject== null)
+        {
+            TimerObject = Instantiate(TimerObjectPrefab).GetComponent<ScoreTimer>();
+            StealthObject = Instantiate(StealthObjectPrefab).GetComponent<StealthScoreTracker>();
+            timeTaken = 0;
+            stealthScore = 0;
+        }
+        else//Unpause (coming back from dead)
+        {
+            TimerObject.paused = false;
+        }
     }
 
-    
+    public void PauseTimer()
+    {
+        TimerObject.paused = true;
+    }
 
     public void StopTimer()
     {
-        timeTaken = TimerObject.GetComponent<ScoreTimer>().time;
-        stealthScore = StealthObject.GetComponent<StealthScoreTracker>().score;
+        timeTaken = TimerObject.time;
+        stealthScore = StealthObject.score;
         Debug.Log("Time taken: " + timeTaken);
-        Destroy(TimerObject);
-        Destroy(StealthObject);
+        Destroy(TimerObject.gameObject);
+        Destroy(StealthObject.gameObject);
         TimerObject = null;
         StealthObject = null;
     }
