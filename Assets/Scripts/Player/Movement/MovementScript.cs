@@ -315,26 +315,34 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             tempGroundedTimer = coyoteTime;
             animationGroundedTimer = animationCoyoteTime;
             onWall = false;
+            //Conveyor belts
             jumpingFromConveyorSpeed = 0f;
             if (rightGroundRay) {
                 ConveyorHackable rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
                 if (rightConveyor != null) {
+                    if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
+                        rb.velocityX += -conveyorSpeed;
+                    }
                     conveyorSpeed = rightConveyor.currentSpeed;
+                } else {
+                    conveyorSpeed = 0;
+                    rb.velocityX += conveyorSpeed;
                 }
             } else {
                 ConveyorHackable leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
                 if (leftConveyor != null) {
+                    if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
+                        rb.velocityX += -conveyorSpeed;
+                    }
                     conveyorSpeed = leftConveyor.currentSpeed;
                 } else {
                     conveyorSpeed = 0;
+                    rb.velocityX += conveyorSpeed;
                 }    
             }
         } else {
             grounded = false;
             animationGroundedTimer -= Time.fixedDeltaTime;
-            rb.velocityX += conveyorSpeed;
-            jumpingFromConveyorSpeed = conveyorSpeed;
-            conveyorSpeed = 0;
         }
 
         //Grounds the player temporarily, currently is being used if the player starts sliding, and when they fall off a ledge (coyote time)
@@ -454,7 +462,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         }
 
         //If you arent on a wall or you are moving upwards, you wont slide down a wall
-        if (!onWall || rb.velocityY > 0) {
+        if (!grounded && (!onWall || rb.velocityY > 0)) {
             if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
 
                 jumpScript.Falling();
@@ -463,7 +471,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
                 jumpScript.FastFalling();
 
-            }   
+            }
+            //Specifically if you fall off a conveyor, this adds the speed of the conveyor to the player speed, otherwise this does nothing
+            rb.velocityX += conveyorSpeed;
+            jumpingFromConveyorSpeed = conveyorSpeed;
+            conveyorSpeed = 0;
         } else { //If you are sliding down a wall
 
             jumpScript.SlidingDownWall();
