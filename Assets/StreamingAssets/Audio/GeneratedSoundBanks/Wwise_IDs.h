@@ -27,6 +27,8 @@ namespace AK
         static const AkUniqueID DOOR_HUM = 558672050U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
+        static const AkUniqueID GUARD_FOUND_EMIRA = 107714672U;
+        static const AkUniqueID GUARD_LOST_EMIRA = 635823140U;
         static const AkUniqueID HACK_FAIL = 3444806577U;
         static const AkUniqueID HACK_START = 4099402511U;
         static const AkUniqueID HACK_STOP = 1069300629U;

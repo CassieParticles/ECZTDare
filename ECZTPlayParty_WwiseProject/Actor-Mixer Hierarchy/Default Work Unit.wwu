@@ -4768,6 +4768,312 @@
 								<ActiveSource Name="In_View_Cone" ID="{DC29E9C0-291B-4E0F-899F-91893A228FE6}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="Guard_Lost_Emira" ID="{34D1D580-1C0D-4E12-B3A9-5D0206644A8B}" ShortID="908542352">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="G_VO_GodDamnIt" ID="{58A1ABB0-DFD4-4CF0-9FC3-CC6C007F5CAB}" ShortID="352858662">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_GodDamnIt" ID="{5DB2A6E7-EB58-4C52-BCE4-85AF6F394E21}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_GodDamnIt.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="130288872"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_GodDamnIt" ID="{5DB2A6E7-EB58-4C52-BCE4-85AF6F394E21}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_ILostHer" ID="{782A6A19-6C5F-4297-9101-2F0E7B81B655}" ShortID="667305743">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_ILostHer" ID="{03093C00-5C30-422F-85B5-57B257ADB3A0}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_ILostHer.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="70646447"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_ILostHer" ID="{03093C00-5C30-422F-85B5-57B257ADB3A0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_SheDisappeared" ID="{1C04C83F-6489-449F-BC26-5F23F33CEA3C}" ShortID="494575554">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_SheDisappeared" ID="{F59EA551-B4BF-443A-B007-1DCD161E3288}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_SheDisappeared.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="450456830"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_SheDisappeared" ID="{F59EA551-B4BF-443A-B007-1DCD161E3288}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_ShesGone" ID="{89533EE4-E208-4BB6-8AF8-E877BE47CB22}" ShortID="133161540">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_ShesGone" ID="{8899BAF0-2926-4A77-B1B4-4F4136D873E6}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_ShesGone.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="632797106"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_ShesGone" ID="{8899BAF0-2926-4A77-B1B4-4F4136D873E6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="Guard_Found_Emira" ID="{92BDBAF0-6CCF-4097-AF31-B86381F6E341}" ShortID="915836468">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="G_VO_HeyStop" ID="{002DA703-B421-4814-964E-2F7B06442218}" ShortID="476337109">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_HeyStop" ID="{28DEFB11-8CA3-446D-8488-58F33655B05D}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_HeyStop.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1035015420"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_HeyStop" ID="{28DEFB11-8CA3-446D-8488-58F33655B05D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_Intruder" ID="{1830795E-F929-4A6E-BABB-5FBFEF16F993}" ShortID="993531765">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_Intruder" ID="{A4BC8D5B-78FB-4542-9C9E-B7407C8304BD}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_Intruder.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1007922345"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_Intruder" ID="{A4BC8D5B-78FB-4542-9C9E-B7407C8304BD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_ISeeYou" ID="{F1682306-D2E0-4BB6-B854-A0803FAE27A2}" ShortID="2212009">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_ISeeYou" ID="{C006559D-6C70-44EB-9914-0BA08F62B013}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_ISeeYou.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="628626341"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_ISeeYou" ID="{C006559D-6C70-44EB-9914-0BA08F62B013}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="G_VO_SomeonesHere" ID="{A0D5B11B-1A56-47C8-A326-83ED0FFF0E43}" ShortID="1025620288">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="G_VO_SomeonesHere" ID="{24EE0343-B507-42F7-BD8C-5DAE14F3553F}">
+											<Language>SFX</Language>
+											<AudioFile>G_VO_SomeonesHere.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="378903621"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="G_VO_SomeonesHere" ID="{24EE0343-B507-42F7-BD8C-5DAE14F3553F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{B13199EF-5745-4C54-9036-545EB1958A60}" ShortID="1018979108">

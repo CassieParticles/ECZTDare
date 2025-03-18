@@ -7,6 +7,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
     public AK.Wwise.Event enemyAlerted;
+    public AK.Wwise.Event foundEmira;
+    public AK.Wwise.Event lostEmira;
 
     public enum SuspicionState
     {
@@ -102,6 +104,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
         {
             suspicionState = SuspicionState.HighAlert;
             visionCone.SetColour(new Color(1, 0.5f, 0));
+            if (playedSound)
+            {
+                lostEmira.Post(this.gameObject);
+            }
             playedSound = false;
         }
         else
@@ -113,6 +119,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 playedSound = true;
                 //Play sound
                 enemyAlerted.Post(this.gameObject);
+                foundEmira.Post(this.gameObject);
+
             }
         }
 
