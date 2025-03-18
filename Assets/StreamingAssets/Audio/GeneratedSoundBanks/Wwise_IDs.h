@@ -24,6 +24,7 @@ namespace AK
         static const AkUniqueID CAMERA_STOP = 1515494175U;
         static const AkUniqueID CLOAK_START = 638098506U;
         static const AkUniqueID CLOAK_STOP = 1518276258U;
+        static const AkUniqueID CONVEYOR_BELT = 1481508790U;
         static const AkUniqueID DOOR_HUM = 558672050U;
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;

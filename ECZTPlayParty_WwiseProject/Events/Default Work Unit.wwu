@@ -346,6 +346,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Conveyor_Belt" ID="{D335CE8C-B38D-4EBD-B640-D6E36204E833}">
+					<ChildrenList>
+						<Action Name="" ID="{4435FF29-2624-4DCC-87E7-A5D8E8ADF6C0}" ShortID="298211988">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Conveyor_Belt" ID="{A30F8D10-CF24-48FF-AA12-F7DF92B4E5B1}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

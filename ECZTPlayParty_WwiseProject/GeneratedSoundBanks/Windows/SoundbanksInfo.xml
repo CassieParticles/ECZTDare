@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{52D38BB1-ED3F-A1A0-AF6D-4EF961BEF164}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{D399437D-C2F7-4D87-9B41-8E696CE96464}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -769,6 +769,17 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="1481508790" Name="Conveyor_Belt" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="737925208"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="269273201"/>
@@ -1253,5 +1264,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{733AF15C-EBCD-D0AB-CCCD-4EF23EA1141F}</FileHash>
+	<FileHash>{DB3E4CD1-112E-0D25-047C-09BCA8387F7A}</FileHash>
 </SoundBanksInfo>
