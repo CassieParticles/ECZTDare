@@ -120,7 +120,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
-    public float batteryCharge; //The current boosting charge the player has
+    public float batteryCharge = 0; //The current boosting charge the player has
+
+    [NonSerialized] public float conveyorSpeed = 0f;
+    [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
 
     //All raycasts that get used
     //Grounded checks
@@ -215,7 +218,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         effectiveMinJumpTime = minJumpTime;
         effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
         effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
-        batteryCharge = 100;
 
         //Setup inputs
         if (controls == null) {
@@ -300,8 +302,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         doRayCasts();
 
         //If the player is grounded
-        if (Physics2D.Raycast(rightGroundRayStart, Vector2.down, 0.1f, layers) ||
-            Physics2D.Raycast(leftGroundRayStart, Vector2.down, 0.1f, layers)) {
+        RaycastHit2D rightGroundRay = Physics2D.Raycast(rightGroundRayStart, Vector2.down, 0.1f, layers);
+        RaycastHit2D leftGroundRay = Physics2D.Raycast(leftGroundRayStart, Vector2.down, 0.1f, layers);
+        if (rightGroundRay || leftGroundRay) {
             if (!grounded && landingCooldown <= 0) {
                 //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
                 landingCooldown = 0.1f;
@@ -312,10 +315,26 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             tempGroundedTimer = coyoteTime;
             animationGroundedTimer = animationCoyoteTime;
             onWall = false;
-            //animator.SetFloat("CoyoteTime", animationGroundedTimer);
-        } else {  
+            jumpingFromConveyorSpeed = 0f;
+            if (rightGroundRay) {
+                ConveyorHackable rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                if (rightConveyor != null) {
+                    conveyorSpeed = rightConveyor.currentSpeed;
+                }
+            } else {
+                ConveyorHackable leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                if (leftConveyor != null) {
+                    conveyorSpeed = leftConveyor.currentSpeed;
+                } else {
+                    conveyorSpeed = 0;
+                }    
+            }
+        } else {
             grounded = false;
             animationGroundedTimer -= Time.fixedDeltaTime;
+            rb.velocityX += conveyorSpeed;
+            jumpingFromConveyorSpeed = conveyorSpeed;
+            conveyorSpeed = 0;
         }
 
         //Grounds the player temporarily, currently is being used if the player starts sliding, and when they fall off a ledge (coyote time)
@@ -563,6 +582,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 runningScript.Accelerate(runInput);
             }
         }
+
+        transform.position += new Vector3(conveyorSpeed * Time.fixedDeltaTime, 0, 0);
 
         //Decide what the max velocity is and cap the player if necessary
         runningScript.CapRunningSpeed();

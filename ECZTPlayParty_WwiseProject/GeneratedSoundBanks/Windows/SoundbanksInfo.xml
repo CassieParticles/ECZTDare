@@ -134,7 +134,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{914FAFC6-E384-C3A9-0F23-45A156F25046}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{52D38BB1-ED3F-A1A0-AF6D-4EF961BEF164}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -186,6 +186,10 @@
 					<ShortName>P_R_Landing_2.wav</ShortName>
 					<CachePath>SFX/P_R_Landing_2_818F3B66.wem</CachePath>
 				</File>
+				<File Id="70646447" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_ILostHer.wav</ShortName>
+					<CachePath>SFX/G_VO_ILostHer_818F3B66.wem</CachePath>
+				</File>
 				<File Id="73045835" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_8.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_8_818F3B66.wem</CachePath>
@@ -205,6 +209,10 @@
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
 					<CachePath>SFX/In_View_Cone_CE70BCCE.wem</CachePath>
+				</File>
+				<File Id="130288872" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_GodDamnIt.wav</ShortName>
+					<CachePath>SFX/G_VO_GodDamnIt_818F3B66.wem</CachePath>
 				</File>
 				<File Id="144557377" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_3.wav</ShortName>
@@ -318,6 +326,10 @@
 					<ShortName>Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1.wav</ShortName>
 					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem</CachePath>
 				</File>
+				<File Id="378903621" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_SomeonesHere.wav</ShortName>
+					<CachePath>SFX/G_VO_SomeonesHere_818F3B66.wem</CachePath>
+				</File>
 				<File Id="393978131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Jump_1.wav</ShortName>
 					<CachePath>SFX/P_R_Jump_1_818F3B66.wem</CachePath>
@@ -345,6 +357,10 @@
 				<File Id="450159016" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_5.wav</ShortName>
 					<CachePath>SFX/P_C_Footstep_5_818F3B66.wem</CachePath>
+				</File>
+				<File Id="450456830" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_SheDisappeared.wav</ShortName>
+					<CachePath>SFX/G_VO_SheDisappeared_818F3B66.wem</CachePath>
 				</File>
 				<File Id="492016228" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_1.wav</ShortName>
@@ -402,6 +418,10 @@
 					<ShortName>Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1.wav</ShortName>
 					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_D70B0DD1.wem</CachePath>
 				</File>
+				<File Id="628626341" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_ISeeYou.wav</ShortName>
+					<CachePath>SFX/G_VO_ISeeYou_818F3B66.wem</CachePath>
+				</File>
 				<File Id="630056515" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Moving.wav</ShortName>
 					<CachePath>SFX/Camera_Moving_11A93380.wem</CachePath>
@@ -413,6 +433,10 @@
 				<File Id="631386295" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_2.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_2_67AEBF41.wem</CachePath>
+				</File>
+				<File Id="632797106" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_ShesGone.wav</ShortName>
+					<CachePath>SFX/G_VO_ShesGone_818F3B66.wem</CachePath>
 				</File>
 				<File Id="647360545" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_1.wav</ShortName>
@@ -598,6 +622,10 @@
 					<ShortName>P_M_Landing_2.wav</ShortName>
 					<CachePath>SFX/P_M_Landing_2_818F3B66.wem</CachePath>
 				</File>
+				<File Id="1007922345" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_Intruder.wav</ShortName>
+					<CachePath>SFX/G_VO_Intruder_818F3B66.wem</CachePath>
+				</File>
 				<File Id="1010966096" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Enemy_Alerted.wav</ShortName>
 					<CachePath>SFX/Enemy_Alerted_818F3B66.wem</CachePath>
@@ -613,6 +641,10 @@
 				<File Id="1031678536" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_R_Footstep_1.wav</ShortName>
 					<CachePath>SFX/G_R_Footstep_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="1035015420" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO_HeyStop.wav</ShortName>
+					<CachePath>SFX/G_VO_HeyStop_818F3B66.wem</CachePath>
 				</File>
 				<File Id="1036630904" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_6.wav</ShortName>
@@ -814,6 +846,34 @@
 							</MediaRefs>
 						</SwitchContainer>
 					</SwitchContainers>
+				</Event>
+				<Event Id="107714672" Name="Guard_Found_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="1" DurationMax="1.3361875">
+					<MediaRefs>
+						<MediaRef Id="378903621"/>
+						<MediaRef Id="628626341"/>
+						<MediaRef Id="1007922345"/>
+						<MediaRef Id="1035015420"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="635823140" Name="Guard_Lost_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.78125" DurationMax="1.3125">
+					<MediaRefs>
+						<MediaRef Id="70646447"/>
+						<MediaRef Id="130288872"/>
+						<MediaRef Id="450456830"/>
+						<MediaRef Id="632797106"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="3444806577" Name="Hack_Fail" DurationType="OneShot" DurationMin="1.5598613" DurationMax="1.5598613">
 					<MediaRefs>
@@ -1193,5 +1253,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9DE707C2-7512-FEBD-4CC2-4BC8ED925549}</FileHash>
+	<FileHash>{733AF15C-EBCD-D0AB-CCCD-4EF23EA1141F}</FileHash>
 </SoundBanksInfo>

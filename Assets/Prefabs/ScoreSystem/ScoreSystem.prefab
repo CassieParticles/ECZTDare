@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5145633544889923874}
   - component: {fileID: 6784584868304837960}
+  - component: {fileID: 7060988462518938964}
   m_Layer: 0
   m_Name: ScoreSystem
   m_TagString: Untagged
@@ -46,3 +47,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerObjectPrefab: {fileID: 8010337347754823907, guid: c4a9b99075e9050429d2ec758d45a77b, type: 3}
   StealthObjectPrefab: {fileID: 3946052129248057133, guid: 5f6598a73000c334eb311593e09eacb1, type: 3}
+--- !u!114 &7060988462518938964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245165904492486710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b2711ec4660aeb4396957f4f33f2891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBands:
+  - 60
+  - 120
+  - 180
+  StealthBands:
+  - 100
+  - 80
+  - 60
