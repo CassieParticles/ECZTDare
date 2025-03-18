@@ -69,7 +69,7 @@ public class MainScoreController : MonoBehaviour
 
     private void DisplayScore()
     {
-        TimerToGrade gradeCalculator = GameObject.Find("TimerGrade").GetComponent<TimerToGrade>();
+        TimerToGrade gradeCalculator = GetComponent<TimerToGrade>();
 
         gradeCalculator.DisplayGrade(timeTaken,stealthScore);
     }
