@@ -30,13 +30,15 @@ public class Running
 
     //Decide what the max velocity is and cap the player if necessary
     public void CapRunningSpeed() {
-        //If the player is falling, slow them down slightly
         if (player.rb.velocityY < 0) {
-            player.dynamicMaxRunSpeed = player.effectiveMaxRunSpeed * //Base max run speed
-                                 player.boostingMaxRunSpeedMultiplier * //Boosting makes this multiplier not 1
-                                 (1 - (player.fallSlowsRunMult * -player.rb.velocityY / player.maxFallSpeed)); //Falling slows down the horizontal speed
+            player.dynamicMaxRunSpeed = (player.effectiveMaxRunSpeed * //Base max run speed
+                                        player.boostingMaxRunSpeedMultiplier * //Boosting makes this multiplier not 1
+                                        (1 - (player.fallSlowsRunMult * -player.rb.velocityY / player.maxFallSpeed)) + //Falling slows down the horizontal speed
+                                        player.jumpingFromConveyorSpeed); //Add any speed gained from the conveyor when jumping
         } else { //Otherwise, calculate the max run speed as normal
-            player.dynamicMaxRunSpeed = player.effectiveMaxRunSpeed * player.boostingMaxRunSpeedMultiplier;
+            player.dynamicMaxRunSpeed = (player.effectiveMaxRunSpeed * 
+                                        player.boostingMaxRunSpeedMultiplier) +
+                                        player.jumpingFromConveyorSpeed;
         }
         //Only cap the running speed if the player is not sliding
         if (player.horizontalVelocity > player.dynamicMaxRunSpeed && !player.sliding) {

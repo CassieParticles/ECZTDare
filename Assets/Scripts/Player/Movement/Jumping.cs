@@ -12,6 +12,8 @@ public class Jumping
     }
 
     public void BasicJump() {
+        //player.rb.velocityX += player.conveyorSpeed;
+        //player.jumpingFromConveyorSpeed = player.conveyorSpeed;
         player.rb.velocityY = player.effectiveJumpStrength;
         //Plays the Player_Jump sound
         AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
