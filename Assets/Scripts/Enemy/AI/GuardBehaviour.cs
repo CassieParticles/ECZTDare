@@ -77,7 +77,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private void AlarmOn(Vector3 playerPosition)
     {
         SetSuspicionState(SuspicionState.HighAlert);
-        if((playerPosition-transform.position).sqrMagnitude < 50 * 50)
+        minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
+        if ((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
@@ -86,7 +87,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void AlarmOff()
     {
-
+        minimumSuspicion = 0;
     }
 
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease, AudioSource source)

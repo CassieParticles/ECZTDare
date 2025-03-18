@@ -1,10 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AlarmSystem : MonoBehaviour
 {
+    [SerializeField] private float alarmCooloffTime=30.0f;
+
     public delegate void AlarmEnable(Vector3 playerPosition);
     public delegate void AlarmDisable();
+
+    public Coroutine AlarmCoolOffTimer;
 
     public static AlarmSystem GetAlarmSystem()
     {
@@ -31,11 +36,17 @@ public class AlarmSystem : MonoBehaviour
         alarmDisableFuncs.Remove(alarmFunc);
     }
 
+    private IEnumerator AlarmCooloff()
+    {
+        yield return new WaitForSeconds(alarmCooloffTime);
+        StopAlarm();
+    }
+
     public bool AlarmGoingOff() { return alarm; }
 
     public void StartAlarm(Vector3 playerPosition)
     {
-        if(!alarm)
+        if(!alarm && StealthScoreTracker.GetTracker())
         {
             StealthScoreTracker.GetTracker().RemoveScore(500);
         }
@@ -44,6 +55,15 @@ public class AlarmSystem : MonoBehaviour
             alarmEnableFuncs[i](playerPosition);
         }
         alarm = true;
+
+        //Exit currently running coroutine 
+        if(AlarmCoolOffTimer!=null)
+        {
+            StopCoroutine(AlarmCoolOffTimer);
+            AlarmCoolOffTimer = null;
+        }
+        //Start/restart coroutine
+        AlarmCoolOffTimer = StartCoroutine(AlarmCooloff());
     }
 
     public void StopAlarm()
@@ -53,6 +73,13 @@ public class AlarmSystem : MonoBehaviour
             alarmDisableFuncs[i]();
         }
         alarm = false;
+
+        //Stop alarm cooloff timer
+        if (AlarmCoolOffTimer != null)
+        {
+            StopCoroutine(AlarmCoolOffTimer);
+            AlarmCoolOffTimer = null;
+        }
     }
 
     //List of functions to be called

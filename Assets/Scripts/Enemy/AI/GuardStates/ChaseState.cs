@@ -24,7 +24,7 @@ public class ChaseState : BaseState
         raiseAlarmCoroutine = guardBehaviour.StartCoroutine(raiseAlarm());
         shouldRaiseAlarm = false;
 
-        if(!hasChasedBefore)
+        if(!hasChasedBefore && StealthScoreTracker.GetTracker())
         {
             hasChasedBefore = true;
             StealthScoreTracker.GetTracker().RemoveScore(100);
