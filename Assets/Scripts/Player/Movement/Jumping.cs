@@ -12,6 +12,8 @@ public class Jumping
     }
 
     public void BasicJump() {
+        //player.rb.velocityX += player.conveyorSpeed;
+        //player.jumpingFromConveyorSpeed = player.conveyorSpeed;
         player.rb.velocityY = player.effectiveJumpStrength;
         //Plays the Player_Jump sound
         AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
@@ -44,6 +46,7 @@ public class Jumping
     }
 
     public void Falling() {
+        
         player.wallClingVelocity = 0;
         player.rb.velocityY += (player.fastFallMult - 1) * Physics2D.gravity.y * Time.deltaTime; //fallmult - 1 since gravity gets applied by default
         if (player.rb.velocityY < -player.maxFallSpeed) { //Less than because its negative
