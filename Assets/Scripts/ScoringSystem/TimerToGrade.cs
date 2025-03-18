@@ -19,15 +19,9 @@ public class TimerToGrade : MonoBehaviour
         80,
         60
     };
-
-    private TextMeshProUGUI textToChange;
-
-    private void Awake()
-    {
-        textToChange = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
-    }
     public void DisplayGrade(float timeTaken, float stealthScore)
     {
+        TextMeshProUGUI textToChange = GameObject.Find("TimeTaken").GetComponent<TextMeshProUGUI>();
         if (timeTaken < TimeBands[0])
         {
             textToChange.text = "S";
