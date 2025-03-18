@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    CheckpointManager checkpointManager;
+    int index;
+
+    public void SetIndex(int index)
     {
-        
+        this.index = index;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        checkpointManager = transform.parent.GetComponent<CheckpointManager>();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.GetComponent<MovementScript>())
+        {
+            checkpointManager.CheckpointReach(index);
+        }
     }
 }
