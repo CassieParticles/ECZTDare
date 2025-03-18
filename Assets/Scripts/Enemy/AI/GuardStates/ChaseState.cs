@@ -29,6 +29,7 @@ public class ChaseState : BaseState
             hasChasedBefore = true;
             StealthScoreTracker.GetTracker().RemoveScore(100);
         }
+        guardBehaviour.changeSpeed(guardBehaviour.chaseSpeed);
     }
 
     public override void Stop()
@@ -39,6 +40,7 @@ public class ChaseState : BaseState
         {
             guardBehaviour.StopCoroutine(raiseAlarmCoroutine);
         }
+        guardBehaviour.changeSpeed(guardBehaviour.alertSpeed);
     }
 
     public override GuardStates RunTick()
@@ -49,15 +51,6 @@ public class ChaseState : BaseState
         if(!guardBehaviour.Player && (guardBehaviour.getCurrentDestination()-guardAttached.transform.position).sqrMagnitude < 0.15f)
         {
             return GuardStates.RaiseAlarm;
-        }
-
-        if (guardAttached.GetComponent<NavMeshAgent>().speed > guardBehaviour.chaseSpeed)
-        {
-            guardAttached.GetComponent<NavMeshAgent>().speed = guardBehaviour.chaseSpeed;
-        }
-        else if (guardAttached.GetComponent<NavMeshAgent>().speed < guardBehaviour.chaseSpeed) 
-        {
-            guardAttached.GetComponent<NavMeshAgent>().speed += guardBehaviour.acceleration * Time.fixedDeltaTime;
         }
 
         if(guardBehaviour.Player)
