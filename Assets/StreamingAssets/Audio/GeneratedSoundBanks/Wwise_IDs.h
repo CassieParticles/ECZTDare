@@ -38,6 +38,7 @@ namespace AK
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_LAND = 3629196698U;
+        static const AkUniqueID PLAYER_MODE_SHIFT = 2222225249U;
         static const AkUniqueID PLAYER_SLIDE = 2609528332U;
         static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
         static const AkUniqueID POWER_GENERATOR = 2283979374U;
@@ -162,7 +163,12 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID AMBIENCEVOLUME = 1204480359U;
+        static const AkUniqueID DIALOGUEVOLUME = 1866264637U;
         static const AkUniqueID HORIZONTALVELOCITY = 2816179192U;
+        static const AkUniqueID MASTERVOLUME = 2918011349U;
+        static const AkUniqueID MUSICVOLUME = 2346531308U;
+        static const AkUniqueID SOUNDVOLUME = 3873835272U;
         static const AkUniqueID SUSPICION = 2268126698U;
     } // namespace GAME_PARAMETERS
 
@@ -175,7 +181,11 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID AMBIENCE = 85412153U;
+        static const AkUniqueID DIALOGUE = 3930136735U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID SOUND = 623086306U;
     } // namespace BUSSES
 
     namespace AUX_BUSSES
