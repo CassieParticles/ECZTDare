@@ -7,6 +7,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	638098506	Cloak_Start			\Default Work Unit\Cloak_Start	
 	710389270	Ambience_Rain			\Default Work Unit\Ambience_Rain	
 	814543256	Button_Click			\Default Work Unit\Button_Click	
+	1042227841	Guard_Refound_Emira			\Default Work Unit\Guard_Refound_Emira	
 	1069300629	Hack_Stop			\Default Work Unit\Hack_Stop	
 	1305133589	Player_Jump			\Default Work Unit\Player_Jump	
 	1481508790	Conveyor_Belt			\Default Work Unit\Conveyor_Belt	
@@ -20,6 +21,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2283979374	Power_Generator			\Default Work Unit\Power_Generator	
 	2453392179	Player_Footstep			\Default Work Unit\Player_Footstep	
 	2609528332	Player_Slide			\Default Work Unit\Player_Slide	
+	2908710288	Overseer_Ending			\Default Work Unit\Overseer_Ending	
 	3149531453	Guard_Footstep			\Default Work Unit\Guard_Footstep	
 	3353320293	Camera_Moving			\Default Work Unit\Camera_Moving	
 	3444806577	Hack_Fail			\Default Work Unit\Hack_Fail	
@@ -91,6 +93,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	118186165	In_View_Cone	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\In_View_Cone_CE70BCCE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\In_View_Cone		1469752
 	130288872	G_VO_GodDamnIt	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO_GodDamnIt_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_GodDamnIt		252096
 	144557377	P_M_Jump_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_3		96096
+	146773433	G_VO2_ShesBack	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO2_ShesBack_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Refound_Emira\G_VO2_ShesBack		184916
 	152193640	P_M_Sliding_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Sliding_3_8F338B28.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_3		384144
 	176338131	P_D_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_4		48096
 	176381533	G_M_Footstep_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_2		48096
@@ -105,6 +108,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	261965845	G_R_Footstep_7	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_R_Footstep_7_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_7		48096
 	266042559	G_M_Footstep_5	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_5		48096
 	269273201	Ambience_Force_Fields	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507_4673BCD3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Force_Fields		794136
+	278924793	G_VO2_ShesStillHere	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO2_ShesStillHere_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Refound_Emira\G_VO2_ShesStillHere		270096
 	286540805	Button_Click	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Button_Activation_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Button_Click		210016
 	292283100	P_R_Landing_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Landing_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_R_Land\P_R_Landing_3		96096
 	296530740	P_C_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_1		48096
@@ -115,6 +119,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	347285092	P_R_Footstep_1	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_1		48096
 	347630337	P_R_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Sliding_2_AB0DE62F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_R_Slide\P_R_Sliding_2		408144
 	350571898	G_D_Footstep_4	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_4		48096
+	353367165	O_VO_NowhereLeftToGoEmira	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\O_VO_NowhereLeftToGoEmira_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\O_VO_NowhereLeftToGoEmira		382340
 	365276779	G_M_Footstep_8	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_8		48096
 	372349657	P_D_Sliding_2	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Sliding_2_D7086770.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_2		408144
 	378817786	Hack_Start_3	C:\Users\flynn\GitHub\ECZTPlayParty\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_3		323568

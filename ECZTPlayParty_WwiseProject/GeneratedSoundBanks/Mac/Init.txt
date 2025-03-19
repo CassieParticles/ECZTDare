@@ -21,8 +21,18 @@ State	ID	Name	State Group			Notes
 	3621873013	Hidden	Music			
 	4009708623	Alarm_Low	Music			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1204480359	AmbienceVolume			\Default Work Unit\Volume\AmbienceVolume	
+	1866264637	DialogueVolume			\Default Work Unit\Volume\DialogueVolume	
+	2346531308	MusicVolume			\Default Work Unit\Volume\MusicVolume	
+	3873835272	SoundVolume			\Default Work Unit\Volume\SoundVolume	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	85412153	Ambience			\Default Work Unit\Master Audio Bus\Ambience	
+	623086306	Sound			\Default Work Unit\Master Audio Bus\Sound	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3930136735	Dialogue			\Default Work Unit\Master Audio Bus\Dialogue	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 	1409684747	LargeRoomReverb			\Default Work Unit\Master Audio Bus\LargeRoomReverb	

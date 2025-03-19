@@ -30,11 +30,13 @@ namespace AK
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
         static const AkUniqueID GUARD_FOUND_EMIRA = 107714672U;
         static const AkUniqueID GUARD_LOST_EMIRA = 635823140U;
+        static const AkUniqueID GUARD_REFOUND_EMIRA = 1042227841U;
         static const AkUniqueID HACK_FAIL = 3444806577U;
         static const AkUniqueID HACK_START = 4099402511U;
         static const AkUniqueID HACK_STOP = 1069300629U;
         static const AkUniqueID IN_VIEW_CONE = 2249657186U;
         static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID OVERSEER_ENDING = 2908710288U;
         static const AkUniqueID PLAYER_FOOTSTEP = 2453392179U;
         static const AkUniqueID PLAYER_JUMP = 1305133589U;
         static const AkUniqueID PLAYER_LAND = 3629196698U;
