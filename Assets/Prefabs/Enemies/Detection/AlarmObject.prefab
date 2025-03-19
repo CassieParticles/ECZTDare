@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3403512215831532349}
   - component: {fileID: 5882243783853979509}
   - component: {fileID: -1219426926764270022}
+  - component: {fileID: 223210583496913020}
   m_Layer: 2
   m_Name: AlarmObject
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f043e9ba2539249bcb74ea4c5bc697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alarmCooloffTime: 30
 --- !u!61 &-1219426926764270022
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -91,3 +93,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &223210583496913020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7680657108624308150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1037574f5710f4c4ba8459665a73e111, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alarmColour: {r: 1, g: 0.07738829, b: 0, a: 0}
