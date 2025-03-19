@@ -35,6 +35,7 @@ public class AlarmLightChange : MonoBehaviour
 
         //Get attached lights
         lights = alarmLights.transform.GetComponentsInChildren<Light2D>();
+        defaultColour = lights[0].color;
     }
 
     private void Start()
