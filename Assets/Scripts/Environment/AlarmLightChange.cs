@@ -39,7 +39,8 @@ public class AlarmLightChange : MonoBehaviour
 
     private void Start()
     {
-
+        alarmSystem.AddAlarmEnableFunc(AlarmOn);
+        alarmSystem.AddAlarmDisableFunc(AlarmOff);
 
     }
 }
