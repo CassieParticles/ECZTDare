@@ -346,6 +346,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Conveyor_Belt" ID="{D335CE8C-B38D-4EBD-B640-D6E36204E833}">
+					<ChildrenList>
+						<Action Name="" ID="{4435FF29-2624-4DCC-87E7-A5D8E8ADF6C0}" ShortID="298211988">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Conveyor_Belt" ID="{A30F8D10-CF24-48FF-AA12-F7DF92B4E5B1}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Mode_Shift" ID="{A67BCC4C-4246-462C-8411-F34CDA300EC1}">
+					<ChildrenList>
+						<Action Name="" ID="{93393BBA-B223-4113-A349-2D712C57BD0C}" ShortID="1028606909">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Fail" ID="{B787CF95-0589-48C8-A496-D2AA5EDE0D06}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

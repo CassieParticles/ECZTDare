@@ -13,6 +13,26 @@
 							<GameParameterRef Name="horizontalVelocity" ID="{315CC58F-79A2-46FD-BACE-8BCB93924C64}"/>
 							<Value>0</Value>
 						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="DialogueVolume" ID="{5EBE6AFB-BE8F-4723-AA9A-06AB854D12BD}"/>
+							<Value>80</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="AmbienceVolume" ID="{C8A8FC1B-9540-4965-A13F-39860BB6CDA3}"/>
+							<Value>80</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MasterVolume" ID="{CC091527-607C-496B-89B7-0A1AA42679F5}"/>
+							<Value>80</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="MusicVolume" ID="{AF178ADD-15C9-4A1F-9F8D-F7930864D4EE}"/>
+							<Value>80</Value>
+						</RTPCValue>
+						<RTPCValue>
+							<GameParameterRef Name="SoundVolume" ID="{34A9B815-0D9E-4A54-9F5B-AC2EDE072950}"/>
+							<Value>80</Value>
+						</RTPCValue>
 					</RTPCValueList>
 					<CurrentStateList ShowAll="true">
 						<CurrentStateRef Name="Inside" ID="{27CC63DB-A8FD-407F-AEE4-5FBC0F20CC23}"/>
