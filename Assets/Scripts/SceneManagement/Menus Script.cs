@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     public AK.Wwise.Event buttonClick;
+    public AK.Wwise.Event titleMusic;
+    public AK.Wwise.Event titleRain;
+    private AK.Wwise.Event sliderSound;
+    private AlarmMusicHandler gameMusicScript;
 
     GameObject resumeButton;
     GameObject playButton;
@@ -17,6 +21,7 @@ public class MenuScript : MonoBehaviour
     GameObject quitButton;
     GameObject toMainMenuButton;
 
+    Toggle muteAudioToggle;
     Slider masterVolumeSlider;
     Slider musicVolumeSlider;
     Slider soundVolumeSlider;
@@ -30,6 +35,8 @@ public class MenuScript : MonoBehaviour
 
     bool menuOpen;
     bool settingsOpen;
+
+    uint pausedMusic;
 
     [NonSerialized] public bool muteAudio;
     [NonSerialized] public float masterVolume;
@@ -48,8 +55,8 @@ public class MenuScript : MonoBehaviour
         }
     }
     public void ChangeScene(string sceneName) {
+        AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
-
 
         SceneManager.LoadScene(sceneName);
     }
@@ -76,6 +83,8 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.AddListener(CloseSubMenu);
     }
     public void OpenMenu() {
+
+
         menuOpen = true;
         settingsGroup.SetActive(false);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu")) {
@@ -88,6 +97,11 @@ public class MenuScript : MonoBehaviour
             mainMenuObjects.SetActive(true);
 
         } else {
+            AkSoundEngine.GetState(gameMusicScript.music.Id, out pausedMusic);
+
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "Menu");
+
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             Time.timeScale = 0f;
             playButton.SetActive(false);
@@ -100,6 +114,10 @@ public class MenuScript : MonoBehaviour
     }
 
     public void CloseMenu() {
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Main Menu")) {
+            AkSoundEngine.SetState(gameMusicScript.music.Id, pausedMusic);
+        }
+
         menuOpen = false;
         Time.timeScale = 1f;
     }
@@ -125,6 +143,7 @@ public class MenuScript : MonoBehaviour
         quitButton = GameObject.Find("QuitButton");
         toMainMenuButton = GameObject.Find("MainMenuButton");
 
+        muteAudioToggle = GameObject.Find("MuteAudioToggle").GetComponent<Toggle>();
         masterVolumeSlider = GameObject.Find("Master Volume").GetComponent<Slider>();
         musicVolumeSlider = GameObject.Find("Music Volume").GetComponent<Slider>();
         soundVolumeSlider = GameObject.Find("Sound Volume").GetComponent<Slider>();
@@ -144,6 +163,11 @@ public class MenuScript : MonoBehaviour
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
+        //Sets the "Music" State Group's active State to "Hidden"
+        AkSoundEngine.SetState("Music", "Menu");
+        //Sets the "Ambience" State Group's active State to "NoAmbience"
+        AkSoundEngine.SetState("Ambience", "Outside");
+
         OpenMenu();
     }
 
@@ -151,8 +175,13 @@ public class MenuScript : MonoBehaviour
     void Update()
     {
         if (settingsOpen && menuOpen) {
-            masterVolume = masterVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
+            muteAudio = muteAudioToggle.isOn;
+            if (muteAudio) {
+                AkSoundEngine.SetRTPCValue("MasterVolume", 0);
+            } else {
+                masterVolume = masterVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
+            }    
             musicVolume = musicVolumeSlider.value;
             AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
             soundVolume = soundVolumeSlider.value;
@@ -161,6 +190,17 @@ public class MenuScript : MonoBehaviour
             AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
             ambienceVolume = ambienceVolumeSlider.value;
             AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
+            if (!Input.GetMouseButton(0)) {
+                sliderSound.Stop(gameObject);
+            }
+        }
+    }
+
+    public void SliderChangeSound(AK.Wwise.Event sound) {
+        
+        if (sound != sliderSound) {
+            sound = sliderSound;
+            sound.Post(gameObject);
         }
     }
 }
