@@ -44,6 +44,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public float suspicion;
     public float minimumSuspicion;
     [NonSerialized] public SuspicionState suspicionState;
+    public SuspicionState lastFrameSuspicionState { get; protected set; }
 
     private bool playedSound = false;
 
@@ -85,6 +86,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Should be called by all inheriting from BaseEnemy
     protected void BaseUpdate()
     {
+        lastFrameSuspicionState = suspicionState;
         //Sets the RTPC Value of suspicion to the suspicion float value.
         AkSoundEngine.SetRTPCValue("suspicion", suspicion, this.gameObject);
 
