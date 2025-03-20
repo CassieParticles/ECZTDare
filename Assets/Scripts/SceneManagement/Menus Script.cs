@@ -50,6 +50,7 @@ public class MenuScript : MonoBehaviour
     public void ChangeScene(string sceneName) {
         buttonClick.Post(gameObject);
 
+
         SceneManager.LoadScene(sceneName);
     }
 
@@ -151,10 +152,15 @@ public class MenuScript : MonoBehaviour
     {
         if (settingsOpen && menuOpen) {
             masterVolume = masterVolumeSlider.value;
+            AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
             musicVolume = musicVolumeSlider.value;
+            AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
             soundVolume = soundVolumeSlider.value;
+            AkSoundEngine.SetRTPCValue("SoundVolume", soundVolume);
             dialogueVolume = dialogueVolumeSlider.value;
+            AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
             ambienceVolume = ambienceVolumeSlider.value;
+            AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
         }
     }
 }
