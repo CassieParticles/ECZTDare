@@ -4,9 +4,10 @@ using UnityEngine.Playables;
 
 public class StartCutScene : MonoBehaviour
 {
-    [SerializeField]PlayableDirector director;
+    PlayableDirector director;
     MovementScript player;
     bool waitForGrounded = false;
+    bool cutscenePlayed = false;
 
     private void Awake()
     {
@@ -15,19 +16,27 @@ public class StartCutScene : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(waitForGrounded && player.grounded)
+        if (waitForGrounded && player.grounded)
         {
             //Start cutscene
-
+            director.Play();
+            cutscenePlayed = true;
         }
+    }
+
+    public void DoStuff()
+    {
+        director.Stop();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (cutscenePlayed){ return; }
         MovementScript playerScript = collision.GetComponent<MovementScript>();
+        
         if(playerScript)
         {
-            playerScript.inputLocked=true;
+            playerScript.InputLocked=true;
             playerScript.GetComponent<Rigidbody2D>().velocityX = 0;
             //Wait for player to be grounded
             waitForGrounded = true;

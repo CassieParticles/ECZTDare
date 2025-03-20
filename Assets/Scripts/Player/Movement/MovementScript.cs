@@ -19,7 +19,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField][Range(0.01f, 3.0f)] public float footstepRate = 1f;
 
     //How much the velocity of the player affects the footstep frequency
-	[SerializeField][Range(0.01f, 3.0f)] public float footstepRateScaler = 1f;
+    [SerializeField][Range(0.01f, 3.0f)] public float footstepRateScaler = 1f;
 
     //Used to determine when to trigger footstep sounds.
     [NonSerialized] public float footstepCount = 0.0f;
@@ -33,7 +33,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     //How fast the player is currently sliding down the wall
     [NonSerialized] public float wallClingVelocity;
 
-     public bool inStealthMode;
+    public bool inStealthMode;
 
     //Effective variables for when there are multiple values they can have depending on situation
     [NonSerialized] public float effectiveMaxRunSpeed;
@@ -104,7 +104,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float boostFootStepSoundRange = 10f;
     [SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
 
-    [SerializeField] public float boostJumpSoundRange =25f;
+    [SerializeField] public float boostJumpSoundRange = 25f;
     [SerializeField] public float boostJumpSoundSuspicionIncrease = 35f;
 
     [SerializeField] public float boostSlideSoundRange = 15f;
@@ -125,7 +125,26 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public float conveyorSpeed = 0f;
     [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
 
-    public bool inputLocked = false;    //Boolean to disable inputs, useful for cutscenes
+    //Disables user input, if set to true, also sets all movement to 0 (prevent directions being "held down")
+    private bool inputLocked;
+
+        public bool InputLocked
+        {
+        get => inputLocked;
+        set
+        {
+            inputLocked = value;
+            //Set input locked to be value, and if value is true, clear inputs
+            if (value == true)
+            {
+                runInput = 0;
+                jumpInput = false;
+                slideInput = false;
+                boostCloakInput = false;
+            }
+        }
+    }
+
 
     //All raycasts that get used
     //Grounded checks
