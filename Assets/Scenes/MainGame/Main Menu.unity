@@ -353,11 +353,11 @@ MonoBehaviour:
   titleMusic:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: 7b5408fca08601e42b8f336c2a2aa95d, type: 2}
   titleRain:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
+    WwiseObjectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
 --- !u!1 &315167142
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +664,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 422859147733701173, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+      propertyPath: buttonClick.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 2f8f331067fe30e408af319daeaecae4, type: 2}
     - target: {fileID: 435675503601647431, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
