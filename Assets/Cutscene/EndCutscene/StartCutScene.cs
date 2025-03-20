@@ -16,7 +16,7 @@ public class StartCutScene : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (waitForGrounded && player.grounded)
+        if (waitForGrounded && player.grounded && !cutscenePlayed)
         {
             //Start cutscene
             director.Play();
@@ -36,6 +36,7 @@ public class StartCutScene : MonoBehaviour
         
         if(playerScript)
         {
+            Debug.Log("Collider hit");
             playerScript.InputLocked=true;
             playerScript.GetComponent<Rigidbody2D>().velocityX = 0;
             //Wait for player to be grounded
