@@ -125,6 +125,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public float conveyorSpeed = 0f;
     [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
 
+    public bool inputLocked = false;    //Boolean to disable inputs, useful for cutscenes
+
     //All raycasts that get used
     //Grounded checks
     Vector2 rightGroundRayStart;
@@ -272,6 +274,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void HandleInputs() {
+        if(inputLocked)
+        {
+            return;
+        }
+
         runInput = Mathf.RoundToInt(runAction.ReadValue<float>());
 
         jumpInput = jumpAction.ReadValue<float>() > 0;
