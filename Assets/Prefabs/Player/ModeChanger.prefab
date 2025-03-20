@@ -92,6 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchToMode: 1
+  modeSwitch:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fbb2e4b126e87ea468430d5555b6c0a6, type: 2}
 --- !u!1 &1656316432500339239
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchToMode: 0
+  modeSwitch:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: fbb2e4b126e87ea468430d5555b6c0a6, type: 2}
 --- !u!1 &8626970008505485341
 GameObject:
   m_ObjectHideFlags: 0

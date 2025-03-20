@@ -119,8 +119,8 @@ MonoBehaviour:
   stealthMinJumpTime: 0.1
   stealthHorizontalWalljumpStrength: 10
   stealthVerticalWalljumpStrength: 16
-  cloakRecharge: 10
-  cloakDepletion: 70
+  cloakRecharge: 15
+  cloakDepletion: 50
   boostFootStepSoundRange: 10
   boostFootStepSoundSuspicionIncrease: 15
   boostJumpSoundRange: 25
@@ -174,7 +174,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!96 &5663616991774334996
 TrailRenderer:

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class AlarmSystem : MonoBehaviour
 {
@@ -14,6 +15,27 @@ public class AlarmSystem : MonoBehaviour
     public static AlarmSystem GetAlarmSystem()
     {
         return GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
+    }
+
+    //Get the lights that are intersecting with an alarm (lights that will be turned on/off with an alarm)
+    public List<Light2D> GetLights()
+    {
+        //Get relevant lights
+        List<Collider2D> results = new List<Collider2D>();
+        GetComponent<BoxCollider2D>().Overlap(results);
+
+        List<Light2D> lights = new List<Light2D>();
+
+        foreach (Collider2D collider in results)
+        {
+            Light2D light=collider.GetComponent<Light2D>();
+            if(light)
+            {
+                lights.Add(light);
+            }
+        }
+
+        return lights;
     }
 
     public void AddAlarmEnableFunc(AlarmEnable alarmFunc)

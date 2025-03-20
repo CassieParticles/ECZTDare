@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{3A6F5D15-8D1D-3825-9A6E-156B51B1AEBF}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{6CB1868C-9E0C-9F21-5EFB-C8AFE995B687}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -25,7 +25,11 @@
 				</AudioDevices>
 			</Plugins>
 			<Busses>
+				<Bus Id="85412153" Name="Ambience"/>
+				<Bus Id="623086306" Name="Sound"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="3930136735" Name="Dialogue"/>
+				<Bus Id="3991942870" Name="Music"/>
 			</Busses>
 			<AuxBusses>
 				<AuxBus Id="1409684747" Name="LargeRoomReverb">
@@ -58,8 +62,13 @@
 				</AuxBus>
 			</AuxBusses>
 			<GameParameters>
+				<GameParameter Id="1204480359" Name="AmbienceVolume"/>
+				<GameParameter Id="1866264637" Name="DialogueVolume"/>
 				<GameParameter Id="2268126698" Name="suspicion"/>
+				<GameParameter Id="2346531308" Name="MusicVolume"/>
 				<GameParameter Id="2816179192" Name="horizontalVelocity"/>
+				<GameParameter Id="2918011349" Name="MasterVolume"/>
+				<GameParameter Id="3873835272" Name="SoundVolume"/>
 			</GameParameters>
 			<StateGroups>
 				<StateGroup Id="85412153" Name="Ambience">
@@ -134,7 +143,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{52D38BB1-ED3F-A1A0-AF6D-4EF961BEF164}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{485969A2-A8E3-58B0-445B-80CE6347F26C}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -218,6 +227,10 @@
 					<ShortName>P_M_Jump_3.wav</ShortName>
 					<CachePath>SFX/P_M_Jump_3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="146773433" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO2_ShesBack.wav</ShortName>
+					<CachePath>SFX/G_VO2_ShesBack_818F3B66.wem</CachePath>
+				</File>
 				<File Id="152193640" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_3.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_3_8F338B28.wem</CachePath>
@@ -274,6 +287,10 @@
 					<ShortName>Soundly Audio\Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507.wav</ShortName>
 					<CachePath>SFX/Soundly Audio/Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507_4673BCD3.wem</CachePath>
 				</File>
+				<File Id="278924793" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>G_VO2_ShesStillHere.wav</ShortName>
+					<CachePath>SFX/G_VO2_ShesStillHere_818F3B66.wem</CachePath>
+				</File>
 				<File Id="286540805" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Button_Activation.wav</ShortName>
 					<CachePath>SFX/Button_Activation_818F3B66.wem</CachePath>
@@ -313,6 +330,10 @@
 				<File Id="350571898" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_4.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_4_818F3B66.wem</CachePath>
+				</File>
+				<File Id="353367165" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>O_VO_NowhereLeftToGoEmira.wav</ShortName>
+					<CachePath>SFX/O_VO_NowhereLeftToGoEmira_818F3B66.wem</CachePath>
 				</File>
 				<File Id="365276779" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_8.wav</ShortName>
@@ -736,7 +757,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="70" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+				<Event Id="1515494175" Name="Camera_Stop" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
@@ -761,6 +782,17 @@
 				<Event Id="1518276258" Name="Cloak_Stop" DurationType="OneShot" DurationMin="0.70565283" DurationMax="0.70565283">
 					<MediaRefs>
 						<MediaRef Id="314968513"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1481508790" Name="Conveyor_Belt" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="737925208"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -875,6 +907,18 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="1042227841" Name="Guard_Refound_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.96260417" DurationMax="1.40625">
+					<MediaRefs>
+						<MediaRef Id="146773433"/>
+						<MediaRef Id="278924793"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="3444806577" Name="Hack_Fail" DurationType="OneShot" DurationMin="1.5598613" DurationMax="1.5598613">
 					<MediaRefs>
 						<MediaRef Id="656196889"/>
@@ -899,7 +943,7 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1069300629" Name="Hack_Stop" MaxAttenuation="70" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
+				<Event Id="1069300629" Name="Hack_Stop" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.280875" DurationMax="0.280875">
 					<MediaRefs>
 						<MediaRef Id="679137891"/>
 					</MediaRefs>
@@ -914,6 +958,17 @@
 					<MediaRefs>
 						<MediaRef Id="118186165"/>
 					</MediaRefs>
+				</Event>
+				<Event Id="2908710288" Name="Overseer_Ending" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.9908541" DurationMax="1.9908541">
+					<MediaRefs>
+						<MediaRef Id="353367165"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
 					<AuxBusRefs>
@@ -1064,6 +1119,17 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
+				<Event Id="2222225249" Name="Player_Mode_Shift" DurationType="OneShot" DurationMin="1.5598613" DurationMax="1.5598613">
+					<MediaRefs>
+						<MediaRef Id="656196889"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="2609528332" Name="Player_Slide" DurationType="Infinite">
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1210,7 +1276,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{D513DFBB-C33E-B735-ADE5-E9174F8537CE}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{718DD391-378B-72C3-7347-CA363A5A9851}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1253,5 +1319,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{733AF15C-EBCD-D0AB-CCCD-4EF23EA1141F}</FileHash>
+	<FileHash>{E8B93D1A-CD02-14E7-4B57-373F4B29477E}</FileHash>
 </SoundBanksInfo>

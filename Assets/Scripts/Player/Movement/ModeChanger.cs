@@ -10,6 +10,7 @@ public class ModeChanger : MonoBehaviour
     }
 
     [SerializeField] private Modes switchToMode;
+    public AK.Wwise.Event modeSwitch;
 
     GameObject player;
     BoxCollider2D playerCollider;
@@ -25,8 +26,10 @@ public class ModeChanger : MonoBehaviour
         if (collision == playerCollider) {
             if (switchToMode == Modes.MovementMode) {
                 playerScript.inStealthMode = false;
+                modeSwitch.Post(player.gameObject);
             } else {
                 playerScript.inStealthMode = true;
+                modeSwitch.Post(player.gameObject);
             }
         }   
     }

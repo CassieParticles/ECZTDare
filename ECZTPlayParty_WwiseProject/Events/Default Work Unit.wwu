@@ -52,7 +52,7 @@
 						<Action Name="" ID="{D86DD497-7C91-4E06-8A56-B5414A3949F8}" ShortID="661380949">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Camera_Stop" ID="{CD5C552E-7C38-4646-95B6-82CE35C27B32}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -274,7 +274,7 @@
 						<Action Name="" ID="{7817D131-D818-44B0-9351-89302A5441B0}" ShortID="126847969">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Camera_Stop" ID="{161FFCF5-76A6-419C-A6EC-DA413B8A3917}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Camera_Stop" ID="{CD5C552E-7C38-4646-95B6-82CE35C27B32}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -341,6 +341,50 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Guard_Lost_Emira" ID="{34D1D580-1C0D-4E12-B3A9-5D0206644A8B}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Conveyor_Belt" ID="{D335CE8C-B38D-4EBD-B640-D6E36204E833}">
+					<ChildrenList>
+						<Action Name="" ID="{4435FF29-2624-4DCC-87E7-A5D8E8ADF6C0}" ShortID="298211988">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Conveyor_Belt" ID="{A30F8D10-CF24-48FF-AA12-F7DF92B4E5B1}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Player_Mode_Shift" ID="{A67BCC4C-4246-462C-8411-F34CDA300EC1}">
+					<ChildrenList>
+						<Action Name="" ID="{93393BBA-B223-4113-A349-2D712C57BD0C}" ShortID="1028606909">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Hack_Fail" ID="{B787CF95-0589-48C8-A496-D2AA5EDE0D06}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Overseer_Ending" ID="{61D68016-8472-4819-9FC7-A53406DF690A}">
+					<ChildrenList>
+						<Action Name="" ID="{D0F69BD7-0475-4EA5-8AA8-6DF452C7A037}" ShortID="533107143">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="O_VO_NowhereLeftToGoEmira" ID="{01A0BC32-6634-4089-80BE-C272469704F8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_Refound_Emira" ID="{A680DF94-20DC-40E6-BD14-E73B30A2E60C}">
+					<ChildrenList>
+						<Action Name="" ID="{70C88929-9673-4AED-B9A1-0FC58CFE2B53}" ShortID="774957351">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Guard_Refound_Emira" ID="{BF4832DE-99CA-4493-9007-45DD6ED54C0F}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

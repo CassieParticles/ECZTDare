@@ -192,6 +192,19 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.BehaviourTick();
         CalcSuspicionIncrease();
 
+        if (lastFrameSuspicionState != suspicionState)
+        {
+            if(suspicionState < SuspicionState.HighAlert)
+            {
+                changeSpeed(walkSpeed);
+            }
+            if(suspicionState>=SuspicionState.HighAlert)
+            {
+                changeSpeed(alertSpeed);
+            }
+        }
+
+
         if(Math.Abs(agent.speed-desiredSpeed) < acceleration * Time.fixedDeltaTime)
         {
             agent.speed = desiredSpeed;
