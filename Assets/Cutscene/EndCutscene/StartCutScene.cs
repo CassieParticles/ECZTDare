@@ -42,7 +42,10 @@ public class StartCutScene : MonoBehaviour
             //Wait for player to be grounded
             waitForGrounded = true;
             player = playerScript;
-            player.transform.parent = GameObject.Find("Cutscene").transform;
+            player.transform.parent = transform.parent;
+
+            //Make player face right
+            player.facingRight= true;
         }
     }
 }
