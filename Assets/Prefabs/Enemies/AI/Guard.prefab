@@ -142,8 +142,9 @@ MonoBehaviour:
   patrolRoute: {fileID: 0}
   investigateAlarmLoc: 1
   footstepRate: 0.4
-  footstepRateScaler: 1
+  footstepRateScaler: 0.5
   walkSpeed: 5
+  alertSpeed: 10
   chaseSpeed: 15
   acceleration: 15
   chaseAlarmTimer: 3
