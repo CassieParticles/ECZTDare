@@ -639,6 +639,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 422859147733701173, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+      propertyPath: titleRain.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
+    - target: {fileID: 422859147733701173, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+      propertyPath: titleMusic.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b5408fca08601e42b8f336c2a2aa95d, type: 2}
     - target: {fileID: 435675503601647431, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -753,6 +761,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903826890386338791, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373155603696820663, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4808612037882058056, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}

@@ -795,7 +795,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 5358868839691465954}
-  timerScript: {fileID: 0}
 --- !u!1 &2277462491823278948
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,10 +996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63535e600cd875640a27d2288dbc9073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alarmSystem: {fileID: 0}
-  unaware: {fileID: 1944145054835897634}
-  alert: {fileID: 7541662658546617681}
-  alarm: {fileID: 7799177811351436141}
 --- !u!1 &2787413835989944277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,8 +1808,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 4122794352297239784}
+  HackingSlider: {fileID: 3391516957506159246}
+  BatterySlider: {fileID: 4122794352297239784}
   movementScript: {fileID: 0}
+  hackingScript: {fileID: 0}
 --- !u!1 &5446832864586665630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2595,7 +2592,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8713457484535885332}
   - component: {fileID: 3391516957506159246}
-  - component: {fileID: 3923421857671072240}
   m_Layer: 5
   m_Name: HackChargeBar
   m_TagString: Untagged
@@ -2678,20 +2674,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3923421857671072240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7636607134669454404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 3391516957506159246}
-  movementScript: {fileID: 0}
 --- !u!1 &7799177811351436141
 GameObject:
   m_ObjectHideFlags: 0
@@ -3083,5 +3065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 4164798974894034259}
+  HackingSlider: {fileID: 3391516957506159246}
+  BatterySlider: {fileID: 4164798974894034259}
   movementScript: {fileID: 0}
+  hackingScript: {fileID: 0}

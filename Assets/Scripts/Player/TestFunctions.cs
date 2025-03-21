@@ -18,6 +18,7 @@ public class TestFunctions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         //Send player back to main menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -30,6 +31,7 @@ public class TestFunctions : MonoBehaviour
             AkSoundEngine.StopAll(gameObject);
             SceneManager.LoadScene("Main Menu");
         }
+        */
 
         //Reset Alarm
         if (Input.GetKeyDown(KeyCode.M))

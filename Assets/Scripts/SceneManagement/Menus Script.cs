@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,6 +38,7 @@ public class MenuScript : MonoBehaviour
     bool menuOpen;
     bool settingsOpen;
 
+    public bool paused;
     uint pausedMusic;
 
     [NonSerialized] public bool muteAudio;
@@ -57,6 +60,12 @@ public class MenuScript : MonoBehaviour
     public void ChangeScene(string sceneName) {
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
+
+        if (sceneName == "Main Menu") {
+            OpenMenu();
+        } else {
+            CloseMenu();
+        }
 
         SceneManager.LoadScene(sceneName);
     }
@@ -87,7 +96,16 @@ public class MenuScript : MonoBehaviour
 
         menuOpen = true;
         settingsGroup.SetActive(false);
+        defaultMenuGroup.SetActive(true);
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu")) {
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "Menu");
+            //Sets the "Ambience" State Group's active State to "NoAmbience"
+            AkSoundEngine.SetState("Ambience", "Outside");
+            titleMusic.Post(gameObject);
+            titleRain.Post(gameObject);
+
+
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
             resumeButton.SetActive(false);
             playButton.SetActive(true);
@@ -97,11 +115,13 @@ public class MenuScript : MonoBehaviour
             mainMenuObjects.SetActive(true);
 
         } else {
-            AkSoundEngine.GetState(gameMusicScript.music.Id, out pausedMusic);
+           // AkSoundEngine.GetState("Music", out pausedMusic);
 
             //Sets the "Music" State Group's active State to "Hidden"
-            AkSoundEngine.SetState("Music", "Menu");
+            //AkSoundEngine.SetState("Music", "Menu");
+            //titleMusic.Post(gameObject);
 
+            paused = true;
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             Time.timeScale = 0f;
             playButton.SetActive(false);
@@ -114,11 +134,18 @@ public class MenuScript : MonoBehaviour
     }
 
     public void CloseMenu() {
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Main Menu")) {
-            AkSoundEngine.SetState(gameMusicScript.music.Id, pausedMusic);
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Main Menu") && pausedMusic != 0) {
+            //AkSoundEngine.SetState("Music", );
+            pausedMusic = 0;
         }
+        titleMusic.Stop(gameObject);
+        titleRain.Stop(gameObject);
 
+        paused = false;
         menuOpen = false;
+        defaultMenuGroup.SetActive(false);
+        settingsGroup.SetActive(false);
+        mainMenuObjects.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -163,17 +190,20 @@ public class MenuScript : MonoBehaviour
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
-        //Sets the "Music" State Group's active State to "Hidden"
-        AkSoundEngine.SetState("Music", "Menu");
-        //Sets the "Ambience" State Group's active State to "NoAmbience"
-        AkSoundEngine.SetState("Ambience", "Outside");
-
         OpenMenu();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu") {
+            if (!paused) {
+                OpenMenu();
+            } else {
+                CloseMenu();
+            }
+        }
+
         if (settingsOpen && menuOpen) {
             muteAudio = muteAudioToggle.isOn;
             if (muteAudio) {
@@ -191,7 +221,7 @@ public class MenuScript : MonoBehaviour
             ambienceVolume = ambienceVolumeSlider.value;
             AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
             if (!Input.GetMouseButton(0)) {
-                sliderSound.Stop(gameObject);
+                //sliderSound.Stop(gameObject);
             }
         }
     }
