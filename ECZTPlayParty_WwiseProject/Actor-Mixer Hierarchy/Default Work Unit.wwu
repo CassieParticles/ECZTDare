@@ -5441,7 +5441,7 @@
 								<ActiveSource Name="Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1" ID="{338BBEBC-7686-4A8A-BBBE-1A04787B0EDF}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Power_Generator" ID="{EA907656-9A76-4DC5-A9AF-33EC5663D0D4}" ShortID="354073850">
+						<Sound Name="Ambience_Power_Generator" ID="{EA907656-9A76-4DC5-A9AF-33EC5663D0D4}" ShortID="354073850">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
@@ -5474,7 +5474,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 								</Reference>
 								<Reference Name="UserAuxSend0">
 									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
@@ -5646,7 +5646,7 @@
 								<ActiveSource Name="Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507" ID="{D84881CC-157B-4505-A02A-7421BD0EDAC1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Conveyor_Belt" ID="{A30F8D10-CF24-48FF-AA12-F7DF92B4E5B1}" ShortID="408044896">
+						<Sound Name="Ambience_Conveyor_Belt" ID="{A30F8D10-CF24-48FF-AA12-F7DF92B4E5B1}" ShortID="408044896">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="Highpass" Type="int16">
@@ -5694,7 +5694,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 								</Reference>
 								<Reference Name="UserAuxSend0">
 									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
