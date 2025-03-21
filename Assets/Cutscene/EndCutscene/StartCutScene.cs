@@ -43,6 +43,9 @@ public class StartCutScene : MonoBehaviour
             waitForGrounded = true;
             player = playerScript;
             player.transform.parent = GameObject.Find("Cutscene").transform;
+
+            //Make player face right
+            player.facingRight= true;
         }
     }
 }
