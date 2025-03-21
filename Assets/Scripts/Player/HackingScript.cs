@@ -46,7 +46,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     // Update is called once per frame
     void Update()
     {
-        if (!menu.paused) {
+        if (!movementScript.InputLocked) {
             if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
                 hackCharge += hackChargeRate * Time.deltaTime;
             }

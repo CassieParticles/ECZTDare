@@ -18,6 +18,7 @@ public class MenuScript : MonoBehaviour
 
     GameObject resumeButton;
     GameObject playButton;
+    GameObject levelSelectButton;
     GameObject settingsButton;
     GameObject keybindsButton;
     GameObject quitButton;
@@ -33,11 +34,14 @@ public class MenuScript : MonoBehaviour
     GameObject defaultMenuGroup;
     GameObject settingsGroup;
     GameObject keybindsMenuGroup;
-    GameObject mainMenuObjects;
+
 
     bool menuOpen;
     bool settingsOpen;
+    bool switchingScene = false;
+    string previousScene;
 
+    bool canPause = true;
     public bool paused;
     uint pausedMusic;
 
@@ -61,14 +65,13 @@ public class MenuScript : MonoBehaviour
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
 
-        if (sceneName == "Main Menu") {
-            OpenMenu();
-        } else {
-            CloseMenu();
-        }
-
         SceneManager.LoadScene(sceneName);
+
+        switchingScene = true;
+        previousScene = SceneManager.GetActiveScene().name;
     }
+
+    
 
     public void ReturnToLevel() {
         buttonClick.Post(gameObject);
@@ -93,11 +96,12 @@ public class MenuScript : MonoBehaviour
     }
     public void OpenMenu() {
 
-
+        canPause = true;
         menuOpen = true;
-        settingsGroup.SetActive(false);
+        CloseSubMenu();
         defaultMenuGroup.SetActive(true);
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main Menu")) {
+        if (SceneManager.GetActiveScene().name == "Main Menu") {
+            Time.timeScale = 1f;
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "Menu");
             //Sets the "Ambience" State Group's active State to "NoAmbience"
@@ -107,12 +111,13 @@ public class MenuScript : MonoBehaviour
 
 
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
+            //GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
             resumeButton.SetActive(false);
             playButton.SetActive(true);
+            levelSelectButton.SetActive(true);
             toMainMenuButton.SetActive(false);
             quitButton.SetActive(true);
             playButton.GetComponent<Button>().Select();
-            mainMenuObjects.SetActive(true);
 
         } else {
            // AkSoundEngine.GetState("Music", out pausedMusic);
@@ -125,16 +130,16 @@ public class MenuScript : MonoBehaviour
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             Time.timeScale = 0f;
             playButton.SetActive(false);
+            levelSelectButton.SetActive(false);
             resumeButton.SetActive(true);
             quitButton.SetActive(false);
             toMainMenuButton.SetActive(true);
             resumeButton.GetComponent<Button>().Select();
-            mainMenuObjects.SetActive(false);
         }
     }
 
     public void CloseMenu() {
-        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("Main Menu") && pausedMusic != 0) {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && pausedMusic != 0) {
             //AkSoundEngine.SetState("Music", );
             pausedMusic = 0;
         }
@@ -145,7 +150,6 @@ public class MenuScript : MonoBehaviour
         menuOpen = false;
         defaultMenuGroup.SetActive(false);
         settingsGroup.SetActive(false);
-        mainMenuObjects.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -165,6 +169,7 @@ public class MenuScript : MonoBehaviour
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
         playButton = GameObject.Find("PlayButton");
+        levelSelectButton = GameObject.Find("LevelSelectButton");
         settingsButton = GameObject.Find("SettingsButton");
         keybindsButton = GameObject.Find("KeybindsButton");
         quitButton = GameObject.Find("QuitButton");
@@ -180,7 +185,6 @@ public class MenuScript : MonoBehaviour
         defaultMenuGroup = GameObject.Find("DefaultMenuGroup");
         settingsGroup = GameObject.Find("SettingsGroup");
         keybindsMenuGroup = GameObject.Find("KeybindsGroup");
-        mainMenuObjects = GameObject.Find("MainMenuObjects");
 
         //Set button functions
         resumeButton.GetComponent<Button>().onClick.AddListener(CloseMenu);
@@ -189,14 +193,26 @@ public class MenuScript : MonoBehaviour
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
-
-        OpenMenu();
+        if (SceneManager.GetActiveScene().name == "Main Menu") {
+            OpenMenu();
+        } else {
+            CloseMenu();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu") {
+        if (switchingScene && previousScene != SceneManager.GetActiveScene().name) {
+            switchingScene = false;
+            if (SceneManager.GetActiveScene().name == "Main Menu") {
+                OpenMenu();
+            } else {
+                CloseMenu();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
             if (!paused) {
                 OpenMenu();
             } else {
