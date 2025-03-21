@@ -41,6 +41,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private Animator guardMoveAnimation;
     private SpriteRenderer spriteRenderer;
 
+    //Disables user input, if set to true, also sets all movement to 0 (prevent directions being "held down")
+    [SerializeField]private bool inCutscene = false;
+
+
 
     public void changeSpeed(float speed)
     {
@@ -176,6 +180,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void FixedUpdate()
     {
+        if (inCutscene)
+        {
+            return;
+        }
+
         //Update animation parameters
         guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
         if (Mathf.Sign(agent.velocity.x) > 0)
