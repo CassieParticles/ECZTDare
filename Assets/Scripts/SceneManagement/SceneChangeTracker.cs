@@ -22,6 +22,7 @@ public class SceneChangeTracker : MonoBehaviour
         if (lastSceneName == null){ return; }
         SceneManager.LoadScene(lastSceneName);
         lastSceneName = null;
+        MainScoreController.GetInstance().Unpause();
     }
 
     private void Awake()

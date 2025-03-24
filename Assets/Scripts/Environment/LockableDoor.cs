@@ -35,11 +35,10 @@ public class LockableDoor : MonoBehaviour
         //Unlock door
         boxCollider.enabled = false;
         spriteRenderer.enabled = false;
+        doorHum.Stop(gameObject);
         RebuildNavMesh();
 
         isLocked = false;
-        doorHum.Stop(gameObject);
-
     }
 
     public void ToggleState()

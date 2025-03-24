@@ -111,6 +111,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
                 if (alarm && !alarm.AlarmGoingOff())
                 {
                     alarm.StartAlarm(Player.transform.position);
+                    StealthScoreTracker.GetTracker().DeductPoints(StealthScoreTracker.Sources.SeenByCamera);
                 }
             }
         }

@@ -27,7 +27,7 @@ public class ChaseState : BaseState
         if(!hasChasedBefore && StealthScoreTracker.GetTracker())
         {
             hasChasedBefore = true;
-            StealthScoreTracker.GetTracker().RemoveScore(100);
+            StealthScoreTracker.GetTracker().DeductPoints(StealthScoreTracker.Sources.SeenByGuard);
         }
         guardBehaviour.changeSpeed(guardBehaviour.chaseSpeed);
     }
