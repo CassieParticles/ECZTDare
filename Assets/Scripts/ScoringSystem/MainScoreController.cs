@@ -6,86 +6,77 @@ using UnityEngine.SceneManagement;
 
 public class MainScoreController : MonoBehaviour
 {
-    private static MainScoreController instance;
+    //Prefabs for instantiation
     [SerializeField] GameObject TimerObjectPrefab;
     [SerializeField] GameObject StealthObjectPrefab;
 
-    private ScoreTimer TimerObject;
-    private StealthScoreTracker StealthObject;
+    //static field 
+    private static MainScoreController instance;
 
-    private float timeTaken;
-    private float stealthScore;
+    //Current section tracking variables
+    bool currentlyScoring;
+    ScoreTimer timer;
+    StealthScoreTracker stealthTracker;
+
+    //Level tracking
+    List<float> times;
+    List<float> stealthScores;
+
+
+
+    public void StartSection()
+    {
+        //Don't start tracking twice
+        if (currentlyScoring){ return; }
+        currentlyScoring = true;
+
+        timer = Instantiate(TimerObjectPrefab).GetComponent<ScoreTimer>();
+        stealthTracker = Instantiate(StealthObjectPrefab).GetComponent<StealthScoreTracker>();
+    }
+
+    public void Pause()
+    {
+        timer.paused = true;
+    }
+
+    public void Unpause()
+    {
+        timer.paused = false;
+    }
+
+    public void EndSection()
+    {
+        //Only end section if it was tracking
+        if(!currentlyScoring){ return; }
+        currentlyScoring = false;
+
+        //Add scores to list
+        times.Add(timer.time);
+        stealthScores.Add(stealthTracker.score);
+
+        //Destroy old stealth objects
+        Destroy(timer.gameObject);
+        Destroy(stealthTracker.gameObject);
+    }
     private void Awake()
     {
-        //Ensure object always exists
-        if(instance)
+        //Ensure only one instance can exist at any one time
+        if (instance)
         {
             Destroy(gameObject);
-            return;
         }
-        instance = this;
-        DontDestroyOnLoad(gameObject);
 
-        SceneManager.sceneLoaded += ChangeLevel;
+        times = new List<float>();
+        stealthScores = new List<float>();
     }
 
-    void ChangeLevel(Scene scene, LoadSceneMode mode)
+    private void OnDestroy()
     {
-        if(scene.name == "Level1")
+        if(currentlyScoring)
         {
-            StartTimer();
+            //Destroy old stealth objects
+            Destroy(timer.gameObject);
+            Destroy(stealthTracker.gameObject);
         }
-        if(scene.name == "WinScreen")
-        {
-            DisplayScore();
-        }
-        if(scene.name=="LoseScene")
-        {
-            PauseTimer();
-        }
-    }
-
-    public static MainScoreController GetInstance()
-    {
-        return instance;
-    }
-
-    public void StartTimer()
-    {
-        //First load
-        if(TimerObject== null)
-        {
-            TimerObject = Instantiate(TimerObjectPrefab).GetComponent<ScoreTimer>();
-            StealthObject = Instantiate(StealthObjectPrefab).GetComponent<StealthScoreTracker>();
-            timeTaken = 0;
-            stealthScore = 0;
-        }
-        else//Unpause (coming back from dead)
-        {
-            TimerObject.paused = false;
-        }
-    }
-
-    public void PauseTimer()
-    {
-        TimerObject.paused = true;
-    }
-
-    public void StopTimer()
-    {
-        timeTaken = TimerObject.time;
-        stealthScore = StealthObject.score;
-        Debug.Log("Time taken: " + timeTaken);
-        Destroy(TimerObject.gameObject);
-        Destroy(StealthObject.gameObject);
-        TimerObject = null;
-        StealthObject = null;
-    }
-
-    private void DisplayScore()
-    {
-        TimerToGrade gradeCalculator = GetComponent<TimerToGrade>();
-
-        gradeCalculator.DisplayGrade(timeTaken,stealthScore);
     }
 }
