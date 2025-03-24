@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainScoreController : MonoBehaviour
 {
@@ -15,7 +11,7 @@ public class MainScoreController : MonoBehaviour
     private static MainScoreController instance;
 
     //Current section tracking variables
-    bool currentlyScoring;
+    bool currentlyScoring = false;
     ScoreTimer timer;
     StealthScoreTracker stealthTracker;
 
@@ -86,6 +82,10 @@ public class MainScoreController : MonoBehaviour
         //TODO: Add score to leaderboard
 
         //TODO: Display leaderboard
+
+        //Destroy Main score controller
+        instance = null;
+        Destroy(gameObject);
     }
     private void Awake()
     {
@@ -93,8 +93,10 @@ public class MainScoreController : MonoBehaviour
         if (instance)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(gameObject);
 
         times = new List<float>();
         stealthScores = new List<float>();
