@@ -1634,6 +1634,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a23bb8da0449586478f23e02d5450c88, type: 3}
+--- !u!114 &562079662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 829914114578879023, guid: a23bb8da0449586478f23e02d5450c88, type: 3}
+  m_PrefabInstance: {fileID: 562079661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d781e75c8e2684ca40214782219990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &565990199
 GameObject:
   m_ObjectHideFlags: 0
@@ -80982,6 +80993,18 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 494000573}
+    - target: {fileID: 3849774247308664504, guid: 0255e123aec566743b971afe4ebfbfb2, type: 3}
+      propertyPath: doors.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849774247308664504, guid: 0255e123aec566743b971afe4ebfbfb2, type: 3}
+      propertyPath: 'doors.Array.data[0]'
+      value: 
+      objectReference: {fileID: 494000573}
+    - target: {fileID: 3849774247308664504, guid: 0255e123aec566743b971afe4ebfbfb2, type: 3}
+      propertyPath: 'doors.Array.data[1]'
+      value: 
+      objectReference: {fileID: 562079662}
     - target: {fileID: 8232641599956979701, guid: 0255e123aec566743b971afe4ebfbfb2, type: 3}
       propertyPath: m_Name
       value: LockDoorButton
