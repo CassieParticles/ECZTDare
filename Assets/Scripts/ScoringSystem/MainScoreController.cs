@@ -22,8 +22,6 @@ public class MainScoreController : MonoBehaviour
     List<float> times;
     List<float> stealthScores;
 
-
-
     public void StartSection()
     {
         //Don't start tracking twice
@@ -57,6 +55,27 @@ public class MainScoreController : MonoBehaviour
         //Destroy old stealth objects
         Destroy(timer.gameObject);
         Destroy(stealthTracker.gameObject);
+    }
+
+    public void EndLevel()
+    {
+        //If currently on a section, end it
+        EndSection();
+
+        //TODO: Ask the user for a 3 letter name (continue in separate function)
+
+        //Collect scores into cumulative score
+        float totalTime = 0;
+        float totalStealthScore = 0;
+        for(int i=0;i<times.Count;++i)
+        {
+            totalTime += times[i];
+            totalStealthScore += stealthScores[i];
+        }
+
+        //TODO: Add score to leaderboard
+
+        //TODO: Display leaderboard
     }
     private void Awake()
     {
