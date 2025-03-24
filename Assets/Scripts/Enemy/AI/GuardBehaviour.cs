@@ -123,6 +123,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void CatchPlayer()
     {
+        StealthScoreTracker.GetTracker().DeductPoints(StealthScoreTracker.Sources.Caught);
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "NoMusic");
         musicHandler.music.Stop(gameObject);
