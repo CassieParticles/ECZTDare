@@ -87,6 +87,14 @@ public class MainScoreController : MonoBehaviour
         instance = null;
         Destroy(gameObject);
     }
+
+    public void Quit()
+    {
+        //Destroy scoring object
+        Destroy(gameObject);
+    }
+
+
     private void Awake()
     {
         //Ensure only one instance can exist at any one time
@@ -106,7 +114,7 @@ public class MainScoreController : MonoBehaviour
     {
         if(currentlyScoring)
         {
-            //Destroy old stealth objects
+            //Destroy active scoring trackers
             Destroy(timer.gameObject);
             Destroy(stealthTracker.gameObject);
         }
