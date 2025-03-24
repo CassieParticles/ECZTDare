@@ -11,13 +11,13 @@ public class DoorButton : MonoBehaviour
     };
 
     [SerializeField] private Action action = Action.Unlock;
-    [SerializeField] private LockableDoor door;
+    [SerializeField] private LockableDoor[] doors;
     private UIModeChange uiModeChange;
     [SerializeField] private bool isCollectable;
 
     private void Awake()
     {
-        if(!door || isCollectable)
+        if(doors.Length==0 || isCollectable)
         {
             gameObject.SetActive(false);
         }
@@ -31,13 +31,22 @@ public class DoorButton : MonoBehaviour
             switch (action)
             {
                 case Action.Lock:
-                    door.Lock();
+                    foreach(LockableDoor door in doors)
+                    {
+                        door.Lock();
+                    }
                     break;
                 case Action.Unlock:
-                    door.Unlock();
+                    foreach (LockableDoor door in doors)
+                    {
+                        door.Unlock();
+                    }
                     break;
                 case Action.Toggle:
-                    door.ToggleState();
+                    foreach (LockableDoor door in doors)
+                    {
+                        door.ToggleState();
+                    }
                     break;
             }
             if (isCollectable)
