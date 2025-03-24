@@ -18,7 +18,9 @@ public class ConveyorHackable : Hackable
         toggled = false;
     }
 
-    public override void OnHack() {
+    public override void OnHack() 
+    {
+        base.OnHack();
         toggled = !toggled;
         currentSpeed = toggled ? hackedSpeed : defaultSpeed;
         Cooldown();
