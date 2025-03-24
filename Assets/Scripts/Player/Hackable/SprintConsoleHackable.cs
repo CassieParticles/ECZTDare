@@ -7,6 +7,7 @@ public class SprintConsoleHackable : Hackable
     [SerializeField] private LockableDoor door;
     public override void OnHack()
     {
+        base.OnHack();
         //Unlock door
         door.Unlock();
         //Unlock sprint

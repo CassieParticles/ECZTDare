@@ -14,7 +14,7 @@ public class DoorHackable : Hackable
     }
     public override void OnHack()
     {
-        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackingNoiseRadius, 15, AudioSource.Hacked);
+        base.OnHack();
         door.ToggleState();
         Hack_Start.Post(gameObject);
     }
