@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,10 @@ public class MainScoreController : MonoBehaviour
     List<float> times;
     List<float> stealthScores;
 
+    public static MainScoreController GetInstance()
+    {
+        return instance;
+    }
     public void StartSection()
     {
         //Don't start tracking twice
@@ -52,9 +57,14 @@ public class MainScoreController : MonoBehaviour
         times.Add(timer.time);
         stealthScores.Add(stealthTracker.score);
 
+        Debug.Log(timer.time);
+        Debug.Log(stealthTracker.score);
+
         //Destroy old stealth objects
         Destroy(timer.gameObject);
         Destroy(stealthTracker.gameObject);
+
+        //TODO: Display score in cool and fancy way
     }
 
     public void EndLevel()
@@ -84,6 +94,7 @@ public class MainScoreController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        instance = this;
 
         times = new List<float>();
         stealthScores = new List<float>();
