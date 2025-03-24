@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
@@ -23,6 +24,7 @@ public class MenuScript : MonoBehaviour
     GameObject keybindsButton;
     GameObject quitButton;
     GameObject toMainMenuButton;
+    GameObject nextLevelButton;
 
     Toggle muteAudioToggle;
     Slider masterVolumeSlider;
@@ -33,13 +35,20 @@ public class MenuScript : MonoBehaviour
 
     GameObject defaultMenuGroup;
     GameObject settingsGroup;
-    GameObject keybindsMenuGroup;
+    GameObject keybindsGroup;
+    GameObject levelsGroup;
+    GameObject winGroup;
+    GameObject loseGroup;
 
+    GameObject player;
 
     bool menuOpen;
     bool settingsOpen;
     bool switchingScene = false;
     string previousScene;
+
+    bool won = false;
+    bool lost = false;
 
     bool canPause = true;
     public bool paused;
@@ -66,7 +75,7 @@ public class MenuScript : MonoBehaviour
         buttonClick.Post(gameObject);
 
         SceneManager.LoadScene(sceneName);
-
+        Time.timeScale = 1;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
     }
@@ -163,6 +172,29 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
     }
 
+    public void Win() {
+        canPause = false;
+        Time.timeScale = 0;
+        winGroup.SetActive(true);
+        nextLevelButton.GetComponent<Button>().Select();
+    }
+    
+    public void Lose() {
+        canPause = false;
+        if (!loseGroup.activeSelf) {
+            player = GameObject.Find("Player");
+            player.SetActive(false);
+            loseGroup.SetActive(true);
+            StartCoroutine(LoseDelay(1));
+        }
+    }
+
+    IEnumerator LoseDelay(int seconds) {
+        yield return new WaitForSeconds(seconds);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        loseGroup.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -174,6 +206,7 @@ public class MenuScript : MonoBehaviour
         keybindsButton = GameObject.Find("KeybindsButton");
         quitButton = GameObject.Find("QuitButton");
         toMainMenuButton = GameObject.Find("MainMenuButton");
+        nextLevelButton = GameObject.Find("NextLevelButton");
 
         muteAudioToggle = GameObject.Find("MuteAudioToggle").GetComponent<Toggle>();
         masterVolumeSlider = GameObject.Find("Master Volume").GetComponent<Slider>();
@@ -183,8 +216,11 @@ public class MenuScript : MonoBehaviour
         ambienceVolumeSlider = GameObject.Find("Ambience Volume").GetComponent<Slider>();
 
         defaultMenuGroup = GameObject.Find("DefaultMenuGroup");
+        levelsGroup = GameObject.Find("LevelsGroup");
         settingsGroup = GameObject.Find("SettingsGroup");
-        keybindsMenuGroup = GameObject.Find("KeybindsGroup");
+        keybindsGroup = GameObject.Find("KeybindsGroup");
+        winGroup = GameObject.Find("WinGroup");
+        loseGroup = GameObject.Find("LoseGroup");
 
         //Set button functions
         resumeButton.GetComponent<Button>().onClick.AddListener(CloseMenu);
@@ -193,11 +229,17 @@ public class MenuScript : MonoBehaviour
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
+
+        winGroup.SetActive(false);
+        loseGroup.SetActive(false);
+
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
             CloseMenu();
         }
+
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

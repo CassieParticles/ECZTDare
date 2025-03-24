@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class GuardBehaviour : BaseEnemyBehaviour
 {
+    MenuScript menu;
+
     AlarmMusicHandler musicHandler;
     [SerializeField] private PatrolRoute patrolRoute;
     [SerializeField] private bool investigateAlarmLoc = false;
@@ -126,7 +128,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Sets the "Music" State Group's active State to "Hidden"
         AkSoundEngine.SetState("Music", "NoMusic");
         musicHandler.music.Stop(gameObject);
-        SceneChangeTracker.GetTracker().ChangeScene("LoseScene");
+        menu.Lose();
     }
 
     private void Awake()
@@ -162,6 +164,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void Start()
     {
+        menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
+
         musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
         if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
         

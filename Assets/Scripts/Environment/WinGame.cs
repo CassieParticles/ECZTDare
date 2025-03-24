@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class WinGame : MonoBehaviour
 {
+    MenuScript menu;
+
+    private void Start() {
+        menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Stop the clock
@@ -12,6 +18,6 @@ public class WinGame : MonoBehaviour
             scoreController.StopTimer();
             Debug.Log("Stop the clock!");
         }
-        SceneManager.LoadScene("WinScreen");
+        menu.Win();
     }
 }
