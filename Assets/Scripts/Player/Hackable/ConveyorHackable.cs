@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class ConveyorHackable : Hackable
 {
+    public AK.Wwise.Event ConveyorBelt;
+
     [SerializeField] float defaultSpeed = 4f;
     [SerializeField] float hackedSpeed = -4f;
     public float currentSpeed;
     private bool toggled;
 
     void Awake() {
+        ConveyorBelt.Post(gameObject);
         currentSpeed = defaultSpeed;
         toggled = false;
     }
 
-    public override void OnHack() {
+    public override void OnHack() 
+    {
+        base.OnHack();
         toggled = !toggled;
         currentSpeed = toggled ? hackedSpeed : defaultSpeed;
         Cooldown();

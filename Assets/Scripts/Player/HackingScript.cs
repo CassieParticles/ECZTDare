@@ -25,11 +25,14 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     public float hackCharge = 100;
     public bool hasHacked = false;
 
+    MenuScript menu;
+
     // Start is called before the first frame update
     void Start()
     {
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         reticle = GameObject.Find("HackingReticle");
+        menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
         movementScript = GetComponent<MovementScript>();
 
         if (controls == null) {
@@ -43,52 +46,54 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     // Update is called once per frame
     void Update()
     {
-        if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
-            hackCharge += hackChargeRate * Time.deltaTime;
-        }
+        if (!movementScript.InputLocked) {
+            if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
+                hackCharge += hackChargeRate * Time.deltaTime;
+            }
 
-        hackInput = hackAction.ReadValue<float>() > 0;
-        if (!hackInput) {
-            hasHacked = false;
-        }
+            hackInput = hackAction.ReadValue<float>() > 0;
+            if (!hackInput) {
+                hasHacked = false;
+            }
 
-        target = null;
-        float distance = 1000;
+            target = null;
+            float distance = 1000;
         
-        //Finds the closest hackable object
-        foreach (Hackable hackable in FindObjectsByType<Hackable>(FindObjectsSortMode.None)) {
+            //Finds the closest hackable object
+            foreach (Hackable hackable in FindObjectsByType<Hackable>(FindObjectsSortMode.None)) {
 
-            //Needs to be on screen to be considered
-            if (mainCamera.WorldToViewportPoint(hackable.transform.position).x > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).x < 0.03f ||
-                mainCamera.WorldToViewportPoint(hackable.transform.position).y > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).y < 0.03f) {
-                continue;
-            }
+                //Needs to be on screen to be considered
+                if (mainCamera.WorldToViewportPoint(hackable.transform.position).x > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).x < 0.03f ||
+                    mainCamera.WorldToViewportPoint(hackable.transform.position).y > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).y < 0.03f) {
+                    continue;
+                }
             
-            //Needs to free so it can be hacked
-            if (hackable.beingHacked == true) {
-                continue;
-            }
+                //Needs to free so it can be hacked
+                if (hackable.beingHacked == true) {
+                    continue;
+                }
 
-            //Makes a vector and gets its direction
-            Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            //bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
-            //If within range and in the direction the player is facing
-            if (MouseToHackableVector.magnitude < distance) {
-                //Debug.Log("Found hackable in range");
-                target = hackable;
-                distance = MouseToHackableVector.magnitude;
+                //Makes a vector and gets its direction
+                Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                //bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
+                //If within range and in the direction the player is facing
+                if (MouseToHackableVector.magnitude < distance && hackable.enabled) {
+                    //Debug.Log("Found hackable in range");
+                    target = hackable;
+                    distance = MouseToHackableVector.magnitude;
+                }
             }
-        }
-        if (target  != null) {
-            reticle.SetActive(true);
-            reticle.transform.position = target.transform.position;
-        } else {
-            reticle.SetActive(false);
+            if (target  != null) {
+                reticle.SetActive(true);
+                reticle.transform.position = target.transform.position;
+            } else {
+                reticle.SetActive(false);
+            }
         }
     }
 
     public void OnHacking(InputAction.CallbackContext context) {
-        if (target != null && !hasHacked) {
+        if (target != null && !hasHacked && !menu.paused) {
             if (hackCharge >= 100f / hackCharges) {
                 //If the target is currently being hacked dont let it
                 target.OnHack();

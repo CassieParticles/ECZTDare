@@ -36,7 +36,7 @@ public class CameraHackable : Hackable
 
     public override void OnHack()
     {
-        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackingNoiseRadius, 15, AudioSource.Hacked);
+        base.OnHack();
         StartCoroutine(HackCamera());
     }
 }

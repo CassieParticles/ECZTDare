@@ -8,12 +8,16 @@ public class SettingsButtonScript : MonoBehaviour {
     public AK.Wwise.Event buttonClick;
 
     public enum Controls {
-        //RunningLeft,
-        //RunningRight,
+        RunningLeft,
+        RunningRight,
         Jumping,
         Sliding,
         BoostCloaking,
         Hacking,
+    }
+
+    public void Awake() {
+        controls = GameObject.Find("PlayerControls").GetComponent<PlayerControls.GameplayControlsActions>();
     }
 
     public void RemapInput(Controls reboundAction) {
