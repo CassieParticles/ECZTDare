@@ -7,7 +7,7 @@ public class MainScoreController : MonoBehaviour
     [SerializeField] GameObject TimerObjectPrefab;
     [SerializeField] GameObject StealthObjectPrefab;
 
-    [SerializeField] GameObject L1B1ScoreCutscenePrefab;
+    [SerializeField] GameObject ScoreCutscenePrefab;
 
     //static field 
     private static MainScoreController instance;
@@ -37,15 +37,17 @@ public class MainScoreController : MonoBehaviour
 
     public void Pause()
     {
+        if (timer == null){ return; }
         timer.paused = true;
     }
 
     public void Unpause()
     {
+        if (timer == null){ return; }
         timer.paused = false;
     }
 
-    public void EndSection()
+    public void EndSection(bool endOfLevel)
     {
         //Only end section if it was tracking
         if(!currentlyScoring){ return; }
@@ -66,14 +68,14 @@ public class MainScoreController : MonoBehaviour
         Destroy(stealthTracker.gameObject);
 
         //TODO: Display score in cool and fancy way
-        GameObject cutscene = Instantiate(L1B1ScoreCutscenePrefab);
-        cutscene.GetComponent<L1B1CutsceneControl>().DisplayScore(time, stealth);
+        GameObject cutscene = Instantiate(ScoreCutscenePrefab);
+        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth,endOfLevel);
     }
 
     public void EndLevel()
     {
         //If currently on a section, end it
-        EndSection();
+        EndSection(true);
 
         //TODO: Ask the user for a 3 letter name (continue in separate function)
 
