@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5316275121469345405}
   - component: {fileID: -59831837120397572}
   - component: {fileID: 100350412857784360}
+  - component: {fileID: 2470803817919111763}
   m_Layer: 2
   m_Name: SprintConsoleUnlock
   m_TagString: Untagged
@@ -175,3 +176,15 @@ PolygonCollider2D:
       - {x: -1, y: -0.046875}
       - {x: -0.96875, y: -0.046875}
   m_UseDelaunayMesh: 0
+--- !u!114 &2470803817919111763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2222860974541054296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1f3942bbc288640b8927bfcc420c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
