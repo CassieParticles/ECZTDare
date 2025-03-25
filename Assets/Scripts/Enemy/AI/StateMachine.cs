@@ -55,6 +55,11 @@ public class StateMachine
     }
     public void BehaviourTick()
     {
+        if(currentState == GuardStates.StateChangedExternally)
+        {
+            Debug.Log("Error, guard state set to StateChangedExternally");
+
+        }
         GuardStates newState = states[currentState].RunTick();
         if(newState==GuardStates.StateChangedExternally)    //Do not update if this is returned
         {

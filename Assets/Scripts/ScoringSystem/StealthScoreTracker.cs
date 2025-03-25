@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class StealthScoreTracker : MonoBehaviour
 {
-    [SerializeField] float InitialScore = 10000;
-    [SerializeField] float SeenByCameraCost = 100;
-    [SerializeField] float SeenByGuardCost = 300;
-    [SerializeField] float CaughtCost = 1000;
+    [SerializeField] int InitialScore = 10000;
+    [SerializeField] int SeenByCameraCost = 100;
+    [SerializeField] int SeenByGuardCost = 300;
+    [SerializeField] int CaughtCost = 1000;
     public enum Sources
     {
         SeenByCamera,
@@ -15,7 +15,7 @@ public class StealthScoreTracker : MonoBehaviour
         Caught
     }
 
-    public float score { get; private set; }
+    public int score { get; private set; }
     private void Awake()
     {
         score = InitialScore;
