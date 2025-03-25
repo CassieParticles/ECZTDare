@@ -69,11 +69,13 @@ public class MenuScript : MonoBehaviour
         } else {
             instance = this;
             DontDestroyOnLoad(this);
+            Starts();
         }
     }
     public void ChangeScene(string sceneName) {
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
+        canPause = true;
 
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
@@ -258,10 +260,11 @@ public class MenuScript : MonoBehaviour
         {
             MainScoreController.GetInstance().Unpause();
         }
+        canPause = true;
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Starts()
     {
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
