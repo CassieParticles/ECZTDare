@@ -16,6 +16,8 @@ public class CutsceneControl : MonoBehaviour
     Rigidbody2D playerRB;
     Vector2 freezeVelocity;
 
+    bool endOfLevel;
+
     private IEnumerator FreezePlayer(Rigidbody2D playerRB)
     {
         yield return new WaitForSeconds(0.5f);
@@ -27,7 +29,7 @@ public class CutsceneControl : MonoBehaviour
         director=GetComponent<PlayableDirector>();
     }
 
-    public void DisplayScore(float timeTaken, int stealthScore)
+    public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel)
     {
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
@@ -73,6 +75,8 @@ public class CutsceneControl : MonoBehaviour
         player.InputLocked = true;
         freezeVelocity = playerRB.velocity;
         StartCoroutine(FreezePlayer(playerRB));
+
+        this.endOfLevel = endOfLevel;
     }
 
     public void EndCutscene()
@@ -85,5 +89,16 @@ public class CutsceneControl : MonoBehaviour
 
         Destroy(ScoreGUI);
         ScoreGUI = null;
+
+        //Non-final cutscene ends here
+        if (!endOfLevel)
+        { return; }
+        //Start final cutscene
+
+        Debug.Log("End of level");
+        if(FindAnyObjectByType<MenuScript>())
+        {
+            FindAnyObjectByType<MenuScript>().Win();
+        }
     }
 }

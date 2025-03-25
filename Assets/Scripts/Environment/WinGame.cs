@@ -12,7 +12,10 @@ public class WinGame : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Stop the clock
-        MainScoreController.GetInstance().EndLevel();
-        menu.Win();
+        if(MainScoreController.GetInstance())
+        {
+            MainScoreController.GetInstance().EndLevel();
+        }
+        //menu.Win();
     }
 }

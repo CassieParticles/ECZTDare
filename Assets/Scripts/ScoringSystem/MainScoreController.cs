@@ -45,7 +45,7 @@ public class MainScoreController : MonoBehaviour
         timer.paused = false;
     }
 
-    public void EndSection()
+    public void EndSection(bool endOfLevel)
     {
         //Only end section if it was tracking
         if(!currentlyScoring){ return; }
@@ -67,13 +67,13 @@ public class MainScoreController : MonoBehaviour
 
         //TODO: Display score in cool and fancy way
         GameObject cutscene = Instantiate(ScoreCutscenePrefab);
-        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth);
+        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth,endOfLevel);
     }
 
     public void EndLevel()
     {
         //If currently on a section, end it
-        EndSection();
+        EndSection(true);
 
         //TODO: Ask the user for a 3 letter name (continue in separate function)
 
