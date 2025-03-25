@@ -170,6 +170,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     InputAction jumpAction;
     InputAction slideAction;
     InputAction boostCloakAction;
+    ControlsScript controlsScript;
 
     //The hasActioned variables are so that the player cannot hold in the key to keep jumping forever, or slide many times in a row by just holding in the key
     [NonSerialized] public int runInput;
@@ -241,10 +242,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
 
         //Setup inputs
+        controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
+        controls = controlsScript.controls;
         if (controls == null) {
             controls = new PlayerControls();
-            controls.GameplayControls.SetCallbacks(this);
         }
+        controls.GameplayControls.SetCallbacks(this);
         controls.GameplayControls.Enable();
         runAction = controls.FindAction("Running");
         jumpAction = controls.FindAction("Jumping");

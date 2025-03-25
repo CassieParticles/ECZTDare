@@ -211,6 +211,8 @@ public class MenuScript : MonoBehaviour
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
+        GetComponent<ControlsScript>().controls.Enable();
+
         Time.timeScale = 1f;
     }
 
@@ -323,8 +325,10 @@ public class MenuScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
             if (!paused) {
                 OpenMenu();
+                GetComponent<ControlsScript>().controls.Disable();
             } else {
                 CloseMenu();
+                GetComponent<ControlsScript>().controls.Enable();
             }
         }
 
