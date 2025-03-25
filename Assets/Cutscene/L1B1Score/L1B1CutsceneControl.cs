@@ -16,7 +16,6 @@ public class L1B1CutsceneControl : MonoBehaviour
     private void Awake()
     {
         director=GetComponent<PlayableDirector>();
-        DisplayScore(30, 70);
     }
 
     public void DisplayScore(float timeTaken, int stealthScore)
@@ -43,11 +42,10 @@ public class L1B1CutsceneControl : MonoBehaviour
                 case "TimeTaken":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(1).gameObject);
                     break;
-                case "Speed":
+                case "StealthScore":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(2).gameObject);
                     break;
-
-                case "StealthScore":
+                case "Speed":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(3).gameObject);
                     break;
                 case "Stealth":
@@ -58,5 +56,11 @@ public class L1B1CutsceneControl : MonoBehaviour
 
         //Start cutscene
         director.Play();
+    }
+
+    public void EndCutscene()
+    {
+        Destroy(ScoreGUI);
+        ScoreGUI = null;
     }
 }

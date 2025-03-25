@@ -7,6 +7,8 @@ public class MainScoreController : MonoBehaviour
     [SerializeField] GameObject TimerObjectPrefab;
     [SerializeField] GameObject StealthObjectPrefab;
 
+    [SerializeField] GameObject L1B1ScoreCutscenePrefab;
+
     //static field 
     private static MainScoreController instance;
 
@@ -49,18 +51,23 @@ public class MainScoreController : MonoBehaviour
         if(!currentlyScoring){ return; }
         currentlyScoring = false;
 
-        //Add scores to list
-        times.Add(timer.time);
-        stealthScores.Add(stealthTracker.score);
+        float time = timer.time;
+        int stealth = stealthTracker.score;
 
-        Debug.Log(timer.time);
-        Debug.Log(stealthTracker.score);
+        //Add scores to list
+        times.Add(time);
+        stealthScores.Add(stealth);
+
+        Debug.Log(time);
+        Debug.Log(stealth);
 
         //Destroy old stealth objects
         Destroy(timer.gameObject);
         Destroy(stealthTracker.gameObject);
 
         //TODO: Display score in cool and fancy way
+        GameObject cutscene = Instantiate(L1B1ScoreCutscenePrefab);
+        cutscene.GetComponent<L1B1CutsceneControl>().DisplayScore(time, stealth);
     }
 
     public void EndLevel()
