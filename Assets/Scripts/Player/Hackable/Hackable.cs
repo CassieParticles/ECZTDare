@@ -7,7 +7,11 @@ public abstract class Hackable : MonoBehaviour
 {
     [NonSerialized] public bool beingHacked;
     [SerializeField] protected float hackingNoiseRadius = 10.0f;
-    public abstract void OnHack();
+    public virtual void OnHack() 
+    {
+        AudioDetectionSystem.getAudioSystem().PlaySound(transform.position, hackingNoiseRadius, 15, AudioSource.Hacked);
+    }
+
 
     private void OnDrawGizmosSelected()
     {

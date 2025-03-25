@@ -7,6 +7,7 @@ public class CloakConsoleHackable : Hackable
     [SerializeField] LockableDoor door;
     public override void OnHack()
     {
+        base.OnHack();
         //Unlock door
         door.Unlock();
 

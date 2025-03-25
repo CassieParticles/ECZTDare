@@ -103,6 +103,15 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(CloseSubMenu);
     }
+
+    public void ResetAudioSettings() {
+        muteAudioToggle.isOn = false;
+        masterVolumeSlider.value = 80;
+        musicVolumeSlider.value = 80;
+        soundVolumeSlider.value = 80;
+        dialogueVolumeSlider.value = 80;
+        ambienceVolumeSlider.value = 80;
+    }
     public void OpenMenu() {
 
         canPause = true;
