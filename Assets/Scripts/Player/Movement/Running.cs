@@ -13,7 +13,7 @@ public class Running
 
     public void Accelerate(int runInput) {
         if (!player.onWall) {
-            player.facingRight = Convert.ToBoolean((runInput + 1 + 0.01) / 2);
+            player.facingRight = Convert.ToBoolean((runInput + 1) / 2);
         }
         player.rb.velocityX += runInput * player.effectiveAcceleration * Time.deltaTime;
         if (Mathf.Sign(player.rb.velocityX) == runInput * -1) {
