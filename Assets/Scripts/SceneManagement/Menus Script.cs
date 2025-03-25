@@ -204,7 +204,7 @@ public class MenuScript : MonoBehaviour
         menuOpen = false;
 
         defaultMenuGroup.SetActive(false);
-        slideshowGroup.SetActive(false); ;
+        slideshowGroup.SetActive(false);
         levelsGroup.SetActive(false);
         settingsGroup.SetActive(false);
         keybindsGroup.SetActive(false);
