@@ -13,10 +13,13 @@ public class CutsceneControl : MonoBehaviour
     GameObject ScoreGUI;
     PlayableDirector director;
 
-    private IEnumerator FreezePlayer()
+    Rigidbody2D playerRB;
+    Vector2 freezeVelocity;
+
+    private IEnumerator FreezePlayer(Rigidbody2D playerRB)
     {
         yield return new WaitForSeconds(0.5f);
-        FindAnyObjectByType<MovementScript>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        playerRB.bodyType = RigidbodyType2D.Static;
     }
 
     private void Awake()
@@ -65,8 +68,11 @@ public class CutsceneControl : MonoBehaviour
 
         //Pause player
         MovementScript player = FindAnyObjectByType<MovementScript>();
+        playerRB = player.GetComponent<Rigidbody2D>();
+
         player.InputLocked = true;
-        StartCoroutine(FreezePlayer());
+        freezeVelocity = playerRB.velocity;
+        StartCoroutine(FreezePlayer(playerRB));
     }
 
     public void EndCutscene()
@@ -74,7 +80,8 @@ public class CutsceneControl : MonoBehaviour
         //Unpause player
         MovementScript player = FindAnyObjectByType<MovementScript>();
         player.InputLocked = false;
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        playerRB.bodyType = RigidbodyType2D.Dynamic;
+        playerRB.velocity = freezeVelocity;
 
         Destroy(ScoreGUI);
         ScoreGUI = null;
