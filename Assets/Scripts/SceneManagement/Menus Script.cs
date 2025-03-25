@@ -252,6 +252,10 @@ public class MenuScript : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         loseGroup.SetActive(false);
+        if(MainScoreController.GetInstance())
+        {
+            MainScoreController.GetInstance().Unpause();
+        }
     }
 
     // Start is called before the first frame update

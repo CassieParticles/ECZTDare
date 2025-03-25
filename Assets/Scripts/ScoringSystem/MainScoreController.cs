@@ -37,11 +37,13 @@ public class MainScoreController : MonoBehaviour
 
     public void Pause()
     {
+        if (timer == null){ return; }
         timer.paused = true;
     }
 
     public void Unpause()
     {
+        if (timer == null){ return; }
         timer.paused = false;
     }
 
