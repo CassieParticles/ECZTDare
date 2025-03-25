@@ -13,6 +13,12 @@ public class CutsceneControl : MonoBehaviour
     GameObject ScoreGUI;
     PlayableDirector director;
 
+    private IEnumerator FreezePlayer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        FindAnyObjectByType<MovementScript>().GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+    }
+
     private void Awake()
     {
         director=GetComponent<PlayableDirector>();
@@ -56,10 +62,20 @@ public class CutsceneControl : MonoBehaviour
 
         //Start cutscene
         director.Play();
+
+        //Pause player
+        MovementScript player = FindAnyObjectByType<MovementScript>();
+        player.InputLocked = true;
+        StartCoroutine(FreezePlayer());
     }
 
     public void EndCutscene()
     {
+        //Unpause player
+        MovementScript player = FindAnyObjectByType<MovementScript>();
+        player.InputLocked = false;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
         Destroy(ScoreGUI);
         ScoreGUI = null;
     }

@@ -7,7 +7,7 @@ public class MainScoreController : MonoBehaviour
     [SerializeField] GameObject TimerObjectPrefab;
     [SerializeField] GameObject StealthObjectPrefab;
 
-    [SerializeField] GameObject L1B1ScoreCutscenePrefab;
+    [SerializeField] GameObject ScoreCutscenePrefab;
 
     //static field 
     private static MainScoreController instance;
@@ -66,7 +66,7 @@ public class MainScoreController : MonoBehaviour
         Destroy(stealthTracker.gameObject);
 
         //TODO: Display score in cool and fancy way
-        GameObject cutscene = Instantiate(L1B1ScoreCutscenePrefab);
+        GameObject cutscene = Instantiate(ScoreCutscenePrefab);
         cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth);
     }
 
