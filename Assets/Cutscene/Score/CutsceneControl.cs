@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
-public class L1B1CutsceneControl : MonoBehaviour
+public class CutsceneControl : MonoBehaviour
 {
     [SerializeField] GameObject ScoreGUIPrefab;
 

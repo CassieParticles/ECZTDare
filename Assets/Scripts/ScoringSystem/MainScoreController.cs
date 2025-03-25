@@ -67,7 +67,7 @@ public class MainScoreController : MonoBehaviour
 
         //TODO: Display score in cool and fancy way
         GameObject cutscene = Instantiate(L1B1ScoreCutscenePrefab);
-        cutscene.GetComponent<L1B1CutsceneControl>().DisplayScore(time, stealth);
+        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth);
     }
 
     public void EndLevel()
