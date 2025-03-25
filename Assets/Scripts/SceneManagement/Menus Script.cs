@@ -34,6 +34,7 @@ public class MenuScript : MonoBehaviour
     Slider ambienceVolumeSlider;
 
     GameObject defaultMenuGroup;
+    GameObject slideshowGroup;
     GameObject settingsGroup;
     GameObject keybindsGroup;
     GameObject levelsGroup;
@@ -74,6 +75,9 @@ public class MenuScript : MonoBehaviour
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
 
+        winGroup.SetActive(false);
+        loseGroup.SetActive(false);
+
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
         switchingScene = true;
@@ -94,14 +98,44 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenSlideshow() {
+        buttonClick.Post(gameObject);
+
+        CloseSubMenu();
+        if (SceneManager.GetActiveScene().name == "Main Menu") {
+            slideshowGroup.SetActive(true);
+        }
+    }
+
     public void OpenSettings() {
         buttonClick.Post(gameObject);
 
-        //defaultMenuGroup.GetComponent<RectTransform>().anchoredPosition = new Vector3(-600, -100, 0);
+        CloseSubMenu();
+
         settingsOpen = true;
         settingsGroup.SetActive(true);
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        settingsButton.GetComponent<Button>().onClick.AddListener(CloseSubMenu);
+        settingsButton.GetComponent<Button>().onClick.AddListener(OpenSlideshow);
+    }
+
+    public void OpenLevelSelect() {
+        buttonClick.Post(gameObject);
+        
+        CloseSubMenu();
+
+        levelsGroup.SetActive(true);
+        levelSelectButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        levelSelectButton.GetComponent<Button>().onClick.AddListener(OpenSlideshow);
+    }
+
+    public void OpenKeybinds() {
+        buttonClick.Post(gameObject);
+
+        CloseSubMenu();
+
+        keybindsGroup.SetActive(true);
+        keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        keybindsButton.GetComponent<Button>().onClick.AddListener(OpenSlideshow);
     }
 
     public void ResetAudioSettings() {
@@ -113,7 +147,8 @@ public class MenuScript : MonoBehaviour
         ambienceVolumeSlider.value = 80;
     }
     public void OpenMenu() {
-
+        winGroup.SetActive(false);
+        loseGroup.SetActive(false);
         canPause = true;
         menuOpen = true;
         CloseSubMenu();
@@ -127,6 +162,7 @@ public class MenuScript : MonoBehaviour
             titleMusic.Post(gameObject);
             titleRain.Post(gameObject);
 
+            slideshowGroup.SetActive(true);
 
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
             //GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -166,19 +202,33 @@ public class MenuScript : MonoBehaviour
 
         paused = false;
         menuOpen = false;
+
         defaultMenuGroup.SetActive(false);
+        slideshowGroup.SetActive(false); ;
+        levelsGroup.SetActive(false);
         settingsGroup.SetActive(false);
+        keybindsGroup.SetActive(false);
+        winGroup.SetActive(false);
+        loseGroup.SetActive(false);
+
         Time.timeScale = 1f;
     }
 
     public void CloseSubMenu() {
-        buttonClick.Post(gameObject);
+        slideshowGroup.SetActive(false);
+
+        levelsGroup.SetActive(false);
+        levelSelectButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        levelSelectButton.GetComponent<Button>().onClick.AddListener(OpenLevelSelect);
 
         settingsOpen = false;
         settingsGroup.SetActive(false);
-        //defaultMenuGroup.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -100, 0);
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
+
+        keybindsGroup.SetActive(false);
+        keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        keybindsButton.GetComponent<Button>().onClick.AddListener(OpenKeybinds);
     }
 
     public void Win() {
@@ -225,6 +275,7 @@ public class MenuScript : MonoBehaviour
         ambienceVolumeSlider = GameObject.Find("Ambience Volume").GetComponent<Slider>();
 
         defaultMenuGroup = GameObject.Find("DefaultMenuGroup");
+        slideshowGroup = GameObject.Find("SlideshowGroup");
         levelsGroup = GameObject.Find("LevelsGroup");
         settingsGroup = GameObject.Find("SettingsGroup");
         keybindsGroup = GameObject.Find("KeybindsGroup");
@@ -239,6 +290,11 @@ public class MenuScript : MonoBehaviour
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
+        defaultMenuGroup.SetActive(true);
+        slideshowGroup.SetActive(true);
+        levelsGroup.SetActive(false);
+        settingsGroup.SetActive(false);
+        keybindsGroup.SetActive(false);
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
@@ -256,6 +312,7 @@ public class MenuScript : MonoBehaviour
     {
         if (switchingScene && previousScene != SceneManager.GetActiveScene().name) {
             switchingScene = false;
+            CloseSubMenu();
             if (SceneManager.GetActiveScene().name == "Main Menu") {
                 OpenMenu();
             } else {
