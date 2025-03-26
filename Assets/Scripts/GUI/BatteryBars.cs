@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SprintBar : MonoBehaviour
+public class BatteryBar : MonoBehaviour
 {
     public Slider HackingSlider;
-    public Slider BatterySlider;
+    public Slider BoostSlider;
+    public Slider CloakSlider;
     public MovementScript movementScript;
     public HackingScript hackingScript;
     // [SerializeField] private Image sliderFill;
@@ -20,14 +21,17 @@ public class SprintBar : MonoBehaviour
         //fetch movement script
         movementScript = GameObject.Find("Player").GetComponent<MovementScript>();
         hackingScript = GameObject.Find("Player").GetComponent<HackingScript>();
-
+        
     }
 
     void FixedUpdate()
     {
         //changes the size of the bar depending on how full it is.
- 
-        BatterySlider.value = movementScript.batteryCharge;
+        if (movementScript.boostCloakUnlocked && movementScript.inStealthMode) {
+            CloakSlider.value = movementScript.batteryCharge;
+        } else if (movementScript.boostCloakUnlocked) {
+            BoostSlider.value = movementScript.batteryCharge;
+        }
         HackingSlider.value = hackingScript.hackCharge;
         //changes the colour of the bar depending on how full it is
       //  if (movementScript.boostCharge < 66 && movementScript.boostCharge > 33)
