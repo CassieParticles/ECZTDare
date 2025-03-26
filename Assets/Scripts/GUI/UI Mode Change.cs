@@ -52,5 +52,6 @@ public class UIModeChange : MonoBehaviour
         boostBar.SetActive(false);
         player.batteryCharge = 100;
         player.boostCloakUnlocked = true;
+        player.inStealthMode = true;
     }
 }
