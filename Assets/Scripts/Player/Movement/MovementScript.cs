@@ -208,7 +208,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     //reference to the ui mode change script
     private UIModeChange uiModeChange;
-    private void Awake() {
+    private void Start() {
         layers = new LayerMask();
         layers = 0b0110011;
 
@@ -243,11 +243,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //Setup inputs
         controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
-        controls = controlsScript.controls;
-        if (controls == null) {
+        if (controlsScript != null) {
+            controls = controlsScript.controls;
+            controls.GameplayControls.SetCallbacks(this);
+        } else {
             controls = new PlayerControls();
+            controls.GameplayControls.SetCallbacks(this);
         }
-        controls.GameplayControls.SetCallbacks(this);
         controls.GameplayControls.Enable();
         runAction = controls.FindAction("Running");
         jumpAction = controls.FindAction("Jumping");
