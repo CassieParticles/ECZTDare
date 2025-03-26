@@ -1,5 +1,7 @@
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Subtitle : MonoBehaviour
@@ -22,7 +24,7 @@ public class Subtitle : MonoBehaviour
     private bool writing = false;
     private bool writingCoroutine;
     [NonSerialized] public string writtenText = "";
-    //private int textNumber = 0;
+    private int textNumber = 0;
     private bool finished = false;
     private bool waiting = false;
     private float timer;
@@ -34,9 +36,10 @@ public class Subtitle : MonoBehaviour
         subtitleManager = GameObject.Find("SubtitleText").GetComponent<SubtitleManager>();
     }
 
-    private void StartSubtitle() {
+    public void StartSubtitle(string subtitle) {
         //float writingDuration = text.Length / writingSpeed;
         //timer = writingDuration;
+        text = subtitle;
         if (!subtitleManager.subtitles.Contains(this)) {
             writing = true;
             subtitleManager.AddSubtitle(this);
@@ -61,7 +64,7 @@ public class Subtitle : MonoBehaviour
         if (turnOn) {
             turnOn = false;
             if (!writing || !finished || !waiting) {
-                StartSubtitle();
+                StartSubtitle("Testinggg");
             }
         }
 

@@ -1,14 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
     public AK.Wwise.Event inViewCone;
     public AK.Wwise.Event enemyAlerted;
-    public AK.Wwise.Event foundEmira;
-    public AK.Wwise.Event lostEmira;
+    public List<AK.Wwise.Event> foundEmira;
+    public List<AK.Wwise.Event> lostEmira;
+    public List<string> foundEmiraText;
+    public List<string> lostEmiraText;
+
+    private Subtitle subtitle;
+    private List<AK.Wwise.Event> currentFoundEmira;
+    private List<AK.Wwise.Event> currentLostEmira;
+    private List<string> currentFoundEmiraText;
+    private List<string> currentLostEmiraText;
+
+    private void Start() {
+        subtitle = GetComponent<Subtitle>();
+        RefreshVoicelines("found");
+        RefreshVoicelines("lost");
+    }
+
+    private void RefreshVoicelines(string type) {
+        if (type == "found") {
+            currentFoundEmira = foundEmira;
+            currentFoundEmiraText = foundEmiraText;
+        } else {
+            currentLostEmira = lostEmira;
+            currentLostEmiraText = lostEmiraText;
+
+        }
+    }
 
     public enum SuspicionState
     {
@@ -137,7 +163,17 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 UpdateSuspicionColour();
                 if (playedSound)
                 {
-                    lostEmira.Post(this.gameObject);
+
+                    int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
+                    lostEmira[randomVoiceline].Post(this.gameObject);
+                    subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
+                    if (lostEmira.Count <= 2) {
+                        RefreshVoicelines("found");
+                    } else {
+                        lostEmira.RemoveAt(randomVoiceline);
+                        lostEmiraText.RemoveAt(randomVoiceline);
+                    }
+
                 }
                 playedSound = false;
             }
@@ -153,7 +189,17 @@ public class BaseEnemyBehaviour : MonoBehaviour
                     playedSound = true;
                     //Play sound
                     enemyAlerted.Post(this.gameObject);
-                    foundEmira.Post(this.gameObject);
+
+
+                    int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
+                    foundEmira[randomVoiceline].Post(this.gameObject);
+                    subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
+                    if (foundEmira.Count <= 2) {
+                        RefreshVoicelines("lost");
+                    } else {
+                        foundEmira.RemoveAt(randomVoiceline);
+                        lostEmiraText.RemoveAt(randomVoiceline);
+                    }
 
                 }
             }

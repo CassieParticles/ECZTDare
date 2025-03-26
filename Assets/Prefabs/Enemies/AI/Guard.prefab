@@ -95,6 +95,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 175983420094448613, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4623136316713770826}
+    - targetCorrespondingSourceObject: {fileID: 175983420094448613, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4831647212103667969}
   m_SourcePrefab: {fileID: 100100000, guid: 149c72241c1c8d849884382a453ce58c, type: 3}
 --- !u!1 &4935825828034518257 stripped
 GameObject:
@@ -122,13 +125,41 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 4f042ddc73787a34895f16e35538e71d, type: 2}
   foundEmira:
-    idInternal: 0
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: f208946fd51755c4698295a2f2ac9585, type: 2}
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   lostEmira:
-    idInternal: 0
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: be855210eddb95440a929745747911e1, type: 2}
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  foundEmiraText:
+  - 
+  - 
+  - 
+  - 
+  lostEmiraText:
+  - 
+  - 
+  - 
+  - 
   SuspicionLevel:
   - 0
   - 40
@@ -153,6 +184,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 78dc46f3fa092684c892a1d580ac65a6, type: 2}
   PointOfInterest: {x: 0, y: 0, z: 0}
+  inCutscene: 0
 --- !u!212 &8843118248058542516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -297,3 +329,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4831647212103667969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935825828034518257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f7ff190e7491348bafe6b5aa4be87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  duration: 3
+  SubtitleMode: 0
+  writingSpeed: 0
+  jarblerSpeed: 0
+  turnOn: 0
