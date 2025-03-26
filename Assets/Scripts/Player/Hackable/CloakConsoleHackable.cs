@@ -18,5 +18,8 @@ public class CloakConsoleHackable : Hackable
 
         //Give cloak
         player.boostCloakUnlocked = true;
+
+        //Disable hacking
+        enabled = false;
     }
 }
