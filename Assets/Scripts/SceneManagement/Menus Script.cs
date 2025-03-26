@@ -53,6 +53,7 @@ public class MenuScript : MonoBehaviour
 
     bool canPause = true;
     public bool paused;
+    public bool keybindsOpen;
     uint pausedMusic;
 
     [NonSerialized] public bool muteAudio;
@@ -153,6 +154,7 @@ public class MenuScript : MonoBehaviour
 
         CloseSubMenu();
 
+        keybindsOpen = true;
         keybindsGroup.SetActive(true);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenSlideshow);
@@ -222,12 +224,10 @@ public class MenuScript : MonoBehaviour
 
         paused = false;
         menuOpen = false;
+        
+        CloseSubMenu();
 
         defaultMenuGroup.SetActive(false);
-        slideshowGroup.SetActive(false);
-        levelsGroup.SetActive(false);
-        settingsGroup.SetActive(false);
-        keybindsGroup.SetActive(false);
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
@@ -248,6 +248,7 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
 
+        keybindsOpen = false;
         keybindsGroup.SetActive(false);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenKeybinds);
