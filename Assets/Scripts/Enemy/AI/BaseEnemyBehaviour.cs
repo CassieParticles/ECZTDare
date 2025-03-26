@@ -62,6 +62,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         Player = player;
         inViewCone.Post(gameObject);
+        
         //Handle other "seeing the player" stuff
     }
 
@@ -163,8 +164,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SetSuspicionState(SuspicionState level)
     {
         suspicionState = level;
-        
         suspicion = Mathf.Max(SuspicionLevel[(int)level] + 1,suspicion);
+
+        //Update vision cone visual
+        visionCone.RecalcConeTex();
     }
 
     /// <summary>
@@ -174,6 +177,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         if (suspicion < SuspicionLevel[3])
         {
+            //Update vision cone visual
+            visionCone.RecalcConeTex();
             suspicion += calcSuspicionIncreaseRate(Player);
         }
 
@@ -186,6 +191,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         if (suspicion > minimumSuspicion + suspicionDecayRate * Time.fixedDeltaTime)
         {
+            //Update vision cone visual
+            visionCone.RecalcConeTex();
             suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
         }
     }
