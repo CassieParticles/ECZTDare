@@ -14,6 +14,7 @@ public class CheckpointManager : MonoBehaviour
         if(m_Instance)
         {
             Destroy(gameObject);
+            return;
         }
         m_Instance = this;
         DontDestroyOnLoad(gameObject);
@@ -53,6 +54,13 @@ public class CheckpointManager : MonoBehaviour
         {
             Respawn();
         }
+    }
+
+    public void Quit()
+    {
+        Destroy(gameObject);
+        m_Instance = null;
+        SceneManager.sceneLoaded -= SceneLoad;
     }
 
     public void Respawn()

@@ -10,6 +10,9 @@ public class Boost
     public void StartBoosting() {
         //If the player is sliding, take them out of it
         if (player.sliding) {
+            if (!player.canEndSlide) {
+                return;
+            }
             //Stops the slide sound.
             player.playerSlide.Stop(player.gameObject);
 

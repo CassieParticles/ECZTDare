@@ -72,13 +72,30 @@ public class MenuScript : MonoBehaviour
             Starts();
         }
     }
-    public void ChangeScene(string sceneName) {
+    public void ChangeScene(string sceneName)
+    {
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
         canPause = true;
 
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
+
+        MainScoreController scoreController = MainScoreController.GetInstance();
+        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
+        //DEstroy the main score controller when quitting
+
+        if (scoreController)
+        {
+            scoreController.Quit();
+        }
+
+        
+        checkpointManager.Quit();
+    
+        
+
+        
 
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;

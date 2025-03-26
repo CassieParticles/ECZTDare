@@ -13,7 +13,7 @@ public class MainScoreController : MonoBehaviour
     private static MainScoreController instance;
 
     //Current section tracking variables
-    bool currentlyScoring = false;
+    public bool currentlyScoring { get; private set; } = false;
     ScoreTimer timer;
     StealthScoreTracker stealthTracker;
 
