@@ -6,6 +6,7 @@ public class ParallaxScript : MonoBehaviour
 {
     //How much the parallax effects
     [SerializeField,Range(0,1)] float parallaxPower = 0.5f;
+    [SerializeField] float width;
     
     //Camera being followed
     GameObject camera;
