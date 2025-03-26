@@ -8,6 +8,8 @@ public class StealthScoreTracker : MonoBehaviour
     [SerializeField] int SeenByCameraCost = 100;
     [SerializeField] int SeenByGuardCost = 300;
     [SerializeField] int CaughtCost = 1000;
+
+    public int MaxScore { get; private set; }
     public enum Sources
     {
         SeenByCamera,
@@ -19,6 +21,7 @@ public class StealthScoreTracker : MonoBehaviour
     private void Awake()
     {
         score = InitialScore;
+        MaxScore = InitialScore;
         DontDestroyOnLoad(gameObject);
     }
 

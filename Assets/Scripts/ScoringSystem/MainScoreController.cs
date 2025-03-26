@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MainScoreController : MonoBehaviour
@@ -19,7 +20,8 @@ public class MainScoreController : MonoBehaviour
 
     //Level tracking
     List<float> times;
-    List<float> stealthScores;
+    List<int> stealthScores;
+    int maxStealth;
 
     public static MainScoreController GetInstance()
     {
@@ -59,6 +61,7 @@ public class MainScoreController : MonoBehaviour
         //Add scores to list
         times.Add(time);
         stealthScores.Add(stealth);
+        maxStealth += stealthTracker.MaxScore;
 
         Debug.Log(time);
         Debug.Log(stealth);
@@ -77,24 +80,46 @@ public class MainScoreController : MonoBehaviour
         //If currently on a section, end it
         EndSection(true);
 
-        //TODO: Ask the user for a 3 letter name (continue in separate function)
-
         //Collect scores into cumulative score
         float totalTime = 0;
-        float totalStealthScore = 0;
-        for(int i=0;i<times.Count;++i)
+        int totalStealthScore = 0;
+        for (int i = 0; i < times.Count; ++i)
         {
             totalTime += times[i];
             totalStealthScore += stealthScores[i];
         }
 
-        //TODO: Add score to leaderboard
+        GameObject Menu = GameObject.Find("Menu Canvas");
+        TextMeshProUGUI speedText = Menu.transform.Find("WinGroup/SpeedScoreText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI stealthText = Menu.transform.Find("WinGroup/StealthScoreText").GetComponent<TextMeshProUGUI>();
 
-        //TODO: Display leaderboard
+        //Format the time taken into mm:ss
+        int minutes = (int)totalTime / 60;
+        int seconds = (int)totalTime % 60;
+
+        string timeStr = minutes.ToString();    //Minutes
+        timeStr += ":";
+        timeStr += seconds.ToString();
+
+        //Format the stealth score into Score/MaxScore
+        string stealthScore = totalStealthScore.ToString();
+        stealthScore += ":";
+        stealthScore += maxStealth.ToString();
+
+        //Show score in win screen
+        speedText.text = timeStr;
+        stealthText.text = stealthScore;
 
         //Destroy Main score controller
         instance = null;
         Destroy(gameObject);
+    }
+
+    public void EndLevelCont()
+    {
+
+
+
     }
 
     public void Quit()
@@ -116,7 +141,8 @@ public class MainScoreController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         times = new List<float>();
-        stealthScores = new List<float>();
+        stealthScores = new List<int>();
+        maxStealth = 0;
     }
 
     private void OnDestroy()
