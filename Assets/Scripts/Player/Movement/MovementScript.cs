@@ -502,7 +502,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //If you arent on a wall or you are moving upwards, you wont slide down a wall
         if (!grounded && (!onWall || rb.velocityY > 0)) {
-            if (rb.velocityY < fastFallActivationSpeed || (!Input.GetKey(KeyCode.Space) && !minJumpActive)) {
+            if (rb.velocityY < fastFallActivationSpeed || (!jumpInput && !minJumpActive)) {
 
                 jumpScript.Falling();
 
