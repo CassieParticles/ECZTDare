@@ -85,6 +85,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(Alarm);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
+        visionCone.RecalcConeTex();
     }
 
     private void FixedUpdate()
