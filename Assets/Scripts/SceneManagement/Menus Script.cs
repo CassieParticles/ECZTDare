@@ -85,8 +85,12 @@ public class MenuScript : MonoBehaviour
         CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
         //DEstroy the main score controller when quitting
 
-        scoreController.Quit();
+        if (scoreController)
+        {
+            scoreController.Quit();
+        }
 
+        
         checkpointManager.Quit();
     
         
