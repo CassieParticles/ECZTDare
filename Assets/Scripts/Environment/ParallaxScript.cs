@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Analytics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ParallaxScript : MonoBehaviour
 {
@@ -27,10 +29,12 @@ public class ParallaxScript : MonoBehaviour
     private void Update()
     {
         //Get how far the camera has moved
-        float deltaFromStart = ((camera.transform.position.x - camStartX) * parallaxPower);
+        float deltaFromStart = (camera.transform.position.x) * parallaxPower;
 
+        //Update parallax
         Vector3 newPos = transform.position;
         newPos.x = startX+deltaFromStart;
         transform.position = newPos;
     }
+
 }
