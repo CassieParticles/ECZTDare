@@ -36,8 +36,16 @@ public class CutsceneControl : MonoBehaviour
         GameObject TimeScoreText = ScoreGUI.transform.GetChild(3).gameObject;
         GameObject StealthScoreText = ScoreGUI.transform.GetChild(4).gameObject;
 
+        //Format the time taken into mm:ss
+        int minutes = (int)timeTaken / 60;
+        int seconds = (int)timeTaken % 60;
+
+        string timeStr=minutes.ToString();    //Minutes
+        timeStr += ":";
+        timeStr += seconds.ToString();
+
         //Update text with score
-        TimeScoreText.GetComponent<TextMeshProUGUI>().text = timeTaken.ToString();
+        TimeScoreText.GetComponent<TextMeshProUGUI>().text = timeStr;
         StealthScoreText.GetComponent<TextMeshProUGUI>().text = stealthScore.ToString();
 
         //Set up Bindings
@@ -93,10 +101,13 @@ public class CutsceneControl : MonoBehaviour
         //Non-final cutscene ends here
         if (!endOfLevel)
         { return; }
-        //Start final cutscene
 
+        //Play final cutscene showing players score
+        MainScoreController.GetInstance().EndLevelCont();
+
+        //End level
         Debug.Log("End of level");
-        if(FindAnyObjectByType<MenuScript>())
+        if (FindAnyObjectByType<MenuScript>())
         {
             FindAnyObjectByType<MenuScript>().Win();
         }

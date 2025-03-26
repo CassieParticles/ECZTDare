@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CloakConsoleHackable : Hackable
 {
+    MovementScript player;
     [SerializeField] LockableDoor door;
+
+    private void Start() {
+        player = GameObject.Find("Player").GetComponent<MovementScript>();
+    }
     public override void OnHack()
     {
         base.OnHack();
@@ -12,5 +17,6 @@ public class CloakConsoleHackable : Hackable
         door.Unlock();
 
         //Give cloak
+        player.boostCloakUnlocked = true;
     }
 }
