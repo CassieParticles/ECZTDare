@@ -34,10 +34,11 @@ public class VisionCone : MonoBehaviour
     public void SetColour(Color colour)
     {
         coneColour = colour;
-        RecalcCone();
+        RecalcConeTex();
     }
 
-    private void RecalcCone()
+    //Recalculate the texture used for the vision cone (colour and suspicion)
+    public void RecalcConeTex()
     {
         Color[] colourArray = new Color[128];
         float susRange = 128 * Enemy.suspicion / 100.0f;
