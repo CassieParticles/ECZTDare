@@ -102,9 +102,6 @@ public class CutsceneControl : MonoBehaviour
         if (!endOfLevel)
         { return; }
 
-        //Play final cutscene showing players score
-        MainScoreController.GetInstance().EndLevelCont();
-
         //End level
         Debug.Log("End of level");
         if (FindAnyObjectByType<MenuScript>())
