@@ -9,6 +9,8 @@ public class ControlsScript : MonoBehaviour {
     public PlayerControls controls;
     public AK.Wwise.Event buttonClick;
 
+    MenuScript menu;
+
     GameObject rebindLeftButton;
     GameObject rebindRightButton;
     GameObject rebindJumpButton;
@@ -41,6 +43,7 @@ public class ControlsScript : MonoBehaviour {
     public void Awake() {
         //controls = GameObject.Find("PlayerControls").GetComponent<PlayerControls.GameplayControlsActions>();
         controls = new PlayerControls();
+        menu = GetComponent<MenuScript>();
 
         rebindLeftButton = GameObject.Find("RebindLeftButton");
         rebindRightButton = GameObject.Find("RebindRightButton");
@@ -64,37 +67,39 @@ public class ControlsScript : MonoBehaviour {
     }
 
     public void Update() {
-        rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
-        rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
-        rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
-        rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-        rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
-        rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+        if (menu.keybindsOpen) {
+            rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
+            rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
+            rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+            rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+            rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+            rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
-        if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
-            resetRunButton.SetActive(true);
-        } else {
-            resetRunButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
-            resetJumpButton.SetActive(true);
-        } else {
-            resetJumpButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
-            resetSlideButton.SetActive(true);
-        } else {
-            resetSlideButton.SetActive(false);
-        }
-        if (controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
-            resetBoostCloakButton.SetActive(true);
-        } else {
-            resetBoostCloakButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
-            resetHackButton.SetActive(true);
-        } else {
-            resetHackButton.SetActive(false);
+            if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
+                resetRunButton.SetActive(true);
+            } else {
+                resetRunButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                resetJumpButton.SetActive(true);
+            } else {
+                resetJumpButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                resetSlideButton.SetActive(true);
+            } else {
+                resetSlideButton.SetActive(false);
+            }
+            if (controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                resetBoostCloakButton.SetActive(true);
+            } else {
+                resetBoostCloakButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                resetHackButton.SetActive(true);
+            } else {
+                resetHackButton.SetActive(false);
+            }
         }
     }
     public void RemapInput(string reboundAction) {

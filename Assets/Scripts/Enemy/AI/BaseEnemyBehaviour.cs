@@ -62,6 +62,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         Player = player;
         inViewCone.Post(gameObject);
+        
         //Handle other "seeing the player" stuff
     }
 
@@ -71,6 +72,25 @@ public class BaseEnemyBehaviour : MonoBehaviour
         Player = null;
         inViewCone.Stop(gameObject);
         //Handle other "losing the player" stuff
+    }
+
+    private void UpdateSuspicionColour()
+    {
+        switch (suspicionState)
+        {
+            case SuspicionState.Idle:
+                visionCone.SetColour(Color.white);
+                break;
+            case SuspicionState.Suspect:
+                visionCone.SetColour(Color.yellow);
+                break;
+            case SuspicionState.HighAlert:
+                visionCone.SetColour(new Color(1, 0.5f, 0));
+                break;
+            case SuspicionState.Chase:
+                visionCone.SetColour(Color.red);
+                break;
+        }
     }
 
     //Called on awake of overriden classes
@@ -92,37 +112,50 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
         if (suspicion < SuspicionLevel[1])  //Below suspect threshold
         {
-            suspicionState = SuspicionState.Idle;
-            visionCone.SetColour(Color.white);
-            playedSound = false;
+            if(suspicionState!=SuspicionState.Idle)
+            {
+                suspicionState = SuspicionState.Idle;
+                UpdateSuspicionColour();
+                playedSound = false;
+            }
+            
         }
         else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
         {
-            suspicionState = SuspicionState.Suspect;
-            visionCone.SetColour(Color.yellow);
-            playedSound = false;
+            if (suspicionState != SuspicionState.Suspect)
+            {
+                suspicionState = SuspicionState.Suspect;
+                UpdateSuspicionColour();
+                playedSound = false;
+            }
         }
         else if (suspicion < SuspicionLevel[3])  //Below chase threshold
         {
-            suspicionState = SuspicionState.HighAlert;
-            visionCone.SetColour(new Color(1, 0.5f, 0));
-            if (playedSound)
+            if (suspicionState != SuspicionState.HighAlert)
             {
-                lostEmira.Post(this.gameObject);
+                suspicionState = SuspicionState.HighAlert;
+                UpdateSuspicionColour();
+                if (playedSound)
+                {
+                    lostEmira.Post(this.gameObject);
+                }
+                playedSound = false;
             }
-            playedSound = false;
         }
         else
         {
-            suspicionState = SuspicionState.Chase;
-            visionCone.SetColour(new Color(1, 0, 0));
-            if(!playedSound)
+            if(suspicionState!=SuspicionState.Chase)
             {
-                playedSound = true;
-                //Play sound
-                enemyAlerted.Post(this.gameObject);
-                foundEmira.Post(this.gameObject);
+                suspicionState = SuspicionState.Chase;
+                UpdateSuspicionColour();
+                if (!playedSound)
+                {
+                    playedSound = true;
+                    //Play sound
+                    enemyAlerted.Post(this.gameObject);
+                    foundEmira.Post(this.gameObject);
 
+                }
             }
         }
     }
@@ -150,8 +183,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public void SetSuspicionState(SuspicionState level)
     {
         suspicionState = level;
-        
         suspicion = Mathf.Max(SuspicionLevel[(int)level] + 1,suspicion);
+
+        //Update vision cone visual
+        UpdateSuspicionColour();
     }
 
     /// <summary>
@@ -161,6 +196,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         if (suspicion < SuspicionLevel[3])
         {
+            //Update vision cone visual
+            visionCone.RecalcConeTex();
             suspicion += calcSuspicionIncreaseRate(Player);
         }
 
@@ -173,6 +210,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         if (suspicion > minimumSuspicion + suspicionDecayRate * Time.fixedDeltaTime)
         {
+            //Update vision cone visual
+            visionCone.RecalcConeTex();
             suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
         }
     }

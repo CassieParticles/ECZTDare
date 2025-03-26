@@ -10,6 +10,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     PlayerControls controls;
     InputAction hackAction;
     bool hackInput;
+    ControlsScript controlsScript;
 
     MovementScript movementScript;
     Camera mainCamera;
@@ -35,7 +36,11 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
         movementScript = GetComponent<MovementScript>();
 
-        if (controls == null) {
+        controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
+        if (controlsScript != null) {
+            controls = controlsScript.controls;
+            controls.GameplayControls.SetCallbacks(this);
+        } else {
             controls = new PlayerControls();
             controls.GameplayControls.SetCallbacks(this);
         }
@@ -54,6 +59,16 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
             hackInput = hackAction.ReadValue<float>() > 0;
             if (!hackInput) {
                 hasHacked = false;
+            } else if (target != null && !hasHacked && !menu.paused) {
+                if (hackCharge >= 100f / hackCharges) {
+                    //If the target is currently being hacked dont let it
+                    target.OnHack();
+                    hasHacked = true;
+                    hackCharge -= 100f / hackCharges;
+                } else {
+                    //Not enough charge
+                    Hack_Fail.Post(gameObject);
+                }
             }
 
             target = null;
@@ -93,7 +108,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     }
 
     public void OnHacking(InputAction.CallbackContext context) {
-        if (target != null && !hasHacked && !menu.paused) {
+        if (target != null && !hasHacked && menu.paused) {
             if (hackCharge >= 100f / hackCharges) {
                 //If the target is currently being hacked dont let it
                 target.OnHack();
