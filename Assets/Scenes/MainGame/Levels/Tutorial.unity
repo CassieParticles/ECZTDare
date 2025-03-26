@@ -11587,7 +11587,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 130.42, y: 23.07}
+  m_AnchoredPosition: {x: 112.83, y: 23.07}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368249237
@@ -12017,7 +12017,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockableDoor (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1493642875159732419, guid: a23bb8da0449586478f23e02d5450c88, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -12311,7 +12312,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockableDoor (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1493642875159732419, guid: a23bb8da0449586478f23e02d5450c88, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
