@@ -90,8 +90,9 @@ public class MenuScript : MonoBehaviour
             scoreController.Quit();
         }
 
-        
-        checkpointManager.Quit();
+        if (SceneManager.GetActiveScene().name != "Main Menu") {
+            checkpointManager.Quit();
+        }
     
         
 
