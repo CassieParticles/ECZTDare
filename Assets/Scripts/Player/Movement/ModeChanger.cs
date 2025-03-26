@@ -25,10 +25,10 @@ public class ModeChanger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision == playerCollider) {
             if (switchToMode == Modes.MovementMode) {
-                playerScript.inStealthMode = false;
+                playerScript.changeModeToStealth(false);
                 modeSwitch.Post(player.gameObject);
             } else {
-                playerScript.inStealthMode = true;
+                playerScript.changeModeToStealth(true);
                 modeSwitch.Post(player.gameObject);
             }
         }   

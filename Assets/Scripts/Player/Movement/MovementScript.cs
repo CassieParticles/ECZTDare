@@ -54,6 +54,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public BoxCollider2D collider;
     [NonSerialized] public SpriteRenderer spriteRenderer;
     [NonSerialized] public Animator animator;
+    [NonSerialized] public Animator modeHexAnimator;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
@@ -218,6 +219,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        modeHexAnimator = GameObject.Find("ModeSwitchHex").GetComponent<Animator>();
 
         alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
 
@@ -293,7 +295,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
-        changeModeToStealth(inStealthMode);
+        //changeModeToStealth(inStealthMode);
 
         if (Input.GetKey(KeyCode.L))
         {
@@ -645,6 +647,19 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     public void changeModeToStealth(bool mode) {
+        if (inStealthMode != mode) {
+            float animationTime = 1;
+            if (!modeHexAnimator.GetCurrentAnimatorStateInfo(0).IsName("Empty")) {
+                animationTime = modeHexAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            } else {
+
+            }
+            if (mode) {
+                modeHexAnimator.Play("MovementToStealth");
+            } else {
+                modeHexAnimator.Play("StealthToMovement");
+            }
+        }
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
