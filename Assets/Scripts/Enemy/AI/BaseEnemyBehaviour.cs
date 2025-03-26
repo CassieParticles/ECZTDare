@@ -92,37 +92,50 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
         if (suspicion < SuspicionLevel[1])  //Below suspect threshold
         {
-            suspicionState = SuspicionState.Idle;
-            visionCone.SetColour(Color.white);
-            playedSound = false;
+            if(suspicionState!=SuspicionState.Idle)
+            {
+                suspicionState = SuspicionState.Idle;
+                visionCone.SetColour(Color.white);
+                playedSound = false;
+            }
+            
         }
         else if (suspicion < SuspicionLevel[2]) //Below high alert threshold
         {
-            suspicionState = SuspicionState.Suspect;
-            visionCone.SetColour(Color.yellow);
-            playedSound = false;
+            if (suspicionState != SuspicionState.Suspect)
+            {
+                suspicionState = SuspicionState.Suspect;
+                visionCone.SetColour(Color.yellow);
+                playedSound = false;
+            }
         }
         else if (suspicion < SuspicionLevel[3])  //Below chase threshold
         {
-            suspicionState = SuspicionState.HighAlert;
-            visionCone.SetColour(new Color(1, 0.5f, 0));
-            if (playedSound)
+            if (suspicionState != SuspicionState.HighAlert)
             {
-                lostEmira.Post(this.gameObject);
+                suspicionState = SuspicionState.HighAlert;
+                visionCone.SetColour(new Color(1, 0.5f, 0));
+                if (playedSound)
+                {
+                    lostEmira.Post(this.gameObject);
+                }
+                playedSound = false;
             }
-            playedSound = false;
         }
         else
         {
-            suspicionState = SuspicionState.Chase;
-            visionCone.SetColour(new Color(1, 0, 0));
-            if(!playedSound)
+            if(suspicionState!=SuspicionState.Chase)
             {
-                playedSound = true;
-                //Play sound
-                enemyAlerted.Post(this.gameObject);
-                foundEmira.Post(this.gameObject);
+                suspicionState = SuspicionState.Chase;
+                visionCone.SetColour(new Color(1, 0, 0));
+                if (!playedSound)
+                {
+                    playedSound = true;
+                    //Play sound
+                    enemyAlerted.Post(this.gameObject);
+                    foundEmira.Post(this.gameObject);
 
+                }
             }
         }
     }
