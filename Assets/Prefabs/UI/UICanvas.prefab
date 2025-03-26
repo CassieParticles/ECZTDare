@@ -1715,7 +1715,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7923808366257929469}
   - component: {fileID: 4122794352297239784}
-  - component: {fileID: 7432907315274809439}
   m_Layer: 5
   m_Name: BoostBar
   m_TagString: Untagged
@@ -1796,22 +1795,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7432907315274809439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4727780574838130109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HackingSlider: {fileID: 3391516957506159246}
-  BatterySlider: {fileID: 4122794352297239784}
-  movementScript: {fileID: 0}
-  hackingScript: {fileID: 0}
 --- !u!1 &5446832864586665630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8713457484535885332}
   - component: {fileID: 3391516957506159246}
+  - component: {fileID: 2895911331308039909}
   m_Layer: 5
   m_Name: HackChargeBar
   m_TagString: Untagged
@@ -2674,6 +2658,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2895911331308039909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7636607134669454404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HackingSlider: {fileID: 3391516957506159246}
+  BoostSlider: {fileID: 4122794352297239784}
+  CloakSlider: {fileID: 4164798974894034259}
+  movementScript: {fileID: 0}
+  hackingScript: {fileID: 0}
 --- !u!1 &7799177811351436141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,7 +2973,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8642223967655985173}
   - component: {fileID: 4164798974894034259}
-  - component: {fileID: 1071150603518133290}
   m_Layer: 5
   m_Name: CloakBar
   m_TagString: Untagged
@@ -3053,19 +3053,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1071150603518133290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9045253345578160882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed13556b0fe7b7488359eae4440e49b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HackingSlider: {fileID: 3391516957506159246}
-  BatterySlider: {fileID: 4164798974894034259}
-  movementScript: {fileID: 0}
-  hackingScript: {fileID: 0}

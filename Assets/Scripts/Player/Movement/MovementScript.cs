@@ -120,7 +120,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
-    public float batteryCharge = 0; //The current boosting charge the player has
+    public float batteryCharge = 100; //The current boosting charge the player has
+    public bool boostCloakUnlocked = false;
 
     [NonSerialized] public float conveyorSpeed = 0f;
     [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
@@ -181,6 +182,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool boostCloakInput;
     [NonSerialized] public bool hasBoostCloaked; //If the player has boosted while holding the boost key
     [NonSerialized] public bool canEndSlide; //If the player can end their slide
+    
 
     //RB velocityX absolute value
     [NonSerialized] public float horizontalVelocity;
@@ -266,8 +268,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         CheckGrounded();
         //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
-        //Boosting and Cloaking, the action that switches between modes
-        BoostCloak();
+        if (boostCloakUnlocked) {
+            //Boosting and Cloaking, the ability that switches between modes
+            BoostCloak();
+        }
         //Running and Sliding, all horizontal velocity
         RunSlide();
 
@@ -315,12 +319,14 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             hasSlid = false;
         }
 
-        boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
-        if (!boostCloakInput) {
-            hasBoostCloaked = false;
+        if (boostCloakUnlocked) {
+            boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
+            if (!boostCloakInput) {
+                hasBoostCloaked = false;
             
-            if (cloaking) {
-                cloakScript.Disable();
+                if (cloaking) {
+                    cloakScript.Disable();
+                }
             }
         }
     }
