@@ -20,7 +20,11 @@ public class AudioDetectionSystem : MonoBehaviour
 
     public static AudioDetectionSystem getAudioSystem()
     {
-        return GameObject.Find("AudioDetectionHandler").GetComponent<AudioDetectionSystem>();
+        if(FindAnyObjectByType<AudioDetectionSystem>())
+        {
+            return FindAnyObjectByType<AudioDetectionSystem>();
+        }
+        return null;
     }
 
     public void AddListener(GameObject gameObject, HearNoise listenerFunc)
