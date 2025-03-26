@@ -11,11 +11,14 @@ public class WinGame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Stop the clock
-        if(MainScoreController.GetInstance())
+        //If score system exists
+        if(MainScoreController.GetInstance() && MainScoreController.GetInstance().currentlyScoring)
         {
             MainScoreController.GetInstance().EndLevel();
         }
-        //menu.Win();
+        else //If score system doesn't exist
+        {
+            menu.Win();
+        }
     }
 }
