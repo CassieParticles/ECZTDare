@@ -53,6 +53,7 @@ public class LockableDoor : MonoBehaviour
 
     void RebuildNavMesh()
     {
+        Debug.Log("locked");
         if (surface)
         {
             surface.BuildNavMesh();
