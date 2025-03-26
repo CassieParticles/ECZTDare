@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{6CB1868C-9E0C-9F21-5EFB-C8AFE995B687}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{65CF3F49-6375-5C2F-80CF-0864C1E8D581}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -143,7 +143,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{E19C44A9-A6F1-DDF7-334F-0751570A0CF6}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{F9D54040-365C-ACB7-78A0-E5545E91A6F5}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -817,7 +817,7 @@
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.02681274" DurationMax="0.28883818">
+				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.029750595" DurationMax="0.28883818">
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -1319,5 +1319,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{35A300A6-03DA-BC16-F82E-665EC1315F48}</FileHash>
+	<FileHash>{DA4BB879-C9B3-62BC-D248-9D37A626283C}</FileHash>
 </SoundBanksInfo>

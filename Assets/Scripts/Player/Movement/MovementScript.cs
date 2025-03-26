@@ -170,6 +170,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     InputAction jumpAction;
     InputAction slideAction;
     InputAction boostCloakAction;
+    ControlsScript controlsScript;
 
     //The hasActioned variables are so that the player cannot hold in the key to keep jumping forever, or slide many times in a row by just holding in the key
     [NonSerialized] public int runInput;
@@ -207,7 +208,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     //reference to the ui mode change script
     private UIModeChange uiModeChange;
-    private void Awake() {
+    private void Start() {
         layers = new LayerMask();
         layers = 0b0110011;
 
@@ -241,7 +242,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
 
         //Setup inputs
-        if (controls == null) {
+        controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
+        if (controlsScript != null) {
+            controls = controlsScript.controls;
+            controls.GameplayControls.SetCallbacks(this);
+        } else {
             controls = new PlayerControls();
             controls.GameplayControls.SetCallbacks(this);
         }
