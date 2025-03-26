@@ -15,6 +15,7 @@ public class TriggerPullCamera : MonoBehaviour
 
     [SerializeField] private CinemachineBlendDefinition.Style blendType = CinemachineBlendDefinition.Style.HardOut;
     [SerializeField][Range(0.1f, 5f)] private float blendDuration = 1;
+    [SerializeField][Range(0.1f, 5f)] private float resetTime = 0.51f;
     [SerializeField][Range(0f, 20f)] private float playerBias = 1; //If the camera points more towards the player or the point of interest. 0 is point of interest 20 is player
     [SerializeField][Range(5f, 20f)] private float zoom = 8.44f;
     [SerializeField] private bool followX = false;
@@ -49,10 +50,16 @@ public class TriggerPullCamera : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision) {
         virtualCamera.Priority = 9;
-        transform.position = origin;
-        trigger.offset = offset;
+        StartCoroutine(WaitThenReset(resetTime));
     }
 
+    IEnumerator WaitThenReset(float seconds) {
+        yield return new WaitForSeconds(seconds);
+        if (virtualCamera.Priority == 9 ) {
+            transform.position = origin;
+            trigger.offset = offset;
+        }
+    }
 
     // Update is called once per frame
     void Update() {
