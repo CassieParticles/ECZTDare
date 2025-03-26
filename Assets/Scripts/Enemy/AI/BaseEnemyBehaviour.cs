@@ -74,6 +74,25 @@ public class BaseEnemyBehaviour : MonoBehaviour
         //Handle other "losing the player" stuff
     }
 
+    private void UpdateSuspicionColour()
+    {
+        switch (suspicionState)
+        {
+            case SuspicionState.Idle:
+                visionCone.SetColour(Color.white);
+                break;
+            case SuspicionState.Suspect:
+                visionCone.SetColour(Color.yellow);
+                break;
+            case SuspicionState.HighAlert:
+                visionCone.SetColour(new Color(1, 0.5f, 0));
+                break;
+            case SuspicionState.Chase:
+                visionCone.SetColour(Color.red);
+                break;
+        }
+    }
+
     //Called on awake of overriden classes
     protected void Setup()
     {
@@ -96,7 +115,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
             if(suspicionState!=SuspicionState.Idle)
             {
                 suspicionState = SuspicionState.Idle;
-                visionCone.SetColour(Color.white);
+                UpdateSuspicionColour();
                 playedSound = false;
             }
             
@@ -106,7 +125,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
             if (suspicionState != SuspicionState.Suspect)
             {
                 suspicionState = SuspicionState.Suspect;
-                visionCone.SetColour(Color.yellow);
+                UpdateSuspicionColour();
                 playedSound = false;
             }
         }
@@ -115,7 +134,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
             if (suspicionState != SuspicionState.HighAlert)
             {
                 suspicionState = SuspicionState.HighAlert;
-                visionCone.SetColour(new Color(1, 0.5f, 0));
+                UpdateSuspicionColour();
                 if (playedSound)
                 {
                     lostEmira.Post(this.gameObject);
@@ -128,7 +147,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
             if(suspicionState!=SuspicionState.Chase)
             {
                 suspicionState = SuspicionState.Chase;
-                visionCone.SetColour(new Color(1, 0, 0));
+                UpdateSuspicionColour();
                 if (!playedSound)
                 {
                     playedSound = true;
@@ -167,7 +186,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         suspicion = Mathf.Max(SuspicionLevel[(int)level] + 1,suspicion);
 
         //Update vision cone visual
-        visionCone.RecalcConeTex();
+        UpdateSuspicionColour();
     }
 
     /// <summary>
