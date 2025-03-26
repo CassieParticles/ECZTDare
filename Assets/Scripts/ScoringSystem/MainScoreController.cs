@@ -77,12 +77,10 @@ public class MainScoreController : MonoBehaviour
         //If currently on a section, end it
         EndSection(true);
 
-        //TODO: Ask the user for a 3 letter name (continue in separate function)
-
         //Collect scores into cumulative score
         float totalTime = 0;
         float totalStealthScore = 0;
-        for(int i=0;i<times.Count;++i)
+        for (int i = 0; i < times.Count; ++i)
         {
             totalTime += times[i];
             totalStealthScore += stealthScores[i];
@@ -91,6 +89,20 @@ public class MainScoreController : MonoBehaviour
         //TODO: Add score to leaderboard
 
         //TODO: Display leaderboard
+
+
+    }
+
+    public void EndLevelCont()
+    {
+        //Collect scores into cumulative score
+        float totalTime = 0;
+        float totalStealthScore = 0;
+        for (int i = 0; i < times.Count; ++i)
+        {
+            totalTime += times[i];
+            totalStealthScore += stealthScores[i];
+        }
 
         //Destroy Main score controller
         instance = null;
