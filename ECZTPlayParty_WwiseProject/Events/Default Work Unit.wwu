@@ -390,6 +390,94 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Guard_HeyStop" ID="{9255AA17-8548-4EC4-BCDD-8326F93A926C}">
+					<ChildrenList>
+						<Action Name="" ID="{B47C06B6-B117-483B-B2C5-7B5F5A50D906}" ShortID="262125453">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_HeyStop" ID="{002DA703-B421-4814-964E-2F7B06442218}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_SomeonesHere" ID="{6F01EB96-77F1-4CB8-93F6-91100B7B57E0}">
+					<ChildrenList>
+						<Action Name="" ID="{1B1F7F14-4D18-455F-A1AF-E6A310E7134A}" ShortID="455642916">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_SomeonesHere" ID="{A0D5B11B-1A56-47C8-A326-83ED0FFF0E43}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_Intruder" ID="{FDB46D17-A4BA-40A8-BB9B-23D452BB64B3}">
+					<ChildrenList>
+						<Action Name="" ID="{9BA0E7A6-613F-4DD1-BB1C-24BE1FB40C06}" ShortID="378530658">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_Intruder" ID="{1830795E-F929-4A6E-BABB-5FBFEF16F993}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_ISeeYou" ID="{5D0125F1-9263-41AC-B7D7-7D8ADD58059B}">
+					<ChildrenList>
+						<Action Name="" ID="{D9ED079E-314F-428F-97E4-F6984075222E}" ShortID="668717953">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_ISeeYou" ID="{F1682306-D2E0-4BB6-B854-A0803FAE27A2}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_ShesGone" ID="{47D6C3C8-A850-419E-885E-821BBC334AA3}">
+					<ChildrenList>
+						<Action Name="" ID="{15747B0A-07B8-45C8-9C35-712F815E8376}" ShortID="57401596">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_ShesGone" ID="{89533EE4-E208-4BB6-8AF8-E877BE47CB22}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_SheDisappeared" ID="{E0D14843-41AF-401E-9BF9-CD787A460FD2}">
+					<ChildrenList>
+						<Action Name="" ID="{2B262BDD-8C9D-4E0B-A8B9-62737E2D0D7C}" ShortID="109031276">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_SheDisappeared" ID="{1C04C83F-6489-449F-BC26-5F23F33CEA3C}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_ILostHer" ID="{4997888A-7E89-4F03-B739-38B7091A8E9A}">
+					<ChildrenList>
+						<Action Name="" ID="{962F81EF-E294-4DF1-BD72-D2EFA1FDCB01}" ShortID="632266182">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_ILostHer" ID="{782A6A19-6C5F-4297-9101-2F0E7B81B655}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_GodDamnIt" ID="{BAD1C39A-6445-482D-B8F2-81E2F9A7679B}">
+					<ChildrenList>
+						<Action Name="" ID="{1A325ED3-1610-40B8-AF23-263EAB2AEC27}" ShortID="668391199">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO_GodDamnIt" ID="{58A1ABB0-DFD4-4CF0-9FC3-CC6C007F5CAB}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

@@ -143,7 +143,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{F9D54040-365C-ACB7-78A0-E5545E91A6F5}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B6C9D5E7-1810-89DA-DA86-97E43635248E}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -893,6 +893,61 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="1478300588" Name="Guard_GodDamnIt" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.3125" DurationMax="1.3125">
+					<MediaRefs>
+						<MediaRef Id="130288872"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2136542107" Name="Guard_HeyStop" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.3361875" DurationMax="1.3361875">
+					<MediaRefs>
+						<MediaRef Id="1035015420"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1590043199" Name="Guard_ILostHer" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.78125" DurationMax="0.78125">
+					<MediaRefs>
+						<MediaRef Id="70646447"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="477088214" Name="Guard_Intruder" MaxAttenuation="40" DurationType="OneShot" DurationMin="1" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="1007922345"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3469803670" Name="Guard_ISeeYou" MaxAttenuation="40" DurationType="OneShot" DurationMin="1" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="628626341"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="635823140" Name="Guard_Lost_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.78125" DurationMax="1.3125">
 					<MediaRefs>
 						<MediaRef Id="70646447"/>
@@ -911,6 +966,39 @@
 					<MediaRefs>
 						<MediaRef Id="146773433"/>
 						<MediaRef Id="278924793"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1135143673" Name="Guard_SheDisappeared" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.0625" DurationMax="1.0625">
+					<MediaRefs>
+						<MediaRef Id="450456830"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1007339087" Name="Guard_ShesGone" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.0625" DurationMax="1.0625">
+					<MediaRefs>
+						<MediaRef Id="632797106"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="262057326" Name="Guard_SomeonesHere" MaxAttenuation="40" DurationType="OneShot" DurationMin="1" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="378903621"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1319,5 +1407,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{DA4BB879-C9B3-62BC-D248-9D37A626283C}</FileHash>
+	<FileHash>{DF15721C-C875-E88F-892B-72FECBEA3ADB}</FileHash>
 </SoundBanksInfo>

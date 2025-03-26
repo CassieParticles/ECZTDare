@@ -29,8 +29,16 @@ namespace AK
         static const AkUniqueID ENEMY_ALERTED = 359728807U;
         static const AkUniqueID GUARD_FOOTSTEP = 3149531453U;
         static const AkUniqueID GUARD_FOUND_EMIRA = 107714672U;
+        static const AkUniqueID GUARD_GODDAMNIT = 1478300588U;
+        static const AkUniqueID GUARD_HEYSTOP = 2136542107U;
+        static const AkUniqueID GUARD_ILOSTHER = 1590043199U;
+        static const AkUniqueID GUARD_INTRUDER = 477088214U;
+        static const AkUniqueID GUARD_ISEEYOU = 3469803670U;
         static const AkUniqueID GUARD_LOST_EMIRA = 635823140U;
         static const AkUniqueID GUARD_REFOUND_EMIRA = 1042227841U;
+        static const AkUniqueID GUARD_SHEDISAPPEARED = 1135143673U;
+        static const AkUniqueID GUARD_SHESGONE = 1007339087U;
+        static const AkUniqueID GUARD_SOMEONESHERE = 262057326U;
         static const AkUniqueID HACK_FAIL = 3444806577U;
         static const AkUniqueID HACK_START = 4099402511U;
         static const AkUniqueID HACK_STOP = 1069300629U;
