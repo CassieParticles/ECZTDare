@@ -15,6 +15,7 @@
 						<State Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
 						<State Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 						<State Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+						<State Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
 					</ChildrenList>
 					<TransitionList>
 						<Transition>
@@ -111,6 +112,30 @@
 							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
 							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+							<Time>1</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 					</TransitionList>
