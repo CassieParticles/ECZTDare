@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class GuardBehaviour : BaseEnemyBehaviour
 {
     MenuScript menu;
+    [SerializeField] GameObject menuCanvasPrefab;
 
     AlarmMusicHandler musicHandler;
     [SerializeField] private PatrolRoute patrolRoute;
@@ -172,7 +173,12 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     void Start()
     {
-        menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
+        if (GameObject.Find("Menu Canvas") == null) {
+            menu = Instantiate(menuCanvasPrefab).GetComponent<MenuScript>();
+            menu.gameObject.name = "Menu Canvas";
+        } else {
+            menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
+        }
 
         musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
         if (patrolRoute){ patrolRoute.AddGuard(gameObject); }

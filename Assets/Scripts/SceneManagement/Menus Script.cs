@@ -387,8 +387,9 @@ public class MenuScript : MonoBehaviour
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade) {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level2") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+                    hasUpgrade = true;
                 }
             }
         }
