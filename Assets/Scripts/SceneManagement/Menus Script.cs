@@ -261,6 +261,12 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
 
+        if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
+            ControlsScript controls = GetComponent<ControlsScript>();
+            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controls.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
+                                                                            controls.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
+                                                                            controls.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+        }
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
