@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CheckpointManager : MonoBehaviour
 {
-    private CheckpointManager m_Instance;
+    private static CheckpointManager m_Instance;
 
     GameObject[] checkpoints;
     int upcomingCheckpoint;
