@@ -511,6 +511,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Quiet_Menu_Music" ID="{EC376B6D-2D24-459C-BBA1-8C74E7686A64}">
+					<ChildrenList>
+						<Action Name="" ID="{7A56A5D0-FE96-45DA-B056-485C8C45B509}" ShortID="858810979">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Title_Track_Trial_Quieter" ID="{3DAEBCF0-F8C7-4E45-B6E2-B51962D5B836}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

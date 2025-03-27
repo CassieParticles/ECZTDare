@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UIElements;
 
 
 public class StartCutScene : MonoBehaviour
 {
     PlayableDirector director;
     MovementScript player;
+    private AlarmMusicHandler gameMusicScript;
     bool waitForGrounded = false;
     bool cutscenePlayed = false;
 
@@ -19,6 +21,8 @@ public class StartCutScene : MonoBehaviour
         if (waitForGrounded && player.grounded && !cutscenePlayed)
         {
             //Start cutscene
+            //Sets the "Music" State Group's active State to "Menu"
+            AkSoundEngine.SetState("Music", "Menu");
             director.Play();
             cutscenePlayed = true;
         }
