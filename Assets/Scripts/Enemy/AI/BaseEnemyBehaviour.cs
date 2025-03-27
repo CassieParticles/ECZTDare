@@ -19,12 +19,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
     private List<string> currentFoundEmiraText;
     private List<string> currentLostEmiraText;
 
-    private void Start() {
-        subtitle = GetComponent<Subtitle>();
-        RefreshVoicelines("found");
-        RefreshVoicelines("lost");
-    }
-
     private void RefreshVoicelines(string type) {
         if (type == "found") {
             currentFoundEmira = foundEmira;
@@ -127,6 +121,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
         minimumSuspicion = 0;
         suspicionState = SuspicionState.Idle;
         Player = null;
+
+        subtitle = GetComponent<Subtitle>();
+        RefreshVoicelines("found");
+        RefreshVoicelines("lost");
     }
 
     //Should be called by all inheriting from BaseEnemy
@@ -165,6 +163,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 {
 
                     int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
+                    Debug.Log(randomVoiceline);
                     lostEmira[randomVoiceline].Post(this.gameObject);
                     subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
                     if (lostEmira.Count <= 2) {
@@ -192,13 +191,14 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
 
                     int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
+                    Debug.Log(randomVoiceline);
                     foundEmira[randomVoiceline].Post(this.gameObject);
                     subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
                     if (foundEmira.Count <= 2) {
                         RefreshVoicelines("lost");
                     } else {
                         foundEmira.RemoveAt(randomVoiceline);
-                        lostEmiraText.RemoveAt(randomVoiceline);
+                        foundEmiraText.RemoveAt(randomVoiceline);
                     }
 
                 }

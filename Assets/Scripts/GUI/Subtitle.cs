@@ -33,7 +33,7 @@ public class Subtitle : MonoBehaviour
 
     private void Awake() {
         //speaker = GameObject.Find("Player").GetComponentInChildren<TextMeshProUGUI>();
-        subtitleManager = GameObject.Find("SubtitleText").GetComponent<SubtitleManager>();
+        subtitleManager = GameObject.Find("SubtitleManager").GetComponent<SubtitleManager>();
     }
 
     public void StartSubtitle(string subtitle) {
