@@ -19,6 +19,7 @@ namespace AK
         static const AkUniqueID BOOST_RUSH = 4043448287U;
         static const AkUniqueID BOOST_START = 2188867727U;
         static const AkUniqueID BOOST_STOP = 1751967765U;
+        static const AkUniqueID BOSSLIGHT_TURN_ON = 1416075388U;
         static const AkUniqueID BUTTON_CLICK = 814543256U;
         static const AkUniqueID CAMERA_MOVING = 3353320293U;
         static const AkUniqueID CAMERA_STOP = 1515494175U;
@@ -35,6 +36,7 @@ namespace AK
         static const AkUniqueID GUARD_INTRUDER = 477088214U;
         static const AkUniqueID GUARD_ISEEYOU = 3469803670U;
         static const AkUniqueID GUARD_LOST_EMIRA = 635823140U;
+        static const AkUniqueID GUARD_OUTSIDE_STEPS = 1738078876U;
         static const AkUniqueID GUARD_REFOUND_EMIRA = 1042227841U;
         static const AkUniqueID GUARD_SHEDISAPPEARED = 1135143673U;
         static const AkUniqueID GUARD_SHESGONE = 1007339087U;
@@ -52,6 +54,7 @@ namespace AK
         static const AkUniqueID PLAYER_SLIDE = 2609528332U;
         static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
         static const AkUniqueID POWER_GENERATOR = 2283979374U;
+        static const AkUniqueID SPOTLIGHT_TURN_ON = 2558114729U;
         static const AkUniqueID TITLE_MUSIC = 309205993U;
     } // namespace EVENTS
 

@@ -478,6 +478,39 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Spotlight_Turn_On" ID="{D9FEF3F1-208B-4689-ADD2-965592C6450F}">
+					<ChildrenList>
+						<Action Name="" ID="{0E909958-A705-4A62-B0A6-19AE4B2E6A15}" ShortID="589229823">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Spotlight_Turn_On" ID="{8565C4B8-3CD2-467A-B79F-4185B4A21A38}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Bosslight_Turn_On" ID="{5745AAE0-03A4-4CF7-B1E8-9E55A6266782}">
+					<ChildrenList>
+						<Action Name="" ID="{3985CE5A-9DFD-4192-AD80-FED6BF1ACF1E}" ShortID="703426347">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Bosslight_Turn_On" ID="{CDEB8802-E728-470C-94EE-CE6B51FC71B6}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_Outside_Steps" ID="{4440665A-7B55-4924-A3E4-81FFDE0D4EDE}">
+					<ChildrenList>
+						<Action Name="" ID="{39CF0A5B-306E-4B90-A366-4BB6ECB6240A}" ShortID="171988407">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_D_Footsteps" ID="{7092B7C2-6C20-4BB4-803A-2CF91897993F}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
