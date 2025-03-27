@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6989046768961074006}
   - component: {fileID: 4454464688598829113}
   - component: {fileID: -7576103743223536323}
-  - component: {fileID: 1493642875159732419}
   - component: {fileID: -8868686536200318924}
   m_Layer: 0
   m_Name: NonHackableDoor
@@ -141,7 +140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1026188899457109176, guid: 8d2915fd5d3d6e64cbf50e62ed53d896, type: 3}
+  m_Sprite: {fileID: -2569736014751082900, guid: 1ae6dd141bd4f31458acfc8aafdcb69a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,23 +151,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1493642875159732419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3944726003897983784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ae0781bc81b994a8d612695757b463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hackingNoiseRadius: 10
-  Hack_Start:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 253958b638b3d914f919f3f67862469c, type: 2}
 --- !u!95 &-8868686536200318924
 Animator:
   serializedVersion: 7
@@ -179,7 +161,7 @@ Animator:
   m_GameObject: {fileID: 3944726003897983784}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ff1fd2430779a947a21f15e2a8c7719, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0fcfdd2d236da8b45b86010d47017cf7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
