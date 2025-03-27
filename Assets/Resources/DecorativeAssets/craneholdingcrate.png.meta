@@ -108,7 +108,7 @@ TextureImporter:
         width: 138
         height: 272
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,13 +123,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 024524486bc3f28429c28508c3e4fd21
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 426f4d5f0f8e38e4bb5ea47ca4ff372e, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       craneholdingcrate_0: -1665143740873891912
   mipmapLimitGroupName: 
