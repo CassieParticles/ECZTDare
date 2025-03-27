@@ -64,9 +64,11 @@ public class ControlsScript : MonoBehaviour {
         resetSlideButton = GameObject.Find("ResetSlideButton");
         resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
         resetHackButton = GameObject.Find("ResetHackButton");
+
     }
 
-    public void Update() {
+    public void FixedUpdate() {
+        Time.timeScale = 0.1f;
         if (menu.keybindsOpen) {
             rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
             rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
