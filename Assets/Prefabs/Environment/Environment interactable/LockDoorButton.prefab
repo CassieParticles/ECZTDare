@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 2697357187723078769}
   - component: {fileID: -6081623017276470034}
   - component: {fileID: -6011903239866049942}
-  - component: {fileID: 3849774247308664504}
+  - component: {fileID: 5066498807755054746}
+  - component: {fileID: 7823080310725020746}
   m_Layer: 2
   m_Name: LockDoorButton
   m_TagString: Untagged
@@ -138,7 +139,7 @@ PolygonCollider2D:
       - {x: -0.50351954, y: -0.22835916}
       - {x: 0.49648046, y: -0.22835916}
   m_UseDelaunayMesh: 0
---- !u!114 &3849774247308664504
+--- !u!114 &5066498807755054746
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,9 +148,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8232641599956979701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1acb4dbecc741964daa9433b55a1819d, type: 3}
+  m_Script: {fileID: 11500000, guid: 55a3c86a0f17c824b99b16bd19dbed85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hackingNoiseRadius: 10
   action: 1
-  door: {fileID: 0}
-  isCollectable: 0
+  doors: []
+--- !u!114 &7823080310725020746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8232641599956979701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e1f3942bbc288640b8927bfcc420c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

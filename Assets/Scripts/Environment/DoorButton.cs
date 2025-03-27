@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    private enum Action
+    public enum DoorAction
     {
         Lock,
         Unlock,
         Toggle
     };
 
-    [SerializeField] private Action action = Action.Unlock;
+    [SerializeField] private DoorAction action = DoorAction.Unlock;
     [SerializeField] private LockableDoor[] doors;
     private UIModeChange uiModeChange;
     [SerializeField] private bool isCollectable;
@@ -30,19 +30,19 @@ public class DoorButton : MonoBehaviour
         {
             switch (action)
             {
-                case Action.Lock:
+                case DoorAction.Lock:
                     foreach(LockableDoor door in doors)
                     {
                         door.Lock();
                     }
                     break;
-                case Action.Unlock:
+                case DoorAction.Unlock:
                     foreach (LockableDoor door in doors)
                     {
                         door.Unlock();
                     }
                     break;
-                case Action.Toggle:
+                case DoorAction.Toggle:
                     foreach (LockableDoor door in doors)
                     {
                         door.ToggleState();
