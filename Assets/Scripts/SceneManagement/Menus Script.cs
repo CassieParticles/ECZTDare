@@ -41,6 +41,7 @@ public class MenuScript : MonoBehaviour
     GameObject levelsGroup;
     GameObject winGroup;
     GameObject loseGroup;
+    GameObject scoringSubGroup;
 
     GameObject player;
 
@@ -268,9 +269,11 @@ public class MenuScript : MonoBehaviour
     public void Win() {
         canPause = false;
         Time.timeScale = 0;
-        //nextLevelButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        
         if (SceneManager.GetActiveScene().name == "Tutorial") {
-
+            scoringSubGroup.SetActive(false);
+        } else {
+            scoringSubGroup.SetActive(true);
         }
         winGroup.SetActive(true);
         nextLevelButton.GetComponent<Button>().Select();
@@ -324,6 +327,7 @@ public class MenuScript : MonoBehaviour
         keybindsGroup = GameObject.Find("KeybindsGroup");
         winGroup = GameObject.Find("WinGroup");
         loseGroup = GameObject.Find("LoseGroup");
+        scoringSubGroup = GameObject.Find("ScoringSubGroup");
 
         //Set button functions
         resumeButton.GetComponent<Button>().onClick.AddListener(CloseMenu);
