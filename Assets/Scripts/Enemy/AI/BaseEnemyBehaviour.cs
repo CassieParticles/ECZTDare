@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseEnemyBehaviour : MonoBehaviour
@@ -162,15 +163,16 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 if (playedSound)
                 {
 
-                    int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
-                    Debug.Log(randomVoiceline);
-                    lostEmira[randomVoiceline].Post(this.gameObject);
-                    subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
-                    if (lostEmira.Count <= 2) {
-                        RefreshVoicelines("found");
-                    } else {
-                        lostEmira.RemoveAt(randomVoiceline);
-                        lostEmiraText.RemoveAt(randomVoiceline);
+                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
+                        int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
+                        lostEmira[randomVoiceline].Post(this.gameObject);
+                        subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
+                        if (lostEmira.Count <= 2) {
+                            RefreshVoicelines("found");
+                        } else {
+                            lostEmira.RemoveAt(randomVoiceline);
+                            lostEmiraText.RemoveAt(randomVoiceline);
+                        }
                     }
 
                 }
@@ -190,16 +192,18 @@ public class BaseEnemyBehaviour : MonoBehaviour
                     enemyAlerted.Post(this.gameObject);
 
 
-                    int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
-                    Debug.Log(randomVoiceline);
-                    foundEmira[randomVoiceline].Post(this.gameObject);
-                    subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
-                    if (foundEmira.Count <= 2) {
-                        RefreshVoicelines("lost");
-                    } else {
-                        foundEmira.RemoveAt(randomVoiceline);
-                        foundEmiraText.RemoveAt(randomVoiceline);
+                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
+                        int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
+                        foundEmira[randomVoiceline].Post(this.gameObject);
+                        subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
+                        if (foundEmira.Count <= 2) {
+                            RefreshVoicelines("lost");
+                        } else {
+                            foundEmira.RemoveAt(randomVoiceline);
+                            foundEmiraText.RemoveAt(randomVoiceline);
+                        }
                     }
+
 
                 }
             }
