@@ -83,6 +83,7 @@ namespace AK
                 static const AkUniqueID ALARM_HIGH = 3599981451U;
                 static const AkUniqueID ALARM_LOW = 4009708623U;
                 static const AkUniqueID ALARM_MIDDLE = 122271732U;
+                static const AkUniqueID CUTSCENE = 1182958561U;
                 static const AkUniqueID HIDDEN = 3621873013U;
                 static const AkUniqueID MENU = 2607556080U;
                 static const AkUniqueID NOMUSIC = 1862135557U;
