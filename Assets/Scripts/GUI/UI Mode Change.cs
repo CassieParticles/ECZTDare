@@ -53,10 +53,14 @@ public class UIModeChange : MonoBehaviour
 
     public void CollectUpgrade()
     {
-        cloakBar.SetActive(true);
-        boostBar.SetActive(false);
         player.batteryCharge = 100;
         player.boostCloakUnlocked = true;
-        player.inStealthMode = true;
+        if (player.inStealthMode) {
+            boostBar.SetActive(false);
+            cloakBar.SetActive(true);
+        } else {
+            cloakBar.SetActive(false);
+            boostBar.SetActive(true);
+        }
     }
 }

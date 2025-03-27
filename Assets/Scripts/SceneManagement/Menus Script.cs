@@ -43,6 +43,7 @@ public class MenuScript : MonoBehaviour
     GameObject loseGroup;
     GameObject scoringSubGroup;
 
+    GameObject uiCanvas;
     GameObject player;
 
     bool menuOpen;
@@ -269,7 +270,8 @@ public class MenuScript : MonoBehaviour
     public void Win() {
         canPause = false;
         Time.timeScale = 0;
-        
+        uiCanvas = GameObject.Find("UICanvas");
+        uiCanvas.SetActive(false);
         if (SceneManager.GetActiveScene().name == "Tutorial") {
             scoringSubGroup.SetActive(false);
         } else {
@@ -364,6 +366,9 @@ public class MenuScript : MonoBehaviour
                 OpenMenu();
             } else {
                 CloseMenu();
+                if (SceneManager.GetActiveScene().name == "Level2") {
+                    GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+                }
             }
         }
 
