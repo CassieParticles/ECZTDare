@@ -90,8 +90,8 @@ public class MainScoreController : MonoBehaviour
         }
 
         GameObject Menu = GameObject.Find("Menu Canvas");
-        TextMeshProUGUI speedText = Menu.transform.Find("WinGroup/SpeedScoreText").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI stealthText = Menu.transform.Find("WinGroup/StealthScoreText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI speedText = Menu.transform.Find("WinGroup/ScoringSubGroup/SpeedScoreText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI stealthText = Menu.transform.Find("WinGroup/ScoringSubGroup/StealthScoreText").GetComponent<TextMeshProUGUI>();
 
         //Format the time taken into mm:ss
         int minutes = (int)totalTime / 60;
