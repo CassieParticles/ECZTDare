@@ -54,6 +54,7 @@ namespace AK
         static const AkUniqueID PLAYER_SLIDE = 2609528332U;
         static const AkUniqueID PLAYER_WALL_JUMP = 4245309516U;
         static const AkUniqueID POWER_GENERATOR = 2283979374U;
+        static const AkUniqueID QUIET_MENU_MUSIC = 2348069067U;
         static const AkUniqueID SPOTLIGHT_TURN_ON = 2558114729U;
         static const AkUniqueID TITLE_MUSIC = 309205993U;
     } // namespace EVENTS

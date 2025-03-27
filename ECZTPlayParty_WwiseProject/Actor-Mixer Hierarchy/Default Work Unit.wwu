@@ -373,7 +373,11 @@
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
-										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650"/>
+										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
@@ -403,6 +407,89 @@
 							</StateInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="Title_Track_Trial" ID="{3716CAD4-03FB-4A25-882A-CE64E8C22C55}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Title_Track_Trial_Quieter" ID="{3DAEBCF0-F8C7-4E45-B6E2-B51962D5B836}" ShortID="162551199">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-8</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{64D5FDEE-F459-447F-810E-28482938819D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Title_Track_Trial" ID="{7F635F11-4128-488B-95AB-F03A757A902B}">
+									<Language>SFX</Language>
+									<AudioFile>Title_Track_Trial.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="346157248"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+										<CustomState Name="" ID="{1B725CC1-7507-40B0-B908-8B65B4D7449C}" ShortID="983035920">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+										<CustomState Name="" ID="{B43737AE-31CA-4B75-85E5-E05F70F772EC}" ShortID="354233675">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{0F7504D4-C698-4703-9A1F-D0189B058D78}" ShortID="821006690"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+										<CustomState Name="" ID="{8067FF13-7EF0-4945-90F2-E997DCF1673A}" ShortID="461307926">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+										<CustomState Name="" ID="{52BE3EC7-40E2-4C78-AB11-D404EFCAEB80}" ShortID="907383103">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+										<CustomState Name="" ID="{2474F7B5-4883-4FD9-8539-7FCAF04D8171}" ShortID="28150741">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<ActiveSourceList>
+								<ActiveSource Name="Title_Track_Trial" ID="{7F635F11-4128-488B-95AB-F03A757A902B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

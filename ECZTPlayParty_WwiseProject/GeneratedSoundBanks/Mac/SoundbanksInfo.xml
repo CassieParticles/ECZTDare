@@ -1402,7 +1402,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{718DD391-378B-72C3-7347-CA363A5A9851}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{2798CB13-DDC1-2C64-AAED-4223417FD128}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1437,6 +1437,11 @@
 						<MediaRef Id="807658381"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="2348069067" Name="Quiet_Menu_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="346157248"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="309205993" Name="Title_Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="346157248"/>
@@ -1445,5 +1450,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{41E4A1B2-EA5D-FAC3-BFB1-D47C4FCFEB3F}</FileHash>
+	<FileHash>{DC16B08D-95B6-C2A3-B504-D0C517F2D096}</FileHash>
 </SoundBanksInfo>
