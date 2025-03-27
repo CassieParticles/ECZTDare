@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
@@ -11,9 +12,12 @@ public class StartCutScene : MonoBehaviour
     bool waitForGrounded = false;
     bool cutscenePlayed = false;
 
+    bool canLeave;
+
     private void Awake()
     {
         director = GameObject.Find("Director").GetComponent<PlayableDirector>();
+        canLeave = false;
     }
 
     private void FixedUpdate()
@@ -25,6 +29,19 @@ public class StartCutScene : MonoBehaviour
             AkSoundEngine.SetState("Music", "Menu");
             director.Play();
             cutscenePlayed = true;
+        }
+
+        if(canLeave && Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("I'm outa here!");
+
+            MenuScript menuScript = FindAnyObjectByType<MenuScript>();
+            if(menuScript)
+            {
+                menuScript.ChangeScene("Main Menu");
+            }
+
+            canLeave = false;
         }
     }
 
@@ -51,5 +68,10 @@ public class StartCutScene : MonoBehaviour
             //Make player face right
             player.facingRight= true;
         }
+    }
+
+    public void CanLeave()
+    {
+        canLeave = true;
     }
 }
