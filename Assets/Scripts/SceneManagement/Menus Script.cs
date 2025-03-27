@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
@@ -78,6 +79,16 @@ public class MenuScript : MonoBehaviour
         AkSoundEngine.StopAll();
         buttonClick.Post(gameObject);
         canPause = true;
+
+        if (sceneName == "Next Level") {
+            if (SceneManager.GetActiveScene().name == "Tutorial") {
+                sceneName = "Level1";
+            } else if (SceneManager.GetActiveScene().name == "Level1") {
+                sceneName = "Level2";
+            } else if (SceneManager.GetActiveScene().name == "Level2") {
+                sceneName = "Main Menu"; 
+            }
+        }
 
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
@@ -236,7 +247,7 @@ public class MenuScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void CloseSubMenu() {
+    public void CloseSubMenu() {    
         slideshowGroup.SetActive(false);
 
         levelsGroup.SetActive(false);
@@ -257,6 +268,10 @@ public class MenuScript : MonoBehaviour
     public void Win() {
         canPause = false;
         Time.timeScale = 0;
+        //nextLevelButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        if (SceneManager.GetActiveScene().name == "Tutorial") {
+
+        }
         winGroup.SetActive(true);
         nextLevelButton.GetComponent<Button>().Select();
     }
