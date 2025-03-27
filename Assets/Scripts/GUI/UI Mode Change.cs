@@ -22,9 +22,14 @@ public class UIModeChange : MonoBehaviour
         boostBar = GameObject.Find("BoostBar");
         cloakBar.SetActive(false);
         boostBar.SetActive(false);
+        if (player.inStealthMode) {
+            StealthMode();
+        } else {
+            MovementMode();
+        }
         
     }
-    public void stealthMode()
+    public void StealthMode()
     {
         stealthDisplay.SetActive(true);
         movementDisplay.SetActive(false);
@@ -34,7 +39,7 @@ public class UIModeChange : MonoBehaviour
             boostBar.SetActive(false);
         }
     }
-    public void movementMode()
+    public void MovementMode()
     {
         stealthDisplay.SetActive(false);
         movementDisplay.SetActive(true);
@@ -46,7 +51,7 @@ public class UIModeChange : MonoBehaviour
         }
     }
 
-    public void collectUpgrade()
+    public void CollectUpgrade()
     {
         cloakBar.SetActive(true);
         boostBar.SetActive(false);

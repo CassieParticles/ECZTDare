@@ -665,7 +665,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             boostScript.StopBoosting();
             stealthCamera.Priority = 10;
             movementCamera.Priority = 0;
-            uiModeChange.stealthMode();
+            uiModeChange.StealthMode();
 
             effectiveMaxRunSpeed = stealthMaxRunSpeed;
             effectiveAcceleration = stealthAcceleration;
@@ -684,7 +684,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             //cloakScript.Disable();
             movementCamera.Priority = 10;
             stealthCamera.Priority = 0;
-            uiModeChange.movementMode();
+            uiModeChange.MovementMode();
 
             effectiveMaxRunSpeed = maxRunSpeed;
             effectiveAcceleration = acceleration;

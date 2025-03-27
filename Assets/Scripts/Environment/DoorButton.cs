@@ -51,7 +51,7 @@ public class DoorButton : MonoBehaviour
             }
             if (isCollectable)
             {
-                uiModeChange.collectUpgrade();
+                uiModeChange.CollectUpgrade();
             }
         }
     }
