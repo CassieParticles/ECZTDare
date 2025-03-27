@@ -143,7 +143,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{B6C9D5E7-1810-89DA-DA86-97E43635248E}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DB2D5000-E4BE-5CE7-EB36-D5CFEF532CDF}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -418,6 +418,10 @@
 				<File Id="588932112" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Jump_3.wav</ShortName>
 					<CachePath>SFX/P_R_Jump_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="591365294" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022_818F3B66.wem</CachePath>
 				</File>
 				<File Id="593670482" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Footstep_8.wav</ShortName>
@@ -741,6 +745,14 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="1416075388" Name="Bosslight_Turn_On" MaxAttenuation="70" DurationType="OneShot" DurationMin="4.596092" DurationMax="4.86939">
+					<MediaRefs>
+						<MediaRef Id="591365294"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="814543256" Name="Button_Click" DurationType="OneShot" DurationMin="1.0319692" DurationMax="1.1583464">
 					<MediaRefs>
 						<MediaRef Id="286540805"/>
@@ -954,6 +966,24 @@
 						<MediaRef Id="130288872"/>
 						<MediaRef Id="450456830"/>
 						<MediaRef Id="632797106"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="1738078876" Name="Guard_Outside_Steps" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.27739236" DurationMax="0.2838761">
+					<MediaRefs>
+						<MediaRef Id="36402879"/>
+						<MediaRef Id="234892113"/>
+						<MediaRef Id="259298035"/>
+						<MediaRef Id="350571898"/>
+						<MediaRef Id="394477243"/>
+						<MediaRef Id="655095140"/>
+						<MediaRef Id="901982837"/>
+						<MediaRef Id="1036630904"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1316,6 +1346,14 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="2558114729" Name="Spotlight_Turn_On" MaxAttenuation="70" DurationType="OneShot" DurationMin="1.9102231" DurationMax="2.0238109">
+					<MediaRefs>
+						<MediaRef Id="591365294"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -1407,5 +1445,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{D17BD82A-301C-75A6-8D07-B7E9AD6BEC5F}</FileHash>
+	<FileHash>{41E4A1B2-EA5D-FAC3-BFB1-D47C4FCFEB3F}</FileHash>
 </SoundBanksInfo>

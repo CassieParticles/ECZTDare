@@ -5158,52 +5158,6 @@
 								<ActiveSource Name="Camera_Stop" ID="{FD7492DE-BA8B-4CCA-A3B9-CE7A4F835DA0}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="O_VO_NowhereLeftToGoEmira" ID="{01A0BC32-6634-4089-80BE-C272469704F8}" ShortID="833846049">
-							<PropertyList>
-								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>8</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Attenuation">
-									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
-								</Reference>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Dialogue" ID="{BE4009A0-26BE-49BE-9034-483D182900ED}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-								</Reference>
-								<Reference Name="UserAuxSend0">
-									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-								</Reference>
-								<Reference Name="UserAuxSend1">
-									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-								</Reference>
-								<Reference Name="UserAuxSend2">
-									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-								</Reference>
-								<Reference Name="UserAuxSend3">
-									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="O_VO_NowhereLeftToGoEmira" ID="{66EC2225-3C2F-44E9-B01E-A543B21B625B}">
-									<Language>SFX</Language>
-									<AudioFile>O_VO_NowhereLeftToGoEmira.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="353367165"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ActiveSourceList>
-								<ActiveSource Name="O_VO_NowhereLeftToGoEmira" ID="{66EC2225-3C2F-44E9-B01E-A543B21B625B}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{B13199EF-5745-4C54-9036-545EB1958A60}" ShortID="1018979108">
@@ -5794,6 +5748,218 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Button_Activation" ID="{3273B69B-0AE4-47C4-B4C1-55E3323A20B8}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Cutscene" ID="{05EE756A-6E35-4DAB-AFC7-B5F3AD2DF55D}" ShortID="172892082">
+					<ChildrenList>
+						<Sound Name="Spotlight_Turn_On" ID="{8565C4B8-3CD2-467A-B79F-4185B4A21A38}" ShortID="532797405">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>1050</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{165DDBBE-019C-4EEF-9F6D-DBFA843B7B88}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="50"/>
+													<Property Name="Min" Type="Real64" Value="-50"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND110022"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://server.soundly.cloud/?Type=GetFile&amp;SessionID=17430731682whe36sT3b_ZqQFKhly&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND110022/sfy_pYqfYudSWKhfmhXxKxbIQCfGXtLfzF"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="3.6060208333333335"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\flynn\Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>2</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{38D970ED-ADF0-44E6-B031-E85B12CA13D1}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="1"/>
+													<Property Name="Min" Type="Real64" Value="-1"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022" ID="{2F50E52C-2A43-4C8C-A46C-615C2588F20C}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND110022"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="591365294"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022" ID="{2F50E52C-2A43-4C8C-A46C-615C2588F20C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="O_VO_NowhereLeftToGoEmira" ID="{01A0BC32-6634-4089-80BE-C272469704F8}" ShortID="833846049">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>8</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Dialogue" ID="{BE4009A0-26BE-49BE-9034-483D182900ED}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="O_VO_NowhereLeftToGoEmira" ID="{66EC2225-3C2F-44E9-B01E-A543B21B625B}">
+									<Language>SFX</Language>
+									<AudioFile>O_VO_NowhereLeftToGoEmira.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="353367165"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="O_VO_NowhereLeftToGoEmira" ID="{66EC2225-3C2F-44E9-B01E-A543B21B625B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Bosslight_Turn_On" ID="{CDEB8802-E728-470C-94EE-CE6B51FC71B6}" ShortID="487036124">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-470</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{3CF3C789-D706-41A8-8E64-1C1AD7D70885}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="50"/>
+													<Property Name="Min" Type="Real64" Value="-50"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND110022"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://server.soundly.cloud/?Type=GetFile&amp;SessionID=17430731682whe36sT3b_ZqQFKhly&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND110022/sfy_pYqfYudSWKhfmhXxKxbIQCfGXtLfzF"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="3.6060208333333335"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\flynn\Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>2</Value>
+									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{89D70779-F6B3-4188-B055-BC964AECFFBA}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="1"/>
+													<Property Name="Min" Type="Real64" Value="-1"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022" ID="{70BDFF4D-E0BD-44BD-8C53-0B4A73ED042B}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND110022"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="591365294"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022" ID="{70BDFF4D-E0BD-44BD-8C53-0B4A73ED042B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
