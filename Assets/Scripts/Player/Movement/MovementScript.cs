@@ -192,7 +192,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     [NonSerialized] public Vector2 colliderSize;
 
-    AlarmSystem alarm;
     CinemachineVirtualCamera movementCamera;
     CinemachineVirtualCamera stealthCamera;
 
@@ -220,8 +219,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         modeHexAnimator = GameObject.Find("ModeSwitchHex").GetComponent<Animator>();
-
-        alarm = GameObject.Find("AlarmObject").GetComponent<AlarmSystem>();
 
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
@@ -296,11 +293,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
         //changeModeToStealth(inStealthMode);
-
-        if (Input.GetKey(KeyCode.L))
-        {
-            alarm.StopAlarm();
-        }
     }
 
     void HandleInputs() {
