@@ -50,6 +50,7 @@ public class MenuScript : MonoBehaviour
     bool settingsOpen;
     bool switchingScene = false;
     string previousScene;
+    public bool hasUpgrade = false;
 
     bool won = false;
     bool lost = false;
@@ -190,6 +191,7 @@ public class MenuScript : MonoBehaviour
         defaultMenuGroup.SetActive(true);
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             Time.timeScale = 1f;
+            hasUpgrade = false;
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "Menu");
             //Sets the "Ambience" State Group's active State to "NoAmbience"
@@ -298,14 +300,19 @@ public class MenuScript : MonoBehaviour
     }
 
     IEnumerator LoseDelay(int seconds) {
+        hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
         yield return new WaitForSeconds(seconds);
+        switchingScene = true;
+        previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         loseGroup.SetActive(false);
         if(MainScoreController.GetInstance())
         {
             MainScoreController.GetInstance().Unpause();
         }
+        yield return new WaitForFixedUpdate();
         canPause = true;
+        lost = true;
     }
 
     // Start is called before the first frame update
@@ -356,6 +363,9 @@ public class MenuScript : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
+            if (SceneManager.GetActiveScene().name == "Level2") {
+                hasUpgrade = true;
+            }
             CloseMenu();
         }
 
@@ -365,14 +375,15 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (switchingScene && previousScene != SceneManager.GetActiveScene().name) {
+        if (switchingScene && (previousScene != SceneManager.GetActiveScene().name || lost)) {
             switchingScene = false;
+            lost = false;
             CloseSubMenu();
             if (SceneManager.GetActiveScene().name == "Main Menu") {
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (SceneManager.GetActiveScene().name == "Level2") {
+                if (hasUpgrade) {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                 }
             }

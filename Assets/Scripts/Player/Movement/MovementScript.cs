@@ -673,7 +673,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
 
         } else {
-            //cloakScript.Disable();
+            cloakScript.Disable();
             movementCamera.Priority = 10;
             stealthCamera.Priority = 0;
             uiModeChange.MovementMode();
