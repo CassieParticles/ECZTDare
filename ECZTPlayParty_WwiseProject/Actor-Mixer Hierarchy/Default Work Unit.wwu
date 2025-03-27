@@ -47,6 +47,14 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{5F3CC68E-DE82-4CEF-B868-0F48EAB41B5B}" ShortID="628159673">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 										<CustomState Name="" ID="{7534A98F-3EBF-4D8A-B95E-5CEA9BF73D87}" ShortID="841925969"/>
 									</CustomState>
@@ -119,6 +127,14 @@
 									<CustomState>
 										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
 										<CustomState Name="" ID="{1A3793E1-8C19-41B6-A24E-13761D1EC2B1}" ShortID="78172314">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{B7C5F73C-2C8F-475D-B13D-B442FF6A1F3F}" ShortID="293438452">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -208,6 +224,14 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{D71291E6-E4C7-46D3-884C-A96A2ED9C2D4}" ShortID="863417722">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 										<CustomState Name="" ID="{72F1215C-6EE0-4762-923E-111AFFC0AE37}" ShortID="1011888440">
 											<PropertyList>
@@ -280,6 +304,14 @@
 									<CustomState>
 										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
 										<CustomState Name="" ID="{EAB2760A-319D-4381-A675-395A733DD9C6}" ShortID="824583319">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{5F13BC59-C551-47C4-8D93-74A42CD816FB}" ShortID="1061907002">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -364,6 +396,14 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{F1F79BEC-3CC5-4F31-B580-497DD3410949}" ShortID="943502124">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 										<CustomState Name="" ID="{20C6BFC4-AA09-4E9D-9633-DFF9230EE670}" ShortID="359432888">
 											<PropertyList>
@@ -373,11 +413,7 @@
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
-										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64" Value="-108"/>
-											</PropertyList>
-										</CustomState>
+										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650"/>
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
@@ -451,6 +487,10 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{A5531F1B-2641-4A9E-BC59-8D26EEE40A7A}" ShortID="308905171"/>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
 										<CustomState Name="" ID="{B43737AE-31CA-4B75-85E5-E05F70F772EC}" ShortID="354233675">
 											<PropertyList>
@@ -460,7 +500,11 @@
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
-										<CustomState Name="" ID="{0F7504D4-C698-4703-9A1F-D0189B058D78}" ShortID="821006690"/>
+										<CustomState Name="" ID="{0F7504D4-C698-4703-9A1F-D0189B058D78}" ShortID="821006690">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
