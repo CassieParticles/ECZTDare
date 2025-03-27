@@ -367,6 +367,8 @@ public class MenuScript : MonoBehaviour
         } else {
             if (SceneManager.GetActiveScene().name == "Level2") {
                 hasUpgrade = true;
+                player = GameObject.Find("Player");
+                player.GetComponent<MovementScript>().boostCloakUnlocked = true;
             }
             CloseMenu();
         }
