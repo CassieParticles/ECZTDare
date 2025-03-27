@@ -40,9 +40,18 @@ public class CutsceneControl : MonoBehaviour
         int minutes = (int)timeTaken / 60;
         int seconds = (int)timeTaken % 60;
 
-        string timeStr=minutes.ToString();    //Minutes
+        //Minutes and seconds as string, formatted so seconds is 
+        string minutesStr = minutes.ToString();
+        string secondsStr = seconds.ToString();
+
+        if (secondsStr.Length == 1)
+        {
+            secondsStr = "0" + secondsStr;
+        }
+
+        string timeStr = minutesStr;
         timeStr += ":";
-        timeStr += seconds.ToString();
+        timeStr += secondsStr;
 
         //Update text with score
         TimeScoreText.GetComponent<TextMeshProUGUI>().text = timeStr;

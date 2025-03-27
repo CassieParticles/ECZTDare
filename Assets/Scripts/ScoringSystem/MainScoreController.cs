@@ -90,16 +90,25 @@ public class MainScoreController : MonoBehaviour
         }
 
         GameObject Menu = GameObject.Find("Menu Canvas");
-        TextMeshProUGUI speedText = Menu.transform.Find("WinGroup/SpeedScoreText").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI stealthText = Menu.transform.Find("WinGroup/StealthScoreText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI speedText = Menu.transform.Find("WinGroup/ScoringSubGroup/SpeedScoreText").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI stealthText = Menu.transform.Find("WinGroup/ScoringSubGroup/StealthScoreText").GetComponent<TextMeshProUGUI>();
 
-        //Format the time taken into mm:ss
+        //Format the time taken into (m)m:ss
         int minutes = (int)totalTime / 60;
         int seconds = (int)totalTime % 60;
 
-        string timeStr = minutes.ToString();    //Minutes
+        //Minutes and seconds as string, formatted so seconds is 
+        string minutesStr = minutes.ToString();
+        string secondsStr = seconds.ToString();
+
+        if(secondsStr.Length==1)
+        {
+            secondsStr = "0" + secondsStr;
+        }
+
+        string timeStr = minutesStr;    
         timeStr += ":";
-        timeStr += seconds.ToString();
+        timeStr += secondsStr;
 
         //Format the stealth score into Score/MaxScore
         string stealthScore = totalStealthScore.ToString();
