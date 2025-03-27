@@ -295,22 +295,24 @@ public class MenuScript : MonoBehaviour
             player = GameObject.Find("Player");
             player.SetActive(false);
             loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(1));
+            StartCoroutine(LoseDelay(1.5f));
         }
     }
 
-    IEnumerator LoseDelay(int seconds) {
-        hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
+    IEnumerator LoseDelay(float seconds) {
+        if (!hasUpgrade) {
+            hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
+        }
         yield return new WaitForSeconds(seconds);
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        loseGroup.SetActive(false);
         if(MainScoreController.GetInstance())
         {
             MainScoreController.GetInstance().Unpause();
         }
         yield return new WaitForFixedUpdate();
+        loseGroup.SetActive(false);
         canPause = true;
         lost = true;
     }
