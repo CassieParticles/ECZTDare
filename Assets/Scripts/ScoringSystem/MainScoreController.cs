@@ -112,7 +112,7 @@ public class MainScoreController : MonoBehaviour
 
         //Format the stealth score into Score/MaxScore
         string stealthScore = totalStealthScore.ToString();
-        stealthScore += ":";
+        stealthScore += "/";
         stealthScore += maxStealth.ToString();
 
         //Show score in win screen
