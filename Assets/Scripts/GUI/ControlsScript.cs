@@ -107,22 +107,22 @@ public class ControlsScript : MonoBehaviour {
         InputActionRebindingExtensions.RebindingOperation rebinder;
         switch (reboundAction) {
             case "RunningLeft":
-                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(1).WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(1).Start();
                 return;
             case "RunningRight":
-                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(2).WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(2).Start();
                 return;
             case "Jumping":
-                rebinder = controls.GameplayControls.Jumping.PerformInteractiveRebinding().WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.Jumping.PerformInteractiveRebinding().Start();
                 return;
             case "Sliding":
-                rebinder = controls.GameplayControls.Sliding.PerformInteractiveRebinding().WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.Sliding.PerformInteractiveRebinding().Start();
                 return;
             case "BoostCloaking":
-                rebinder = controls.GameplayControls.BoostCloak.PerformInteractiveRebinding().WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.BoostCloak.PerformInteractiveRebinding().Start();
                 return;
             case "Hacking":
-                rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().WithControlsExcluding("Mouse").Start();
+                rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().Start();
                 return;
         }
     }
