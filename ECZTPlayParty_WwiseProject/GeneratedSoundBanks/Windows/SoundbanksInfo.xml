@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{65CF3F49-6375-5C2F-80CF-0864C1E8D581}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{9DB8379F-CF50-E121-32F8-1696FF404E05}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -92,6 +92,7 @@
 					<States>
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
+						<State Id="1182958561" Name="Cutscene"/>
 						<State Id="1862135557" Name="NoMusic"/>
 						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
@@ -1402,7 +1403,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{2798CB13-DDC1-2C64-AAED-4223417FD128}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{966065F2-491F-F4FE-7210-AADE0C2660E6}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1450,5 +1451,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{72DFA2CE-056D-7CD9-FB76-6C5315B033C1}</FileHash>
+	<FileHash>{9916B087-C57D-807D-D385-627F89342392}</FileHash>
 </SoundBanksInfo>
