@@ -68,7 +68,6 @@ public class ControlsScript : MonoBehaviour {
     }
 
     public void FixedUpdate() {
-        Time.timeScale = 0.1f;
         if (menu.keybindsOpen) {
             rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
             rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
