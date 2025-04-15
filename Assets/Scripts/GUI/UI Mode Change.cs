@@ -53,6 +53,9 @@ public class UIModeChange : MonoBehaviour
 
     public void CollectUpgrade()
     {
+        if (player == null) {
+            Start();
+        }
         player.batteryCharge = 100;
         player.boostCloakUnlocked = true;
         if (player.inStealthMode) {
