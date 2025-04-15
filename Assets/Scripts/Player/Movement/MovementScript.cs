@@ -55,6 +55,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public SpriteRenderer spriteRenderer;
     [NonSerialized] public Animator animator;
     [NonSerialized] public Animator modeHexAnimator;
+    [NonSerialized] public ParticleSystem particleSystem;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
@@ -218,6 +219,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        particleSystem = GetComponent<ParticleSystem>();
         modeHexAnimator = GameObject.Find("ModeSwitchHex").GetComponent<Animator>();
 
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
@@ -339,7 +341,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             if (!grounded && landingCooldown <= 0) {
                 //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
                 landingCooldown = 0.1f;
-                
+                particleSystem.Play();
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
             grounded = true;
@@ -485,6 +487,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
             jumpScript.BasicJump();
             animationGroundedTimer = 0;
+            particleSystem.Play();
 
         } else if (jumpInput && onWall && !hasJumped) { //Walljumping
 
