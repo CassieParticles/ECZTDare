@@ -321,6 +321,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
                 if (cloaking) {
                     cloakScript.Disable();
+                    particleManager.CloakOff();
                 }
             }
         }
@@ -540,6 +541,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
 
                     boostScript.StartBoosting();
+                    particleManager.BeginBoost();
 
                 } else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
 
@@ -550,13 +552,14 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 if (boosting) {
 
                     boostScript.WhileBoosting();
-                    particleManager.BoostOn(rb.velocityX);
+                    particleManager.WhileBoosting(rb.velocityX);
 
                 }
             } else { //Cloaking
                 if (!cloaking) {
                     if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
                         cloakScript.Enable();
+                        particleManager.CloakOn();
                     } else {
                         hasBoostCloaked = true;
                     }
@@ -565,6 +568,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                         cloakScript.OnTick();
                     } else {
                         cloakScript.Disable();
+                        particleManager.CloakOff();
                     }
                 }
             }
@@ -572,6 +576,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             if (inStealthMode) {
                 if (cloaking) {
                     cloakScript.Disable();
+                    particleManager.CloakOff();
                 }
             } else {
                 if ((boosting && grounded) || (boosting && onWall)) {
@@ -579,7 +584,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                     particleManager.BoostOff();
                 } else if (boosting) {
                     boostScript.WhileBoosting();
-                    particleManager.BoostOn(rb.velocityX);
+                    particleManager.WhileBoosting(rb.velocityX);
                 }
             }
         }
@@ -662,6 +667,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
+            particleManager.BoostOff();
             stealthCamera.Priority = 10;
             movementCamera.Priority = 0;
             uiModeChange.StealthMode();
@@ -680,7 +686,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
 
         } else {
-            cloakScript.Disable();
+            if (cloaking) {
+                cloakScript.Disable();
+                particleManager.CloakOff();
+            }
             movementCamera.Priority = 10;
             stealthCamera.Priority = 0;
             uiModeChange.MovementMode();
