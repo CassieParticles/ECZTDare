@@ -551,7 +551,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 if (boosting) {
 
                     boostScript.WhileBoosting();
-                    particleManager.WhileBoosting(rb.velocityX);
+                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
 
                 }
             } else { //Cloaking
@@ -583,7 +583,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                     particleManager.BoostOff();
                 } else if (boosting) {
                     boostScript.WhileBoosting();
-                    particleManager.WhileBoosting(rb.velocityX);
+                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
                 }
             }
         }
