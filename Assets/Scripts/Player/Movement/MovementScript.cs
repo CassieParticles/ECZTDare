@@ -541,7 +541,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
 
                     boostScript.StartBoosting();
-                    particleManager.BeginBoost();
 
                 } else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
 

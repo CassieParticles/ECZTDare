@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ParticleManager {
     ParticleSystem dustParticles;
-    ParticleSystem beginBoostParticles;
     ParticleSystem boostParticles;
     ParticleSystem.MainModule boostMain;
     ParticleSystem cloakParticles;
@@ -15,23 +14,17 @@ public class ParticleManager {
     public ParticleManager() {
         dustParticles = GameObject.Find("DustParticles").GetComponent<ParticleSystem>();
         boostParticles = GameObject.Find("BoostParticles").GetComponent<ParticleSystem>();
-        beginBoostParticles = GameObject.Find("BeginBoostParticles").GetComponent<ParticleSystem>();
         cloakParticles = GameObject.Find("CloakParticles").GetComponent<ParticleSystem>();
         boostMain = boostParticles.main;
         cloakMain = cloakParticles.main;
         cloakVelocity = cloakParticles.velocityOverLifetime;
         dustParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         boostParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        beginBoostParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         cloakParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
     public void Dust() {
         dustParticles.Play();
-    }
-
-    public void BeginBoost() {
-        beginBoostParticles.Play();
     }
 
     public void WhileBoosting(float velocityX) {
