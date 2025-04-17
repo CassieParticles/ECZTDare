@@ -67,38 +67,43 @@ public class ControlsScript : MonoBehaviour {
 
     }
 
-    public void Refresh() {
-        rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
-        rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
-        rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
-        rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-        rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
-        rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+    public void Update() {
+        if (menu.keybindsOpen) {
+            //rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
+            //rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
+            //rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+            //rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+            //rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+            //rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
-        if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
-            resetRunButton.SetActive(true);
-        } else {
-            resetRunButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
-            resetJumpButton.SetActive(true);
-        } else {
-            resetJumpButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
-            resetSlideButton.SetActive(true);
-        } else {
-            resetSlideButton.SetActive(false);
-        }
-        if (controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
-            resetBoostCloakButton.SetActive(true);
-        } else {
-            resetBoostCloakButton.SetActive(false);
-        }
-        if (controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
-            resetHackButton.SetActive(true);
-        } else {
-            resetHackButton.SetActive(false);
+            rebindSlideButtonKey.text = "Sliding hehhehehee";
+            /*
+            if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
+                resetRunButton.SetActive(true);
+            } else {
+                resetRunButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                resetJumpButton.SetActive(true);
+            } else {
+                resetJumpButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                resetSlideButton.SetActive(true);
+            } else {
+                resetSlideButton.SetActive(false);
+            }
+            if (controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                resetBoostCloakButton.SetActive(true);
+            } else {
+                resetBoostCloakButton.SetActive(false);
+            }
+            if (controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                resetHackButton.SetActive(true);
+            } else {
+                resetHackButton.SetActive(false);
+            }
+            */
         }
     }
     public void RemapInput(string reboundAction) {

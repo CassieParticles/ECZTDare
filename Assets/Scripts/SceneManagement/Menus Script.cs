@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static ControlsScript;
 
 public class MenuScript : MonoBehaviour
 {
@@ -68,6 +69,22 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float soundVolume;
     [NonSerialized] public float dialogueVolume;
     [NonSerialized] public float ambienceVolume;
+
+
+    TextMeshProUGUI rebindLeftButtonKey;
+    TextMeshProUGUI rebindRightButtonKey;
+    TextMeshProUGUI rebindJumpButtonKey;
+    TextMeshProUGUI rebindSlideButtonKey;
+    TextMeshProUGUI rebindBoostCloakButtonKey;
+    TextMeshProUGUI rebindHackButtonKey;
+
+    GameObject resetRunButton;
+    GameObject resetJumpButton;
+    GameObject resetSlideButton;
+    GameObject resetBoostCloakButton;
+    GameObject resetHackButton;
+
+
 
     public static MenuScript instance { get; private set; }
     private void Awake() {
@@ -273,9 +290,10 @@ public class MenuScript : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
             ControlsScript controls = GetComponent<ControlsScript>();
-            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controls.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
-                                                                            controls.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
-                                                                            controls.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
+                                                                            controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
+                                                                            controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+            rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
         }
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
@@ -364,6 +382,19 @@ public class MenuScript : MonoBehaviour
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
+        rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
+        rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
+        rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
+        rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
+        rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
+        rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
+
+        resetRunButton = GameObject.Find("ResetRunButton");
+        resetJumpButton = GameObject.Find("ResetJumpButton");
+        resetSlideButton = GameObject.Find("ResetSlideButton");
+        resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
+        resetHackButton = GameObject.Find("ResetHackButton");
+
         defaultMenuGroup.SetActive(true);
         slideshowGroup.SetActive(true);
         levelsGroup.SetActive(false);
@@ -432,8 +463,36 @@ public class MenuScript : MonoBehaviour
                 if (!Input.GetMouseButton(0)) {
                     //sliderSound.Stop(gameObject);
                 }
-            } else if (keybindsOpen) {
-                controlScript.Refresh();
+            } if (keybindsOpen) {
+                rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
+                rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
+                rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+
+                if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
+                    resetRunButton.SetActive(true);
+                } else {
+                    resetRunButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                    resetJumpButton.SetActive(true);
+                } else {
+                    resetJumpButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                    resetSlideButton.SetActive(true);
+                } else {
+                    resetSlideButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                    resetBoostCloakButton.SetActive(true);
+                } else {
+                    resetBoostCloakButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                    resetHackButton.SetActive(true);
+                } else {
+                    resetHackButton.SetActive(false);
+                }
             }
         }
 
