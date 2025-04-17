@@ -77,6 +77,12 @@ public class MenuScript : MonoBehaviour
             Starts();
         }
     }
+
+    private void Start() {
+        if (hasUpgrade) {
+            GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+        }
+    }
     public void ChangeScene(string sceneName)
     {
         AkSoundEngine.StopAll();
@@ -367,8 +373,6 @@ public class MenuScript : MonoBehaviour
         } else {
             if (SceneManager.GetActiveScene().name == "Level2") {
                 hasUpgrade = true;
-                player = GameObject.Find("Player");
-                player.GetComponent<MovementScript>().boostCloakUnlocked = true;
             }
             CloseMenu();
         }

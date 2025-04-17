@@ -39,9 +39,9 @@ public class Boost
         }
         player.boosting = false;
         //Change player colour, while respecting regular alpha value
-        Color color = Color.white;
-        color.a = player.spriteRenderer.color.a;
-        player.spriteRenderer.color = color;
+        //Color color = Color.white;
+        //color.a = player.spriteRenderer.color.a;
+        //player.spriteRenderer.color = color;
         player.boostingMaxRunSpeedMultiplier = 1;
         //Will never be able to boost while in stealth mode, so can make it be the movement acceleration every time
         player.effectiveAcceleration = player.acceleration;
@@ -49,9 +49,9 @@ public class Boost
 
     public void WhileBoosting() {
         //Change player colour, while respecting regular alpha value
-        Color color = Color.red;
-        color.a = player.spriteRenderer.color.a;
-        player.spriteRenderer.color = color;
+        //Color color = Color.red;
+        //color.a = player.spriteRenderer.color.a;
+        //player.spriteRenderer.color = color;
         //Sets the RTPC Value of horizontalVelocity to the horizontalVelocity float value.
         AkSoundEngine.SetRTPCValue("horizontalVelocity", player.horizontalVelocity);
         if (player.batteryCharge - player.boostDepletion * Time.deltaTime > 0) {

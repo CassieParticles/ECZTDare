@@ -55,6 +55,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public SpriteRenderer spriteRenderer;
     [NonSerialized] public Animator animator;
     [NonSerialized] public Animator modeHexAnimator;
+    [NonSerialized] public ParticleManager particleManager;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
@@ -218,8 +219,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        modeHexAnimator = GameObject.Find("ModeSwitchHex").GetComponent<Animator>();
-
+        modeHexAnimator = transform.Find("ModeSwitchHex").GetComponent<Animator>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
@@ -229,6 +229,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         runningScript = new Running();
         cloakScript = new Cloak();
         slideScript = new Sliding();
+        particleManager = new ParticleManager();
 
         colliderSize = collider.size;
         //inStealthMode = false;
@@ -320,6 +321,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
                 if (cloaking) {
                     cloakScript.Disable();
+                    particleManager.CloakOff();
                 }
             }
         }
@@ -339,7 +341,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             if (!grounded && landingCooldown <= 0) {
                 //Plays the Player_Land sound if the player was not grounded last frame and it isnt on cooldown
                 landingCooldown = 0.1f;
-                
+                particleManager.Dust();
                 AkSoundEngine.PostEvent("Player_Land", this.gameObject);
             }
             grounded = true;
@@ -395,7 +397,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
-                    rb.velocityX = 0;
+                rb.velocityX = 0;
                 onWall = true;
                 onRightWall = true;
                 animator.SetFloat("CoyoteTime", animationGroundedTimer);
@@ -406,7 +408,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 {
                     AkSoundEngine.PostEvent("Player_Land", this.gameObject);
                 }
-                    rb.velocityX = 0;
+                rb.velocityX = 0;
                 onWall = true;
                 onRightWall = false;
             } else 
@@ -485,6 +487,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
             jumpScript.BasicJump();
             animationGroundedTimer = 0;
+            particleManager.Dust();
 
         } else if (jumpInput && onWall && !hasJumped) { //Walljumping
 
@@ -542,17 +545,20 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 } else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
 
                     boostScript.StopBoosting();
+                    particleManager.BoostOff();
 
                 }
                 if (boosting) {
 
                     boostScript.WhileBoosting();
+                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
 
                 }
             } else { //Cloaking
                 if (!cloaking) {
                     if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
                         cloakScript.Enable();
+                        particleManager.CloakOn();
                     } else {
                         hasBoostCloaked = true;
                     }
@@ -561,6 +567,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                         cloakScript.OnTick();
                     } else {
                         cloakScript.Disable();
+                        particleManager.CloakOff();
                     }
                 }
             }
@@ -568,12 +575,15 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             if (inStealthMode) {
                 if (cloaking) {
                     cloakScript.Disable();
+                    particleManager.CloakOff();
                 }
             } else {
                 if ((boosting && grounded) || (boosting && onWall)) {
                     boostScript.StopBoosting();
+                    particleManager.BoostOff();
                 } else if (boosting) {
                     boostScript.WhileBoosting();
+                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
                 }
             }
         }
@@ -587,6 +597,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 }
             } else {
                 boostScript.NotBoosting();
+                particleManager.BoostOff();
             }
         }
 
@@ -655,6 +666,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         inStealthMode = mode;
         if (inStealthMode) {
             boostScript.StopBoosting();
+            particleManager.BoostOff();
             stealthCamera.Priority = 10;
             movementCamera.Priority = 0;
             uiModeChange.StealthMode();
@@ -673,7 +685,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
 
         } else {
-            cloakScript.Disable();
+            if (cloaking) {
+                cloakScript.Disable();
+                particleManager.CloakOff();
+            }
             movementCamera.Priority = 10;
             stealthCamera.Priority = 0;
             uiModeChange.MovementMode();
