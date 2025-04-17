@@ -61,23 +61,25 @@ public class CutsceneControl : MonoBehaviour
         TimelineAsset timeline = director.playableAsset as TimelineAsset;
         foreach (TrackAsset item in timeline.GetOutputTracks())
         {
-            Debug.Log(item.name);
             switch (item.name)
             {
-                case "Title":
+                case "FadeToBlack":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(0).gameObject);
                     break;
-                case "TimeTaken":
+                case "Title":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(1).gameObject);
                     break;
-                case "StealthScore":
+                case "TimeTaken":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(2).gameObject);
                     break;
-                case "Speed":
+                case "StealthScore":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(3).gameObject);
                     break;
-                case "Stealth":
+                case "Speed":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(4).gameObject);
+                    break;
+                case "Stealth":
+                    director.SetGenericBinding(item, ScoreGUI.transform.GetChild(5).gameObject);
                     break;
             }
         }
