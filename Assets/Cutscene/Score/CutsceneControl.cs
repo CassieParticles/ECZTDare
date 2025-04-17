@@ -16,6 +16,8 @@ public class CutsceneControl : MonoBehaviour
     Rigidbody2D playerRB;
     Vector2 freezeVelocity;
 
+    bool fadeToBlack;
+
     bool endOfLevel;
 
     private IEnumerator FreezePlayer(Rigidbody2D playerRB)
@@ -31,6 +33,8 @@ public class CutsceneControl : MonoBehaviour
 
     public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel, bool fadeToBlack)
     {
+        //Cutscene GUI should remain if fade to black is true, so the black remains
+        this.fadeToBlack =fadeToBlack;
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
         GameObject TimeScoreText = ScoreGUI.transform.GetChild(4).gameObject;
@@ -110,9 +114,11 @@ public class CutsceneControl : MonoBehaviour
         playerRB.bodyType = RigidbodyType2D.Dynamic;
         playerRB.velocity = freezeVelocity;
 
-        Destroy(ScoreGUI);
-        ScoreGUI = null;
-
+        if(!fadeToBlack)
+        {
+            Destroy(ScoreGUI);
+            ScoreGUI = null;
+        }
         //Non-final cutscene ends here
         if (!endOfLevel)
         {
