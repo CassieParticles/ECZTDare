@@ -29,7 +29,7 @@ public class CutsceneControl : MonoBehaviour
         director=GetComponent<PlayableDirector>();
     }
 
-    public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel)
+    public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel, bool fadeToBlack)
     {
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
@@ -56,6 +56,10 @@ public class CutsceneControl : MonoBehaviour
         //Update text with score
         TimeScoreText.GetComponent<TextMeshProUGUI>().text = timeStr;
         StealthScoreText.GetComponent<TextMeshProUGUI>().text = stealthScore.ToString();
+
+        ScoreGUI.transform.GetChild(0).gameObject.SetActive(fadeToBlack);
+        
+
 
         //Set up Bindings
         TimelineAsset timeline = director.playableAsset as TimelineAsset;
