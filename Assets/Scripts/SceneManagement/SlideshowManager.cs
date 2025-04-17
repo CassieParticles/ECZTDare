@@ -11,22 +11,32 @@ public class SlideshowManager : MonoBehaviour
     public float transitionSeconds = 1f;
     public List<Sprite> sprites;
 
-    private bool onImage1 = true;
-    private float spriteIndex;
-
     private Image Image1;
     private Image Image2;
 
     // Start is called before the first frame update
     void Start()
     {
-        Image1 = GameObject.Find("Image1").GetComponent<Image>();
-        Image2 = GameObject.Find("Image2").GetComponent<Image>();
-        Image1.sprite = sprites[0];
-        Image2.sprite = sprites[0];
-        Color color = new Color(1, 1, 1, 0);
-        Image2.color = color;
-        StartCoroutine(Slideshow());
+        StartCoroutine(RepeatStart());
+    }
+
+    public IEnumerator RepeatStart() {
+        while (Image1 == null) {
+            if (GameObject.Find("Image1") != null) {
+                Image1 = GameObject.Find("Image1").GetComponent<Image>();
+                Image2 = GameObject.Find("Image2").GetComponent<Image>();
+                Image1.sprite = sprites[0];
+                Image2.sprite = sprites[0];
+                Color color = new Color(1, 1, 1, 0);
+                Image2.color = color;
+                StartCoroutine(Slideshow());
+            }
+            yield return null;
+        }
+    }
+
+    private void Update() {
+
     }
 
     public IEnumerator Slideshow() {
