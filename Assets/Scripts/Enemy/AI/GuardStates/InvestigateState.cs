@@ -26,15 +26,25 @@ public class InvestigateState : BaseState
 
     public override GuardStates RunTick()
     {
-        //If it sees the player
-        if (calcDistLeft && guardBehaviour.Player && guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+        //If player is visible
+        if (calcDistLeft && guardBehaviour.Player)
         {
-            return GuardStates.Observe;
+            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+            //If guard is no longer on high alert
+            if (guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+            {
+                return GuardStates.Observe;
+            }
         }
+
         if (guardBehaviour.suspicion > 100 && guardBehaviour.Player)
         {
             return GuardStates.Chase;
         }
+        
+
+        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
+
 
         if (guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
         {
