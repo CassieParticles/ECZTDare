@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class WinGame : MonoBehaviour
 {
+    [SerializeField] bool fadeToBlack = true;
     MenuScript menu;
 
     private void Start() {
@@ -14,7 +15,7 @@ public class WinGame : MonoBehaviour
         //If score system exists
         if(MainScoreController.GetInstance() && MainScoreController.GetInstance().currentlyScoring)
         {
-            MainScoreController.GetInstance().EndLevel();
+            MainScoreController.GetInstance().EndLevel(fadeToBlack);
         }
         else //If score system doesn't exist
         {
