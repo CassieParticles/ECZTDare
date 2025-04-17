@@ -46,6 +46,8 @@ public class MenuScript : MonoBehaviour
     GameObject uiCanvas;
     GameObject player;
 
+    ControlsScript controlScript;
+
     bool menuOpen;
     bool settingsOpen;
     bool switchingScene = false;
@@ -326,6 +328,8 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Starts()
     {
+        controlScript = GetComponent<ControlsScript>();
+
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
         playButton = GameObject.Find("PlayButton");
@@ -408,26 +412,32 @@ public class MenuScript : MonoBehaviour
             }
         }
 
-        if (settingsOpen && menuOpen) {
-            muteAudio = muteAudioToggle.isOn;
-            if (muteAudio) {
-                AkSoundEngine.SetRTPCValue("MasterVolume", 0);
-            } else {
-                masterVolume = masterVolumeSlider.value;
-                AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
-            }    
-            musicVolume = musicVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
-            soundVolume = soundVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("SoundVolume", soundVolume);
-            dialogueVolume = dialogueVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
-            ambienceVolume = ambienceVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
-            if (!Input.GetMouseButton(0)) {
-                //sliderSound.Stop(gameObject);
+        if (menuOpen) {
+            if (settingsOpen) {
+                muteAudio = muteAudioToggle.isOn;
+                if (muteAudio) {
+                    AkSoundEngine.SetRTPCValue("MasterVolume", 0);
+                } else {
+                    masterVolume = masterVolumeSlider.value;
+                    AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
+                }    
+                musicVolume = musicVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
+                soundVolume = soundVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("SoundVolume", soundVolume);
+                dialogueVolume = dialogueVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
+                ambienceVolume = ambienceVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
+                if (!Input.GetMouseButton(0)) {
+                    //sliderSound.Stop(gameObject);
+                }
+            } else if (keybindsOpen) {
+                controlScript.Refresh();
             }
         }
+
+        
     }
 
     public void SliderChangeSound(AK.Wwise.Event sound) {
