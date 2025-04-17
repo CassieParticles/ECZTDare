@@ -33,8 +33,8 @@ public class CutsceneControl : MonoBehaviour
     {
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
-        GameObject TimeScoreText = ScoreGUI.transform.GetChild(3).gameObject;
-        GameObject StealthScoreText = ScoreGUI.transform.GetChild(4).gameObject;
+        GameObject TimeScoreText = ScoreGUI.transform.GetChild(4).gameObject;
+        GameObject StealthScoreText = ScoreGUI.transform.GetChild(5).gameObject;
 
         //Format the time taken into mm:ss
         int minutes = (int)timeTaken / 60;
@@ -111,7 +111,10 @@ public class CutsceneControl : MonoBehaviour
 
         //Non-final cutscene ends here
         if (!endOfLevel)
-        { return; }
+        {
+            Destroy(gameObject);
+            return; 
+        }
 
         //End level
         Debug.Log("End of level");
@@ -119,5 +122,7 @@ public class CutsceneControl : MonoBehaviour
         {
             FindAnyObjectByType<MenuScript>().Win();
         }
+
+        Destroy(gameObject);
     }
 }
