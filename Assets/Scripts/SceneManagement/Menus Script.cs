@@ -348,6 +348,7 @@ public class MenuScript : MonoBehaviour
     }
 
     IEnumerator LoseFinalize() {
+        loseSound.Stop(gameObject);
         deathCounter++;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
@@ -462,7 +463,6 @@ public class MenuScript : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
-            StopCoroutine(LoseDelay(7f));
             StartCoroutine(LoseFinalize());
 
         }
