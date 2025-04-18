@@ -540,6 +540,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Guard_ShesStillHere" ID="{C390C2D3-AAB6-452F-9D25-94251151E5C1}">
+					<ChildrenList>
+						<Action Name="" ID="{B9C92AD5-8C76-47E3-B11D-CB0BC28FD137}" ShortID="79244161">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO2_ShesStillHere" ID="{1B240AA6-AF11-4F7C-928D-9DA02AB8B836}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Guard_ShesBack" ID="{C9C83780-FF55-423F-87BC-1877CD8C8D51}">
+					<ChildrenList>
+						<Action Name="" ID="{C8CA6138-09A7-4E20-B000-C617061D2507}" ShortID="922799230">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="G_VO2_ShesBack" ID="{A12DEFED-3B8F-4C6F-99F1-BB97E3B6F7EE}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
