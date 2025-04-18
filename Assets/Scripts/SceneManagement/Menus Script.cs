@@ -320,6 +320,10 @@ public class MenuScript : MonoBehaviour
         canPause = false;
         if (!loseGroup.activeSelf) {
             player = GameObject.Find("Player");
+            Camera.main.transform.position = Vector3.up * 1000;
+            //Bec add your music mode change
+
+            //
             player.SetActive(false);
             loseGroup.SetActive(true);
             StartCoroutine(LoseDelay(7f));
