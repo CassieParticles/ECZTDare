@@ -9,9 +9,13 @@ public class ConsoleHackable : Hackable
 
     [SerializeField] private LockableDoor[] doors;
 
+    public bool hasBeenHacked = false;
+
     public override void OnHack()
     {
         base.OnHack();
+
+        
 
         switch (action)
         {
@@ -34,5 +38,8 @@ public class ConsoleHackable : Hackable
                 }
                 break;
         }
+
+        GetComponent<PolygonCollider2D>().enabled = false;
+        enabled = false;
     }
 }
