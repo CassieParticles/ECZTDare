@@ -6238,9 +6238,14 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: d5e836254eae7dc4ea45c5ac5abc1055, type: 2}
+  loseSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 20192d70f1197ce4d85d600cd420c745, type: 2}
   hasUpgrade: 0
   paused: 0
   keybindsOpen: 0
+  loseSoundDelay: 0.35
 --- !u!114 &5951927975898498778
 MonoBehaviour:
   m_ObjectHideFlags: 0

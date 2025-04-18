@@ -22,8 +22,8 @@ public class LockableDoor : MonoBehaviour
         //Lock door
         boxCollider.enabled = true;
         spriteRenderer.enabled = true;
-
         RebuildNavMesh();
+        doorHum.Post(gameObject);
 
         isLocked = true;
     }
@@ -35,8 +35,8 @@ public class LockableDoor : MonoBehaviour
         //Unlock door
         boxCollider.enabled = false;
         spriteRenderer.enabled = false;
-        doorHum.Stop(gameObject);
         RebuildNavMesh();
+        doorHum.Stop(gameObject);
 
         isLocked = false;
     }
@@ -49,6 +49,15 @@ public class LockableDoor : MonoBehaviour
         RebuildNavMesh();
 
         isLocked = !isLocked;
+
+        if (isLocked)
+        {
+            doorHum.Post(gameObject);
+        }
+        else
+        {
+            doorHum.Stop(gameObject);
+        }
     }
 
     void RebuildNavMesh()
