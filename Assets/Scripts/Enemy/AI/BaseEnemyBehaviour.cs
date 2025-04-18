@@ -11,8 +11,11 @@ public class BaseEnemyBehaviour : MonoBehaviour
     public AK.Wwise.Event enemyAlerted;
     public List<AK.Wwise.Event> foundEmira;
     public List<AK.Wwise.Event> lostEmira;
+    public List<AK.Wwise.Event> recognizeEmira;
     public List<string> foundEmiraText;
     public List<string> lostEmiraText;
+    public List<string> recognizeEmiraText;
+    private bool canRecognizeEmira;
 
     private Subtitle subtitle;
     private List<AK.Wwise.Event> currentFoundEmira;
@@ -193,14 +196,22 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
 
                     if (gameObject.GetComponent<GuardBehaviour>() != null) {
-                        int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
-                        foundEmira[randomVoiceline].Post(this.gameObject);
-                        subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
-                        if (foundEmira.Count <= 2) {
-                            RefreshVoicelines("lost");
+                        if (!canRecognizeEmira) {
+                            
+                            canRecognizeEmira = true;
+                            int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
+                            foundEmira[randomVoiceline].Post(this.gameObject);
+                            subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
+                            if (foundEmira.Count <= 2) {
+                                RefreshVoicelines("lost");
+                            } else {
+                                foundEmira.RemoveAt(randomVoiceline);
+                                foundEmiraText.RemoveAt(randomVoiceline);
+                            }
                         } else {
-                            foundEmira.RemoveAt(randomVoiceline);
-                            foundEmiraText.RemoveAt(randomVoiceline);
+                            int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, recognizeEmira.Count));
+                            recognizeEmira[randomVoiceline].Post(this.gameObject);
+                            subtitle.StartSubtitle(recognizeEmiraText[randomVoiceline]);
                         }
                     }
 

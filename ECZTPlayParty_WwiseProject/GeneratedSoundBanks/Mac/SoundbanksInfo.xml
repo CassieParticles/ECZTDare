@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{31EB2381-1B2A-F2C6-B6D4-82024E8AD2E1}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{15E2E04C-ACB2-7D9C-04E8-006302289A7A}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -92,6 +92,7 @@
 					<States>
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
+						<State Id="1182958561" Name="Cutscene"/>
 						<State Id="1862135557" Name="NoMusic"/>
 						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
@@ -143,7 +144,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DB2D5000-E4BE-5CE7-EB36-D5CFEF532CDF}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{976F4214-3B3B-1C43-17AD-EF625D579C94}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -655,6 +656,10 @@
 					<ShortName>Enemy_Alerted.wav</ShortName>
 					<CachePath>SFX/Enemy_Alerted_818F3B66.wem</CachePath>
 				</File>
+				<File Id="1011429898" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player_Death.wav</ShortName>
+					<CachePath>SFX/Player_Death_818F3B66.wem</CachePath>
+				</File>
 				<File Id="1026799594" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_2.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_2_818F3B66.wem</CachePath>
@@ -1088,6 +1093,11 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="3083087645" Name="Player_Death" DurationType="OneShot" DurationMin="6.5" DurationMax="6.5">
+					<MediaRefs>
+						<MediaRef Id="1011429898"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1402,7 +1412,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{2798CB13-DDC1-2C64-AAED-4223417FD128}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{966065F2-491F-F4FE-7210-AADE0C2660E6}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1450,5 +1460,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{DC16B08D-95B6-C2A3-B504-D0C517F2D096}</FileHash>
+	<FileHash>{40CAB48A-F06E-4D61-C657-9D5764E416A4}</FileHash>
 </SoundBanksInfo>
