@@ -13,10 +13,6 @@ public class HackableConsoleEnable : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if((ConsoleHackable)hackable && ((ConsoleHackable)hackable).hasBeenHacked)
-        {
-            return;
-        }
         if(collision.name=="Player")
         {
             hackable.enabled = true;

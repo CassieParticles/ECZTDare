@@ -38,7 +38,8 @@ public class ConsoleHackable : Hackable
                 }
                 break;
         }
+
+        GetComponent<PolygonCollider2D>().enabled = false;
         enabled = false;
-        hasBeenHacked = true;
     }
 }
