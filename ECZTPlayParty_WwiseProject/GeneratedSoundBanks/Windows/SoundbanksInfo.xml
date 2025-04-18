@@ -144,7 +144,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{DB2D5000-E4BE-5CE7-EB36-D5CFEF532CDF}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4A382AAD-D59D-B1D5-CC63-88FFE28840AC}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -656,6 +656,10 @@
 					<ShortName>Enemy_Alerted.wav</ShortName>
 					<CachePath>SFX/Enemy_Alerted_818F3B66.wem</CachePath>
 				</File>
+				<File Id="1011429898" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player_Death.wav</ShortName>
+					<CachePath>SFX/Player_Death_818F3B66.wem</CachePath>
+				</File>
 				<File Id="1026799594" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_2.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_2_818F3B66.wem</CachePath>
@@ -1016,9 +1020,31 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="311128683" Name="Guard_ShesBack" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.96260417" DurationMax="0.96260417">
+					<MediaRefs>
+						<MediaRef Id="146773433"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="1007339087" Name="Guard_ShesGone" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.0625" DurationMax="1.0625">
 					<MediaRefs>
 						<MediaRef Id="632797106"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3316878894" Name="Guard_ShesStillHere" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.40625" DurationMax="1.40625">
+					<MediaRefs>
+						<MediaRef Id="278924793"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1088,6 +1114,11 @@
 						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
+				</Event>
+				<Event Id="3083087645" Name="Player_Death" DurationType="OneShot" DurationMin="6.5" DurationMax="6.5">
+					<MediaRefs>
+						<MediaRef Id="1011429898"/>
+					</MediaRefs>
 				</Event>
 				<Event Id="2453392179" Name="Player_Footstep" DurationType="OneShot" DurationMin="0.24288298" DurationMax="0.25881624">
 					<AuxBusRefs>
@@ -1451,5 +1482,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{9916B087-C57D-807D-D385-627F89342392}</FileHash>
+	<FileHash>{653E3BC9-F34A-720E-6A4D-ECE2D8E365CB}</FileHash>
 </SoundBanksInfo>

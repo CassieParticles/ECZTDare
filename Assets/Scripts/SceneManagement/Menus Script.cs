@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class MenuScript : MonoBehaviour
     public AK.Wwise.Event buttonClick;
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
+    public AK.Wwise.Event loseSound;
     private AK.Wwise.Event sliderSound;
     private AlarmMusicHandler gameMusicScript;
 
@@ -55,8 +57,8 @@ public class MenuScript : MonoBehaviour
     string previousScene;
     public bool hasUpgrade = false;
 
-    bool won = false;
     bool lost = false;
+    int deathCounter; //This is to allow for skipping lose screen but can be reused I guess
 
     bool canPause = true;
     public bool paused;
@@ -70,6 +72,7 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float dialogueVolume;
     [NonSerialized] public float ambienceVolume;
 
+    public float loseSoundDelay;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
@@ -318,9 +321,14 @@ public class MenuScript : MonoBehaviour
         canPause = false;
         if (!loseGroup.activeSelf) {
             player = GameObject.Find("Player");
+            GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
+            GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
+            //Bec add your music mode change
+
+            //
             player.SetActive(false);
             loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(1.5f));
+            StartCoroutine(LoseDelay(7f));
         }
     }
 
@@ -328,12 +336,24 @@ public class MenuScript : MonoBehaviour
         if (!hasUpgrade) {
             hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
         }
-        yield return new WaitForSeconds(seconds);
+
+        int currentDeaths = deathCounter;
+        yield return new WaitForSeconds(loseSoundDelay);
+        loseSound.Post(gameObject);
+        yield return new WaitForSeconds(seconds-loseSoundDelay);
+        if (currentDeaths == deathCounter) {
+            StartCoroutine(LoseFinalize());
+        }
+
+    }
+
+    IEnumerator LoseFinalize() {
+        loseSound.Stop(gameObject);
+        deathCounter++;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        if(MainScoreController.GetInstance())
-        {
+        if (MainScoreController.GetInstance()) {
             MainScoreController.GetInstance().Unpause();
         }
         yield return new WaitForFixedUpdate();
@@ -440,6 +460,11 @@ public class MenuScript : MonoBehaviour
                 CloseMenu();
                 GetComponent<ControlsScript>().controls.Enable();
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
+            StartCoroutine(LoseFinalize());
+
         }
 
         if (menuOpen) {
