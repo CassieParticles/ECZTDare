@@ -64,17 +64,20 @@ public class ControlsScript : MonoBehaviour {
         resetSlideButton = GameObject.Find("ResetSlideButton");
         resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
         resetHackButton = GameObject.Find("ResetHackButton");
+
     }
 
-    public void Update() {
-        if (menu.keybindsOpen) {
-            rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
-            rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
-            rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
-            rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-            rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
-            rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+    public void Update() { //For some stupid reason this update function doesnt run specifically in build mode I hate it :(
+        //if (menu.keybindsOpen) {
+            //rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
+            //rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
+            //rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+            //rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+            //rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+            //rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
+            //rebindSlideButtonKey.text = "Sliding hehhehehee";
+            /*
             if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
                 resetRunButton.SetActive(true);
             } else {
@@ -100,7 +103,8 @@ public class ControlsScript : MonoBehaviour {
             } else {
                 resetHackButton.SetActive(false);
             }
-        }
+            */
+        //}
     }
     public void RemapInput(string reboundAction) {
         buttonClick.Post(gameObject);
@@ -131,24 +135,24 @@ public class ControlsScript : MonoBehaviour {
         buttonClick.Post(gameObject);
         switch (reboundAction) {
             case "Running":
-                controls.GameplayControls.Running.RemoveAllBindingOverrides();
                 rebindLeftButton.GetComponent<Button>().Select();
+                controls.GameplayControls.Running.RemoveAllBindingOverrides();
                 return;
             case "Jumping":
-                controls.GameplayControls.Jumping.RemoveAllBindingOverrides();
                 rebindJumpButton.GetComponent<Button>().Select();
+                controls.GameplayControls.Jumping.RemoveAllBindingOverrides();
                 return;
             case "Sliding":
-                controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
                 rebindSlideButton.GetComponent<Button>().Select();
+                controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
                 return;
             case "BoostCloaking":
-                controls.GameplayControls.BoostCloak.RemoveAllBindingOverrides();
                 rebindBoostCloakButton.GetComponent<Button>().Select();
+                controls.GameplayControls.BoostCloak.RemoveAllBindingOverrides();
                 return;
             case "Hacking":
-                controls.GameplayControls.Hacking.RemoveAllBindingOverrides();
                 rebindHackButton.GetComponent<Button>().Select();
+                controls.GameplayControls.Hacking.RemoveAllBindingOverrides();
                 return;
         }
     }

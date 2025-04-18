@@ -49,7 +49,7 @@ public class MainScoreController : MonoBehaviour
         timer.paused = false;
     }
 
-    public void EndSection(bool endOfLevel)
+    public void EndSection(bool endOfLevel,bool fadeToBlack)
     {
         //Only end section if it was tracking
         if(!currentlyScoring){ return; }
@@ -72,13 +72,13 @@ public class MainScoreController : MonoBehaviour
 
         //TODO: Display score in cool and fancy way
         GameObject cutscene = Instantiate(ScoreCutscenePrefab);
-        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth,endOfLevel);
+        cutscene.GetComponent<CutsceneControl>().DisplayScore(time, stealth,endOfLevel,fadeToBlack);
     }
 
-    public void EndLevel()
+    public void EndLevel(bool fadeToBlack)
     {
         //If currently on a section, end it
-        EndSection(true);
+        EndSection(true,fadeToBlack);
 
         //Collect scores into cumulative score
         float totalTime = 0;

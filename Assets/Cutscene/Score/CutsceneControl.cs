@@ -16,6 +16,8 @@ public class CutsceneControl : MonoBehaviour
     Rigidbody2D playerRB;
     Vector2 freezeVelocity;
 
+    bool fadeToBlack;
+
     bool endOfLevel;
 
     private IEnumerator FreezePlayer(Rigidbody2D playerRB)
@@ -29,12 +31,14 @@ public class CutsceneControl : MonoBehaviour
         director=GetComponent<PlayableDirector>();
     }
 
-    public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel)
+    public void DisplayScore(float timeTaken, int stealthScore, bool endOfLevel, bool fadeToBlack)
     {
+        //Cutscene GUI should remain if fade to black is true, so the black remains
+        this.fadeToBlack =fadeToBlack;
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
-        GameObject TimeScoreText = ScoreGUI.transform.GetChild(3).gameObject;
-        GameObject StealthScoreText = ScoreGUI.transform.GetChild(4).gameObject;
+        GameObject TimeScoreText = ScoreGUI.transform.GetChild(4).gameObject;
+        GameObject StealthScoreText = ScoreGUI.transform.GetChild(5).gameObject;
 
         //Format the time taken into mm:ss
         int minutes = (int)timeTaken / 60;
@@ -57,27 +61,33 @@ public class CutsceneControl : MonoBehaviour
         TimeScoreText.GetComponent<TextMeshProUGUI>().text = timeStr;
         StealthScoreText.GetComponent<TextMeshProUGUI>().text = stealthScore.ToString();
 
+        ScoreGUI.transform.GetChild(0).gameObject.SetActive(fadeToBlack);
+        
+
+
         //Set up Bindings
         TimelineAsset timeline = director.playableAsset as TimelineAsset;
         foreach (TrackAsset item in timeline.GetOutputTracks())
         {
-            Debug.Log(item.name);
             switch (item.name)
             {
-                case "Title":
+                case "FadeToBlack":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(0).gameObject);
                     break;
-                case "TimeTaken":
+                case "Title":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(1).gameObject);
                     break;
-                case "StealthScore":
+                case "TimeTaken":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(2).gameObject);
                     break;
-                case "Speed":
+                case "StealthScore":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(3).gameObject);
                     break;
-                case "Stealth":
+                case "Speed":
                     director.SetGenericBinding(item, ScoreGUI.transform.GetChild(4).gameObject);
+                    break;
+                case "Stealth":
+                    director.SetGenericBinding(item, ScoreGUI.transform.GetChild(5).gameObject);
                     break;
             }
         }
@@ -104,12 +114,17 @@ public class CutsceneControl : MonoBehaviour
         playerRB.bodyType = RigidbodyType2D.Dynamic;
         playerRB.velocity = freezeVelocity;
 
-        Destroy(ScoreGUI);
-        ScoreGUI = null;
-
+        if(!fadeToBlack)
+        {
+            Destroy(ScoreGUI);
+            ScoreGUI = null;
+        }
         //Non-final cutscene ends here
         if (!endOfLevel)
-        { return; }
+        {
+            Destroy(gameObject);
+            return; 
+        }
 
         //End level
         Debug.Log("End of level");
@@ -117,5 +132,7 @@ public class CutsceneControl : MonoBehaviour
         {
             FindAnyObjectByType<MenuScript>().Win();
         }
+
+        Destroy(gameObject);
     }
 }

@@ -9,6 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static ControlsScript;
 
 public class MenuScript : MonoBehaviour
 {
@@ -46,6 +47,8 @@ public class MenuScript : MonoBehaviour
     GameObject uiCanvas;
     GameObject player;
 
+    ControlsScript controlScript;
+
     bool menuOpen;
     bool settingsOpen;
     bool switchingScene = false;
@@ -66,6 +69,22 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float soundVolume;
     [NonSerialized] public float dialogueVolume;
     [NonSerialized] public float ambienceVolume;
+
+
+    //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
+    TextMeshProUGUI rebindLeftButtonKey;
+    TextMeshProUGUI rebindRightButtonKey;
+    TextMeshProUGUI rebindJumpButtonKey;
+    TextMeshProUGUI rebindSlideButtonKey;
+    TextMeshProUGUI rebindBoostCloakButtonKey;
+    TextMeshProUGUI rebindHackButtonKey;
+
+    GameObject resetRunButton;
+    GameObject resetJumpButton;
+    GameObject resetSlideButton;
+    GameObject resetBoostCloakButton;
+    GameObject resetHackButton;
+
 
     public static MenuScript instance { get; private set; }
     private void Awake() {
@@ -271,9 +290,9 @@ public class MenuScript : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
             ControlsScript controls = GetComponent<ControlsScript>();
-            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controls.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
-                                                                            controls.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
-                                                                            controls.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
+                                                                            controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
+                                                                            controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
         }
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
@@ -326,6 +345,8 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Starts()
     {
+        controlScript = GetComponent<ControlsScript>();
+
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
         playButton = GameObject.Find("PlayButton");
@@ -359,6 +380,19 @@ public class MenuScript : MonoBehaviour
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
+
+        rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
+        rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
+        rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
+        rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
+        rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
+        rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
+
+        resetRunButton = GameObject.Find("ResetRunButton");
+        resetJumpButton = GameObject.Find("ResetJumpButton");
+        resetSlideButton = GameObject.Find("ResetSlideButton");
+        resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
+        resetHackButton = GameObject.Find("ResetHackButton");
 
         defaultMenuGroup.SetActive(true);
         slideshowGroup.SetActive(true);
@@ -408,26 +442,63 @@ public class MenuScript : MonoBehaviour
             }
         }
 
-        if (settingsOpen && menuOpen) {
-            muteAudio = muteAudioToggle.isOn;
-            if (muteAudio) {
-                AkSoundEngine.SetRTPCValue("MasterVolume", 0);
-            } else {
-                masterVolume = masterVolumeSlider.value;
-                AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
-            }    
-            musicVolume = musicVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
-            soundVolume = soundVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("SoundVolume", soundVolume);
-            dialogueVolume = dialogueVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
-            ambienceVolume = ambienceVolumeSlider.value;
-            AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
-            if (!Input.GetMouseButton(0)) {
-                //sliderSound.Stop(gameObject);
+        if (menuOpen) {
+            if (settingsOpen) {
+                muteAudio = muteAudioToggle.isOn;
+                if (muteAudio) {
+                    AkSoundEngine.SetRTPCValue("MasterVolume", 0);
+                } else {
+                    masterVolume = masterVolumeSlider.value;
+                    AkSoundEngine.SetRTPCValue("MasterVolume", masterVolume);
+                }    
+                musicVolume = musicVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("MusicVolume", musicVolume);
+                soundVolume = soundVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("SoundVolume", soundVolume);
+                dialogueVolume = dialogueVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("DialogueVolume", dialogueVolume);
+                ambienceVolume = ambienceVolumeSlider.value;
+                AkSoundEngine.SetRTPCValue("AmbienceVolume", ambienceVolume);
+                if (!Input.GetMouseButton(0)) {
+                    //sliderSound.Stop(gameObject);
+                }
+            } if (keybindsOpen) {
+                rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
+                rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
+                rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+                rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+                rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+
+                if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
+                    resetRunButton.SetActive(true);
+                } else {
+                    resetRunButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                    resetJumpButton.SetActive(true);
+                } else {
+                    resetJumpButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                    resetSlideButton.SetActive(true);
+                } else {
+                    resetSlideButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                    resetBoostCloakButton.SetActive(true);
+                } else {
+                    resetBoostCloakButton.SetActive(false);
+                }
+                if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                    resetHackButton.SetActive(true);
+                } else {
+                    resetHackButton.SetActive(false);
+                }
             }
         }
+
+        
     }
 
     public void SliderChangeSound(AK.Wwise.Event sound) {

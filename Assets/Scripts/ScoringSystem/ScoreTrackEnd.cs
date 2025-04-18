@@ -9,7 +9,7 @@ public class ScoreTrackEnd : MonoBehaviour
         if (collision.name == "Player")
         {
             //Colliding with player
-            MainScoreController.GetInstance().EndSection(false);
+            MainScoreController.GetInstance().EndSection(false,false);
         }
     }
 }
