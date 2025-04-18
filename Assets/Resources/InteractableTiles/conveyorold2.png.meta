@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: f6f4f7e0a1583c647bd3b9ab04bb2971
+guid: 56a78cae277699c438891bfd9068712d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1276938883637441993
-    second: conveyor 2_0
+      213: 435880693994817966
+    second: conveyor_0
+  - first:
+      213: 1719879013197562313
+    second: conveyor_1
+  - first:
+      213: 2162936937355452977
+    second: conveyor_2
+  - first:
+      213: -4798116158592024626
+    second: conveyor_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +109,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: conveyor 2_0
+      name: conveyor_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 448
+        y: 96
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -114,19 +123,82 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c5f71f262998b110800000000000000
-      internalID: 1276938883637441993
+      spriteID: ea9030a8e2f8c0600800000000000000
+      internalID: 435880693994817966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: conveyor 2_1
+      name: conveyor_1
       rect:
         serializedVersion: 2
-        x: 448
-        y: 0
-        width: 448
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c14a46a9dc3ed710800000000000000
+      internalID: 1719879013197562313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conveyor_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 132a4ae4fab440e10800000000000000
+      internalID: 2162936937355452977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conveyor_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf7f0876caa96db0800000000000000
+      internalID: -4798116158592024626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conveyor_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -135,19 +207,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cf9a0e0b5cf6624fb3f47c017291966
-      internalID: -2065259079
+      spriteID: 6b918ad415c37f14f9c0516a5f305f80
+      internalID: -823700103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: conveyor 2_2
+      name: conveyor_5
       rect:
         serializedVersion: 2
-        x: 896
-        y: 0
-        width: 448
+        x: 32
+        y: 32
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,19 +228,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bab155a6adde6d84bb01fffe0e1930eb
-      internalID: 219037474
+      spriteID: 4f34ab29d12cdf3459a6834bc1e3fdf4
+      internalID: -213898132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: conveyor 2_3
+      name: conveyor_6
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 0
         y: 0
-        width: 448
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -177,8 +249,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6394f5de0c271864499b495fc0b83064
-      internalID: 1821988934
+      spriteID: 73d78f6bd82712e48b4fe67d88a680c9
+      internalID: -51665994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: conveyor_7
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924b179fccd63c04d8531b8fa1786c6a
+      internalID: -1121925902
       vertices: []
       indices: 
       edges: []
@@ -186,7 +279,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e2963344cef0f3c489f4aaaf6c8d85ea
+    spriteID: 8c0c8b062a48bc14bb8ec784431a358b
     internalID: 0
     vertices: []
     indices: 
@@ -194,10 +287,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      conveyor 2_0: 1276938883637441993
-      conveyor 2_1: -2065259079
-      conveyor 2_2: 219037474
-      conveyor 2_3: 1821988934
+      conveyor_0: 435880693994817966
+      conveyor_1: 1719879013197562313
+      conveyor_2: 2162936937355452977
+      conveyor_3: -4798116158592024626
+      conveyor_4: -823700103
+      conveyor_5: -213898132
+      conveyor_6: -51665994
+      conveyor_7: -1121925902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
