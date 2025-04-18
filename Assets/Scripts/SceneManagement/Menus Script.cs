@@ -71,6 +71,7 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float ambienceVolume;
 
 
+    //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
     TextMeshProUGUI rebindJumpButtonKey;
@@ -83,7 +84,6 @@ public class MenuScript : MonoBehaviour
     GameObject resetSlideButton;
     GameObject resetBoostCloakButton;
     GameObject resetHackButton;
-
 
 
     public static MenuScript instance { get; private set; }
@@ -293,7 +293,6 @@ public class MenuScript : MonoBehaviour
             GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
                                                                             controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
                                                                             controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
-            rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
         }
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
@@ -467,6 +466,9 @@ public class MenuScript : MonoBehaviour
                 rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+                rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+                rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
                 if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
                     resetRunButton.SetActive(true);
