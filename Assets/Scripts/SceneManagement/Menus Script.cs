@@ -16,6 +16,7 @@ public class MenuScript : MonoBehaviour
     public AK.Wwise.Event buttonClick;
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
+    public AK.Wwise.Event loseSound;
     private AK.Wwise.Event sliderSound;
     private AlarmMusicHandler gameMusicScript;
 
@@ -70,6 +71,7 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float dialogueVolume;
     [NonSerialized] public float ambienceVolume;
 
+    public float loseSoundDelay;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
@@ -320,7 +322,7 @@ public class MenuScript : MonoBehaviour
             player = GameObject.Find("Player");
             player.SetActive(false);
             loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(1.5f));
+            StartCoroutine(LoseDelay(7f));
         }
     }
 
@@ -328,7 +330,9 @@ public class MenuScript : MonoBehaviour
         if (!hasUpgrade) {
             hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
         }
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(loseSoundDelay);
+        loseSound.Post(gameObject);
+        yield return new WaitForSeconds(seconds-loseSoundDelay);
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
