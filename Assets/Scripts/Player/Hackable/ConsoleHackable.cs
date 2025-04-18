@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class ConsoleHackable : Hackable
 {
-    [SerializeField] Sprite HackedSprite;
-
     [SerializeField] DoorButton.DoorAction action=DoorButton.DoorAction.Unlock;
     // Start is called before the first frame update
 
     [SerializeField] private LockableDoor[] doors;
 
+    public bool hasBeenHacked = false;
+
     public override void OnHack()
     {
         base.OnHack();
 
-        if(HackedSprite)
-        {
-            GetComponent<SpriteRenderer>().sprite = HackedSprite;
-        }
+        
 
         switch (action)
         {
@@ -42,5 +39,6 @@ public class ConsoleHackable : Hackable
                 break;
         }
         enabled = false;
+        hasBeenHacked = true;
     }
 }
