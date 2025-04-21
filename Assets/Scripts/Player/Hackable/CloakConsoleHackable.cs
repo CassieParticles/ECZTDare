@@ -5,10 +5,12 @@ using UnityEngine;
 public class CloakConsoleHackable : Hackable
 {
     UIModeChange modeChanger;
+    Subtitle upgradeText;
     [SerializeField] LockableDoor door;
 
     private void Start() {
         modeChanger = GameObject.Find("GameController").GetComponent<UIModeChange>();
+        upgradeText = GetComponent<Subtitle>();
     }
     public override void OnHack()
     {
@@ -16,9 +18,14 @@ public class CloakConsoleHackable : Hackable
         //Unlock door
         door.Unlock();
 
-        //Give cloak
-        modeChanger.CollectUpgrade();
+        if (!modeChanger.player.boostCloakUnlocked) {
+            //Give cloak
+            modeChanger.CollectUpgrade();
+            upgradeText.StartSubtitle("You have unlocked the cloak and boost! " +
+                                      "The Ability you have access to depends on the mode you're in. " +
+                                      "Press Shift to activate.");
 
+        }
         //Disable hacking
         enabled = false;
 
