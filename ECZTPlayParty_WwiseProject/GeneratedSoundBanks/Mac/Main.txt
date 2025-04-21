@@ -24,12 +24,15 @@ Event	ID	Name			Wwise Object Path	Notes
 	1720356053	Ambience_Bass			\Default Work Unit\Ambience_Bass	
 	1738078876	Guard_Outside_Steps			\Default Work Unit\Guard_Outside_Steps	
 	1751967765	Boost_Stop			\Default Work Unit\Boost_Stop	
+	1940183317	HK_Activate_Arm			\Default Work Unit\HK_Activate_Arm	
 	2136542107	Guard_HeyStop			\Default Work Unit\Guard_HeyStop	
 	2188867727	Boost_Start			\Default Work Unit\Boost_Start	
 	2222225249	Player_Mode_Shift			\Default Work Unit\Player_Mode_Shift	
 	2249657186	In_View_Cone			\Default Work Unit\In_View_Cone	
 	2283979374	Power_Generator			\Default Work Unit\Power_Generator	
 	2453392179	Player_Footstep			\Default Work Unit\Player_Footstep	
+	2504311104	HK_Slide			\Default Work Unit\HK_Slide	
+	2539784742	HK_Footsteps			\Default Work Unit\HK_Footsteps	
 	2558114729	Spotlight_Turn_On			\Default Work Unit\Spotlight_Turn_On	
 	2609528332	Player_Slide			\Default Work Unit\Player_Slide	
 	2908710288	Overseer_Ending			\Default Work Unit\Overseer_Ending	
@@ -199,6 +202,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	879620409	P_C_Footstep_4	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_C_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_4		48096
 	892620616	P_M_Footstep_2	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\P_M_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_2		48096
 	899660334	G_R_Footstep_6	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_R_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_6		48096
+	899669011	Hunter_Killer_Activate_Arm	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Scifi, Weapon, Energy Retract SND122803_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Hunter_Killer_Activate_Arm		577100
 	901982837	G_D_Footstep_2	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\G_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_2		48096
 	908405812	Boost_Start	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Boost_Start_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Boost_Start		60096
 	908573506	Ambience_Rain_Outside	C:\Users\Test\GitHub\ECZT\ECZTPlayParty_WwiseProject\.cache\Mac\SFX\Soundly Audio\Rain, Vegetation, Rural Palm Forest, Light, Loop SND122357 1_66B93D96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Rain_Outside		5934524

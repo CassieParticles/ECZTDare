@@ -144,7 +144,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4A382AAD-D59D-B1D5-CC63-88FFE28840AC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8D87B289-6034-6AC5-EA77-19A2D16E6CB1}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -595,6 +595,10 @@
 				<File Id="899660334" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_R_Footstep_6.wav</ShortName>
 					<CachePath>SFX/G_R_Footstep_6_818F3B66.wem</CachePath>
+				</File>
+				<File Id="899669011" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Scifi, Weapon, Energy Retract SND122803.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Scifi, Weapon, Energy Retract SND122803_818F3B66.wem</CachePath>
 				</File>
 				<File Id="901982837" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_2.wav</ShortName>
@@ -1099,6 +1103,48 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="1940183317" Name="HK_Activate_Arm" DurationType="OneShot" DurationMin="4.349376" DurationMax="4.349376">
+					<MediaRefs>
+						<MediaRef Id="899669011"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2539784742" Name="HK_Footsteps" DurationType="OneShot" DurationMin="0.2471285" DurationMax="0.25290486">
+					<MediaRefs>
+						<MediaRef Id="56353747"/>
+						<MediaRef Id="176338131"/>
+						<MediaRef Id="237665786"/>
+						<MediaRef Id="647360545"/>
+						<MediaRef Id="696859956"/>
+						<MediaRef Id="706439460"/>
+						<MediaRef Id="967268690"/>
+						<MediaRef Id="1042868905"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2504311104" Name="HK_Slide" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="372349657"/>
+						<MediaRef Id="609776334"/>
+						<MediaRef Id="985939584"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="2249657186" Name="In_View_Cone" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="118186165"/>
@@ -1434,7 +1480,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{966065F2-491F-F4FE-7210-AADE0C2660E6}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{B713C47F-9AAC-A80B-91C3-6F06CDDD3CD2}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1482,5 +1528,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{653E3BC9-F34A-720E-6A4D-ECE2D8E365CB}</FileHash>
+	<FileHash>{3C42C1BE-94EB-83D3-74A5-A9FD8B4D43FC}</FileHash>
 </SoundBanksInfo>
