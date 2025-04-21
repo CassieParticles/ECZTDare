@@ -21,5 +21,7 @@ public class CloakConsoleHackable : Hackable
 
         //Disable hacking
         enabled = false;
+
+        GetComponent<PolygonCollider2D>().enabled = false;
     }
 }
