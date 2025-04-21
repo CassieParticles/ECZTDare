@@ -144,7 +144,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{976F4214-3B3B-1C43-17AD-EF625D579C94}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4A382AAD-D59D-B1D5-CC63-88FFE28840AC}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -1020,9 +1020,31 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="311128683" Name="Guard_ShesBack" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.96260417" DurationMax="0.96260417">
+					<MediaRefs>
+						<MediaRef Id="146773433"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="1007339087" Name="Guard_ShesGone" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.0625" DurationMax="1.0625">
 					<MediaRefs>
 						<MediaRef Id="632797106"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="3316878894" Name="Guard_ShesStillHere" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.40625" DurationMax="1.40625">
+					<MediaRefs>
+						<MediaRef Id="278924793"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1460,5 +1482,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{40CAB48A-F06E-4D61-C657-9D5764E416A4}</FileHash>
+	<FileHash>{5B5070E4-8C54-B2CE-F9D3-32F9BA42DD03}</FileHash>
 </SoundBanksInfo>
