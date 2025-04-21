@@ -55,6 +55,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public SpriteRenderer spriteRenderer;
     [NonSerialized] public Animator animator;
     [NonSerialized] public Animator modeHexAnimator;
+    [NonSerialized] public Subtitle modeHexSubtitle;
     [NonSerialized] public ParticleManager particleManager;
 
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
@@ -220,6 +221,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         modeHexAnimator = transform.Find("ModeSwitchHex").GetComponent<Animator>();
+        modeHexSubtitle = transform.Find("ModeSwitchHex").GetComponent<Subtitle>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
         uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
@@ -659,8 +661,14 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             }
             if (mode) {
                 modeHexAnimator.Play("MovementToStealth");
+                if (!modeHexSubtitle.writing) {
+                    modeHexSubtitle.StartSubtitle("Stealth Mode Activated");                
+                }
             } else {
                 modeHexAnimator.Play("StealthToMovement");
+                if (!modeHexSubtitle.writing) {
+                    modeHexSubtitle.StartSubtitle("Speed Mode Activated");
+                }
             }
         }
         inStealthMode = mode;
