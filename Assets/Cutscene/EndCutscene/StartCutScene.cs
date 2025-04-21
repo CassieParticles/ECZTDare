@@ -25,8 +25,8 @@ public class StartCutScene : MonoBehaviour
         if (waitForGrounded && player.grounded && !cutscenePlayed)
         {
             //Start cutscene
-            //Sets the "Music" State Group's active State to "Menu"
-            AkSoundEngine.SetState("Music", "Menu");
+            //Sets the "Music" State Group's active State to "Cutscene"
+            AkSoundEngine.SetState("Music", "Cutscene");
             director.Play();
             cutscenePlayed = true;
         }
