@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIModeChange : MonoBehaviour
 {
 
-    private MovementScript player;
+    public MovementScript player;
     private GameObject stealthDisplay;
     private GameObject movementDisplay;
     private GameObject cloakBar;

@@ -113,10 +113,10 @@ public class MenuScript : MonoBehaviour
 
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
-                sceneName = "Level1";
-            } else if (SceneManager.GetActiveScene().name == "Level1") {
-                sceneName = "Level2";
-            } else if (SceneManager.GetActiveScene().name == "Level2") {
+                sceneName = "Level1 Redesign";
+            } else if (SceneManager.GetActiveScene().name == "Level1 Redesign") {
+                sceneName = "Level2 Redesign";
+            } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
                 sceneName = "Main Menu"; 
             }
         }
