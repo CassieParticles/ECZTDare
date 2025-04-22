@@ -57,8 +57,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] protected AlarmSystem alarm = null;
 
     //Parameters for suspicion rate
-    [SerializeField, Range(0, 1000)] public float suspicionScaleRate;
-    [SerializeField, Range(0, 1000)] public float suspicionDecayRate;
+    [SerializeField, Range(0, 5000)] public float suspicionScaleRate;
+    [SerializeField, Range(0, 5000)] public float suspicionDecayRate;
 
 
     //Fields used in enemy suspicion meter
