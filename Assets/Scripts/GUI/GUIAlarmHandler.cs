@@ -9,7 +9,7 @@ public class GUIAlarmHandler : MonoBehaviour
     GameObject unaware;
     GameObject alert;
     GameObject alarm;
-    GameObject alarmStatusSprite;
+    Animator eyeAnimator;
     int state; //0 is hidden, 1 is alert, 2 is alarm
 
     int enemySeenCount = 0;
@@ -37,6 +37,7 @@ public class GUIAlarmHandler : MonoBehaviour
         unaware = transform.GetChild(0).gameObject;
         alert = transform.GetChild(1).gameObject;
         alarm = transform.GetChild(2).gameObject;
+        eyeAnimator = GetComponent<Animator>();
     }
 
     void Start()
@@ -94,19 +95,19 @@ public class GUIAlarmHandler : MonoBehaviour
     void ToAlarm()
     {
         state = 2;
-        Debug.Log("Alarm");
+        eyeAnimator.SetInteger("State", state);
     }
 
     void ToAlert() 
     {
         state = 1;
-        Debug.Log("Alert");
+        eyeAnimator.SetInteger("State", state);
     }
 
     void ToHidden() 
     {
         state = 0;
-        Debug.Log("Hidden");
+        eyeAnimator.SetInteger("State", state);
     }
 
 }
