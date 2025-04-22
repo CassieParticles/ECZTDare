@@ -42,15 +42,19 @@ public class TriggerPullCamera : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
  
-
-        virtualCamera.Priority = 11;
-        mainCamera.m_DefaultBlend.m_Style = blendType;
-        mainCamera.m_DefaultBlend.m_Time = blendDuration;
+        if (collision == player.GetComponent<Collider2D>()) {
+            virtualCamera.Priority = 11;
+            mainCamera.m_DefaultBlend.m_Style = blendType;
+            mainCamera.m_DefaultBlend.m_Time = blendDuration;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
-        virtualCamera.Priority = 9;
-        StartCoroutine(WaitThenReset(resetTime));
+        if (collision == player.GetComponent<Collider2D>())
+        {
+            virtualCamera.Priority = 9;
+            StartCoroutine(WaitThenReset(resetTime));
+        }
     }
 
     IEnumerator WaitThenReset(float seconds) {
