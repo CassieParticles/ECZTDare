@@ -21,6 +21,7 @@ public class RaiseAlarmState : BaseState
         {
             //Start coroutine to set off alarm
             raiseAlarmCoroutine = guardBehaviour.StartCoroutine(RaiseAlarm());
+            guardBehaviour.alarmActivationSound.Post(guardAttached);
         }
     }
 
