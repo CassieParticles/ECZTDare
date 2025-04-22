@@ -9751,6 +9751,7 @@ GameObject:
   - component: {fileID: 1688923127725210704}
   - component: {fileID: 3988373273788982449}
   - component: {fileID: 8642578292676136858}
+  - component: {fileID: 2818274516872523554}
   m_Layer: 3
   m_Name: ModeSwitchHex
   m_TagString: Untagged
@@ -9849,6 +9850,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2818274516872523554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779333530514404843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f7ff190e7491348bafe6b5aa4be87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: 
+  duration: 1
+  SubtitleMode: 1
+  writingSpeed: 30
+  jarblerSpeed: 0
+  writing: 0
+  turnOn: 0
 --- !u!1 &6969149523955869045
 GameObject:
   m_ObjectHideFlags: 0

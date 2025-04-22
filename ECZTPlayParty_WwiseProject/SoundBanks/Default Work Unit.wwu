@@ -23,6 +23,7 @@
 						<ObjectRef Name="Guard_ShesStillHere" ID="{C390C2D3-AAB6-452F-9D25-94251151E5C1}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Player_Wall_Jump" ID="{96A96DCE-B14B-4591-8204-08E22597295E}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambience_Rain" ID="{77E5C655-4770-45EE-A835-4FDDAADD00DB}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="HK_Slide" ID="{C2A6CAFD-706C-45F1-935B-29FA9A9A4255}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Player_Mode_Shift" ID="{A67BCC4C-4246-462C-8411-F34CDA300EC1}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Spotlight_Turn_On" ID="{D9FEF3F1-208B-4689-ADD2-965592C6450F}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Door_Hum" ID="{FD7C1A83-4CB7-4690-927F-20F108740755}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
@@ -31,10 +32,12 @@
 						<ObjectRef Name="Player_Death" ID="{D063A10D-7511-47A1-A6D8-6F1498488614}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambience_Fan" ID="{B283C0E7-E588-47B2-A89A-92F645630456}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Overseer_Ending" ID="{61D68016-8472-4819-9FC7-A53406DF690A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Guard_Activate_Alarm" ID="{B5F7FB17-8872-481D-A62E-60BE5BEEB834}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_GodDamnIt" ID="{BAD1C39A-6445-482D-B8F2-81E2F9A7679B}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Outside_Steps" ID="{4440665A-7B55-4924-A3E4-81FFDE0D4EDE}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Rush" ID="{392675AE-D581-497B-BBB4-B1748C3002E8}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="HK_Activate_Arm" ID="{0FB353F8-56EC-4A0A-86E6-67A355C79ECD}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Player_Jump" ID="{E3F6FD3F-26C0-4B0E-85CD-848368598098}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Stop" ID="{4B306739-2B38-4B7E-9607-3FC50D3A25E4}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Start" ID="{1F4133B0-CEC5-4BAE-AF87-95F99AC03EBC}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
@@ -49,6 +52,7 @@
 						<ObjectRef Name="Guard_HeyStop" ID="{9255AA17-8548-4EC4-BCDD-8326F93A926C}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_ILostHer" ID="{4997888A-7E89-4F03-B739-38B7091A8E9A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Button_Click" ID="{BC1A6B60-8D55-4F04-A9A1-4CD1B521981E}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="HK_Footsteps" ID="{364C3941-D034-4F4C-826F-53309EC42CEC}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

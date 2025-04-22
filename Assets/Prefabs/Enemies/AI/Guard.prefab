@@ -158,18 +158,18 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 38fe422797a23e54eb96093d129f5902, type: 2}
   foundEmiraText:
-  - HEY! STOP!
-  - I SEE YOU!
-  - INTRUDER!
-  - SOMEONE'S HERE!
+  - 'GUARD: HEY! STOP!'
+  - 'GUARD: I SEE YOU!'
+  - 'GUARD: INTRUDER!'
+  - 'GUARD: SOMEONE''S HERE!'
   lostEmiraText:
-  - GOD DAMN IT.
-  - I LOST HER.
-  - SHE DISAPPEARED.
-  - SHE'S GONE.
+  - 'GUARD: GOD DAMN IT.'
+  - 'GUARD: I LOST HER.'
+  - 'GUARD: SHE DISAPPEARED.'
+  - 'GUARD: SHE''S GONE.'
   recognizeEmiraText:
-  - SHES STILL HERE!
-  - SHES BACK!
+  - 'GUARD: SHES STILL HERE!'
+  - 'GUARD: SHES BACK!'
   SuspicionLevel:
   - 0
   - 40
@@ -180,6 +180,10 @@ MonoBehaviour:
   suspicionDecayRate: 10
   suspicion: 0
   minimumSuspicion: 0
+  alarmActivationSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: abdc221b562f8ce4fa61a979ba75cc79, type: 2}
   menuCanvasPrefab: {fileID: 4987622479182456646, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
   patrolRoute: {fileID: 0}
   investigateAlarmLoc: 1
@@ -357,4 +361,5 @@ MonoBehaviour:
   SubtitleMode: 0
   writingSpeed: 0
   jarblerSpeed: 0
+  writing: 0
   turnOn: 0

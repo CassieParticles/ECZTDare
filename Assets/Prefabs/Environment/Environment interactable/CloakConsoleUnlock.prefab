@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 542044769618424006}
   - component: {fileID: 7095367714348569088}
   - component: {fileID: 5844169617300754804}
+  - component: {fileID: 500960752159566360}
   m_Layer: 2
   m_Name: CloakConsoleUnlock
   m_TagString: Untagged
@@ -188,3 +189,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1f3942bbc288640b8927bfcc420c75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &500960752159566360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7677435043729753494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08f7ff190e7491348bafe6b5aa4be87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: You have unlocked the cloak and boost! The Ability you have access to depends
+    on the mode you're in. Press Shift to activate.
+  duration: 3
+  SubtitleMode: 1
+  writingSpeed: 30
+  jarblerSpeed: 0
+  writing: 0
+  turnOn: 0

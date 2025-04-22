@@ -29,6 +29,7 @@ public class MenuScript : MonoBehaviour
     GameObject quitButton;
     GameObject toMainMenuButton;
     GameObject nextLevelButton;
+    GameObject creditsButton;
 
     Toggle muteAudioToggle;
     Slider masterVolumeSlider;
@@ -45,6 +46,7 @@ public class MenuScript : MonoBehaviour
     GameObject winGroup;
     GameObject loseGroup;
     GameObject scoringSubGroup;
+    GameObject creditsGroup;
 
     GameObject uiCanvas;
     GameObject player;
@@ -63,6 +65,7 @@ public class MenuScript : MonoBehaviour
     bool canPause = true;
     public bool paused;
     public bool keybindsOpen;
+    public bool creditsOpen;
     uint pausedMusic;
 
     [NonSerialized] public bool muteAudio;
@@ -113,10 +116,10 @@ public class MenuScript : MonoBehaviour
 
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
-                sceneName = "Level1";
-            } else if (SceneManager.GetActiveScene().name == "Level1") {
-                sceneName = "Level2";
-            } else if (SceneManager.GetActiveScene().name == "Level2") {
+                sceneName = "Level1 Redesign";
+            } else if (SceneManager.GetActiveScene().name == "Level1 Redesign") {
+                sceneName = "Level2 Redesign";
+            } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
                 sceneName = "Main Menu"; 
             }
         }
@@ -210,6 +213,23 @@ public class MenuScript : MonoBehaviour
         dialogueVolumeSlider.value = 80;
         ambienceVolumeSlider.value = 80;
     }
+
+    public void OpenCredits() {
+        buttonClick.Post(gameObject);
+
+
+        if (creditsOpen) {
+            CloseSubMenu();
+            OpenSlideshow();
+            creditsOpen = false;
+        } else {
+            CloseSubMenu();
+            creditsGroup.SetActive(true);
+            creditsOpen = true;
+        }
+
+
+    }
     public void OpenMenu() {
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
@@ -236,6 +256,8 @@ public class MenuScript : MonoBehaviour
             levelSelectButton.SetActive(true);
             toMainMenuButton.SetActive(false);
             quitButton.SetActive(true);
+            creditsButton.SetActive(true);
+            
             playButton.GetComponent<Button>().Select();
 
         } else {
@@ -253,6 +275,7 @@ public class MenuScript : MonoBehaviour
             resumeButton.SetActive(true);
             quitButton.SetActive(false);
             toMainMenuButton.SetActive(true);
+            creditsButton.SetActive(false);
             resumeButton.GetComponent<Button>().Select();
         }
     }
@@ -271,6 +294,7 @@ public class MenuScript : MonoBehaviour
         CloseSubMenu();
 
         defaultMenuGroup.SetActive(false);
+        creditsButton.SetActive(false);
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
@@ -301,6 +325,9 @@ public class MenuScript : MonoBehaviour
         keybindsGroup.SetActive(false);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         keybindsButton.GetComponent<Button>().onClick.AddListener(OpenKeybinds);
+
+        creditsGroup.SetActive(false);
+        creditsOpen = false;
     }
 
     public void Win() {
@@ -376,6 +403,7 @@ public class MenuScript : MonoBehaviour
         quitButton = GameObject.Find("QuitButton");
         toMainMenuButton = GameObject.Find("MainMenuButton");
         nextLevelButton = GameObject.Find("NextLevelButton");
+        creditsButton = GameObject.Find("CreditsButton");
 
         muteAudioToggle = GameObject.Find("MuteAudioToggle").GetComponent<Toggle>();
         masterVolumeSlider = GameObject.Find("Master Volume").GetComponent<Slider>();
@@ -392,6 +420,7 @@ public class MenuScript : MonoBehaviour
         winGroup = GameObject.Find("WinGroup");
         loseGroup = GameObject.Find("LoseGroup");
         scoringSubGroup = GameObject.Find("ScoringSubGroup");
+        creditsGroup = GameObject.Find("CreditsGroup");
 
         //Set button functions
         resumeButton.GetComponent<Button>().onClick.AddListener(CloseMenu);
@@ -421,6 +450,7 @@ public class MenuScript : MonoBehaviour
         keybindsGroup.SetActive(false);
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
+        creditsGroup.SetActive(false);
 
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();

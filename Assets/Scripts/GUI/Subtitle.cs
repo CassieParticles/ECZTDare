@@ -21,7 +21,7 @@ public class Subtitle : MonoBehaviour
 
     private SubtitleManager subtitleManager;
 
-    private bool writing = false;
+    public bool writing = false;
     private bool writingCoroutine;
     [NonSerialized] public string writtenText = "";
     private int textNumber = 0;
