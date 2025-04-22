@@ -34,6 +34,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private float footstepCount = 0.0f;
 
     public AK.Wwise.Event guardFootstep;
+    public AK.Wwise.Event alarmActivationSound;
 
     //AI behaviour
     private NavMeshAgent agent;
