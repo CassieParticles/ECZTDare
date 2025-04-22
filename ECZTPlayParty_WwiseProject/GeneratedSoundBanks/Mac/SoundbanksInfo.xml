@@ -144,7 +144,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{8D87B289-6034-6AC5-EA77-19A2D16E6CB1}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{A847871D-CC20-54B6-1CC1-C84DF94D820E}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -640,6 +640,10 @@
 					<ShortName>Boost_Stop.wav</ShortName>
 					<CachePath>SFX/Boost_Stop_818F3B66.wem</CachePath>
 				</File>
+				<File Id="977923533" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Games, Video, Game Console, Playstation, Controller, Handling, Button Click SND8256.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Games, Video, Game Console, Playstation, Controller, Handling, Button Click SND8256_DA16C5CB.wem</CachePath>
+				</File>
 				<File Id="978517589" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_3.wav</ShortName>
 					<CachePath>SFX/P_R_Footstep_3_818F3B66.wem</CachePath>
@@ -837,6 +841,17 @@
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
+				</Event>
+				<Event Id="795206986" Name="Guard_Activate_Alarm" DurationType="OneShot" DurationMin="3.8181362" DurationMax="3.8181362">
+					<MediaRefs>
+						<MediaRef Id="977923533"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="3149531453" Name="Guard_Footstep" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.029750595" DurationMax="0.28883818">
 					<AuxBusRefs>
@@ -1528,5 +1543,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{79358C07-5B5C-48F3-929A-4A910AD29428}</FileHash>
+	<FileHash>{032A6C75-8E96-D1FC-DBF0-63355C79AA50}</FileHash>
 </SoundBanksInfo>

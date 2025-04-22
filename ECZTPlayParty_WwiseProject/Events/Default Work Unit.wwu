@@ -595,6 +595,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Guard_Activate_Alarm" ID="{B5F7FB17-8872-481D-A62E-60BE5BEEB834}">
+					<ChildrenList>
+						<Action Name="" ID="{65CD9825-F087-4744-B30C-458BB2EEFA67}" ShortID="180450155">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Guard_Activate_Alarm" ID="{B9A64C09-8652-4CD2-BD06-26BD7081C72F}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
