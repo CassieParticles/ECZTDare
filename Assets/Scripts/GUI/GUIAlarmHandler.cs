@@ -5,13 +5,33 @@ using UnityEngine;
 
 public class GUIAlarmHandler : MonoBehaviour
 {
-    [NonSerialized]public AlarmSystem alarmSystem;
+    [NonSerialized] public AlarmSystem alarmSystem;
     GameObject unaware;
     GameObject alert;
     GameObject alarm;
     GameObject alarmStatusSprite;
     int state; //0 is hidden, 1 is alert, 2 is alarm
 
+    int enemySeenCount = 0;
+    public void EnemySeePlayer()
+    {
+        enemySeenCount++;
+
+        //If first enemy, and not currently in alarm, change to alert
+        if (enemySeenCount == 1 && state != 2)
+        {
+            ToAlert();
+        }
+    }
+
+    public void EnemyLosePlayer()
+    {
+        enemySeenCount--;
+        if(enemySeenCount == 0 && state !=2)
+        {
+            ToHidden();
+        }
+    }
     private void Awake()
     {
         unaware = transform.GetChild(0).gameObject;
@@ -35,13 +55,11 @@ public class GUIAlarmHandler : MonoBehaviour
 
     public void alarmOn(Vector3 playerPos)
     {
-        alert.SetActive(false);
-        alarm.SetActive(true);
+        ToAlarm();
     }
     public void alarmOff()
     {
-        alarm.SetActive(false);
-        alert.SetActive(true);
+        ToHidden();
     }
 
     //can be used to change the alarm that is referenced by the script during functions.
@@ -73,16 +91,22 @@ public class GUIAlarmHandler : MonoBehaviour
         }
     }
 
-    void ToAlarm() {
+    void ToAlarm()
+    {
         state = 2;
+        Debug.Log("Alarm");
     }
 
-    void ToAlert() {
+    void ToAlert() 
+    {
         state = 1;
+        Debug.Log("Alert");
     }
 
-    void ToHidden() {
+    void ToHidden() 
+    {
         state = 0;
+        Debug.Log("Hidden");
     }
 
 }
