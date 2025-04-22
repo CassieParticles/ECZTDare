@@ -9,7 +9,8 @@ public class GUIAlarmHandler : MonoBehaviour
     GameObject unaware;
     GameObject alert;
     GameObject alarm;
-
+    GameObject alarmStatusSprite;
+    int state; //0 is hidden, 1 is alert, 2 is alarm
 
     private void Awake()
     {
@@ -70,6 +71,18 @@ public class GUIAlarmHandler : MonoBehaviour
         {
             alarmOn(Vector3.zero);
         }
+    }
+
+    void ToAlarm() {
+        state = 2;
+    }
+
+    void ToAlert() {
+        state = 1;
+    }
+
+    void ToHidden() {
+        state = 0;
     }
 
 }
