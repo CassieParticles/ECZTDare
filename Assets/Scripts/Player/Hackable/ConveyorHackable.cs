@@ -10,12 +10,16 @@ public class ConveyorHackable : Hackable
     [SerializeField] float defaultSpeed = 4f;
     [SerializeField] float hackedSpeed = -4f;
     public float currentSpeed;
+    [Range(0.1f, 25f)] public float animationSpeed;
     private bool toggled;
+
+    private Animator animator;
 
     void Awake() {
         ConveyorBelt.Post(gameObject);
         currentSpeed = defaultSpeed;
         toggled = false;
+        animator = GetComponent<Animator>();
     }
 
     public override void OnHack() 
@@ -23,6 +27,7 @@ public class ConveyorHackable : Hackable
         base.OnHack();
         toggled = !toggled;
         currentSpeed = toggled ? hackedSpeed : defaultSpeed;
+        animator.SetFloat("Speed", currentSpeed / animationSpeed);
         Cooldown();
     }
     public IEnumerator Cooldown() {
