@@ -6,9 +6,6 @@ using UnityEngine;
 public class GUIAlarmHandler : MonoBehaviour
 {
     [NonSerialized] public AlarmSystem alarmSystem;
-    GameObject unaware;
-    GameObject alert;
-    GameObject alarm;
     Animator eyeAnimator;
     int state; //0 is hidden, 1 is alert, 2 is alarm
 
@@ -26,6 +23,7 @@ public class GUIAlarmHandler : MonoBehaviour
 
     public void EnemyLosePlayer()
     {
+        if (enemySeenCount == 0) { return; }
         enemySeenCount--;
         if(enemySeenCount == 0 && state !=2)
         {
@@ -34,9 +32,6 @@ public class GUIAlarmHandler : MonoBehaviour
     }
     private void Awake()
     {
-        unaware = transform.GetChild(0).gameObject;
-        alert = transform.GetChild(1).gameObject;
-        alarm = transform.GetChild(2).gameObject;
         eyeAnimator = GetComponent<Animator>();
     }
 
@@ -51,8 +46,6 @@ public class GUIAlarmHandler : MonoBehaviour
         CurrentAlarmTracker tracker = FindAnyObjectByType<CurrentAlarmTracker>();
         tracker.AddListener(changeAlarm);
     }
-
-    // Update is called once per frame
 
     public void alarmOn(Vector3 playerPos)
     {
