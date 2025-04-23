@@ -425,10 +425,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //If the player can snap to a ledge
         if (Mathf.Abs(rb.velocityX) >= 0.099 || runInput != 0) {
-            RaycastHit2D topRightSnap = Physics2D.Raycast(topRightSnapRayStart, Vector2.right, rb.velocityX * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
-            RaycastHit2D bottomRightSnap = Physics2D.Raycast(bottomRightSnapRayStart, Vector2.right, rb.velocityX * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
-            RaycastHit2D topLeftSnap = Physics2D.Raycast(topLeftSnapRayStart, Vector2.left, rb.velocityX * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
-            RaycastHit2D bottomLeftSnap = Physics2D.Raycast(bottomLeftSnapRayStart, Vector2.left, rb.velocityX * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
+            RaycastHit2D topRightSnap = Physics2D.Raycast(topRightSnapRayStart, Vector2.right, horizontalVelocity * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
+            RaycastHit2D bottomRightSnap = Physics2D.Raycast(bottomRightSnapRayStart, Vector2.right, horizontalVelocity * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
+            RaycastHit2D topLeftSnap = Physics2D.Raycast(topLeftSnapRayStart, Vector2.left, horizontalVelocity * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
+            RaycastHit2D bottomLeftSnap = Physics2D.Raycast(bottomLeftSnapRayStart, Vector2.left, horizontalVelocity * Time.fixedDeltaTime * predictionSnap + offsetSnap, layers);
             //Check if top ray isnt hitting anything and bottom ray is
             if ((!topRightSnap && bottomRightSnap) || (!topLeftSnap && bottomLeftSnap)) {
                 //dif ((bottomRightSnap && bottomRightSnap.distance < ) || (bottomLeftSnap && bottomLeftSnap.distance > rb.velocityX * Time.fixedDeltaTime * pred))

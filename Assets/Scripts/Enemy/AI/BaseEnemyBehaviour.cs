@@ -57,8 +57,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField] protected AlarmSystem alarm = null;
 
     //Parameters for suspicion rate
-    [SerializeField, Range(0, 1000)] public float suspicionScaleRate;
-    [SerializeField, Range(0, 1000)] public float suspicionDecayRate;
+    [SerializeField, Range(0, 5000)] public float suspicionScaleRate;
+    [SerializeField, Range(0, 5000)] public float suspicionDecayRate;
 
 
     //Fields used in enemy suspicion meter
@@ -86,8 +86,15 @@ public class BaseEnemyBehaviour : MonoBehaviour
     {
         Player = player;
         inViewCone.Post(gameObject);
-        
         //Handle other "seeing the player" stuff
+
+        //Tell GUI player has been seen
+        GUIAlarmHandler alarmHandler = FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemySeePlayer();
+        }
+
     }
 
     //Call when the enemy stops being able to see the player
@@ -96,6 +103,13 @@ public class BaseEnemyBehaviour : MonoBehaviour
         Player = null;
         inViewCone.Stop(gameObject);
         //Handle other "losing the player" stuff
+
+        //Tell GUI player has been lost
+        GUIAlarmHandler alarmHandler = FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemyLosePlayer();
+        }
     }
 
     private void UpdateSuspicionColour()

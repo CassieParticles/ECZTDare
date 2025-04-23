@@ -18,8 +18,8 @@ public class TimerDisplay : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60F);
         int seconds = Mathf.FloorToInt(time - minutes * 60);
-        int milliseconds = Mathf.FloorToInt((time * 1000) % 1000);
-        string niceTime = string.Format("{0:0}:{1:00}:{2:000}", minutes, seconds, milliseconds);
+        int milliseconds = Mathf.FloorToInt((time * 100) % 100);
+        string niceTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
 
         timerText.text = niceTime;
     }

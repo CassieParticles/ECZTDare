@@ -5313,6 +5313,7 @@
 						</Sound>
 						<Sound Name="Hunter_Killer_Activate_Arm" ID="{543F858D-59CE-45E0-A53C-760683D9CF8B}" ShortID="365512812">
 							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="Highpass" Type="int16">
 									<ValueList>
 										<Value>35</Value>
@@ -5345,6 +5346,9 @@
 								</Property>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
@@ -5382,6 +5386,7 @@
 						</Sound>
 						<Sound Name="Guard_Activate_Alarm" ID="{B9A64C09-8652-4CD2-BD06-26BD7081C72F}" ShortID="714036680">
 							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>28</Value>
@@ -5409,6 +5414,9 @@
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
