@@ -199,6 +199,8 @@ public class MenuScript : MonoBehaviour
 
         CloseSubMenu();
 
+        controlScript.controls.GameplayControls.Disable();
+
         keybindsOpen = true;
         keybindsGroup.SetActive(true);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -250,7 +252,7 @@ public class MenuScript : MonoBehaviour
             slideshowGroup.SetActive(true);
 
             GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
-            //GetComponent<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+            GetComponent<Canvas>().worldCamera = Camera.main;
             resumeButton.SetActive(false);
             playButton.SetActive(true);
             levelSelectButton.SetActive(true);
@@ -268,7 +270,8 @@ public class MenuScript : MonoBehaviour
             //titleMusic.Post(gameObject);
 
             paused = true;
-            GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
+            GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
+            GetComponent<Canvas>().worldCamera = Camera.main;
             Time.timeScale = 0f;
             playButton.SetActive(false);
             levelSelectButton.SetActive(false);
@@ -471,6 +474,7 @@ public class MenuScript : MonoBehaviour
             switchingScene = false;
             lost = false;
             CloseSubMenu();
+            GetComponent<Canvas>().worldCamera = Camera.main;
             if (SceneManager.GetActiveScene().name == "Main Menu") {
                 OpenMenu();
             } else {
