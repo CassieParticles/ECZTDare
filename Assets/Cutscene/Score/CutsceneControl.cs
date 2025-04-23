@@ -37,6 +37,7 @@ public class CutsceneControl : MonoBehaviour
         this.fadeToBlack =fadeToBlack;
         //Create GUI and get text
         ScoreGUI = Instantiate(ScoreGUIPrefab);
+        ScoreGUI.GetComponent<Canvas>().worldCamera = Camera.main;
         GameObject TimeScoreText = ScoreGUI.transform.GetChild(4).gameObject;
         GameObject StealthScoreText = ScoreGUI.transform.GetChild(5).gameObject;
 
