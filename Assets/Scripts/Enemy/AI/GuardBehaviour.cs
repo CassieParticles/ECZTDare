@@ -206,11 +206,11 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         //Update animation parameters
         guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
-        if (Mathf.Sign(agent.velocity.x) > 0)
+        if (agent.velocity.x > 0.1f)
         {
             spriteRenderer.flipX = false;
         }
-        else if (Mathf.Sign(agent.velocity.x) < 0)
+        else if (agent.velocity.x < -0.1f)
         {
             spriteRenderer.flipX = true;
         }
