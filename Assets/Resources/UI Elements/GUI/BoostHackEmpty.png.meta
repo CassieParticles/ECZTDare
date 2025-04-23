@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 883c2341d57cd5e4d93e1f84deda55ad
+guid: a4398928c63412d4689898dddec62d99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3318278524185129919
-    second: BoostIcon_0
-  - first:
-      213: -9004598672915862382
-    second: BoostIcon_1
+      213: 842220830349146148
+    second: BoostHackEmpty_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoostIcon_0
+      name: BoostHackEmpty_0
       rect:
         serializedVersion: 2
-        x: 95
-        y: 117
-        width: 145
-        height: 86
+        x: 190
+        y: 169
+        width: 194
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,29 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 14c4324634b13f1d0800000000000000
-      internalID: -3318278524185129919
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BoostIcon_1
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 162
-        width: 16
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29c65e3273d390380800000000000000
-      internalID: -9004598672915862382
+      spriteID: 4283567026b20bb00800000000000000
+      internalID: 842220830349146148
       vertices: []
       indices: 
       edges: []
@@ -155,8 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BoostIcon_0: -3318278524185129919
-      BoostIcon_1: -9004598672915862382
+      BoostHackEmpty_0: 842220830349146148
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

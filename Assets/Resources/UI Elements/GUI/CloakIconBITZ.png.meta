@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 39ceaa4ab2d0c194b9f0b67f3d723e71
+guid: 46d48b26918e5c641b49ebd25662bd19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -237832630634513170
-    second: BoostBarEmpty_0
+      213: -6307296455930079339
+    second: CloakIconBITZ_0
+  - first:
+      213: 3964907678642763342
+    second: CloakIconBITZ_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoostBarEmpty_0
+      name: CloakIconBITZ_0
       rect:
         serializedVersion: 2
-        x: 170
-        y: 117
-        width: 214
-        height: 34
+        x: 95
+        y: 309
+        width: 145
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +117,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eec78078b7c03bcf0800000000000000
-      internalID: -237832630634513170
+      spriteID: 59715337a4bf778a0800000000000000
+      internalID: -6307296455930079339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CloakIconBITZ_1
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 355
+        width: 16
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4678b8d68e260730800000000000000
+      internalID: 3964907678642763342
       vertices: []
       indices: 
       edges: []
@@ -131,7 +155,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BoostBarEmpty_0: -237832630634513170
+      CloakIconBITZ_0: -6307296455930079339
+      CloakIconBITZ_1: 3964907678642763342
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

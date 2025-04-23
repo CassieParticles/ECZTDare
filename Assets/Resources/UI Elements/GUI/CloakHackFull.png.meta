@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: d13375a43f9dac147bbef491d72eaf6d
+guid: 0802562d93c8c7a4cac4378b588d1502
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2384816433062531660
-    second: CloakIcon_0
-  - first:
-      213: 5496713731226047290
-    second: CloakIcon_1
+      213: 5689215259785437212
+    second: CloakHackFull_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CloakIcon_0
+      name: CloakHackFull_0
       rect:
         serializedVersion: 2
-        x: 95
-        y: 309
-        width: 145
-        height: 86
+        x: 190
+        y: 361
+        width: 194
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,29 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4bd2bc4e61e67eed0800000000000000
-      internalID: -2384816433062531660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CloakIcon_1
-      rect:
-        serializedVersion: 2
-        x: 235
-        y: 355
-        width: 16
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a339db50400484c40800000000000000
-      internalID: 5496713731226047290
+      spriteID: c102e32d22724fe40800000000000000
+      internalID: 5689215259785437212
       vertices: []
       indices: 
       edges: []
@@ -155,8 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CloakIcon_0: -2384816433062531660
-      CloakIcon_1: 5496713731226047290
+      CloakHackFull_0: 5689215259785437212
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
