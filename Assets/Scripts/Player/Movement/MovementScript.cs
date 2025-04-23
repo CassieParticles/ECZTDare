@@ -118,7 +118,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool onWall; //If the player is on a wall
     [NonSerialized] public bool onRightWall; //If the wall the player is on is to the right
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
-    [NonSerialized] public bool facingRight; //Is facing to the right
+    [NonSerialized] public bool facingRight = true; //Is facing to the right
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
@@ -648,7 +648,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         runningScript.FootstepSounds();
 
         //Update the sprite to flip it to the right direction
-        spriteRenderer.flipX = !facingRight;
+        if (rb.bodyType == RigidbodyType2D.Static) {
+            spriteRenderer.flipX = false;
+        } else {
+            spriteRenderer.flipX = !facingRight;
+        }
     }
 
     public void changeModeToStealth(bool mode) {
