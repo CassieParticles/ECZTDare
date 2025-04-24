@@ -108,7 +108,7 @@ TextureImporter:
         width: 291
         height: 182
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -123,13 +123,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 46f5c37e31a69d34da2d76079481521f
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 96baabc4ea532ab41a2fe36d5a57e832, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       vat_foreground_0: -5011316993756329039
   mipmapLimitGroupName: 
