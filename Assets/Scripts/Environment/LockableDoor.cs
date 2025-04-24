@@ -1,28 +1,29 @@
 
 using NavMeshPlus.Components;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 public class LockableDoor : MonoBehaviour
 {
     public AK.Wwise.Event doorHum;
 
-    [SerializeField] NavMeshSurface surface;
     [SerializeField] private bool startLocked = true;
 
     public bool isLocked { get; private set; }
 
-    private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
+    private NavMeshObstacle obstacle;
+    BoxCollider2D boxCollider;
 
     public void Lock()
     {
         if (isLocked){ return; }    //Already locked, exit early
 
         //Lock door
-        boxCollider.enabled = true;
+        obstacle.enabled = true;
         spriteRenderer.enabled = true;
-        RebuildNavMesh();
+        boxCollider.enabled = true;
         doorHum.Post(gameObject);
 
         isLocked = true;
@@ -33,9 +34,9 @@ public class LockableDoor : MonoBehaviour
         if(!isLocked){ return; }    //Already unlocked, exit early
 
         //Unlock door
-        boxCollider.enabled = false;
+        obstacle.enabled = false;
         spriteRenderer.enabled = false;
-        RebuildNavMesh();
+        boxCollider.enabled= false;
         doorHum.Stop(gameObject);
 
         isLocked = false;
@@ -44,9 +45,9 @@ public class LockableDoor : MonoBehaviour
     public void ToggleState()
     {
         //Switch door
-        boxCollider.enabled = !boxCollider.enabled;
+        obstacle.enabled = !obstacle.enabled;
         spriteRenderer.enabled = !spriteRenderer.enabled;
-        RebuildNavMesh();
+        boxCollider.enabled = !boxCollider.enabled;
 
         isLocked = !isLocked;
 
@@ -60,31 +61,21 @@ public class LockableDoor : MonoBehaviour
         }
     }
 
-    void RebuildNavMesh()
-    {
-        Debug.Log("locked");
-        if (surface)
-        {
-            surface.BuildNavMesh();
-        }
-    }
-
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        obstacle = GetComponent<NavMeshObstacle>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
         isLocked = startLocked;
-        if(surface)
-        {
-            transform.SetParent(surface.transform);
-        }
     }
 
     private void Start()
     {
+        obstacle.enabled = isLocked;
+        spriteRenderer.enabled = isLocked;
+        boxCollider.enabled = isLocked;
         if (isLocked)
         {
-            RebuildNavMesh();
             doorHum.Post(gameObject);
         }
     }
