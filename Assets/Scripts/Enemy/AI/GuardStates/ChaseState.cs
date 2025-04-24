@@ -30,6 +30,11 @@ public class ChaseState : BaseState
             StealthScoreTracker.GetTracker().DeductPoints(StealthScoreTracker.Sources.SeenByGuard);
         }
         guardBehaviour.changeSpeed(guardBehaviour.chaseSpeed);
+        GUIAlarmHandler alarmHandler = GameObject.FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemySeePlayer();
+        }
     }
 
     public override void Stop()
@@ -41,6 +46,12 @@ public class ChaseState : BaseState
             guardBehaviour.StopCoroutine(raiseAlarmCoroutine);
         }
         guardBehaviour.changeSpeed(guardBehaviour.alertSpeed);
+
+        GUIAlarmHandler alarmHandler = GameObject.FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemyLosePlayer();
+        }
     }
 
     public override GuardStates RunTick()

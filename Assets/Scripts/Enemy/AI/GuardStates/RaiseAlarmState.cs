@@ -23,6 +23,12 @@ public class RaiseAlarmState : BaseState
             raiseAlarmCoroutine = guardBehaviour.StartCoroutine(RaiseAlarm());
             guardBehaviour.alarmActivationSound.Post(guardAttached);
         }
+
+        GUIAlarmHandler alarmHandler = GameObject.FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemySeePlayer();
+        }
     }
 
     public override void Stop() {
@@ -30,6 +36,11 @@ public class RaiseAlarmState : BaseState
         {
             guardBehaviour.StopCoroutine(raiseAlarmCoroutine);
             raiseAlarmCoroutine = null;
+        }
+        GUIAlarmHandler alarmHandler = GameObject.FindAnyObjectByType<GUIAlarmHandler>();
+        if (alarmHandler)
+        {
+            alarmHandler.EnemyLosePlayer();
         }
     }
 
