@@ -78,6 +78,7 @@ public class MenuScript : MonoBehaviour
 
     public float loseSoundDelay;
     public float sceneTransitionSeconds = 1f;
+    bool transitioning = false;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
@@ -112,6 +113,10 @@ public class MenuScript : MonoBehaviour
     }
     public void ChangeScene(string sceneName)
     {
+        if (transitioning) {
+            return;
+        }
+        transitioning = true;
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
                 sceneName = "Level1 Redesign";
@@ -120,6 +125,9 @@ public class MenuScript : MonoBehaviour
             } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
                 sceneName = "Main Menu";
             }
+        }
+        if (GameObject.Find("Lights") != null) {
+            GameObject.Find("Lights").SetActive(false);
         }
 
         buttonClick.Post(gameObject);
@@ -167,7 +175,7 @@ public class MenuScript : MonoBehaviour
             yield return null;
         }
         canPause = true;
-
+        transitioning = false;
 
     }
 
