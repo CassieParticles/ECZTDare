@@ -109,6 +109,16 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void HearNoise(Vector3 noiseLocation, float suspicionIncrease, AudioSource source)
     {
+        //If the player is visible, do not get distracted
+        if(Player)
+        {
+            return;
+        }
+        //If the guard is raising the alarm, do not get distracted
+        if(guardBehaviour.getCurrentState()==GuardStates.RaiseAlarm)
+        {
+            return;
+        }
         PointOfInterest = noiseLocation;
         suspicion += suspicionIncrease;
         if(suspicion >= 100)
