@@ -50,6 +50,7 @@ public class MenuScript : MonoBehaviour
 
     GameObject uiCanvas;
     GameObject player;
+    Image TransitionImage;
 
     ControlsScript controlScript;
 
@@ -76,6 +77,7 @@ public class MenuScript : MonoBehaviour
     [NonSerialized] public float ambienceVolume;
 
     public float loseSoundDelay;
+    public float sceneTransitionSeconds = 1f;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
@@ -110,47 +112,64 @@ public class MenuScript : MonoBehaviour
     }
     public void ChangeScene(string sceneName)
     {
-        AkSoundEngine.StopAll();
-        buttonClick.Post(gameObject);
-        canPause = true;
-
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
                 sceneName = "Level1 Redesign";
             } else if (SceneManager.GetActiveScene().name == "Level1 Redesign") {
                 sceneName = "Level2 Redesign";
             } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
-                sceneName = "Main Menu"; 
+                sceneName = "Main Menu";
             }
         }
+
+        buttonClick.Post(gameObject);
+        StartCoroutine(MenuTransitionFade(sceneName));
+    }
+
+    IEnumerator MenuTransitionFade(string sceneName) {
+        Color black = new Color(0, 0, 0, 1);
+        Color empty = new Color(0, 0, 0, 0);
+        for (float i = 0; i < sceneTransitionSeconds;) { //Fade to black
+            i += Time.unscaledDeltaTime;
+            float percentage = i / sceneTransitionSeconds;
+            TransitionImage.color = Color.Lerp(empty, black, i);
+            yield return null;
+        }
+
+        //Do general setup for scene switching
+        AkSoundEngine.StopAll();
 
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
+        //Destroy the main score controller when quitting
         MainScoreController scoreController = MainScoreController.GetInstance();
-        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
-        //DEstroy the main score controller when quitting
-
-        if (scoreController)
-        {
+        if (scoreController) {
             scoreController.Quit();
-        }
-
+        } //And the checkpoint manager
+        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
         if (SceneManager.GetActiveScene().name != "Main Menu" && checkpointManager) {
             checkpointManager.Quit();
         }
-    
-        
-
-        
-
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
-    }
+        yield return new WaitForFixedUpdate();
+        for (int i  = 0; i < 10; i++) {
+            yield return null;
+        }
 
-    
+        for (float i = 0; i < sceneTransitionSeconds;) { //Fade back to game
+            i += Time.unscaledDeltaTime;
+            float percentage = i / sceneTransitionSeconds;
+            TransitionImage.color = Color.Lerp(black, empty, i);
+            yield return null;
+        }
+        canPause = true;
+
+
+    }
 
     public void ReturnToLevel() {
         buttonClick.Post(gameObject);
@@ -424,6 +443,7 @@ public class MenuScript : MonoBehaviour
         loseGroup = GameObject.Find("LoseGroup");
         scoringSubGroup = GameObject.Find("ScoringSubGroup");
         creditsGroup = GameObject.Find("CreditsGroup");
+        TransitionImage = GameObject.Find("MenuTransitionFade").GetComponent<Image>();
 
         //Set button functions
         resumeButton.GetComponent<Button>().onClick.AddListener(CloseMenu);
