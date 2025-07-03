@@ -7,7 +7,7 @@ public class AlarmSystem : MonoBehaviour
 {
     [SerializeField] private float alarmCooloffTime=30.0f;
 
-    public delegate void AlarmEnable(Vector3 playerPosition);
+    public delegate void AlarmEnable(Vector3 playerPosition,GameObject alarmCaller);
     public delegate void AlarmDisable();
 
     public Coroutine AlarmCoolOffTimer;
@@ -66,11 +66,11 @@ public class AlarmSystem : MonoBehaviour
 
     public bool AlarmGoingOff() { return alarm; }
 
-    public void StartAlarm(Vector3 playerPosition)
+    public void StartAlarm(Vector3 playerPosition,GameObject alarmCaller)
     {
         for (int i = 0; i < alarmEnableFuncs.Count; ++i)
         {
-            alarmEnableFuncs[i](playerPosition);
+            alarmEnableFuncs[i](playerPosition, alarmCaller);
         }
         alarm = true;
 

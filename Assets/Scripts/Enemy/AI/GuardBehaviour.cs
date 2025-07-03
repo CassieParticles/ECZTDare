@@ -106,7 +106,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         return agent.destination;
     }
 
-    private void AlarmOn(Vector3 playerPosition)
+    private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
         SetSuspicionState(SuspicionState.HighAlert);
         minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];

@@ -47,7 +47,7 @@ public class GUIAlarmHandler : MonoBehaviour
         tracker.AddListener(changeAlarm);
     }
 
-    public void alarmOn(Vector3 playerPos)
+    public void alarmOn(Vector3 playerPos, GameObject alarmCaller)
     {
         ToAlarm();
     }
@@ -80,7 +80,7 @@ public class GUIAlarmHandler : MonoBehaviour
         }
         else
         {
-            alarmOn(Vector3.zero);
+            alarmOn(Vector3.zero,null);
         }
     }
 

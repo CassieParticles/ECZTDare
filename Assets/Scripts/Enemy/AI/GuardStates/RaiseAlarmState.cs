@@ -59,7 +59,7 @@ public class RaiseAlarmState : BaseState
         if (alarmRaised)
         {
             raiseAlarmCoroutine = null;
-            alarm.StartAlarm(guardBehaviour.PointOfInterest);
+            alarm.StartAlarm(guardBehaviour.PointOfInterest,guardAttached);
             return GuardStates.StateChangedExternally;
         }
         return GuardStates.RaiseAlarm;
