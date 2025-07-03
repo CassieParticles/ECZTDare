@@ -1,38 +1,30 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
+    //Alert noises
     public AK.Wwise.Event inViewCone;
     public AK.Wwise.Event enemyAlerted;
+
+    //Voice lines
     public List<AK.Wwise.Event> foundEmira;
     public List<AK.Wwise.Event> lostEmira;
     public List<AK.Wwise.Event> recognizeEmira;
-    public List<string> foundEmiraText;
-    public List<string> lostEmiraText;
-    public List<string> recognizeEmiraText;
-    private bool canRecognizeEmira;
+    
+    //TODO: Move subtitle code into guard
 
+    //Voice line subtitles
+    [SerializeField]private List<string> foundEmiraText;
+    [SerializeField]private List<string> lostEmiraText;
+    [SerializeField]private List<string> recognizeEmiraText;
+
+    //Subtitle object
     private Subtitle subtitle;
-    private List<AK.Wwise.Event> currentFoundEmira;
-    private List<AK.Wwise.Event> currentLostEmira;
-    private List<string> currentFoundEmiraText;
-    private List<string> currentLostEmiraText;
 
-    private void RefreshVoicelines(string type) {
-        if (type == "found") {
-            currentFoundEmira = foundEmira;
-            currentFoundEmiraText = foundEmiraText;
-        } else {
-            currentLostEmira = lostEmira;
-            currentLostEmiraText = lostEmiraText;
-
-        }
-    }
+    //check if this is first time seeing Emira
+    private bool canRecognizeEmira;
 
     public enum SuspicionState
     {
@@ -61,22 +53,21 @@ public class BaseEnemyBehaviour : MonoBehaviour
     [SerializeField, Range(0, 5000)] public float suspicionDecayRate;
 
 
-    //Fields used in enemy suspicion meter
-    /// <summary>
-    /// Level of suspicion of the enemy
-    /// </summary>
+    //Enemy suspicion and minimum suspicion, used when alarm is active
     public float suspicion;
     public float minimumSuspicion;
+
+    //Suspicion state, this and last frame, allows enemy to know when it's state changed
     [NonSerialized] public SuspicionState suspicionState;
     public SuspicionState lastFrameSuspicionState { get; protected set; }
 
+
     private bool playedSound = false;
 
+    //Vision cone attached to enemy
     public VisionCone visionCone{ get; protected set; }
 
-    /// <summary>
-    /// Player according to the enemy, null when player is not visible
-    /// </summary>
+    //Player, null for when enemy cannot see the player
     public GameObject Player { get; protected set; }
 
 
@@ -141,8 +132,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
         Player = null;
 
         subtitle = GetComponent<Subtitle>();
-        RefreshVoicelines("found");
-        RefreshVoicelines("lost");
     }
 
     //Should be called by all inheriting from BaseEnemy
@@ -179,14 +168,13 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 UpdateSuspicionColour();
                 if (playedSound)
                 {
-
-                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
+                    if (gameObject.GetComponent<GuardBehaviour>() != null) 
+                    {
                         int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
                         lostEmira[randomVoiceline].Post(this.gameObject);
                         subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
-                        if (lostEmira.Count <= 2) {
-                            RefreshVoicelines("found");
-                        } else {
+                        if(lostEmira.Count > 2) 
+                        {
                             lostEmira.RemoveAt(randomVoiceline);
                             lostEmiraText.RemoveAt(randomVoiceline);
                         }
@@ -209,20 +197,22 @@ public class BaseEnemyBehaviour : MonoBehaviour
                     enemyAlerted.Post(this.gameObject);
 
 
-                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
+                    if (gameObject.GetComponent<GuardBehaviour>() != null) 
+                    {
                         if (!canRecognizeEmira) {
+
                             
                             canRecognizeEmira = true;
                             int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
                             foundEmira[randomVoiceline].Post(this.gameObject);
                             subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
-                            if (foundEmira.Count <= 2) {
-                                RefreshVoicelines("lost");
-                            } else {
+                            if(foundEmira.Count > 2) 
+                            {
                                 foundEmira.RemoveAt(randomVoiceline);
                                 foundEmiraText.RemoveAt(randomVoiceline);
                             }
-                        } else {
+                        } else 
+                        {
                             int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, recognizeEmira.Count));
                             recognizeEmira[randomVoiceline].Post(this.gameObject);
                             subtitle.StartSubtitle(recognizeEmiraText[randomVoiceline]);
