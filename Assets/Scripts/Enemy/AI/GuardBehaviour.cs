@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.AI;
@@ -33,8 +34,25 @@ public class GuardBehaviour : BaseEnemyBehaviour
     //Used to determine when to trigger footstep sounds.
     private float footstepCount = 0.0f;
 
+    //Guard noises
     public AK.Wwise.Event guardFootstep;
     public AK.Wwise.Event alarmActivationSound;
+
+    //Voice lines
+    public List<AK.Wwise.Event> foundEmira;
+    public List<AK.Wwise.Event> lostEmira;
+    public List<AK.Wwise.Event> recognizeEmira;
+
+    //Voice line subtitles
+    [SerializeField] private List<string> foundEmiraText;
+    [SerializeField] private List<string> lostEmiraText;
+    [SerializeField] private List<string> recognizeEmiraText;
+
+    //Subtitle object
+    private Subtitle subtitle;
+
+    //check if this is first time seeing Emira
+    private bool canRecognizeEmira;
 
     //AI behaviour
     private NavMeshAgent agent;
@@ -151,6 +169,61 @@ public class GuardBehaviour : BaseEnemyBehaviour
         menu.Lose();
     }
 
+    private void SuspicionStateChanged(SuspicionState newState)
+    {
+        if (newState < SuspicionState.HighAlert)
+        {
+            changeSpeed(walkSpeed);
+        }
+        if (newState >= SuspicionState.HighAlert)
+        {
+            changeSpeed(alertSpeed);
+        }
+
+        //handle subtitles
+        if (newState == SuspicionState.HighAlert)
+        {
+            //Pick a random voice line
+            int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
+            
+            //Post subtitle
+            lostEmira[randomVoiceline].Post(this.gameObject);
+            subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
+
+            //Prevent repeated voice lines initially
+            if (lostEmira.Count > 2)
+            {
+                lostEmira.RemoveAt(randomVoiceline);
+                lostEmiraText.RemoveAt(randomVoiceline);
+            }
+        }
+
+        if(newState == SuspicionState.Chase)
+        {
+            //First time seeing Emira
+            if (!canRecognizeEmira)
+            {
+                canRecognizeEmira = true;
+
+                //Pick random voice line
+                int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
+
+                //Post voice line
+                foundEmira[randomVoiceline].Post(this.gameObject);
+                subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
+            }
+            else    
+            {
+                //Pick random voice line
+                int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, recognizeEmira.Count));
+
+                //Post voice line
+                recognizeEmira[randomVoiceline].Post(this.gameObject);
+                subtitle.StartSubtitle(recognizeEmiraText[randomVoiceline]);
+            } 
+        }
+    }
+
     private void Awake()
     {
         Setup();
@@ -178,6 +251,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
         guardMoveAnimation = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        subtitle = GetComponent<Subtitle>();
     }
 
 
@@ -230,20 +305,16 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.BehaviourTick();
         CalcSuspicionIncrease();
 
+        //Logic for when changing state
         if (lastFrameSuspicionState != suspicionState)
         {
-            if(suspicionState < SuspicionState.HighAlert)
-            {
-                changeSpeed(walkSpeed);
-            }
-            if(suspicionState>=SuspicionState.HighAlert)
-            {
-                changeSpeed(alertSpeed);
-            }
+            SuspicionStateChanged(suspicionState);
         }
 
+        
 
-        if(Math.Abs(agent.speed-desiredSpeed) < acceleration * Time.fixedDeltaTime)
+
+        if (Math.Abs(agent.speed-desiredSpeed) < acceleration * Time.fixedDeltaTime)
         {
             agent.speed = desiredSpeed;
         }
