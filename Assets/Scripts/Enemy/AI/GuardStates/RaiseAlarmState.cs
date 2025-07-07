@@ -60,7 +60,7 @@ public class RaiseAlarmState : BaseState
         {
             raiseAlarmCoroutine = null;
             alarm.StartAlarm(guardBehaviour.PointOfInterest,guardAttached);
-            return GuardStates.Investigate;
+            return GuardStates.Patrol;
         }
         return GuardStates.RaiseAlarm;
     }
