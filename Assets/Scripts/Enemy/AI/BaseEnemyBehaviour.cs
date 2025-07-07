@@ -167,8 +167,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
         {
             if (suspicionState != SuspicionState.HighAlert)
             {
-                //suspicionState = SuspicionState.HighAlert;
-                //UpdateSuspicionColour();
+                suspicionState = SuspicionState.HighAlert;
+                UpdateSuspicionColour();
                 //if (SeenEmiraSubtitle)
                 //{
                 //    //Check if object is guard behaviour

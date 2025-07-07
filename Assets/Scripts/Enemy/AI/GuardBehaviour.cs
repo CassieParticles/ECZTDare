@@ -108,15 +108,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
-        SetSuspicionState(SuspicionState.HighAlert);
         minimumSuspicion = SuspicionLevel[(int)SuspicionState.HighAlert];
+        //Exit early if this guard called the alarm
+        if (alarmCaller == gameObject){ return; }
+
+        SetSuspicionState(SuspicionState.HighAlert);
         changeSpeed(alertSpeed);
         if ((playerPosition-transform.position).sqrMagnitude < 50 * 50)
         {
             PointOfInterest = playerPosition;
             guardBehaviour.MoveToState(GuardStates.Investigate);
         }
-
     }
 
     private void AlarmOff()
@@ -183,6 +185,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //handle subtitles
         if (newState == SuspicionState.HighAlert)
         {
+            if(lastFrameSuspicionState!=SuspicionState.Chase)
+            {
+                return;
+            }
             //Pick a random voice line
             int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
             
