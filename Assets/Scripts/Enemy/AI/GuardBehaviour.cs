@@ -17,14 +17,18 @@ public class GuardBehaviour : BaseEnemyBehaviour
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
 
     //How much the velocity of the player affects the footstep frequency
-    [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScaler = 1f;
+    [SerializeField][Range(0.01f, 3.0f)] private float footstepRateScalar = 1f;
 
+    //Movement
     public float walkSpeed = 5.0f;
     public float alertSpeed = 10.0f;
     public float chaseSpeed = 25.0f;
 
     public float acceleration=15f;
     private float desiredSpeed;
+
+    [SerializeField] private float visionConeTurnSpeed=90;
+    private float desiredLookAngle=0;
 
     /// <summary>
     /// How long will a guard be chasing the player before they call the alarm
@@ -58,7 +62,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private NavMeshAgent agent;
     private StateMachine guardBehaviour = new StateMachine();
 
-    public Vector3 PointOfInterest;
+    [NonSerialized]public Vector3 PointOfInterest;
 
     private Animator guardMoveAnimation;
     private SpriteRenderer spriteRenderer;
@@ -88,7 +92,41 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public void Look(float angle)
     {
-        visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
+        desiredLookAngle = angle;
+    }
+
+    private void UpdateLookAngle()
+    {
+        //Get current vision cone angle
+        float currentAngle = visionCone.transform.rotation.eulerAngles.z;
+
+        float amountToTurn = desiredLookAngle - currentAngle;
+        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime;
+
+        if(amountToTurn >= 360)
+        {
+            amountToTurn -= 360;
+        }
+        if(amountToTurn <= -360)
+        {
+            amountToTurn += 360;
+        }
+
+        //If distance is too great to get there in a single frame, move closer
+        if(Mathf.Abs(amountToTurn) > 100)
+        {
+            currentAngle = desiredLookAngle;
+        }
+        else if(Mathf.Abs(amountToTurn) < turnPerFrame)
+        {
+            currentAngle = desiredLookAngle;
+        }
+        else
+        {
+            currentAngle += Mathf.Sign(amountToTurn) * turnPerFrame;
+        }
+        
+        visionCone.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
     }
 
     public void StopMoving()
@@ -246,7 +284,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
             //Footstep sound effect
             if (Mathf.Abs(agent.velocity.x) > 0.1)
             {
-                footstepCount += (Mathf.Abs(agent.velocity.x) * footstepRateScaler) * footstepRate * Time.deltaTime;
+                footstepCount += (Mathf.Abs(agent.velocity.x) * footstepRateScalar) * footstepRate * Time.deltaTime;
                 if (footstepCount > 1)
                 {
                     guardFootstep.Post(gameObject);
@@ -312,7 +350,10 @@ public class GuardBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
 
-        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
+        if (AudioDetectionSystem.getAudioSystem())
+        { 
+            AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise); 
+        }
 
         guardBehaviour.Start(GuardStates.Idle);
 
@@ -327,6 +368,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Call external behaviour functions
         BaseUpdate();
         guardBehaviour.BehaviourTick();
+
+        if (guardBehaviour.getCurrentState() == GuardStates.Idle){ return; }
 
         //Update guard animation speed and direction
         guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
@@ -349,6 +392,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
 
         UpdateAgentSpeed();
+        UpdateLookAngle();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
