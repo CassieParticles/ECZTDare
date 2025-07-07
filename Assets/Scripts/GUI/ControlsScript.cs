@@ -11,12 +11,12 @@ public class ControlsScript : MonoBehaviour {
 
     MenuScript menu;
 
-    GameObject rebindLeftButton;
-    GameObject rebindRightButton;
-    GameObject rebindJumpButton;
-    GameObject rebindSlideButton;
-    GameObject rebindBoostCloakButton;
-    GameObject rebindHackButton;
+    public GameObject rebindLeftButton;
+    public GameObject rebindRightButton;
+    public GameObject rebindJumpButton;
+    public GameObject rebindSlideButton;
+    public GameObject rebindBoostCloakButton;
+    public GameObject rebindHackButton;
 
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
@@ -25,11 +25,11 @@ public class ControlsScript : MonoBehaviour {
     TextMeshProUGUI rebindBoostCloakButtonKey;
     TextMeshProUGUI rebindHackButtonKey;
 
-    GameObject resetRunButton;
-    GameObject resetJumpButton;
-    GameObject resetSlideButton;
-    GameObject resetBoostCloakButton;
-    GameObject resetHackButton;
+    public GameObject resetRunButton;
+    public GameObject resetJumpButton;
+    public GameObject resetSlideButton;
+    public GameObject resetBoostCloakButton;
+    public GameObject resetHackButton;
 
     public enum Controls {
         RunningLeft,
@@ -45,25 +45,32 @@ public class ControlsScript : MonoBehaviour {
         controls = new PlayerControls();
         menu = GetComponent<MenuScript>();
 
-        rebindLeftButton = GameObject.Find("RebindLeftButton");
-        rebindRightButton = GameObject.Find("RebindRightButton");
-        rebindJumpButton = GameObject.Find("RebindJumpButton");
-        rebindSlideButton = GameObject.Find("RebindSlideButton");
-        rebindBoostCloakButton = GameObject.Find("RebindBoostCloakButton");
-        rebindHackButton = GameObject.Find("RebindHackButton");
+        //rebindLeftButton = GameObject.Find("RebindLeftButton");
+        //rebindRightButton = GameObject.Find("RebindRightButton");
+        //rebindJumpButton = GameObject.Find("RebindJumpButton");
+        //rebindSlideButton = GameObject.Find("RebindSlideButton");
+        //rebindBoostCloakButton = GameObject.Find("RebindBoostCloakButton");
+        //rebindHackButton = GameObject.Find("RebindHackButton");
 
-        rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
-        rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
-        rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
-        rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
-        rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
-        rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
+        rebindLeftButtonKey = rebindLeftButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        rebindRightButtonKey = rebindRightButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        rebindJumpButtonKey = rebindJumpButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        rebindSlideButtonKey = rebindSlideButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        rebindBoostCloakButtonKey = rebindBoostCloakButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        rebindHackButtonKey = rebindHackButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        resetRunButton = GameObject.Find("ResetRunButton");
-        resetJumpButton = GameObject.Find("ResetJumpButton");
-        resetSlideButton = GameObject.Find("ResetSlideButton");
-        resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
-        resetHackButton = GameObject.Find("ResetHackButton");
+        //rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
+        //rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
+        //rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
+        //rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
+        //rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
+        //rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
+
+        //resetRunButton = GameObject.Find("ResetRunButton");
+        //resetJumpButton = GameObject.Find("ResetJumpButton");
+        //resetSlideButton = GameObject.Find("ResetSlideButton");
+        //resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
+        //resetHackButton = GameObject.Find("ResetHackButton");
 
     }
 

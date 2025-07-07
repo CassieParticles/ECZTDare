@@ -328,7 +328,9 @@ public class MenuScript : MonoBehaviour
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
-        GetComponent<ControlsScript>().controls.Enable();
+        if (GetComponent<ControlsScript>().controls != null) {
+            GetComponent<ControlsScript>().controls.Enable();
+        }
 
         Time.timeScale = 1f;
     }
