@@ -1,38 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
+    //Alert noises
     public AK.Wwise.Event inViewCone;
     public AK.Wwise.Event enemyAlerted;
-    public List<AK.Wwise.Event> foundEmira;
-    public List<AK.Wwise.Event> lostEmira;
-    public List<AK.Wwise.Event> recognizeEmira;
-    public List<string> foundEmiraText;
-    public List<string> lostEmiraText;
-    public List<string> recognizeEmiraText;
-    private bool canRecognizeEmira;
-
-    private Subtitle subtitle;
-    private List<AK.Wwise.Event> currentFoundEmira;
-    private List<AK.Wwise.Event> currentLostEmira;
-    private List<string> currentFoundEmiraText;
-    private List<string> currentLostEmiraText;
-
-    private void RefreshVoicelines(string type) {
-        if (type == "found") {
-            currentFoundEmira = foundEmira;
-            currentFoundEmiraText = foundEmiraText;
-        } else {
-            currentLostEmira = lostEmira;
-            currentLostEmiraText = lostEmiraText;
-
-        }
-    }
 
     public enum SuspicionState
     {
@@ -59,24 +33,24 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Parameters for suspicion rate
     [SerializeField, Range(0, 5000)] public float suspicionScaleRate;
     [SerializeField, Range(0, 5000)] public float suspicionDecayRate;
+    [SerializeField, Range(0, 1)] public float minimumDistanceScalar = 0.5f; 
 
 
-    //Fields used in enemy suspicion meter
-    /// <summary>
-    /// Level of suspicion of the enemy
-    /// </summary>
+    //Enemy suspicion and minimum suspicion, used when alarm is active
     public float suspicion;
     public float minimumSuspicion;
+
+    //Suspicion state, this and last frame, allows enemy to know when it's state changed
     [NonSerialized] public SuspicionState suspicionState;
     public SuspicionState lastFrameSuspicionState { get; protected set; }
 
-    private bool playedSound = false;
 
+    
+
+    //Vision cone attached to enemy
     public VisionCone visionCone{ get; protected set; }
 
-    /// <summary>
-    /// Player according to the enemy, null when player is not visible
-    /// </summary>
+    //Player, null for when enemy cannot see the player
     public GameObject Player { get; protected set; }
 
 
@@ -123,7 +97,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 visionCone.SetColour(Color.yellow);
                 break;
             case SuspicionState.HighAlert:
-                visionCone.SetColour(new Color(1, 0.5f, 0));
+                visionCone.SetColour(new Color(1, 0.5f, 0));    //Orange, not a predefined colour
                 break;
             case SuspicionState.Chase:
                 visionCone.SetColour(Color.red);
@@ -134,31 +108,31 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Called on awake of overriden classes
     protected void Setup()
     {
+        //Collect vision cone
         visionCone = transform.GetChild(0).GetComponent<VisionCone>();
+
         suspicion = 0;
         minimumSuspicion = 0;
         suspicionState = SuspicionState.Idle;
-        Player = null;
 
-        subtitle = GetComponent<Subtitle>();
-        RefreshVoicelines("found");
-        RefreshVoicelines("lost");
+        Player = null;
     }
 
     //Should be called by all inheriting from BaseEnemy
     protected void BaseUpdate()
     {
         lastFrameSuspicionState = suspicionState;
+
         //Sets the RTPC Value of suspicion to the suspicion float value.
         AkSoundEngine.SetRTPCValue("suspicion", suspicion, this.gameObject);
 
+        //Update suspicion state and vision cone colour with changing suspicion
         if (suspicion < SuspicionLevel[1])  //Below suspect threshold
         {
             if(suspicionState!=SuspicionState.Idle)
             {
                 suspicionState = SuspicionState.Idle;
                 UpdateSuspicionColour();
-                playedSound = false;
             }
             
         }
@@ -168,7 +142,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
             {
                 suspicionState = SuspicionState.Suspect;
                 UpdateSuspicionColour();
-                playedSound = false;
             }
         }
         else if (suspicion < SuspicionLevel[3])  //Below chase threshold
@@ -177,60 +150,14 @@ public class BaseEnemyBehaviour : MonoBehaviour
             {
                 suspicionState = SuspicionState.HighAlert;
                 UpdateSuspicionColour();
-                if (playedSound)
-                {
-
-                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
-                        int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, lostEmira.Count));
-                        lostEmira[randomVoiceline].Post(this.gameObject);
-                        subtitle.StartSubtitle(lostEmiraText[randomVoiceline]);
-                        if (lostEmira.Count <= 2) {
-                            RefreshVoicelines("found");
-                        } else {
-                            lostEmira.RemoveAt(randomVoiceline);
-                            lostEmiraText.RemoveAt(randomVoiceline);
-                        }
-                    }
-
-                }
-                playedSound = false;
             }
         }
-        else
+        else    //Chase state
         {
             if(suspicionState!=SuspicionState.Chase)
             {
                 suspicionState = SuspicionState.Chase;
                 UpdateSuspicionColour();
-                if (!playedSound)
-                {
-                    playedSound = true;
-                    //Play sound
-                    enemyAlerted.Post(this.gameObject);
-
-
-                    if (gameObject.GetComponent<GuardBehaviour>() != null) {
-                        if (!canRecognizeEmira) {
-                            
-                            canRecognizeEmira = true;
-                            int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, foundEmira.Count));
-                            foundEmira[randomVoiceline].Post(this.gameObject);
-                            subtitle.StartSubtitle(foundEmiraText[randomVoiceline]);
-                            if (foundEmira.Count <= 2) {
-                                RefreshVoicelines("lost");
-                            } else {
-                                foundEmira.RemoveAt(randomVoiceline);
-                                foundEmiraText.RemoveAt(randomVoiceline);
-                            }
-                        } else {
-                            int randomVoiceline = Mathf.FloorToInt(UnityEngine.Random.Range(0, recognizeEmira.Count));
-                            recognizeEmira[randomVoiceline].Post(this.gameObject);
-                            subtitle.StartSubtitle(recognizeEmiraText[randomVoiceline]);
-                        }
-                    }
-
-
-                }
             }
         }
     }
@@ -249,12 +176,12 @@ public class BaseEnemyBehaviour : MonoBehaviour
         float visionConeLength = visionCone.distance;
         float distScalar = Mathf.Clamp(1 - distance / visionConeLength, 0.05f, 1);
 
-        return distScalar * suspicionScaleRate * Time.fixedDeltaTime;
+        return Mathf.Max(distScalar,minimumDistanceScalar) * suspicionScaleRate * Time.fixedDeltaTime;
     }
     /// <summary>
     /// Sets the enemy's suspicion state to the level specified and sets suspicion to that amount
     /// </summary>
-    /// <param name="level"> The level of ssupicion the enemy should be at</param>
+    /// <param name="level"> The level of supicion the enemy should be at</param>
     public void SetSuspicionState(SuspicionState level)
     {
         suspicionState = level;

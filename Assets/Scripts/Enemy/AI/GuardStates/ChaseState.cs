@@ -75,8 +75,7 @@ public class ChaseState : BaseState
             raiseAlarmCoroutine = null;
             if(alarm)
             {
-                alarm.StartAlarm(guardBehaviour.PointOfInterest);
-                return GuardStates.StateChangedExternally;
+                alarm.StartAlarm(guardBehaviour.PointOfInterest, guardAttached);
             }
         }
 
