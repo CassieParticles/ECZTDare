@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 99d0285d49da35a48be1fb18666e123e
+guid: 289d25e976f869b4d8b894836daae2d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 979410516208831343
-    second: blackgrassblock_0
+      213: -7145616665389964593
+    second: WhiteRightAlignedSmallPlant_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackgrassblock_0
+      name: WhiteRightAlignedSmallPlant_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 96
-        height: 86
+        y: 0
+        width: 40
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f6bc8e3eca0979d00800000000000000
-      internalID: 979410516208831343
+      spriteID: fc2e15e708ba5dc90800000000000000
+      internalID: -7145616665389964593
       vertices: []
       indices: 
       edges: []
@@ -130,8 +130,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      blackgrassblock_0: 979410516208831343
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
