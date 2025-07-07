@@ -28,6 +28,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
     private float desiredSpeed;
 
     [SerializeField] private float visionConeTurnSpeed=90;
+    [SerializeField] private float playerVisibleTurnSpeedScalar = 3.0f;
     private float desiredLookAngle=0;
 
     /// <summary>
@@ -101,7 +102,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         float currentAngle = visionCone.transform.rotation.eulerAngles.z;
 
         float amountToTurn = desiredLookAngle - currentAngle;
-        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime;
+        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime * (Player?playerVisibleTurnSpeedScalar:1.0f);
 
         if(amountToTurn >= 360)
         {
