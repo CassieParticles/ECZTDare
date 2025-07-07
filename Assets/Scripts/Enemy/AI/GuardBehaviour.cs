@@ -230,97 +230,9 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
     }
 
-    private void Awake()
+    private void UpdateAgentSpeed()
     {
-        Setup();
-
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-
-        if(patrolRoute)
-        {
-            guardBehaviour.AddState(GuardStates.Patrol,new PatrolState(gameObject,patrolRoute));
-        }
-        else
-        {
-            guardBehaviour.AddState(GuardStates.Patrol, new PatrolState(gameObject, transform.position,visionCone.transform.rotation.eulerAngles.z));
-        }
-
-        guardBehaviour.AddState(GuardStates.Idle, new IdleState(gameObject));
-        guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
-        guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
-        guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
-        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
-        guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
-        guardBehaviour.AddState(GuardStates.Bumped, new BumpedState(gameObject));
-
-        guardMoveAnimation = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        subtitle = GetComponent<Subtitle>();
-    }
-
-
-
-    void Start()
-    {
-        if (GameObject.Find("Menu Canvas") == null) {
-            menu = Instantiate(menuCanvasPrefab).GetComponent<MenuScript>();
-            menu.gameObject.name = "Menu Canvas";
-        } else {
-            menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
-        }
-
-        musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
-        if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
-        
-        guardBehaviour.Start(GuardStates.Idle);
-
-        if(alarm)
-        {
-            alarm.AddAlarmEnableFunc(AlarmOn);
-            alarm.AddAlarmDisableFunc(AlarmOff);
-        }
-
-        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
-
-        desiredSpeed = agent.speed;
-    }
-
-    void FixedUpdate()
-    {
-        if (inCutscene)
-        {
-            return;
-        }
-
-        //Update animation parameters
-        guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
-        if (agent.velocity.x > 0.1f)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (agent.velocity.x < -0.1f)
-        {
-            spriteRenderer.flipX = true;
-        }
-
-        BaseUpdate();
-
-        guardBehaviour.BehaviourTick();
-        CalcSuspicionIncrease();
-
-        //Logic for when changing state
-        if (lastFrameSuspicionState != suspicionState)
-        {
-            SuspicionStateChanged(suspicionState);
-        }
-
-        
-
-
-        if (Math.Abs(agent.speed-desiredSpeed) < acceleration * Time.fixedDeltaTime)
+        if (Math.Abs(agent.speed - desiredSpeed) < acceleration * Time.fixedDeltaTime)
         {
             agent.speed = desiredSpeed;
         }
@@ -342,6 +254,101 @@ public class GuardBehaviour : BaseEnemyBehaviour
                 }
             }
         }
+    }
+
+    private void Awake()
+    {
+        //Call base set up function
+        Setup();
+
+        //Collect attached components
+        agent = GetComponent<NavMeshAgent>();
+        guardMoveAnimation = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        subtitle = GetComponent<Subtitle>();
+        musicHandler = GameObject.Find("MusicSystem").GetComponent<AlarmMusicHandler>();
+
+        //Initialize nav mesh agent for 2d movement
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+
+        //Initialize guard AI state machine
+
+        //Choose patrol state constructor based on if there is a patrol route available
+        guardBehaviour.AddState(GuardStates.Patrol, patrolRoute ? 
+            new PatrolState(gameObject, patrolRoute) : 
+            new PatrolState(gameObject, transform.position, visionCone.transform.rotation.eulerAngles.z));
+
+        guardBehaviour.AddState(GuardStates.Idle, new IdleState(gameObject));
+        guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
+        guardBehaviour.AddState(GuardStates.Observe,new ObserveState(gameObject));
+        guardBehaviour.AddState(GuardStates.Investigate,new InvestigateState(gameObject));
+        guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
+        guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
+        guardBehaviour.AddState(GuardStates.Bumped, new BumpedState(gameObject));
+    }
+
+
+
+    void Start()
+    {
+        //Collect menu system, initialize one if it doesn't exist
+        if (GameObject.Find("Menu Canvas") == null) 
+        {
+            menu = Instantiate(menuCanvasPrefab).GetComponent<MenuScript>();
+            menu.gameObject.name = "Menu Canvas";
+        } else 
+        {
+            menu = GameObject.Find("Menu Canvas").GetComponent<MenuScript>();
+        }
+
+        //Set up guard with patrol route
+        if (patrolRoute){ patrolRoute.AddGuard(gameObject); }
+
+        //Set up listener functions
+        if (alarm)
+        {
+            alarm.AddAlarmEnableFunc(AlarmOn);
+            alarm.AddAlarmDisableFunc(AlarmOff);
+        }
+
+        AudioDetectionSystem.getAudioSystem().AddListener(gameObject, HearNoise);
+
+        guardBehaviour.Start(GuardStates.Idle);
+
+        desiredSpeed = agent.speed;
+    }
+
+    void FixedUpdate()
+    {
+        //Early exit for cutscene
+        if (inCutscene){ return; }
+
+        //Call external behaviour functions
+        BaseUpdate();
+        guardBehaviour.BehaviourTick();
+
+        //Update guard animation speed and direction
+        guardMoveAnimation.SetFloat("xVelocity", Mathf.Abs(agent.velocity.x));
+        if (agent.velocity.x > 0.1f)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (agent.velocity.x < -0.1f)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+
+        CalcSuspicionIncrease();
+
+        //IF state has changed this frame, call state change function
+        if (lastFrameSuspicionState != suspicionState)
+        {
+            SuspicionStateChanged(suspicionState);
+        }
+
+        UpdateAgentSpeed();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
