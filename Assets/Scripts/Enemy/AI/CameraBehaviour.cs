@@ -57,7 +57,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
         visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    private void Alarm(Vector3 playerPosition)
+    private void Alarm(Vector3 playerPosition, GameObject alarmCaller)
     {
         SetSuspicionState(SuspicionState.HighAlert);
     }
@@ -111,7 +111,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
                 //Raise alarm
                 if (alarm && !alarm.AlarmGoingOff())
                 {
-                    alarm.StartAlarm(Player.transform.position);
+                    alarm.StartAlarm(Player.transform.position,gameObject);
                     if(StealthScoreTracker.GetTracker())
                     {
                         StealthScoreTracker.GetTracker().DeductPoints(StealthScoreTracker.Sources.SeenByCamera);

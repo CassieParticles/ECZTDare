@@ -31,7 +31,7 @@ public class InvestigateState : BaseState
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
             //If guard is no longer on high alert
-            if (guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+            if (guardBehaviour.suspicionState < BaseEnemyBehaviour.SuspicionState.HighAlert)
             {
                 return GuardStates.Observe;
             }
