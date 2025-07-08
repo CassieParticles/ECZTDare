@@ -9,6 +9,7 @@ public enum DoorAction
     Unlock,
     Toggle
 };
+[RequireComponent(typeof(DoorObserver))]
 public class LockableDoor : MonoBehaviour
 {
     public AK.Wwise.Event doorHum;
@@ -21,7 +22,8 @@ public class LockableDoor : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private NavMeshObstacle obstacle;
-    BoxCollider2D boxCollider;
+    private BoxCollider2D boxCollider;
+    private DoorObserver observer;
 
     public void Lock()
     {
@@ -34,6 +36,8 @@ public class LockableDoor : MonoBehaviour
         doorHum.Post(gameObject);
 
         isLocked = true;
+
+        observer.NotifyListeners(DoorAction.Lock);
     }
 
     public void Unlock()
@@ -47,6 +51,8 @@ public class LockableDoor : MonoBehaviour
         doorHum.Stop(gameObject);
 
         isLocked = false;
+
+        observer.NotifyListeners(DoorAction.Unlock);
     }
 
     public void ToggleState()
@@ -66,6 +72,8 @@ public class LockableDoor : MonoBehaviour
         {
             doorHum.Stop(gameObject);
         }
+
+        observer.NotifyListeners(isLocked ? DoorAction.Lock : DoorAction.Unlock);
     }
 
     private void Awake()
@@ -74,6 +82,8 @@ public class LockableDoor : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         isLocked = startLocked;
+
+        observer = GetComponent<DoorObserver>();
     }
 
     private void Start()
