@@ -121,10 +121,20 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool facingRight = true; //Is facing to the right
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
+    [NonSerialized] public bool dashing; //If the player is currently boosting
     [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
     public float batteryCharge = 100; //The current boosting charge the player has
     public bool boostCloakUnlocked = false;
+
+    [Header("NEW VARIABLES FOR DARE DEVELOPMENT")]
+    public float dashSpeed = 29.5f;
+    public float dashDuration = 0.2f;
+    public float dashBatteryCost = 25f;
+    public float dashCooldown = 0.2f;
+    public int dashChargesPerJump = 1;
+    [NonSerialized] public int dashChargesRemaining = 1;
+    [NonSerialized] public bool dashCooldownActive = false;
 
     [NonSerialized] public float conveyorSpeed = 0f;
     [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
@@ -349,6 +359,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             grounded = true;
             tempGroundedTimer = coyoteTime;
             animationGroundedTimer = animationCoyoteTime;
+            dashChargesRemaining = dashChargesPerJump;
             onWall = false;
             //Conveyor belts
             jumpingFromConveyorSpeed = 0f;
@@ -499,23 +510,25 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //If you arent on a wall or you are moving upwards, you wont slide down a wall
         if (!grounded && (!onWall || rb.velocityY > 0)) {
-            if (rb.velocityY < fastFallActivationSpeed || (!jumpInput && !minJumpActive)) {
+            if (rb.gravityScale != 0) {
+                if (rb.velocityY < fastFallActivationSpeed || (!jumpInput && !minJumpActive)) {
 
-                jumpScript.Falling();
+                    jumpScript.Falling();
 
-            } else {
+                } else {
 
-                jumpScript.FastFalling();
+                    jumpScript.FastFalling();
 
+                }
             }
             //Specifically if you fall off a conveyor, this adds the speed of the conveyor to the player speed, otherwise this does nothing
             rb.velocityX += conveyorSpeed;
             jumpingFromConveyorSpeed = conveyorSpeed;
             conveyorSpeed = 0;
         } else { //If you are sliding down a wall
-
-            jumpScript.SlidingDownWall();
-        
+            if (rb.gravityScale != 0) {
+                jumpScript.SlidingDownWall();
+            }
         }
     }
 
@@ -540,22 +553,25 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         if (boostCloakInput) {
             //Boosting
             if (!inStealthMode) {
-                if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
-
-                    boostScript.StartBoosting();
-
-                } else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
-
-                    boostScript.StopBoosting();
-                    particleManager.BoostOff();
-
+                if (!dashing && !hasBoostCloaked && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
+                    boostScript.StartDashing();
                 }
-                if (boosting) {
+                //if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
 
-                    boostScript.WhileBoosting();
-                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
+                //    boostScript.StartBoosting();
 
-                }
+                //} else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
+
+                //    boostScript.StopBoosting();
+                //    particleManager.BoostOff();
+
+                //}
+                //if (boosting) {
+
+                //    boostScript.WhileBoosting();
+                //    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
+
+                //}
             } else { //Cloaking
                 if (!cloaking) {
                     if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
@@ -628,7 +644,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
             runningScript.Accelerate(runInput);
 
-        } else if (rb.velocityX != 0 && grounded) {
+        } else if (rb.velocityX != 0 && grounded && !dashing) {
 
             runningScript.Decelerate();
 
@@ -642,7 +658,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         transform.position += new Vector3(conveyorSpeed * Time.fixedDeltaTime, 0, 0);
 
         //Decide what the max velocity is and cap the player if necessary
-        runningScript.CapRunningSpeed();
+        if (!dashing) {
+            runningScript.CapRunningSpeed();
+        }
 
         //Do sound effects for footsteps
         runningScript.FootstepSounds();
