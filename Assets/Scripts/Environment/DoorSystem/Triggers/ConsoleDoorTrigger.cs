@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsoleTriggerDoor:ITriggerDoor
+public class ConsoleDoorTrigger:ITriggerDoor
 {
     [SerializeField] private ConsoleHackable console;
 
