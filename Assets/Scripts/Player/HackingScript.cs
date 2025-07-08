@@ -89,7 +89,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
                 }
 
                 //Makes a vector and gets its direction
-                Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
                 //bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
                 //If within range and in the direction the player is facing
                 if (MouseToHackableVector.magnitude < distance && hackable.enabled) {
