@@ -8,6 +8,13 @@ public class LockableDoor : MonoBehaviour
 {
     public AK.Wwise.Event doorHum;
 
+    public enum DoorAction
+    {
+        Lock,
+        Unlock,
+        Toggle
+    };
+
     [SerializeField] private bool startLocked = true;
 
     public bool isLocked { get; private set; }
