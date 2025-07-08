@@ -202,8 +202,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
             visionCone.RecalcConeTex();
             suspicion += calcSuspicionIncreaseRate(Player);
         }
-
-        
     }
     /// <summary>
     /// Check if the suspicion should decay, and if so, handle suspicion decay
