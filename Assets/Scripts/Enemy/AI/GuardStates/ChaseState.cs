@@ -66,7 +66,16 @@ public class ChaseState : BaseState
 
         if(guardBehaviour.Player)
         {
-            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+            //Get if a line can be drawn to the centre of the player
+            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardAttached.transform.position;
+            RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, playerDirection, playerDirection.magnitude, 0b0110011);
+
+            if (!rayHit)
+            {
+                guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+            }
+
+            
         }
 
         //Raise the alarm while chasing
