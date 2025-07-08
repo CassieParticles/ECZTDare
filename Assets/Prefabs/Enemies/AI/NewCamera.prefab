@@ -130,6 +130,7 @@ MonoBehaviour:
   alarm: {fileID: 0}
   suspicionScaleRate: 900
   suspicionDecayRate: 20
+  minimumDistanceScalar: 0.5
   suspicion: 100
   minimumSuspicion: 0
   cameraMoving:
@@ -187,12 +188,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8201590158919968317, guid: 397fed07a1b0b4f46b09f3d8b5f7069a, type: 3}
+  m_Sprite: {fileID: 6981030478942925134, guid: 59a4b4d720fd6504fa49640c2fcbb574, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 0.75}
+  m_Size: {x: 1.03125, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1634fc69187ea2a44877dec05835b34f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beingHacked: 0
+  hackingNoiseRadius: 10
   Hack_Start:
     idInternal: 0
     valueGuidInternal: 
@@ -242,4 +243,3 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9dd35d1e6c88a9e488111eebd9d8a63f, type: 2}
   hackTimer: 5
-  hackDetectionRadius: 8
