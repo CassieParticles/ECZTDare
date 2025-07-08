@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 08dc671e0ccdb9e4c942882f83beba95
+guid: 19a005549d0a3db48858a36ba76a876f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6284117643833671515
-    second: blackgrass_0
+      213: 1840140934728968187
+    second: WhiteTallHangingPlant_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blackgrass_0
+      name: WhiteTallHangingPlant_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 96
-        height: 62
+        width: 42
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b5f787fc3bba53750800000000000000
-      internalID: 6284117643833671515
+      spriteID: bf7ec2f3e6e798910800000000000000
+      internalID: 1840140934728968187
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      blackgrass_0: 6284117643833671515
+      WhiteTallHangingPlant_0: 1840140934728968187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

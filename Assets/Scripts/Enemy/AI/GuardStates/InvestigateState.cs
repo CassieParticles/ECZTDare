@@ -41,9 +41,21 @@ public class InvestigateState : BaseState
         {
             return GuardStates.Chase;
         }
-        
 
-        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
+
+        //Get a line from the guard to the point of interest, and check for intersection
+        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.visionCone.transform.position;
+        RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, POIDirection, POIDirection.magnitude, 0b0110011);
+
+        if (!rayHit)
+        {
+            guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        }
+        else
+        {
+            guardBehaviour.StopMoving();
+            return GuardStates.Observe;
+        }
 
 
         if (guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
