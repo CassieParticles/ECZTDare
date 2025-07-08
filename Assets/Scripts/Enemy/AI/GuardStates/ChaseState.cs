@@ -66,20 +66,28 @@ public class ChaseState : BaseState
 
         if(guardBehaviour.Player)
         {
-            //Get if a line can be drawn to the centre of the player
-            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardAttached.transform.position;
-            RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, playerDirection, playerDirection.magnitude, 0b0110011);
 
-            if (!rayHit)
-            {
-                guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-            }
+            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
 
-            
+
+        }
+
+        //Get a line from the guard to the point of interest, and check for intersection
+        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.visionCone.transform.position;
+        RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, POIDirection, POIDirection.magnitude, 0b0110011);
+
+        if (!rayHit)
+        {
+            guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        }
+        else
+        {
+            guardBehaviour.StopMoving();
+            return GuardStates.RaiseAlarm;
         }
 
         //Raise the alarm while chasing
-        if(shouldRaiseAlarm)
+        if (shouldRaiseAlarm)
         {
             raiseAlarmCoroutine = null;
             if(alarm)
@@ -88,7 +96,7 @@ public class ChaseState : BaseState
             }
         }
 
-        guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        
         return GuardStates.Chase;
     }
 }
