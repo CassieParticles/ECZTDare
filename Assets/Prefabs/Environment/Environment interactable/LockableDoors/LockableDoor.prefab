@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6989046768961074006}
   - component: {fileID: 829914114578879023}
   - component: {fileID: -7576103743223536323}
-  - component: {fileID: 1493642875159732419}
   - component: {fileID: -8868686536200318924}
   - component: {fileID: 4604171511568780668}
   m_Layer: 0
@@ -99,7 +98,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: fa87d1c9358953e40b69d765772372f0, type: 2}
-  surface: {fileID: 0}
   startLocked: 1
 --- !u!212 &-7576103743223536323
 SpriteRenderer:
@@ -155,23 +153,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1493642875159732419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3944726003897983784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ae0781bc81b994a8d612695757b463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hackingNoiseRadius: 10
-  Hack_Start:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 253958b638b3d914f919f3f67862469c, type: 2}
 --- !u!95 &-8868686536200318924
 Animator:
   serializedVersion: 7
