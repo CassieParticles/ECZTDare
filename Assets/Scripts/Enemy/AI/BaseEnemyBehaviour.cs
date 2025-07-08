@@ -33,6 +33,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     //Parameters for suspicion rate
     [SerializeField, Range(0, 5000)] public float suspicionScaleRate;
     [SerializeField, Range(0, 5000)] public float suspicionDecayRate;
+    [SerializeField, Range(0, 1)] public float minimumDistanceScalar = 0.5f; 
 
 
     //Enemy suspicion and minimum suspicion, used when alarm is active
@@ -175,7 +176,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         float visionConeLength = visionCone.distance;
         float distScalar = Mathf.Clamp(1 - distance / visionConeLength, 0.05f, 1);
 
-        return distScalar * suspicionScaleRate * Time.fixedDeltaTime;
+        return Mathf.Max(distScalar,minimumDistanceScalar) * suspicionScaleRate * Time.fixedDeltaTime;
     }
     /// <summary>
     /// Sets the enemy's suspicion state to the level specified and sets suspicion to that amount
@@ -201,8 +202,6 @@ public class BaseEnemyBehaviour : MonoBehaviour
             visionCone.RecalcConeTex();
             suspicion += calcSuspicionIncreaseRate(Player);
         }
-
-        
     }
     /// <summary>
     /// Check if the suspicion should decay, and if so, handle suspicion decay
