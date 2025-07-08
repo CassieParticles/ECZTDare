@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class DoorObserver : MonoBehaviour
 {
-    public delegate void DoorStateCallback(LockableDoor.DoorAction action);
+    public delegate void DoorStateCallback(DoorAction action);
 
     private ArrayList callbacks;
 
-    public void NotifyListeners(LockableDoor.DoorAction action)
+    public void NotifyListeners(DoorAction action)
     {
         foreach (DoorStateCallback callback in callbacks)
         {

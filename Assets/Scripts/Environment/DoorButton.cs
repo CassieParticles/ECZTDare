@@ -5,7 +5,7 @@ public class DoorButton : MonoBehaviour
 {
 
 
-    [SerializeField] private LockableDoor.DoorAction action = LockableDoor.DoorAction.Unlock;
+    [SerializeField] private DoorAction action = DoorAction.Unlock;
     [SerializeField] private LockableDoor[] doors;
     private UIModeChange uiModeChange;
     [SerializeField] private bool isCollectable;
@@ -25,19 +25,19 @@ public class DoorButton : MonoBehaviour
         {
             switch (action)
             {
-                case LockableDoor.DoorAction.Lock:
+                case DoorAction.Lock:
                     foreach(LockableDoor door in doors)
                     {
                         door.Lock();
                     }
                     break;
-                case LockableDoor.DoorAction.Unlock:
+                case DoorAction.Unlock:
                     foreach (LockableDoor door in doors)
                     {
                         door.Unlock();
                     }
                     break;
-                case LockableDoor.DoorAction.Toggle:
+                case DoorAction.Toggle:
                     foreach (LockableDoor door in doors)
                     {
                         door.ToggleState();

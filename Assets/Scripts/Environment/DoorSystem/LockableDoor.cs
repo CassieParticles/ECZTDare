@@ -3,17 +3,17 @@ using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.AI;
 
-
+public enum DoorAction
+{
+    Lock,
+    Unlock,
+    Toggle
+};
 public class LockableDoor : MonoBehaviour
 {
     public AK.Wwise.Event doorHum;
 
-    public enum DoorAction
-    {
-        Lock,
-        Unlock,
-        Toggle
-    };
+
 
     [SerializeField] private bool startLocked = true;
 

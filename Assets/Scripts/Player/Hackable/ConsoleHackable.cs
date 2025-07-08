@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConsoleHackable : Hackable
 {
-    [SerializeField] LockableDoor.DoorAction action= LockableDoor.DoorAction.Unlock;
+    [SerializeField] DoorAction action= DoorAction.Unlock;
     // Start is called before the first frame update
 
     [SerializeField] private LockableDoor[] doors;
@@ -19,19 +19,19 @@ public class ConsoleHackable : Hackable
 
         switch (action)
         {
-            case LockableDoor.DoorAction.Unlock:
+            case DoorAction.Unlock:
                 foreach (LockableDoor door in doors)
                 {
                     door.Unlock();
                 }
                 break;
-            case LockableDoor.DoorAction.Lock:
+            case DoorAction.Lock:
                 foreach (LockableDoor door in doors)
                 {
                     door.Lock();
                 }
                 break;
-            case LockableDoor.DoorAction.Toggle:
+            case DoorAction.Toggle:
                 foreach (LockableDoor door in doors)
                 {
                     door.ToggleState();
