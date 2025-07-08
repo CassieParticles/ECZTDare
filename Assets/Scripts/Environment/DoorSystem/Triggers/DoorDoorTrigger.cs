@@ -9,13 +9,16 @@ public class DoorDoorTrigger : ITriggerDoor
     void DoorListener(DoorAction action)
     {
         if (action == DoorAction.Toggle){ action = DoorAction.Lock; }
-        this.action = (DoorAction)(1 - (int)action);
-        DoorTrigger();
+        State = (DoorAction)(1 - (int)action);
     }
 
     private new void Awake()
     {
         base.Awake();
+    }
+
+    private void Start()
+    {
         observer.AddListener(DoorListener);
     }
 }

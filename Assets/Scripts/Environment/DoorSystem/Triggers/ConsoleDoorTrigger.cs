@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class ConsoleDoorTrigger:ITriggerDoor
 {
+    [SerializeField] protected DoorAction action;
     [SerializeField] private ConsoleHackable console;
+
+    private void ConsoleListenerFunction()
+    {
+        State = action;
+        
+    }
 
     private new void Awake()
     {
@@ -12,7 +19,7 @@ public class ConsoleDoorTrigger:ITriggerDoor
         //Register listener function
         if(console)
         {
-            console.AddConsoleListener(DoorTrigger);
+            console.AddConsoleListener(ConsoleListenerFunction);
         }
     }
 }

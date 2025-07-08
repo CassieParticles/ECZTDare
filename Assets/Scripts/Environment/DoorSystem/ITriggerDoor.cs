@@ -1,18 +1,31 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class ITriggerDoor:MonoBehaviour
 {
-    [SerializeField] protected DoorAction action;
     protected LockableDoor door;
+    private DoorAction currentState;
+    public DoorAction State
+    {
+        get 
+        { 
+            return currentState;
+        }
+        set 
+        { 
+            currentState = value;
+            DoorTrigger();
+        }
+    }
 
     protected void Awake()
     {
         door = transform.parent.GetComponent<LockableDoor>();
     }
 
-    public void DoorTrigger()
+    private void DoorTrigger()
     {
-        switch (action)
+        switch (currentState)
         {
             case DoorAction.Lock:
                 door.Lock();

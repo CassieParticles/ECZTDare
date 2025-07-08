@@ -7,6 +7,7 @@ public class TimerDoorTrigger : ITriggerDoor
 {
     [SerializeField] private float DoorOpenTime;
     [SerializeField] private float DoorCloseTime;
+    [SerializeField] private bool StartOpen;
 
     float timer;
     bool currentlyOpen;
@@ -16,16 +17,12 @@ public class TimerDoorTrigger : ITriggerDoor
     private new void Awake()
     {
         base.Awake();
+        currentlyOpen = StartOpen;
+    }
 
-        if(action==DoorAction.Toggle)
-        {
-            action = DoorAction.Lock;
-        }
-
-        currentlyOpen = action == DoorAction.Unlock;
-        currentTimeCheck = currentlyOpen ? DoorOpenTime : DoorCloseTime;
-
-        DoorTrigger();
+    private void Start()
+    {
+        State = StartOpen ? DoorAction.Unlock : DoorAction.Lock;
     }
 
     private void FixedUpdate()
@@ -41,8 +38,7 @@ public class TimerDoorTrigger : ITriggerDoor
             currentTimeCheck = currentlyOpen ? DoorOpenTime : DoorCloseTime;
 
             //Change door state
-            action = currentlyOpen ? DoorAction.Unlock : DoorAction.Lock;
-            DoorTrigger();
+            State = currentlyOpen ? DoorAction.Unlock : DoorAction.Lock;
         }
     }
 }

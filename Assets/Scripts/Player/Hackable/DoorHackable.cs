@@ -16,7 +16,7 @@ public class DoorHackable : Hackable
     public override void OnHack()
     {
         base.OnHack();
-        doorTrigger.DoorTrigger();
+        doorTrigger.Trigger();
         Hack_Start.Post(gameObject);
     }
 }

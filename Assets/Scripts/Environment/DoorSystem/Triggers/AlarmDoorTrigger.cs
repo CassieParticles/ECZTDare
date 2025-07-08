@@ -8,22 +8,23 @@ public class AlarmDoorTrigger : ITriggerDoor
 
     private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
-        action = DoorAction.Lock;
-        DoorTrigger();
+        State = DoorAction.Lock;
     }
 
     private void AlarmOff()
     {
-        action = DoorAction.Unlock;
-        DoorTrigger();
+        State = DoorAction.Unlock;
+        
     }
 
-    private new void Awake()
+    private void Start()
     {
         if(alarm)
         {
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
+
+        State = DoorAction.Unlock;
     }
 }
