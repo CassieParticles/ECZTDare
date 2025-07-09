@@ -129,8 +129,8 @@ public class ControlsScript : MonoBehaviour {
             case "Sliding":
                 rebinder = controls.GameplayControls.Sliding.PerformInteractiveRebinding().Start();
                 return;
-            case "BoostCloaking":
-                rebinder = controls.GameplayControls.BoostCloak.PerformInteractiveRebinding().Start();
+            case "Dashing":
+                rebinder = controls.GameplayControls.Dashing.PerformInteractiveRebinding().Start();
                 return;
             case "Hacking":
                 rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().Start();
@@ -153,8 +153,8 @@ public class ControlsScript : MonoBehaviour {
                 controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
                 rebindSlideButton.GetComponent<Button>().Select();
                 return;
-            case "BoostCloaking":
-                controls.GameplayControls.BoostCloak.RemoveAllBindingOverrides();
+            case "Dashing":
+                controls.GameplayControls.Dashing.RemoveAllBindingOverrides();
                 rebindBoostCloakButton.GetComponent<Button>().Select();
                 return;
             case "Hacking":

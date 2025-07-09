@@ -27,11 +27,11 @@ public class BatteryBar : MonoBehaviour
     void FixedUpdate()
     {
         //changes the size of the bar depending on how full it is.
-        if (movementScript.boostCloakUnlocked && movementScript.inStealthMode) {
-            CloakSlider.value = movementScript.batteryCharge;
-        } else if (movementScript.boostCloakUnlocked) {
-            BoostSlider.value = movementScript.batteryCharge;
-        }
+        //if (movementScript.boostCloakUnlocked && movementScript.inStealthMode) {
+        //    CloakSlider.value = movementScript.batteryCharge;
+        //} else if (movementScript.boostCloakUnlocked) {
+        BoostSlider.value = movementScript.batteryCharge;
+        //}
         HackingSlider.value = hackingScript.hackCharge;
         //changes the colour of the bar depending on how full it is
       //  if (movementScript.boostCharge < 66 && movementScript.boostCharge > 33)

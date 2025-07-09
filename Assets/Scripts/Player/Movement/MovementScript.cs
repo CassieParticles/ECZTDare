@@ -33,8 +33,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     //How fast the player is currently sliding down the wall
     [NonSerialized] public float wallClingVelocity;
 
-    public bool inStealthMode;
-
     //Effective variables for when there are multiple values they can have depending on situation
     [NonSerialized] public float effectiveMaxRunSpeed;
     [NonSerialized] public float effectiveAcceleration;
@@ -142,7 +140,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 runInput = 0;
                 jumpInput = false;
                 slideInput = false;
-                boostCloakInput = false;
+                dashInput = false;
             }
         }
     }
@@ -171,7 +169,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     InputAction runAction;
     InputAction jumpAction;
     InputAction slideAction;
-    InputAction boostCloakAction;
+    InputAction dashAction;
+    InputAction cloakAction;
     ControlsScript controlsScript;
 
     //The hasActioned variables are so that the player cannot hold in the key to keep jumping forever, or slide many times in a row by just holding in the key
@@ -180,8 +179,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool hasJumped; //If the player has jumped while holding the jump key
     [NonSerialized] public bool slideInput;
     [NonSerialized] public bool hasSlid; //If the player has slid while holding the slide key
-    [NonSerialized] public bool boostCloakInput;
-    [NonSerialized] public bool hasBoostCloaked; //If the player has boosted while holding the boost key
+    [NonSerialized] public bool dashInput;
+    [NonSerialized] public bool hasDashed; //If the player has dashed while holding the dash key
+    [NonSerialized] public bool cloakInput;
+    [NonSerialized] public bool hasCloaked; //If the player has dashed while holding the dash key
     [NonSerialized] public bool canEndSlide; //If the player can end their slide
     
 
@@ -197,7 +198,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     Running runningScript;
     Jumping jumpScript;
     Sliding slideScript;
-    Boost boostScript;
+    Dash dashScript;
     Cloak cloakScript;
 
     private float distanceSnap = 0.2f;
@@ -217,7 +218,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator = GetComponent<Animator>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
 
-        boostScript = new Boost();
+        dashScript = new Dash();
         jumpScript = new Jumping();
         runningScript = new Running();
         cloakScript = new Cloak();
@@ -242,7 +243,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         runAction = controls.FindAction("Running");
         jumpAction = controls.FindAction("Jumping");
         slideAction = controls.FindAction("Sliding");
-        boostCloakAction = controls.FindAction("BoostCloak");
+        cloakAction = controls.FindAction("Cloaking");
+        dashAction = controls.FindAction("BoostCloak");
     }
 
     // Update is called once per frame
@@ -256,7 +258,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         JumpAndFall();
         if (boostCloakUnlocked) {
             //Boosting and Cloaking, the ability that switches between modes
-            BoostCloak();
+            DashCloak();
         }
         //Running and Sliding, all horizontal velocity
         RunSlide();
@@ -300,10 +302,15 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             hasSlid = false;
         }
 
+        dashInput = dashAction.ReadValue<float>() > 0;
+        if (!dashInput) {
+            hasDashed = false;
+        }
+
         if (boostCloakUnlocked) {
-            boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
-            if (!boostCloakInput) {
-                hasBoostCloaked = false;
+            dashInput = dashAction.ReadValue<float>() > 0;
+            if (!dashInput) {
+                hasDashed = false;
             
                 if (cloaking) {
                     cloakScript.Disable();
@@ -519,21 +526,21 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         postWalljumpInputs = 0;
     }
 
-    void BoostCloak() {
+    void DashCloak() {
         //If movement mode active, do boost things
 
         //They use the same input, and there is a cloakScript already created
         
-        if (boostCloakInput) {
-                if (!dashing && !hasBoostCloaked && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
-                    boostScript.StartDashing();
+        if (dashInput) {
+                if (!dashing && !hasDashed && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
+                    dashScript.StartDashing();
                 }
                 if (!cloaking) {
-                    if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
+                    if (batteryCharge > minimumBoostCharge && !hasDashed) {
                         cloakScript.Enable();
                         particleManager.CloakOn();
                     } else {
-                        hasBoostCloaked = true;
+                        hasDashed = true;
                     }
                 } else {
                     if (batteryCharge > minimumBoostCharge) {

@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Boost
+public class Dash
 {
     MovementScript player;
     int dashDir;
-    public Boost() {
+    public Dash() {
         player = GameObject.Find("Player").GetComponent<MovementScript>();
     }
 
@@ -30,7 +30,7 @@ public class Boost
         player.rb.velocity = new Vector2(dashDir * player.dashSpeed, 0);
         player.batteryCharge -= player.dashBatteryCost;
         player.dashChargesRemaining--;
-        player.hasBoostCloaked = true;
+        player.hasDashed = true;
         player.InputLocked = true;
         player.StartCoroutine(WhileDashing());
     }
