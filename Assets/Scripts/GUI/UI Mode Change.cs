@@ -15,8 +15,8 @@ public class UIModeChange : MonoBehaviour
 
     private void Start()
     {
-        /*
         player = GameObject.Find("Player").GetComponent<MovementScript>();
+        /*
         stealthDisplay = GameObject.Find("StealthDisplay");
         movementDisplay = GameObject.Find("MovementDisplay");
         cloakBar = GameObject.Find("CloakBar");
@@ -59,6 +59,6 @@ public class UIModeChange : MonoBehaviour
             Start();
         }
         player.batteryCharge = 100;
-        player.boostCloakUnlocked = true;
+        player.cloakUnlocked = true;
     }
 }

@@ -393,7 +393,7 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator LoseDelay(float seconds) {
         if (!hasUpgrade) {
-            hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
+            hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
         }
 
         int currentDeaths = deathCounter;
@@ -509,7 +509,7 @@ public class MenuScript : MonoBehaviour
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level2") {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     hasUpgrade = true;
                 }
