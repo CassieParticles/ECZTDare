@@ -216,9 +216,13 @@ public class GuardBehaviour : BaseEnemyBehaviour
         {
             changeSpeed(walkSpeed);
         }
-        if (newState >= SuspicionState.HighAlert)
+        if (newState == SuspicionState.HighAlert)
         {
             changeSpeed(alertSpeed);
+        }
+        if(newState == SuspicionState.Chase)
+        {
+            changeSpeed(chaseSpeed);
         }
 
         //handle subtitles
