@@ -4,6 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using static PlayerControls;
 
 public class MovementScript : MonoBehaviour, IGameplayControlsActions {
@@ -33,18 +34,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     //How fast the player is currently sliding down the wall
     [NonSerialized] public float wallClingVelocity;
 
-    public bool inStealthMode;
-
     //Effective variables for when there are multiple values they can have depending on situation
     [NonSerialized] public float effectiveMaxRunSpeed;
     [NonSerialized] public float effectiveAcceleration;
     [NonSerialized] public float effectiveDeceleration;
-    [NonSerialized] public float effectiveVelocityToSlide;
-    [NonSerialized] public float effectiveVelocityEndSlide;
-    [NonSerialized] public float effectiveJumpStrength;
-    [NonSerialized] public float effectiveMinJumpTime;
-    [NonSerialized] public float effectiveHorizontalWalljumpStrength;
-    [NonSerialized] public float effectiveVerticalWalljumpStrength;
 
 
     //Simple short timer so that the player doesnt stop being grounded when crouching
@@ -70,10 +63,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
     [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
 
-    [SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
-    [SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
-    [SerializeField] public float boostRecharge = 10f; //Boost recharge rate
-    [SerializeField] public float boostDepletion = 50f; //Boost depletion rate
+    //[SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
+    //[SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
+    [SerializeField] public float batteryRecharge = 10f; //Boost recharge rate
+    //[SerializeField] public float boostDepletion = 50f; //Boost depletion rate
     [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
     [SerializeField] public float jumpStrength = 5; //Initial vertical velocity when jumping
@@ -91,17 +84,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
-    [SerializeField] public float stealthMaxRunSpeed = 8; //The fastest the player can go horizontally
-    [SerializeField] public float stealthAcceleration = 20; //Speeding up when running
-    [SerializeField] public float stealthDeceleration = 15; //Slowing down when no longer running / running in opposite direction
-    [SerializeField] private float stealthVelocityToSlide = 12; //Velocity the player needs to be to be able to slide
-    [SerializeField] private float stealthVelocityEndSlide = 5; //Velocity the player needs to be to be able to slide
-    [SerializeField] public float stealthJumpStrength = 5; //Initial vertical velocity when jumping
-    [SerializeField][Range(0f, 0.5f)] public float stealthMinJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
-    [SerializeField] public float stealthHorizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
-    [SerializeField] public float stealthVerticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
-
-    [SerializeField] public float cloakRecharge = 10f;
     [SerializeField] public float cloakDepletion = 70f;
 
     [SerializeField] public float boostFootStepSoundRange = 10f;
@@ -120,9 +102,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight = true; //Is facing to the right
     [NonSerialized] public bool sliding; //If the player is currently sliding
-    [NonSerialized] public bool boosting; //If the player is currently boosting
+    //[NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public bool dashing; //If the player is currently boosting
-    [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
     public float batteryCharge = 100; //The current boosting charge the player has
     public bool boostCloakUnlocked = false;
@@ -154,7 +135,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 runInput = 0;
                 jumpInput = false;
                 slideInput = false;
-                boostCloakInput = false;
+                dashInput = false;
             }
         }
     }
@@ -183,7 +164,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     InputAction runAction;
     InputAction jumpAction;
     InputAction slideAction;
-    InputAction boostCloakAction;
+    InputAction dashAction;
+    InputAction cloakAction;
     ControlsScript controlsScript;
 
     //The hasActioned variables are so that the player cannot hold in the key to keep jumping forever, or slide many times in a row by just holding in the key
@@ -192,8 +174,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool hasJumped; //If the player has jumped while holding the jump key
     [NonSerialized] public bool slideInput;
     [NonSerialized] public bool hasSlid; //If the player has slid while holding the slide key
-    [NonSerialized] public bool boostCloakInput;
-    [NonSerialized] public bool hasBoostCloaked; //If the player has boosted while holding the boost key
+    [NonSerialized] public bool dashInput;
+    [NonSerialized] public bool hasDashed; //If the player has dashed while holding the dash key
+    [NonSerialized] public bool cloakInput;
+    [NonSerialized] public bool hasCloaked; //If the player has dashed while holding the dash key
     [NonSerialized] public bool canEndSlide; //If the player can end their slide
     
 
@@ -205,12 +189,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public Vector2 colliderSize;
 
     CinemachineVirtualCamera movementCamera;
-    CinemachineVirtualCamera stealthCamera;
 
     Running runningScript;
     Jumping jumpScript;
     Sliding slideScript;
-    Boost boostScript;
+    Dash dashScript;
     Cloak cloakScript;
 
     private float distanceSnap = 0.2f;
@@ -220,8 +203,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationCoyoteTime = 0.167f;
     private float animationGroundedTimer = -1;
 
-    //reference to the ui mode change script
-    private UIModeChange uiModeChange;
     private void Start() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -230,30 +211,19 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        modeHexAnimator = transform.Find("ModeSwitchHex").GetComponent<Animator>();
-        modeHexSubtitle = transform.Find("ModeSwitchHex").GetComponent<Subtitle>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
-        stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
-        uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
 
-        boostScript = new Boost();
-        jumpScript = new Jumping();
         runningScript = new Running();
-        cloakScript = new Cloak();
+        jumpScript = new Jumping();
         slideScript = new Sliding();
+        dashScript = new Dash();
+        cloakScript = new Cloak();
         particleManager = new ParticleManager();
 
         colliderSize = collider.size;
-        //inStealthMode = false;
         effectiveMaxRunSpeed = maxRunSpeed;
         effectiveAcceleration = acceleration;
         effectiveDeceleration = deceleration;
-        effectiveVelocityToSlide = velocityToSlide;
-        effectiveVelocityEndSlide = velocityEndSlide;
-        effectiveJumpStrength = jumpStrength;
-        effectiveMinJumpTime = minJumpTime;
-        effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
-        effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
 
         //Setup inputs
         controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
@@ -268,7 +238,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         runAction = controls.FindAction("Running");
         jumpAction = controls.FindAction("Jumping");
         slideAction = controls.FindAction("Sliding");
-        boostCloakAction = controls.FindAction("BoostCloak");
+        cloakAction = controls.FindAction("Cloaking");
+        dashAction = controls.FindAction("Dashing");
     }
 
     // Update is called once per frame
@@ -280,10 +251,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         CheckGrounded();
         //Calculates jumping and falling, all vertical velocity
         JumpAndFall();
-        if (boostCloakUnlocked) {
+        //if (boostCloakUnlocked) {
             //Boosting and Cloaking, the ability that switches between modes
-            BoostCloak();
-        }
+            DashCloak();
+        //}
         //Running and Sliding, all horizontal velocity
         RunSlide();
 
@@ -326,16 +297,14 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             hasSlid = false;
         }
 
-        if (boostCloakUnlocked) {
-            boostCloakInput = boostCloakAction.ReadValue<float>() > 0;
-            if (!boostCloakInput) {
-                hasBoostCloaked = false;
-            
-                if (cloaking) {
-                    cloakScript.Disable();
-                    particleManager.CloakOff();
-                }
-            }
+        dashInput = dashAction.ReadValue<float>() > 0;
+        if (!dashInput) {
+            hasDashed = false;
+        }
+
+        cloakInput = cloakAction.ReadValue<float>() > 0;
+        if (!cloakInput) {
+            hasCloaked = false;
         }
     }
 
@@ -496,6 +465,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void JumpAndFall() {
+        Debug.Log(jumpInput.ToString() + grounded.ToString() + (!hasJumped).ToString());
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
 
             jumpScript.BasicJump();
@@ -534,7 +504,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     public IEnumerator MinJumpDuration() {
         minJumpActive = true;
-        yield return new WaitForSeconds(effectiveMinJumpTime);
+        yield return new WaitForSeconds(minJumpTime);
         minJumpActive = false;
     }
 
@@ -545,90 +515,56 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         postWalljumpInputs = 0;
     }
 
-    void BoostCloak() {
+    void DashCloak() {
         //If movement mode active, do boost things
 
         //They use the same input, and there is a cloakScript already created
         
-        if (boostCloakInput) {
-            //Boosting
-            if (!inStealthMode) {
-                if (!dashing && !hasBoostCloaked && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
-                    boostScript.StartDashing();
-                }
-                //if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
-
-                //    boostScript.StartBoosting();
-
-                //} else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
-
-                //    boostScript.StopBoosting();
-                //    particleManager.BoostOff();
-
-                //}
-                //if (boosting) {
-
-                //    boostScript.WhileBoosting();
-                //    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
-
-                //}
-            } else { //Cloaking
-                if (!cloaking) {
-                    if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
-                        cloakScript.Enable();
-                        particleManager.CloakOn();
-                    } else {
-                        hasBoostCloaked = true;
-                    }
-                } else {
-                    if (batteryCharge > minimumBoostCharge) {
-                        cloakScript.OnTick();
-                    } else {
-                        cloakScript.Disable();
-                        particleManager.CloakOff();
-                    }
-                }
+        if (dashInput) {
+            if (!dashing && !hasDashed && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
+                dashScript.StartDashing();
             }
-        } else {
-            if (inStealthMode) {
-                if (cloaking) {
+        } 
+        if (cloakInput) {
+            if (!cloaking) {
+                if (batteryCharge > minimumBoostCharge && !hasCloaked) {
+                    cloakScript.Enable();
+                    particleManager.CloakOn();
+                } else {
+                    hasCloaked = true;
+                }
+            } else {
+                if (batteryCharge > minimumBoostCharge) {
+                    cloakScript.OnTick();
+                } else {
                     cloakScript.Disable();
                     particleManager.CloakOff();
                 }
-            } else {
-                if ((boosting && grounded) || (boosting && onWall)) {
-                    boostScript.StopBoosting();
-                    particleManager.BoostOff();
-                } else if (boosting) {
-                    boostScript.WhileBoosting();
-                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
-                }
+            }
+        }  else {
+            if (cloaking) {
+                cloakScript.Disable();
+                particleManager.CloakOff();
             }
         }
 
-        if (!cloaking && !boosting) {
-            if (inStealthMode) {
-                if (batteryCharge + cloakRecharge * Time.fixedDeltaTime < 100f) {
-                    batteryCharge += cloakRecharge * Time.fixedDeltaTime;
-                } else {
-                    batteryCharge = 100f;
-                }
+        if (!cloaking) {
+            if (batteryCharge + batteryRecharge * Time.deltaTime < 100f) {
+                batteryCharge += batteryRecharge * Time.deltaTime;
             } else {
-                boostScript.NotBoosting();
-                particleManager.BoostOff();
+                batteryCharge = 100f;
             }
         }
-
     }
 
     void RunSlide() {
 
         //Handle Sliding
-        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= effectiveVelocityToSlide && !hasSlid) {
+        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
 
             slideScript.StartSliding();
 
-        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < effectiveVelocityEndSlide || !grounded) && sliding && canEndSlide) {
+        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding && canEndSlide) {
 
             slideScript.StopSliding();
 
@@ -672,7 +608,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             spriteRenderer.flipX = !facingRight;
         }
     }
-
+    /*
     public void changeModeToStealth(bool mode) {
         if (inStealthMode != mode) {
             float animationTime = 1;
@@ -737,7 +673,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
         }
     }
-
+    */
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(bottomLeftWallRayStart, bottomLeftWallRayStart + new Vector2(-0.1f, 0));
@@ -763,8 +699,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         
     }
 
-    public void OnBoostCloak(InputAction.CallbackContext context) {
+    public void OnCloaking(InputAction.CallbackContext context) {
         
+    }
+
+    public void OnDashing(InputAction.CallbackContext context) {
+
     }
 
     public void OnHacking(InputAction.CallbackContext context) {

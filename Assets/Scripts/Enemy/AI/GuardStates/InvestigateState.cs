@@ -54,7 +54,7 @@ public class InvestigateState : BaseState
         else
         {
             guardBehaviour.StopMoving();
-            return GuardStates.Observe;
+            return GuardStates.LookAround;
         }
 
 
@@ -64,7 +64,7 @@ public class InvestigateState : BaseState
         }
         if (finished)
         {
-            return GuardStates.Patrol;
+            return GuardStates.LookAround;
         }
 
         return GuardStates.Investigate;
@@ -73,7 +73,7 @@ public class InvestigateState : BaseState
     private IEnumerator lookAround()
     {
         lookingAround = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         finished = true;
     }
 

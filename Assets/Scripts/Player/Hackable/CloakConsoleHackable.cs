@@ -18,14 +18,14 @@ public class CloakConsoleHackable : Hackable
         //Unlock door
         door.Unlock();
 
-        if (!modeChanger.player.boostCloakUnlocked) {
+        //if (!modeChanger.player.boostCloakUnlocked) {
             //Give cloak
-            modeChanger.CollectUpgrade();
-            upgradeText.StartSubtitle("You have unlocked the cloak and boost! " +
-                                      "The Ability you have access to depends on the mode you're in. " +
-                                      "Press Shift to activate.");
+            //modeChanger.CollectUpgrade();
+            //upgradeText.StartSubtitle("You have unlocked the cloak and boost! " +
+            //                          "The Ability you have access to depends on the mode you're in. " +
+            //                          "Press Shift to activate.");
 
-        }
+        //}
         //Disable hacking
         enabled = false;
 

@@ -121,7 +121,11 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         } //else No target
 
     }
-    public void OnBoostCloak(InputAction.CallbackContext context) {
+    public void OnCloaking(InputAction.CallbackContext context) {
+
+    }
+
+    public void OnDashing(InputAction.CallbackContext context) {
 
     }
     public void OnJumping(InputAction.CallbackContext context) {

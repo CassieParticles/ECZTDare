@@ -55,7 +55,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BoostCloak"",
+                    ""name"": ""Dashing"",
                     ""type"": ""Button"",
                     ""id"": ""b8836efe-f0ac-4a8c-8aa2-44c79320d10e"",
                     ""expectedControlType"": ""Button"",
@@ -67,6 +67,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Hacking"",
                     ""type"": ""Button"",
                     ""id"": ""0a3f9b72-8ca2-4c9f-99d1-940ae8a2132b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cloaking"",
+                    ""type"": ""Button"",
+                    ""id"": ""10cacc62-cbc3-4589-8aa4-bc0f15b862b4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -136,7 +145,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BoostCloak"",
+                    ""action"": ""Dashing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -150,6 +159,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Hacking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf85d9e5-e578-49da-9745-2761673353f5"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cloaking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -161,8 +181,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GameplayControls_Running = m_GameplayControls.FindAction("Running", throwIfNotFound: true);
         m_GameplayControls_Jumping = m_GameplayControls.FindAction("Jumping", throwIfNotFound: true);
         m_GameplayControls_Sliding = m_GameplayControls.FindAction("Sliding", throwIfNotFound: true);
-        m_GameplayControls_BoostCloak = m_GameplayControls.FindAction("BoostCloak", throwIfNotFound: true);
+        m_GameplayControls_Dashing = m_GameplayControls.FindAction("Dashing", throwIfNotFound: true);
         m_GameplayControls_Hacking = m_GameplayControls.FindAction("Hacking", throwIfNotFound: true);
+        m_GameplayControls_Cloaking = m_GameplayControls.FindAction("Cloaking", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,8 +248,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayControls_Running;
     private readonly InputAction m_GameplayControls_Jumping;
     private readonly InputAction m_GameplayControls_Sliding;
-    private readonly InputAction m_GameplayControls_BoostCloak;
+    private readonly InputAction m_GameplayControls_Dashing;
     private readonly InputAction m_GameplayControls_Hacking;
+    private readonly InputAction m_GameplayControls_Cloaking;
     public struct GameplayControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -236,8 +258,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Running => m_Wrapper.m_GameplayControls_Running;
         public InputAction @Jumping => m_Wrapper.m_GameplayControls_Jumping;
         public InputAction @Sliding => m_Wrapper.m_GameplayControls_Sliding;
-        public InputAction @BoostCloak => m_Wrapper.m_GameplayControls_BoostCloak;
+        public InputAction @Dashing => m_Wrapper.m_GameplayControls_Dashing;
         public InputAction @Hacking => m_Wrapper.m_GameplayControls_Hacking;
+        public InputAction @Cloaking => m_Wrapper.m_GameplayControls_Cloaking;
         public InputActionMap Get() { return m_Wrapper.m_GameplayControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,12 +279,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sliding.started += instance.OnSliding;
             @Sliding.performed += instance.OnSliding;
             @Sliding.canceled += instance.OnSliding;
-            @BoostCloak.started += instance.OnBoostCloak;
-            @BoostCloak.performed += instance.OnBoostCloak;
-            @BoostCloak.canceled += instance.OnBoostCloak;
+            @Dashing.started += instance.OnDashing;
+            @Dashing.performed += instance.OnDashing;
+            @Dashing.canceled += instance.OnDashing;
             @Hacking.started += instance.OnHacking;
             @Hacking.performed += instance.OnHacking;
             @Hacking.canceled += instance.OnHacking;
+            @Cloaking.started += instance.OnCloaking;
+            @Cloaking.performed += instance.OnCloaking;
+            @Cloaking.canceled += instance.OnCloaking;
         }
 
         private void UnregisterCallbacks(IGameplayControlsActions instance)
@@ -275,12 +301,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Sliding.started -= instance.OnSliding;
             @Sliding.performed -= instance.OnSliding;
             @Sliding.canceled -= instance.OnSliding;
-            @BoostCloak.started -= instance.OnBoostCloak;
-            @BoostCloak.performed -= instance.OnBoostCloak;
-            @BoostCloak.canceled -= instance.OnBoostCloak;
+            @Dashing.started -= instance.OnDashing;
+            @Dashing.performed -= instance.OnDashing;
+            @Dashing.canceled -= instance.OnDashing;
             @Hacking.started -= instance.OnHacking;
             @Hacking.performed -= instance.OnHacking;
             @Hacking.canceled -= instance.OnHacking;
+            @Cloaking.started -= instance.OnCloaking;
+            @Cloaking.performed -= instance.OnCloaking;
+            @Cloaking.canceled -= instance.OnCloaking;
         }
 
         public void RemoveCallbacks(IGameplayControlsActions instance)
@@ -303,7 +332,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnRunning(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);
         void OnSliding(InputAction.CallbackContext context);
-        void OnBoostCloak(InputAction.CallbackContext context);
+        void OnDashing(InputAction.CallbackContext context);
         void OnHacking(InputAction.CallbackContext context);
+        void OnCloaking(InputAction.CallbackContext context);
     }
 }

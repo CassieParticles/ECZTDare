@@ -65,6 +65,10 @@ public class ObserveState : BaseState
 
         if (observationFinished)
         {
+            if (guardBehaviour.suspicionState >= BaseEnemyBehaviour.SuspicionState.Suspect)
+            {
+                return GuardStates.LookAround;
+            }
             return GuardStates.Patrol;
         }
 
@@ -75,8 +79,6 @@ public class ObserveState : BaseState
         }
 
         guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
-
-
 
         return GuardStates.Observe;
     }

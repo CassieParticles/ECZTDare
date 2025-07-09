@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BoostCloak",
+                    "name": "Dashing",
                     "type": "Button",
                     "id": "b8836efe-f0ac-4a8c-8aa2-44c79320d10e",
                     "expectedControlType": "Button",
@@ -45,6 +45,15 @@
                     "name": "Hacking",
                     "type": "Button",
                     "id": "0a3f9b72-8ca2-4c9f-99d1-940ae8a2132b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cloaking",
+                    "type": "Button",
+                    "id": "10cacc62-cbc3-4589-8aa4-bc0f15b862b4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -114,7 +123,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BoostCloak",
+                    "action": "Dashing",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -126,6 +135,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hacking",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bf85d9e5-e578-49da-9745-2761673353f5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cloaking",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
