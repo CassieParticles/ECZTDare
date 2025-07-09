@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class DoorButton : MonoBehaviour
 {
-    public enum DoorAction
-    {
-        Lock,
-        Unlock,
-        Toggle
-    };
+
 
     [SerializeField] private DoorAction action = DoorAction.Unlock;
     [SerializeField] private LockableDoor[] doors;

@@ -113,8 +113,8 @@ public class GuardBehaviour : BaseEnemyBehaviour
             amountToTurn += 360;
         }
 
-        //If distance is too great to get there in a single frame, move closer
-        if(Mathf.Abs(amountToTurn) > 100)
+        //If distance is too great to get there in a single frame, snap to angle (basically turning around)
+        if(Mathf.Abs(amountToTurn) > 135)
         {
             currentAngle = desiredLookAngle;
         }
@@ -216,9 +216,13 @@ public class GuardBehaviour : BaseEnemyBehaviour
         {
             changeSpeed(walkSpeed);
         }
-        if (newState >= SuspicionState.HighAlert)
+        if (newState == SuspicionState.HighAlert)
         {
             changeSpeed(alertSpeed);
+        }
+        if(newState == SuspicionState.Chase)
+        {
+            changeSpeed(chaseSpeed);
         }
 
         //handle subtitles
@@ -325,6 +329,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         guardBehaviour.AddState(GuardStates.Chase, new ChaseState(gameObject,alarm));
         guardBehaviour.AddState(GuardStates.RaiseAlarm, new RaiseAlarmState(gameObject, alarm));
         guardBehaviour.AddState(GuardStates.Bumped, new BumpedState(gameObject));
+        guardBehaviour.AddState(GuardStates.LookAround,new LookAroundState(gameObject));
     }
 
 

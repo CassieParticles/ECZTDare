@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HackableDoorTrigger))]
 public class DoorHackable : Hackable
 {
     public AK.Wwise.Event Hack_Start;
 
-    LockableDoor door;
+    HackableDoorTrigger doorTrigger;
 
     private void Awake()
     {
-        door = GetComponent<LockableDoor>();
+        doorTrigger = GetComponent<HackableDoorTrigger>();
     }
     public override void OnHack()
     {
         base.OnHack();
-        door.ToggleState();
+        doorTrigger.Trigger();
         Hack_Start.Post(gameObject);
     }
 }

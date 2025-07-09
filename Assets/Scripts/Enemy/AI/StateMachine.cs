@@ -6,7 +6,6 @@ using UnityEngine;
 //State machine used by guards, so has enum for each state
 public enum GuardStates
 {
-    StateChangedExternally, //Used when state is changed externally (calling alarm)
     Idle,
     Patrol,
     HearNoise,  //Dev one, immediately transition to whichever behaviour should be performed
@@ -14,7 +13,8 @@ public enum GuardStates
     Investigate,
     Chase,
     RaiseAlarm,
-    Bumped
+    Bumped,
+    LookAround
 };
 public abstract class BaseState
 {
@@ -55,16 +55,7 @@ public class StateMachine
     }
     public void BehaviourTick()
     {
-        if(currentState == GuardStates.StateChangedExternally)
-        {
-            Debug.Log("Error, guard state set to StateChangedExternally");
-
-        }
         GuardStates newState = states[currentState].RunTick();
-        if(newState==GuardStates.StateChangedExternally)    //Do not update if this is returned
-        {
-            return;
-        }
         if(newState!=currentState)
         {
             states[currentState].Stop();
