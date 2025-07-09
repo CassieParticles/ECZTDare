@@ -8,8 +8,11 @@ public class DoorDoorTrigger : ITriggerDoor
 
     void DoorListener(DoorAction action)
     {
-        if (action == DoorAction.Toggle){ action = DoorAction.Lock; }
-        State = (DoorAction)(1 - (int)action);
+        //If door needs to toggle, toggle it
+        if (action == DoorAction.Toggle)
+        { ToggleDoor(); }
+
+        SetState(action==DoorAction.Lock?DoorAction.Unlock:DoorAction.Lock);
     }
 
     private new void Awake()

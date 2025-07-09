@@ -22,7 +22,7 @@ public class TimerDoorTrigger : ITriggerDoor
 
     private void Start()
     {
-        State = StartOpen ? DoorAction.Unlock : DoorAction.Lock;
+        SetState(StartOpen ? DoorAction.Unlock : DoorAction.Lock);
     }
 
     private void FixedUpdate()
@@ -38,7 +38,7 @@ public class TimerDoorTrigger : ITriggerDoor
             currentTimeCheck = currentlyOpen ? DoorOpenTime : DoorCloseTime;
 
             //Change door state
-            State = currentlyOpen ? DoorAction.Unlock : DoorAction.Lock;
+            SetState(currentlyOpen ? DoorAction.Unlock : DoorAction.Lock);
         }
     }
 }

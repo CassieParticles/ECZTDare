@@ -9,7 +9,7 @@ public class ConsoleDoorTrigger:ITriggerDoor
 
     private void ConsoleListenerFunction()
     {
-        State = action;
+        SetState(action);
         
     }
 
