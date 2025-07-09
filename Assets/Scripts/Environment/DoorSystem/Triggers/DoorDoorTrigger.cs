@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorDoorTrigger : ITriggerDoor
 {
     [SerializeField] DoorObserver observer;
+    [SerializeField] bool mimicDoor = false;
 
     void DoorListener(DoorAction action)
     {
@@ -12,7 +13,7 @@ public class DoorDoorTrigger : ITriggerDoor
         if (action == DoorAction.Toggle)
         { ToggleDoor(); }
 
-        SetState(action==DoorAction.Lock?DoorAction.Unlock:DoorAction.Lock);
+        SetState((action == DoorAction.Lock) != mimicDoor ? DoorAction.Unlock : DoorAction.Lock);
     }
 
     private new void Awake()
