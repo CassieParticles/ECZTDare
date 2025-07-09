@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ModeChanger : MonoBehaviour
 {
+    /*
     enum Modes {
         MovementMode,
         StealthMode
@@ -33,4 +34,5 @@ public class ModeChanger : MonoBehaviour
             }
         }   
     }
+    */
 }
