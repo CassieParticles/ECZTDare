@@ -8,12 +8,12 @@ public class AlarmDoorTrigger : ITriggerDoor
 
     private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
-        LockDoor();
+        ToggleDoor();
     }
 
     private void AlarmOff()
     {
-        UnlockDoor();
+        ToggleDoor();
         
     }
 
@@ -24,7 +24,5 @@ public class AlarmDoorTrigger : ITriggerDoor
             alarm.AddAlarmEnableFunc(AlarmOn);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
-
-        State = DoorAction.Unlock;
     }
 }
