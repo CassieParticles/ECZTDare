@@ -106,7 +106,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool dashing; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
     public float batteryCharge = 100; //The current boosting charge the player has
-    public bool boostCloakUnlocked = false;
+    public bool cloakUnlocked = false;
 
     [Header("NEW VARIABLES FOR DARE DEVELOPMENT")]
     public float dashSpeed = 29.5f;
@@ -253,7 +253,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         JumpAndFall();
         //if (boostCloakUnlocked) {
             //Boosting and Cloaking, the ability that switches between modes
-            DashCloak();
+        DashCloak();
         //}
         //Running and Sliding, all horizontal velocity
         RunSlide();
@@ -465,7 +465,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void JumpAndFall() {
-        Debug.Log(jumpInput.ToString() + grounded.ToString() + (!hasJumped).ToString());
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
 
             jumpScript.BasicJump();
@@ -516,16 +515,15 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void DashCloak() {
-        //If movement mode active, do boost things
-
-        //They use the same input, and there is a cloakScript already created
-        
+        //Dashing
         if (dashInput) {
             if (!dashing && !hasDashed && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
                 dashScript.StartDashing();
             }
-        } 
-        if (cloakInput) {
+        }
+        
+        //Cloaking
+        if (cloakUnlocked && cloakInput) {
             if (!cloaking) {
                 if (batteryCharge > minimumBoostCharge && !hasCloaked) {
                     cloakScript.Enable();
@@ -548,6 +546,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             }
         }
 
+        //Recharge Battery
         if (!cloaking) {
             if (batteryCharge + batteryRecharge * Time.deltaTime < 100f) {
                 batteryCharge += batteryRecharge * Time.deltaTime;
