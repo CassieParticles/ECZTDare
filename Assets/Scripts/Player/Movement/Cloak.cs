@@ -17,7 +17,7 @@ public class Cloak
     {
         player.cloakStart.Post(player.gameObject);
         player.cloaking = true;
-        player.hasDashed = true;
+        player.hasCloaked = true;
         //Make player transparent
         Color color = player.GetComponent<SpriteRenderer>().color;
         color.a = 0.2f;

@@ -52,24 +52,12 @@ public class Running
                     player.footstepRate = 0.1f;
                     player.playerFootstep.Post(player.gameObject);
                     player.footstepCount--;
-                    //Alert noise
-                    if (player.boosting) {
-                        float playerHeight = player.transform.localScale.y;
-
-                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position - new Vector3(0,playerHeight), player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease, AudioSource.Player);
-                    }
                 }
             } else if (player.horizontalVelocity >= 20f) {
                 if (player.footstepCount > 1) {
                     player.footstepRate = 0.04f;
                     player.playerFootstep.Post(player.gameObject);
                     player.footstepCount--;
-                    //Alert noise
-                    if (player.boosting) {
-                        float playerHeight = player.transform.localScale.y;
-
-                        AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position - new Vector3(0, playerHeight), player.boostFootStepSoundRange, player.boostFootStepSoundSuspicionIncrease, AudioSource.Player);
-                    }
                 }
             }
         }

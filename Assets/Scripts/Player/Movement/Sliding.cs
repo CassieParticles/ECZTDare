@@ -13,9 +13,9 @@ public class Sliding
     public void StartSliding() {
         //Plays the slide sound.
         player.playerSlide.Post(player.gameObject);
-        if (player.boosting) {
-            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostSlideSoundRange, player.boostSlideSoundSuspicionIncrease, AudioSource.Player);
-        }
+        //if (player.boosting) {
+        //    AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostSlideSoundRange, player.boostSlideSoundSuspicionIncrease, AudioSource.Player);
+        //}
         player.sliding = true;
         player.hasSlid = true;
         player.collider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
