@@ -18,7 +18,7 @@ public class TutorialText : MonoBehaviour
         slideText = transform.Find("Slide").GetComponent<TextMeshPro>();
         hackText = transform.Find("Hack").GetComponent<TextMeshPro>();
 
-        jumpText.text = "A&D to Move Press " + jump + " to Jump";
+        jumpText.text = "Press " + jump + " to Jump";
         slideText.text = "Hold " + slide + " While Running to Slide";
         hackText.text = "Aim Hack with the Mouse \n\n Press " + hack + " to Hack Red Doors";
     }
