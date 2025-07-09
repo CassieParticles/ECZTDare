@@ -1,32 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TimerDoorTrigger : ITriggerDoor
 {
-    [SerializeField] private float DoorOpenTime;
-    [SerializeField] private float DoorCloseTime;
-    [SerializeField] private bool StartOpen;
+    [SerializeField] private float DoorOpenTime = 3.0f;
+    [SerializeField] private float DoorCloseTime = 3.0f;
+    [SerializeField] private bool repeatedlySwitch = true;
 
     float timer;
     bool currentlyOpen;
+    bool hasSwitched;
 
     float currentTimeCheck;
 
     private new void Awake()
     {
         base.Awake();
-        currentlyOpen = StartOpen;
     }
 
     private void Start()
     {
-        SetState(StartOpen ? DoorAction.Unlock : DoorAction.Lock);
+        currentlyOpen = door.isLocked;
+        SetState(currentlyOpen ? DoorAction.Unlock : DoorAction.Lock);
     }
 
     private void FixedUpdate()
     {
+        if (hasSwitched && !repeatedlySwitch){ return; }
+
         timer += Time.fixedDeltaTime;
 
         //Check if door should change
