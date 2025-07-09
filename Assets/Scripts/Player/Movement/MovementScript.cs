@@ -72,7 +72,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     [SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
     [SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
-    [SerializeField] public float boostRecharge = 10f; //Boost recharge rate
+    [SerializeField] public float batteryRecharge = 10f; //Boost recharge rate
     [SerializeField] public float boostDepletion = 50f; //Boost depletion rate
     [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
@@ -91,17 +91,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
 
-    [SerializeField] public float stealthMaxRunSpeed = 8; //The fastest the player can go horizontally
-    [SerializeField] public float stealthAcceleration = 20; //Speeding up when running
-    [SerializeField] public float stealthDeceleration = 15; //Slowing down when no longer running / running in opposite direction
-    [SerializeField] private float stealthVelocityToSlide = 12; //Velocity the player needs to be to be able to slide
-    [SerializeField] private float stealthVelocityEndSlide = 5; //Velocity the player needs to be to be able to slide
-    [SerializeField] public float stealthJumpStrength = 5; //Initial vertical velocity when jumping
-    [SerializeField][Range(0f, 0.5f)] public float stealthMinJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
-    [SerializeField] public float stealthHorizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
-    [SerializeField] public float stealthVerticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
-
-    [SerializeField] public float cloakRecharge = 10f;
     [SerializeField] public float cloakDepletion = 70f;
 
     [SerializeField] public float boostFootStepSoundRange = 10f;
@@ -122,7 +111,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool sliding; //If the player is currently sliding
     [NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public bool dashing; //If the player is currently boosting
-    [NonSerialized] public float boostingMaxRunSpeedMultiplier = 1; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
     public float batteryCharge = 100; //The current boosting charge the player has
     public bool boostCloakUnlocked = false;
@@ -205,7 +193,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public Vector2 colliderSize;
 
     CinemachineVirtualCamera movementCamera;
-    CinemachineVirtualCamera stealthCamera;
 
     Running runningScript;
     Jumping jumpScript;
@@ -220,8 +207,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationCoyoteTime = 0.167f;
     private float animationGroundedTimer = -1;
 
-    //reference to the ui mode change script
-    private UIModeChange uiModeChange;
     private void Start() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -230,11 +215,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        modeHexAnimator = transform.Find("ModeSwitchHex").GetComponent<Animator>();
-        modeHexSubtitle = transform.Find("ModeSwitchHex").GetComponent<Subtitle>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
-        stealthCamera = GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>();
-        uiModeChange = GameObject.Find("GameController").GetComponent<UIModeChange>();
 
         boostScript = new Boost();
         jumpScript = new Jumping();
@@ -244,16 +225,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         particleManager = new ParticleManager();
 
         colliderSize = collider.size;
-        //inStealthMode = false;
         effectiveMaxRunSpeed = maxRunSpeed;
         effectiveAcceleration = acceleration;
         effectiveDeceleration = deceleration;
-        effectiveVelocityToSlide = velocityToSlide;
-        effectiveVelocityEndSlide = velocityEndSlide;
-        effectiveJumpStrength = jumpStrength;
-        effectiveMinJumpTime = minJumpTime;
-        effectiveHorizontalWalljumpStrength = horizontalWalljumpStrength;
-        effectiveVerticalWalljumpStrength = verticalWalljumpStrength;
 
         //Setup inputs
         controlsScript = GameObject.Find("Menu Canvas").GetComponent<ControlsScript>();
@@ -551,28 +525,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         //They use the same input, and there is a cloakScript already created
         
         if (boostCloakInput) {
-            //Boosting
-            if (!inStealthMode) {
                 if (!dashing && !hasBoostCloaked && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
                     boostScript.StartDashing();
                 }
-                //if (!hasBoostCloaked && runInput != 0 && batteryCharge > minimumBoostCharge && grounded) { //Can only boost if enough charge and on the ground, as well as holding in the boost button and a direction
-
-                //    boostScript.StartBoosting();
-
-                //} else if (batteryCharge < minimumBoostCharge || Mathf.Abs(rb.velocityX) < 0.05f) {
-
-                //    boostScript.StopBoosting();
-                //    particleManager.BoostOff();
-
-                //}
-                //if (boosting) {
-
-                //    boostScript.WhileBoosting();
-                //    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
-
-                //}
-            } else { //Cloaking
                 if (!cloaking) {
                     if (batteryCharge > minimumBoostCharge && !hasBoostCloaked) {
                         cloakScript.Enable();
@@ -588,37 +543,20 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                         particleManager.CloakOff();
                     }
                 }
-            }
         } else {
-            if (inStealthMode) {
-                if (cloaking) {
-                    cloakScript.Disable();
-                    particleManager.CloakOff();
-                }
+            if (cloaking) {
+                cloakScript.Disable();
+                particleManager.CloakOff();
+            }
+        } 
+
+        if (!cloaking) {
+            if (batteryCharge + batteryRecharge * Time.deltaTime < 100f) {
+                batteryCharge += batteryRecharge * Time.deltaTime;
             } else {
-                if ((boosting && grounded) || (boosting && onWall)) {
-                    boostScript.StopBoosting();
-                    particleManager.BoostOff();
-                } else if (boosting) {
-                    boostScript.WhileBoosting();
-                    particleManager.WhileBoosting(rb.velocityX + conveyorSpeed);
-                }
+                batteryCharge = 100f;
             }
         }
-
-        if (!cloaking && !boosting) {
-            if (inStealthMode) {
-                if (batteryCharge + cloakRecharge * Time.fixedDeltaTime < 100f) {
-                    batteryCharge += cloakRecharge * Time.fixedDeltaTime;
-                } else {
-                    batteryCharge = 100f;
-                }
-            } else {
-                boostScript.NotBoosting();
-                particleManager.BoostOff();
-            }
-        }
-
     }
 
     void RunSlide() {
@@ -672,7 +610,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             spriteRenderer.flipX = !facingRight;
         }
     }
-
+    /*
     public void changeModeToStealth(bool mode) {
         if (inStealthMode != mode) {
             float animationTime = 1;
@@ -737,7 +675,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             
         }
     }
-
+    */
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(bottomLeftWallRayStart, bottomLeftWallRayStart + new Vector2(-0.1f, 0));
@@ -763,8 +701,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         
     }
 
-    public void OnBoostCloak(InputAction.CallbackContext context) {
+    public void OnCloaking(InputAction.CallbackContext context) {
         
+    }
+
+    public void OnDashing(InputAction.CallbackContext context) {
+
     }
 
     public void OnHacking(InputAction.CallbackContext context) {
