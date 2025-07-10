@@ -1,6 +1,7 @@
 using Cinemachine;
 using System;
 using System.Collections;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -61,13 +62,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField][Range(0f, 1f)] private float snapToLedgeTopRayHeight = 0.22f; //Height of the ray that needs to be not hitting something to snap to a ledge
     [SerializeField][Range(0f, 1f)] private float snapToLedgeBottomRayHeight = 0.05f; //Height of the ray that needs to be hitting something to snap to a ledge
 
-
-
-    //[SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
-    //[SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
-
-    //[SerializeField] public float boostDepletion = 50f; //Boost depletion rate
-
     [Header("JUMPING")]
     [SerializeField] public float jumpStrength = 5; //Initial vertical velocity when jumping
     [SerializeField][Range(0f, 0.5f)] public float minJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
@@ -85,10 +79,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
     
-    [Header("SLIDING")]
+    [Header("SLIDING AND CROUCHING")]
     [SerializeField] public float slideDeceleration = 1; //Slowing down sliding
     [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
-    [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
+    [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to continue a slide
+    [SerializeField] public float maxCrouchSpeed = 8; //Max speed while crouching
+    [SerializeField] public float crouchAcceleration = 10; //Acceleration while crouching
+    [SerializeField] public float crouchDeceleration = 3; //Deceleration while crouching
 
     [Header("CLOAK AND DASH")]
     [SerializeField] public float batteryRecharge = 10f; //Boost recharge rate
@@ -102,14 +99,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public int dashChargesRemaining = 1;
     [NonSerialized] public bool dashCooldownActive = false;
 
-    //[SerializeField] public float boostFootStepSoundRange = 10f;
-    //[SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
-
-    //[SerializeField] public float boostJumpSoundRange = 25f;
-    //[SerializeField] public float boostJumpSoundSuspicionIncrease = 35f;
-
-    //[SerializeField] public float boostSlideSoundRange = 15f;
-    //[SerializeField] public float boostSlideSoundSuspicionIncrease = 20f;
+    [Header("DEBUG")]
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
     [NonSerialized] public bool minJumpActive; //If the player is in the first part of a jump where they cant fastfall
@@ -117,12 +107,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool onRightWall; //If the wall the player is on is to the right
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight = true; //Is facing to the right
-    [NonSerialized] public bool sliding; //If the player is currently sliding
+    public bool sliding; //If the player is currently sliding
+    public bool crouching; //If the player is currently sliding
     //[NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public bool dashing; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
 
-    [Header("DEBUG")]
     public float batteryCharge = 100; //The current boosting charge the player has
     public bool cloakUnlocked = false;
 
@@ -188,7 +178,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool hasDashed; //If the player has dashed while holding the dash key
     [NonSerialized] public bool cloakInput;
     [NonSerialized] public bool hasCloaked; //If the player has dashed while holding the dash key
-    [NonSerialized] public bool canEndSlide; //If the player can end their slide
+    [NonSerialized] public bool canStandUp; //If the player can end their slide
     
 
     //RB velocityX absolute value
@@ -202,7 +192,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     Running runningScript;
     Jumping jumpScript;
-    Sliding slideScript;
+    public Sliding slideScript;
     Dash dashScript;
     Cloak cloakScript;
 
@@ -270,7 +260,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         //Set up variables for animation and audio
         if (sliding) {
-            if (canEndSlide) {
+            if (canStandUp) {
                 animator.SetFloat("xVelocity", Mathf.Abs(rb.velocityX));
             } else {
                 animator.SetFloat("xVelocity", 6.1f);
@@ -281,7 +271,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator.SetFloat("yVelocity", rb.velocityY);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("OnWall", onWall);
-        animator.SetBool("Sliding", sliding);
+        animator.SetBool("Sliding", sliding || crouching);
         animator.SetFloat("CoyoteTime", animationGroundedTimer);
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
@@ -428,13 +418,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         }
 
         //If the player can stop sliding
-        if (sliding) {
+        if (sliding || crouching) {
             RaycastHit2D rightSlide = Physics2D.Raycast(rightSlideRayStart, Vector2.up, colliderSize.y * 0.98f, layers);
             RaycastHit2D leftSlide = Physics2D.Raycast(leftSlideRayStart, Vector2.up, colliderSize.y * 0.98f, layers);
             if (rightSlide || leftSlide) {
-                canEndSlide = false;
+                canStandUp = false;
             } else {
-                canEndSlide = true;
+                canStandUp = true;
             }
         }
     }
@@ -568,22 +558,26 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     void RunSlide() {
 
-        //Handle Sliding
-        if (slideInput && grounded && !sliding && Mathf.Abs(rb.velocityX) >= velocityToSlide && !hasSlid) {
-
-            slideScript.StartSliding();
-
-        } else if ((!slideInput || Mathf.Abs(rb.velocityX) < velocityEndSlide || !grounded) && sliding && canEndSlide) {
-
-            slideScript.StopSliding();
-
+        //Handle Sliding and Crouching
+        if (slideInput && grounded && !hasSlid && !sliding && !crouching) { //Conditions to either crouch or slide
+            if (Mathf.Abs(rb.velocityX) >= velocityToSlide) { 
+                slideScript.StartSliding();
+            } else { //Depending on speed, crouch or slide will begin
+                slideScript.Crouch();
+            }
         }
-        if (sliding) {
 
-            slideScript.WhileSliding();
-
+        if (sliding || crouching) { //Handles transitions into standing or crouching as well as per frame updates during a slide
+            if (sliding) {
+                slideScript.WhileSliding();
+            }
+            if (canStandUp && (!slideInput || !grounded)) { //Conditions to make the player stand up again
+                slideScript.StandUp();
+            } else if (sliding && (slideInput || !canStandUp) && Mathf.Abs(rb.velocityX) < velocityEndSlide) { //Alternate conditions to instead transition into a crouch
+                slideScript.SlideToCrouch();
+            }
         }
-        
+
         //Handle Running
         if (runInput != 0 && postWalljumpInputs != runInput && !sliding && (grounded || horizontalVelocity < dynamicMaxRunSpeed)) {
 
@@ -602,7 +596,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         transform.position += new Vector3(conveyorSpeed * Time.fixedDeltaTime, 0, 0);
 
-        //Decide what the max velocity is and cap the player if necessary
+        //Determine what the max velocity is and cap the player if necessary
         if (!dashing) {
             runningScript.CapRunningSpeed();
         }
