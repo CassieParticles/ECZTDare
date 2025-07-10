@@ -83,19 +83,19 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""AimHack"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""499e18d5-da02-46e6-a578-ed39daed5aae"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""LeftStick"",
-                    ""id"": ""3305f380-63de-4694-887d-84bdb2b67b6c"",
-                    ""path"": ""OneModifier"",
+                    ""id"": ""f93ee9f0-3fb2-462d-8841-f8bb6511175e"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -104,9 +104,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""binding"",
-                    ""id"": ""ff5c06f8-abfd-4353-bc21-4728343f7cfb"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""name"": ""Negative"",
+                    ""id"": ""0ddf7100-918a-4f48-8615-40cc76a59c07"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""2cad886b-a3c7-4eaa-ab2f-c03f36d84b21"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -293,9 +304,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bb3462ac-f301-4e7e-9726-2ec0c5e4cb4e"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone(min=0.2)"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""AimHack"",
                     ""isComposite"": false,
