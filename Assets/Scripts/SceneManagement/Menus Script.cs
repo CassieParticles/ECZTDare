@@ -393,7 +393,7 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator LoseDelay(float seconds) {
         if (!hasUpgrade) {
-            hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
+            hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
         }
 
         int currentDeaths = deathCounter;
@@ -509,7 +509,7 @@ public class MenuScript : MonoBehaviour
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level2") {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     hasUpgrade = true;
                 }
@@ -556,7 +556,7 @@ public class MenuScript : MonoBehaviour
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
                 rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
                 rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
                 if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
@@ -574,7 +574,7 @@ public class MenuScript : MonoBehaviour
                 } else {
                     resetSlideButton.SetActive(false);
                 }
-                if (controlScript.controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
                     resetBoostCloakButton.SetActive(true);
                 } else {
                     resetBoostCloakButton.SetActive(false);

@@ -16,6 +16,7 @@ public class UIModeChange : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<MovementScript>();
+        /*
         stealthDisplay = GameObject.Find("StealthDisplay");
         movementDisplay = GameObject.Find("MovementDisplay");
         cloakBar = GameObject.Find("CloakBar");
@@ -27,8 +28,9 @@ public class UIModeChange : MonoBehaviour
         } else {
             MovementMode();
         }
-        
+        */
     }
+    /*
     public void StealthMode()
     {
         stealthDisplay.SetActive(true);
@@ -50,20 +52,13 @@ public class UIModeChange : MonoBehaviour
             boostBar.SetActive(true);
         }
     }
-
+    */
     public void CollectUpgrade()
     {
         if (player == null) {
             Start();
         }
         player.batteryCharge = 100;
-        player.boostCloakUnlocked = true;
-        if (player.inStealthMode) {
-            boostBar.SetActive(false);
-            cloakBar.SetActive(true);
-        } else {
-            cloakBar.SetActive(false);
-            boostBar.SetActive(true);
-        }
+        player.cloakUnlocked = true;
     }
 }

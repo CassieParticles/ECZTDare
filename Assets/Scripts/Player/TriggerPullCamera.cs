@@ -17,13 +17,13 @@ public class TriggerPullCamera : MonoBehaviour
     [SerializeField][Range(0.1f, 5f)] private float blendDuration = 1;
     [SerializeField][Range(0.1f, 5f)] private float resetTime = 0.51f;
     [SerializeField][Range(0f, 20f)] private float playerBias = 1; //If the camera points more towards the player or the point of interest. 0 is point of interest 20 is player
-    [SerializeField][Range(5f, 20f)] private float zoom = 8.44f;
+    [SerializeField][Range(5f, 20f)] private float zoom = 8.44f; //Perspective 79 calculations to solve ortho to fov in start
     [SerializeField] private bool followX = false;
     [SerializeField] private bool followY = false;
 
     private Vector2 origin;
     private Vector2 offset;
-
+    private float fov;
 
 
     void Start()
@@ -38,6 +38,10 @@ public class TriggerPullCamera : MonoBehaviour
         virtualCamera.Priority = 9;
         origin = transform.position;
         offset = trigger.offset;
+
+        fov = 2 * Mathf.Rad2Deg * Mathf.Atan(zoom / 10);
+        virtualCamera.m_Lens.ModeOverride = LensSettings.OverrideModes.Perspective;
+        virtualCamera.m_Lens.FieldOfView = fov;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -68,7 +72,8 @@ public class TriggerPullCamera : MonoBehaviour
     // Update is called once per frame
     void Update() {
         targetGroup.m_Targets[0].weight = playerBias;
-        virtualCamera.m_Lens.OrthographicSize = zoom;
+        //virtualCamera.m_Lens.ModeOverride = LensSettings.OverrideModes.Perspective;
+        virtualCamera.m_Lens.FieldOfView = fov;
 
         if (followX) {
             transform.position = new Vector3(playerRB.position.x, transform.position.y, transform.position.z);

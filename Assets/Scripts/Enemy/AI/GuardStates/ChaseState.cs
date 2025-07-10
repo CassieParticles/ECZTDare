@@ -94,6 +94,7 @@ public class ChaseState : BaseState
             {
                 alarm.StartAlarm(guardBehaviour.PointOfInterest, guardAttached);
             }
+            shouldRaiseAlarm = false;
         }
 
         

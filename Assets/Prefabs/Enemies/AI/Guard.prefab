@@ -124,6 +124,37 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 4f042ddc73787a34895f16e35538e71d, type: 2}
+  SuspicionLevel:
+  - 0
+  - 40
+  - 70
+  - 100
+  alarm: {fileID: 0}
+  suspicionScaleRate: 200
+  suspicionDecayRate: 10
+  minimumDistanceScalar: 0.5
+  suspicion: 0
+  minimumSuspicion: 0
+  menuCanvasPrefab: {fileID: 4987622479182456646, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+  patrolRoute: {fileID: 0}
+  investigateAlarmLoc: 1
+  footstepRate: 0.4
+  footstepRateScalar: 1
+  walkSpeed: 5
+  alertSpeed: 10
+  chaseSpeed: 15
+  acceleration: 15
+  visionConeTurnSpeed: 180
+  playerVisibleTurnSpeedScalar: 3
+  chaseAlarmTimer: 3
+  guardFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 78dc46f3fa092684c892a1d580ac65a6, type: 2}
+  alarmActivationSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: abdc221b562f8ce4fa61a979ba75cc79, type: 2}
   foundEmira:
   - idInternal: 0
     valueGuidInternal: 
@@ -170,35 +201,6 @@ MonoBehaviour:
   recognizeEmiraText:
   - 'GUARD: SHES STILL HERE!'
   - 'GUARD: SHES BACK!'
-  SuspicionLevel:
-  - 0
-  - 40
-  - 70
-  - 100
-  alarm: {fileID: 0}
-  suspicionScaleRate: 200
-  suspicionDecayRate: 10
-  suspicion: 0
-  minimumSuspicion: 0
-  alarmActivationSound:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: abdc221b562f8ce4fa61a979ba75cc79, type: 2}
-  menuCanvasPrefab: {fileID: 4987622479182456646, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
-  patrolRoute: {fileID: 0}
-  investigateAlarmLoc: 1
-  footstepRate: 0.4
-  footstepRateScaler: 0.5
-  walkSpeed: 5
-  alertSpeed: 10
-  chaseSpeed: 15
-  acceleration: 15
-  chaseAlarmTimer: 3
-  guardFootstep:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 78dc46f3fa092684c892a1d580ac65a6, type: 2}
-  PointOfInterest: {x: 0, y: 0, z: 0}
   inCutscene: 0
 --- !u!212 &8843118248058542516
 SpriteRenderer:
