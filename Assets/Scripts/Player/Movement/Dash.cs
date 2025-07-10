@@ -12,17 +12,11 @@ public class Dash
 
     public void StartDashing() {
         //If the player is sliding, take them out of it if possible
-        if (player.sliding) {
-            if (!player.canEndSlide) {
+        if (player.sliding || player.crouching) {
+            if (!player.canStandUp) {
                 return;
             }
-            //Stops the slide sound.
-            player.playerSlide.Stop(player.gameObject);
-
-            player.sliding = false;
-            player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + player.colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
-            player.collider.size = player.colliderSize;
-            player.effectiveDeceleration = player.deceleration;
+            player.slideScript.StandUp();
         }
         player.dashing = true;
         player.rb.gravityScale = 0f;
