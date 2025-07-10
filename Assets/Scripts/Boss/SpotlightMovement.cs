@@ -14,6 +14,11 @@ public class SpotlightMovement : MonoBehaviour
         desiredLocation = location;
     }
 
+    private void Awake()
+    {
+        desiredLocation = transform.position;
+    }
+
     private void FixedUpdate()
     {
         //If spotlight needs to move to new location
