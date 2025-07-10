@@ -18,6 +18,8 @@ public class Dash
             }
             player.slideScript.StandUp();
         }
+        //Plays the Player_Jump sound
+        AkSoundEngine.PostEvent("Player_Dash", player.gameObject);
         player.dashing = true;
         player.rb.gravityScale = 0f;
         dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
