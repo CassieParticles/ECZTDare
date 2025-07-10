@@ -10,4 +10,9 @@ public class StaticAnchor : BaseAnchor
 
         spotlight.MoveTo(transform.position);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }
