@@ -137,4 +137,8 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     public void OnSliding(InputAction.CallbackContext context) {
 
     }
+
+    public void OnAimHack(InputAction.CallbackContext context) {
+        
+    }
 }

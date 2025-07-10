@@ -713,4 +713,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     public void OnHacking(InputAction.CallbackContext context) {
         
     }
+
+    public void OnAimHack(InputAction.CallbackContext context) {
+
+    }
 }

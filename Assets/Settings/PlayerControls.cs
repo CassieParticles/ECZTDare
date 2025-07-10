@@ -80,9 +80,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimHack"",
+                    ""type"": ""Button"",
+                    ""id"": ""499e18d5-da02-46e6-a578-ed39daed5aae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
+                {
+                    ""name"": ""LeftStick"",
+                    ""id"": ""3305f380-63de-4694-887d-84bdb2b67b6c"",
+                    ""path"": ""OneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""ff5c06f8-abfd-4353-bc21-4728343f7cfb"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
                 {
                     ""name"": ""AD"",
                     ""id"": ""55cf8c4c-9bda-4749-ad1b-75de81b569a8"",
@@ -100,7 +131,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Running"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -111,7 +142,40 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Dpad"",
+                    ""id"": ""f70c7931-d7a0-41e9-93c5-5dd2d9eeccd5"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Running"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""a9ed894b-5bf5-4a8c-b72e-2d032e984ad1"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Running"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""37d3b9e2-f690-4386-82a3-3b13491e6b72"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Running"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -122,7 +186,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42466c5c-3404-4b11-ab03-2d0fbf7c8eba"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Jumping"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -133,7 +208,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Sliding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""17cae9f7-9c23-4d38-b78f-67fbf0324b0a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Sliding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -144,7 +230,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Dashing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4ea696c-bd42-4a7d-8cc4-b30708e9d509"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Dashing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -155,7 +252,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Hacking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56681fd0-b5f3-48e8-bbd2-c4963fc3328f"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Hacking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -166,15 +274,65 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardMouse"",
                     ""action"": ""Cloaking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b122b16-bf9b-47c0-b26a-645285467ff5"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Cloaking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb3462ac-f301-4e7e-9726-2ec0c5e4cb4e"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""AimHack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""KeyboardMouse"",
+            ""bindingGroup"": ""KeyboardMouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
         // Gameplay Controls
         m_GameplayControls = asset.FindActionMap("Gameplay Controls", throwIfNotFound: true);
@@ -184,6 +342,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GameplayControls_Dashing = m_GameplayControls.FindAction("Dashing", throwIfNotFound: true);
         m_GameplayControls_Hacking = m_GameplayControls.FindAction("Hacking", throwIfNotFound: true);
         m_GameplayControls_Cloaking = m_GameplayControls.FindAction("Cloaking", throwIfNotFound: true);
+        m_GameplayControls_AimHack = m_GameplayControls.FindAction("AimHack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,6 +410,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GameplayControls_Dashing;
     private readonly InputAction m_GameplayControls_Hacking;
     private readonly InputAction m_GameplayControls_Cloaking;
+    private readonly InputAction m_GameplayControls_AimHack;
     public struct GameplayControlsActions
     {
         private @PlayerControls m_Wrapper;
@@ -261,6 +421,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Dashing => m_Wrapper.m_GameplayControls_Dashing;
         public InputAction @Hacking => m_Wrapper.m_GameplayControls_Hacking;
         public InputAction @Cloaking => m_Wrapper.m_GameplayControls_Cloaking;
+        public InputAction @AimHack => m_Wrapper.m_GameplayControls_AimHack;
         public InputActionMap Get() { return m_Wrapper.m_GameplayControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -288,6 +449,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Cloaking.started += instance.OnCloaking;
             @Cloaking.performed += instance.OnCloaking;
             @Cloaking.canceled += instance.OnCloaking;
+            @AimHack.started += instance.OnAimHack;
+            @AimHack.performed += instance.OnAimHack;
+            @AimHack.canceled += instance.OnAimHack;
         }
 
         private void UnregisterCallbacks(IGameplayControlsActions instance)
@@ -310,6 +474,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Cloaking.started -= instance.OnCloaking;
             @Cloaking.performed -= instance.OnCloaking;
             @Cloaking.canceled -= instance.OnCloaking;
+            @AimHack.started -= instance.OnAimHack;
+            @AimHack.performed -= instance.OnAimHack;
+            @AimHack.canceled -= instance.OnAimHack;
         }
 
         public void RemoveCallbacks(IGameplayControlsActions instance)
@@ -327,6 +494,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayControlsActions @GameplayControls => new GameplayControlsActions(this);
+    private int m_KeyboardMouseSchemeIndex = -1;
+    public InputControlScheme KeyboardMouseScheme
+    {
+        get
+        {
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("KeyboardMouse");
+            return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
+        }
+    }
     public interface IGameplayControlsActions
     {
         void OnRunning(InputAction.CallbackContext context);
@@ -335,5 +520,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDashing(InputAction.CallbackContext context);
         void OnHacking(InputAction.CallbackContext context);
         void OnCloaking(InputAction.CallbackContext context);
+        void OnAimHack(InputAction.CallbackContext context);
     }
 }
