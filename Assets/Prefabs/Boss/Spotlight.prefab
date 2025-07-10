@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8085718297876633037}
   - component: {fileID: 3614865255172465640}
   - component: {fileID: 4489498869140870221}
+  - component: {fileID: 8138385489190506897}
   m_Layer: 0
   m_Name: Spotlight
   m_TagString: Untagged
@@ -100,3 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelTime: 2
+--- !u!114 &8138385489190506897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895333593593149706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59801ac360be86f40bbab38aec59bf83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
