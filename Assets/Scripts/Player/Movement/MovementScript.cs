@@ -8,6 +8,7 @@ using UnityEngine.Rendering.Universal;
 using static PlayerControls;
 
 public class MovementScript : MonoBehaviour, IGameplayControlsActions {
+    [Header("SFX")]
     public AK.Wwise.Event playerFootstep;
     public AK.Wwise.Event playerSlide;
     public AK.Wwise.Event boostStart;
@@ -51,6 +52,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public Subtitle modeHexSubtitle;
     [NonSerialized] public ParticleManager particleManager;
 
+    [Header("RUNNING")]
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
     [SerializeField] public float deceleration = 15; //Slowing down when no longer running / running in opposite direction
@@ -59,16 +61,14 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField][Range(0f, 1f)] private float snapToLedgeTopRayHeight = 0.22f; //Height of the ray that needs to be not hitting something to snap to a ledge
     [SerializeField][Range(0f, 1f)] private float snapToLedgeBottomRayHeight = 0.05f; //Height of the ray that needs to be hitting something to snap to a ledge
 
-    [SerializeField] public float slideDeceleration = 1; //Slowing down sliding
-    [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
-    [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
+
 
     //[SerializeField] public float boostMaxRunSpeedMultiplier = 1.5f; //Multiplier for the max run speed when boosting
     //[SerializeField] public float boostAcceleration = 25; //New acceleration when boosting
-    [SerializeField] public float batteryRecharge = 10f; //Boost recharge rate
-    //[SerializeField] public float boostDepletion = 50f; //Boost depletion rate
-    [SerializeField] private float minimumBoostCharge = 5; //The minimum boost required to start boosting
 
+    //[SerializeField] public float boostDepletion = 50f; //Boost depletion rate
+
+    [Header("JUMPING")]
     [SerializeField] public float jumpStrength = 5; //Initial vertical velocity when jumping
     [SerializeField][Range(0f, 0.5f)] public float minJumpTime = 0.1f; //Time in seconds that the player must jump for before fastfalling
     [SerializeField] public float gravityMult = 1; //Gravity multiplier when not fastfalling
@@ -78,22 +78,38 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField][Range(0.01f, 1f)] public float fallSlowsRunMult = 1; //Multiplier for how much falling speed slows down horizontal speed.
     [SerializeField][Range(0.01f, 0.5f)] public float coyoteTime = 0.05f;
 
+    [Header("WALLJUMPING")]
     [SerializeField] public float wallClingSpeed = 1; //How quickly the player falls when clinging to a wall
     [SerializeField][Range(0f, 1f)] private float walljumpRayGap = 0.8f; //Position of rays, smaller gaps mean smaller range the player can walljump from
     [SerializeField] public float horizontalWalljumpStrength = 8f; //How much horizontal speed a walljump gives
     [SerializeField] public float verticalWalljumpStrength = 8f; //How much vertical speed a walljump gives
     [SerializeField][Range(0.01f, 1f)] private float walljumpInputDelay = 0.5f; //Delay for moving the opposite direction after a walljump
+    
+    [Header("SLIDING")]
+    [SerializeField] public float slideDeceleration = 1; //Slowing down sliding
+    [SerializeField] private float velocityToSlide = 12; //Velocity the player needs to be to be able to slide
+    [SerializeField] private float velocityEndSlide = 5; //Velocity the player needs to be to be able to slide
 
+    [Header("CLOAK AND DASH")]
+    [SerializeField] public float batteryRecharge = 10f; //Boost recharge rate
+    [SerializeField] private float minimumBatteryToCloak = 5; //The minimum boost required to start cloaking
     [SerializeField] public float cloakDepletion = 70f;
+    public float dashSpeed = 29.5f;
+    public float dashDuration = 0.2f;
+    public float dashBatteryCost = 25f;
+    public float dashCooldown = 0.2f;
+    public int dashChargesPerJump = 1;
+    [NonSerialized] public int dashChargesRemaining = 1;
+    [NonSerialized] public bool dashCooldownActive = false;
 
-    [SerializeField] public float boostFootStepSoundRange = 10f;
-    [SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
+    //[SerializeField] public float boostFootStepSoundRange = 10f;
+    //[SerializeField] public float boostFootStepSoundSuspicionIncrease = 15f;
 
-    [SerializeField] public float boostJumpSoundRange = 25f;
-    [SerializeField] public float boostJumpSoundSuspicionIncrease = 35f;
+    //[SerializeField] public float boostJumpSoundRange = 25f;
+    //[SerializeField] public float boostJumpSoundSuspicionIncrease = 35f;
 
-    [SerializeField] public float boostSlideSoundRange = 15f;
-    [SerializeField] public float boostSlideSoundSuspicionIncrease = 20f;
+    //[SerializeField] public float boostSlideSoundRange = 15f;
+    //[SerializeField] public float boostSlideSoundSuspicionIncrease = 20f;
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
     [NonSerialized] public bool minJumpActive; //If the player is in the first part of a jump where they cant fastfall
@@ -105,17 +121,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     //[NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public bool dashing; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
-    public float batteryCharge = 100; //The current boosting charge the player has
-    public bool boostCloakUnlocked = false;
 
-    [Header("NEW VARIABLES FOR DARE DEVELOPMENT")]
-    public float dashSpeed = 29.5f;
-    public float dashDuration = 0.2f;
-    public float dashBatteryCost = 25f;
-    public float dashCooldown = 0.2f;
-    public int dashChargesPerJump = 1;
-    [NonSerialized] public int dashChargesRemaining = 1;
-    [NonSerialized] public bool dashCooldownActive = false;
+    [Header("DEBUG")]
+    public float batteryCharge = 100; //The current boosting charge the player has
+    public bool cloakUnlocked = false;
+
 
     [NonSerialized] public float conveyorSpeed = 0f;
     [NonSerialized] public float jumpingFromConveyorSpeed = 0f;
@@ -253,7 +263,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         JumpAndFall();
         //if (boostCloakUnlocked) {
             //Boosting and Cloaking, the ability that switches between modes
-            DashCloak();
+        DashCloak();
         //}
         //Running and Sliding, all horizontal velocity
         RunSlide();
@@ -465,7 +475,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void JumpAndFall() {
-        Debug.Log(jumpInput.ToString() + grounded.ToString() + (!hasJumped).ToString());
         if (jumpInput && grounded && !hasJumped) { //Normal Jumping
 
             jumpScript.BasicJump();
@@ -516,25 +525,24 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void DashCloak() {
-        //If movement mode active, do boost things
-
-        //They use the same input, and there is a cloakScript already created
-        
+        //Dashing
         if (dashInput) {
             if (!dashing && !hasDashed && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
                 dashScript.StartDashing();
             }
-        } 
-        if (cloakInput) {
+        }
+        
+        //Cloaking
+        if (cloakUnlocked && cloakInput) {
             if (!cloaking) {
-                if (batteryCharge > minimumBoostCharge && !hasCloaked) {
+                if (batteryCharge > minimumBatteryToCloak && !hasCloaked) {
                     cloakScript.Enable();
                     particleManager.CloakOn();
                 } else {
                     hasCloaked = true;
                 }
             } else {
-                if (batteryCharge > minimumBoostCharge) {
+                if (batteryCharge > minimumBatteryToCloak) {
                     cloakScript.OnTick();
                 } else {
                     cloakScript.Disable();
@@ -548,6 +556,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             }
         }
 
+        //Recharge Battery
         if (!cloaking) {
             if (batteryCharge + batteryRecharge * Time.deltaTime < 100f) {
                 batteryCharge += batteryRecharge * Time.deltaTime;
