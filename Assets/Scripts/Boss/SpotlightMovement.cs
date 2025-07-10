@@ -8,7 +8,6 @@ public class SpotlightMovement : MonoBehaviour
     [SerializeField]private float travelTime = 2.0f;
 
     private Vector2 desiredLocation;
-    private Vector2 velocity;
 
     public void MoveTo(Vector2 location)
     {
