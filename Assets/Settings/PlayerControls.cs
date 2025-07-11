@@ -237,6 +237,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""78c8c0b7-5246-431c-98a7-5271021ae184"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Sliding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""49f45dda-8f7c-45ea-ad35-64f5b8b288f4"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
@@ -313,6 +324,76 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu Controls"",
+            ""id"": ""f4b3f949-8688-4c24-9f06-ee652b30168b"",
+            ""actions"": [
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""29e8a758-886f-4f9e-aca1-a819f971f1c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6fb8bdcf-1a32-4077-b3b3-b664353ab344"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""875307f0-e4c1-4a0f-9a61-3f0432ad8b38"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88c546ec-3745-4291-8644-536bc212519b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""baf3a2da-9013-4c5f-b92e-6a52c2a12a72"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""843af62e-57c7-42b0-8823-eeff9b0511e6"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -354,6 +435,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_GameplayControls_Hacking = m_GameplayControls.FindAction("Hacking", throwIfNotFound: true);
         m_GameplayControls_Cloaking = m_GameplayControls.FindAction("Cloaking", throwIfNotFound: true);
         m_GameplayControls_AimHack = m_GameplayControls.FindAction("AimHack", throwIfNotFound: true);
+        // Menu Controls
+        m_MenuControls = asset.FindActionMap("Menu Controls", throwIfNotFound: true);
+        m_MenuControls_Reset = m_MenuControls.FindAction("Reset", throwIfNotFound: true);
+        m_MenuControls_Pause = m_MenuControls.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -505,6 +590,60 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayControlsActions @GameplayControls => new GameplayControlsActions(this);
+
+    // Menu Controls
+    private readonly InputActionMap m_MenuControls;
+    private List<IMenuControlsActions> m_MenuControlsActionsCallbackInterfaces = new List<IMenuControlsActions>();
+    private readonly InputAction m_MenuControls_Reset;
+    private readonly InputAction m_MenuControls_Pause;
+    public struct MenuControlsActions
+    {
+        private @PlayerControls m_Wrapper;
+        public MenuControlsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Reset => m_Wrapper.m_MenuControls_Reset;
+        public InputAction @Pause => m_Wrapper.m_MenuControls_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_MenuControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuControlsActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuControlsActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Add(instance);
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IMenuControlsActions instance)
+        {
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IMenuControlsActions instance)
+        {
+            if (m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuControlsActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuControlsActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuControlsActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuControlsActions @MenuControls => new MenuControlsActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -532,5 +671,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHacking(InputAction.CallbackContext context);
         void OnCloaking(InputAction.CallbackContext context);
         void OnAimHack(InputAction.CallbackContext context);
+    }
+    public interface IMenuControlsActions
+    {
+        void OnReset(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

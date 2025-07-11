@@ -215,6 +215,17 @@
                 },
                 {
                     "name": "",
+                    "id": "78c8c0b7-5246-431c-98a7-5271021ae184",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Sliding",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "49f45dda-8f7c-45ea-ad35-64f5b8b288f4",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -287,6 +298,76 @@
                     "processors": "AxisDeadzone(min=0.2)",
                     "groups": "Gamepad",
                     "action": "AimHack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu Controls",
+            "id": "f4b3f949-8688-4c24-9f06-ee652b30168b",
+            "actions": [
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "29e8a758-886f-4f9e-aca1-a819f971f1c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "6fb8bdcf-1a32-4077-b3b3-b664353ab344",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "875307f0-e4c1-4a0f-9a61-3f0432ad8b38",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88c546ec-3745-4291-8644-536bc212519b",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "baf3a2da-9013-4c5f-b92e-6a52c2a12a72",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "843af62e-57c7-42b0-8823-eeff9b0511e6",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

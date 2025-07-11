@@ -9,7 +9,9 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     public AK.Wwise.Event Hack_Fail;
     PlayerControls controls;
     InputAction hackAction;
+    InputAction aimHackAction;
     bool hackInput;
+    Vector2 aimHackInput;
     ControlsScript controlsScript;
 
     MovementScript movementScript;
@@ -49,15 +51,17 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         }
         controls.GameplayControls.Enable();
         hackAction = controls.FindAction("Hacking");
+        aimHackAction = controls.FindAction("AimHack");
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
-        if (Mouse.current.wasUpdatedThisFrame) {
-            usingMouse = true;
-        }
+        //aimHackInput = aimHackAction.ReadValue<Vector2>();
+        aimHackAction.performed += ctx => OnAimHack(ctx);
+        //if (Mouse.current.wasUpdatedThisFrame) {
+        //    usingMouse = true;
+        //}
 
         if (usingMouse) {
             Cursor.lockState = CursorLockMode.None;
@@ -75,20 +79,14 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
             hackInput = hackAction.ReadValue<float>() > 0;
             if (!hackInput) {
                 hasHacked = false;
-            } else if (target != null && !hasHacked && !menu.paused) {
-                if (hackCharge >= 100f / hackCharges) {
-                    //If the target is currently being hacked dont let it
-                    target.OnHack();
-                    hasHacked = true;
-                    hackCharge -= 100f / hackCharges;
-                } else {
-                    //Not enough charge
-                    Hack_Fail.Post(gameObject);
-                }
+            } else {
+                Hack();
             }
+            //hackInput = hackAction.ReadValue<float>() > 0;
 
 
-            if (usingMouse) {
+
+            if (usingMouse || (target == null && !usingMouse)) {
                 target = null;
                 float distance = 1000;
         
@@ -117,7 +115,32 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
                     }
                 }
                 
+            } else {
+                foreach (Hackable hackable in FindObjectsByType<Hackable>(FindObjectsSortMode.None)) {
+                    //Needs to be on screen to be considered
+                    if (mainCamera.WorldToViewportPoint(hackable.transform.position).x > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).x < 0.03f ||
+                        mainCamera.WorldToViewportPoint(hackable.transform.position).y > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).y < 0.03f) {
+                        continue;
+                    }
+
+                    if (hackable.GetComponent<HackableConsoleEnable>() != null) {
+                        if (hackable.GetComponent<Hackable>().enabled) {
+                            target = hackable;
+                            break;
+                        } else if (hackable == target) {
+                            target = null;
+                            break;
+                        }
+                    } else {
+                        continue;
+                    }
+                }
             }
+
+            if (target != null && target.GetComponent<HackableConsoleEnable>() != null && !target.GetComponent<HackableConsoleEnable>().enabled) {
+                target = null;
+            }
+
             if (target != null) {
                 reticle.SetActive(true);
                 reticle.transform.position = target.transform.position;
@@ -128,23 +151,58 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     }
 
     public void OnHacking(InputAction.CallbackContext context) {
-        if (target != null && !hasHacked && menu.paused) {
+
+    }
+
+    public void Hack() {
+        if (target != null && !hasHacked && !menu.paused) {
             if (hackCharge >= 100f / hackCharges) {
                 //If the target is currently being hacked dont let it
                 target.OnHack();
                 hasHacked = true;
                 hackCharge -= 100f / hackCharges;
+                target = null;
             } else {
                 //Not enough charge
                 Hack_Fail.Post(gameObject);
             }
         } //else No target
-
     }
-
     public void OnAimHack(InputAction.CallbackContext context) {
         usingMouse = false;
         gamepadDirection = context.ReadValue<Vector2>();
+        float smallestAngle = 180;
+
+        foreach (Hackable hackable in FindObjectsByType<Hackable>(FindObjectsSortMode.None)) {
+            
+            //Needs to be on screen to be considered
+            if (mainCamera.WorldToViewportPoint(hackable.transform.position).x > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).x < 0.03f ||
+                mainCamera.WorldToViewportPoint(hackable.transform.position).y > 0.97f || mainCamera.WorldToViewportPoint(hackable.transform.position).y < 0.03f) {
+                continue;
+            }
+
+            if (hackable.GetComponent<HackableConsoleEnable>() != null) {
+                if (hackable.GetComponent<Hackable>().enabled) {
+                    target = hackable;
+                    smallestAngle = 0;
+                    break;
+                } else {
+                    continue;
+                }
+            }
+
+            //Needs to free so it can be hacked
+            if (hackable.beingHacked == true) {
+                continue;
+            }
+
+            Vector2 currentHackableVector = hackable.transform.position - transform.position;
+            float currentHackableAngle = Vector2.Angle(gamepadDirection, currentHackableVector);
+            if (currentHackableAngle < smallestAngle) {
+                smallestAngle = currentHackableAngle;
+                target = hackable;
+            }
+        }
     }
     public void OnCloaking(InputAction.CallbackContext context) {
 
@@ -163,5 +221,11 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
     }
 
+    public void OnPause(InputAction.CallbackContext context) {
 
+    }
+
+    public void OnReset(InputAction.CallbackContext context) {
+    
+    }
 }

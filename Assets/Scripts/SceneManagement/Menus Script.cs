@@ -7,13 +7,14 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using static ControlsScript;
+using static PlayerControls;
 
-public class MenuScript : MonoBehaviour
-{
+public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public AK.Wwise.Event buttonClick;
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
@@ -53,6 +54,7 @@ public class MenuScript : MonoBehaviour
     Image TransitionImage;
 
     ControlsScript controlScript;
+    PlayerControls controls;
 
     bool menuOpen;
     bool settingsOpen;
@@ -485,6 +487,10 @@ public class MenuScript : MonoBehaviour
         loseGroup.SetActive(false);
         creditsGroup.SetActive(false);
 
+        controls = controlScript.controls;
+        controls.MenuControls.SetCallbacks(this);
+
+
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
@@ -516,20 +522,22 @@ public class MenuScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
-            if (!paused) {
-                OpenMenu();
-                GetComponent<ControlsScript>().controls.Disable();
-            } else {
-                CloseMenu();
-                GetComponent<ControlsScript>().controls.Enable();
-            }
-        }
+        controls.MenuControls.Pause.started += ctx => Pause();
 
-        if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
-            StartCoroutine(LoseFinalize());
+        //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+        //    if (!paused) {
+        //        OpenMenu();
+        //        GetComponent<ControlsScript>().controls.Disable();
+        //    } else {
+        //        CloseMenu();
+        //        GetComponent<ControlsScript>().controls.Enable();
+        //    }
+        //}
 
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
+        //    StartCoroutine(LoseFinalize());
+
+        //}
 
         if (menuOpen) {
             if (settingsOpen) {
@@ -590,11 +598,27 @@ public class MenuScript : MonoBehaviour
         
     }
 
-    public void SliderChangeSound(AK.Wwise.Event sound) {
-        
-        if (sound != sliderSound) {
-            sound = sliderSound;
-            sound.Post(gameObject);
+    public void Pause() {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+            if (!paused) {
+                OpenMenu();
+                GetComponent<ControlsScript>().controls.GameplayControls.Disable();
+            } else {
+                CloseMenu();
+                GetComponent<ControlsScript>().controls.GameplayControls.Enable();
+            }
         }
+
+        if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
+            StartCoroutine(LoseFinalize());
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context) {
+
+    }
+
+    public void OnReset(InputAction.CallbackContext context) {
+
     }
 }
