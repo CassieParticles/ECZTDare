@@ -12,6 +12,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [Header("SFX")]
     public AK.Wwise.Event playerFootstep;
     public AK.Wwise.Event playerSlide;
+    public AK.Wwise.Event playerDash;
     public AK.Wwise.Event boostStart;
     public AK.Wwise.Event boostRush;
     public AK.Wwise.Event boostStop;
