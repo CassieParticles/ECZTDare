@@ -619,6 +619,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     }
 
     public void OnReset(InputAction.CallbackContext context) {
-
+        if (SceneManager.GetActiveScene().name != "Main Menu") {
+            StartCoroutine(LoseFinalize());
+        }
     }
 }
