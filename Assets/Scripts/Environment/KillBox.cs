@@ -10,10 +10,10 @@ public class KillBox : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log("Something hit me.");
+       
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Player Detected.");
+        
             FindFirstObjectByType<MenuScript>().Lose();
             
         }
