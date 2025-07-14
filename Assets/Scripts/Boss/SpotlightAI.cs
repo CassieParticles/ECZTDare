@@ -6,6 +6,7 @@ using UnityEngine;
 public class SpotlightAI : MonoBehaviour,IRecieveSignals
 {
     SpotlightMovement spotlight;
+    BaseAnchor currentAnchor;
 
     private void Awake()
     {
@@ -14,6 +15,12 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
 
     public void RecieveSignal(BaseAnchor anchor)
     {
+        if(currentAnchor)
+        {
+            currentAnchor.RemoveSpotlight();
+        }
+
         anchor.AddSpotlight(spotlight);
+        currentAnchor = anchor;
     }
 }
