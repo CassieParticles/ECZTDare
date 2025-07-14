@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
-public class ChaseCamera : MonoBehaviour
+public class ChaseCameraZoom : MonoBehaviour
 {
 
     CinemachineVirtualCamera virtualCamera;
     PolygonCollider2D track;
+    CinemachineConfiner confiner;
     CinemachineBrain mainCamera;
     GameObject player;
 
@@ -16,9 +17,7 @@ public class ChaseCamera : MonoBehaviour
     [SerializeField] private CinemachineBlendDefinition.Style blendType = CinemachineBlendDefinition.Style.HardOut;
     [SerializeField][Range(0.1f, 5f)] private float blendDuration = 1;
     [SerializeField][Range(5f, 20f)] private float zoom = 8.44f; //Perspective 79 calculations to solve ortho to fov in start
-    [SerializeField][Range(10, 20)] private int priority = 11; //What priority the camera uses
-    [Header("ANCHOR POINTS\nTwo anchors is enough for a straight line\nPosition is relative to the gameobject")]
-    [SerializeField] private List<Vector2> anchorPoints = new List<Vector2> { Vector2.zero, Vector2.right };
+    [SerializeField][Range(10, 20)] private int priority = 12; //What priority the camera uses
 
     private float fov;
 
@@ -26,12 +25,17 @@ public class ChaseCamera : MonoBehaviour
     void Start()
     {
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
-        track = GetComponentInChildren<PolygonCollider2D>();
+        track = transform.parent.GetComponentInChildren<PolygonCollider2D>();
         player = GameObject.Find("Player");
         mainCamera = GameObject.Find("Main Camera").GetComponent<CinemachineBrain>();
 
         virtualCamera.Priority = 9;
         virtualCamera.Follow = player.transform;
+
+        if (track != null ) {
+            confiner = GetComponentInChildren<CinemachineConfiner>(); 
+            confiner.m_BoundingShape2D = track;
+        }
 
         fov = 2 * Mathf.Rad2Deg * Mathf.Atan(zoom / 10);
         virtualCamera.m_Lens.ModeOverride = LensSettings.OverrideModes.Perspective;
@@ -66,16 +70,12 @@ public class ChaseCamera : MonoBehaviour
         fov = 2 * Mathf.Rad2Deg * Mathf.Atan(zoom / 10);
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         virtualCamera.m_Lens.FieldOfView = fov;
-        track = GetComponentInChildren<PolygonCollider2D>();
-        List<Vector2> newTrack = new List<Vector2> { anchorPoints[0] };
-        foreach (Vector2 point in anchorPoints) {
-            newTrack.Add(point);
+        if (transform.parent != null) { //For some reason unity throws an error sometimes
+            track = transform.parent.GetComponentInChildren<PolygonCollider2D>();
         }
-
-        for (int i = 0; i < anchorPoints.Count - 1; i++) {
-            newTrack.Add(anchorPoints[anchorPoints.Count - i - 1]);
+        if (track != null) {
+            confiner = GetComponentInChildren<CinemachineConfiner>();
+            confiner.m_BoundingShape2D = track;
         }
-
-        track.points = newTrack.ToArray();
     }
 }
