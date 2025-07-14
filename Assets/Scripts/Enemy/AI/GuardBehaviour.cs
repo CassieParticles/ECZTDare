@@ -27,10 +27,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
     public float acceleration=15f;
     private float desiredSpeed;
 
-    [SerializeField] private float visionConeTurnSpeed=90;
-    [SerializeField] private float playerVisibleTurnSpeedScalar = 3.0f;
-    private float desiredLookAngle=0;
-
     /// <summary>
     /// How long will a guard be chasing the player before they call the alarm
     /// </summary>

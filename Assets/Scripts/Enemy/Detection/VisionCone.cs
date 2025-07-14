@@ -94,7 +94,7 @@ public class VisionCone : EnemySight
         float currentAngle = transform.rotation.eulerAngles.z;
 
         float amountToTurn = desiredAngle - currentAngle;
-        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime;
+        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime * (playerVisible ? playerVisibleTurnSpeedScalar : 1);
 
         if (amountToTurn >= 360)
         {
