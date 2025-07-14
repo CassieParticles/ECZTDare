@@ -30,7 +30,7 @@ public class SpotlightMovement : MonoBehaviour
             //Get distance and direction
             Vector2 toMove = desiredLocation - (Vector2)transform.position;
 
-            if(toMove.magnitude < Time.fixedDeltaTime)
+            if(toMove.sqrMagnitude < velocity.sqrMagnitude * Time.fixedDeltaTime)
             {
                 transform.position = (Vector3)desiredLocation;
             }
