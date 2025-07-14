@@ -8,10 +8,13 @@ public class SpotlightMovement : MonoBehaviour
     [SerializeField]private float travelTime = 2.0f;
 
     private Vector2 desiredLocation;
+    private Vector2 velocity;
 
     public void MoveTo(Vector2 location)
     {
         desiredLocation = location;
+        Vector2 distance = desiredLocation - (Vector2)transform.position;
+        velocity = distance / travelTime;
     }
 
     private void Awake()
@@ -32,7 +35,7 @@ public class SpotlightMovement : MonoBehaviour
                 transform.position = (Vector3)desiredLocation;
             }
 
-            transform.position += ((Vector3)toMove * Time.fixedDeltaTime) / travelTime;
+            transform.position += (Vector3)(velocity * Time.fixedDeltaTime);
         }
     }
 }
