@@ -15,7 +15,7 @@ public class PatrolAnchor : BaseAnchor
     private PatrolNodeDat[] patrolNodes;
     int currentNode;
 
-    bool waitingAtNode;
+    Coroutine waitCoroutine;
 
     private void Awake()
     {
@@ -32,7 +32,6 @@ public class PatrolAnchor : BaseAnchor
             }
         }
 
-        waitingAtNode = false;
     }
 
 
@@ -43,13 +42,25 @@ public class PatrolAnchor : BaseAnchor
         spotlight.MoveTo(patrolNodes[0].position);
     }
 
+    public override void RemoveSpotlight()
+    {
+        base.RemoveSpotlight();
+
+        currentNode = 0;
+        if(waitCoroutine!=null)
+        {
+            StopCoroutine(waitCoroutine);
+            waitCoroutine = null;
+        }
+    }
+
     private IEnumerator WaitForNextNode(float delay)
     {
         yield return new WaitForSeconds(delay);
-        waitingAtNode = false;
         currentNode++;
         currentNode = currentNode % patrolNodes.Length;
         spotlight.MoveTo(patrolNodes[currentNode].position);
+        waitCoroutine = null;
     }
 
     public void FixedUpdate()
@@ -58,10 +69,9 @@ public class PatrolAnchor : BaseAnchor
         Vector3 position = patrolNodes[currentNode].position;
         
         //Move to next node
-        if(spotlight.transform.position == position && !waitingAtNode)
+        if((spotlight.transform.position-position).sqrMagnitude < 0.1f && waitCoroutine == null)
         {
-            waitingAtNode = true;
-            StartCoroutine(WaitForNextNode(patrolNodes[currentNode].delay));
+            waitCoroutine = StartCoroutine(WaitForNextNode(patrolNodes[currentNode].delay));
         }
     }
 }
