@@ -12,10 +12,15 @@ public class CameraHackable : Hackable
 
     private IEnumerator HackCamera()
     {
-        float dist = cameraAttached.visionCone.distance;    //Store original range
+        //float dist = cameraAttached.enemySight.distance;    //Store original range
+
+
         //Disable camera
         cameraAttached.beingHacked = true;
-        cameraAttached.visionCone.distance = 0;
+        cameraAttached.enemySight.gameObject.SetActive(false);
+
+
+        //cameraAttached.enemySight.distance = 0;
         beingHacked = true;
         Hack_Start.Post(gameObject);
         cameraAttached.cameraMoving.Stop(gameObject);
@@ -23,7 +28,8 @@ public class CameraHackable : Hackable
         yield return new WaitForSeconds(hackTimer);
         //Enable camera
         cameraAttached.beingHacked = false;
-        cameraAttached.visionCone.distance = dist;
+        cameraAttached.enemySight.gameObject.SetActive(true);
+        //cameraAttached.enemySight.distance = dist;
         beingHacked = false;
         Hack_Stop.Post(gameObject);
 

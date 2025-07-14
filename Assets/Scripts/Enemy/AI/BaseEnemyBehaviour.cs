@@ -48,7 +48,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     
 
     //Vision cone attached to enemy
-    public VisionCone visionCone{ get; protected set; }
+    public EnemySight enemySight{ get; protected set; }
 
     //Player, null for when enemy cannot see the player
     public GameObject Player { get; protected set; }
@@ -88,28 +88,33 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
     private void UpdateSuspicionColour()
     {
-        switch (suspicionState)
+        VisionCone visionCone = (VisionCone)enemySight;
+        if(visionCone)
         {
-            case SuspicionState.Idle:
-                visionCone.SetColour(Color.white);
-                break;
-            case SuspicionState.Suspect:
-                visionCone.SetColour(Color.yellow);
-                break;
-            case SuspicionState.HighAlert:
-                visionCone.SetColour(new Color(1, 0.5f, 0));    //Orange, not a predefined colour
-                break;
-            case SuspicionState.Chase:
-                visionCone.SetColour(Color.red);
-                break;
+            switch (suspicionState)
+            {
+                case SuspicionState.Idle:
+                    visionCone.SetColour(Color.white);
+                    break;
+                case SuspicionState.Suspect:
+                    visionCone.SetColour(Color.yellow);
+                    break;
+                case SuspicionState.HighAlert:
+                    visionCone.SetColour(new Color(1, 0.5f, 0));    //Orange, not a predefined colour
+                    break;
+                case SuspicionState.Chase:
+                    visionCone.SetColour(Color.red);
+                    break;
+            }
         }
+
     }
 
     //Called on awake of overriden classes
     protected void Setup()
     {
         //Collect vision cone
-        visionCone = transform.GetChild(0).GetComponent<VisionCone>();
+        enemySight = transform.GetChild(0).GetComponent<VisionCone>();
 
         suspicion = 0;
         minimumSuspicion = 0;
@@ -162,22 +167,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         }
     }
 
-    private float calcSuspicionIncreaseRate(GameObject player)
-    {
-        if(!player)
-        {
-            return 0;
-        }
-        Vector3 playerPos = player.transform.position;
-        Vector3 enemyPos = transform.position;
 
-        //Get a scalar from 1 to 0 based for player's distance affecting scale rate
-        float distance = (playerPos - enemyPos).magnitude;
-        float visionConeLength = visionCone.distance;
-        float distScalar = Mathf.Clamp(1 - distance / visionConeLength, 0.05f, 1);
-
-        return Mathf.Max(distScalar,minimumDistanceScalar) * suspicionScaleRate * Time.fixedDeltaTime;
-    }
     /// <summary>
     /// Sets the enemy's suspicion state to the level specified and sets suspicion to that amount
     /// </summary>
@@ -199,8 +189,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
         if (suspicion < SuspicionLevel[3])
         {
             //Update vision cone visual
-            visionCone.RecalcConeTex();
-            suspicion += calcSuspicionIncreaseRate(Player);
+            enemySight.UpdateVisual();
+            suspicion += enemySight.calcSuspicionIncreaseRate(Player);
         }
     }
     /// <summary>
@@ -211,7 +201,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         if (suspicion > minimumSuspicion + suspicionDecayRate * Time.fixedDeltaTime)
         {
             //Update vision cone visual
-            visionCone.RecalcConeTex();
+            enemySight.UpdateVisual();
             suspicion -= suspicionDecayRate * Time.fixedDeltaTime;
         }
     }

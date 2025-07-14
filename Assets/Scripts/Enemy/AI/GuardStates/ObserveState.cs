@@ -34,7 +34,7 @@ public class ObserveState : BaseState
         if (guardBehaviour.Player)
         {
             //Get a line from the guard to the player, and check for intersection
-            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardBehaviour.visionCone.transform.position;
+            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardBehaviour.enemySight.transform.position;
             RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, playerDirection, playerDirection.magnitude, 0b0110011);
 
             if(!rayHit)
