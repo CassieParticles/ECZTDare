@@ -11,6 +11,7 @@ public abstract class BaseAnchor : MonoBehaviour
     public virtual void AddSpotlight(SpotlightMovement spotlight)
     {
         this.spotlight = spotlight;
+        spotlight.gameObject.SetActive(true);
     }
 
     public virtual void RemoveSpotlight()
