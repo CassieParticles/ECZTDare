@@ -27,10 +27,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
     public float acceleration=15f;
     private float desiredSpeed;
 
-    [SerializeField] private float visionConeTurnSpeed=90;
-    [SerializeField] private float playerVisibleTurnSpeedScalar = 3.0f;
-    private float desiredLookAngle=0;
-
     /// <summary>
     /// How long will a guard be chasing the player before they call the alarm
     /// </summary>
@@ -86,48 +82,16 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public void LookAt(Vector3 position)
     {
-        Vector3 direction = position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Look(angle);
+        enemySight.LookAt(position);
     }
 
     public void Look(float angle)
     {
-        desiredLookAngle = angle;
-    }
-
-    private void UpdateLookAngle()
-    {
-        //Get current vision cone angle
-        float currentAngle = visionCone.transform.rotation.eulerAngles.z;
-
-        float amountToTurn = desiredLookAngle - currentAngle;
-        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime * (Player?playerVisibleTurnSpeedScalar:1.0f);
-
-        if(amountToTurn >= 360)
+        //Cast to vision cone
+        if((VisionCone)enemySight)
         {
-            amountToTurn -= 360;
+            ((VisionCone)enemySight).Look(angle);
         }
-        if(amountToTurn <= -360)
-        {
-            amountToTurn += 360;
-        }
-
-        //If distance is too great to get there in a single frame, snap to angle (basically turning around)
-        if(Mathf.Abs(amountToTurn) > 135)
-        {
-            currentAngle = desiredLookAngle;
-        }
-        else if(Mathf.Abs(amountToTurn) < turnPerFrame)
-        {
-            currentAngle = desiredLookAngle;
-        }
-        else
-        {
-            currentAngle += Mathf.Sign(amountToTurn) * turnPerFrame;
-        }
-        
-        visionCone.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
     }
 
     public void StopMoving()
@@ -320,7 +284,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Choose patrol state constructor based on if there is a patrol route available
         guardBehaviour.AddState(GuardStates.Patrol, patrolRoute ? 
             new PatrolState(gameObject, patrolRoute) : 
-            new PatrolState(gameObject, transform.position, visionCone.transform.rotation.eulerAngles.z));
+            new PatrolState(gameObject, transform.position, enemySight.transform.rotation.eulerAngles.z));
 
         guardBehaviour.AddState(GuardStates.Idle, new IdleState(gameObject));
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));
@@ -398,7 +362,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
 
         UpdateAgentSpeed();
-        UpdateLookAngle();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
