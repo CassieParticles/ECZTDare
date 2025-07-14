@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7203900484335729707}
   - component: {fileID: -7116024920058135507}
   - component: {fileID: -7692375797715711656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollideTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 0}
+  reciever: {fileID: 0}
 --- !u!61 &-7692375797715711656
 BoxCollider2D:
   m_ObjectHideFlags: 0
