@@ -30,6 +30,7 @@ public class ChaseCamera : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<CinemachineBrain>();
 
         virtualCamera.Priority = 9;
+        virtualCamera.Follow = player.transform;
 
         fov = 2 * Mathf.Rad2Deg * Mathf.Atan(zoom / 10);
         virtualCamera.m_Lens.ModeOverride = LensSettings.OverrideModes.Perspective;
@@ -62,6 +63,7 @@ public class ChaseCamera : MonoBehaviour
 
     private void OnValidate() {
         fov = 2 * Mathf.Rad2Deg * Mathf.Atan(zoom / 10);
+        virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         virtualCamera.m_Lens.FieldOfView = fov;
         track = GetComponentInChildren<PolygonCollider2D>();
         List<Vector2> newTrack = new List<Vector2>();
