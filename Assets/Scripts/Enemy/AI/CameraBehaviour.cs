@@ -38,9 +38,9 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
     private void RotateCamera(float angle)
     {
-        Vector3 rotation = visionCone.transform.rotation.eulerAngles;
-        rotation.z += angle;
-        visionCone.transform.rotation = Quaternion.Euler(rotation);
+        float rotation = visionCone.transform.rotation.eulerAngles.z;
+        rotation += angle;
+        visionCone.Look(rotation);
     }
 
     private void FollowPlayer()
@@ -54,7 +54,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        visionCone.transform.rotation = Quaternion.Euler(0, 0, angle);
+        visionCone.Look(angle);
     }
 
     private void Alarm(Vector3 playerPosition, GameObject alarmCaller)

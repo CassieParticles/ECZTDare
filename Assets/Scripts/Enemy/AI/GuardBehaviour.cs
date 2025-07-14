@@ -86,49 +86,15 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public void LookAt(Vector3 position)
     {
-        Vector3 direction = position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Look(angle);
+        visionCone.LookAt(position);
     }
 
     public void Look(float angle)
     {
-        desiredLookAngle = angle;
+        visionCone.Look(angle);
     }
 
-    private void UpdateLookAngle()
-    {
-        //Get current vision cone angle
-        float currentAngle = visionCone.transform.rotation.eulerAngles.z;
-
-        float amountToTurn = desiredLookAngle - currentAngle;
-        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime * (Player?playerVisibleTurnSpeedScalar:1.0f);
-
-        if(amountToTurn >= 360)
-        {
-            amountToTurn -= 360;
-        }
-        if(amountToTurn <= -360)
-        {
-            amountToTurn += 360;
-        }
-
-        //If distance is too great to get there in a single frame, snap to angle (basically turning around)
-        if(Mathf.Abs(amountToTurn) > 135)
-        {
-            currentAngle = desiredLookAngle;
-        }
-        else if(Mathf.Abs(amountToTurn) < turnPerFrame)
-        {
-            currentAngle = desiredLookAngle;
-        }
-        else
-        {
-            currentAngle += Mathf.Sign(amountToTurn) * turnPerFrame;
-        }
-        
-        visionCone.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
-    }
+    
 
     public void StopMoving()
     {
@@ -398,7 +364,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
 
         UpdateAgentSpeed();
-        UpdateLookAngle();
     }
 
     private void OnCollisionStay2D(Collision2D collision)

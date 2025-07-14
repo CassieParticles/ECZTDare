@@ -174,7 +174,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         //Get a scalar from 1 to 0 based for player's distance affecting scale rate
         float distance = (playerPos - enemyPos).magnitude;
         float visionConeLength = visionCone.distance;
-        float distScalar = Mathf.Clamp(1 - distance / visionConeLength, 0.05f, 1);
+        float distScalar = Mathf.Clamp(visionCone.GetPlayerDistanceScalar(), 0.05f, 1);
 
         return Mathf.Max(distScalar,minimumDistanceScalar) * suspicionScaleRate * Time.fixedDeltaTime;
     }

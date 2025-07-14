@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class VisionCone : MonoBehaviour
+public class VisionCone : EnemySight
 {
     //Fields for controlling vision cone
     [SerializeField, Range(1,100)]
@@ -12,6 +12,10 @@ public class VisionCone : MonoBehaviour
     [SerializeField]
     public float distance = 15;
 
+    //How fast the vision cone should turn
+    [SerializeField] private float visionConeTurnSpeed = 90;
+    [SerializeField] private float playerVisibleTurnSpeedScalar = 3.0f;
+
     private LayerMask rayMask;
 
     private MeshFilter visionConeMeshFilter;
@@ -19,22 +23,41 @@ public class VisionCone : MonoBehaviour
 
     private Mesh visionConeMesh;
 
-    private BaseEnemyBehaviour Enemy;
-
     private Material coneMaterial;
     private Texture2D coneTexture;
     private Color coneColour;
 
-    //Track when player is in vision cone, meant to keep updated when vision cone is used
-    MovementScript playerScript;
-    //2 booleans, when they do not match, player cloaked or uncloaked this frame
-    bool cloakLastFrame;
-    bool cloakThisFrame;
+    //The angle the vision cone wants to be looking at
+    private float desiredAngle;
+
+    public void Look(float angle)
+    {
+        desiredAngle = angle;
+    }
+
+    public override void LookAt(Vector3 position)
+    {
+        Vector3 direction = position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Look(angle);
+    }
+
+    public override void UpdateVisual()
+    {
+        RecalcConeTex();
+    }
 
     public void SetColour(Color colour)
     {
         coneColour = colour;
         RecalcConeTex();
+    }
+
+    public float GetPlayerDistanceScalar()
+    {
+        if (!playerVisible){ return 0.0f; }
+        float playerDistance = (playerScript.transform.position - transform.position).magnitude;
+        return 1.0f - playerDistance / distance;
     }
 
     //Recalculate the texture used for the vision cone (colour and suspicion)
@@ -49,6 +72,40 @@ public class VisionCone : MonoBehaviour
         }
         coneTexture.SetPixels(colourArray);
         coneTexture.Apply();
+    }
+
+    private void UpdateLookAngle()
+    {
+        //Get current vision cone angle
+        float currentAngle = transform.rotation.eulerAngles.z;
+
+        float amountToTurn = desiredAngle - currentAngle;
+        float turnPerFrame = visionConeTurnSpeed * Time.fixedDeltaTime;
+
+        if (amountToTurn >= 360)
+        {
+            amountToTurn -= 360;
+        }
+        if (amountToTurn <= -360)
+        {
+            amountToTurn += 360;
+        }
+
+        //If distance is too great to get there in a single frame, snap to angle (basically turning around)
+        if (Mathf.Abs(amountToTurn) > 135)
+        {
+            currentAngle = desiredAngle;
+        }
+        else if (Mathf.Abs(amountToTurn) < turnPerFrame)
+        {
+            currentAngle = desiredAngle;
+        }
+        else
+        {
+            currentAngle += Mathf.Sign(amountToTurn) * turnPerFrame;
+        }
+
+        transform.rotation = Quaternion.Euler(0, 0, currentAngle);
     }
 
     private float GetDistance(float angle)
@@ -121,8 +178,9 @@ public class VisionCone : MonoBehaviour
         visionConeCollider.points = colliderVertices;
     }
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         //Get the required components
         visionConeMeshFilter = GetComponent<MeshFilter>();
         visionConeCollider = GetComponent<PolygonCollider2D>();
@@ -131,8 +189,6 @@ public class VisionCone : MonoBehaviour
         visionConeMesh.MarkDynamic();
 
         rayMask = 0b0110011; //Ignore player and "ignoreCast" layers
-
-        Enemy = transform.parent.GetComponent<BaseEnemyBehaviour>();
 
         coneMaterial = GetComponent<MeshRenderer>().material;
         coneMaterial.mainTexture = new Texture2D(128, 1);
@@ -144,64 +200,21 @@ public class VisionCone : MonoBehaviour
         
     }
 
-    private void Update()
+    protected new void FixedUpdate()
     {
+        base.FixedUpdate();
+
         //Only re-calculate vision cones if in main camera
         Vector2 VPPosition = Camera.main.WorldToViewportPoint(transform.position);
         if (VPPosition.x > -1 && VPPosition.x < 2 && VPPosition.y > -1 && VPPosition.y < 2)
         {
             GenerateConeMesh();
         }
-        
-        //Check if the player cloaked this frame
-        if(playerScript)
-        {
-            cloakLastFrame = cloakThisFrame;
-            cloakThisFrame = playerScript.cloaking;
-        }
-        else
-        {
-            cloakLastFrame = false;
-            cloakThisFrame = false;
-        }
 
-        //Cloaked/uncloaked this frame
-        if(cloakThisFrame!=cloakLastFrame)
-        {
-            if(cloakThisFrame)
-            {
-                Enemy.LosePlayer();
-            }
-            else
-            {
-                Enemy.SeePlayer(playerScript.gameObject);
-            }
-        }
-
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            playerScript = collision.GetComponent<MovementScript>();
-            if (!playerScript.cloaking)
-            {
-                Enemy.SeePlayer(collision.gameObject);
-            }
-        }
+        //Update rotation
+        UpdateLookAngle();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            if (!playerScript.cloaking)
-            {
-                Enemy.LosePlayer();
-            }
-            playerScript = null;
-        }
-    }
 
     private void OnDrawGizmosSelected()
     {
