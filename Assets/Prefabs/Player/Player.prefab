@@ -9957,7 +9957,7 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: c15a05f0cd123d34b806d7ed8870b662, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 3
-  maxRunSpeed: 25
+  maxRunSpeed: 18
   acceleration: 20
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
@@ -9976,7 +9976,7 @@ MonoBehaviour:
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  slideDeceleration: 1
+  slideDeceleration: 0.8
   velocityToSlide: 12
   velocityEndSlide: 5
   maxCrouchSpeed: 8
