@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class TurretBehaviour : BaseEnemyBehaviour
 {
+
+    private void Awake()
+    {
+        Setup();
+    }
     private void FixedUpdate()
     {
+        BaseUpdate();
         if(Player)
         {
-            Debug.Log("The player is here");
+            enemySight.UpdateVisual();
+            CalcSuspicionIncrease();
         }
     }
 }
