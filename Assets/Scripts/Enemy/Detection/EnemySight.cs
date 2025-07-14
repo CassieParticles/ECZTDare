@@ -18,6 +18,8 @@ public abstract class EnemySight : MonoBehaviour
     public abstract void LookAt(Vector3 position);
     public abstract void UpdateVisual();
 
+    public abstract float calcSuspicionIncreaseRate(GameObject player);
+
     protected void Awake()
     {
         //Get the enemy the sight is attached to

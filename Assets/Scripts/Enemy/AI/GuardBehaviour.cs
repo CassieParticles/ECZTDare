@@ -86,15 +86,17 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     public void LookAt(Vector3 position)
     {
-        visionCone.LookAt(position);
+        enemySight.LookAt(position);
     }
 
     public void Look(float angle)
     {
-        visionCone.Look(angle);
+        //Cast to vision cone
+        if((VisionCone)enemySight)
+        {
+            ((VisionCone)enemySight).Look(angle);
+        }
     }
-
-    
 
     public void StopMoving()
     {
@@ -286,7 +288,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         //Choose patrol state constructor based on if there is a patrol route available
         guardBehaviour.AddState(GuardStates.Patrol, patrolRoute ? 
             new PatrolState(gameObject, patrolRoute) : 
-            new PatrolState(gameObject, transform.position, visionCone.transform.rotation.eulerAngles.z));
+            new PatrolState(gameObject, transform.position, enemySight.transform.rotation.eulerAngles.z));
 
         guardBehaviour.AddState(GuardStates.Idle, new IdleState(gameObject));
         guardBehaviour.AddState(GuardStates.HearNoise,new HeardNoiseState(gameObject));

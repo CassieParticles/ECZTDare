@@ -50,7 +50,7 @@ public class VisionCone : EnemySight
     public void SetColour(Color colour)
     {
         coneColour = colour;
-        RecalcConeTex();
+        UpdateVisual();
     }
 
     public float GetPlayerDistanceScalar()
@@ -58,6 +58,20 @@ public class VisionCone : EnemySight
         if (!playerVisible){ return 0.0f; }
         float playerDistance = (playerScript.transform.position - transform.position).magnitude;
         return 1.0f - playerDistance / distance;
+    }
+
+    public override float calcSuspicionIncreaseRate(GameObject player)
+    {
+        if (!player)
+        {
+            return 0;
+        }
+        Vector3 playerPos = player.transform.position;
+        Vector3 enemyPos = transform.position;
+
+        float distScalar = Mathf.Clamp(GetPlayerDistanceScalar(), 0.05f, 1);
+
+        return Mathf.Max(distScalar, Enemy.minimumDistanceScalar) * Enemy.suspicionScaleRate * Time.fixedDeltaTime;
     }
 
     //Recalculate the texture used for the vision cone (colour and suspicion)

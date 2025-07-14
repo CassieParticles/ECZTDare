@@ -38,14 +38,18 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
     private void RotateCamera(float angle)
     {
-        float rotation = visionCone.transform.rotation.eulerAngles.z;
+        if (!(VisionCone)enemySight){ return; }
+
+        float rotation = enemySight.transform.rotation.eulerAngles.z;
         rotation += angle;
-        visionCone.Look(rotation);
+        ((VisionCone)enemySight).Look(rotation);
+        
     }
 
     private void FollowPlayer()
     {
-        if(!Player)
+        if (!(VisionCone)enemySight){ return; }
+        if (!Player)
         {
             return;
         }
@@ -54,7 +58,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        visionCone.Look(angle);
+        ((VisionCone)enemySight).Look(angle);
     }
 
     private void Alarm(Vector3 playerPosition, GameObject alarmCaller)
@@ -70,7 +74,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
     private void Awake()
     {
         Setup();
-        initialAngle = visionCone.transform.rotation.eulerAngles.z;
+        initialAngle = enemySight.transform.rotation.eulerAngles.z;
         turningCCW = true;
         turningPaused = maxAngle == 0;
 
@@ -85,7 +89,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
             alarm.AddAlarmEnableFunc(Alarm);
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
-        visionCone.RecalcConeTex();
+        enemySight.UpdateVisual();
     }
 
     private void FixedUpdate()
@@ -145,7 +149,7 @@ public class CameraBehaviour : BaseEnemyBehaviour
         }
 
         //Change directions
-        if(Mathf.Abs(visionCone.transform.rotation.eulerAngles.z - target) < 1f)
+        if(Mathf.Abs(enemySight.transform.rotation.eulerAngles.z - target) < 1f)
         {
             StartCoroutine(ChangeCameraDirection());
         }

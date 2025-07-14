@@ -44,7 +44,7 @@ public class InvestigateState : BaseState
 
 
         //Get a line from the guard to the point of interest, and check for intersection
-        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.visionCone.transform.position;
+        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.enemySight.transform.position;
         RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, POIDirection, POIDirection.magnitude, 0b0110011);
 
         if (!rayHit)
