@@ -13,6 +13,8 @@ using UnityEngine;
     [Range(0.1f, 5f)] public float blendDuration;
     [Range(0.01f, 10f)] public float waitDuration;
     [Range(1f, 20f)] public float zoom;
+    public bool moveForWaitDuration;
+    public Vector2 finalPosition;
 }
 
 public class StealthCamera : MonoBehaviour
@@ -22,6 +24,7 @@ public class StealthCamera : MonoBehaviour
     CinemachineVirtualCamera virtualCamera2;
     CinemachineBrain mainCamera;
     GameObject player;
+
 
     [Header("Defaults:\nBlend Type:\t\tHard Out\nBlend Duration:\t1\nWait Duration:\t\t1\nZoom:\t\t\t8.44")]
     [SerializeField] private List<CameraSettings> cameras = new List<CameraSettings>();
@@ -79,13 +82,33 @@ public class StealthCamera : MonoBehaviour
             currentCamera = targetCamera;
             targetCamera = temp;
 
-            //Wait the duration before moving onto the next camera
-            yield return new WaitForSeconds(cam.waitDuration);
+            //Either wait or move
+            if (cam.moveForWaitDuration) { //Move the camera for the duration
+                //Setup variables
+                Vector3 pos = currentCamera.transform.localPosition;
+                Vector3 finalPos = (Vector3)cam.finalPosition;
+                Vector3 moveVector = finalPos - (Vector3)cam.position;
+
+                float timer = 0;
+                while (timer < cam.waitDuration) {
+                    float speed = (moveVector.magnitude / cam.waitDuration) * Time.deltaTime;
+                    currentCamera.transform.localPosition += moveVector.normalized * speed;
+
+                    timer += Time.deltaTime;
+                    yield return new WaitForFixedUpdate();
+                }
+
+            } else {
+                //Wait the duration before transitioning into the next camera
+                yield return new WaitForSeconds(cam.waitDuration);
+            }
+            
         }
+
         //Reset as the camera cutscene is over
         targetCamera.Priority = 9;
         currentCamera.Priority = 9;
-        enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     // Update is called once per frame
@@ -97,7 +120,7 @@ public class StealthCamera : MonoBehaviour
         Gizmos.color = Color.yellow;
         for(int i = 0; i < cameras.Count; i++) {
             Vector2 pos = cameras[i].position + (Vector2)transform.position;
-            Gizmos.DrawWireSphere(pos, 0.5f);
+            Gizmos.DrawWireSphere(pos, 0.3f);
 
             Vector2 startOffset = Vector2.one * 0.5f;
             Vector2 height = Vector2.up * 0.5f;
@@ -105,6 +128,14 @@ public class StealthCamera : MonoBehaviour
             for (int j = 0; j < i + 1; j++) {
                 Vector2 countOffset = Vector2.right * j * 0.2f;
                 Gizmos.DrawLine(pos + startOffset + height + countOffset, pos + startOffset + countOffset);
+            }
+
+            if (cameras[i].moveForWaitDuration) {
+                Vector2 finalPos = cameras[i].finalPosition + (Vector2)transform.position;
+                Gizmos.DrawLine(pos, finalPos);
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(finalPos, 0.2f);
+                Gizmos.color = Color.yellow;
             }
         }
     }
