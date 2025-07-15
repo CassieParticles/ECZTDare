@@ -17,5 +17,11 @@ public class TurretBehaviour : BaseEnemyBehaviour
         {
             CalcSuspicionIncrease();
         }
+
+        if(Player && suspicion > 100)
+        {
+            //Kill player
+            FindAnyObjectByType<MenuScript>().Lose();
+        }
     }
 }
