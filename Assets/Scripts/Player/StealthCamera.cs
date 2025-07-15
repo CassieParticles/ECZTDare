@@ -49,9 +49,8 @@ public class StealthCamera : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
  
         if (collision == player.GetComponent<Collider2D>()) {
-            //virtualCamera.Priority = 11;
-            //mainCamera.m_DefaultBlend.m_Style = blendType;
-            //mainCamera.m_DefaultBlend.m_Time = blendDuration;
+
+            player.GetComponent<MovementScript>().InputLocked = true;
             StartCoroutine(CameraPreviewCutscene());
         }
     }
@@ -109,6 +108,7 @@ public class StealthCamera : MonoBehaviour
         targetCamera.Priority = 9;
         currentCamera.Priority = 9;
         GetComponent<BoxCollider2D>().enabled = false;
+        player.GetComponent<MovementScript>().InputLocked = false;
     }
 
     // Update is called once per frame
