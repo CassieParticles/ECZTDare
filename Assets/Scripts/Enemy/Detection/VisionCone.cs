@@ -195,6 +195,10 @@ public class VisionCone : EnemySight
     private new void Awake()
     {
         base.Awake();
+
+        //Set intiial desired angle to the angle it starts facing
+        desiredAngle = transform.rotation.z;
+
         //Get the required components
         visionConeMeshFilter = GetComponent<MeshFilter>();
         visionConeCollider = GetComponent<PolygonCollider2D>();
