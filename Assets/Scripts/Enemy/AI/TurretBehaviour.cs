@@ -12,9 +12,9 @@ public class TurretBehaviour : BaseEnemyBehaviour
     private void FixedUpdate()
     {
         BaseUpdate();
+        enemySight.UpdateVisual();
         if(Player)
         {
-            enemySight.UpdateVisual();
             CalcSuspicionIncrease();
         }
     }
