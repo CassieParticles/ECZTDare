@@ -7,9 +7,15 @@ public class DetectionArea : EnemySight
     private Color innerColour;
     private Color outerColour;
 
+    [SerializeField] private float moveSpeedMin;
+    [SerializeField] private float moveSpeedScalar;
+
     public override float calcSuspicionIncreaseRate(GameObject player)
     {
-        return Enemy.suspicionScaleRate * Time.fixedDeltaTime;
+        //Get move speed
+        float speed = player.GetComponent<Rigidbody2D>().velocity.magnitude;
+
+        return (moveSpeedMin + speed * moveSpeedScalar)* Enemy.suspicionScaleRate * Time.fixedDeltaTime;
     }
 
     //Detection area doesn't move
