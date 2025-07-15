@@ -45,13 +45,13 @@ public abstract class EnemySight : MonoBehaviour
         {
             if (cloakThisFrame)
             {
-                Enemy.LosePlayer();
                 playerVisible = false;
+                Enemy.LosePlayer();
             }
             else
             {
-                Enemy.SeePlayer(playerScript.gameObject);
                 playerVisible = true;
+                Enemy.SeePlayer(playerScript.gameObject);
             }
         }
     }
@@ -63,6 +63,7 @@ public abstract class EnemySight : MonoBehaviour
             playerScript = collision.GetComponent<MovementScript>();
             if (!playerScript.cloaking)
             {
+                playerVisible = true;
                 Enemy.SeePlayer(collision.gameObject);
             }
         }
@@ -74,6 +75,7 @@ public abstract class EnemySight : MonoBehaviour
         {
             if (!playerScript.cloaking)
             {
+                playerVisible = false;
                 Enemy.LosePlayer();
             }
             playerScript = null;
