@@ -16,6 +16,7 @@ public class ChaseCamera : MonoBehaviour
     [SerializeField] private CinemachineBlendDefinition.Style blendType = CinemachineBlendDefinition.Style.HardOut;
     [SerializeField][Range(0.1f, 5f)] private float blendDuration = 1;
     [SerializeField][Range(5f, 20f)] private float zoom = 8.44f; //Perspective 79 calculations to solve ortho to fov in start
+    [SerializeField][Range(10, 20)] private int priority = 11; //What priority the camera uses
     [Header("ANCHOR POINTS\nTwo anchors is enough for a straight line\nPosition is relative to the gameobject")]
     [SerializeField] private List<Vector2> anchorPoints = new List<Vector2> { Vector2.zero, Vector2.right };
 
@@ -66,8 +67,7 @@ public class ChaseCamera : MonoBehaviour
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         virtualCamera.m_Lens.FieldOfView = fov;
         track = GetComponentInChildren<PolygonCollider2D>();
-        List<Vector2> newTrack = new List<Vector2>();
-        newTrack.Add(anchorPoints[0]);
+        List<Vector2> newTrack = new List<Vector2> { anchorPoints[0] };
         foreach (Vector2 point in anchorPoints) {
             newTrack.Add(point);
         }
