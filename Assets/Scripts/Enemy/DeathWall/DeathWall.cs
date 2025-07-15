@@ -5,6 +5,21 @@ using UnityEngine;
 
 public class DeathWall : MonoBehaviour
 {
+    public struct WallMoveData
+    {
+        public float closeDist;
+        public float mediumDist;
+
+        public float speedClose;
+        public float speedMedium;
+        public float speedFar;
+
+        public float AccCloseMedium;
+        public float AccMediumFar;
+
+        public bool facingRight;
+    }
+
     private enum Distance
     {
         Close,
@@ -12,16 +27,7 @@ public class DeathWall : MonoBehaviour
         Far
     }
 
-    [SerializeField] private float closeDist=20;
-    [SerializeField] private float mediumDist=30;
-    //Far distance is above 30
-
-    [SerializeField] private float speedClose=15;
-    [SerializeField] private float speedMedium=50;
-    [SerializeField] private float speedFar=90;
-
-    [SerializeField] private float AccCloseMedium=5;
-    [SerializeField] private float AccMediumFar=8;
+    WallMoveData wallData;
 
     private Distance currentDistance;
 
@@ -33,34 +39,39 @@ public class DeathWall : MonoBehaviour
 
     private void Awake()
     {
-        currentSpeed = speedMedium;
-        desiredSpeed = speedMedium;
+        currentSpeed = wallData.speedMedium;
+        desiredSpeed = wallData.speedMedium;
         currentDistance = Distance.Medium;
 
         Player = FindAnyObjectByType<MovementScript>().gameObject;
     }
 
+    public void SetData(WallMoveData data)
+    {
+        wallData = data;
+    }
+
     private void UpdateDistance()
     {
         float distance = Player.transform.position.x - transform.position.x;
-        if (distance < closeDist && currentDistance != Distance.Close)
+        if (distance < wallData.closeDist && currentDistance != Distance.Close)
         {
-            desiredSpeed = speedClose;
-            currentAcc = AccCloseMedium;
+            desiredSpeed = wallData.speedClose;
+            currentAcc = wallData.AccCloseMedium;
             currentDistance = Distance.Close;
             Debug.Log("Close speed");
         }
-        else if (distance >= closeDist && distance < mediumDist && currentDistance != Distance.Medium)
+        else if (distance >= wallData.closeDist && distance < wallData.mediumDist && currentDistance != Distance.Medium)
         {
-            desiredSpeed = speedMedium;
-            currentAcc = currentDistance == Distance.Close ? AccCloseMedium : AccMediumFar;
+            desiredSpeed = wallData.speedMedium;
+            currentAcc = currentDistance == Distance.Close ? wallData.AccCloseMedium : wallData.AccMediumFar;
             currentDistance = Distance.Medium;
             Debug.Log("Medium speed");
         }
-        else if (distance >= mediumDist && currentDistance != Distance.Far)
+        else if (distance >= wallData.mediumDist && currentDistance != Distance.Far)
         {
-            desiredSpeed = speedFar;
-            currentAcc = AccMediumFar;
+            desiredSpeed = wallData.speedFar;
+            currentAcc = wallData.AccMediumFar;
             currentDistance = Distance.Far;
             Debug.Log("Far speed");
         }

@@ -13,5 +13,8 @@ public class StartTrigger : MonoBehaviour
 
         //Deactivate
         gameObject.SetActive(false);
+
+        //Set the parameters in the new wall
+        newWall.GetComponent<DeathWall>().SetData(transform.GetChild(0).GetComponent<WallData>().wallMoveData);
     }
 }
