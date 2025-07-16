@@ -54,6 +54,6 @@ public class BreakableBlock : MonoBehaviour
         } else {
             transform.GetChild(0).gameObject.SetActive(false);
         }
-        
+        GetComponent<SpriteRenderer>().size = GetComponent<BoxCollider2D>().size;
     }
 }
