@@ -9,21 +9,16 @@ public enum DoorAction
     Unlock,
     Toggle
 };
-[RequireComponent(typeof(DoorObserver))]
+
 public class LockableDoor : BaseDoor
 {
     public AK.Wwise.Event doorHum;
 
-
-
-    [SerializeField] private bool startLocked = true;
-
-    public bool isLocked { get; private set; }
-
     private SpriteRenderer spriteRenderer;
     private NavMeshObstacle obstacle;
     private BoxCollider2D boxCollider;
-    private DoorObserver observer;
+
+    
 
     public override void Lock()
     {
