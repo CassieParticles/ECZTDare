@@ -14,4 +14,11 @@ public abstract class BaseDoor : MonoBehaviour
     public abstract void Lock();
     public abstract void Unlock();
     public abstract void ToggleState();
+
+    protected void Awake()
+    {
+        isLocked = startLocked;
+
+        observer = GetComponent<DoorObserver>();
+    }
 }

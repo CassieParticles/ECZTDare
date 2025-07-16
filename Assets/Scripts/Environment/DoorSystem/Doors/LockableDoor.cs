@@ -71,14 +71,13 @@ public class LockableDoor : BaseDoor
         observer.NotifyListeners(isLocked ? DoorAction.Lock : DoorAction.Unlock);
     }
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         obstacle = GetComponent<NavMeshObstacle>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        isLocked = startLocked;
 
-        observer = GetComponent<DoorObserver>();
     }
 
     private void Start()
