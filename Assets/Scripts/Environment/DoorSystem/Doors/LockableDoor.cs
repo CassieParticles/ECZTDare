@@ -10,7 +10,7 @@ public enum DoorAction
     Toggle
 };
 [RequireComponent(typeof(DoorObserver))]
-public class LockableDoor : MonoBehaviour
+public class LockableDoor : BaseDoor
 {
     public AK.Wwise.Event doorHum;
 
@@ -25,7 +25,7 @@ public class LockableDoor : MonoBehaviour
     private BoxCollider2D boxCollider;
     private DoorObserver observer;
 
-    public void Lock()
+    public override void Lock()
     {
         if (isLocked){ return; }    //Already locked, exit early
 
@@ -40,7 +40,7 @@ public class LockableDoor : MonoBehaviour
         observer.NotifyListeners(DoorAction.Lock);
     }
 
-    public void Unlock()
+    public override void Unlock()
     {
         if(!isLocked){ return; }    //Already unlocked, exit early
 
@@ -55,7 +55,7 @@ public class LockableDoor : MonoBehaviour
         observer.NotifyListeners(DoorAction.Unlock);
     }
 
-    public void ToggleState()
+    public override void ToggleState()
     {
         //Switch door
         obstacle.enabled = !obstacle.enabled;
