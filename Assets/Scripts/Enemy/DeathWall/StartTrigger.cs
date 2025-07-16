@@ -16,5 +16,7 @@ public class StartTrigger : MonoBehaviour
 
         //Set the parameters in the new wall
         newWall.GetComponent<DeathWall>().SetData(transform.GetChild(0).GetComponent<WallData>().wallMoveData);
+
+        FindAnyObjectByType<DeathwallRespawn>().DeathWallStart(transform.GetChild(0).GetComponent<WallData>().wallMoveData);
     }
 }

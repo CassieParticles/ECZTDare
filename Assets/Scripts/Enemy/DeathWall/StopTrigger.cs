@@ -11,5 +11,7 @@ public class StopTrigger : MonoBehaviour
         if (!wall){ return; }
 
         Destroy(wall.gameObject);
+
+        FindAnyObjectByType<DeathwallRespawn>().DeathWallStop();
     }
 }
