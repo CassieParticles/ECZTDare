@@ -17,6 +17,10 @@ public class TurretBehaviour : BaseEnemyBehaviour
         {
             CalcSuspicionIncrease();
         }
+        else
+        {
+            CalcSuspicionDecay();
+        }
 
         if(Player && suspicion > 100)
         {
