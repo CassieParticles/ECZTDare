@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AnchorTrigger))]
-public class TriggerAnchor : BaseAnchor
+public class ChainAnchor : BaseAnchor
 {
     Coroutine travelTime;
     private IEnumerator TravelTime()
@@ -11,7 +11,7 @@ public class TriggerAnchor : BaseAnchor
         spotlight.MoveTo(transform.position);
         yield return new WaitForSeconds(spotlight.travelTime);
         //Send signal
-        FindAnyObjectByType<AnchorTrigger>().SendSignal();
+        GetComponent<AnchorTrigger>().SendSignal();
     }
     public override void AddSpotlight(SpotlightMovement spotlight)
     {
