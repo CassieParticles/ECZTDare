@@ -617,6 +617,50 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Death_Pit" ID="{CCF92C78-19EC-45A5-B04F-F0C98804A30C}">
+					<ChildrenList>
+						<Action Name="" ID="{60FCE89E-927C-480A-9026-2755EB85161D}" ShortID="299638435">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Good_Beep" ID="{5B8A4CD9-C2F3-4E7A-B03C-46A02CE279C4}">
+					<ChildrenList>
+						<Action Name="" ID="{ADA195AF-D22E-428F-9EA9-D298DFEF6BB0}" ShortID="996149878">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Good_Beep" ID="{2C53D4C7-D515-4C05-BB73-6862B93C5F75}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Bad_Beep" ID="{168DD054-6190-477F-ABBB-6B803F0403EB}">
+					<ChildrenList>
+						<Action Name="" ID="{AE57605C-E658-4BCE-BB11-CE06065C74C9}" ShortID="936866346">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Bad_Beep" ID="{ED726B89-BDDF-403D-A40A-C6AD831FDFA8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Break_Music" ID="{00FD9CF5-9F17-40ED-86A5-8243EC7BC31D}">
+					<ChildrenList>
+						<Action Name="" ID="{7D98E9A7-1FF3-4BC6-906B-D811F7EE1CE5}" ShortID="832017858">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Break_Room" ID="{ABB7E198-FF84-4853-A940-421151002695}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
