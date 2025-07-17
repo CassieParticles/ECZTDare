@@ -6,6 +6,9 @@ using UnityEngine;
 public class GuardPod : BaseDoor
 {
     PodGuardBehaviour podGuard;
+
+    private bool playerOverlapping;
+    private bool spawnBlocked = false;
     public override void Lock()
     {
         if (isLocked){ return; }
@@ -17,6 +20,11 @@ public class GuardPod : BaseDoor
     public override void Unlock()
     {
         if(!isLocked){ return; }
+        if(playerOverlapping)
+        {
+            spawnBlocked = true;
+            return;
+        }
         //Enable the guard to wander about
         podGuard.gameObject.SetActive(true);
         podGuard.StartGuard();
@@ -35,8 +43,28 @@ public class GuardPod : BaseDoor
     {
         base.Awake();
         podGuard = GetComponentInChildren<PodGuardBehaviour>();
-        podGuard.SetPod(this);
         podGuard.gameObject.SetActive(false);
         isLocked = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<MovementScript>())
+        {
+            playerOverlapping = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<MovementScript>())
+        {
+            playerOverlapping=false;
+            if(spawnBlocked)
+            {
+                spawnBlocked = false;
+                Unlock();
+            }
+        }
     }
 }

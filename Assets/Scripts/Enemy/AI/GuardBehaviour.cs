@@ -263,7 +263,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
     }
 
-    private void Awake()
+    protected void Awake()
     {
         //Call base set up function
         Setup();

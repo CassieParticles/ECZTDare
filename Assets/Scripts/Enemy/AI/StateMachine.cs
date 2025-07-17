@@ -54,8 +54,7 @@ public class StateMachine
 
     public void Start(GuardStates intialState)
     {
-        currentState = intialState;
-        states[currentState].Start();
+        MoveToState(intialState);
     }
     public void BehaviourTick()
     {
