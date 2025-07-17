@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4498412403683018961}
   - component: {fileID: 3402424936968046404}
   - component: {fileID: 7989030877124338535}
+  - component: {fileID: -179597132771623276}
   m_Layer: 2
   m_Name: DeathWall
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 20, z: 1}
+  m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -202548016739415967, guid: 714b734b4919a724c8bc693273754452, type: 3}
+  m_Sprite: {fileID: 6639214531635948232, guid: a1da93d428c46c843a98944f903a5779, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.87, y: 2.97}
+    oldSize: {x: 8.001563, y: 8}
     newSize: {x: 0.87, y: 2.97}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -169,17 +170,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.016243577}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.87, y: 2.97}
+    oldSize: {x: 8.001563, y: 8}
     newSize: {x: 0.87, y: 2.97}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.87, y: 2.97}
+  m_Size: {x: 0.87, y: 7.551502}
   m_EdgeRadius: 0
 --- !u!114 &7989030877124338535
 MonoBehaviour:
@@ -193,10 +194,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209fbd417a8b01b4ea21f105912f13a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closeDist: 5
-  mediumDist: 10
-  speedClose: 2
-  speedMedium: 60
-  speedFar: 90
-  AccCloseMedium: 50
-  AccMediumFar: 70
+--- !u!95 &-179597132771623276
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063730992982731228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9707fb0ba1f44354490f3b3e190ef8ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
