@@ -30,6 +30,8 @@ public abstract class BaseState
 
     protected GameObject guardAttached;
     protected GuardBehaviour guardBehaviour;
+
+    public bool Uninterruptable { get; protected set; }
 }
 
 public class StateMachine
@@ -67,6 +69,7 @@ public class StateMachine
 
     public void MoveToState(GuardStates state)
     {
+        if (states[currentState].Uninterruptable){ return; }
         states[currentState].Stop();
         currentState = state;
         states[currentState].Start();

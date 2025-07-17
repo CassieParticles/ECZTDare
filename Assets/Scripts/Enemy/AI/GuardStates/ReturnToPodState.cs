@@ -8,6 +8,7 @@ public class ReturnToPodState : BaseState
     public ReturnToPodState(GameObject guard, GuardPod pod) : base(guard)
     {
         this.pod = pod;
+        Uninterruptable = true;
     }
 
     public override void Start()
