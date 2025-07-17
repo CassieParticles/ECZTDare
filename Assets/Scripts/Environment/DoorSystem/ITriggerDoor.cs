@@ -3,12 +3,12 @@ using UnityEngine.Serialization;
 
 public abstract class ITriggerDoor : MonoBehaviour
 {
-    protected LockableDoor door;
+    protected BaseDoor door;
     private DoorAction currentState;
 
     protected void Awake()
     {
-        door = transform.parent.GetComponent<LockableDoor>();
+        door = transform.parent.GetComponent<BaseDoor>();
     }
 
     public void SetState(DoorAction newState)
