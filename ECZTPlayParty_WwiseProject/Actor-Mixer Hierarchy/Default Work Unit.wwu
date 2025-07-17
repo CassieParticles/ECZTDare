@@ -536,6 +536,28 @@
 								<ActiveSource Name="Title_Track_Trial" ID="{7F635F11-4128-488B-95AB-F03A757A902B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Break_Room" ID="{ABB7E198-FF84-4853-A940-421151002695}" ShortID="553157881">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Break Room" ID="{0F2866F8-5460-4F40-8C6B-DB2CBAD76A08}">
+									<Language>SFX</Language>
+									<AudioFile>Break Room.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="593247621"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Break Room" ID="{0F2866F8-5460-4F40-8C6B-DB2CBAD76A08}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Player" ID="{2068CBC5-60E8-42AA-A6F9-62F3C44EE720}" ShortID="851717552">
@@ -6067,6 +6089,28 @@
 								<ActiveSource Name="Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521" ID="{25120158-62BD-4DBE-ABC4-1E11DAC38B0A}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" ShortID="560571358">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Death_Pit" ID="{6A091471-D25D-40AA-A8A3-6D229739D614}">
+									<Language>SFX</Language>
+									<AudioFile>Death_Pit.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="222009116"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Death_Pit" ID="{6A091471-D25D-40AA-A8A3-6D229739D614}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{1A4375DD-F62B-4C2E-BA20-8A6A4637ACE3}" ShortID="114810053">
@@ -6129,6 +6173,50 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Button_Activation" ID="{3273B69B-0AE4-47C4-B4C1-55E3323A20B8}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Good_Beep" ID="{2C53D4C7-D515-4C05-BB73-6862B93C5F75}" ShortID="715347278">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Good_Beep" ID="{76003BB7-ACCA-4EDA-A9CA-046D970D2468}">
+									<Language>SFX</Language>
+									<AudioFile>Good_Beep.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="223349616"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Good_Beep" ID="{76003BB7-ACCA-4EDA-A9CA-046D970D2468}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Bad_Beep" ID="{ED726B89-BDDF-403D-A40A-C6AD831FDFA8}" ShortID="877712720">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Bad_Beep" ID="{1F6A5DBE-AE5F-487F-B284-E658443D5164}">
+									<Language>SFX</Language>
+									<AudioFile>Bad_Beep.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="674480454"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Bad_Beep" ID="{1F6A5DBE-AE5F-487F-B284-E658443D5164}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
