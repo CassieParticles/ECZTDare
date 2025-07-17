@@ -13,6 +13,7 @@ public class PatrolState : BaseState
     private bool paused;
 
     Coroutine LookAroundCoroutine;
+    Coroutine PauseAtNodeCoroutine;
     bool lookAround;
 
 
@@ -54,6 +55,12 @@ public class PatrolState : BaseState
             guardBehaviour.StopCoroutine(LookAroundCoroutine);
             LookAroundCoroutine=null;
         }
+        if(PauseAtNodeCoroutine!=null)
+        {
+            guardBehaviour.StopCoroutine(PauseAtNodeCoroutine);
+            PauseAtNodeCoroutine = null;
+        }
+
     }
 
     public override GuardStates RunTick()
@@ -62,7 +69,7 @@ public class PatrolState : BaseState
         {
             if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
             {
-                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
+                PauseAtNodeCoroutine = guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
             }
         }
         else
