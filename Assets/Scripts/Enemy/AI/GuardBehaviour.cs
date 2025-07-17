@@ -57,7 +57,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     //AI behaviour
     private NavMeshAgent agent;
-    private StateMachine guardBehaviour = new StateMachine();
+    protected StateMachine guardBehaviour = new StateMachine();
 
     [NonSerialized]public Vector3 PointOfInterest;
 
