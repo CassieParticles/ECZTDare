@@ -13,6 +13,11 @@ public class PodGuardBehaviour : GuardBehaviour
         this.pod = pod;
     }
 
+    public void StartGuard()
+    {
+        guardBehaviour.MoveToState(GuardStates.StartUp);
+    }
+
     public void ReturnToPod()
     {
         guardBehaviour.MoveToState(GuardStates.ReturnToPod);

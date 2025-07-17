@@ -19,7 +19,7 @@ public class GuardPod : BaseDoor
         if(!isLocked){ return; }
         //Enable the guard to wander about
         podGuard.gameObject.SetActive(true);
-
+        podGuard.StartGuard();
 
         isLocked = false;
     }
