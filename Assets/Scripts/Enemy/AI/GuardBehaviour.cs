@@ -298,7 +298,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
 
 
-    void Start()
+    protected void Start()
     {
         //Collect menu system, initialize one if it doesn't exist
         if (GameObject.Find("Menu Canvas") == null) 
@@ -330,7 +330,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         desiredSpeed = agent.speed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //Early exit for cutscene
         if (inCutscene){ return; }

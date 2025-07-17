@@ -5,7 +5,7 @@ using UnityEngine;
 //Guard pods are a kind of door, just not for the player
 public class GuardPod : BaseDoor
 {
-    
+    GuardBehaviour
     public override void Lock()
     {
         if (isLocked){ return; }

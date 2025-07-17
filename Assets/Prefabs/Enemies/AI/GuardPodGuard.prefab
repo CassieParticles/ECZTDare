@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5097360620178162001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4935825828034518257, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_Name
+      value: GuardPodGuard
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149526847078586882, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4720913152620039959, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4935825828034518257, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 6495987834762231885}
+  m_SourcePrefab: {fileID: 100100000, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+--- !u!1 &198973167370952096 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4935825828034518257, guid: bb4a7056426d1714090e53b3a606d98e, type: 3}
+  m_PrefabInstance: {fileID: 5097360620178162001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6495987834762231885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198973167370952096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625e240067ffb304887c16df71d987c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inViewCone:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  enemyAlerted:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  SuspicionLevel:
+  - 0
+  - 40
+  - 70
+  - 100
+  alarm: {fileID: 0}
+  suspicionScaleRate: 200
+  suspicionDecayRate: 10
+  minimumDistanceScalar: 0.5
+  suspicion: 0
+  minimumSuspicion: 0
+  menuCanvasPrefab: {fileID: 4987622479182456646, guid: 54b3efe18fca1de42a564b1a435736d9, type: 3}
+  patrolRoute: {fileID: 0}
+  investigateAlarmLoc: 1
+  footstepRate: 0.4
+  footstepRateScalar: 1
+  walkSpeed: 5
+  alertSpeed: 10
+  chaseSpeed: 15
+  acceleration: 15
+  chaseAlarmTimer: 1
+  guardFootstep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  alarmActivationSound:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  foundEmira: []
+  lostEmira: []
+  recognizeEmira: []
+  foundEmiraText:
+  - 'GUARD: HEY! STOP!'
+  - 'GUARD: I SEE YOU!'
+  - 'GUARD: INTRUDER!'
+  - 'GUARD: SOMEONE''S HERE!'
+  lostEmiraText:
+  - 'GUARD: GOD DAMN IT.'
+  - 'GUARD: I LOST HER.'
+  - 'GUARD: SHE DISAPPEARED.'
+  - 'GUARD: SHE''S GONE.'
+  recognizeEmiraText:
+  - 'GUARD: SHES STILL HERE!'
+  - 'GUARD: SHES BACK!'
+  inCutscene: 0

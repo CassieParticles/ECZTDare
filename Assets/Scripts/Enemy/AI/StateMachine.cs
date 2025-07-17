@@ -14,7 +14,8 @@ public enum GuardStates
     Chase,
     RaiseAlarm,
     Bumped,
-    LookAround
+    LookAround,
+    ReturnToPod     //State taht only exists for the guards from a pod, since most guards have no pod to return to ;(
 };
 public abstract class BaseState
 {
