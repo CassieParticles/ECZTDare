@@ -51,7 +51,7 @@
 						<Transition>
 							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
 							<EndState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
-							<Time>0</Time>
+							<Time>2</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
@@ -75,7 +75,7 @@
 						<Transition>
 							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
 							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
-							<Time>0</Time>
+							<Time>2</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
@@ -110,7 +110,7 @@
 						</Transition>
 						<Transition>
 							<StartState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
-							<EndState Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
 							<Time>0</Time>
 							<IsShared>false</IsShared>
 						</Transition>
