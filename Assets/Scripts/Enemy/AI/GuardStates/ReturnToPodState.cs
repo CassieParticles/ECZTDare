@@ -24,6 +24,7 @@ public class ReturnToPodState : BaseState
         //If guard is at destination
         if(guardBehaviour.getDistLeft() < 0.1f)
         {
+            guardAttached.SetActive(false);
             return GuardStates.Idle;
         }
         return GuardStates.ReturnToPod;
