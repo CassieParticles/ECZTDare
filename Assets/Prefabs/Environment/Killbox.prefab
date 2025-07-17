@@ -96,7 +96,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.9862055, b: 0, a: 1}
   m_Intensity: 3
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
@@ -144,3 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2894d945ee391c489c516506a227f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minIntensity: 2
+  maxIntensity: 5
+  pulseSpeed: 1
