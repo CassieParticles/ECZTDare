@@ -166,6 +166,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if(deathWallRespawner)
         {
             deathWallRespawner.Quit();
+        } //Im hopping onto the sucking train
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        if (scoreManager) {
+            scoreManager.Quit();
         }
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;

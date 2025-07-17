@@ -68,8 +68,16 @@ public class MainScoreController : MonoBehaviour
             stealth = stealthTracker.score;
         }
 
+        //Saves the score for this section in the score manager
+        ScoreData sectionScore = new ScoreData {
+            type = timer ? scoreType.chase : scoreType.stealth,
+            chaseTimeSeconds = time,
+            stealthScore = stealth
+        };
+        GameObject.Find("ScoreManager").GetComponent<ScoreManager>().SaveSectionScore(sectionScore);
+
         //Destroy old stealth objects
-        if(timer)
+        if (timer)
         {
             Destroy(timer.gameObject);
         }
@@ -78,7 +86,6 @@ public class MainScoreController : MonoBehaviour
             Destroy(stealthTracker.gameObject);
         }
 
-        //TODO: Call function that handles score in some way
     }
 
     public void Quit()
