@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpotlightMovement : MonoBehaviour
 {
-    [SerializeField]private float travelTime = 2.0f;
+    [SerializeField]public float travelTime = 2.0f;
 
     private Vector2 desiredLocation;
     private Vector2 velocity;
@@ -30,7 +30,7 @@ public class SpotlightMovement : MonoBehaviour
             //Get distance and direction
             Vector2 toMove = desiredLocation - (Vector2)transform.position;
 
-            if(toMove.sqrMagnitude < velocity.sqrMagnitude * Time.fixedDeltaTime)
+            if(toMove.sqrMagnitude < velocity.sqrMagnitude * (Time.fixedDeltaTime))
             {
                 transform.position = (Vector3)desiredLocation;
             }
