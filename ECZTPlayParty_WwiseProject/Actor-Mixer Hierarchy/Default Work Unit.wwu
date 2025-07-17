@@ -538,10 +538,14 @@
 						</Sound>
 						<Sound Name="Break_Room" ID="{ABB7E198-FF84-4853-A940-421151002695}" ShortID="553157881">
 							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Jukebox" ID="{EB777184-E370-4EA9-82AF-8C3A67C8F480}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
@@ -575,6 +579,9 @@
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
+							<PositioningInfo>
+								<Position Name="" ID="{AF6FF699-1F1C-4699-A541-265DCA0BBDA8}"/>
+							</PositioningInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="Break Room" ID="{0F2866F8-5460-4F40-8C6B-DB2CBAD76A08}" Platform="Linked"/>
 							</ActiveSourceList>
