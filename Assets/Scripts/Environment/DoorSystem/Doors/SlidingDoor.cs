@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SlidingDoor : BaseDoor
 {
-    [SerializeField] private Vector2 OpenPosition;
-    [SerializeField] private Vector2 ClosePosition;
+    [SerializeField] private Vector2 Displacement;
+
+    private Vector2 OpenPosition;
+    private Vector2 ClosePosition;
 
     [SerializeField] private float speed;
 
@@ -33,11 +35,13 @@ public class SlidingDoor : BaseDoor
         base.Awake();
         if(startLocked)
         {
-            transform.position = ClosePosition;
+            OpenPosition = transform.position + (Vector3)Displacement;
+            ClosePosition = transform.position;
         }
         else
         {
-            transform.position = OpenPosition;
+            OpenPosition = transform.position;
+            ClosePosition = transform.position + (Vector3)Displacement;
         }
         desiredLocation = transform.position;
     }
@@ -54,9 +58,23 @@ public class SlidingDoor : BaseDoor
         if(distance.sqrMagnitude < (speed * Time.fixedDeltaTime * speed * Time.fixedDeltaTime))
         {
             transform.position = desiredLocation;
+            return;
         }
         //Add to distance
         transform.position += (Vector3)distance.normalized * speed * Time.fixedDeltaTime;
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(startLocked)
+        {
+            Gizmos.color = Color.green;
+        }
+        else
+        {
+            Gizmos.color=Color.red;
+        }
+        Gizmos.DrawWireCube(transform.position + (Vector3)Displacement, transform.localScale * GetComponent<BoxCollider2D>().size);
     }
 }

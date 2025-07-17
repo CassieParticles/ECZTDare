@@ -60,9 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLocked: 1
-  OpenPosition: {x: 0, y: 0}
-  ClosePosition: {x: 0, y: 0}
-  speed: 0
+  Displacement: {x: 0, y: 0}
+  speed: 3
 --- !u!61 &6344081804472172786
 BoxCollider2D:
   m_ObjectHideFlags: 0
