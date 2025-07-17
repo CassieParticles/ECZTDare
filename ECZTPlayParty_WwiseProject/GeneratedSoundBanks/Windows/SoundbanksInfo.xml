@@ -9,20 +9,26 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{E19DC765-444C-E779-3103-4A3C44F0245C}">
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{372F5BC2-9C66-6149-6126-E594BEC62AA0}">
 			<ShortName>Music_2</ShortName>
 			<Path>Music_2.bnk</Path>
 			<Media>
 				<File Id="593247621" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Break Room.wav</ShortName>
-					<CachePath>SFX/Break Room_818F3B66.wem</CachePath>
+					<CachePath>SFX/Break Room_FBC78EF0.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
-				<Event Id="2890574062" Name="Break_Music" DurationType="OneShot" DurationMin="75" DurationMax="75">
+				<Event Id="2890574062" Name="Break_Music" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="593247621"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 			</Events>
 		</SoundBank>
@@ -161,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{5F545959-B77C-D566-76BD-F1C8DB869964}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{58D49E21-F175-4FBF-F36A-97F295B89745}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -279,7 +285,7 @@
 				</File>
 				<File Id="222009116" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Death_Pit.wav</ShortName>
-					<CachePath>SFX/Death_Pit_818F3B66.wem</CachePath>
+					<CachePath>SFX/Death_Pit_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="223349616" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Good_Beep.wav</ShortName>
@@ -864,10 +870,16 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="641619979" Name="Death_Pit" DurationType="OneShot" DurationMin="1.75" DurationMax="1.75">
+				<Event Id="641619979" Name="Death_Pit" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="222009116"/>
 					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
 				</Event>
 				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
@@ -1602,5 +1614,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{53EA2A64-8DC6-DCBE-B843-9C8440238D2B}</FileHash>
+	<FileHash>{1B049447-53FF-5447-1937-8A403EE93DBE}</FileHash>
 </SoundBanksInfo>
