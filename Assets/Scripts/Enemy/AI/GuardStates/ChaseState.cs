@@ -16,7 +16,11 @@ public class ChaseState : BaseState
 
     bool hasChasedBefore;
 
-    public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) { this.alarm = alarm; }
+    public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) 
+    {
+        this.alarm = alarm;
+        Uninterruptable = true;
+    }
 
     public override void Start()
     {

@@ -57,7 +57,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     //AI behaviour
     private NavMeshAgent agent;
-    private StateMachine guardBehaviour = new StateMachine();
+    protected StateMachine guardBehaviour = new StateMachine();
 
     [NonSerialized]public Vector3 PointOfInterest;
 
@@ -263,7 +263,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         }
     }
 
-    private void Awake()
+    protected void Awake()
     {
         //Call base set up function
         Setup();
@@ -298,7 +298,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
 
 
-    void Start()
+    protected void Start()
     {
         //Collect menu system, initialize one if it doesn't exist
         if (GameObject.Find("Menu Canvas") == null) 
@@ -330,7 +330,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
         desiredSpeed = agent.speed;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         //Early exit for cutscene
         if (inCutscene){ return; }
