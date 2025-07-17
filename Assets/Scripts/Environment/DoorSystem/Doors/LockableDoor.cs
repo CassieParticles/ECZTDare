@@ -1,0 +1,93 @@
+
+using NavMeshPlus.Components;
+using UnityEngine;
+using UnityEngine.AI;
+
+public enum DoorAction
+{
+    Lock,
+    Unlock,
+    Toggle
+};
+
+public class LockableDoor : BaseDoor
+{
+    public AK.Wwise.Event doorHum;
+
+    private SpriteRenderer spriteRenderer;
+    private NavMeshObstacle obstacle;
+    private BoxCollider2D boxCollider;
+
+    
+
+    public override void Lock()
+    {
+        if (isLocked){ return; }    //Already locked, exit early
+
+        //Lock door
+        obstacle.enabled = true;
+        spriteRenderer.enabled = true;
+        boxCollider.enabled = true;
+        doorHum.Post(gameObject);
+
+        isLocked = true;
+
+        observer.NotifyListeners(DoorAction.Lock);
+    }
+
+    public override void Unlock()
+    {
+        if(!isLocked){ return; }    //Already unlocked, exit early
+
+        //Unlock door
+        obstacle.enabled = false;
+        spriteRenderer.enabled = false;
+        boxCollider.enabled= false;
+        doorHum.Stop(gameObject);
+
+        isLocked = false;
+
+        observer.NotifyListeners(DoorAction.Unlock);
+    }
+
+    public override void ToggleState()
+    {
+        //Switch door
+        obstacle.enabled = !obstacle.enabled;
+        spriteRenderer.enabled = !spriteRenderer.enabled;
+        boxCollider.enabled = !boxCollider.enabled;
+
+        isLocked = !isLocked;
+
+        if (isLocked)
+        {
+            doorHum.Post(gameObject);
+        }
+        else
+        {
+            doorHum.Stop(gameObject);
+        }
+
+        observer.NotifyListeners(isLocked ? DoorAction.Lock : DoorAction.Unlock);
+    }
+
+    private new void Awake()
+    {
+        base.Awake();
+        obstacle = GetComponent<NavMeshObstacle>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
+
+    }
+
+    private void Start()
+    {
+        obstacle.enabled = isLocked;
+        spriteRenderer.enabled = isLocked;
+        boxCollider.enabled = isLocked;
+        if (isLocked)
+        {
+            doorHum.Post(gameObject);
+        }
+    }
+}
