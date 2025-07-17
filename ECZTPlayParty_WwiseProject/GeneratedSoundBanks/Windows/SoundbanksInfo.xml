@@ -9,13 +9,13 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{372F5BC2-9C66-6149-6126-E594BEC62AA0}">
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{07994649-1CE2-ED9F-0DB8-A005D38C779A}">
 			<ShortName>Music_2</ShortName>
 			<Path>Music_2.bnk</Path>
 			<Media>
 				<File Id="593247621" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Break Room.wav</ShortName>
-					<CachePath>SFX/Break Room_FBC78EF0.wem</CachePath>
+					<CachePath>SFX/Break Room_BD65BF52.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{58D49E21-F175-4FBF-F36A-97F295B89745}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{4728DC5C-AB06-3527-3428-B0F14E108295}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -285,7 +285,7 @@
 				</File>
 				<File Id="222009116" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Death_Pit.wav</ShortName>
-					<CachePath>SFX/Death_Pit_FBC78EF0.wem</CachePath>
+					<CachePath>SFX/Death_Pit_11A93380.wem</CachePath>
 				</File>
 				<File Id="223349616" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Good_Beep.wav</ShortName>
@@ -764,7 +764,7 @@
 						<MediaRef Id="908573506"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="1541842241" Name="Bad_Beep" DurationType="OneShot" DurationMin="2" DurationMax="2">
+				<Event Id="1541842241" Name="Bad_Beep" DurationType="OneShot" DurationMin="2" DurationMax="2.0586045">
 					<MediaRefs>
 						<MediaRef Id="674480454"/>
 					</MediaRefs>
@@ -897,7 +897,7 @@
 						<MediaRef Id="1010966096"/>
 					</MediaRefs>
 				</Event>
-				<Event Id="3937862197" Name="Good_Beep" DurationType="OneShot" DurationMin="2" DurationMax="2">
+				<Event Id="3937862197" Name="Good_Beep" DurationType="OneShot" DurationMin="1.9430639" DurationMax="2">
 					<MediaRefs>
 						<MediaRef Id="223349616"/>
 					</MediaRefs>
@@ -1614,5 +1614,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{1B049447-53FF-5447-1937-8A403EE93DBE}</FileHash>
+	<FileHash>{DEE1A3E1-CF79-2204-E212-14A29C8AA33A}</FileHash>
 </SoundBanksInfo>
