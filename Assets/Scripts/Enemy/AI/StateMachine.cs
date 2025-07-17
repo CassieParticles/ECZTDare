@@ -15,7 +15,8 @@ public enum GuardStates
     RaiseAlarm,
     Bumped,
     LookAround,
-    ReturnToPod     //State taht only exists for the guards from a pod, since most guards have no pod to return to ;(
+    StartUp,   //State only used by pod guards
+    ReturnToPod     //State that only exists for the guards from a pod, since most guards have no pod to return to ;(
 };
 public abstract class BaseState
 {
