@@ -114,7 +114,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     protected void Setup()
     {
         //Collect vision cone
-        enemySight = transform.GetChild(0).GetComponent<VisionCone>();
+        enemySight = transform.GetChild(0).GetComponent<EnemySight>();
 
         suspicion = 0;
         minimumSuspicion = 0;

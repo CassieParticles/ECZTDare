@@ -161,6 +161,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (SceneManager.GetActiveScene().name != "Main Menu" && checkpointManager) {
             checkpointManager.Quit();
         }
+        //Yes this sucks
+        DeathwallRespawn deathWallRespawner = FindAnyObjectByType<DeathwallRespawn>();
+        if(deathWallRespawner)
+        {
+            deathWallRespawner.Quit();
+        }
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
         switchingScene = true;

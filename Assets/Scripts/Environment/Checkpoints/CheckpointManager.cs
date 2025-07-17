@@ -70,6 +70,12 @@ public class CheckpointManager : MonoBehaviour
             return;
         }
         FindFirstObjectByType<MovementScript>().transform.position = getRespawnPos();
+
+        DeathwallRespawn deathwallRespawner = FindAnyObjectByType<DeathwallRespawn>();
+        if(deathwallRespawner)
+        {
+            deathwallRespawner.Respawn(getRespawnPos());
+        }
     }
 
     public void Win()
