@@ -10,6 +10,7 @@ public class TPChainAnchor : BaseAnchor
         base.AddSpotlight(spotlight);
 
         spotlight.transform.position = transform.position;
+        spotlight.MoveTo(transform.position);
         GetComponent<AnchorTrigger>().SendSignal();
     }
 
