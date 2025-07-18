@@ -10,4 +10,9 @@ public class TPAnchor : BaseAnchor
 
         spotlight.transform.position = transform.position;
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }
