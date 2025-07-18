@@ -7,6 +7,10 @@ public class StartTrigger : MonoBehaviour
     [SerializeField] private GameObject DeathWall;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(FindAnyObjectByType<DeathWall>())
+        {
+            return;
+        }
         //Spawn death wall at spawn location
         GameObject newWall = Instantiate(DeathWall,transform.GetChild(0));
         newWall.transform.SetParent(null);

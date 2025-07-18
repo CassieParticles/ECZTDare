@@ -34,5 +34,6 @@ public class WallData : MonoBehaviour
 
         wallMoveData.facingRight = facingRight;
 
+        wallMoveData.yPosition = transform.position.y;
     }
 }
