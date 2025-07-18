@@ -143,23 +143,23 @@ public class ControlsScript : MonoBehaviour {
         switch (reboundAction) {
             case "Running":
                 controls.GameplayControls.Running.RemoveAllBindingOverrides();
-                rebindLeftButton.GetComponent<Button>().Select();
+                //rebindLeftButton.GetComponent<Button>().Select();
                 return;
             case "Jumping":
                 controls.GameplayControls.Jumping.RemoveAllBindingOverrides();
-                rebindJumpButton.GetComponent<Button>().Select();
+                //rebindJumpButton.GetComponent<Button>().Select();
                 return;
             case "Sliding":
                 controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
-                rebindSlideButton.GetComponent<Button>().Select();
+                //rebindSlideButton.GetComponent<Button>().Select();
                 return;
             case "Dashing":
                 controls.GameplayControls.Dashing.RemoveAllBindingOverrides();
-                rebindBoostCloakButton.GetComponent<Button>().Select();
+                //rebindBoostCloakButton.GetComponent<Button>().Select();
                 return;
             case "Hacking":
                 controls.GameplayControls.Hacking.RemoveAllBindingOverrides();
-                rebindHackButton.GetComponent<Button>().Select();
+                //rebindHackButton.GetComponent<Button>().Select();
                 return;
         }
     }
