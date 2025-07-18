@@ -109,7 +109,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight = true; //Is facing to the right
     public bool sliding; //If the player is currently sliding
-    public bool crouching; //If the player is currently sliding
+    public bool crouching; //If the player is currently crouching
     //[NonSerialized] public bool boosting; //If the player is currently boosting
     [NonSerialized] public bool dashing; //If the player is currently boosting
     [NonSerialized] public bool cloaking;
@@ -272,8 +272,9 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         animator.SetFloat("yVelocity", rb.velocityY);
         animator.SetBool("Grounded", grounded);
         animator.SetBool("OnWall", onWall);
-        animator.SetBool("Sliding", sliding || crouching);
+        animator.SetBool("Sliding", sliding); //MARK replaced sliding || crouching with just sliding
         animator.SetFloat("CoyoteTime", animationGroundedTimer);
+        animator.SetBool("Crouching", crouching);
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
