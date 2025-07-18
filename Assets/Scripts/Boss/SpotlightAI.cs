@@ -13,7 +13,7 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
     {
         get
         {
-            return Player && Player.cloaking;
+            return Player && !Player.cloaking;
         }
     }
 
@@ -44,7 +44,7 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //get if player
-        if(collision.gameObject.GetComponent<MovementScript>())
+        if (collision.gameObject.GetComponent<MovementScript>())
         {
             Player=collision.gameObject.GetComponent<MovementScript>();
         }
