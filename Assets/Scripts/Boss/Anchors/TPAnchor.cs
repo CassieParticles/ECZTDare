@@ -9,6 +9,7 @@ public class TPAnchor : BaseAnchor
         base.AddSpotlight(spotlight);
 
         spotlight.transform.position = transform.position;
+        spotlight.MoveTo(transform.position);
     }
 
     private void OnDrawGizmosSelected()
