@@ -18,6 +18,8 @@ public class DeathWall : MonoBehaviour
         public float AccMediumFar;
 
         public bool facingRight;
+
+        public float yPosition;
     }
 
     private enum Distance
@@ -49,6 +51,9 @@ public class DeathWall : MonoBehaviour
     public void SetData(WallMoveData data)
     {
         wallData = data;
+        Vector3 position = transform.position;
+        position.y = data.yPosition;
+        transform.position = position;
     }
 
     private void UpdateDistance()
