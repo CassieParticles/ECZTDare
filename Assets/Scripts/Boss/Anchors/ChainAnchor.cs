@@ -29,4 +29,9 @@ public class ChainAnchor : BaseAnchor
             travelTime = null;
         }
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }

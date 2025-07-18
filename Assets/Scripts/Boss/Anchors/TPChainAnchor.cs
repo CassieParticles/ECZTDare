@@ -12,4 +12,9 @@ public class TPChainAnchor : BaseAnchor
         spotlight.transform.position = transform.position;
         GetComponent<AnchorTrigger>().SendSignal();
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }
