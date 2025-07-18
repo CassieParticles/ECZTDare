@@ -113,6 +113,16 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
     }
+
+    public void FinishAndSaveLevel(string sceneName) {
+
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        if (scoreManager != null) {
+
+        }
+
+        ChangeScene(sceneName);
+    }
     public void ChangeScene(string sceneName)
     {
         if (transitioning) {
