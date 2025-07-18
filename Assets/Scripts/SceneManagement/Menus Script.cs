@@ -354,7 +354,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         paused = false;
         menuOpen = false;
         
-        CloseSubMenu();
 
         defaultMenuGroup.SetActive(false);
         creditsButton.SetActive(false);
@@ -366,6 +365,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
 
         Time.timeScale = 1f;
+        CloseSubMenu();
     }
 
     public void CloseSubMenu() {    
@@ -380,12 +380,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
 
-        if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
-            ControlsScript controls = GetComponent<ControlsScript>();
-            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
-                                                                            controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
-                                                                            controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
-        }
+        //if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
+        //    ControlsScript controls = GetComponent<ControlsScript>();
+        //    GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
+        //                                                                    controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
+        //                                                                    controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+        //}
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
