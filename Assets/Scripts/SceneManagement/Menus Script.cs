@@ -121,10 +121,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         transitioning = true;
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
-                sceneName = "Level1 Redesign";
-            } else if (SceneManager.GetActiveScene().name == "Level1 Redesign") {
-                sceneName = "Level2 Redesign";
-            } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
+                sceneName = "Level1 v3";
+            } else if (SceneManager.GetActiveScene().name == "Level1 v3") {
+                sceneName = "Boss Level (2v3)";
+            } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
                 sceneName = "Main Menu";
             }
         }
