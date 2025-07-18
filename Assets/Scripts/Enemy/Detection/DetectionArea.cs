@@ -52,7 +52,7 @@ public class DetectionArea : EnemySight
 
         //Update texture
         Vector2 playerPosition = Vector2.zero;
-        if(playerScript)
+        if(playerVisible)
         {
             playerPosition = (playerScript.transform.position - transform.position);
             playerPosition.x /= transform.lossyScale.x;
