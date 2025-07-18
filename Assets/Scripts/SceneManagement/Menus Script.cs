@@ -82,6 +82,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public float sceneTransitionSeconds = 1f;
     bool transitioning = false;
 
+    int savefile = 1; //1 2 and 3
+
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
@@ -118,7 +120,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         if (scoreManager != null) {
-
+            scoreManager.SaveScoresToJson(savefile);
         }
 
         ChangeScene(sceneName);
@@ -199,6 +201,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         canPause = true;
         transitioning = false;
 
+
+        //Create a new save file when entering a level
+        ScoreManager newScoreManager = FindAnyObjectByType<ScoreManager>();
+        if (SceneManager.GetActiveScene().name != "Main Menu" && newScoreManager) {
+            scoreManager.CreateSaveFile(savefile);
+        }
     }
 
     public void ReturnToLevel() {
@@ -329,6 +337,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             toMainMenuButton.SetActive(true);
             creditsButton.SetActive(false);
             resumeButton.GetComponent<Button>().Select();
+
+
+
         }
     }
 

@@ -70,11 +70,15 @@ public class MainScoreController : MonoBehaviour
 
         //Saves the score for this section in the score manager
         ScoreData sectionScore = new ScoreData {
-            type = timer ? scoreType.chase : scoreType.stealth,
+            chaseSection = timer ? true : false,
+            stealthSection = stealthTracker ? true : false,
             chaseTimeSeconds = time,
             stealthScore = stealth
         };
-        GameObject.Find("ScoreManager").GetComponent<ScoreManager>().SaveSectionScore(sectionScore);
+
+        if (GameObject.Find("ScoreManager") != null) {
+            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().SaveSectionScore(sectionScore);
+        }
 
         //Destroy old stealth objects
         if (timer)

@@ -20,11 +20,15 @@ public class SectionUIChange : MonoBehaviour
         chaseUI = transform.GetChild(0).gameObject;
         stealthUI = transform.GetChild(1).gameObject;
         breakroomUI = transform.GetChild(2).gameObject;
+
+        chaseUI.SetActive(false);
+        stealthUI.SetActive(false);
+        breakroomUI.SetActive(false);
     }
     public void SwitchUIType(UITypes type) {
-        if (type == currentType) {
-            return;
-        }
+        //if (type == currentType) {
+        //    return;
+        //}
         currentType = type;
         
         switch(currentType) {
