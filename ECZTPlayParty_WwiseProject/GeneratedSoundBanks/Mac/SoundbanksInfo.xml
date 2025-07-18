@@ -9,6 +9,29 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{E5868E02-BB1F-20A6-11A4-127DD68D5A4A}">
+			<ShortName>Music_2</ShortName>
+			<Path>Music_2.bnk</Path>
+			<Media>
+				<File Id="593247621" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Break Room.wav</ShortName>
+					<CachePath>SFX/Break Room_2BFBBD89.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="2890574062" Name="Break_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="593247621"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+			</Events>
+		</SoundBank>
 		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{15E2E04C-ACB2-7D9C-04E8-006302289A7A}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -144,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{D4B1FC40-239E-05E9-DC76-5260E97A43F1}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{299714BD-3E62-158B-90B4-8AEE4C1F1CE0}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -179,6 +202,10 @@
 				<File Id="36402879" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_3.wav</ShortName>
 					<CachePath>SFX/G_D_Footstep_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="37783088" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Player_Dash.wav</ShortName>
+					<CachePath>SFX/Player_Dash_818F3B66.wem</CachePath>
 				</File>
 				<File Id="44104286" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_4.wav</ShortName>
@@ -255,6 +282,14 @@
 				<File Id="219646802" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Landing_2.wav</ShortName>
 					<CachePath>SFX/P_D_Landing_2_818F3B66.wem</CachePath>
+				</File>
+				<File Id="222009116" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Death_Pit.wav</ShortName>
+					<CachePath>SFX/Death_Pit_11A93380.wem</CachePath>
+				</File>
+				<File Id="223349616" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Good_Beep.wav</ShortName>
+					<CachePath>SFX/Good_Beep_818F3B66.wem</CachePath>
 				</File>
 				<File Id="234892113" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_D_Footstep_8.wav</ShortName>
@@ -475,6 +510,10 @@
 				<File Id="656196889" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Soundly Audio\Designed, Impact, Hit, Granular, Futuristic, Long SND121063.wav</ShortName>
 					<CachePath>SFX/Soundly Audio/Designed, Impact, Hit, Granular, Futuristic, Long SND121063_402957CB.wem</CachePath>
+				</File>
+				<File Id="674480454" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Bad_Beep.wav</ShortName>
+					<CachePath>SFX/Bad_Beep_818F3B66.wem</CachePath>
 				</File>
 				<File Id="679137891" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Camera_Stop.wav</ShortName>
@@ -725,6 +764,11 @@
 						<MediaRef Id="908573506"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1541842241" Name="Bad_Beep" DurationType="OneShot" DurationMin="2" DurationMax="2.0586045">
+					<MediaRefs>
+						<MediaRef Id="674480454"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="4043448287" Name="Boost_Rush" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="598826268"/>
@@ -826,6 +870,17 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="641619979" Name="Death_Pit" MaxAttenuation="70" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="222009116"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="558672050" Name="Door_Hum" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="269273201"/>
@@ -840,6 +895,11 @@
 				<Event Id="359728807" Name="Enemy_Alerted" MaxAttenuation="100" DurationType="OneShot" DurationMin="4.25" DurationMax="4.25">
 					<MediaRefs>
 						<MediaRef Id="1010966096"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3937862197" Name="Good_Beep" DurationType="OneShot" DurationMin="1.9430639" DurationMax="2">
+					<MediaRefs>
+						<MediaRef Id="223349616"/>
 					</MediaRefs>
 				</Event>
 				<Event Id="795206986" Name="Guard_Activate_Alarm" MaxAttenuation="40" DurationType="OneShot" DurationMin="3.8181362" DurationMax="3.8181362">
@@ -1168,6 +1228,17 @@
 				<Event Id="2908710288" Name="Overseer_Ending" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.9908541" DurationMax="1.9908541">
 					<MediaRefs>
 						<MediaRef Id="353367165"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2394582229" Name="Player_Dash" DurationType="OneShot" DurationMin="1.3513783" DurationMax="1.3990347">
+					<MediaRefs>
+						<MediaRef Id="37783088"/>
 					</MediaRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
@@ -1543,5 +1614,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{2AB04845-6C1A-ADDA-5551-E9D18F788454}</FileHash>
+	<FileHash>{7BCB00B9-6740-2F5D-450A-9F373B68CFDF}</FileHash>
 </SoundBanksInfo>

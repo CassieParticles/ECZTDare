@@ -18,9 +18,10 @@ public class Dash
             }
             player.slideScript.StandUp();
         }
-        //Plays the Player_Jump sound
+        //Plays the Player_Dash sound
         AkSoundEngine.PostEvent("Player_Dash", player.gameObject);
         player.dashing = true;
+        player.animator.SetBool("Dashing", true); //>>>>>>>>Mark Addition<<<<<<<<<<
         player.rb.gravityScale = 0f;
         dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
         player.rb.velocity = new Vector2(dashDir * player.dashSpeed, 0);
@@ -28,7 +29,9 @@ public class Dash
         player.dashChargesRemaining--;
         player.hasDashed = true;
         player.InputLocked = true;
+        
         player.StartCoroutine(WhileDashing());
+        
     }
 
     public IEnumerator WhileDashing() {
@@ -44,7 +47,9 @@ public class Dash
         player.dashing = false;
         player.rb.gravityScale = 1f;
         player.InputLocked = false;
+        player.animator.SetBool("Dashing", false); //>>>>>>>>Mark Addition<<<<<<<<<<
         player.StartCoroutine(DashCooldown());
+        
         //Debug.Log("dashDir = " + dashDir + ", runInput = " + player.runInput);
         //if (player.runInput == -dashDir) {
         //    player.rb.velocityX = 0f;

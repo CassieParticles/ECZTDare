@@ -14,7 +14,9 @@ public enum GuardStates
     Chase,
     RaiseAlarm,
     Bumped,
-    LookAround
+    LookAround,
+    StartUp,   //State only used by pod guards
+    ReturnToPod     //State that only exists for the guards from a pod, since most guards have no pod to return to ;(
 };
 public abstract class BaseState
 {
@@ -29,6 +31,8 @@ public abstract class BaseState
 
     protected GameObject guardAttached;
     protected GuardBehaviour guardBehaviour;
+
+    public bool Uninterruptable { get; protected set; }
 }
 
 public class StateMachine
@@ -50,8 +54,7 @@ public class StateMachine
 
     public void Start(GuardStates intialState)
     {
-        currentState = intialState;
-        states[currentState].Start();
+        MoveToState(intialState);
     }
     public void BehaviourTick()
     {
@@ -66,6 +69,7 @@ public class StateMachine
 
     public void MoveToState(GuardStates state)
     {
+        if (states[currentState].Uninterruptable){ return; }
         states[currentState].Stop();
         currentState = state;
         states[currentState].Start();

@@ -11,4 +11,9 @@ public class DeactivateAnchor : BaseAnchor
         spotlight.transform.position = transform.position;
         spotlight.gameObject.SetActive(false);
     }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, 5);
+    }
 }
