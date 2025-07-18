@@ -27,7 +27,7 @@
 						<Transition>
 							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
 							<EndState Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
-							<Time>0</Time>
+							<Time>2</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 						<Transition>
@@ -136,6 +136,12 @@
 							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
 							<EndState Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
 							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+							<Time>2</Time>
 							<IsShared>false</IsShared>
 						</Transition>
 					</TransitionList>
