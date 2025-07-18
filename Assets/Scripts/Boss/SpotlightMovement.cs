@@ -18,12 +18,27 @@ public class SpotlightMovement : MonoBehaviour
     private Vector2 velocity;
     private float distance;
 
+    Coroutine travelTimeCheck;
+
+    private IEnumerator TravelTimeCheck()
+    {
+        yield return new WaitForSeconds(travelTime);
+        travelTimeCheck = null; 
+    }
+
     public void MoveTo(Vector2 location)
     {
+        if (travelTimeCheck != null)
+        {
+            StopCoroutine(travelTimeCheck);
+        }
         desiredLocation = location;
         Vector2 displacement = desiredLocation - (Vector2)transform.position;
         velocity = displacement.normalized * speed;
         distance = displacement.magnitude;
+
+        //Start new coroutine
+        travelTimeCheck = StartCoroutine(TravelTimeCheck());
     }
 
     private void Awake()
@@ -36,15 +51,14 @@ public class SpotlightMovement : MonoBehaviour
         //If spotlight needs to move to new location
         if ((Vector2)transform.position != desiredLocation)
         {
-            //Get distance and direction
-            Vector2 toMove = desiredLocation - (Vector2)transform.position;
-
-            if(toMove.sqrMagnitude < (speed * speed) * (Time.fixedDeltaTime * Time.fixedDeltaTime))
+            if(travelTimeCheck==null)
             {
                 transform.position = (Vector3)desiredLocation;
             }
-
-            transform.position += (Vector3)(velocity * Time.fixedDeltaTime);
+            else
+            { 
+                transform.position += (Vector3)(velocity * Time.fixedDeltaTime);
+            }
         }
     }
 }
