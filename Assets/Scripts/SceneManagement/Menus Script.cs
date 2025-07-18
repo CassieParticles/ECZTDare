@@ -560,6 +560,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         //    }
         //}
 
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Pause();
+        }
+
         //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
         //    StartCoroutine(LoseFinalize());
 
