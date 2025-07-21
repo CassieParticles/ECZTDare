@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         currentLevel = (Levels)SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("Current scene: " + currentLevel.ToString());
     }
 
     //Go to the level pased into the function
