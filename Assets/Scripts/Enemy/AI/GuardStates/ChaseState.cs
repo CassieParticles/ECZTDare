@@ -16,7 +16,11 @@ public class ChaseState : BaseState
 
     bool hasChasedBefore;
 
-    public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) { this.alarm = alarm; }
+    public ChaseState(GameObject guard, AlarmSystem alarm) : base(guard) 
+    {
+        this.alarm = alarm;
+        Uninterruptable = true;
+    }
 
     public override void Start()
     {
@@ -66,21 +70,38 @@ public class ChaseState : BaseState
 
         if(guardBehaviour.Player)
         {
+
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+
+
+        }
+
+        //Get a line from the guard to the point of interest, and check for intersection
+        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.enemySight.transform.position;
+        RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, POIDirection, POIDirection.magnitude, 0b0110011);
+
+        if (!rayHit)
+        {
+            guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        }
+        else
+        {
+            guardBehaviour.StopMoving();
+            return GuardStates.RaiseAlarm;
         }
 
         //Raise the alarm while chasing
-        if(shouldRaiseAlarm)
+        if (shouldRaiseAlarm)
         {
             raiseAlarmCoroutine = null;
             if(alarm)
             {
-                alarm.StartAlarm(guardBehaviour.PointOfInterest);
-                return GuardStates.StateChangedExternally;
+                alarm.StartAlarm(guardBehaviour.PointOfInterest, guardAttached);
             }
+            shouldRaiseAlarm = false;
         }
 
-        guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        
         return GuardStates.Chase;
     }
 }

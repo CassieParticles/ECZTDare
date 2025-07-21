@@ -31,7 +31,7 @@ public class InvestigateState : BaseState
         {
             guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
             //If guard is no longer on high alert
-            if (guardBehaviour.suspicionState != BaseEnemyBehaviour.SuspicionState.HighAlert)
+            if (guardBehaviour.suspicionState < BaseEnemyBehaviour.SuspicionState.HighAlert)
             {
                 return GuardStates.Observe;
             }
@@ -41,9 +41,21 @@ public class InvestigateState : BaseState
         {
             return GuardStates.Chase;
         }
-        
 
-        guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
+
+        //Get a line from the guard to the point of interest, and check for intersection
+        Vector2 POIDirection = guardBehaviour.PointOfInterest - guardBehaviour.enemySight.transform.position;
+        RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, POIDirection, POIDirection.magnitude, 0b0110011);
+
+        if (!rayHit)
+        {
+            guardBehaviour.MoveTo(guardBehaviour.PointOfInterest);
+        }
+        else
+        {
+            guardBehaviour.StopMoving();
+            return GuardStates.LookAround;
+        }
 
 
         if (guardBehaviour.getDistLeft() < 0.1f && !lookingAround)
@@ -52,7 +64,7 @@ public class InvestigateState : BaseState
         }
         if (finished)
         {
-            return GuardStates.Patrol;
+            return GuardStates.LookAround;
         }
 
         return GuardStates.Investigate;
@@ -61,7 +73,7 @@ public class InvestigateState : BaseState
     private IEnumerator lookAround()
     {
         lookingAround = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         finished = true;
     }
 

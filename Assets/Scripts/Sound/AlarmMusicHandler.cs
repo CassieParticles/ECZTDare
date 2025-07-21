@@ -45,7 +45,7 @@ public class AlarmMusicHandler : MonoBehaviour
         return readBit(bytes, (byte)(1 << index));
     }
 
-    private void AlarmOn(Vector3 playerPosition)
+    private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
         setBit(ref currentStates, alarmOnBitMask);
         checkMusic();
@@ -135,7 +135,7 @@ public class AlarmMusicHandler : MonoBehaviour
         }
         else
         {
-            AlarmOn(Vector3.zero);
+            AlarmOn(Vector3.zero,null);
         }
     }
 

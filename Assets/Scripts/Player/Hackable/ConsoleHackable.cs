@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class ConsoleHackable : Hackable
 {
-    [SerializeField] DoorButton.DoorAction action=DoorButton.DoorAction.Unlock;
-    // Start is called before the first frame update
+    public delegate void ConsoleListenerFunction();
 
-    [SerializeField] private LockableDoor[] doors;
+    public ArrayList ConsoleListeners=new ArrayList();
+
+    public void AddConsoleListener(ConsoleListenerFunction listener)
+    {
+        ConsoleListeners.Add(listener);
+    }
+
+    public void RemoveConsoleListener(ConsoleListenerFunction listener)
+    {
+        ConsoleListeners.Remove(listener);
+    }
 
     public bool hasBeenHacked = false;
 
@@ -15,29 +24,11 @@ public class ConsoleHackable : Hackable
     {
         base.OnHack();
 
-        
-
-        switch (action)
+        foreach (ConsoleListenerFunction listener in ConsoleListeners)
         {
-            case DoorButton.DoorAction.Unlock:
-                foreach (LockableDoor door in doors)
-                {
-                    door.Unlock();
-                }
-                break;
-            case DoorButton.DoorAction.Lock:
-                foreach (LockableDoor door in doors)
-                {
-                    door.Lock();
-                }
-                break;
-            case DoorButton.DoorAction.Toggle:
-                foreach (LockableDoor door in doors)
-                {
-                    door.ToggleState();
-                }
-                break;
+            listener();
         }
+
 
         GetComponent<PolygonCollider2D>().enabled = false;
         enabled = false;

@@ -13,7 +13,7 @@ public class AlarmLightChange : MonoBehaviour
 
     AlarmSystem alarmSystem;
 
-    private void AlarmOn(Vector3 playerPosition)
+    private void AlarmOn(Vector3 playerPosition, GameObject alarmCaller)
     {
         foreach(Light2D light in lights)
         {

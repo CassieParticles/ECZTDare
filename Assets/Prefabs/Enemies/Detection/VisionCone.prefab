@@ -50,6 +50,8 @@ MonoBehaviour:
   sectorCount: 30
   angle: 30
   distance: 15
+  visionConeTurnSpeed: 180
+  playerVisibleTurnSpeedScalar: 3
 --- !u!33 &6620282491900327590
 MeshFilter:
   m_ObjectHideFlags: 0

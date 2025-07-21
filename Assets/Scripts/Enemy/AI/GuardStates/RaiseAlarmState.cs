@@ -53,14 +53,21 @@ public class RaiseAlarmState : BaseState
         //If it sees the player again, don't raise alarm, just chase the player
         if(guardBehaviour.Player)
         {
-            return GuardStates.Chase;
+            //Get a line from the guard to the player, and check for intersection
+            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardBehaviour.enemySight.transform.position;
+            RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, playerDirection, playerDirection.magnitude, 0b0110011);
+
+            if (!rayHit)
+            {
+                return GuardStates.Chase;
+            }
         }
 
         if (alarmRaised)
         {
             raiseAlarmCoroutine = null;
-            alarm.StartAlarm(guardBehaviour.PointOfInterest);
-            return GuardStates.StateChangedExternally;
+            alarm.StartAlarm(guardBehaviour.PointOfInterest,guardAttached);
+            return GuardStates.Patrol;
         }
         return GuardStates.RaiseAlarm;
     }

@@ -7,13 +7,14 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using static ControlsScript;
+using static PlayerControls;
 
-public class MenuScript : MonoBehaviour
-{
+public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public AK.Wwise.Event buttonClick;
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
@@ -53,6 +54,7 @@ public class MenuScript : MonoBehaviour
     Image TransitionImage;
 
     ControlsScript controlScript;
+    PlayerControls controls;
 
     bool menuOpen;
     bool settingsOpen;
@@ -79,6 +81,8 @@ public class MenuScript : MonoBehaviour
     public float loseSoundDelay;
     public float sceneTransitionSeconds = 1f;
     bool transitioning = false;
+
+    int savefile = 1; //1 2 and 3
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
@@ -111,6 +115,16 @@ public class MenuScript : MonoBehaviour
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
     }
+
+    public void FinishAndSaveLevel(string sceneName) {
+
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        if (scoreManager != null) {
+            scoreManager.SaveScoresToJson(savefile);
+        }
+
+        ChangeScene(sceneName);
+    }
     public void ChangeScene(string sceneName)
     {
         if (transitioning) {
@@ -119,10 +133,10 @@ public class MenuScript : MonoBehaviour
         transitioning = true;
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
-                sceneName = "Level1 Redesign";
-            } else if (SceneManager.GetActiveScene().name == "Level1 Redesign") {
-                sceneName = "Level2 Redesign";
-            } else if (SceneManager.GetActiveScene().name == "Level2 Redesign") {
+                sceneName = "Level 1";
+            } else if (SceneManager.GetActiveScene().name == "Level 1") {
+                sceneName = "Boss Level (2v3)";
+            } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
                 sceneName = "Main Menu";
             }
         }
@@ -159,6 +173,16 @@ public class MenuScript : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "Main Menu" && checkpointManager) {
             checkpointManager.Quit();
         }
+        //Yes this sucks
+        DeathwallRespawn deathWallRespawner = FindAnyObjectByType<DeathwallRespawn>();
+        if(deathWallRespawner)
+        {
+            deathWallRespawner.Quit();
+        } //Im hopping onto the sucking train
+        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
+        if (scoreManager) {
+            scoreManager.Quit();
+        }
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
         switchingScene = true;
@@ -176,6 +200,7 @@ public class MenuScript : MonoBehaviour
         }
         canPause = true;
         transitioning = false;
+
 
     }
 
@@ -307,6 +332,9 @@ public class MenuScript : MonoBehaviour
             toMainMenuButton.SetActive(true);
             creditsButton.SetActive(false);
             resumeButton.GetComponent<Button>().Select();
+
+
+
         }
     }
 
@@ -321,16 +349,18 @@ public class MenuScript : MonoBehaviour
         paused = false;
         menuOpen = false;
         
-        CloseSubMenu();
 
         defaultMenuGroup.SetActive(false);
         creditsButton.SetActive(false);
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
-        GetComponent<ControlsScript>().controls.Enable();
+        if (GetComponent<ControlsScript>().controls != null) {
+            GetComponent<ControlsScript>().controls.Enable();
+        }
 
         Time.timeScale = 1f;
+        CloseSubMenu();
     }
 
     public void CloseSubMenu() {    
@@ -345,12 +375,12 @@ public class MenuScript : MonoBehaviour
         settingsButton.GetComponent<Button>().onClick.RemoveAllListeners();
         settingsButton.GetComponent<Button>().onClick.AddListener(OpenSettings);
 
-        if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
-            ControlsScript controls = GetComponent<ControlsScript>();
-            GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
-                                                                            controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
-                                                                            controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
-        }
+        //if (SceneManager.GetActiveScene().name == "Tutorial" && GameObject.Find("TutText") != null) {
+        //    ControlsScript controls = GetComponent<ControlsScript>();
+        //    GameObject.Find("TutText").GetComponent<TutorialText>().Refresh(controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString(),
+        //                                                                    controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString(),
+        //                                                                    controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString());
+        //}
         keybindsOpen = false;
         keybindsGroup.SetActive(false);
         keybindsButton.GetComponent<Button>().onClick.RemoveAllListeners();
@@ -391,7 +421,7 @@ public class MenuScript : MonoBehaviour
 
     IEnumerator LoseDelay(float seconds) {
         if (!hasUpgrade) {
-            hasUpgrade = player.GetComponent<MovementScript>().boostCloakUnlocked;
+            hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
         }
 
         int currentDeaths = deathCounter;
@@ -422,7 +452,7 @@ public class MenuScript : MonoBehaviour
     // Start is called before the first frame update
     void Starts()
     {
-        controlScript = GetComponent<ControlsScript>();
+        //controlScript = GetComponent<ControlsScript>();
 
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
@@ -483,6 +513,10 @@ public class MenuScript : MonoBehaviour
         loseGroup.SetActive(false);
         creditsGroup.SetActive(false);
 
+        //controls = controlScript.controls;
+        //controls.MenuControls.SetCallbacks(this);
+
+
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
@@ -507,27 +541,33 @@ public class MenuScript : MonoBehaviour
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level2") {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     hasUpgrade = true;
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
-            if (!paused) {
-                OpenMenu();
-                GetComponent<ControlsScript>().controls.Disable();
-            } else {
-                CloseMenu();
-                GetComponent<ControlsScript>().controls.Enable();
-            }
+        //controls.MenuControls.Pause.started += ctx => Pause();
+
+        //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+        //    if (!paused) {
+        //        OpenMenu();
+        //        GetComponent<ControlsScript>().controls.Disable();
+        //    } else {
+        //        CloseMenu();
+        //        GetComponent<ControlsScript>().controls.Enable();
+        //    }
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Pause();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
-            StartCoroutine(LoseFinalize());
+        //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
+        //    StartCoroutine(LoseFinalize());
 
-        }
+        //}
 
         if (menuOpen) {
             if (settingsOpen) {
@@ -554,7 +594,7 @@ public class MenuScript : MonoBehaviour
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
                 rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
+                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
                 rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
 
                 if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
@@ -572,7 +612,7 @@ public class MenuScript : MonoBehaviour
                 } else {
                     resetSlideButton.SetActive(false);
                 }
-                if (controlScript.controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
+                if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
                     resetBoostCloakButton.SetActive(true);
                 } else {
                     resetBoostCloakButton.SetActive(false);
@@ -588,11 +628,29 @@ public class MenuScript : MonoBehaviour
         
     }
 
-    public void SliderChangeSound(AK.Wwise.Event sound) {
-        
-        if (sound != sliderSound) {
-            sound = sliderSound;
-            sound.Post(gameObject);
+    public void Pause() {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+            if (!paused) {
+                OpenMenu();
+                GetComponent<ControlsScript>().controls.GameplayControls.Disable();
+            } else {
+                CloseMenu();
+                GetComponent<ControlsScript>().controls.GameplayControls.Enable();
+            }
+        }
+
+        if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
+            StartCoroutine(LoseFinalize());
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context) {
+
+    }
+
+    public void OnReset(InputAction.CallbackContext context) {
+        if (SceneManager.GetActiveScene().name != "Main Menu") {
+            StartCoroutine(LoseFinalize());
         }
     }
 }

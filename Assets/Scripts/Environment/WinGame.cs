@@ -15,7 +15,8 @@ public class WinGame : MonoBehaviour
         //If score system exists
         if(MainScoreController.GetInstance() && MainScoreController.GetInstance().currentlyScoring)
         {
-            MainScoreController.GetInstance().EndLevel(fadeToBlack);
+            //MainScoreController.GetInstance().EndLevel(fadeToBlack);
+            menu.Win();
         }
         else //If score system doesn't exist
         {

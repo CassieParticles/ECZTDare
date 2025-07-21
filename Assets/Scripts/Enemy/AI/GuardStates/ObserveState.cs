@@ -33,17 +33,29 @@ public class ObserveState : BaseState
         //If the guard can see the player, the player is the point of interest now
         if (guardBehaviour.Player)
         {
-            //End the guard observing coroutine if it sees the player again
-            if (observePointCoroutine != null)
+            //Get a line from the guard to the player, and check for intersection
+            Vector2 playerDirection = guardBehaviour.Player.transform.position - guardBehaviour.enemySight.transform.position;
+            RaycastHit2D rayHit = Physics2D.Raycast(guardAttached.transform.position, playerDirection, playerDirection.magnitude, 0b0110011);
+
+            if(!rayHit)
             {
-                guardBehaviour.StopCoroutine(observePointCoroutine);
-                observePointCoroutine = null;
+                //End the guard observing coroutine if it sees the player again
+                if (observePointCoroutine != null)
+                {
+                    guardBehaviour.StopCoroutine(observePointCoroutine);
+                    observePointCoroutine = null;
+                }
+
+
+
+                guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
+                if (guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
+                {
+                    return GuardStates.Investigate;
+                }
             }
-            guardBehaviour.PointOfInterest = guardBehaviour.Player.transform.position;
-            if (guardBehaviour.suspicionState == BaseEnemyBehaviour.SuspicionState.HighAlert)
-            {
-                return GuardStates.Investigate;
-            }
+
+
         }
         //If it cannot see the player, start a 3 second countdown, if it reaches this limit, move to patrol 
         else if (observePointCoroutine == null)
@@ -53,6 +65,10 @@ public class ObserveState : BaseState
 
         if (observationFinished)
         {
+            if (guardBehaviour.suspicionState >= BaseEnemyBehaviour.SuspicionState.Suspect)
+            {
+                return GuardStates.LookAround;
+            }
             return GuardStates.Patrol;
         }
 
@@ -63,8 +79,6 @@ public class ObserveState : BaseState
         }
 
         guardBehaviour.LookAt(guardBehaviour.PointOfInterest);
-
-
 
         return GuardStates.Observe;
     }

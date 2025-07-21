@@ -6,7 +6,6 @@ using UnityEngine;
 //State machine used by guards, so has enum for each state
 public enum GuardStates
 {
-    StateChangedExternally, //Used when state is changed externally (calling alarm)
     Idle,
     Patrol,
     HearNoise,  //Dev one, immediately transition to whichever behaviour should be performed
@@ -14,7 +13,10 @@ public enum GuardStates
     Investigate,
     Chase,
     RaiseAlarm,
-    Bumped
+    Bumped,
+    LookAround,
+    StartUp,   //State only used by pod guards
+    ReturnToPod     //State that only exists for the guards from a pod, since most guards have no pod to return to ;(
 };
 public abstract class BaseState
 {
@@ -29,6 +31,8 @@ public abstract class BaseState
 
     protected GameObject guardAttached;
     protected GuardBehaviour guardBehaviour;
+
+    public bool Uninterruptable { get; protected set; }
 }
 
 public class StateMachine
@@ -50,21 +54,11 @@ public class StateMachine
 
     public void Start(GuardStates intialState)
     {
-        currentState = intialState;
-        states[currentState].Start();
+        MoveToState(intialState);
     }
     public void BehaviourTick()
     {
-        if(currentState == GuardStates.StateChangedExternally)
-        {
-            Debug.Log("Error, guard state set to StateChangedExternally");
-
-        }
         GuardStates newState = states[currentState].RunTick();
-        if(newState==GuardStates.StateChangedExternally)    //Do not update if this is returned
-        {
-            return;
-        }
         if(newState!=currentState)
         {
             states[currentState].Stop();
@@ -75,6 +69,7 @@ public class StateMachine
 
     public void MoveToState(GuardStates state)
     {
+        if (states[currentState].Uninterruptable){ return; }
         states[currentState].Stop();
         currentState = state;
         states[currentState].Start();

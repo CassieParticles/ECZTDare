@@ -14,12 +14,12 @@ public class Jumping
     public void BasicJump() {
         //player.rb.velocityX += player.conveyorSpeed;
         //player.jumpingFromConveyorSpeed = player.conveyorSpeed;
-        player.rb.velocityY = player.effectiveJumpStrength;
+        player.rb.velocityY = player.jumpStrength;
         //Plays the Player_Jump sound
         AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
-        if (player.boosting) {
-            AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostJumpSoundRange, player.boostJumpSoundSuspicionIncrease, AudioSource.Player);
-        }
+        //if (player.boosting) {
+        //    AudioDetectionSystem.getAudioSystem().PlaySound(player.transform.position, player.boostJumpSoundRange, player.boostJumpSoundSuspicionIncrease, AudioSource.Player);
+        //}
         player.animator.SetBool("Grounded", false);
         player.hasJumped = true;
         player.tempGroundedTimer = 0;
@@ -31,14 +31,14 @@ public class Jumping
         player.hasJumped = true;
         player.facingRight = !player.onRightWall;
         if (whichWallJump == -1) { //Jumping off a left wall
-            player.rb.velocityX = player.effectiveHorizontalWalljumpStrength;
-            player.rb.velocityY = player.effectiveVerticalWalljumpStrength;
+            player.rb.velocityX = player.horizontalWalljumpStrength;
+            player.rb.velocityY = player.verticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
             player.StartCoroutine("WalljumpInputDelay", -1);
         } else if (whichWallJump == 1) { //Jumping off a right wall
-            player.rb.velocityX = -player.effectiveHorizontalWalljumpStrength;
-            player.rb.velocityY = player.effectiveVerticalWalljumpStrength;
+            player.rb.velocityX = -player.horizontalWalljumpStrength;
+            player.rb.velocityY = player.verticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
             player.StartCoroutine("WalljumpInputDelay", 1);

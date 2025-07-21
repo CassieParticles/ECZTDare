@@ -11,6 +11,12 @@ public class PatrolState : BaseState
     //to avoid issues with distance recalc delay, don't recalculate immediately
     private bool recalcDelay;
     private bool paused;
+
+    Coroutine LookAroundCoroutine;
+    Coroutine PauseAtNodeCoroutine;
+    bool lookAround;
+
+
     public PatrolState(GameObject guard, PatrolRoute patrolRoute) : base(guard)
     {
         this.patrolRoute = patrolRoute;
@@ -38,11 +44,23 @@ public class PatrolState : BaseState
         }
         recalcDelay = true;
         paused = false;
+        lookAround = false;
     }
 
     public override void Stop()
     {
         guardBehaviour.StopMoving();
+        if(LookAroundCoroutine!=null)
+        {
+            guardBehaviour.StopCoroutine(LookAroundCoroutine);
+            LookAroundCoroutine=null;
+        }
+        if(PauseAtNodeCoroutine!=null)
+        {
+            guardBehaviour.StopCoroutine(PauseAtNodeCoroutine);
+            PauseAtNodeCoroutine = null;
+        }
+
     }
 
     public override GuardStates RunTick()
@@ -51,7 +69,7 @@ public class PatrolState : BaseState
         {
             if (guardBehaviour.getDistLeft() < 0.1f && recalcDelay && !paused)
             {
-                guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
+                PauseAtNodeCoroutine = guardBehaviour.StartCoroutine(PauseAtNode(patrolRoute.GetCurrNode(guardAttached).delay));
             }
         }
         else
@@ -60,6 +78,26 @@ public class PatrolState : BaseState
             {
                 guardBehaviour.Look(StartRotation);
             }
+        }
+
+        //If guard is high alert, wait a period of time before looking around
+        if(guardBehaviour.suspicionState==BaseEnemyBehaviour.SuspicionState.HighAlert)
+        {
+            guardBehaviour.StartCoroutine(LookAround(Random.Range(10,20)));
+        }
+        else
+        {   //If guard is no longe rhigh alert, stop coroutine
+            if(LookAroundCoroutine!=null)
+            {
+                guardBehaviour.StopCoroutine(LookAroundCoroutine);
+                LookAroundCoroutine = null;
+            }
+        }
+
+        //Look around
+        if(lookAround)
+        {
+            return GuardStates.LookAround;
         }
 
         guardBehaviour.CalcSuspicionDecay();
@@ -87,5 +125,11 @@ public class PatrolState : BaseState
         recalcDelay = false;
         yield return new WaitForSeconds(0.1f);
         recalcDelay = true;
+    }
+
+    private IEnumerator LookAround(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        lookAround = true;
     }
 }

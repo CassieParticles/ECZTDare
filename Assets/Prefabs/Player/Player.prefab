@@ -9931,6 +9931,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 1fc63ee9caf886b4196f3fe6c9ae69f9, type: 2}
+  playerDash:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 81c71fb4526a9164c8c2d01d702cf36c, type: 2}
   boostStart:
     idInternal: 0
     valueGuidInternal: 
@@ -9953,21 +9957,12 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: c15a05f0cd123d34b806d7ed8870b662, type: 2}
   footstepRate: 0.2
   footstepRateScaler: 3
-  inStealthMode: 0
-  maxRunSpeed: 25
+  maxRunSpeed: 18
   acceleration: 20
   deceleration: 4.5
   snapToMaxRunSpeedMult: 1
   snapToLedgeTopRayHeight: 0.29
   snapToLedgeBottomRayHeight: 0.05
-  slideDeceleration: 1
-  velocityToSlide: 12
-  velocityEndSlide: 5
-  boostMaxRunSpeedMultiplier: 1.5
-  boostAcceleration: 25
-  boostRecharge: 10
-  boostDepletion: 50
-  minimumBoostCharge: 5
   jumpStrength: 16
   minJumpTime: 0.02
   gravityMult: 3
@@ -9981,25 +9976,24 @@ MonoBehaviour:
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  stealthMaxRunSpeed: 18
-  stealthAcceleration: 27
-  stealthDeceleration: 10
-  stealthVelocityToSlide: 12
-  stealthVelocityEndSlide: 5
-  stealthJumpStrength: 18
-  stealthMinJumpTime: 0.1
-  stealthHorizontalWalljumpStrength: 10
-  stealthVerticalWalljumpStrength: 16
-  cloakRecharge: 15
-  cloakDepletion: 50
-  boostFootStepSoundRange: 10
-  boostFootStepSoundSuspicionIncrease: 15
-  boostJumpSoundRange: 25
-  boostJumpSoundSuspicionIncrease: 35
-  boostSlideSoundRange: 15
-  boostSlideSoundSuspicionIncrease: 20
+  slideDeceleration: 0.8
+  velocityToSlide: 12
+  velocityEndSlide: 5
+  maxCrouchSpeed: 8
+  crouchAcceleration: 10
+  crouchDeceleration: 3
+  batteryRecharge: 10
+  minimumBatteryToCloak: 5
+  cloakDepletion: 45
+  dashSpeed: 25
+  dashDuration: 0.2
+  dashBatteryCost: 33
+  dashCooldown: 0.2
+  dashChargesPerJump: 1
+  sliding: 0
+  crouching: 0
   batteryCharge: 100
-  boostCloakUnlocked: 0
+  cloakUnlocked: 0
 --- !u!114 &721483411405698296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10017,7 +10011,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 75e9a95650fe1594ea89d445026eb92d, type: 2}
   target: {fileID: 0}
-  hackChargeRate: 50
+  hackChargeRate: 10
   hackCharges: 3
   hackCharge: 100
   hasHacked: 0
@@ -10112,7 +10106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: -2144810759, guid: 63120818296db31489053f78086b1cbc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
