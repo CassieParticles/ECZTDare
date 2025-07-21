@@ -11,6 +11,12 @@ public class DeathwallRespawn : MonoBehaviour
 
     private static DeathwallRespawn instance;
 
+    [RuntimeInitializeOnLoadMethod]
+    static void Initialize()
+    {
+        instance = null;
+    }
+
     private void Awake()
     {
         if(instance)
