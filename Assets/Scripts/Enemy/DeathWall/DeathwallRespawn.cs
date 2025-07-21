@@ -24,8 +24,13 @@ public class DeathwallRespawn : MonoBehaviour
             Destroy(gameObject);
         }
         instance = this;
-        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
+        
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
     public void DeathWallStart(DeathWall.WallMoveData deathWallData)
     {
@@ -55,7 +60,7 @@ public class DeathwallRespawn : MonoBehaviour
 
     private void ChangeLevel(LevelManager.Levels level, bool reload)
     {
-        if (!reload)
+        if (level == LevelManager.Levels.MainMenu)
         {
             Quit();
         }

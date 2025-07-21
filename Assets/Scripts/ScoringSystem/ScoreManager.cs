@@ -114,6 +114,11 @@ public class ScoreManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        
+    }
+
+    private void Start()
+    {
         FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
@@ -125,7 +130,7 @@ public class ScoreManager : MonoBehaviour
 
     private void ChangeLevel(LevelManager.Levels level, bool reload)
     {
-        if(!reload)
+        if(level == LevelManager.Levels.MainMenu)
         {
             Quit();
         }

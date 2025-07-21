@@ -35,13 +35,8 @@ public class StartCutScene : MonoBehaviour
         {
             Debug.Log("I'm outa here!");
 
-            MenuScript menuScript = FindAnyObjectByType<MenuScript>();
-            if(menuScript)
-            {
-                menuScript.ChangeScene("Main Menu");
-            }
-
             canLeave = false;
+            FindAnyObjectByType<LevelManager>().GoToLevel(LevelManager.Levels.MainMenu);
         }
     }
 

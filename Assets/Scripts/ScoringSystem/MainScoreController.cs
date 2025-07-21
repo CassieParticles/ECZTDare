@@ -101,7 +101,7 @@ public class MainScoreController : MonoBehaviour
 
     private void ChangeLevel(LevelManager.Levels level, bool reload)
     {
-        if(!reload)
+        if(level==LevelManager.Levels.MainMenu)
         {
             Quit();
         }
@@ -119,6 +119,11 @@ public class MainScoreController : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        
+    }
+
+    private void Start()
+    {
         //Set up listener
         FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }

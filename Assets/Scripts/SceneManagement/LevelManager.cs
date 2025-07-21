@@ -38,6 +38,8 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         currentLevel = (Levels)SceneManager.GetActiveScene().buildIndex;
         Debug.Log("Current scene: " + currentLevel.ToString());
+
+        callbackFunctions = new List<LevelChangeCallback>();
     }
 
     //Go to the level pased into the function
@@ -53,7 +55,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene((int)level);
         currentLevel = level;
 
-        foreach(var callback in callbackFunctions)
+        foreach(LevelChangeCallback callback in callbackFunctions)
         {
             callback(level, false);
         }

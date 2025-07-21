@@ -29,6 +29,7 @@ public class CheckpointManager : MonoBehaviour
             checkpoints[i] = transform.GetChild(i).gameObject;
             checkpoints[i].GetComponent<Checkpoint>().SetIndex(i);
         }
+
         FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
@@ -53,11 +54,11 @@ public class CheckpointManager : MonoBehaviour
 
     private void ChangeLevel(LevelManager.Levels level, bool reload)
     {
-        if(!reload)
+        if(level == LevelManager.Levels.MainMenu)
         {
             Quit();
         }
-        else
+        else if(reload)
         {
             Respawn();
         }
