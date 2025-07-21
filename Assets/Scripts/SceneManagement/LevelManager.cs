@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,8 +14,12 @@ public class LevelManager : MonoBehaviour
         Level2,
     }
 
+    public delegate void LevelChangeCallback(Levels newLevel, bool reload);
+
     private static LevelManager instance;
     private Levels currentLevel;
+
+    private List<LevelChangeCallback> callbackFunctions;
 
     [RuntimeInitializeOnLoadMethod]
     private static void Initialize()
@@ -47,6 +52,11 @@ public class LevelManager : MonoBehaviour
         //Go to the level 
         SceneManager.LoadScene((int)level);
         currentLevel = level;
+
+        foreach(var callback in callbackFunctions)
+        {
+            callback(level, false);
+        }
     }
 
     //Go to the next level in the game
@@ -58,11 +68,25 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadLevel()
     {
+        foreach (var callback in callbackFunctions)
+        {
+            callback(currentLevel,true);
+        }
         SceneManager.LoadScene((int)currentLevel);
     }
 
     public Levels getCurrentLevel()
     {
         return currentLevel;
+    }
+
+    public void AddCallback(LevelChangeCallback callback)
+    {
+        callbackFunctions.Add(callback);
+    }
+
+    public void RemoveCallback(LevelChangeCallback callback)
+    {
+        callbackFunctions.Remove(callback);
     }
 }
