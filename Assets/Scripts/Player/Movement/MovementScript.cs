@@ -1,11 +1,8 @@
 using Cinemachine;
 using System;
 using System.Collections;
-using TreeEditor;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 using static PlayerControls;
 
 public class MovementScript : MonoBehaviour, IGameplayControlsActions {

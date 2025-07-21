@@ -133,8 +133,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         transitioning = true;
         if (sceneName == "Next Level") {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
-                sceneName = "Level1";
-            } else if (SceneManager.GetActiveScene().name == "Level1") {
+                sceneName = "Level 1";
+            } else if (SceneManager.GetActiveScene().name == "Level 1") {
                 sceneName = "Boss Level (2v3)";
             } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
                 sceneName = "Main Menu";
@@ -202,11 +202,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         transitioning = false;
 
 
-        //Create a new save file when entering a level
-        ScoreManager newScoreManager = FindAnyObjectByType<ScoreManager>();
-        if (SceneManager.GetActiveScene().name != "Main Menu" && newScoreManager) {
-            scoreManager.CreateSaveFile(savefile);
-        }
     }
 
     public void ReturnToLevel() {
@@ -457,7 +452,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     // Start is called before the first frame update
     void Starts()
     {
-        controlScript = GetComponent<ControlsScript>();
+        //controlScript = GetComponent<ControlsScript>();
 
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
@@ -518,8 +513,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         loseGroup.SetActive(false);
         creditsGroup.SetActive(false);
 
-        controls = controlScript.controls;
-        controls.MenuControls.SetCallbacks(this);
+        //controls = controlScript.controls;
+        //controls.MenuControls.SetCallbacks(this);
 
 
         if (SceneManager.GetActiveScene().name == "Main Menu") {
@@ -553,7 +548,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             }
         }
 
-        controls.MenuControls.Pause.started += ctx => Pause();
+        //controls.MenuControls.Pause.started += ctx => Pause();
 
         //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
         //    if (!paused) {
@@ -564,6 +559,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         //        GetComponent<ControlsScript>().controls.Enable();
         //    }
         //}
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Pause();
+        }
 
         //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
         //    StartCoroutine(LoseFinalize());
