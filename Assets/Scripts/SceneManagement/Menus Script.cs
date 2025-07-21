@@ -116,7 +116,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
     }
 
-    public void FinishAndSaveLevel(string sceneName)
+    public void FinishAndSaveLevel(int level)
     {
 
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
@@ -125,38 +125,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             scoreManager.SaveScoresToJson(savefile);
         }
 
-        ChangeScene(sceneName);
-    }
-
-    public void ChangeScene(string sceneName)
-    {
-        if (transitioning)
-        {
-            return;
-        }
-        transitioning = true;
-        if (sceneName == "Next Level")
-        {
-            if (SceneManager.GetActiveScene().name == "Tutorial")
-            {
-                sceneName = "Level 1";
-            }
-            else if (SceneManager.GetActiveScene().name == "Level 1")
-            {
-                sceneName = "Boss Level (2v3)";
-            }
-            else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)")
-            {
-                sceneName = "Main Menu";
-            }
-        }
-        if (GameObject.Find("Lights") != null)
-        {
-            GameObject.Find("Lights").SetActive(false);
-        }
-
-        buttonClick.Post(gameObject);
-        StartCoroutine(MenuTransitionFade(sceneName));
+        LoadScene(level);
     }
 
     public void LoadScene(int level)
@@ -207,74 +176,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             TransitionImage.color = Color.Lerp(black, empty, i);
             yield return null;
         }
-    }
-
-    IEnumerator MenuTransitionFade(string sceneName) {
-        Color black = new Color(0, 0, 0, 1);
-        Color empty = new Color(0, 0, 0, 0);
-        for (float i = 0; i < sceneTransitionSeconds;) { //Fade to black
-            i += Time.unscaledDeltaTime;
-            float percentage = i / sceneTransitionSeconds;
-            TransitionImage.color = Color.Lerp(empty, black, i);
-            yield return null;
-        }
-
-        //Do general setup for scene switching
-        AkSoundEngine.StopAll();
-
-        winGroup.SetActive(false);
-        loseGroup.SetActive(false);
-
-
-        //WILL BE HANDLED BY LISTENERS===========================
-        //Destroy the main score controller when quitting
-        MainScoreController scoreController = MainScoreController.GetInstance();
-        if (scoreController) {
-            scoreController.Quit();
-        } //And the checkpoint manager
-        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
-        if (SceneManager.GetActiveScene().name != "Main Menu" && checkpointManager) {
-            checkpointManager.Quit();
-        }
-        //Yes this sucks
-        DeathwallRespawn deathWallRespawner = FindAnyObjectByType<DeathwallRespawn>();
-        if(deathWallRespawner)
-        {
-            deathWallRespawner.Quit();
-        } //Im hopping onto the sucking train
-        ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        if (scoreManager) {
-            scoreManager.Quit();
-        }
-        //==========================================================
-
-        SceneManager.LoadScene(sceneName);
-
-
-        Time.timeScale = 1;
-        switchingScene = true;
-        previousScene = SceneManager.GetActiveScene().name;
-        yield return new WaitForFixedUpdate();
-        for (int i  = 0; i < 10; i++) {
-            yield return null;
-        }
-
-        for (float i = 0; i < sceneTransitionSeconds;) { //Fade back to game
-            i += Time.unscaledDeltaTime;
-            float percentage = i / sceneTransitionSeconds;
-            TransitionImage.color = Color.Lerp(black, empty, i);
-            yield return null;
-        }
-        canPause = true;
-        transitioning = false;
-
-
-    }
-
-    public void ReturnToLevel() {
-        buttonClick.Post(gameObject);
-
-        SceneChangeTracker.GetTracker().GoBack();
     }
 
     public void Quit() {
