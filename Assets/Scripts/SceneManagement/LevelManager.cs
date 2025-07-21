@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class LevelManager : MonoBehaviour
     private Levels prevLevel;
 
     private List<LevelChangeCallback> callbackFunctions;
+    private List<int> indicesToRemove;
 
     [RuntimeInitializeOnLoadMethod]
     private static void Initialize()
@@ -43,6 +45,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Current scene: " + currentLevel.ToString());
 
         callbackFunctions = new List<LevelChangeCallback>();
+        indicesToRemove = new List<int>();
 
         SceneManager.sceneLoaded += SendObserver;
     }
@@ -59,7 +62,15 @@ public class LevelManager : MonoBehaviour
         {
             callback(level, level==prevLevel);
         }
-        currentLevel = level;
+        //Check if there are callbacks to be removed
+        if(indicesToRemove.Count>0)
+        {
+            for(int i=0;i<indicesToRemove.Count;++i)
+            {
+                callbackFunctions.RemoveAt(indicesToRemove[i] - i);
+            }
+            indicesToRemove.Clear();
+        }
     }
 
     //Go to the level pased into the function
@@ -104,6 +115,13 @@ public class LevelManager : MonoBehaviour
 
     public void RemoveCallback(LevelChangeCallback callback)
     {
-        callbackFunctions.Remove(callback);
+        //Flag the callback for removal
+        for(int i=0;i<callbackFunctions.Count;i++)
+        {
+            if(callbackFunctions[i] == callback)
+            {
+                indicesToRemove.Add(i);
+            }
+        }
     }
 }

@@ -497,32 +497,51 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
 
         Time.timeScale = 1;
+
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
+    }
+
+    private void ChangeLevel(LevelManager.Levels level, bool reload)
+    {
+        //Close submenu
+        CloseSubMenu();
+        GetComponent<Canvas>().worldCamera = Camera.main;
+        //If going to main menu, open menu
+        if (level == LevelManager.Levels.MainMenu)
+        {
+            OpenMenu();
+        }
+        else if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3")
+        {
+            GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+            hasUpgrade = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         //If you have just finished switching scene, or you just reset after a loss
-        if (switchingScene && (previousScene != SceneManager.GetActiveScene().name || lost)) {
+        //if (switchingScene && (previousScene != SceneManager.GetActiveScene().name || lost)) {
 
-            switchingScene = false;
-            lost = false;
-            //Close submenu
-            CloseSubMenu();
-            GetComponent<Canvas>().worldCamera = Camera.main;
-            //If you are entering main menu, open the menu
-            if (SceneManager.GetActiveScene().name == "Main Menu") {
-                OpenMenu();
-            } else {
-                //Otherwise, close menus
-                CloseMenu();
-                //If player has upgrade already, give them the upgrade again
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
-                    GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
-                    hasUpgrade = true;
-                }
-            }
-        }
+        //    switchingScene = false;
+        //    lost = false;
+        //    //Close submenu
+        //    CloseSubMenu();
+        //    GetComponent<Canvas>().worldCamera = Camera.main;
+        //    //If you are entering main menu, open the menu
+        //    if (SceneManager.GetActiveScene().name == "Main Menu") {
+        //        OpenMenu();
+        //    } else {
+        //        //Otherwise, close menus
+        //        CloseMenu();
+        //        //If player has upgrade already, give them the upgrade again
+        //        if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
+        //            GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+        //            hasUpgrade = true;
+        //        }
+        //    }
+        //}
 
         //controls.MenuControls.Pause.started += ctx => Pause();
 
