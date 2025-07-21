@@ -114,11 +114,21 @@ public class ScoreManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
     public void Quit() {
         //Destroy scoreManager when level ends
         Destroy(gameObject);
+        FindAnyObjectByType<LevelManager>().RemoveCallback(ChangeLevel);
+    }
+
+    private void ChangeLevel(LevelManager.Levels level, bool reload)
+    {
+        if(!reload)
+        {
+            Quit();
+        }
     }
 }
 [System.Serializable]

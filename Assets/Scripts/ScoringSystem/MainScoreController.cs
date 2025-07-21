@@ -96,6 +96,15 @@ public class MainScoreController : MonoBehaviour
     {
         //Destroy scoring object
         Destroy(gameObject);
+        FindAnyObjectByType<LevelManager>().RemoveCallback(ChangeLevel);
+    }
+
+    private void ChangeLevel(LevelManager.Levels level, bool reload)
+    {
+        if(!reload)
+        {
+            Quit();
+        }
     }
 
 
@@ -109,6 +118,9 @@ public class MainScoreController : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+
+        //Set up listener
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
     private void OnDestroy()

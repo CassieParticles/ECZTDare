@@ -29,7 +29,7 @@ public class CheckpointManager : MonoBehaviour
             checkpoints[i] = transform.GetChild(i).gameObject;
             checkpoints[i].GetComponent<Checkpoint>().SetIndex(i);
         }
-        SceneManager.sceneLoaded += SceneLoad;
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
     public void CheckpointReach(int i)
@@ -44,23 +44,23 @@ public class CheckpointManager : MonoBehaviour
         return checkpoints[upcomingCheckpoint - 1].transform.position;
     }
 
-    private void SceneLoad(Scene scene, LoadSceneMode mode)
-    {
-        if(scene.name=="WinScreen")
-        {
-            Win();
-        }
-        if(scene.name!="Main Menu" && scene.name!="LoseScene")
-        {
-            Respawn();
-        }
-    }
-
     public void Quit()
     {
         Destroy(gameObject);
         m_Instance = null;
-        SceneManager.sceneLoaded -= SceneLoad;
+        FindAnyObjectByType<LevelManager>().RemoveCallback(ChangeLevel);
+    }
+
+    private void ChangeLevel(LevelManager.Levels level, bool reload)
+    {
+        if(!reload)
+        {
+            Quit();
+        }
+        else
+        {
+            Respawn();
+        }
     }
 
     public void Respawn()
@@ -76,10 +76,5 @@ public class CheckpointManager : MonoBehaviour
         {
             deathwallRespawner.Respawn(getRespawnPos());
         }
-    }
-
-    public void Win()
-    {
-        Destroy(gameObject);
     }
 }
