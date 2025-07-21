@@ -105,6 +105,10 @@ public class MainScoreController : MonoBehaviour
         {
             Quit();
         }
+        if(reload)
+        {
+            Unpause();
+        }
     }
 
 

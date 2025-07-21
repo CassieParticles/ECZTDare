@@ -407,7 +407,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         deathCounter++;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        FindAnyObjectByType<LevelManager>().ReloadLevel();
+
         if (MainScoreController.GetInstance()) {
             MainScoreController.GetInstance().Unpause();
         }

@@ -70,7 +70,8 @@ public class CheckpointManager : MonoBehaviour
         {
             return;
         }
-        FindFirstObjectByType<MovementScript>().transform.position = getRespawnPos();
+        MovementScript movement = FindFirstObjectByType<MovementScript>();
+        movement.transform.position = getRespawnPos();
 
         DeathwallRespawn deathwallRespawner = FindAnyObjectByType<DeathwallRespawn>();
         if(deathwallRespawner)

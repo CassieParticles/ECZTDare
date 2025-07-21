@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Cinemachine.DocumentationSortingAttribute;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class LevelManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
 
     private static LevelManager instance;
     private Levels currentLevel;
+    private Levels prevLevel;
 
     private List<LevelChangeCallback> callbackFunctions;
 
@@ -37,9 +39,27 @@ public class LevelManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         currentLevel = (Levels)SceneManager.GetActiveScene().buildIndex;
+        prevLevel = currentLevel;
         Debug.Log("Current scene: " + currentLevel.ToString());
 
         callbackFunctions = new List<LevelChangeCallback>();
+
+        SceneManager.sceneLoaded += SendObserver;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SendObserver;
+    }
+
+    private void SendObserver(Scene scene, LoadSceneMode mode)
+    {
+        Levels level = (Levels)scene.buildIndex;
+        foreach (LevelChangeCallback callback in callbackFunctions)
+        {
+            callback(level, level==prevLevel);
+        }
+        currentLevel = level;
     }
 
     //Go to the level pased into the function
@@ -53,12 +73,10 @@ public class LevelManager : MonoBehaviour
 
         //Go to the level 
         SceneManager.LoadScene((int)level);
+        prevLevel = currentLevel;
         currentLevel = level;
 
-        foreach(LevelChangeCallback callback in callbackFunctions)
-        {
-            callback(level, false);
-        }
+
     }
 
     //Go to the next level in the game
@@ -70,11 +88,8 @@ public class LevelManager : MonoBehaviour
 
     public void ReloadLevel()
     {
-        foreach (var callback in callbackFunctions)
-        {
-            callback(currentLevel,true);
-        }
         SceneManager.LoadScene((int)currentLevel);
+        prevLevel = currentLevel;
     }
 
     public Levels getCurrentLevel()
