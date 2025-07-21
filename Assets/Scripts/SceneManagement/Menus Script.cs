@@ -116,36 +116,97 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
     }
 
-    public void FinishAndSaveLevel(string sceneName) {
+    public void FinishAndSaveLevel(string sceneName)
+    {
 
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
-        if (scoreManager != null) {
+        if (scoreManager != null)
+        {
             scoreManager.SaveScoresToJson(savefile);
         }
 
         ChangeScene(sceneName);
     }
+
     public void ChangeScene(string sceneName)
     {
-        if (transitioning) {
+        if (transitioning)
+        {
             return;
         }
         transitioning = true;
-        if (sceneName == "Next Level") {
-            if (SceneManager.GetActiveScene().name == "Tutorial") {
+        if (sceneName == "Next Level")
+        {
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
                 sceneName = "Level 1";
-            } else if (SceneManager.GetActiveScene().name == "Level 1") {
+            }
+            else if (SceneManager.GetActiveScene().name == "Level 1")
+            {
                 sceneName = "Boss Level (2v3)";
-            } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
+            }
+            else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)")
+            {
                 sceneName = "Main Menu";
             }
         }
-        if (GameObject.Find("Lights") != null) {
+        if (GameObject.Find("Lights") != null)
+        {
             GameObject.Find("Lights").SetActive(false);
         }
 
         buttonClick.Post(gameObject);
         StartCoroutine(MenuTransitionFade(sceneName));
+    }
+
+    public void LoadScene(int level)
+    {
+        StartCoroutine(ChangeScene((LevelManager.Levels)level));
+    }
+
+    private IEnumerator ChangeScene(LevelManager.Levels level)
+    {
+        //FADE OUT=======================================
+        //Colours to fade between
+        Color black = Color.black;
+        Color empty = Color.clear;
+
+        for (float i = 0; i < sceneTransitionSeconds;)
+        { //Fade to black
+            i += Time.unscaledDeltaTime;
+            float percentage = i / sceneTransitionSeconds;
+            TransitionImage.color = Color.Lerp(empty, black, i);
+            yield return null;
+        }
+
+        //Do general setup for scene switching
+        AkSoundEngine.StopAll();
+
+        winGroup.SetActive(false);
+        loseGroup.SetActive(false);
+
+        //Load the level
+        FindAnyObjectByType<LevelManager>().GoToLevel((LevelManager.Levels)level);
+
+        //Close submenus
+        CloseSubMenu();
+        CloseMenu();
+
+        //Wait 10 frames to start fading in
+        yield return new WaitForFixedUpdate();
+        for (int i = 0; i < 10; i++)
+        {
+            yield return null;
+        }
+
+        //Fade back in
+        for (float i = 0; i < sceneTransitionSeconds;)
+        { //Fade back to game
+            i += Time.unscaledDeltaTime;
+            float percentage = i / sceneTransitionSeconds;
+            TransitionImage.color = Color.Lerp(black, empty, i);
+            yield return null;
+        }
     }
 
     IEnumerator MenuTransitionFade(string sceneName) {
@@ -164,6 +225,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
+
+        //WILL BE HANDLED BY LISTENERS===========================
         //Destroy the main score controller when quitting
         MainScoreController scoreController = MainScoreController.GetInstance();
         if (scoreController) {
@@ -183,7 +246,11 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (scoreManager) {
             scoreManager.Quit();
         }
+        //==========================================================
+
         SceneManager.LoadScene(sceneName);
+
+
         Time.timeScale = 1;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
@@ -532,15 +599,21 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     // Update is called once per frame
     void Update()
     {
+        //If you have just finished switching scene, or you just reset after a loss
         if (switchingScene && (previousScene != SceneManager.GetActiveScene().name || lost)) {
+
             switchingScene = false;
             lost = false;
+            //Close submenu
             CloseSubMenu();
             GetComponent<Canvas>().worldCamera = Camera.main;
+            //If you are entering main menu, open the menu
             if (SceneManager.GetActiveScene().name == "Main Menu") {
                 OpenMenu();
             } else {
+                //Otherwise, close menus
                 CloseMenu();
+                //If player has upgrade already, give them the upgrade again
                 if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     hasUpgrade = true;
