@@ -13,6 +13,11 @@ public class ScoreTimer : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
     }
+
+    public void Reset()
+    {
+        time = 0;
+    }
     void Update()
     {
         time += paused ? 0 : Time.deltaTime;
