@@ -11,17 +11,12 @@ public class DeathwallRespawn : MonoBehaviour
 
     private static DeathwallRespawn instance;
 
-    [RuntimeInitializeOnLoadMethod]
-    static void Initialize()
-    {
-        instance = null;
-    }
-
     private void Awake()
     {
         if(instance)
         {
             Destroy(gameObject);
+            return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -39,6 +34,7 @@ public class DeathwallRespawn : MonoBehaviour
 
     public void Respawn(Vector3 respawnPos) 
     {
+        Debug.Log("REspawn called");
         if (!DeathWallActive)
         { return; }
         DeathWall wall = Instantiate(DeathWallPrefab).GetComponent<DeathWall>();
