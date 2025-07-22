@@ -44,6 +44,23 @@ public class CheckpointManager : MonoBehaviour
         return checkpoints[upcomingCheckpoint - 1].transform.position;
     }
 
+    public void GoToCurrentCheckpoint()
+    {
+        if(upcomingCheckpoint < 1){ return; }
+        FindFirstObjectByType<MovementScript>().transform.position = getRespawnPos();
+    }
+    public void GoToNextCheckpoint()
+    {
+        upcomingCheckpoint++;
+        GoToCurrentCheckpoint();
+    }
+
+    public void GoToPrevCheckpoint()
+    {
+        upcomingCheckpoint--;
+        GoToCurrentCheckpoint();
+    }
+
     private void SceneLoad(Scene scene, LoadSceneMode mode)
     {
         if(scene.name=="WinScreen")
