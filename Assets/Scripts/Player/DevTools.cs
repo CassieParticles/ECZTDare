@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DevTools : MonoBehaviour
 {
@@ -22,9 +23,10 @@ public class DevTools : MonoBehaviour
             Debug.Log("Moving player to next checkpoint");
             FindAnyObjectByType<CheckpointManager>().GoToNextCheckpoint();
         }
-        if(Input.GetKeyDown(KeyCode.Hash))
+        if(Input.GetKeyDown(KeyCode.Semicolon))
         {
             Debug.Log("Reloading level");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
