@@ -622,7 +622,7 @@
 						<Action Name="" ID="{60FCE89E-927C-480A-9026-2755EB85161D}" ShortID="299638435">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Ambience_Death_Pit" ID="{468670A2-AA6E-44F6-9762-4320ACDFC93D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -656,6 +656,28 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Break_Room" ID="{ABB7E198-FF84-4853-A940-421151002695}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Death_Wall_1" ID="{7B228A35-845E-4640-A20E-93E4502AD115}">
+					<ChildrenList>
+						<Action Name="" ID="{AEBA3271-C5F5-4032-AA10-048E3DE543B9}" ShortID="667805125">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Death_Wall_2" ID="{CD9A48E1-81E6-4F0E-95A0-DC6793729968}">
+					<ChildrenList>
+						<Action Name="" ID="{B6073B4E-3833-4023-BEED-F56047F7D664}" ShortID="351599792">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
