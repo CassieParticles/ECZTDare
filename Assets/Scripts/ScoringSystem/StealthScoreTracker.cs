@@ -25,6 +25,16 @@ public class StealthScoreTracker : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void Reset()
+    {
+        score = InitialScore;
+        StealthScoreDisplay scoreDisplay = FindFirstObjectByType<StealthScoreDisplay>();
+        if (scoreDisplay)
+        {
+            scoreDisplay.UpdateGUI(score);
+        }
+    }
+
     public static StealthScoreTracker GetTracker()
     {
         return FindFirstObjectByType<StealthScoreTracker>();

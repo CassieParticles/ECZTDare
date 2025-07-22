@@ -28,5 +28,18 @@ public class DevTools : MonoBehaviour
             Debug.Log("Reloading level");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        if(Input.GetKeyDown(KeyCode.RightShift))
+        {
+            Debug.Log("Resetting score");
+            if(FindAnyObjectByType<ScoreTimer>())
+            {
+                FindAnyObjectByType<ScoreTimer>().Reset();
+            }
+            if (FindAnyObjectByType<StealthScoreTracker>())
+            {
+                FindAnyObjectByType<StealthScoreTracker>().Reset();
+            }
+
+        }
     }
 }
