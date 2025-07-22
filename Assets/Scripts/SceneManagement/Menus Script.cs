@@ -164,25 +164,21 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         winGroup.SetActive(false);
         loseGroup.SetActive(false);
 
+
+
         //Destroy the main score controller when quitting
         MainScoreController scoreController = MainScoreController.GetInstance();
         if (scoreController) {
             scoreController.Quit();
-        } //And the checkpoint manager
-        CheckpointManager checkpointManager = FindAnyObjectByType<CheckpointManager>();
-        if (SceneManager.GetActiveScene().name != "Main Menu" && checkpointManager) {
-            checkpointManager.Quit();
         }
-        //Yes this sucks
-        DeathwallRespawn deathWallRespawner = FindAnyObjectByType<DeathwallRespawn>();
-        if(deathWallRespawner)
-        {
-            deathWallRespawner.Quit();
-        } //Im hopping onto the sucking train
+        //Im hopping onto the sucking train
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         if (scoreManager) {
             scoreManager.Quit();
         }
+
+
+
         SceneManager.LoadScene(sceneName);
         Time.timeScale = 1;
         switchingScene = true;

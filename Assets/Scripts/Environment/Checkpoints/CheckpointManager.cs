@@ -50,9 +50,13 @@ public class CheckpointManager : MonoBehaviour
         {
             Win();
         }
-        if(scene.name!="Main Menu" && scene.name!="LoseScene")
+        if(scene.buildIndex!=0)
         {
             Respawn();
+        }
+        if(scene.buildIndex == 0)
+        {
+            Quit();
         }
     }
 

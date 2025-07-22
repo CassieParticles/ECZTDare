@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathwallRespawn : MonoBehaviour
 {
@@ -25,6 +26,21 @@ public class DeathwallRespawn : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += SceneLoad;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneLoad;
+    }
+
+    private void SceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        //If quitting to main menu
+        if(scene.buildIndex == 0)
+        {
+            Quit();
+        }
     }
     public void DeathWallStart(DeathWall.WallMoveData deathWallData)
     {
@@ -50,7 +66,7 @@ public class DeathwallRespawn : MonoBehaviour
         wall.SetData(wallMoveData);
     }
 
-    public void Quit()
+    private void Quit()
     {
         Destroy(gameObject);
     }
