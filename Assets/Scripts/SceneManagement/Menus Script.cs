@@ -132,6 +132,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
     public void LoadScene(int level)
     {
+        if (transitioning)
+        { return; }
+        transitioning = true;
         StartCoroutine(ChangeScene((LevelManager.Levels)level));
     }
 
@@ -178,6 +181,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             TransitionImage.color = Color.Lerp(black, empty, i);
             yield return null;
         }
+        transitioning = false;
     }
 
     public void Quit() {
