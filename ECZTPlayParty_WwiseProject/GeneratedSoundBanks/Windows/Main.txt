@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	43580157	Turret_Aim			\Default Work Unit\Turret_Aim	
 	107714672	Guard_Found_Emira			\Default Work Unit\Guard_Found_Emira	
 	262057326	Guard_SomeonesHere			\Default Work Unit\Guard_SomeonesHere	
 	311128683	Guard_ShesBack			\Default Work Unit\Guard_ShesBack	
@@ -28,6 +29,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1738078876	Guard_Outside_Steps			\Default Work Unit\Guard_Outside_Steps	
 	1751967765	Boost_Stop			\Default Work Unit\Boost_Stop	
 	1940183317	HK_Activate_Arm			\Default Work Unit\HK_Activate_Arm	
+	2132750258	Turret_Fire			\Default Work Unit\Turret_Fire	
 	2136542107	Guard_HeyStop			\Default Work Unit\Guard_HeyStop	
 	2188867727	Boost_Start			\Default Work Unit\Boost_Start	
 	2222225249	Player_Mode_Shift			\Default Work Unit\Player_Mode_Shift	
@@ -163,6 +165,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	450159016	P_C_Footstep_5	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_5		48096
 	450456830	G_VO_SheDisappeared	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO_SheDisappeared_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_SheDisappeared		204096
 	492016228	P_M_Sliding_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Sliding_1_3AF63341.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_M_Slide\P_M_Sliding_1		432144
+	493878318	Turret_Aim	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Turret_Aim_97A10EF8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Turret_Aim		255096
 	494199292	P_C_Jump_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Jump_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_2		96096
 	500942086	P_D_Jump_4	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_D_Jump\P_D_Jump_4		96096
 	508671079	P_R_Sliding_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Sliding_1_CC02D225.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_R_Slide\P_R_Sliding_1		432144
@@ -175,6 +178,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	593670482	P_M_Footstep_8	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_8		48096
 	598826268	Boost_Rush	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Boost_Rush_BE10BA2A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Boost_Rush		1920144
 	609776334	P_D_Sliding_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Sliding_1_19FB47D3.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_1		432144
+	612569582	Turret_Fire	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Turret_Fire_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Turret_Fire		621096
 	618007706	P_C_Footstep_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_3		48096
 	625955009	Hack_Start_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_D70B0DD1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_2		412396
 	628626341	G_VO_ISeeYou	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO_ISeeYou_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_ISeeYou		192096
@@ -194,7 +198,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	694168546	G_R_Footstep_5	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_R_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_5		48096
 	696859956	P_D_Footstep_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_2		48096
 	706439460	P_D_Footstep_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_3		48096
-	710488528	Ambience_Death_Pit	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525_6E1751D8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Death_Pit		797104
+	710488528	Ambience_Death_Pit	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525_56DD503A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Death_Pit		797104
 	724971133	P_C_Jump_4	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Jump_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_4		96096
 	727420045	Hack_Start_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_5425903F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_1		392284
 	737925208	Ambience_Power_Generator	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521_68E24873.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Power_Generator		245904

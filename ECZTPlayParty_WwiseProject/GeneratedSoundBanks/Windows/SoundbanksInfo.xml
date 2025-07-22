@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{80877768-5839-B95D-36FC-C924AC5FF7BC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{91FD3A24-B602-B8D9-1134-95F81F8036CE}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -423,6 +423,10 @@
 					<ShortName>P_M_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_1_3AF63341.wem</CachePath>
 				</File>
+				<File Id="493878318" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Turret_Aim.wav</ShortName>
+					<CachePath>SFX/Turret_Aim_97A10EF8.wem</CachePath>
+				</File>
 				<File Id="494199292" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Jump_2.wav</ShortName>
 					<CachePath>SFX/P_C_Jump_2_818F3B66.wem</CachePath>
@@ -470,6 +474,10 @@
 				<File Id="609776334" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_D_Sliding_1_19FB47D3.wem</CachePath>
+				</File>
+				<File Id="612569582" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Turret_Fire.wav</ShortName>
+					<CachePath>SFX/Turret_Fire_818F3B66.wem</CachePath>
 				</File>
 				<File Id="618007706" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_3.wav</ShortName>
@@ -549,7 +557,7 @@
 				</File>
 				<File Id="710488528" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav</ShortName>
-					<CachePath>SFX/Soundly Audio/Water, Bubbles, Big, Surfacing 01 SND0525_6E1751D8.wem</CachePath>
+					<CachePath>SFX/Soundly Audio/Water, Bubbles, Big, Surfacing 01 SND0525_56DD503A.wem</CachePath>
 				</File>
 				<File Id="724971133" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Jump_4.wav</ShortName>
@@ -1579,6 +1587,28 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="43580157" Name="Turret_Aim" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.328125" DurationMax="1.328125">
+					<MediaRefs>
+						<MediaRef Id="493878318"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2132750258" Name="Turret_Fire" MaxAttenuation="40" DurationType="OneShot" DurationMin="3.234375" DurationMax="3.234375">
+					<MediaRefs>
+						<MediaRef Id="612569582"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -1675,5 +1705,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5469870D-794E-0B50-A796-83BF0A3AE650}</FileHash>
+	<FileHash>{068BBDAA-AD5F-0BE3-D077-3B05C0B568BD}</FileHash>
 </SoundBanksInfo>
