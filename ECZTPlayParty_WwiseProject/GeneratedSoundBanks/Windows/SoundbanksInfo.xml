@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{D146ACE9-992D-D8D6-9413-B3F3D9BFA974}">
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{8710C189-6E9B-58B6-A305-0A4BF39A603E}">
 			<ShortName>Music_2</ShortName>
 			<Path>Music_2.bnk</Path>
 			<Media>
@@ -32,7 +32,7 @@
 				</Event>
 			</Events>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{BDB0D1B2-7897-136E-101D-9B776474C587}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B88311C5-6FB6-CF8E-08BF-02F69868D0F8}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CCA3A258-8BEE-0838-16DC-515D69572C65}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{00148842-B213-6065-F054-E77E4B49BE16}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -736,6 +736,11 @@
 					<CachePath>SFX/P_C_Landing_2_818F3B66.wem</CachePath>
 				</File>
 			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1675424737" Name="Extreme_Limiting_1" LibName="Wwise Peak Limiter" LibId="7208963"/>
+				</ShareSets>
+			</Plugins>
 			<Events>
 				<Event Id="1720356053" Name="Ambience_Bass" DurationType="Infinite">
 					<MediaRefs>
@@ -885,6 +890,11 @@
 					<MediaRefs>
 						<MediaRef Id="269273201"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1675424737"/>
+						</ShareSets>
+					</PluginRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -933,6 +943,11 @@
 								<MediaRef Id="404282586"/>
 								<MediaRef Id="426984840"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="2195636714"/>
@@ -946,6 +961,11 @@
 								<MediaRef Id="901982837"/>
 								<MediaRef Id="1036630904"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="841620460" Default="true"/>
@@ -959,6 +979,11 @@
 								<MediaRef Id="807950240"/>
 								<MediaRef Id="857966639"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="437659151"/>
@@ -972,6 +997,11 @@
 								<MediaRef Id="899660334"/>
 								<MediaRef Id="1031678536"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
@@ -1069,6 +1099,11 @@
 						<MediaRef Id="901982837"/>
 						<MediaRef Id="1036630904"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1675424737"/>
+						</ShareSets>
+					</PluginRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -1614,5 +1649,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{99C9909A-9017-9C8A-AE4A-73670DF4E41D}</FileHash>
+	<FileHash>{6C72A986-E129-2B69-7CD8-A6769D3D07D0}</FileHash>
 </SoundBanksInfo>
