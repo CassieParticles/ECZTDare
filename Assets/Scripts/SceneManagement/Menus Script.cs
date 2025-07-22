@@ -114,6 +114,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (hasUpgrade) {
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
+
+        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
     }
 
     public void FinishAndSaveLevel(int level)
@@ -498,7 +500,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         Time.timeScale = 1;
 
-        FindAnyObjectByType<LevelManager>().AddCallback(ChangeLevel);
+        
     }
 
     private void ChangeLevel(LevelManager.Levels level, bool reload)
