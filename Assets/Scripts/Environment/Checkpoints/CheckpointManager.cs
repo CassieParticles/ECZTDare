@@ -71,7 +71,7 @@ public class CheckpointManager : MonoBehaviour
         }
         FindFirstObjectByType<MovementScript>().transform.position = getRespawnPos();
 
-        DeathwallRespawn deathwallRespawner = FindAnyObjectByType<DeathwallRespawn>();
+        DeathwallRespawn deathwallRespawner = DeathwallRespawn.GetInstance();
         if(deathwallRespawner)
         {
             deathwallRespawner.Respawn(getRespawnPos());
