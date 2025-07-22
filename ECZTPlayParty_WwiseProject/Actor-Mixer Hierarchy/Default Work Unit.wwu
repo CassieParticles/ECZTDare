@@ -6150,35 +6150,25 @@
 								<ActiveSource Name="Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521" ID="{25120158-62BD-4DBE-ABC4-1E11DAC38B0A}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" ShortID="560571358">
+						<Sound Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" ShortID="560571358">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="Highpass" Type="int16">
-									<ValueList>
-										<Value>15</Value>
-									</ValueList>
-								</Property>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
-										<Value>45</Value>
+										<Value>50</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>-350</Value>
+										<Value>-80</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
-									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+									<ObjectRef Name="Death_Wall_1" ID="{980DF38A-4899-42CA-97B5-CDEF658CD34F}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
 								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
@@ -6213,6 +6203,87 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Death_Pit" ID="{6A091471-D25D-40AA-A8A3-6D229739D614}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Ambience_Death_Pit" ID="{468670A2-AA6E-44F6-9762-4320ACDFC93D}" ShortID="571905735">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>8</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MakeUpGain" Type="Real64">
+									<ValueList>
+										<Value>13</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-1250</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND0525"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://2-dot-soundly-server.appspot.com/?Type=GetFile&amp;SessionID=1753175636G5GflVhldm8SgLFcaGf&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND0525/L2FwcGhvc3RpbmdfcHJvZC9ibG9icy9BRW5CMlVwQ1RiV1RPNnU4YnprRXV4MDhUYW1GRjBpc19IeEN1Si0xbVNyNTlNYUxJNkpQNlhqVzRib3dsdnpCWTVVMXRUTXNnNlpMLThIXzFEVjJLVlNXZjhNYk1YdlBDUS4zaG5sR19kMWxKdjVidXJr"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="37.8"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\Test\AppData\Roaming\Soundly\Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Water, Bubbles, Big, Surfacing 01 SND0525" ID="{36ED7864-3C02-4E00-9153-30B19784C704}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.493950082914531"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="2.24474456867833"/>
+										<Property Name="LoopEnd" Type="Real64" Value="5.54243704091153"/>
+										<Property Name="MarkerInputMode" Type="int16" Value="2"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND0525"/>
+										<Property Name="TrimBegin" Type="Real64" Value="1.73555218768988"/>
+										<Property Name="TrimEnd" Type="Real64" Value="5.88639453475593"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="710488528"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Water, Bubbles, Big, Surfacing 01 SND0525" ID="{36ED7864-3C02-4E00-9153-30B19784C704}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
