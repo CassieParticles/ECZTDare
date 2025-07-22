@@ -52,12 +52,14 @@ public class CheckpointManager : MonoBehaviour
     public void GoToNextCheckpoint()
     {
         upcomingCheckpoint++;
+        if (upcomingCheckpoint > checkpoints.Length - 1){ upcomingCheckpoint = checkpoints.Length - 1; }
         GoToCurrentCheckpoint();
     }
 
     public void GoToPrevCheckpoint()
     {
         upcomingCheckpoint--;
+        if(upcomingCheckpoint < 0){  upcomingCheckpoint = 0; }
         GoToCurrentCheckpoint();
     }
 
