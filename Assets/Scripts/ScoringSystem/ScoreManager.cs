@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,11 +17,13 @@ public class ScoreManager : MonoBehaviour
     private SaveData currentSaveData = new SaveData();
 
 
-    public int level = 1;
+    private int level = 1;
+    public string level1Name = "Level 1";
+    public string level2Name = "Boss Level (2v3)";
     private int section = 1;
 
     public List<ScoreData> scores = new List<ScoreData>();
-
+     
     public void SaveScoresToJson() {
         string filePath = Application.persistentDataPath + "/ScoreData.json"; 
 
@@ -36,17 +39,23 @@ public class ScoreManager : MonoBehaviour
             currentSaveData = JsonUtility.FromJson<SaveData>(oldSaveDataString);
         }
 
+        if (SceneManager.GetActiveScene().name == level1Name) {
+            level = 1;
+        } else if (SceneManager.GetActiveScene().name == level2Name) {
+            level = 2;
+        }
+
         if (currentSaveData != null) {
             //Set the relevant save data
             if (level == 1) {
 
                 if (currentSaveData.level1Scores.Count == scores.Count) {
                     for (int i = 0; i < scores.Count - 1; i++) {
-                        if (scores[i].chaseSection) {
+                        if (scores[i].chaseSection) { //If chase section, compare times
                             if (scores[i].chaseTimeSeconds < currentSaveData.level1Scores[i].chaseTimeSeconds) {
                                 currentSaveData.level1Scores[i].chaseTimeSeconds = scores[i].chaseTimeSeconds;
                             }
-                        } else { //If stealth section
+                        } else { //If stealth section, compare stealth scores
                             if (scores[i].stealthScore > currentSaveData.level1Scores[i].stealthScore) {
                                 currentSaveData.level1Scores[i].stealthScore = scores[i].stealthScore;
                             }
