@@ -6260,7 +6260,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 								</Reference>
 								<Reference Name="UserAuxSend0">
 									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
@@ -6372,6 +6372,131 @@
 								<ActiveSource Name="Water, Bubbles, Big, Surfacing 01 SND0525" ID="{36ED7864-3C02-4E00-9153-30B19784C704}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="C_Breakable_Floor" ID="{E932F286-B7D6-4FFC-BBCC-73B473CE2588}" ShortID="691520455">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Directional" ID="{F72B9469-C14A-45DC-974C-E03EF7599AD2}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="C_Breakable_Floor_1" ID="{A955DF56-87AA-4799-823B-B685C707D1A6}" ShortID="966063479">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_1" ID="{CC91759D-2242-4297-AC5A-A8632A3535B0}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="605867480"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_1" ID="{CC91759D-2242-4297-AC5A-A8632A3535B0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_2" ID="{43AE80E3-75D4-49DD-9FE7-38825D050712}" ShortID="570448981">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_2" ID="{469BCE35-8EED-48AB-AFE0-E1ECB4CD95DE}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="467800258"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_2" ID="{469BCE35-8EED-48AB-AFE0-E1ECB4CD95DE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_3" ID="{8624CD61-4878-4EEB-BE67-1049B05CFCF4}" ShortID="736801617">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_3" ID="{DA4C30DF-AE23-4632-8E66-CCA7C8A726C4}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="145173678"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_3" ID="{DA4C30DF-AE23-4632-8E66-CCA7C8A726C4}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_4" ID="{25BDDB1E-E829-4709-A409-2A8953F8DAC5}" ShortID="623280504">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_4" ID="{91D4E232-437F-476F-8F24-713847145970}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="173403282"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_4" ID="{91D4E232-437F-476F-8F24-713847145970}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{1A4375DD-F62B-4C2E-BA20-8A6A4637ACE3}" ShortID="114810053">

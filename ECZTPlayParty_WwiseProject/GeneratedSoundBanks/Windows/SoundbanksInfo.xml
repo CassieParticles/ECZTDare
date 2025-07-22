@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{91FD3A24-B602-B8D9-1134-95F81F8036CE}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{1C061E9C-033A-2022-0A60-1115F672A0D9}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -255,6 +255,10 @@
 					<ShortName>P_M_Jump_3.wav</ShortName>
 					<CachePath>SFX/P_M_Jump_3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="145173678" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_3.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="146773433" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_VO2_ShesBack.wav</ShortName>
 					<CachePath>SFX/G_VO2_ShesBack_818F3B66.wem</CachePath>
@@ -262,6 +266,10 @@
 				<File Id="152193640" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_3.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_3_8F338B28.wem</CachePath>
+				</File>
+				<File Id="173403282" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_4.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_4_818F3B66.wem</CachePath>
 				</File>
 				<File Id="176338131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_4.wav</ShortName>
@@ -419,6 +427,10 @@
 					<ShortName>G_VO_SheDisappeared.wav</ShortName>
 					<CachePath>SFX/G_VO_SheDisappeared_818F3B66.wem</CachePath>
 				</File>
+				<File Id="467800258" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_2.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="492016228" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_1_3AF63341.wem</CachePath>
@@ -470,6 +482,10 @@
 				<File Id="598826268" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Boost_Rush.wav</ShortName>
 					<CachePath>SFX/Boost_Rush_BE10BA2A.wem</CachePath>
+				</File>
+				<File Id="605867480" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_1.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="609776334" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_1.wav</ShortName>
@@ -824,6 +840,20 @@
 						<MediaRef Id="591365294"/>
 					</MediaRefs>
 					<AuxBusRefs>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2736592221" Name="Breakable_Floor" MaxAttenuation="100" DurationType="OneShot" DurationMin="0.83825" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="145173678"/>
+						<MediaRef Id="173403282"/>
+						<MediaRef Id="467800258"/>
+						<MediaRef Id="605867480"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
@@ -1705,5 +1735,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{068BBDAA-AD5F-0BE3-D077-3B05C0B568BD}</FileHash>
+	<FileHash>{C42DA5E0-184D-F0F7-1755-77D8BE8FE289}</FileHash>
 </SoundBanksInfo>
