@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BreakableBlock : MonoBehaviour
 {
+    public AK.Wwise.Event breakableBlock;
 
     [Tooltip("Does the block use a trigger collider, it can be triggered by chaining regardless")][SerializeField] bool noTriggerBox = false;
     [Tooltip("How long the block waits before beginning to break")][SerializeField] float waitDuration = 1f;
@@ -43,6 +44,7 @@ public class BreakableBlock : MonoBehaviour
         foreach (var block in chainBlocks) {
             if (block != null) {
                 block.BeginBreaking();
+                breakableBlock.Post(gameObject);
             }
         }
         Destroy(gameObject);

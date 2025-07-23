@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TurretBehaviour : BaseEnemyBehaviour
 {
+    public AK.Wwise.Event turretFire;
 
     private void Awake()
     {
@@ -24,6 +25,9 @@ public class TurretBehaviour : BaseEnemyBehaviour
 
         if(Player && suspicion > 100)
         {
+            //Play firing sound
+            turretFire.Post(gameObject);
+
             //Kill player
             FindAnyObjectByType<MenuScript>().Lose();
         }

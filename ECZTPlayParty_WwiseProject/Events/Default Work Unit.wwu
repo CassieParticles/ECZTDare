@@ -622,7 +622,7 @@
 						<Action Name="" ID="{60FCE89E-927C-480A-9026-2755EB85161D}" ShortID="299638435">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+									<ObjectRef Name="Ambience_Death_Pit" ID="{468670A2-AA6E-44F6-9762-4320ACDFC93D}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -656,6 +656,61 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="Break_Room" ID="{ABB7E198-FF84-4853-A940-421151002695}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Death_Wall_1" ID="{7B228A35-845E-4640-A20E-93E4502AD115}">
+					<ChildrenList>
+						<Action Name="" ID="{AEBA3271-C5F5-4032-AA10-048E3DE543B9}" ShortID="667805125">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Death_Wall_2" ID="{CD9A48E1-81E6-4F0E-95A0-DC6793729968}">
+					<ChildrenList>
+						<Action Name="" ID="{B6073B4E-3833-4023-BEED-F56047F7D664}" ShortID="351599792">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Turret_Aim" ID="{E7416A68-B084-4E2F-8BCA-585D6B3FABDA}">
+					<ChildrenList>
+						<Action Name="" ID="{270719E1-D67C-4D96-8B8B-9323010F8D0F}" ShortID="555664685">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Turret_Aim" ID="{EAEB16FC-2F2F-4EDF-87EA-BED28B6C8470}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Turret_Fire" ID="{C5C7F487-B1F2-47D0-BFA0-2CAAB4E7203D}">
+					<ChildrenList>
+						<Action Name="" ID="{2D0E2812-B3B0-4DD8-A937-782C0507A5B3}" ShortID="344321115">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Turret_Fire" ID="{A13A908E-E72E-4223-8B93-DFDEAADD41DA}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Breakable_Floor" ID="{CA053CA2-C79B-4E76-BA12-7FCD4C231194}">
+					<ChildrenList>
+						<Action Name="" ID="{154147BA-B484-404A-9815-2AE63C5442CF}" ShortID="465174100">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="C_Breakable_Floor" ID="{E932F286-B7D6-4FFC-BBCC-73B473CE2588}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
