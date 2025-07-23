@@ -65,7 +65,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     bool lost = false;
     int deathCounter; //This is to allow for skipping lose screen but can be reused I guess
 
-    bool canPause = true;
+    public bool canPause = true;
     public bool paused;
     public bool keybindsOpen;
     public bool creditsOpen;
