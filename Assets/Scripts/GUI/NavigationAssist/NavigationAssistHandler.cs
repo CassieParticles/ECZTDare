@@ -9,7 +9,7 @@ public class NavigationAssistHandler : MonoBehaviour
     private static NavigationAssistHandler instance;
     private void Awake()
     {
-        //Ensure thi sis singleton
+        //Ensure this is singleton
         if(instance)
         {
             Destroy(gameObject);
