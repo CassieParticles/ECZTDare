@@ -6,6 +6,18 @@ public class NavigationAssistHandler : MonoBehaviour
 {
     public bool navigationAssistEnabled { get; private set; }
 
+    private static NavigationAssistHandler instance;
+    private void Awake()
+    {
+        //Ensure thi sis singleton
+        if(instance)
+        {
+            Destroy(gameObject);
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void EnableNavAssist()
     {
         navigationAssistEnabled = true;
@@ -19,5 +31,6 @@ public class NavigationAssistHandler : MonoBehaviour
     public void SetNavAssist(bool navAssist)
     {
         navigationAssistEnabled = navAssist;
+        Debug.Log(navAssist.ToString());
     }
 }
