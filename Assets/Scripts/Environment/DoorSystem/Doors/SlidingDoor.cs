@@ -16,18 +16,24 @@ public class SlidingDoor : BaseDoor
     {
         desiredLocation = ClosePosition;
         isLocked = true;
+
+        observer.NotifyListeners(DoorAction.Lock);
     }
 
     public override void Unlock()
     {
         desiredLocation = OpenPosition;
         isLocked = false;
+
+        observer.NotifyListeners(DoorAction.Unlock);
     }
 
     public override void ToggleState()
     {
         desiredLocation = isLocked ? OpenPosition : ClosePosition;
         isLocked = !isLocked;
+
+        observer.NotifyListeners(DoorAction.Toggle);
     }
 
     private new void Awake()
