@@ -3871,6 +3871,9 @@
 								</Property>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>2</Value>
+									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
 											<Modifier Name="" ID="{60C2FBD5-6A31-4C05-B153-63A8CE6D117B}">
@@ -4780,6 +4783,21 @@
 									</ChildrenList>
 								</RandomSequenceContainer>
 							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Effects">
+									<Reference>
+										<Local>
+											<EffectSlot Name="" ID="{F133ABD7-7D6E-40D1-A326-5B21890522F3}" ShortID="581004500">
+												<ReferenceList>
+													<Reference Name="Effect" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+														<ObjectRef Name="Extreme_Limiting_1" ID="{8F08A8A7-3313-4E5D-9EBD-2B1B564DE411}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+													</Reference>
+												</ReferenceList>
+											</EffectSlot>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 							<GroupingInfo>
 								<GroupingBehaviorList>
 									<GroupingBehavior>
@@ -5589,6 +5607,92 @@
 								<ActiveSource Name="Games, Video, Game Console, Playstation, Controller, Handling, Button Click SND8256" ID="{0863535C-F92D-4F31-B6C4-FB2A299C9F7D}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Turret_Aim" ID="{EAEB16FC-2F2F-4EDF-87EA-BED28B6C8470}" ShortID="209219180">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Turret_Aim" ID="{460780E9-7111-4613-BC65-49A88835C9C6}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.269449443717277"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Turret_Aim.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="493878318"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Turret_Aim" ID="{460780E9-7111-4613-BC65-49A88835C9C6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Turret_Fire" ID="{A13A908E-E72E-4223-8B93-DFDEAADD41DA}" ShortID="364998741">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Enemy" ID="{A844FACA-2E10-4AE7-BB0D-DD40BE2C0B05}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Turret_Fire" ID="{4DA6A3DF-49E2-4AE3-B5C2-1EBA43366781}">
+									<Language>SFX</Language>
+									<AudioFile>Turret_Fire.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="612569582"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Turret_Fire" ID="{4DA6A3DF-49E2-4AE3-B5C2-1EBA43366781}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Environment" ID="{B13199EF-5745-4C54-9036-545EB1958A60}" ShortID="1018979108">
@@ -5990,7 +6094,7 @@
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-10</Value>
+										<Value>-3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -6032,6 +6136,21 @@
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Effects">
+									<Reference>
+										<Local>
+											<EffectSlot Name="" ID="{33CA3A1D-90E5-42FD-9DBC-752DF6C98BAF}" ShortID="176762356">
+												<ReferenceList>
+													<Reference Name="Effect" PluginName="Wwise Peak Limiter" CompanyID="0" PluginID="110" PluginType="3">
+														<ObjectRef Name="Extreme_Limiting_1" ID="{8F08A8A7-3313-4E5D-9EBD-2B1B564DE411}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+													</Reference>
+												</ReferenceList>
+											</EffectSlot>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
 							<ActiveSourceList>
 								<ActiveSource Name="Electricity, Buzz   Hum, Force Field, Sparkles, Hum SND122507" ID="{D84881CC-157B-4505-A02A-7421BD0EDAC1}" Platform="Linked"/>
 							</ActiveSourceList>
@@ -6117,41 +6236,31 @@
 								<ActiveSource Name="Motors, Combustion, Generator, Diesel Machine, Engine Idle SND30521" ID="{25120158-62BD-4DBE-ABC4-1E11DAC38B0A}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Ambience_Death_Pit" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" ShortID="560571358">
+						<Sound Name="Ambience_Death_Wall_1" ID="{2010C63D-D408-4FC9-84AB-3B9A78704CB8}" ShortID="560571358">
 							<PropertyList>
 								<Property Name="3DSpatialization" Type="int16" Value="1"/>
-								<Property Name="Highpass" Type="int16">
-									<ValueList>
-										<Value>15</Value>
-									</ValueList>
-								</Property>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
-										<Value>45</Value>
+										<Value>50</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>-350</Value>
+										<Value>-80</Value>
 									</ValueList>
 								</Property>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
-									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+									<ObjectRef Name="Death_Wall_1" ID="{980DF38A-4899-42CA-97B5-CDEF658CD34F}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
 								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
 								</Reference>
 								<Reference Name="UserAuxSend0">
 									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
@@ -6182,6 +6291,212 @@
 								<ActiveSource Name="Death_Pit" ID="{6A091471-D25D-40AA-A8A3-6D229739D614}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="Ambience_Death_Pit" ID="{468670A2-AA6E-44F6-9762-4320ACDFC93D}" ShortID="571905735">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>8</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MakeUpGain" Type="Real64">
+									<ValueList>
+										<Value>13</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-1250</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND0525"/>
+								<Property Name="Soundly:FileName" Type="string" Value="https://2-dot-soundly-server.appspot.com/?Type=GetFile&amp;SessionID=1753175636G5GflVhldm8SgLFcaGf&amp;File=soundlyeu/1426367345Ff4sxqvM_wkFwG/SND0525/L2FwcGhvc3RpbmdfcHJvZC9ibG9icy9BRW5CMlVwQ1RiV1RPNnU4YnprRXV4MDhUYW1GRjBpc19IeEN1Si0xbVNyNTlNYUxJNkpQNlhqVzRib3dsdnpCWTVVMXRUTXNnNlpMLThIXzFEVjJLVlNXZjhNYk1YdlBDUS4zaG5sR19kMWxKdjVidXJr"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="37.8"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\Test\AppData\Roaming\Soundly\Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Power_Generator" ID="{48960951-0A20-4F59-8E0B-9E62E99FF8A9}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Ambience" ID="{4796793A-1815-4D60-8D2A-3D0206603B6D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Water, Bubbles, Big, Surfacing 01 SND0525" ID="{36ED7864-3C02-4E00-9153-30B19784C704}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.493950082914531"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="2.24474456867833"/>
+										<Property Name="LoopEnd" Type="Real64" Value="5.54243704091153"/>
+										<Property Name="MarkerInputMode" Type="int16" Value="2"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND0525"/>
+										<Property Name="TrimBegin" Type="Real64" Value="1.73555218768988"/>
+										<Property Name="TrimEnd" Type="Real64" Value="5.88639453475593"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="710488528"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Water, Bubbles, Big, Surfacing 01 SND0525" ID="{36ED7864-3C02-4E00-9153-30B19784C704}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<RandomSequenceContainer Name="C_Breakable_Floor" ID="{E932F286-B7D6-4FFC-BBCC-73B473CE2588}" ShortID="691520455">
+							<PropertyList>
+								<Property Name="3DSpatialization" Type="int16" Value="1"/>
+								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="Directional" ID="{F72B9469-C14A-45DC-974C-E03EF7599AD2}" WorkUnitID="{AFB6C779-E884-4BA8-AEB9-AA40441B8A68}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend0">
+									<ObjectRef Name="LargeRoomReverb" ID="{3ED40579-B85F-4E86-951C-EA8FFFEE4EB4}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend1">
+									<ObjectRef Name="MediumRoomReverb" ID="{C5928B3A-4024-49AA-96EA-F3B30C22688B}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend2">
+									<ObjectRef Name="OutsideReverb" ID="{BE831345-B552-49DA-A948-1A5EE599E7B7}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+								<Reference Name="UserAuxSend3">
+									<ObjectRef Name="SmallRoomReverb" ID="{DC0376AD-0947-4D86-978D-2C819894473A}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="C_Breakable_Floor_1" ID="{A955DF56-87AA-4799-823B-B685C707D1A6}" ShortID="966063479">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_1" ID="{CC91759D-2242-4297-AC5A-A8632A3535B0}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="605867480"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_1" ID="{CC91759D-2242-4297-AC5A-A8632A3535B0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_2" ID="{43AE80E3-75D4-49DD-9FE7-38825D050712}" ShortID="570448981">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_2" ID="{469BCE35-8EED-48AB-AFE0-E1ECB4CD95DE}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="467800258"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_2" ID="{469BCE35-8EED-48AB-AFE0-E1ECB4CD95DE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_3" ID="{8624CD61-4878-4EEB-BE67-1049B05CFCF4}" ShortID="736801617">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_3" ID="{DA4C30DF-AE23-4632-8E66-CCA7C8A726C4}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_3.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="145173678"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_3" ID="{DA4C30DF-AE23-4632-8E66-CCA7C8A726C4}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="C_Breakable_Floor_4" ID="{25BDDB1E-E829-4709-A409-2A8953F8DAC5}" ShortID="623280504">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="C_Breakable_Floor_4" ID="{91D4E232-437F-476F-8F24-713847145970}">
+											<Language>SFX</Language>
+											<AudioFile>C_Breakable_Floor_4.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="173403282"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="C_Breakable_Floor_4" ID="{91D4E232-437F-476F-8F24-713847145970}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{1A4375DD-F62B-4C2E-BA20-8A6A4637ACE3}" ShortID="114810053">

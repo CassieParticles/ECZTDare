@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213eb325be7bdb14c9b65bb59bfc04ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  breakableBlock:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b56535b1e6ff9754b8288f701797dbdd, type: 2}
   noTriggerBox: 0
   waitDuration: 1
   breakingDuration: 1
