@@ -82,8 +82,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public float sceneTransitionSeconds = 1f;
     bool transitioning = false;
 
-    int savefile = 1; //1 2 and 3
-
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
@@ -120,7 +118,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         ScoreManager scoreManager = FindAnyObjectByType<ScoreManager>();
         if (scoreManager != null) {
-            scoreManager.SaveScoresToJson(savefile);
+            scoreManager.SaveScoresToJson();
         }
 
         ChangeScene(sceneName);
@@ -524,6 +522,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 hasUpgrade = true;
             }
             CloseMenu();
+        }
+
+        //Create a new save file if none exists
+        string filePath = Application.persistentDataPath + "/ScoreData.json";
+        if (!System.IO.File.Exists(filePath)) {
+            System.IO.File.Create(filePath);
         }
 
         Time.timeScale = 1;

@@ -4407,7 +4407,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 422859147733701173}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: FinishAndSaveLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11904,7 +11904,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 422859147733701173}
         m_TargetAssemblyTypeName: MenuScript, Assembly-CSharp
-        m_MethodName: ChangeScene
+        m_MethodName: FinishAndSaveLevel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
