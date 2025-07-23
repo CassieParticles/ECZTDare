@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DeathWall : MonoBehaviour
 {
+    public AK.Wwise.Event deathWall;
+
     public struct WallMoveData
     {
         public float closeDist;
@@ -45,6 +47,9 @@ public class DeathWall : MonoBehaviour
         desiredSpeed = wallData.speedMedium;
         currentDistance = Distance.Medium;
 
+        //Starts the audio
+        deathWall.Post(gameObject);
+
         Player = FindAnyObjectByType<MovementScript>().gameObject;
     }
 
@@ -65,6 +70,9 @@ public class DeathWall : MonoBehaviour
             currentAcc = wallData.AccCloseMedium;
             currentDistance = Distance.Close;
             Debug.Log("Close speed");
+
+            //Sets the "Music" State Group's active State to "Alarm_High"
+            AkSoundEngine.SetState("Music", "Alarm_High");
         }
         else if (distance >= wallData.closeDist && distance < wallData.mediumDist && currentDistance != Distance.Medium)
         {
@@ -72,6 +80,9 @@ public class DeathWall : MonoBehaviour
             currentAcc = currentDistance == Distance.Close ? wallData.AccCloseMedium : wallData.AccMediumFar;
             currentDistance = Distance.Medium;
             Debug.Log("Medium speed");
+
+            //Sets the "Music" State Group's active State to "Alarm_Middle"
+            AkSoundEngine.SetState("Music", "Alarm_Middle");
         }
         else if (distance >= wallData.mediumDist && currentDistance != Distance.Far)
         {
@@ -79,6 +90,9 @@ public class DeathWall : MonoBehaviour
             currentAcc = wallData.AccMediumFar;
             currentDistance = Distance.Far;
             Debug.Log("Far speed");
+
+            //Sets the "Music" State Group's active State to "Alarm_Low"
+            AkSoundEngine.SetState("Music", "Alarm_Low");
         }
     }
     private void UpdateSpeed()
