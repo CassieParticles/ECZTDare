@@ -102,6 +102,9 @@ public class ScoreManager : MonoBehaviour
         }
         //Debug.Log("Saved Section " + section);
         section++;
+
+        GameObject.Find("SectionUIChanger").GetComponent<SectionUIChange>().BreakRoomDisplayScore(score);
+        Debug.Log("Found Section Changer");
     }
 
     //Singleton stuff

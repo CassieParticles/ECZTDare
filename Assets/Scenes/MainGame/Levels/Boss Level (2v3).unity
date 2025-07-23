@@ -22787,6 +22787,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreTrackBegin
       objectReference: {fileID: 0}
+    - target: {fileID: 5011445665297746173, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
+      propertyPath: TrackSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8523209991702817418, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
       propertyPath: m_LocalScale.y
       value: 18
@@ -81032,6 +81036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreTrackBegin (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5011445665297746173, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
+      propertyPath: TrackStealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8523209991702817418, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
       propertyPath: m_LocalScale.y
       value: 20
@@ -87621,7 +87629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3081776454409748851, guid: 88f9b064d57244541957a0eedabee6bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -508.9
+      value: -507.9
       objectReference: {fileID: 0}
     - target: {fileID: 3081776454409748851, guid: 88f9b064d57244541957a0eedabee6bd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -323571,6 +323579,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreTrackBegin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5011445665297746173, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
+      propertyPath: TrackStealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8523209991702817418, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
       propertyPath: m_LocalScale.y
       value: 20
@@ -324469,6 +324481,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1605436272716848830}
+    - target: {fileID: 8930346738704683605, guid: f65c057d354841c479d981f643443666, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -326500,6 +326516,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreTrackBegin (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5011445665297746173, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
+      propertyPath: TrackSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8523209991702817418, guid: dd91b1f337da1fa45ae3bcd582f9dfbc, type: 3}
       propertyPath: m_LocalScale.y
       value: 20
@@ -327754,6 +327774,63 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 0
+--- !u!1001 &1953573286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2866253700357602448, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_Name
+      value: ScoreManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4372.1426
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.473293
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15223485
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499874684078468997, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ba6b999439a656f458e9d24a2aa4b98c, type: 3}
 --- !u!1 &1964759654
 GameObject:
   m_ObjectHideFlags: 0
@@ -686301,7 +686378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7019767630549878440, guid: 28594650df069e54c831463a5b119ee6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -547.4276
+      value: -550.1
       objectReference: {fileID: 0}
     - target: {fileID: 7019767630549878440, guid: 28594650df069e54c831463a5b119ee6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -686553,6 +686630,7 @@ SceneRoots:
   - {fileID: 2112280435}
   - {fileID: 1191714381}
   - {fileID: 463175931}
+  - {fileID: 1953573286}
   - {fileID: 1374943338}
   - {fileID: 1323192159}
   - {fileID: 1761213679}

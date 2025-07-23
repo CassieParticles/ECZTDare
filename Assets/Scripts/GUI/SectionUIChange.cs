@@ -7,6 +7,7 @@ public class SectionUIChange : MonoBehaviour
     GameObject chaseUI;
     GameObject stealthUI;
     GameObject breakroomUI;
+    BreakroomDisplay breakroomScoreDisplay;
 
     public enum UITypes {
         chase,
@@ -20,6 +21,9 @@ public class SectionUIChange : MonoBehaviour
         chaseUI = transform.GetChild(0).gameObject;
         stealthUI = transform.GetChild(1).gameObject;
         breakroomUI = transform.GetChild(2).gameObject;
+        breakroomScoreDisplay = breakroomUI.GetComponentInChildren<BreakroomDisplay>();
+        breakroomScoreDisplay.scores = new List<ScoreData>();
+        breakroomScoreDisplay.scoresText = new List<string>();
 
         chaseUI.SetActive(false);
         stealthUI.SetActive(false);
@@ -48,5 +52,9 @@ public class SectionUIChange : MonoBehaviour
                 breakroomUI.SetActive(true);
                 break;
         }
+    }
+
+    public void BreakRoomDisplayScore(ScoreData score) {
+        breakroomScoreDisplay.AddScore(score);
     }
 }
