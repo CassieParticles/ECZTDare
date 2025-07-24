@@ -9970,25 +9970,25 @@ MonoBehaviour:
   fastFallActivationSpeed: 5
   fastFallMult: 8
   maxFallSpeed: 27.9
-  fallSlowsRunMult: 0.2
+  fallSlowsRunMult: 0.15
   coyoteTime: 0.05
   wallClingSpeed: 0
   walljumpRayGap: 0.5
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  slideDeceleration: 0.8
+  slideDeceleration: 0.4
   velocityToSlide: 12
   velocityEndSlide: 5
   maxCrouchSpeed: 8
   crouchAcceleration: 10
   crouchDeceleration: 3
-  batteryRecharge: 10
+  batteryRecharge: 15
   minimumBatteryToCloak: 5
-  cloakDepletion: 45
+  cloakDepletion: 20
   dashSpeed: 25
-  dashDuration: 0.2
-  dashBatteryCost: 33
+  dashDuration: 0.35
+  dashBatteryCost: 34
   dashCooldown: 0.2
   dashChargesPerJump: 1
   sliding: 0
@@ -10012,7 +10012,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 75e9a95650fe1594ea89d445026eb92d, type: 2}
   target: {fileID: 0}
-  hackChargeRate: 10
+  hackChargeRate: 20
   hackCharges: 3
   hackCharge: 100
   hasHacked: 0
