@@ -9959,8 +9959,9 @@ MonoBehaviour:
   footstepRate: 0.2
   footstepRateScaler: 3
   maxRunSpeed: 18
-  acceleration: 20
-  deceleration: 4.5
+  acceleration: 25
+  deceleration: 6
+  startingSpeed: 2
   snapToMaxRunSpeedMult: 1
   snapToLedgeTopRayHeight: 0.29
   snapToLedgeBottomRayHeight: 0.05
