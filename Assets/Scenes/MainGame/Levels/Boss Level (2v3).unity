@@ -49492,11 +49492,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8297345914991704381, guid: b5fb5c8bedda2e749ab5e5a9ef0ef600, type: 3}
       propertyPath: cameras.Array.data[0].waitDuration
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8297345914991704381, guid: b5fb5c8bedda2e749ab5e5a9ef0ef600, type: 3}
       propertyPath: cameras.Array.data[0].blendDuration
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8297345914991704381, guid: b5fb5c8bedda2e749ab5e5a9ef0ef600, type: 3}
       propertyPath: cameras.Array.data[0].finalPosition.x
@@ -63425,7 +63425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7961786338929313749, guid: b5fb5c8bedda2e749ab5e5a9ef0ef600, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 0
+      value: 80.32873
       objectReference: {fileID: 0}
     - target: {fileID: 8137086842511594914, guid: b5fb5c8bedda2e749ab5e5a9ef0ef600, type: 3}
       propertyPath: m_Name
