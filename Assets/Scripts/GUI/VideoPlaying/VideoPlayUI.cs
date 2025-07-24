@@ -7,15 +7,6 @@ public class VideoPlayUI : MonoBehaviour
 {
     VideoPlayer videoPlayer;
 
-    private void Start()
-    {
-        videoPlayer.loopPointReached += VideoEnd;
-    }
-
-    private void VideoEnd(VideoPlayer vp)
-    {
-        videoPlayer.playbackSpeed *= 1.1f;
-    }
 
     public void OpenVideo(VideoClip clipToPlay)
     {
