@@ -7,11 +7,6 @@ public class VideoPlayUI : MonoBehaviour
 {
     VideoPlayer videoPlayer;
 
-    private void Awake()
-    {
-        GetComponent<VideoPlayer>();
-    }
-
     private void Start()
     {
         videoPlayer.loopPointReached += VideoEnd;
@@ -23,8 +18,9 @@ public class VideoPlayUI : MonoBehaviour
     }
     public void OpenVideo(VideoClip clipToPlay)
     {
+        gameObject.SetActive(true);
         if (!clipToPlay){ return; }
-        if (!videoPlayer){ return; }
+        if (!videoPlayer){ videoPlayer = GetComponent<VideoPlayer>(); }
 
         //Play video
         videoPlayer.clip = clipToPlay;
@@ -40,14 +36,12 @@ public class VideoPlayUI : MonoBehaviour
             menuScript.canPause = false;
         }
 
-        gameObject.SetActive(true);
+        
     }
 
     public void CloseVideo()
     {
-        gameObject.SetActive(false);
-
-        if(!videoPlayer){ return; }
+        if(!videoPlayer){ videoPlayer = GetComponent<VideoPlayer>(); }
 
         //Stop video
         videoPlayer.Pause();
@@ -62,5 +56,6 @@ public class VideoPlayUI : MonoBehaviour
         {
             menuScript.canPause = true;
         }
+        gameObject.SetActive(false);
     }
 }
