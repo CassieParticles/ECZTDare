@@ -142,6 +142,10 @@ public class BreakroomDisplay : MonoBehaviour
     private string FormatStealth(int stealth) {
         int thousand = Mathf.FloorToInt(stealth / 1000);
         int remainder = Mathf.FloorToInt(stealth % 1000);
-        return string.Format("{0} {1}", thousand, remainder);
+        int hundred = Mathf.FloorToInt(remainder / 100);
+        remainder = Mathf.FloorToInt(hundred % 100);
+        int ten = Mathf.FloorToInt(remainder / 10);
+        remainder = Mathf.FloorToInt(ten % 10);
+        return string.Format("{0} {1}{2}{3}", thousand, hundred, ten, remainder);
     }
 }
