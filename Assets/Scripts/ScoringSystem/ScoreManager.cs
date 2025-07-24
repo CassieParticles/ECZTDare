@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,93 +17,94 @@ public class ScoreManager : MonoBehaviour
     private SaveData currentSaveData = new SaveData();
 
 
-    public int level = 1;
+    private int level = 1;
+    public string level1Name = "Level 1";
+    public string level2Name = "Boss Level (2v3)";
     private int section = 1;
 
-    public List<ScoreData> scores = new List<ScoreData> { 
-            null, //Section 1
-            null, //Section 2
-            null  //Etc.
-    };
-
-    //Just collapse this its needed for save data but its not helpful otherwise
-    public SaveData blankSaveData = new SaveData(); //{
-    //    level1Scores = { new ScoreData {
-    //        chaseSection = true, 
-    //        chaseTimeSeconds = -1, 
-    //        stealthScore = -1  
-    //}, new ScoreData {
-    //        chaseSection = false,
-    //        chaseTimeSeconds = -1,
-    //        stealthScore = -1
-    //}, new ScoreData {
-    //        chaseSection = true,
-    //        chaseTimeSeconds = -1,
-    //        stealthScore = -1
-    //} },
-    //    level2Scores = { new ScoreData {
-    //        chaseSection = false,
-    //        chaseTimeSeconds = -1,
-    //        stealthScore = -1
-    //}, new ScoreData {
-    //        chaseSection = true,
-    //        chaseTimeSeconds = -1,
-    //        stealthScore = -1
-    //}, new ScoreData {
-    //        chaseSection = false,
-    //        chaseTimeSeconds = -1,
-    //        stealthScore = -1
-    //} }
-    //};
-
-    public void SaveScoresToJson(int savefile) {
-        string filePath = Application.persistentDataPath + "/ScoreData" + savefile + ".json"; //For example ScoreData1.json
+    public List<ScoreData> scores = new List<ScoreData>();
+     
+    public void SaveScoresToJson() {
+        string filePath = Application.persistentDataPath + "/ScoreData.json"; 
 
         //Aquire the old save data so it anything that isnt overwritten remains
-        if (!System.IO.File.Exists(filePath)) {
-            System.IO.File.Create(filePath);
-            string blankSaveDataString = JsonUtility.ToJson(blankSaveData);
-            System.IO.File.WriteAllText(filePath, blankSaveDataString);
-            //Debug.Log("blankSaveData: " + blankSaveDataString);
-        } else {
+        if (System.IO.File.Exists(filePath)) {
             string oldSaveDataString = System.IO.File.ReadAllText(filePath);
-            if (oldSaveDataString == "" || oldSaveDataString == "{}" || oldSaveDataString == "{\"level1Scores\":[],\"level2Scores\":[]}") {
-                string blankSaveDataString = JsonUtility.ToJson(blankSaveData);
+            if (oldSaveDataString == "" || oldSaveDataString == "{}") {
+                string blankSaveDataString = "{\"level1Scores\":[],\"level2Scores\":[]}";
+                oldSaveDataString = blankSaveDataString;
                 System.IO.File.WriteAllText(filePath, blankSaveDataString);
+
             }
             currentSaveData = JsonUtility.FromJson<SaveData>(oldSaveDataString);
-            Debug.Log("oldSaveData: " + oldSaveDataString);
         }
 
-        //Set the relevant save data
-        if (level == 1) {
-            currentSaveData.level1Scores = scores;
-        } else if (level == 2) {
-            currentSaveData.level2Scores = scores;
+        if (SceneManager.GetActiveScene().name == level1Name) {
+            level = 1;
+        } else if (SceneManager.GetActiveScene().name == level2Name) {
+            level = 2;
+        }
+
+        if (currentSaveData != null) {
+            //Set the relevant save data
+            if (level == 1) {
+
+                if (currentSaveData.level1Scores.Count == scores.Count) {
+                    for (int i = 0; i < scores.Count - 1; i++) {
+                        if (scores[i].chaseSection) { //If chase section, compare times
+                            if (scores[i].chaseTimeSeconds < currentSaveData.level1Scores[i].chaseTimeSeconds) {
+                                currentSaveData.level1Scores[i].chaseTimeSeconds = scores[i].chaseTimeSeconds;
+                            }
+                        } else { //If stealth section, compare stealth scores
+                            if (scores[i].stealthScore > currentSaveData.level1Scores[i].stealthScore) {
+                                currentSaveData.level1Scores[i].stealthScore = scores[i].stealthScore;
+                            }
+                        }
+                    }
+                } else {
+                    currentSaveData.level1Scores = scores;
+                }
+            } else if (level == 2) {
+
+                if (currentSaveData.level2Scores.Count == scores.Count) {
+                    for (int i = 0; i < scores.Count - 1; i++) {
+                        if (scores[i].chaseSection) { //If chase section, compare times
+                            if (scores[i].chaseTimeSeconds < currentSaveData.level2Scores[i].chaseTimeSeconds) {
+                                currentSaveData.level2Scores[i].chaseTimeSeconds = scores[i].chaseTimeSeconds;
+                            }
+                        } else { //If stealth section, compare stealth scores
+                            if (scores[i].stealthScore > currentSaveData.level2Scores[i].stealthScore) {
+                                currentSaveData.level2Scores[i].stealthScore = scores[i].stealthScore;
+                            }
+                        }
+                    }
+                } else {
+                    currentSaveData.level2Scores = scores;
+                }
+            } else {
+                return;
+            }
         } else {
-            return;
+            Debug.Log("Saving Score Data Failed");
         }
 
         //Save the save data to the correct json file
         string saveDataString = JsonUtility.ToJson(currentSaveData);
-        Debug.Log("savedData: " + saveDataString);
         System.IO.File.WriteAllText(filePath, saveDataString);
-        Debug.Log("Score Data saved successfully to " +  filePath);
+        Debug.Log("Score Data saved successfully to " + filePath);
     }
 
     public void SaveSectionScore(ScoreData score) {
-        scores[section - 1] = score;
-        Debug.Log("Saved Section " + section);
+        if (scores.Count >= section) {
+            scores[section - 1] = score;
+        } else {
+            scores.Add(score);
+        }
+        //Debug.Log("Saved Section " + section);
         section++;
 
-        CreateSaveFile(1);
-    }
-
-    public void CreateSaveFile(int savefile) {
-        string filePath = Application.persistentDataPath + "/ScoreData" + savefile + ".json";
-        if (!System.IO.File.Exists(filePath)) {
-            System.IO.File.Create(filePath);
-        }
+        GameObject.Find("SectionUIChanger").GetComponent<SectionUIChange>().BreakRoomDisplayScore(score);
+        Debug.Log("Found Section Changer");
     }
 
     //Singleton stuff
@@ -121,11 +123,7 @@ public class ScoreManager : MonoBehaviour
         Destroy(gameObject);
     }
 }
-[System.Serializable]
-public enum scoreType {
-    chase,
-    stealth
-}
+
 [System.Serializable]
 public class ScoreData {
     public bool chaseSection; 
