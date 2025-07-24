@@ -6,6 +6,13 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class BreakroomDisplay : MonoBehaviour
 {
+    public struct SectionStrings {
+        public string sectionNumberText;
+        public string sectionTypeText;
+        public string scoreUnitText;
+        public string scoreValue;
+    }
+
 
     [Tooltip("How long the script waits before starting to show the display when entering a breakroom")]
     public float scoreDisplayDelay = 0.5f;
@@ -17,6 +24,7 @@ public class BreakroomDisplay : MonoBehaviour
 
     public List<ScoreData> scores;
     public List<string> scoresText;
+    public List<SectionStrings> sectionText;
     [SerializeField] TextMeshProUGUI TextBox;
 
     private string sectionNumberText;
@@ -24,55 +32,56 @@ public class BreakroomDisplay : MonoBehaviour
     private string scoreUnitText;
     private string scoreValue;
 
+
+
     private void Awake() {
-        scores = new List<ScoreData>();
-        scoresText = new List<string>();
+        if (scores == null) {
+            scores = new List<ScoreData>();
+            scoresText = new List<string>();
+            sectionText = new List<SectionStrings>();
+        }
     }
 
-    public void AddScore(ScoreData score) {
-        //if (scores == null) {
-        //    scores = new List<ScoreData>();
-        //    scoresText = new List<string>();
-        //}
+    public void AddScore(List<ScoreData> importedScores) {
         TextBox = GetComponentInChildren<TextMeshProUGUI>();
-        scores.Add(score);
+        scores = importedScores;
+        scoresText = new List<string>();
+        sectionText = new List<SectionStrings>();
+
+        ScoreData score = scores[scores.Count - 1];
+
 
         string formattedText = "";
 
-        sectionNumberText = "Section " + scores.Count; //What section
-        sectionTypeText = ""; //What type of section it is, stealth or chase
-        scoreUnitText = ""; //What unit the section uses, Time or Stealth Score
-        scoreValue = ""; //The score, in either time or stealth score
-        if (score.chaseSection) {
-            sectionTypeText = "Chase";
-            scoreUnitText = "Time: ";
+        for (int i = 0; i <= scores.Count - 1; i++) {
+            sectionText.Add(new SectionStrings());
+            SectionStrings tempSectionString = new SectionStrings();
+            tempSectionString.sectionNumberText = "Section " + (i + 1); //What section
+            tempSectionString.sectionTypeText = ""; //What type of section it is, stealth or chase
+            tempSectionString.scoreUnitText = ""; //What unit the section uses, Time or Stealth Score
+            tempSectionString.scoreValue = ""; //The score, in either time or stealth score
 
-            scoreValue = FormatTime(score.chaseTimeSeconds);
-            //Format the time in the way we want
-            //float time = score.chaseTimeSeconds;
-            //int minutes = Mathf.FloorToInt(time / 60F);
-            //int seconds = Mathf.FloorToInt(time - minutes * 60);
-            //int milliseconds = Mathf.FloorToInt((time * 100) % 100);
-            //scoreValue = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+            if (scores[i].chaseSection) {
+                tempSectionString.sectionTypeText = "Chase";
+                tempSectionString.scoreUnitText = "Time: ";
+                tempSectionString.scoreValue = FormatTime(scores[i].chaseTimeSeconds);
 
+            } else if (scores[i].stealthSection) {
+                tempSectionString.sectionTypeText = "Stealth";
+                tempSectionString.scoreUnitText = "Score: ";
+                tempSectionString.scoreValue = FormatStealth(scores[i].stealthScore);
 
-        } else if (score.stealthSection) {
-            sectionTypeText = "Stealth";
-            scoreUnitText = "Score: ";
+            }
+            sectionText[i] = tempSectionString;
 
-
-            scoreValue = FormatStealth(score.stealthScore);
-            //Format the stealth score in the way we want
-            //int stealthScore = score.stealthScore;
-            //int thousand = Mathf.FloorToInt(stealthScore / 1000);
-            //int remainder = Mathf.FloorToInt(stealthScore % 1000);
-            //scoreValue = string.Format("{0} {1}", thousand, remainder);
+            formattedText = string.Format("{0}\n{1}\n{2}{3}\n\n", tempSectionString.sectionNumberText, tempSectionString.sectionTypeText, tempSectionString.scoreUnitText, tempSectionString.scoreValue);
+            scoresText.Add(formattedText);
         }
 
-        formattedText = string.Format("{0}\n{1}\n{2}{3}\n", sectionNumberText, sectionTypeText, scoreUnitText, scoreValue);
+
         
 
-        scoresText.Add(formattedText);
+        
         StartCoroutine(DisplayAnimation(scores.Count - 1));
 
     }
@@ -85,11 +94,11 @@ public class BreakroomDisplay : MonoBehaviour
         }
         //Display the score piece by piece
         yield return new WaitForSeconds(scoreDisplayDelay);
-        TextBox.text += sectionNumberText + "\n";
+        TextBox.text += sectionText[scores.Count - 1].sectionNumberText + "\n";
         yield return new WaitForSeconds(scoreDisplayGapDuration);
-        TextBox.text += sectionTypeText + "\n";
+        TextBox.text += sectionText[scores.Count - 1].sectionTypeText + "\n";
         yield return new WaitForSeconds(scoreDisplayGapDuration);
-        TextBox.text += scoreUnitText;
+        TextBox.text += sectionText[scores.Count - 1].scoreUnitText;
         yield return new WaitForSeconds(scoreDisplayGapDuration);
 
         //Scale up the score until it reaches the achieved score
@@ -142,6 +151,10 @@ public class BreakroomDisplay : MonoBehaviour
     private string FormatStealth(int stealth) {
         int thousand = Mathf.FloorToInt(stealth / 1000);
         int remainder = Mathf.FloorToInt(stealth % 1000);
-        return string.Format("{0} {1}", thousand, remainder);
+        int hundred = Mathf.FloorToInt(remainder / 100);
+        remainder = Mathf.FloorToInt(hundred % 100);
+        int ten = Mathf.FloorToInt(remainder / 10);
+        remainder = Mathf.FloorToInt(ten % 10);
+        return string.Format("{0} {1}{2}{3}", thousand, hundred, ten, remainder);
     }
 }
