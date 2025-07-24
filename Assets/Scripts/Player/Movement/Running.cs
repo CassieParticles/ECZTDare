@@ -15,9 +15,13 @@ public class Running
         if (!player.onWall) {
             player.facingRight = Convert.ToBoolean((runInput + 1) / 2);
         }
-        player.rb.velocityX += runInput * player.effectiveAcceleration * Time.deltaTime;
-        if (Mathf.Sign(player.rb.velocityX) == runInput * -1) {
-            player.rb.velocityX += player.effectiveDeceleration * -player.rb.velocityX * Time.deltaTime;
+        if (player.horizontalVelocity < 0.5) {
+            player.rb.velocityX = runInput * player.startingSpeed;
+        } else {
+            player.rb.velocityX += runInput * player.effectiveAcceleration * Time.deltaTime;
+            if (Mathf.Sign(player.rb.velocityX) == runInput * -1) {
+                player.rb.velocityX += player.effectiveDeceleration * -player.rb.velocityX * Time.deltaTime;
+            }
         }
     }
 
