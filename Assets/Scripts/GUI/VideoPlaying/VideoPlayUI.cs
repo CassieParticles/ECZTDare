@@ -14,8 +14,9 @@ public class VideoPlayUI : MonoBehaviour
 
     private void VideoEnd(VideoPlayer vp)
     {
-        CloseVideo();
+        videoPlayer.playbackSpeed *= 1.1f;
     }
+
     public void OpenVideo(VideoClip clipToPlay)
     {
         gameObject.SetActive(true);
