@@ -72,7 +72,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Close speed");
 
             //Sets the "Music" State Group's active State to "Alarm_High"
-            AkSoundEngine.SetState("Music", "Alarm_High");
+            //AkSoundEngine.SetState("Music", "Alarm_High");
         }
         else if (distance >= wallData.closeDist && distance < wallData.mediumDist && currentDistance != Distance.Medium)
         {
@@ -82,7 +82,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Medium speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Middle"
-            AkSoundEngine.SetState("Music", "Alarm_Middle");
+            //AkSoundEngine.SetState("Music", "Alarm_Middle");
         }
         else if (distance >= wallData.mediumDist && currentDistance != Distance.Far)
         {
@@ -92,7 +92,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Far speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Low"
-            AkSoundEngine.SetState("Music", "Alarm_Low");
+            //AkSoundEngine.SetState("Music", "Alarm_Low");
         }
     }
     private void UpdateSpeed()

@@ -14,7 +14,7 @@ public class StopTrigger : MonoBehaviour
         //Stops the audio
         wall.deathWall.Stop(gameObject);
         //Sets the "Music" State Group's active State to "Hidden"
-        AkSoundEngine.SetState("Music", "Hidden");
+        //AkSoundEngine.SetState("Music", "Hidden");
 
         Destroy(wall.gameObject);
 
