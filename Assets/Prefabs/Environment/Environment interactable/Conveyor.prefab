@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623246499983873144}
-  - component: {fileID: 4570823053399662581}
   - component: {fileID: 3231946353274413922}
   - component: {fileID: 8734619471385481413}
   - component: {fileID: 7346337815250145789}
   - component: {fileID: -3790598385782135324}
   - component: {fileID: 1376260380305106594}
+  - component: {fileID: 1389956594153173470}
   m_Layer: 0
   m_Name: Conveyor
   m_TagString: Rubber
@@ -37,27 +37,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4570823053399662581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8396305917813150283}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce681a29471578c4d9c9c5489a5bc8d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hackingNoiseRadius: 10
-  ConveyorBelt:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 2b7e816b8ff85494f9463a50d0b91f9f, type: 2}
-  defaultSpeed: 4
-  hackedSpeed: -4
-  currentSpeed: 0
-  animationSpeed: 4
 --- !u!212 &3231946353274413922
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,3 +199,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1389956594153173470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8396305917813150283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621ff1a0db4c6764bab5d6344330a7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSpeed: 4

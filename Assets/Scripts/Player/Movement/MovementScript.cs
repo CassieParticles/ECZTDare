@@ -333,7 +333,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             //Conveyor belts
             jumpingFromConveyorSpeed = 0f;
             if (rightGroundRay) {
-                ConveyorHackable rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                ConveyorBeltScript rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorBeltScript>();
                 if (rightConveyor != null) {
                     if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
                         rb.velocityX += -conveyorSpeed;
@@ -344,7 +344,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                     rb.velocityX += conveyorSpeed;
                 }
             } else {
-                ConveyorHackable leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                ConveyorBeltScript leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorBeltScript>();
                 if (leftConveyor != null) {
                     if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
                         rb.velocityX += -conveyorSpeed;
