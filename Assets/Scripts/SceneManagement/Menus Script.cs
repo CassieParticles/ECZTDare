@@ -642,7 +642,11 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 GetComponent<ControlsScript>().controls.GameplayControls.Enable();
             }
         }
-
+        VideoPlayUI videoPlayer = FindAnyObjectByType<VideoPlayUI>(FindObjectsInactive.Exclude);
+        if (videoPlayer)
+        {
+            videoPlayer.CloseVideo();
+        }
         if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
             StartCoroutine(LoseFinalize());
         }

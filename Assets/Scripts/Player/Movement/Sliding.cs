@@ -42,6 +42,7 @@ public class Sliding
 
     public void Crouch() {
         player.crouching = true;
+        player.animator.SetBool("Crouching", true);
         player.hasSlid = true;
         player.collider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - player.colliderSize.y * 0.31f); //Lower the player so they arent midair when crouching
@@ -56,6 +57,7 @@ public class Sliding
         player.playerSlide.Stop(player.gameObject);
         player.sliding = false;
         player.crouching = true;
+        player.animator.SetBool("Crouching", true);
         player.effectiveDeceleration = player.crouchDeceleration;
         player.effectiveAcceleration = player.crouchAcceleration;
     }
