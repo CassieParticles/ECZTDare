@@ -9997,6 +9997,11 @@ MonoBehaviour:
   crouching: 0
   batteryCharge: 100
   cloakUnlocked: 0
+  velocityBuffer: []
+  velocityBufferSize: 20
+  velocityBufferRayScaler: 1
+  velocityBufferStoppedSpeedThreshold: 0.3
+  velocityBufferRecoveredSpeedThreshold: 12
 --- !u!114 &721483411405698296
 MonoBehaviour:
   m_ObjectHideFlags: 0
