@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -67157172823753867, guid: 5058f8c1ee776da489c91ea725e54cd3, type: 3}
+  m_Sprite: {fileID: 7732463992252433436, guid: c0d78db2af2ff434295c595aa78ecafb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.9375, y: 2.46875}
+    oldSize: {x: 2.9375, y: 2.90625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,8 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hackingNoiseRadius: 10
-  action: 1
-  doors: []
+  hasBeenHacked: 0
 --- !u!114 &7823080310725020746
 MonoBehaviour:
   m_ObjectHideFlags: 0
