@@ -698,7 +698,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         Vector2 recoveredVelocity = Vector2.zero;
 
-        if (MathF.Abs(rb.velocityX) < velocityBufferStoppedSpeedThreshold) {
+        if (MathF.Abs(rb.velocityX) < velocityBufferStoppedSpeedThreshold && !onWall) {
             foreach (var bufferedvelocity in velocityBuffer) {
                 if (MathF.Abs(bufferedvelocity.x) > velocityBufferRecoveredSpeedThreshold) {
                     if (MathF.Abs(bufferedvelocity.x) > MathF.Abs(recoveredVelocity.x) && MathF.Sign(bufferedvelocity.x) == MathF.Sign(rb.velocityX) && MathF.Sign(bufferedvelocity.x) == runInput) {
@@ -708,19 +708,10 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 }
             }
         }
-        //if (MathF.Abs(rb.velocityY) < velocityBufferStoppedSpeedThreshold) {
-        //    foreach (var bufferedvelocity in velocityBuffer) {
-        //        if (bufferedvelocity.y > velocityBufferRecoveredSpeedThreshold) {
-        //            if (bufferedvelocity.y > recoveredVelocity.y) {
-        //                recoveredVelocity.y = bufferedvelocity.y;
-        //                Debug.Log("found recovery speed y");
-        //            }
-        //        }
-        //    }
-        //}
+
         if (recoveredVelocity != Vector2.zero) {
-            Vector2 recoverDirections = VelocityBufferRaycasts(recoveredVelocity);
-            if (recoverDirections.x  != 0) {
+            int recoverDirection = VelocityBufferRaycasts(recoveredVelocity);
+            if (recoverDirection  != 0) {
                 if (crouching) {
                     slideScript.StandUp();
                     slideScript.StartSliding();
@@ -729,36 +720,15 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 Debug.Log("buffer x velocity");
 
             }
-            //if (recoverDirections.y != 0) {
-            //    rb.velocityY = recoveredVelocity.y;
-            //    Debug.Log("buffer y velocity");
-            //}
+
         }
 
     }
 
-    private Vector2 VelocityBufferRaycasts(Vector2 recoveredVelocity) {
+    private int VelocityBufferRaycasts(Vector2 recoveredVelocity) {
 
-        Vector2 velocityOverride = Vector2.zero;
+        int velocityOverride = 0;
 
-        if (!grounded) {
-
-            Vector2 upRightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                                 collider.size.y * 0.99f / 2f);
-            Vector2 upLeftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                                 collider.size.y * 0.99f / 2f);
-
-            float rayYScaler = rb.velocityY * velocityBufferRayScaler * 0.1f;
-
-            RaycastHit2D upRightRay = Physics2D.Raycast(upRightRayStart, Vector2.up, rayYScaler, layers);
-            RaycastHit2D upLeftRay = Physics2D.Raycast(upLeftRayStart, Vector2.up, rayYScaler, layers);
-
-            if (rb.velocityY > 0 && !upRightRay && !upLeftRay) {
-                velocityOverride = new Vector2(0, 1);
-            } else if (rb.velocityY < 0) {
-                velocityOverride = new Vector2(0, 1);
-            }
-        }
 
         if (recoveredVelocity.x != 0) {
             int dir = (int)recoveredVelocity.normalized.x;
@@ -779,12 +749,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                 RaycastHit2D horizontalMiddleRay = Physics2D.Raycast(horizontalMiddleRayStart, Vector2.right * dir, rayXScaler, layers);
 
                 if (!horizontalTopRay && !horizontalBottomRay && !horizontalMiddleRay) {
-                    velocityOverride = new Vector2(1, velocityOverride.y);
+                    velocityOverride = 1;
                 }
 
             } else {
                 if (!horizontalTopRay && !horizontalBottomRay) {
-                    velocityOverride = new Vector2(1, velocityOverride.y);
+                    velocityOverride = 1;
                 }
             }
         }
