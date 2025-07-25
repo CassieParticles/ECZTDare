@@ -10,6 +10,7 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
 
     SpotlightMovement spotlight;
     BaseAnchor currentAnchor;
+    BaseAnchor prevAnchor;
 
     MovementScript Player;
 
@@ -18,8 +19,15 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
     {
         get
         {
-            return Player && !Player.cloaking;
+            BackwallDetectability backwall = FindAnyObjectByType<BackwallDetectability>();
+            bool backwallCheck = !backwall || backwall.playerVisible;
+            return Player && !Player.cloaking && backwallCheck;
         }
+    }
+
+    public bool IsDistractible()
+    {
+        return currentAnchor.IsDistractible();
     }
 
     private void Awake()
@@ -31,11 +39,28 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
     {
         if(currentAnchor)
         {
+            prevAnchor = currentAnchor;
             currentAnchor.RemoveSpotlight();
         }
 
         anchor.AddSpotlight(spotlight);
         currentAnchor = anchor;
+    }
+
+    public void BacktrackAnchor()
+    {
+        //Ensure there is a current anchor
+        if (!currentAnchor){ return; }
+        currentAnchor.RemoveSpotlight();
+        //Go back to previous anchor (if it exists)
+        if (prevAnchor)
+        {
+            prevAnchor.AddSpotlight(spotlight);
+        }
+        //Swap current and prev
+        BaseAnchor tempAnchor = prevAnchor;
+        prevAnchor = currentAnchor;
+        currentAnchor = tempAnchor;
     }
 
     private void FixedUpdate()
