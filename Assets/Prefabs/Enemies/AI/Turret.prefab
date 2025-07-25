@@ -269,7 +269,7 @@ MonoBehaviour:
   inViewCone:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: b0f689b3a04b4234a844aadb615a2f80, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: e024359f8d14bd14380eac867b21d9ae, type: 2}
   enemyAlerted:
     idInternal: 0
     valueGuidInternal: 
@@ -285,6 +285,10 @@ MonoBehaviour:
   minimumDistanceScalar: 0.5
   suspicion: 0
   minimumSuspicion: 0
+  turretFire:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 529a430eb125182479922450d5c162bf, type: 2}
 --- !u!1001 &4232456697989967839
 PrefabInstance:
   m_ObjectHideFlags: 0

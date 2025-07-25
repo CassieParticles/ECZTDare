@@ -44,20 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eb1b5deb347fa6428a0c79250fffd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level1Name: Level 1
+  level2Name: Boss Level (2v3)
   scores:
   - chaseSection: 0
     stealthSection: 0
     chaseTimeSeconds: 0
     stealthScore: 0
-  - chaseSection: 0
-    stealthSection: 0
-    chaseTimeSeconds: 0
-    stealthScore: 0
-  - chaseSection: 0
-    stealthSection: 0
-    chaseTimeSeconds: 0
-    stealthScore: 0
-  blankSaveData:
-    level1Scores: []
-    level2Scores: []

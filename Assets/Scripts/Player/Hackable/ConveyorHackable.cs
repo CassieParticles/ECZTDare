@@ -7,27 +7,32 @@ public class ConveyorHackable : Hackable
 {
     public AK.Wwise.Event ConveyorBelt;
 
-    [SerializeField] float defaultSpeed = 4f;
+    private float defaultSpeed;
     [SerializeField] float hackedSpeed = -4f;
-    public float currentSpeed;
     [Range(0.1f, 25f)] public float animationSpeed;
     private bool toggled;
 
     private Animator animator;
+    ConveyorBeltScript conveyorScript;
 
     void Awake() {
         ConveyorBelt.Post(gameObject);
-        currentSpeed = defaultSpeed;
         toggled = false;
         animator = GetComponent<Animator>();
+        conveyorScript = GetComponent<ConveyorBeltScript>();
+    }
+
+    private void Start()
+    {
+        defaultSpeed = conveyorScript.currentSpeed;
     }
 
     public override void OnHack() 
     {
         base.OnHack();
         toggled = !toggled;
-        currentSpeed = toggled ? hackedSpeed : defaultSpeed;
-        animator.SetFloat("Speed", currentSpeed / animationSpeed);
+        conveyorScript.currentSpeed = toggled ? hackedSpeed : defaultSpeed;
+        animator.SetFloat("Speed", conveyorScript.currentSpeed / animationSpeed);
         Cooldown();
     }
     public IEnumerator Cooldown() {

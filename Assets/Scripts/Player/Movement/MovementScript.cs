@@ -55,6 +55,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [SerializeField] public float maxRunSpeed = 8; //The fastest the player can go horizontally
     [SerializeField] public float acceleration = 20; //Speeding up when running
     [SerializeField] public float deceleration = 15; //Slowing down when no longer running / running in opposite direction
+    [SerializeField] public float startingSpeed = 2; //Slowing down when no longer running / running in opposite direction
     [SerializeField] public float snapToMaxRunSpeedMult = 1f; //How quickly the player snaps back to max running speed when running faster than it
 
     [SerializeField][Range(0f, 1f)] private float snapToLedgeTopRayHeight = 0.22f; //Height of the ray that needs to be not hitting something to snap to a ledge
@@ -332,7 +333,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             //Conveyor belts
             jumpingFromConveyorSpeed = 0f;
             if (rightGroundRay) {
-                ConveyorHackable rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                ConveyorBeltScript rightConveyor = rightGroundRay.transform.gameObject.GetComponent<ConveyorBeltScript>();
                 if (rightConveyor != null) {
                     if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
                         rb.velocityX += -conveyorSpeed;
@@ -343,7 +344,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
                     rb.velocityX += conveyorSpeed;
                 }
             } else {
-                ConveyorHackable leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorHackable>();
+                ConveyorBeltScript leftConveyor = leftGroundRay.transform.gameObject.GetComponent<ConveyorBeltScript>();
                 if (leftConveyor != null) {
                     if (conveyorSpeed == 0) { //Reduce speed when landing on a conveyor
                         rb.velocityX += -conveyorSpeed;

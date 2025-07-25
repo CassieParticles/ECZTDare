@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{D146ACE9-992D-D8D6-9413-B3F3D9BFA974}">
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{8710C189-6E9B-58B6-A305-0A4BF39A603E}">
 			<ShortName>Music_2</ShortName>
 			<Path>Music_2.bnk</Path>
 			<Media>
@@ -32,7 +32,7 @@
 				</Event>
 			</Events>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{BDB0D1B2-7897-136E-101D-9B776474C587}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B88311C5-6FB6-CF8E-08BF-02F69868D0F8}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CCA3A258-8BEE-0838-16DC-515D69572C65}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{1C061E9C-033A-2022-0A60-1115F672A0D9}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -255,6 +255,10 @@
 					<ShortName>P_M_Jump_3.wav</ShortName>
 					<CachePath>SFX/P_M_Jump_3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="145173678" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_3.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_3_818F3B66.wem</CachePath>
+				</File>
 				<File Id="146773433" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_VO2_ShesBack.wav</ShortName>
 					<CachePath>SFX/G_VO2_ShesBack_818F3B66.wem</CachePath>
@@ -262,6 +266,10 @@
 				<File Id="152193640" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_3.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_3_8F338B28.wem</CachePath>
+				</File>
+				<File Id="173403282" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_4.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_4_818F3B66.wem</CachePath>
 				</File>
 				<File Id="176338131" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_4.wav</ShortName>
@@ -419,9 +427,17 @@
 					<ShortName>G_VO_SheDisappeared.wav</ShortName>
 					<CachePath>SFX/G_VO_SheDisappeared_818F3B66.wem</CachePath>
 				</File>
+				<File Id="467800258" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_2.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="492016228" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_M_Sliding_1_3AF63341.wem</CachePath>
+				</File>
+				<File Id="493878318" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Turret_Aim.wav</ShortName>
+					<CachePath>SFX/Turret_Aim_97A10EF8.wem</CachePath>
 				</File>
 				<File Id="494199292" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Jump_2.wav</ShortName>
@@ -467,9 +483,17 @@
 					<ShortName>Boost_Rush.wav</ShortName>
 					<CachePath>SFX/Boost_Rush_BE10BA2A.wem</CachePath>
 				</File>
+				<File Id="605867480" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>C_Breakable_Floor_1.wav</ShortName>
+					<CachePath>SFX/C_Breakable_Floor_1_818F3B66.wem</CachePath>
+				</File>
 				<File Id="609776334" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_D_Sliding_1_19FB47D3.wem</CachePath>
+				</File>
+				<File Id="612569582" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Turret_Fire.wav</ShortName>
+					<CachePath>SFX/Turret_Fire_818F3B66.wem</CachePath>
 				</File>
 				<File Id="618007706" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Footstep_3.wav</ShortName>
@@ -546,6 +570,10 @@
 				<File Id="706439460" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_D_Footstep_3.wav</ShortName>
 					<CachePath>SFX/P_D_Footstep_3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="710488528" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Soundly Audio\Water, Bubbles, Big, Surfacing 01 SND0525.wav</ShortName>
+					<CachePath>SFX/Soundly Audio/Water, Bubbles, Big, Surfacing 01 SND0525_56DD503A.wem</CachePath>
 				</File>
 				<File Id="724971133" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_C_Jump_4.wav</ShortName>
@@ -736,6 +764,11 @@
 					<CachePath>SFX/P_C_Landing_2_818F3B66.wem</CachePath>
 				</File>
 			</Media>
+			<Plugins>
+				<ShareSets>
+					<Plugin Id="1675424737" Name="Extreme_Limiting_1" LibName="Wwise Peak Limiter" LibId="7208963"/>
+				</ShareSets>
+			</Plugins>
 			<Events>
 				<Event Id="1720356053" Name="Ambience_Bass" DurationType="Infinite">
 					<MediaRefs>
@@ -810,6 +843,20 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="2736592221" Name="Breakable_Floor" MaxAttenuation="100" DurationType="OneShot" DurationMin="0.83825" DurationMax="1">
+					<MediaRefs>
+						<MediaRef Id="145173678"/>
+						<MediaRef Id="173403282"/>
+						<MediaRef Id="467800258"/>
+						<MediaRef Id="605867480"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 				<Event Id="814543256" Name="Button_Click" DurationType="OneShot" DurationMin="1.0319692" DurationMax="1.1583464">
 					<MediaRefs>
 						<MediaRef Id="286540805"/>
@@ -872,6 +919,28 @@
 				</Event>
 				<Event Id="641619979" Name="Death_Pit" MaxAttenuation="70" DurationType="Infinite">
 					<MediaRefs>
+						<MediaRef Id="710488528"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2284963324" Name="Death_Wall_1" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="222009116"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2284963327" Name="Death_Wall_2" MaxAttenuation="100" DurationType="Infinite">
+					<MediaRefs>
 						<MediaRef Id="222009116"/>
 					</MediaRefs>
 					<AuxBusRefs>
@@ -885,6 +954,11 @@
 					<MediaRefs>
 						<MediaRef Id="269273201"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1675424737"/>
+						</ShareSets>
+					</PluginRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -933,6 +1007,11 @@
 								<MediaRef Id="404282586"/>
 								<MediaRef Id="426984840"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="2195636714"/>
@@ -946,6 +1025,11 @@
 								<MediaRef Id="901982837"/>
 								<MediaRef Id="1036630904"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="841620460" Default="true"/>
@@ -959,6 +1043,11 @@
 								<MediaRef Id="807950240"/>
 								<MediaRef Id="857966639"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 						<SwitchContainer>
 							<SwitchValue GroupType="Switch" GroupId="1980337323" Id="437659151"/>
@@ -972,6 +1061,11 @@
 								<MediaRef Id="899660334"/>
 								<MediaRef Id="1031678536"/>
 							</MediaRefs>
+							<PluginRefs>
+								<ShareSets>
+									<PluginRef Id="1675424737"/>
+								</ShareSets>
+							</PluginRefs>
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
@@ -1069,6 +1163,11 @@
 						<MediaRef Id="901982837"/>
 						<MediaRef Id="1036630904"/>
 					</MediaRefs>
+					<PluginRefs>
+						<ShareSets>
+							<PluginRef Id="1675424737"/>
+						</ShareSets>
+					</PluginRefs>
 					<AuxBusRefs>
 						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
 						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
@@ -1518,6 +1617,28 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
+				<Event Id="43580157" Name="Turret_Aim" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.328125" DurationMax="1.328125">
+					<MediaRefs>
+						<MediaRef Id="493878318"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
+				<Event Id="2132750258" Name="Turret_Fire" MaxAttenuation="40" DurationType="OneShot" DurationMin="3.234375" DurationMax="3.234375">
+					<MediaRefs>
+						<MediaRef Id="612569582"/>
+					</MediaRefs>
+					<AuxBusRefs>
+						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
+						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
+						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
+						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
+					</AuxBusRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="2268126698" Name="suspicion"/>
@@ -1614,5 +1735,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{99C9909A-9017-9C8A-AE4A-73670DF4E41D}</FileHash>
+	<FileHash>{C42DA5E0-184D-F0F7-1755-77D8BE8FE289}</FileHash>
 </SoundBanksInfo>

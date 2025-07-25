@@ -9885,6 +9885,7 @@ GameObject:
   - component: {fileID: 7946762260465018441}
   - component: {fileID: 8371112113522891037}
   - component: {fileID: 5445808247974103222}
+  - component: {fileID: -5937284822610129986}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -9958,8 +9959,9 @@ MonoBehaviour:
   footstepRate: 0.2
   footstepRateScaler: 3
   maxRunSpeed: 18
-  acceleration: 20
-  deceleration: 4.5
+  acceleration: 25
+  deceleration: 6
+  startingSpeed: 2
   snapToMaxRunSpeedMult: 1
   snapToLedgeTopRayHeight: 0.29
   snapToLedgeBottomRayHeight: 0.05
@@ -9969,25 +9971,25 @@ MonoBehaviour:
   fastFallActivationSpeed: 5
   fastFallMult: 8
   maxFallSpeed: 27.9
-  fallSlowsRunMult: 0.2
+  fallSlowsRunMult: 0.15
   coyoteTime: 0.05
   wallClingSpeed: 0
   walljumpRayGap: 0.5
   horizontalWalljumpStrength: 15
   verticalWalljumpStrength: 15
   walljumpInputDelay: 0.25
-  slideDeceleration: 0.8
+  slideDeceleration: 0.4
   velocityToSlide: 12
   velocityEndSlide: 5
   maxCrouchSpeed: 8
   crouchAcceleration: 10
   crouchDeceleration: 3
-  batteryRecharge: 10
+  batteryRecharge: 30
   minimumBatteryToCloak: 5
-  cloakDepletion: 45
+  cloakDepletion: 35
   dashSpeed: 25
-  dashDuration: 0.2
-  dashBatteryCost: 33
+  dashDuration: 0.35
+  dashBatteryCost: 45
   dashCooldown: 0.2
   dashChargesPerJump: 1
   sliding: 0
@@ -10011,7 +10013,7 @@ MonoBehaviour:
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 75e9a95650fe1594ea89d445026eb92d, type: 2}
   target: {fileID: 0}
-  hackChargeRate: 10
+  hackChargeRate: 22
   hackCharges: 3
   hackCharge: 100
   hasHacked: 0
@@ -10174,6 +10176,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dad8b74ffd742be4aac70bc9c94a3e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5937284822610129986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969149523955869045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca1c53e8ee6538c4c8e730d914c2eea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8766803428697114314

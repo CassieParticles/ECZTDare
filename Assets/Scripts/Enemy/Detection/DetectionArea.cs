@@ -61,7 +61,6 @@ public class DetectionArea : EnemySight
 
         float scale = Enemy.suspicion / 100.0f;
         scale = 1 - scale;
-        scale /= 2;
 
         float left = playerPosition.x - scale;
         float right = playerPosition.x + scale;

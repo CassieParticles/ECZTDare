@@ -15,6 +15,8 @@ public class GuardPod : BaseDoor
         podGuard.ReturnToPod();
         //Tell the guard to return to base
         isLocked = true;
+
+        observer.NotifyListeners(DoorAction.Lock);
     }
 
     public override void Unlock()
@@ -30,6 +32,8 @@ public class GuardPod : BaseDoor
         podGuard.StartGuard();
 
         isLocked = false;
+
+        observer.NotifyListeners(DoorAction.Unlock);
     }
 
     public override void ToggleState()
