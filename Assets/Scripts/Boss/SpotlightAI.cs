@@ -35,6 +35,11 @@ public class SpotlightAI : MonoBehaviour,IRecieveSignals
         spotlight = GetComponent<SpotlightMovement>();
     }
 
+    public BaseAnchor getCurrentAnchor()
+    {
+        return currentAnchor;
+    }
+
     public void RecieveSignal(BaseAnchor anchor)
     {
         if(currentAnchor)

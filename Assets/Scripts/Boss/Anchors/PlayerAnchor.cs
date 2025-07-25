@@ -11,7 +11,7 @@ public class PlayerAnchor : BaseAnchor
             return;
         }
         spotlight.TeleportTo(transform.position);
-        if (!FindAnyObjectByType<BackwallDetectability>().playerVisible)
+        if (!FindAnyObjectByType<BackwallDetectability>().playerVisible || FindAnyObjectByType<MovementScript>().cloaking)
         {
             spotlight.GetComponent<SpotlightAI>().BacktrackAnchor();
         }
