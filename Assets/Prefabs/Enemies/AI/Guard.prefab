@@ -144,8 +144,6 @@ MonoBehaviour:
   alertSpeed: 10
   chaseSpeed: 15
   acceleration: 15
-  visionConeTurnSpeed: 180
-  playerVisibleTurnSpeedScalar: 3
   chaseAlarmTimer: 3
   guardFootstep:
     idInternal: 0
@@ -194,7 +192,6 @@ MonoBehaviour:
   - 'GUARD: INTRUDER!'
   - 'GUARD: SOMEONE''S HERE!'
   lostEmiraText:
-  - 'GUARD: GOD DAMN IT.'
   - 'GUARD: I LOST HER.'
   - 'GUARD: SHE DISAPPEARED.'
   - 'GUARD: SHE''S GONE.'
