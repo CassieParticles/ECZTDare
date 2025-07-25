@@ -1,9 +1,12 @@
 using Cinemachine;
+using NUnit.Framework;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControls;
+using RangeAttribute = UnityEngine.RangeAttribute;
 
 public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [Header("SFX")]
@@ -98,7 +101,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public int dashChargesRemaining = 1;
     [NonSerialized] public bool dashCooldownActive = false;
 
-    [Header("DEBUG")]
 
     [NonSerialized] public bool grounded; //Grounded is only for the ground, a seperate one will be used for walls
     [NonSerialized] public bool minJumpActive; //If the player is in the first part of a jump where they cant fastfall
@@ -106,6 +108,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool onRightWall; //If the wall the player is on is to the right
     [NonSerialized] public int postWalljumpInputs; //If inputs are taken in for the opposite direction for the duration after a walljump
     [NonSerialized] public bool facingRight = true; //Is facing to the right
+    [Header("DEBUG AND OTHER")]
     public bool sliding; //If the player is currently sliding
     public bool crouching; //If the player is currently crouching
     //[NonSerialized] public bool boosting; //If the player is currently boosting
@@ -202,6 +205,12 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     private float animationCoyoteTime = 0.167f;
     private float animationGroundedTimer = -1;
 
+    public List<Vector2> velocityBuffer;
+    public int velocityBufferSize = 20;
+    public float velocityBufferRayScaler = 1;
+    public float velocityBufferStoppedSpeedThreshold = 1;
+    public float velocityBufferRecoveredSpeedThreshold = 1;
+
     private void Start() {
         layers = new LayerMask();
         layers = 0b0110011;
@@ -239,6 +248,8 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         slideAction = controls.FindAction("Sliding");
         cloakAction = controls.FindAction("Cloaking");
         dashAction = controls.FindAction("Dashing");
+
+        velocityBuffer = new List<Vector2>();
     }
 
     // Update is called once per frame
@@ -276,6 +287,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         horizontalVelocity = Mathf.Abs(rb.velocityX);
 
+        VelocityBufferCheck();
         //changeModeToStealth(inStealthMode);
     }
 
@@ -677,6 +689,109 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         }
     }
     */
+
+    private void VelocityBufferCheck() {
+        velocityBuffer.Add(rb.velocity);
+        if (velocityBuffer.Count > velocityBufferSize) {
+            velocityBuffer.RemoveAt(0);    
+        }
+
+        Vector2 recoveredVelocity = Vector2.zero;
+
+        if (MathF.Abs(rb.velocityX) < velocityBufferStoppedSpeedThreshold) {
+            foreach (var bufferedvelocity in velocityBuffer) {
+                if (MathF.Abs(bufferedvelocity.x) > velocityBufferRecoveredSpeedThreshold) {
+                    if (MathF.Abs(bufferedvelocity.x) > MathF.Abs(recoveredVelocity.x) && MathF.Sign(bufferedvelocity.x) == MathF.Sign(rb.velocityX) && MathF.Sign(bufferedvelocity.x) == runInput) {
+                        recoveredVelocity.x = bufferedvelocity.x;
+                        Debug.Log("found recovery speed x");
+                    }
+                }
+            }
+        }
+        //if (MathF.Abs(rb.velocityY) < velocityBufferStoppedSpeedThreshold) {
+        //    foreach (var bufferedvelocity in velocityBuffer) {
+        //        if (bufferedvelocity.y > velocityBufferRecoveredSpeedThreshold) {
+        //            if (bufferedvelocity.y > recoveredVelocity.y) {
+        //                recoveredVelocity.y = bufferedvelocity.y;
+        //                Debug.Log("found recovery speed y");
+        //            }
+        //        }
+        //    }
+        //}
+        if (recoveredVelocity != Vector2.zero) {
+            Vector2 recoverDirections = VelocityBufferRaycasts(recoveredVelocity);
+            if (recoverDirections.x  != 0) {
+                if (crouching) {
+                    slideScript.StandUp();
+                    slideScript.StartSliding();
+                }
+                rb.velocityX = recoveredVelocity.x;
+                Debug.Log("buffer x velocity");
+
+            }
+            //if (recoverDirections.y != 0) {
+            //    rb.velocityY = recoveredVelocity.y;
+            //    Debug.Log("buffer y velocity");
+            //}
+        }
+
+    }
+
+    private Vector2 VelocityBufferRaycasts(Vector2 recoveredVelocity) {
+
+        Vector2 velocityOverride = Vector2.zero;
+
+        if (!grounded) {
+
+            Vector2 upRightRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
+                                                                                 collider.size.y * 0.99f / 2f);
+            Vector2 upLeftRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
+                                                                                 collider.size.y * 0.99f / 2f);
+
+            float rayYScaler = rb.velocityY * velocityBufferRayScaler * 0.1f;
+
+            RaycastHit2D upRightRay = Physics2D.Raycast(upRightRayStart, Vector2.up, rayYScaler, layers);
+            RaycastHit2D upLeftRay = Physics2D.Raycast(upLeftRayStart, Vector2.up, rayYScaler, layers);
+
+            if (rb.velocityY > 0 && !upRightRay && !upLeftRay) {
+                velocityOverride = new Vector2(0, 1);
+            } else if (rb.velocityY < 0) {
+                velocityOverride = new Vector2(0, 1);
+            }
+        }
+
+        if (recoveredVelocity.x != 0) {
+            int dir = (int)recoveredVelocity.normalized.x;
+
+            Vector2 horizontalTopRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
+                                                                                        collider.size.y * 0.99f / 2f);
+            Vector2 horizontalBottomRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
+                                                                                           -collider.size.y * 0.99f / 2f);
+            float rayXScaler = rb.velocityX * velocityBufferRayScaler * 0.1f;
+
+            RaycastHit2D horizontalTopRay = Physics2D.Raycast(horizontalTopRayStart, Vector2.right * dir, rayXScaler, layers);
+            RaycastHit2D horizontalBottomRay = Physics2D.Raycast(horizontalBottomRayStart, Vector2.right * dir, rayXScaler, layers);
+
+            if (!sliding && !crouching) { //Dont do middle raycast if crouching or sliding as height is lower
+                Vector2 horizontalMiddleRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
+                                                                                               0);
+
+                RaycastHit2D horizontalMiddleRay = Physics2D.Raycast(horizontalMiddleRayStart, Vector2.right * dir, rayXScaler, layers);
+
+                if (!horizontalTopRay && !horizontalBottomRay && !horizontalMiddleRay) {
+                    velocityOverride = new Vector2(1, velocityOverride.y);
+                }
+
+            } else {
+                if (!horizontalTopRay && !horizontalBottomRay) {
+                    velocityOverride = new Vector2(1, velocityOverride.y);
+                }
+            }
+        }
+        Debug.Log("override velocity");
+        return velocityOverride;
+    }
+
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(bottomLeftWallRayStart, bottomLeftWallRayStart + new Vector2(-0.1f, 0));
