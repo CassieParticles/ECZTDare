@@ -60,4 +60,11 @@ public class StealthScoreTracker : MonoBehaviour
             scoreDisplay.UpdateGUI(score);
         }
     }
+
+    private void Update() {
+        StealthScoreDisplay scoreDisplay = FindFirstObjectByType<StealthScoreDisplay>();
+        if (scoreDisplay) {
+            scoreDisplay.UpdateGUI(score);
+        }
+    }
 }
