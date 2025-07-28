@@ -60,5 +60,6 @@ public class Sliding
         player.animator.SetBool("Crouching", true);
         player.effectiveDeceleration = player.crouchDeceleration;
         player.effectiveAcceleration = player.crouchAcceleration;
+        player.effectiveMaxRunSpeed = player.maxCrouchSpeed;
     }
 }
