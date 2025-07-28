@@ -39,6 +39,8 @@ public class DeathWall : MonoBehaviour
     private float currentSpeed;
     private float currentAcc;
 
+    private UpdateChaseDisplayText chaseDisplayText;
+
     GameObject Player;
 
     private void Awake()
@@ -51,6 +53,9 @@ public class DeathWall : MonoBehaviour
         deathWall.Post(gameObject);
 
         Player = FindAnyObjectByType<MovementScript>().gameObject;
+
+        chaseDisplayText = FindAnyObjectByType<UpdateChaseDisplayText>(FindObjectsInactive.Include);
+        chaseDisplayText.StartDisplay();
     }
 
     public void SetData(WallMoveData data)
@@ -94,6 +99,11 @@ public class DeathWall : MonoBehaviour
             //Sets the "Music" State Group's active State to "Alarm_Low"
             AkSoundEngine.SetState("Music", "Alarm_Low");
         }
+
+        if(chaseDisplayText)
+        {
+            chaseDisplayText.UpdateDistance(distance);
+        }
     }
     private void UpdateSpeed()
     {
@@ -128,6 +138,7 @@ public class DeathWall : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<MovementScript>())
         {
+            chaseDisplayText.StopDisplay();
             FindAnyObjectByType<MenuScript>().Lose();
         }
     }

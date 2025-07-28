@@ -12,7 +12,17 @@ public class UpdateChaseDisplayText : MonoBehaviour
         text = GetComponentInChildren<TextMeshProUGUI>(true);
     }
 
-    public void UpdateDistance(int distance)
+    public void StartDisplay()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void StopDisplay()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void UpdateDistance(float distance)
     {
         if (text == null){ return; }
         string distString = distance.ToString();
