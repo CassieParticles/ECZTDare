@@ -142,4 +142,12 @@ public class DeathWall : MonoBehaviour
             FindAnyObjectByType<MenuScript>().Lose();
         }
     }
+
+    private void OnDestroy()
+    {
+        if(chaseDisplayText)
+        {
+            chaseDisplayText.StopDisplay();
+        }
+    }
 }
