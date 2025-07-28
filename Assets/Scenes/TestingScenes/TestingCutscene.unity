@@ -322,17 +322,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5937822772265498464, guid: 724df006334c34b44a935dde619b5079, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937822772265498464, guid: 724df006334c34b44a935dde619b5079, type: 3}
       propertyPath: m_TargetCamera
       value: 
       objectReference: {fileID: 196201501}
     - target: {fileID: 5937822772265498464, guid: 724df006334c34b44a935dde619b5079, type: 3}
       propertyPath: m_AudioOutputMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5937822772265498464, guid: 724df006334c34b44a935dde619b5079, type: 3}
       propertyPath: 'm_EnabledAudioTracks.Array.data[0]'
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5937822772265498464, guid: 724df006334c34b44a935dde619b5079, type: 3}
+      propertyPath: 'm_TargetAudioSources.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1728188190}
     - target: {fileID: 6270632005041306100, guid: 724df006334c34b44a935dde619b5079, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -380,14 +388,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4264877133743738552, guid: 724df006334c34b44a935dde619b5079, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1728188186}
+      addedObject: {fileID: 1728188190}
   m_SourcePrefab: {fileID: 100100000, guid: 724df006334c34b44a935dde619b5079, type: 3}
 --- !u!1 &1728188183 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4264877133743738552, guid: 724df006334c34b44a935dde619b5079, type: 3}
   m_PrefabInstance: {fileID: 1695207824}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1728188186
+--- !u!82 &1728188190
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -399,7 +407,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
