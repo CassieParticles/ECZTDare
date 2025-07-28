@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8718356180731664935, guid: 792a430241f603b49adacc8760ce5296, type: 3}
+  m_Sprite: {fileID: 321724616112829112, guid: 6df10a0b5e3f0cb469395e4886712631, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
   LargeModePositions:
   - {fileID: 0}
+  - {fileID: 0}
   multiPositionArray: []
 --- !u!1 &2537411923537598019
 GameObject:
@@ -311,7 +312,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8718356180731664935, guid: 792a430241f603b49adacc8760ce5296, type: 3}
+  m_Sprite: {fileID: 321724616112829112, guid: 6df10a0b5e3f0cb469395e4886712631, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -399,5 +400,6 @@ MonoBehaviour:
   multiPositionTypeLabel: 0
   attenuationSphereColor: {r: 1, g: 0, b: 0, a: 0.1}
   LargeModePositions:
+  - {fileID: 0}
   - {fileID: 0}
   multiPositionArray: []
