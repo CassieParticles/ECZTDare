@@ -10,11 +10,11 @@ public class Dash
         player = GameObject.Find("Player").GetComponent<MovementScript>();
     }
 
-    public void StartDashing() {
+    public int StartDashing() {
         //If the player is sliding, take them out of it if possible
         if (player.sliding || player.crouching) {
             if (!player.canStandUp) {
-                return;
+                return -1;
             }
             player.slideScript.StandUp();
         }
@@ -31,7 +31,7 @@ public class Dash
         player.InputLocked = true;
         
         player.StartCoroutine(WhileDashing());
-        
+        return dashDir;
     }
 
     public IEnumerator WhileDashing() {
