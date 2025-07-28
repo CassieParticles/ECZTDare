@@ -6934,7 +6934,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1656342416}
-  - {fileID: 1657152606}
   - {fileID: 965226111}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106196,7 +106195,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 750245063}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1245165904492486710, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
       propertyPath: m_Name
@@ -106204,15 +106203,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5145633544889923874, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -638.35504
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5145633544889923874, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -194.67998
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5145633544889923874, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.893112
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5145633544889923874, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
       propertyPath: m_LocalRotation.w
@@ -106247,11 +106246,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
---- !u!4 &1657152606 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5145633544889923874, guid: f8d0ea4e7f4d13143963fe9727c25d24, type: 3}
-  m_PrefabInstance: {fileID: 1657152605}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1657266258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156860,6 +156854,7 @@ SceneRoots:
   - {fileID: 1874790173}
   - {fileID: 765823269}
   - {fileID: 1127256352}
+  - {fileID: 1657152605}
   - {fileID: 541341778}
   - {fileID: 1601804133}
   - {fileID: 1025551644}
