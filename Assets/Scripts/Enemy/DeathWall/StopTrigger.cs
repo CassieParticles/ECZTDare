@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StopTrigger : MonoBehaviour
 {
-    DeathWall deathWallScript;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Find the death wall, and destroy it
@@ -13,10 +11,10 @@ public class StopTrigger : MonoBehaviour
         if (!wall){ return; }
 
         ////NEEDS FIXED////
+        //Stops the audio
+        wall.deathWall.Stop(gameObject);
         //Sets the "Music" State Group's active State to "Hidden"
         //AkSoundEngine.SetState("Music", "Hidden");
-        //Stops the audio
-        ///deathWallScript.deathWall.Stop(gameObject);
 
         Destroy(wall.gameObject);
 
