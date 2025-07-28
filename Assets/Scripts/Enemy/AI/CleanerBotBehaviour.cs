@@ -18,8 +18,15 @@ public class CleanerBotBehaviour : MonoBehaviour
     private void Start()
     {
         //Add cleaner bot
-        patrolRoute.AddGuard(gameObject);
-        currentDestination = patrolRoute.GetCurrNode(gameObject).position;
+        if(patrolRoute)
+        {
+            patrolRoute.AddGuard(gameObject);
+            currentDestination = patrolRoute.GetCurrNode(gameObject).position;
+        }
+        else
+        {
+            currentDestination = transform.position;
+        }
 
         cleanerRigidbody = GetComponent<Rigidbody2D>();
     }
@@ -27,7 +34,7 @@ public class CleanerBotBehaviour : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 vectorToTravel = currentDestination - (Vector2)transform.position;
-        if(vectorToTravel.sqrMagnitude < errorDelta)
+        if(patrolRoute && vectorToTravel.sqrMagnitude < errorDelta)
         {
             //Go to next node
             currentDestination = patrolRoute.GetNextNode(gameObject).position;
