@@ -9,6 +9,7 @@ using UnityEngine.Video;
 
 public class CutsceneAnim : MonoBehaviour
 {
+    [SerializeField] string nextSceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,15 @@ public class CutsceneAnim : MonoBehaviour
 
 
         //================= REBECCA SCENE EXITS HERE ======================================//
-        SceneManager.LoadScene(0);
+        if(GetComponent<MenuScript>())
+        {
+            GetComponent<MenuScript>().ChangeScene(nextSceneName);
+        }
+        else
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        
     }
 
     private void EndReached(VideoPlayer vp)
