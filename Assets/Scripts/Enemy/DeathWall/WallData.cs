@@ -7,6 +7,8 @@ public class WallData : MonoBehaviour
 {
     public DeathWall.WallMoveData wallMoveData;
 
+    [SerializeField] private float spawnDelay = 1.5f;
+
     [SerializeField] private float closeDist=20;
     [SerializeField] private float mediumDist=30;
 
@@ -21,6 +23,8 @@ public class WallData : MonoBehaviour
 
     private void Awake()
     {
+        wallMoveData.spawnTimer = spawnDelay;
+
         wallMoveData.closeDist = closeDist;
         wallMoveData.mediumDist = mediumDist;
         wallMoveData.mediumDist = mediumDist;
