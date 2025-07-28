@@ -41,6 +41,7 @@ public class DeathWall : MonoBehaviour
 
     private UpdateChaseDisplayText chaseDisplayText;
     private bool wallVisible;
+    Vector3 edgeOfScreenPos;
 
     GameObject Player;
 
@@ -58,6 +59,7 @@ public class DeathWall : MonoBehaviour
         chaseDisplayText = FindAnyObjectByType<UpdateChaseDisplayText>(FindObjectsInactive.Include);
         chaseDisplayText.StartDisplay();
         wallVisible = true;
+        edgeOfScreenPos = Vector3.zero;
     }
 
     public void SetData(WallMoveData data)
@@ -145,7 +147,8 @@ public class DeathWall : MonoBehaviour
 
 
         //Update text on the UI
-        float distanceFromEdge = Camera.main.ViewportToWorldPoint(Vector3.zero).x - transform.position.x;
+        edgeOfScreenPos.z = -Camera.main.transform.position.z;
+        float distanceFromEdge = Camera.main.ViewportToWorldPoint(edgeOfScreenPos).x - transform.position.x;
 
         if (chaseDisplayText)
         {
