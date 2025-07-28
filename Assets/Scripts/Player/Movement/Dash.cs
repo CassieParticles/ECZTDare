@@ -14,7 +14,7 @@ public class Dash
         //If the player is sliding, take them out of it if possible
         if (player.sliding || player.crouching) {
             if (!player.canStandUp) {
-                return -1;
+                return 0; //Dash doesnt happen
             }
             player.slideScript.StandUp();
         }
