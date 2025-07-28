@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class ParticleManager {
     ParticleSystem dustParticles;
-    ParticleSystem boostParticles;
-    ParticleSystem.MainModule boostMain;
     ParticleSystem cloakParticles;
     ParticleSystem.MainModule cloakMain;
     ParticleSystem.VelocityOverLifetimeModule cloakVelocity;
+    Afterimages afterimages;
 
     // Start is called before the first frame update
     public ParticleManager() {
         dustParticles = GameObject.Find("DustParticles").GetComponent<ParticleSystem>();
-        boostParticles = GameObject.Find("BoostParticles").GetComponent<ParticleSystem>();
         cloakParticles = GameObject.Find("CloakParticles").GetComponent<ParticleSystem>();
-        boostMain = boostParticles.main;
+        afterimages = GameObject.Find("DashAfterimages").GetComponent<Afterimages>();
         cloakMain = cloakParticles.main;
         cloakVelocity = cloakParticles.velocityOverLifetime;
         dustParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        boostParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         cloakParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
     }
 
@@ -27,15 +24,8 @@ public class ParticleManager {
         dustParticles.Play();
     }
 
-    public void WhileBoosting(float velocityX) {
-        boostMain.startSpeedMultiplier = velocityX / 4;
-        if (!boostParticles.isPlaying) {
-            boostParticles.Play();
-        }
-    }
-
-    public void BoostOff() {
-        boostParticles.Stop();
+    public void Afterimages(float dashDuration, int dashDir) {
+        afterimages.StartDash(dashDuration, dashDir);
     }
 
     public void CloakOn() {
