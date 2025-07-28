@@ -25,7 +25,7 @@ public class UpdateChaseDisplayText : MonoBehaviour
     public void UpdateDistance(float distance)
     {
         if (text == null){ return; }
-        string distString = distance.ToString();
+        string distString = Mathf.Floor(distance).ToString();
 
         text.text = "<- "+distString + "m";
     }
