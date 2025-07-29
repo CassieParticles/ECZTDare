@@ -32,7 +32,7 @@
 				</Event>
 			</Events>
 		</SoundBank>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B88311C5-6FB6-CF8E-08BF-02F69868D0F8}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{46A167F2-6A2F-BFDF-A3F2-CA9A9B76A55C}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -167,7 +167,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{1C061E9C-033A-2022-0A60-1115F672A0D9}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{67739B3F-34F7-600B-BFB4-5292C8DBDD10}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -246,10 +246,6 @@
 				<File Id="118186165" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>In_View_Cone.wav</ShortName>
 					<CachePath>SFX/In_View_Cone_CE70BCCE.wem</CachePath>
-				</File>
-				<File Id="130288872" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>G_VO_GodDamnIt.wav</ShortName>
-					<CachePath>SFX/G_VO_GodDamnIt_818F3B66.wem</CachePath>
 				</File>
 				<File Id="144557377" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_3.wav</ShortName>
@@ -1083,17 +1079,6 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="1478300588" Name="Guard_GodDamnIt" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.3125" DurationMax="1.3125">
-					<MediaRefs>
-						<MediaRef Id="130288872"/>
-					</MediaRefs>
-					<AuxBusRefs>
-						<AuxBusRef Id="1409684747" Name="LargeRoomReverb"/>
-						<AuxBusRef Id="2227188135" Name="SmallRoomReverb"/>
-						<AuxBusRef Id="2347912553" Name="MediumRoomReverb"/>
-						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
-					</AuxBusRefs>
-				</Event>
 				<Event Id="2136542107" Name="Guard_HeyStop" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.3361875" DurationMax="1.3361875">
 					<MediaRefs>
 						<MediaRef Id="1035015420"/>
@@ -1138,10 +1123,9 @@
 						<AuxBusRef Id="3370640258" Name="OutsideReverb"/>
 					</AuxBusRefs>
 				</Event>
-				<Event Id="635823140" Name="Guard_Lost_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.78125" DurationMax="1.3125">
+				<Event Id="635823140" Name="Guard_Lost_Emira" MaxAttenuation="40" DurationType="OneShot" DurationMin="0.78125" DurationMax="1.0625">
 					<MediaRefs>
 						<MediaRef Id="70646447"/>
-						<MediaRef Id="130288872"/>
 						<MediaRef Id="450456830"/>
 						<MediaRef Id="632797106"/>
 					</MediaRefs>
@@ -1735,5 +1719,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C42DA5E0-184D-F0F7-1755-77D8BE8FE289}</FileHash>
+	<FileHash>{912D630A-294C-D7B4-43C8-AB7E27C6D3F0}</FileHash>
 </SoundBanksInfo>

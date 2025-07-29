@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +14,20 @@ public class VideoPlayUI : MonoBehaviour
         gameObject.SetActive(true);
         if (!clipToPlay){ return; }
         if (!videoPlayer){ videoPlayer = GetComponent<VideoPlayer>(); }
+        videoPlayer.enabled = true;
 
         //Play video
         videoPlayer.clip = clipToPlay;
-        videoPlayer.Play();
+        if (videoPlayer.enabled)
+        {
+            videoPlayer.Play();
+        }
+        else
+        {
+            Debug.Log("Object is not active???");
+        }
+
+
 
         //Pause game stuff
         //Set timescale to 0

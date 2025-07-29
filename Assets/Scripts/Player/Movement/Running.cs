@@ -49,7 +49,7 @@ public class Running
     }
 
     public void FootstepSounds() {
-        if (player.horizontalVelocity > 0.1 && player.grounded) {
+        if (player.horizontalVelocity > 0.1 && player.grounded && !player.sliding) {
             player.footstepCount += (player.horizontalVelocity * player.footstepRateScaler) * player.footstepRate * Time.deltaTime;
             if (player.horizontalVelocity < 20f) {
                 if (player.footstepCount > 1) {

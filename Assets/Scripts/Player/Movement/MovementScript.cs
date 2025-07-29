@@ -530,7 +530,11 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         //Dashing
         if (dashInput) {
             if (!dashing && !hasDashed && batteryCharge > 20 && dashChargesRemaining > 0 && !dashCooldownActive) {
-                dashScript.StartDashing();
+                //Start a dash and save the direction
+                int dashDirection = dashScript.StartDashing();
+                if (dashDirection != 0) {
+                    particleManager.Afterimages(dashDuration, dashDirection);
+                }
             }
         }
         
