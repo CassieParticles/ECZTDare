@@ -1,6 +1,24 @@
 Event	ID	Name			Wwise Object Path	Notes
 	2890574062	Break_Music			\Default Work Unit\Break_Music	
+	2985113282	Boss_Music			\Default Work Unit\Boss_Music	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3991942870	Music			\Default Work Unit\Music	
+
+State	ID	Name	State Group			Notes
+	122271732	Alarm_Middle	Music			
+	748895195	None	Music			
+	1182958561	Cutscene	Music			
+	1267086258	Overseer_Looming	Music			
+	1862135557	NoMusic	Music			
+	2607556080	Menu	Music			
+	3599981451	Alarm_High	Music			
+	3621873013	Hidden	Music			
+	3978206344	Overseer_Chasing	Music			
+	4009708623	Alarm_Low	Music			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	15292823	Overseer Looming_Mastered	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Overseer Looming_Mastered_B89DE8AA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Overseer Looming_Mastered		24495304
+	96104063	Overseer Chasing_Mastered	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Overseer Chasing_Mastered_BB1F92E8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Overseer Chasing_Mastered		24495304
 	593247621	Break_Room	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Break Room_2BFBBD89.wem		\Actor-Mixer Hierarchy\Default Work Unit\Music\Break_Room		14400144
 

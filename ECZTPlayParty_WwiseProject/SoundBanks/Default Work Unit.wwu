@@ -38,7 +38,6 @@
 						<ObjectRef Name="Turret_Fire" ID="{C5C7F487-B1F2-47D0-BFA0-2CAAB4E7203D}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Overseer_Ending" ID="{61D68016-8472-4819-9FC7-A53406DF690A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Activate_Alarm" ID="{B5F7FB17-8872-481D-A62E-60BE5BEEB834}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Guard_GodDamnIt" ID="{BAD1C39A-6445-482D-B8F2-81E2F9A7679B}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Outside_Steps" ID="{4440665A-7B55-4924-A3E4-81FFDE0D4EDE}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Rush" ID="{392675AE-D581-497B-BBB4-B1748C3002E8}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
@@ -78,6 +77,7 @@
 				<SoundBank Name="Music_2" ID="{9311DE1D-8538-4E96-A1C3-0F1123F5B280}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Break_Music" ID="{00FD9CF5-9F17-40ED-86A5-8243EC7BC31D}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Boss_Music" ID="{37FAE88F-9E18-4881-A227-C0A7FF1CCAA6}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

@@ -474,17 +474,6 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="Guard_GodDamnIt" ID="{BAD1C39A-6445-482D-B8F2-81E2F9A7679B}">
-					<ChildrenList>
-						<Action Name="" ID="{1A325ED3-1610-40B8-AF23-263EAB2AEC27}" ShortID="668391199">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="G_VO_GodDamnIt" ID="{58A1ABB0-DFD4-4CF0-9FC3-CC6C007F5CAB}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="Spotlight_Turn_On" ID="{D9FEF3F1-208B-4689-ADD2-965592C6450F}">
 					<ChildrenList>
 						<Action Name="" ID="{0E909958-A705-4A62-B0A6-19AE4B2E6A15}" ShortID="589229823">
@@ -711,6 +700,24 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="C_Breakable_Floor" ID="{E932F286-B7D6-4FFC-BBCC-73B473CE2588}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Boss_Music" ID="{37FAE88F-9E18-4881-A227-C0A7FF1CCAA6}">
+					<ChildrenList>
+						<Action Name="" ID="{FC3B6C42-BF62-49BF-8970-BBEA470D8D48}" ShortID="897233152">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Overseer Chasing_Mastered" ID="{81517080-715A-4F5E-9E69-00B6B122ADC2}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+						<Action Name="" ID="{AF44ABA3-C751-422E-A866-7B8E21DA50F1}" ShortID="312283985">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Overseer Looming_Mastered" ID="{65AD695C-A4AF-4EE4-B08F-27A1DC951048}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>

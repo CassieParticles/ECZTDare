@@ -59,8 +59,24 @@
 										<CustomState Name="" ID="{7534A98F-3EBF-4D8A-B95E-5CEA9BF73D87}" ShortID="841925969"/>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{94415702-EED1-426C-8264-22E670050EBF}" ShortID="304223993">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{8E2D8DCA-F84D-4DA4-89DC-DFC1569E9343}" ShortID="93235417">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{8EA21977-1107-487C-A3B8-8E64BD307203}" ShortID="213746201">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -149,8 +165,24 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{73EBE813-75C7-440C-B67C-0EFA17E00245}" ShortID="636099246">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{8F6DEC1E-0F85-43D4-A4AF-3C3FFF4DD05C}" ShortID="736320495">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{836B5E9B-1901-43FE-B571-32C9A6DC06C7}" ShortID="92050928">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -240,8 +272,24 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{3B636DBD-70CB-46A9-8F24-C56E8BFADAA5}" ShortID="727193035">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{204E206B-FB91-4148-BCAD-76AD30C95EB9}" ShortID="155172228">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{4A219CE3-D356-43A3-A4C8-00DACB58AFCD}" ShortID="1071414705">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -326,8 +374,24 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{A7CFEA48-86A8-48BE-9FDE-C6E0F5741BC8}" ShortID="253066983">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{7671CB7C-B46D-4BF8-BFB7-3E8FD8947491}" ShortID="524881620">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{9A94ED5E-63A5-44FE-8121-9F5D2D3E41FA}" ShortID="699761442">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -412,8 +476,24 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{CD5920DD-6A8D-4EAD-9BDE-98B8B28FC1DC}" ShortID="208920015">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{7A70293F-E50F-4616-9F95-71FC7773DCB4}" ShortID="351053650"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{6F71C1DB-A5D9-49BA-BEF0-9F1DA68BBFCE}" ShortID="530229716">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
 									</CustomState>
 									<CustomState>
 										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
@@ -499,8 +579,24 @@
 										</CustomState>
 									</CustomState>
 									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{ED4466F1-33C7-408D-A77A-ACB1E47900ED}" ShortID="614575428">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
 										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
 										<CustomState Name="" ID="{0F7504D4-C698-4703-9A1F-D0189B058D78}" ShortID="821006690">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{EAE2A3EB-8FB6-44CB-8069-3B2274AE249F}" ShortID="687106544">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64" Value="-108"/>
 											</PropertyList>
@@ -584,6 +680,220 @@
 							</PositioningInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="Break Room" ID="{0F2866F8-5460-4F40-8C6B-DB2CBAD76A08}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Overseer Chasing_Mastered" ID="{81517080-715A-4F5E-9E69-00B6B122ADC2}" ShortID="692391462">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{64D5FDEE-F459-447F-810E-28482938819D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Overseer Chasing_Mastered" ID="{401F1191-C546-4306-9A5F-3A9EC1703BB1}">
+									<PropertyList>
+										<Property Name="LoopBegin" Type="Real64" Value="5.00003962215557"/>
+										<Property Name="LoopEnd" Type="Real64" Value="126.279767514517"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Overseer Chasing_Mastered.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="96104063"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+										<CustomState Name="" ID="{5E893899-AF38-4093-A4BC-1AD7C6E0169D}" ShortID="283861988">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{5DFF00BD-97A2-4F0B-A4AA-CFA6A92B6BAD}" ShortID="390288245">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+										<CustomState Name="" ID="{02725D8D-CE06-490A-B80F-BEDE5D367097}" ShortID="650229994">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{D2EC4E29-2148-4540-90B3-FB81B4B5787A}" ShortID="799205927">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{E11D4C95-DA20-402D-B74F-52E1EEC6FAC0}" ShortID="506753280">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{2F8F5F7C-E753-4408-A752-A4E76CDDEECB}" ShortID="918212486"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+										<CustomState Name="" ID="{89C5C318-968D-4946-809B-FFC381AFC6E8}" ShortID="85493124">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+										<CustomState Name="" ID="{F27EB861-055F-4F1C-B3C5-1F395B60EBC5}" ShortID="73260403">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+										<CustomState Name="" ID="{0BF460C9-0369-4A34-A86E-5D297C0F9421}" ShortID="416362981">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<ActiveSourceList>
+								<ActiveSource Name="Overseer Chasing_Mastered" ID="{401F1191-C546-4306-9A5F-3A9EC1703BB1}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Overseer Looming_Mastered" ID="{65AD695C-A4AF-4EE4-B08F-27A1DC951048}" ShortID="300381851">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{64D5FDEE-F459-447F-810E-28482938819D}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Overseer Looming_Mastered" ID="{DCBA867E-9535-4DF0-9815-08897DB1FD79}">
+									<PropertyList>
+										<Property Name="LoopBegin" Type="Real64" Value="5.00011890519309"/>
+										<Property Name="LoopEnd" Type="Real64" Value="126.279917949192"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Overseer Looming_Mastered.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="15292823"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="Music" ID="{8ECE9E7F-A7F0-4BEE-BD07-72F0F2AC3792}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+										<CustomState Name="" ID="{1F39D92C-C152-4389-B360-5A1859F7104E}" ShortID="71850416">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Cutscene" ID="{5B47EA25-D1DE-42DC-8EE3-5886A3457019}"/>
+										<CustomState Name="" ID="{EC580C0F-7632-471C-9A61-2351D386DBEA}" ShortID="610561873">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_High" ID="{045CED77-C0DE-4698-9015-785789F68A23}"/>
+										<CustomState Name="" ID="{5A5B8CC9-3E37-4499-9CBB-75A167D9DCB3}" ShortID="477564078">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+										<CustomState Name="" ID="{A13EDCAF-4EEF-4C54-953C-11A9B21A6D31}" ShortID="845901499"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Menu" ID="{4B484F78-4788-499A-B515-D99A309E777A}"/>
+										<CustomState Name="" ID="{1DBFA7E2-50E5-4358-9513-D51173525217}" ShortID="806190415">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+										<CustomState Name="" ID="{FB3552F5-DB42-42A7-90F8-3B5CF9F4C76B}" ShortID="817782224">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Low" ID="{5D97723F-8666-4CBE-A7D8-D5F61D683405}"/>
+										<CustomState Name="" ID="{93C1965D-C996-4798-93F0-75E86677EE02}" ShortID="835378863">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Alarm_Middle" ID="{3F1B1A42-F1D3-4E26-A747-60E5FB6ED905}"/>
+										<CustomState Name="" ID="{42FFDCFF-C799-4677-8A3E-F33628254364}" ShortID="427746867">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+										<CustomState Name="" ID="{46BFF7B0-2500-4C90-B0A1-4A015081D31B}" ShortID="514425345">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-108"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<ActiveSourceList>
+								<ActiveSource Name="Overseer Looming_Mastered" ID="{DCBA867E-9535-4DF0-9815-08897DB1FD79}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

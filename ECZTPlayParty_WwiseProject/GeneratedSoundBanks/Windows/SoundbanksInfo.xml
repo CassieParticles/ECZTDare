@@ -9,16 +9,30 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{8710C189-6E9B-58B6-A305-0A4BF39A603E}">
+		<SoundBank Id="508837813" Type="User" Language="SFX" Hash="{9B67F98B-3653-5E51-14E1-E6B854CF8D5D}">
 			<ShortName>Music_2</ShortName>
 			<Path>Music_2.bnk</Path>
 			<Media>
+				<File Id="15292823" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Overseer Looming_Mastered.wav</ShortName>
+					<CachePath>SFX/Overseer Looming_Mastered_B89DE8AA.wem</CachePath>
+				</File>
+				<File Id="96104063" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Overseer Chasing_Mastered.wav</ShortName>
+					<CachePath>SFX/Overseer Chasing_Mastered_BB1F92E8.wem</CachePath>
+				</File>
 				<File Id="593247621" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Break Room.wav</ShortName>
 					<CachePath>SFX/Break Room_2BFBBD89.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
+				<Event Id="2985113282" Name="Boss_Music" DurationType="Infinite">
+					<MediaRefs>
+						<MediaRef Id="15292823"/>
+						<MediaRef Id="96104063"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2890574062" Name="Break_Music" MaxAttenuation="100" DurationType="Infinite">
 					<MediaRefs>
 						<MediaRef Id="593247621"/>
@@ -116,10 +130,12 @@
 						<State Id="122271732" Name="Alarm_Middle"/>
 						<State Id="748895195" Name="None"/>
 						<State Id="1182958561" Name="Cutscene"/>
+						<State Id="1267086258" Name="Overseer_Looming"/>
 						<State Id="1862135557" Name="NoMusic"/>
 						<State Id="2607556080" Name="Menu"/>
 						<State Id="3599981451" Name="Alarm_High"/>
 						<State Id="3621873013" Name="Hidden"/>
+						<State Id="3978206344" Name="Overseer_Chasing"/>
 						<State Id="4009708623" Name="Alarm_Low"/>
 					</States>
 				</StateGroup>
@@ -1671,7 +1687,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{30642AB0-109F-D673-7755-D7B0C837FF88}">
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{A3567115-D8AC-5E6A-4307-CB05F8301D77}">
 			<ShortName>Music</ShortName>
 			<Path>Music.bnk</Path>
 			<Media>
@@ -1719,5 +1735,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{912D630A-294C-D7B4-43C8-AB7E27C6D3F0}</FileHash>
+	<FileHash>{EDC5CA8D-F07E-7FA6-6CB2-EE4EB0A5F9C6}</FileHash>
 </SoundBanksInfo>

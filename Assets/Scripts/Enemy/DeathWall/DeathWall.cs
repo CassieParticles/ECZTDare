@@ -8,6 +8,10 @@ public class DeathWall : MonoBehaviour
 {
     public AK.Wwise.Event deathWall;
 
+    [SerializeField] string closeMusic = "Alarm_High";
+    [SerializeField] string mediumMusic = "Alarm_Medium";
+    [SerializeField] string farMusic = "Alarm_Low";
+
     public struct WallMoveData
     {
         public float spawnTimer;
@@ -97,7 +101,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Close speed");
 
             //Sets the "Music" State Group's active State to "Alarm_High"
-            AkSoundEngine.SetState("Music", "Alarm_High");
+            AkSoundEngine.SetState("Music", closeMusic);
         }
         else if (distance >= wallData.closeDist && distance < wallData.mediumDist && currentDistance != Distance.Medium)
         {
@@ -107,7 +111,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Medium speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Middle"
-            AkSoundEngine.SetState("Music", "Alarm_Middle");
+            AkSoundEngine.SetState("Music", mediumMusic);
         }
         else if (distance >= wallData.mediumDist && currentDistance != Distance.Far)
         {
@@ -117,7 +121,7 @@ public class DeathWall : MonoBehaviour
             Debug.Log("Far speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Low"
-            AkSoundEngine.SetState("Music", "Alarm_Low");
+            AkSoundEngine.SetState("Music", farMusic);
         }
 
 
