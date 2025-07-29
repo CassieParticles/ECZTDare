@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +7,7 @@ public class LookaheadGUI : MonoBehaviour
     //Positions had to be heavily shrunk cause when added they get multiplied by ~28 and go super far out
     static readonly Vector3 leftPosition=new Vector3(-800,0,0);
     static readonly Vector3 rightPosition=new Vector3(800,0,0);
+    static readonly Vector3 unitVector = new Vector3(1, 1, 1);
     //Called when lookahead GUI is told to appear
 
     private LookaheadTracker tracker;
@@ -48,6 +47,14 @@ public class LookaheadGUI : MonoBehaviour
         this.distance = distance;
     }
 
+    private float sizeCalculation(float distance)
+    {
+        //A should be a constant > 1
+        float a = 1.2f;
+        float b = 2.5f;
+        return Mathf.Min(1, 1.0f / (distance + a) + 1.0f / b);
+    }
+
     public void UpdateInformation(int order)
     {
         if (!text){
@@ -55,7 +62,11 @@ public class LookaheadGUI : MonoBehaviour
         }
         text.text = Mathf.Floor(distance).ToString() + "m";
         Vector3 pos = rectTransform.localPosition;
-        pos.y = order * - 200;
+        pos.y = order * - 120;
         rectTransform.localPosition = pos;
+
+        float size = sizeCalculation(distance);
+        rectTransform.localScale = unitVector * size;
+
     }
 }
