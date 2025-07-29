@@ -15,9 +15,15 @@ public class LookaheadGUI : MonoBehaviour
 
     private TextMeshProUGUI text;
 
+    private RectTransform rectTransform;
+
+    public float distance { get; private set; }
+    public bool onLeftSide { get; private set; }
+
     private void Start()
     {
-        text = GetComponentInChildren<TextMeshProUGUI>();
+        text = GetComponentInChildren<TextMeshProUGUI>(true);
+        rectTransform = GetComponent<RectTransform>();
     }
     public void LookaheadStart(LookaheadTracker tracker, bool onLeftSide)
     {
@@ -34,10 +40,22 @@ public class LookaheadGUI : MonoBehaviour
         }
         //Set tracker
         this.tracker = tracker;
+        this.onLeftSide = onLeftSide;
     }
 
-    public void UpdateInformation(float distanceFromScreen)
+    public void setDistance(float distance)
     {
-        text.text = Mathf.Floor(distanceFromScreen).ToString() + "m";
+        this.distance = distance;
+    }
+
+    public void UpdateInformation(int order)
+    {
+        if (!text){
+            return;
+        }
+        text.text = Mathf.Floor(distance).ToString() + "m";
+        Vector3 pos = rectTransform.localPosition;
+        pos.y = order * - 200;
+        rectTransform.localPosition = pos;
     }
 }

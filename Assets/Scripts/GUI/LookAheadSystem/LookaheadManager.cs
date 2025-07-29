@@ -14,6 +14,9 @@ public class LookaheadManager : MonoBehaviour
     List<LookaheadGUI> trackerGUIPool;
     readonly int trackerPoolSize = 10;
 
+    LinkedList<LookaheadGUI> leftGUIToUpdate;
+    LinkedList<LookaheadGUI> rightGUIToUpdate;
+
     private Vector3 leftScreenSide = Vector3.zero;
     private Vector3 rightScreenSide = Vector3.right;
     private Vector3 unitVector = new Vector3(1, 1, 1);
@@ -22,7 +25,9 @@ public class LookaheadManager : MonoBehaviour
     {
         leftTrackers = new List<LookaheadTracker>();
         rightTrackers = new List<LookaheadTracker>();
-        trackerGUIPool = new List<LookaheadGUI>();
+        trackerGUIPool = new List<LookaheadGUI>(trackerPoolSize);
+        leftGUIToUpdate = new LinkedList<LookaheadGUI>();
+        rightGUIToUpdate = new LinkedList<LookaheadGUI>();
     }
 
     private void Start()
@@ -99,7 +104,7 @@ public class LookaheadManager : MonoBehaviour
                     tracker.displayingGUI = displayGUI;
                 }
 
-                tracker.displayingGUI.UpdateInformation(distanceToEdge);
+                AddToLeftList(tracker.displayingGUI,distanceToEdge);
             }
             else
             {
@@ -137,7 +142,7 @@ public class LookaheadManager : MonoBehaviour
                     tracker.displayingGUI = displayGUI;
                 }
 
-                tracker.displayingGUI.UpdateInformation(distanceToEdge);
+                AddToRightList(tracker.displayingGUI, distanceToEdge);
             }
             else
             {
@@ -151,9 +156,57 @@ public class LookaheadManager : MonoBehaviour
         }
     }
 
+    private void AddToLeftList(LookaheadGUI gui, float distance)
+    {
+        gui.setDistance(distance);
+        foreach(LookaheadGUI guiIt in leftGUIToUpdate)
+        {
+            if(distance < guiIt.distance)
+            {
+                leftGUIToUpdate.AddBefore(leftGUIToUpdate.Find(guiIt), gui);
+                return;
+            }
+        }
+        //Not been added to list, needs to be added to end
+        leftGUIToUpdate.AddLast(gui);
+    }
+
+    private void AddToRightList(LookaheadGUI gui, float distance)
+    {
+        gui.setDistance(distance);
+        foreach (LookaheadGUI guiIt in rightGUIToUpdate)
+        {
+            if (distance < guiIt.distance)
+            {
+                rightGUIToUpdate.AddBefore(rightGUIToUpdate.Find(guiIt), gui);
+                return;
+            }
+        }
+        //Not been added to list, needs to be added to end
+        rightGUIToUpdate.AddLast(gui);
+    }
+
+    private void UpdateDisplays()
+    {
+        int count = 0;
+        foreach(LookaheadGUI gui in leftGUIToUpdate)
+        {
+            gui.UpdateInformation(count++);
+        }
+        count = 0;
+        foreach (LookaheadGUI gui in rightGUIToUpdate)
+        {
+            gui.UpdateInformation(count++);
+        }
+        leftGUIToUpdate.Clear();
+        rightGUIToUpdate.Clear();
+    }
+
 
     private void FixedUpdate()
     {
         CheckTrackers();
+
+        UpdateDisplays();
     }
 }
