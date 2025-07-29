@@ -24,7 +24,6 @@ public class Subtitle : MonoBehaviour
     public bool writing = false;
     private bool writingCoroutine;
     [NonSerialized] public string writtenText = "";
-    private int textNumber = 0;
     private bool finished = false;
     private bool waiting = false;
     private float timer;

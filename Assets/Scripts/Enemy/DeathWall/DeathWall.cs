@@ -55,6 +55,7 @@ public class DeathWall : MonoBehaviour
     {
         yield return new WaitForSeconds(wallData.spawnTimer);
         started = true;
+        spawnDelayCoroutine = null;
     }
 
     private void Awake()
@@ -203,6 +204,10 @@ public class DeathWall : MonoBehaviour
         if(chaseDisplayText)
         {
             chaseDisplayText.StopDisplay();
+        }
+        if(spawnDelayCoroutine!=null)
+        {
+            StopCoroutine(spawnDelayCoroutine);
         }
     }
 }
