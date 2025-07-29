@@ -55,6 +55,7 @@ public class DeathWall : MonoBehaviour
     {
         yield return new WaitForSeconds(wallData.spawnTimer);
         started = true;
+        spawnDelayCoroutine = null;
     }
 
     private void Awake()
@@ -94,7 +95,6 @@ public class DeathWall : MonoBehaviour
             desiredSpeed = wallData.speedClose;
             currentAcc = wallData.AccCloseMedium;
             currentDistance = Distance.Close;
-            Debug.Log("Close speed");
 
             //Sets the "Music" State Group's active State to "Alarm_High"
             AkSoundEngine.SetState("Music", "Alarm_High");
@@ -104,7 +104,6 @@ public class DeathWall : MonoBehaviour
             desiredSpeed = wallData.speedMedium;
             currentAcc = currentDistance == Distance.Close ? wallData.AccCloseMedium : wallData.AccMediumFar;
             currentDistance = Distance.Medium;
-            Debug.Log("Medium speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Middle"
             AkSoundEngine.SetState("Music", "Alarm_Middle");
@@ -114,7 +113,6 @@ public class DeathWall : MonoBehaviour
             desiredSpeed = wallData.speedFar;
             currentAcc = wallData.AccMediumFar;
             currentDistance = Distance.Far;
-            Debug.Log("Far speed");
 
             //Sets the "Music" State Group's active State to "Alarm_Low"
             AkSoundEngine.SetState("Music", "Alarm_Low");
@@ -206,6 +204,10 @@ public class DeathWall : MonoBehaviour
         if(chaseDisplayText)
         {
             chaseDisplayText.StopDisplay();
+        }
+        if(spawnDelayCoroutine!=null)
+        {
+            StopCoroutine(spawnDelayCoroutine);
         }
     }
 }
