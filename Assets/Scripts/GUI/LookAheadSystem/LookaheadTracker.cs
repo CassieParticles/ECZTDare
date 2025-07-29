@@ -13,13 +13,25 @@ public class LookaheadTracker : MonoBehaviour
     //Used by manager to track what objects are and aren't displayed already
     [NonSerialized]public LookaheadGUI displayingGUI;
 
+    private LookaheadManager manager;
+
     private void Start()
     {
         //Look for manager, and add this if one exists
-        LookaheadManager manager = FindAnyObjectByType<LookaheadManager>();
-        if(manager)
+        manager = FindAnyObjectByType<LookaheadManager>();
+        if (manager)
         {
             manager.AddTracker(this);
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        //Look for manager, and add this if one exists
+        if (manager)
+        {
+            manager.RemoveTracker(this);
         }
     }
 }

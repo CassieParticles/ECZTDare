@@ -51,7 +51,7 @@ public class LookaheadGUI : MonoBehaviour
     {
         //A should be a constant > 1
         float a = 1.2f;
-        float b = 2.5f;
+        float b = 1.5f;
         return Mathf.Min(1, 1.0f / (distance + a) + 1.0f / b);
     }
 

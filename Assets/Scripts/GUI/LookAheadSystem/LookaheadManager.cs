@@ -70,6 +70,24 @@ public class LookaheadManager : MonoBehaviour
         }
     }
 
+    public void RemoveTracker(LookaheadTracker tracker)
+    {
+        if (tracker.TrackLeft)
+        {
+            leftTrackers.Remove(tracker);
+        }
+        if (tracker.TrackRight)
+        {
+            rightTrackers.Remove(tracker);
+        }
+
+        if(tracker.displayingGUI)
+        {
+            tracker.displayingGUI.gameObject.SetActive(false);
+            tracker.displayingGUI = null;
+        }
+    }
+
     //Update display visiblity
     private void CheckTrackers()
     {
