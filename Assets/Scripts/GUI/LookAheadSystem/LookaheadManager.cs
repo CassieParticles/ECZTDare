@@ -22,9 +22,14 @@ public class LookaheadManager : MonoBehaviour
 
     private void Start()
     {
+        //Createnew GUI objects
         for (int i = 0; i < trackerPoolSize; i++)
         {
-            trackerGUIPool.Add(Instantiate(trackerGUIPrefab));
+            GameObject newGUI = Instantiate(trackerGUIPrefab);
+            newGUI.transform.SetParent(transform);
+            newGUI.GetComponent<RectTransform>().position = Vector3.zero;
+            newGUI.SetActive(false);
+            trackerGUIPool.Add(newGUI);
         }
     }
 
