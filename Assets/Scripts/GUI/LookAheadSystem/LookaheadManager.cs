@@ -147,7 +147,7 @@ public class LookaheadManager : MonoBehaviour
             else
             {
                 //Deactivate the displaying GUI
-                if (tracker.displayingGUI)
+                if (tracker.displayingGUI && !tracker.displayingGUI.onLeftSide)
                 {
                     tracker.displayingGUI.gameObject.SetActive(false);
                     tracker.displayingGUI = null;
