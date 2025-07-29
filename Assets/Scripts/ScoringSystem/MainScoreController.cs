@@ -113,10 +113,13 @@ public class MainScoreController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(currentlyScoring)
+        //Destroy tracking objects
+        if(timer)
         {
-            //Destroy active scoring trackers
             Destroy(timer.gameObject);
+        }
+        if(stealthTracker)
+        {
             Destroy(stealthTracker.gameObject);
         }
     }
