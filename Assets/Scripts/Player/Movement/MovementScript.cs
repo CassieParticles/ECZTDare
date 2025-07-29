@@ -47,7 +47,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public float tempGroundedTimer;
 
     [NonSerialized] public Rigidbody2D rb;
-    [NonSerialized] public BoxCollider2D collider;
+    [NonSerialized] public BoxCollider2D playerCollider;
     [NonSerialized] public SpriteRenderer spriteRenderer;
     [NonSerialized] public Animator animator;
     [NonSerialized] public Animator modeHexAnimator;
@@ -217,7 +217,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<BoxCollider2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         movementCamera = GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>();
 
@@ -228,7 +228,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         cloakScript = new Cloak();
         particleManager = new ParticleManager();
 
-        colliderSize = collider.size;
+        colliderSize = playerCollider.size;
         effectiveMaxRunSpeed = maxRunSpeed;
         effectiveAcceleration = acceleration;
         effectiveDeceleration = deceleration;
@@ -424,7 +424,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             //Check if top ray isnt hitting anything and bottom ray is
             if ((!topRightSnap && bottomRightSnap) || (!topLeftSnap && bottomLeftSnap)) {
                 //dif ((bottomRightSnap && bottomRightSnap.distance < ) || (bottomLeftSnap && bottomLeftSnap.distance > rb.velocityX * Time.fixedDeltaTime * pred))
-                rb.position += new Vector2(distanceSnap * runInput, snapToLedgeTopRayHeight * collider.size.y);
+                rb.position += new Vector2(distanceSnap * runInput, snapToLedgeTopRayHeight * playerCollider.size.y);
                 tempGroundedTimer = 0.05f;
             }
         }
@@ -443,36 +443,36 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
 
     void doRayCasts() {
         //Rays for checking if the player is on the ground
-        rightGroundRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                         -collider.size.y * 0.99f / 2f);
-        leftGroundRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                         -collider.size.y * 0.99f / 2f);
+        rightGroundRayStart = rb.position + playerCollider.offset + new Vector2(playerCollider.size.x * 0.99f / 2f,
+                                                                         -playerCollider.size.y * 0.99f / 2f);
+        leftGroundRayStart = rb.position + playerCollider.offset + new Vector2(-playerCollider.size.x * 0.99f / 2f,
+                                                                         -playerCollider.size.y * 0.99f / 2f);
 
         //Rays for checking if the player is on a wall
-        topRightWallRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                          collider.size.y * walljumpRayGap / 2f);
-        bottomRightWallRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                             -collider.size.y * walljumpRayGap / 2f);
-        topLeftWallRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                         collider.size.y * walljumpRayGap / 2f);
-        bottomLeftWallRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                            -collider.size.y * walljumpRayGap / 2f);
+        topRightWallRayStart = rb.position + playerCollider.offset + new Vector2(playerCollider.size.x * 0.99f / 2f,
+                                                                          playerCollider.size.y * walljumpRayGap / 2f);
+        bottomRightWallRayStart = rb.position + playerCollider.offset + new Vector2(playerCollider.size.x * 0.99f / 2f,
+                                                                             -playerCollider.size.y * walljumpRayGap / 2f);
+        topLeftWallRayStart = rb.position + playerCollider.offset + new Vector2(-playerCollider.size.x * 0.99f / 2f,
+                                                                         playerCollider.size.y * walljumpRayGap / 2f);
+        bottomLeftWallRayStart = rb.position + playerCollider.offset + new Vector2(-playerCollider.size.x * 0.99f / 2f,
+                                                                            -playerCollider.size.y * walljumpRayGap / 2f);
 
         //Rays for snapping up ledges
-        topRightSnapRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                          collider.size.y * snapToLedgeTopRayHeight - collider.size.y / 2f);
-        bottomRightSnapRayStart = rb.position + collider.offset + new Vector2(collider.size.x * 0.99f / 2f,
-                                                                             collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
-        topLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                         collider.size.y * snapToLedgeTopRayHeight - collider.size.y / 2f);
-        bottomLeftSnapRayStart = rb.position + collider.offset + new Vector2(-collider.size.x * 0.99f / 2f,
-                                                                            collider.size.y * snapToLedgeBottomRayHeight - collider.size.y / 2f);
+        topRightSnapRayStart = rb.position + playerCollider.offset + new Vector2(playerCollider.size.x * 0.99f / 2f,
+                                                                          playerCollider.size.y * snapToLedgeTopRayHeight - playerCollider.size.y / 2f);
+        bottomRightSnapRayStart = rb.position + playerCollider.offset + new Vector2(playerCollider.size.x * 0.99f / 2f,
+                                                                             playerCollider.size.y * snapToLedgeBottomRayHeight - playerCollider.size.y / 2f);
+        topLeftSnapRayStart = rb.position + playerCollider.offset + new Vector2(-playerCollider.size.x * 0.99f / 2f,
+                                                                         playerCollider.size.y * snapToLedgeTopRayHeight - playerCollider.size.y / 2f);
+        bottomLeftSnapRayStart = rb.position + playerCollider.offset + new Vector2(-playerCollider.size.x * 0.99f / 2f,
+                                                                            playerCollider.size.y * snapToLedgeBottomRayHeight - playerCollider.size.y / 2f);
 
         //Rays for checking if the player can stop sliding
-        rightSlideRayStart = rb.position + collider.offset + new Vector2(colliderSize.x / 3f,
-                                                                        -collider.size.y * 0.98f / 2f);
-        leftSlideRayStart = rb.position + collider.offset + new Vector2(-colliderSize.x / 3f,
-                                                                       -collider.size.y  * 0.98f / 2f);
+        rightSlideRayStart = rb.position + playerCollider.offset + new Vector2(colliderSize.x / 3f,
+                                                                        -playerCollider.size.y * 0.98f / 2f);
+        leftSlideRayStart = rb.position + playerCollider.offset + new Vector2(-colliderSize.x / 3f,
+                                                                       -playerCollider.size.y  * 0.98f / 2f);
 
     }
 
@@ -737,17 +737,17 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         if (recoveredVelocity.x != 0) {
             int dir = (int)recoveredVelocity.normalized.x;
 
-            Vector2 horizontalTopRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
-                                                                                        collider.size.y * 0.99f / 2f);
-            Vector2 horizontalBottomRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
-                                                                                           -collider.size.y * 0.99f / 2f);
+            Vector2 horizontalTopRayStart = rb.position + playerCollider.offset + new Vector2(dir * playerCollider.size.x * 0.99f / 2f,
+                                                                                        playerCollider.size.y * 0.99f / 2f);
+            Vector2 horizontalBottomRayStart = rb.position + playerCollider.offset + new Vector2(dir * playerCollider.size.x * 0.99f / 2f,
+                                                                                           -playerCollider.size.y * 0.99f / 2f);
             float rayXScaler = rb.velocityX * velocityBufferRayScaler * 0.1f;
 
             RaycastHit2D horizontalTopRay = Physics2D.Raycast(horizontalTopRayStart, Vector2.right * dir, rayXScaler, layers);
             RaycastHit2D horizontalBottomRay = Physics2D.Raycast(horizontalBottomRayStart, Vector2.right * dir, rayXScaler, layers);
 
             if (!sliding && !crouching) { //Dont do middle raycast if crouching or sliding as height is lower
-                Vector2 horizontalMiddleRayStart = rb.position + collider.offset + new Vector2(dir * collider.size.x * 0.99f / 2f,
+                Vector2 horizontalMiddleRayStart = rb.position + playerCollider.offset + new Vector2(dir * playerCollider.size.x * 0.99f / 2f,
                                                                                                0);
 
                 RaycastHit2D horizontalMiddleRay = Physics2D.Raycast(horizontalMiddleRayStart, Vector2.right * dir, rayXScaler, layers);

@@ -6,7 +6,7 @@ public class Afterimages : MonoBehaviour
 {
     private ParticleSystem afterimage;
     ParticleSystem.MainModule particle;
-    ParticleSystemRenderer renderer;
+    ParticleSystemRenderer particleRenderer;
     ParticleSystem.ShapeModule shape;
 
     private const float xPos = -0.218f;
@@ -23,12 +23,12 @@ public class Afterimages : MonoBehaviour
         afterimage = GetComponent<ParticleSystem>();
         particle = afterimage.main;
         shape = afterimage.shape;
-        renderer = afterimage.GetComponent<ParticleSystemRenderer>();
+        particleRenderer = afterimage.GetComponent<ParticleSystemRenderer>();
     }
 
     public void StartDash(float dashDuration, int dashDir) {
         int dashDirection = 1 - ((dashDir + 1) / 2); //convert from the range (-1 to 1) to (1 to 0) so that if the direction is reversed it flips it in the correct direction
-        renderer.flip = new Vector3(dashDirection, 0, 0);
+        particleRenderer.flip = new Vector3(dashDirection, 0, 0);
         shape.position = new Vector3(xPos * dashDir, 0.675f, 0);
         StartCoroutine(DashAfterimage(dashDuration));
     }

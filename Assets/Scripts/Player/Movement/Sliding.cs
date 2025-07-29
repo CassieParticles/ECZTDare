@@ -18,7 +18,7 @@ public class Sliding
         //}
         player.sliding = true;
         player.hasSlid = true;
-        player.collider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
+        player.playerCollider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - player.colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
         player.rb.velocityY = 0f;
         player.effectiveDeceleration = player.slideDeceleration;
@@ -30,7 +30,7 @@ public class Sliding
         player.sliding = false;
         player.crouching = false;
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + player.colliderSize.y * 0.31f); //Lower the player so they arent midair when sliding
-        player.collider.size = player.colliderSize;
+        player.playerCollider.size = player.colliderSize;
         player.effectiveDeceleration = player.deceleration;
         player.effectiveAcceleration = player.acceleration;
         player.effectiveMaxRunSpeed = player.maxRunSpeed;
@@ -44,7 +44,7 @@ public class Sliding
         player.crouching = true;
         player.animator.SetBool("Crouching", true);
         player.hasSlid = true;
-        player.collider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
+        player.playerCollider.size = new Vector2(player.colliderSize.x * 1.5f, player.colliderSize.y * 0.3f);
         player.transform.position = new Vector2(player.transform.position.x, player.transform.position.y - player.colliderSize.y * 0.31f); //Lower the player so they arent midair when crouching
         player.rb.velocityY = 0f;
         player.effectiveDeceleration = player.crouchDeceleration;
