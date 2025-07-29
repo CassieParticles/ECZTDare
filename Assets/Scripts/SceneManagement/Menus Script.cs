@@ -87,13 +87,15 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     TextMeshProUGUI rebindRightButtonKey;
     TextMeshProUGUI rebindJumpButtonKey;
     TextMeshProUGUI rebindSlideButtonKey;
-    TextMeshProUGUI rebindBoostCloakButtonKey;
+    TextMeshProUGUI rebindDashButtonKey;
+    TextMeshProUGUI rebindCloakButtonKey;
     TextMeshProUGUI rebindHackButtonKey;
 
     GameObject resetRunButton;
     GameObject resetJumpButton;
     GameObject resetSlideButton;
-    GameObject resetBoostCloakButton;
+    GameObject resetDashButton;
+    GameObject resetCloakButton;
     GameObject resetHackButton;
 
 
@@ -401,7 +403,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (!loseGroup.activeSelf) {
             player = GameObject.Find("Player");
             GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
-            GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
             //Bec add your music mode change
 
             //
@@ -487,13 +488,15 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
         rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
         rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
-        rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
+        rebindDashButtonKey = GameObject.Find("RebindDashKey").GetComponent<TextMeshProUGUI>();
+        rebindCloakButtonKey = GameObject.Find("RebindCloakKey").GetComponent<TextMeshProUGUI>();
         rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
 
         resetRunButton = GameObject.Find("ResetRunButton");
         resetJumpButton = GameObject.Find("ResetJumpButton");
         resetSlideButton = GameObject.Find("ResetSlideButton");
-        resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
+        resetDashButton = GameObject.Find("ResetDashButton");
+        resetCloakButton = GameObject.Find("ResetCloakButton");
         resetHackButton = GameObject.Find("ResetHackButton");
 
         defaultMenuGroup.SetActive(true);
@@ -589,47 +592,78 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 if (!Input.GetMouseButton(0)) {
                     //sliderSound.Stop(gameObject);
                 }
-            } if (keybindsOpen) {
+            }
+            KeybindDisplay();
+        }
+    }
+
+    private void KeybindDisplay() {
+        if (keybindsOpen) {
+            if (controlScript.playerInput.currentControlScheme == "KeyboardMouse") {
                 rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
                 rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
+                rebindDashButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
+                rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[0].ToDisplayString();
                 rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
-
-                if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
-                    resetRunButton.SetActive(true);
+            } else {
+                if (controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides) { 
+                    rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString();
                 } else {
-                    resetRunButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
-                    resetJumpButton.SetActive(true);
+                    rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Running.bindings[7].ToDisplayString();
+                } //Running Left
+                if (controlScript.controls.GameplayControls.Running.bindings[5].hasOverrides) {
+                    rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString();
                 } else {
-                    resetJumpButton.SetActive(false);
-                }
+                    rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Running.bindings[8].ToDisplayString();
+                } //Running Right
+                rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[1].ToDisplayString(); //Jumping
                 if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
-                    resetSlideButton.SetActive(true);
+                    rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString();
                 } else {
-                    resetSlideButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
-                    resetBoostCloakButton.SetActive(true);
-                } else {
-                    resetBoostCloakButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
-                    resetHackButton.SetActive(true);
-                } else {
-                    resetHackButton.SetActive(false);
-                }
+                    rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Sliding.bindings[2].ToDisplayString();
+                } //Sliding
+                rebindDashButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[1].ToDisplayString(); //Dashing
+                rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[1].ToDisplayString(); //Cloaking
+                rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[1].ToDisplayString(); //Hacking
+            }
+
+            if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[5].hasOverrides) {
+                resetRunButton.SetActive(true);
+            } else {
+                resetRunButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                resetJumpButton.SetActive(true);
+            } else {
+                resetJumpButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                resetSlideButton.SetActive(true);
+            } else {
+                resetSlideButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
+                resetDashButton.SetActive(true);
+            } else {
+                resetDashButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Cloaking.bindings[0].hasOverrides) {
+                resetCloakButton.SetActive(true);
+            } else {
+                resetCloakButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                resetHackButton.SetActive(true);
+            } else {
+                resetHackButton.SetActive(false);
             }
         }
-
-        
     }
 
     public void Pause() {
-        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause && !keybindsOpen) {
             if (!paused) {
                 OpenMenu();
                 GetComponent<ControlsScript>().controls.GameplayControls.Disable();
@@ -648,13 +682,18 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
     }
 
+    
+
     public void OnPause(InputAction.CallbackContext context) {
 
     }
 
     public void OnReset(InputAction.CallbackContext context) {
-        if (SceneManager.GetActiveScene().name != "Main Menu") {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && !settingsOpen && !keybindsOpen) {
             StartCoroutine(LoseFinalize());
+            if (paused) {
+                Pause();
+            }
         }
     }
 }
