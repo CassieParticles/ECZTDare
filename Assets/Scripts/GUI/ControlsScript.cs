@@ -1,5 +1,6 @@
 using System.Reflection;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ using static PlayerControls;
 
 public class ControlsScript : MonoBehaviour {
     public PlayerControls controls;
+    PlayerInput playerInput;
     public AK.Wwise.Event buttonClick;
 
     MenuScript menu;
@@ -31,6 +33,8 @@ public class ControlsScript : MonoBehaviour {
     public GameObject resetBoostCloakButton;
     public GameObject resetHackButton;
 
+    //Transform kTransform;
+
     public enum Controls {
         RunningLeft,
         RunningRight,
@@ -40,17 +44,19 @@ public class ControlsScript : MonoBehaviour {
         Hacking,
     }
 
-    public void Awake() {
+    public void Setup() {
         //controls = GameObject.Find("PlayerControls").GetComponent<PlayerControls.GameplayControlsActions>();
         controls = new PlayerControls();
         menu = GetComponent<MenuScript>();
+        playerInput = GetComponent<PlayerInput>();
+        //kTransform = transform.Find("KeybindsGroup");
 
-        //rebindLeftButton = GameObject.Find("RebindLeftButton");
-        //rebindRightButton = GameObject.Find("RebindRightButton");
-        //rebindJumpButton = GameObject.Find("RebindJumpButton");
-        //rebindSlideButton = GameObject.Find("RebindSlideButton");
-        //rebindBoostCloakButton = GameObject.Find("RebindBoostCloakButton");
-        //rebindHackButton = GameObject.Find("RebindHackButton");
+        //rebindLeftButton = kTransform.Find("RebindLeftButton").gameObject;
+        //rebindRightButton = kTransform.Find("RebindRightButton").gameObject;
+        //rebindJumpButton = kTransform.Find("RebindJumpButton").gameObject;
+        //rebindSlideButton = kTransform.Find("RebindSlideButton").gameObject;
+        //rebindBoostCloakButton = kTransform.Find("RebindBoostCloakButton").gameObject;
+        //rebindHackButton = kTransform.Find("RebindHackButton").gameObject;
 
         rebindLeftButtonKey = rebindLeftButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         rebindRightButtonKey = rebindRightButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -66,11 +72,11 @@ public class ControlsScript : MonoBehaviour {
         //rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
         //rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
 
-        //resetRunButton = GameObject.Find("ResetRunButton");
-        //resetJumpButton = GameObject.Find("ResetJumpButton");
-        //resetSlideButton = GameObject.Find("ResetSlideButton");
-        //resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
-        //resetHackButton = GameObject.Find("ResetHackButton");
+        //resetRunButton = kTransform.Find("ResetRunButton").gameObject;
+        //resetJumpButton = kTransform.Find("ResetJumpButton").gameObject;
+        //resetSlideButton = kTransform.Find("ResetSlideButton").gameObject;
+        //resetBoostCloakButton = kTransform.Find("ResetBoostCloakButton").gameObject;
+        //resetHackButton = kTransform.Find("ResetHackButton").gameObject;
 
     }
 
@@ -113,6 +119,7 @@ public class ControlsScript : MonoBehaviour {
             */
         //}
     }
+
     public void RemapInput(string reboundAction) {
         buttonClick.Post(gameObject);
         InputActionRebindingExtensions.RebindingOperation rebinder;
@@ -132,6 +139,9 @@ public class ControlsScript : MonoBehaviour {
             case "Dashing":
                 rebinder = controls.GameplayControls.Dashing.PerformInteractiveRebinding().Start();
                 return;
+            case "Cloaking":
+                rebinder = controls.GameplayControls.Cloaking.PerformInteractiveRebinding().Start();
+                return;
             case "Hacking":
                 rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().Start();
                 return;
@@ -143,23 +153,27 @@ public class ControlsScript : MonoBehaviour {
         switch (reboundAction) {
             case "Running":
                 controls.GameplayControls.Running.RemoveAllBindingOverrides();
-                //rebindLeftButton.GetComponent<Button>().Select();
+                rebindLeftButton.GetComponent<Button>().Select();
                 return;
             case "Jumping":
                 controls.GameplayControls.Jumping.RemoveAllBindingOverrides();
-                //rebindJumpButton.GetComponent<Button>().Select();
+                rebindJumpButton.GetComponent<Button>().Select();
                 return;
             case "Sliding":
                 controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
-                //rebindSlideButton.GetComponent<Button>().Select();
+                rebindSlideButton.GetComponent<Button>().Select();
                 return;
             case "Dashing":
                 controls.GameplayControls.Dashing.RemoveAllBindingOverrides();
+                rebindBoostCloakButton.GetComponent<Button>().Select();
+                return;
+            case "Cloaking":
+                controls.GameplayControls.Cloaking.RemoveAllBindingOverrides();
                 //rebindBoostCloakButton.GetComponent<Button>().Select();
                 return;
             case "Hacking":
                 controls.GameplayControls.Hacking.RemoveAllBindingOverrides();
-                //rebindHackButton.GetComponent<Button>().Select();
+                rebindHackButton.GetComponent<Button>().Select();
                 return;
         }
     }

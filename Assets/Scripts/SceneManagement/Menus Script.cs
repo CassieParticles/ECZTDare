@@ -444,7 +444,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     // Start is called before the first frame update
     void Starts()
     {
-        //controlScript = GetComponent<ControlsScript>();
+        controlScript = GetComponent<ControlsScript>();
 
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
@@ -505,8 +505,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         loseGroup.SetActive(false);
         creditsGroup.SetActive(false);
 
-        //controls = controlScript.controls;
-        //controls.MenuControls.SetCallbacks(this);
+        controlScript.Setup();
+
+        controls = controlScript.controls;
+        controls.MenuControls.SetCallbacks(this);
 
 
         if (SceneManager.GetActiveScene().name == "Main Menu") {
@@ -546,7 +548,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             }
         }
 
-        //controls.MenuControls.Pause.started += ctx => Pause();
+        controls.MenuControls.Pause.started += ctx => Pause();
 
         //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
         //    if (!paused) {
@@ -558,9 +560,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         //    }
         //}
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Pause();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape)) {
+        //    Pause();
+        //}
 
         //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
         //    StartCoroutine(LoseFinalize());
