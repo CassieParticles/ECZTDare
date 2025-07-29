@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3402424936968046404}
   - component: {fileID: 7989030877124338535}
   - component: {fileID: -179597132771623276}
+  - component: {fileID: -8773753492718867148}
   m_Layer: 2
   m_Name: DeathWall
   m_TagString: Untagged
@@ -223,3 +224,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-8773753492718867148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063730992982731228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cf0bf41a1927049a09ad47a636cc6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 1000
+  displaySprite: {fileID: 6639214531635948232, guid: a1da93d428c46c843a98944f903a5779, type: 3}
+  TrackLeft: 1
+  TrackRight: 0
