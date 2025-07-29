@@ -164,6 +164,42 @@
 							<Time>2</Time>
 							<IsShared>false</IsShared>
 						</Transition>
+						<Transition>
+							<StartState Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+							<EndState Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+							<EndState Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+							<Time>1</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+							<Time>2</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Hidden" ID="{65BFEECE-C3B8-4F57-8674-B247ABCAF378}"/>
+							<EndState Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+							<Time>2</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Overseer_Chasing" ID="{E55BE32A-FFBC-4B8E-8CEA-7461E1757F72}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>2</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="Overseer_Looming" ID="{DFE1656F-F246-474D-9681-F7B8D09AC627}"/>
+							<EndState Name="NoMusic" ID="{679CBDD0-85F6-4014-ADDD-DCDBB0E15694}"/>
+							<Time>2</Time>
+							<IsShared>false</IsShared>
+						</Transition>
 					</TransitionList>
 				</StateGroup>
 				<StateGroup Name="Reverb" ID="{A1C91E71-9DB2-46E8-9CE5-985973D43EFD}">
