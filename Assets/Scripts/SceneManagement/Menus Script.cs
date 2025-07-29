@@ -202,12 +202,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
     }
 
-    public void ReturnToLevel() {
-        buttonClick.Post(gameObject);
-
-        SceneChangeTracker.GetTracker().GoBack();
-    }
-
     public void Quit() {
         buttonClick.Post(gameObject);
 

@@ -9977,15 +9977,15 @@ MonoBehaviour:
   coyoteTime: 0.05
   wallClingSpeed: 0
   walljumpRayGap: 0.5
-  horizontalWalljumpStrength: 15
+  horizontalWalljumpStrength: 16
   verticalWalljumpStrength: 15
-  walljumpInputDelay: 0.25
+  walljumpInputDelay: 0.8
   slideDeceleration: 0.4
   velocityToSlide: 12
   velocityEndSlide: 5
-  maxCrouchSpeed: 8
-  crouchAcceleration: 10
-  crouchDeceleration: 3
+  maxCrouchSpeed: 10
+  crouchAcceleration: 20
+  crouchDeceleration: 10
   batteryRecharge: 30
   minimumBatteryToCloak: 5
   cloakDepletion: 35

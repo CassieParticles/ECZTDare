@@ -36,6 +36,7 @@ public class TimerDoorTrigger : ITriggerDoor
 
             //Change door state
             SetState(door.isLocked ? DoorAction.Unlock : DoorAction.Lock);
+            hasSwitched = true;
         }
     }
 }
