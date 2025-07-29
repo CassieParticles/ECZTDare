@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ public class LookaheadTracker : MonoBehaviour
     public Sprite displaySprite;
     public bool TrackLeft;
     public bool TrackRight;
+
+    //Used by manager to track what objects are and aren't displayed already
+    [NonSerialized]public LookaheadGUI displayingGUI;
 
     private void Start()
     {
