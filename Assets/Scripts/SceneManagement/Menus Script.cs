@@ -399,32 +399,25 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     }
     
     public void Lose() {
+
+        //Already losing
+        if (loseGroup.activeSelf){ return; }
+        //INITIAL LOSE STEPS
+
         canPause = false;
-        if (!loseGroup.activeSelf) {
-            player = GameObject.Find("Player");
-            GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
-            //Bec add your music mode change
+        player = GameObject.Find("Player");
+        GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
+        //Bec add your music mode change
 
-            //
-            player.SetActive(false);
-            loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(7f));
-        }
-    }
+        //
+        player.SetActive(false);
+        loseGroup.SetActive(true);
 
-    IEnumerator LoseDelay(float seconds) {
-        if (!hasUpgrade) {
+        //Check if player should have upgrade
+        if (!hasUpgrade)
+        {
             hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
         }
-
-        int currentDeaths = deathCounter;
-        yield return new WaitForSeconds(loseSoundDelay);
-        loseSound.Post(gameObject);
-        yield return new WaitForSeconds(seconds-loseSoundDelay);
-        if (currentDeaths == deathCounter) {
-            StartCoroutine(LoseFinalize());
-        }
-
     }
 
     IEnumerator LoseFinalize() {
