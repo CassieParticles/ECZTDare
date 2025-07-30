@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Reflection;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ using static PlayerControls;
 
 public class ControlsScript : MonoBehaviour {
     public PlayerControls controls;
+    public PlayerInput playerInput;
     public AK.Wwise.Event buttonClick;
 
     MenuScript menu;
@@ -31,6 +34,8 @@ public class ControlsScript : MonoBehaviour {
     public GameObject resetBoostCloakButton;
     public GameObject resetHackButton;
 
+    public bool[] overrides = new bool[3];
+
     public enum Controls {
         RunningLeft,
         RunningRight,
@@ -40,17 +45,19 @@ public class ControlsScript : MonoBehaviour {
         Hacking,
     }
 
-    public void Awake() {
+    public void Setup() {
         //controls = GameObject.Find("PlayerControls").GetComponent<PlayerControls.GameplayControlsActions>();
         controls = new PlayerControls();
         menu = GetComponent<MenuScript>();
+        playerInput = GetComponent<PlayerInput>();
+        //kTransform = transform.Find("KeybindsGroup");
 
-        //rebindLeftButton = GameObject.Find("RebindLeftButton");
-        //rebindRightButton = GameObject.Find("RebindRightButton");
-        //rebindJumpButton = GameObject.Find("RebindJumpButton");
-        //rebindSlideButton = GameObject.Find("RebindSlideButton");
-        //rebindBoostCloakButton = GameObject.Find("RebindBoostCloakButton");
-        //rebindHackButton = GameObject.Find("RebindHackButton");
+        //rebindLeftButton = kTransform.Find("RebindLeftButton").gameObject;
+        //rebindRightButton = kTransform.Find("RebindRightButton").gameObject;
+        //rebindJumpButton = kTransform.Find("RebindJumpButton").gameObject;
+        //rebindSlideButton = kTransform.Find("RebindSlideButton").gameObject;
+        //rebindBoostCloakButton = kTransform.Find("RebindBoostCloakButton").gameObject;
+        //rebindHackButton = kTransform.Find("RebindHackButton").gameObject;
 
         rebindLeftButtonKey = rebindLeftButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         rebindRightButtonKey = rebindRightButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -66,74 +73,159 @@ public class ControlsScript : MonoBehaviour {
         //rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
         //rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
 
-        //resetRunButton = GameObject.Find("ResetRunButton");
-        //resetJumpButton = GameObject.Find("ResetJumpButton");
-        //resetSlideButton = GameObject.Find("ResetSlideButton");
-        //resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
-        //resetHackButton = GameObject.Find("ResetHackButton");
+        //resetRunButton = kTransform.Find("ResetRunButton").gameObject;
+        //resetJumpButton = kTransform.Find("ResetJumpButton").gameObject;
+        //resetSlideButton = kTransform.Find("ResetSlideButton").gameObject;
+        //resetBoostCloakButton = kTransform.Find("ResetBoostCloakButton").gameObject;
+        //resetHackButton = kTransform.Find("ResetHackButton").gameObject;
 
     }
 
-    public void Update() { //For some stupid reason this update function doesnt run specifically in build mode I hate it :(
-        //if (menu.keybindsOpen) {
-            //rebindLeftButtonKey.text = controls.GameplayControls.Running.bindings[1].ToDisplayString();
-            //rebindRightButtonKey.text = controls.GameplayControls.Running.bindings[2].ToDisplayString();
-            //rebindJumpButtonKey.text = controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
-            //rebindSlideButtonKey.text = controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-            //rebindBoostCloakButtonKey.text = controls.GameplayControls.BoostCloak.bindings[0].ToDisplayString();
-            //rebindHackButtonKey.text = controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
-
-            //rebindSlideButtonKey.text = "Sliding hehhehehee";
-            /*
-            if (controls.GameplayControls.Running.bindings[1].hasOverrides || controls.GameplayControls.Running.bindings[2].hasOverrides) {
-                resetRunButton.SetActive(true);
-            } else {
-                resetRunButton.SetActive(false);
-            }
-            if (controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
-                resetJumpButton.SetActive(true);
-            } else {
-                resetJumpButton.SetActive(false);
-            }
-            if (controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
-                resetSlideButton.SetActive(true);
-            } else {
-                resetSlideButton.SetActive(false);
-            }
-            if (controls.GameplayControls.BoostCloak.bindings[0].hasOverrides) {
-                resetBoostCloakButton.SetActive(true);
-            } else {
-                resetBoostCloakButton.SetActive(false);
-            }
-            if (controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
-                resetHackButton.SetActive(true);
-            } else {
-                resetHackButton.SetActive(false);
-            }
-            */
-        //}
+    public void Update() {
+        if (playerInput.currentControlScheme == "KeyboardMouse") {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        } else {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
+
     public void RemapInput(string reboundAction) {
         buttonClick.Post(gameObject);
         InputActionRebindingExtensions.RebindingOperation rebinder;
+        int runIndexModifier = 1;
+        if (playerInput.currentControlScheme == "Gamepad") {
+            runIndexModifier = 4;
+        }
         switch (reboundAction) {
             case "RunningLeft":
-                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(1).Start();
+                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(runIndexModifier).
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
             case "RunningRight":
-                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(2).Start();
+                rebinder = controls.GameplayControls.Running.PerformInteractiveRebinding(runIndexModifier + 1).
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
             case "Jumping":
-                rebinder = controls.GameplayControls.Jumping.PerformInteractiveRebinding().Start();
+                rebinder = controls.GameplayControls.Jumping.PerformInteractiveRebinding().
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
             case "Sliding":
-                rebinder = controls.GameplayControls.Sliding.PerformInteractiveRebinding().Start();
+                rebinder = controls.GameplayControls.Sliding.PerformInteractiveRebinding().
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
             case "Dashing":
-                rebinder = controls.GameplayControls.Dashing.PerformInteractiveRebinding().Start();
+                rebinder = controls.GameplayControls.Dashing.PerformInteractiveRebinding().
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
+                return;
+            case "Cloaking":
+                rebinder = controls.GameplayControls.Cloaking.PerformInteractiveRebinding().
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
             case "Hacking":
-                rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().Start();
+                rebinder = controls.GameplayControls.Hacking.PerformInteractiveRebinding().
+                    WithControlsExcluding("<Gamepad>/leftStick/left").
+                    WithControlsExcluding("<Gamepad>/leftStick/right").
+                    WithControlsExcluding("<Gamepad>/rightStick").
+                    WithControlsExcluding("<Gamepad>/dpad/down").
+                    WithControlsExcluding("<Gamepad>/dpad/left").
+                    WithControlsExcluding("<Gamepad>/dpad/right").
+                    WithControlsExcluding("<Gamepad>/dpad/x").
+                    WithControlsExcluding("<Gamepad>/dpad/y").
+                    WithControlsExcluding("<Gamepad>/select").
+                    WithControlsExcluding("<Gamepad>/start").
+                    WithControlsExcluding("<Keyboard>/escape").
+                    WithControlsExcluding("<Keyboard>/r").
+                    WithControlsExcluding("<Keyboard>/anyKey").
+                    WithCancelingThrough("<Keyboard>/escape").
+                    WithCancelingThrough("<Gamepad>/start").
+                    Start();
                 return;
         }
     }
@@ -143,28 +235,30 @@ public class ControlsScript : MonoBehaviour {
         switch (reboundAction) {
             case "Running":
                 controls.GameplayControls.Running.RemoveAllBindingOverrides();
-                //rebindLeftButton.GetComponent<Button>().Select();
+                rebindLeftButton.GetComponent<Button>().Select();
                 return;
             case "Jumping":
                 controls.GameplayControls.Jumping.RemoveAllBindingOverrides();
-                //rebindJumpButton.GetComponent<Button>().Select();
+                rebindJumpButton.GetComponent<Button>().Select();
                 return;
             case "Sliding":
                 controls.GameplayControls.Sliding.RemoveAllBindingOverrides();
-                //rebindSlideButton.GetComponent<Button>().Select();
+                rebindSlideButton.GetComponent<Button>().Select();
                 return;
             case "Dashing":
                 controls.GameplayControls.Dashing.RemoveAllBindingOverrides();
-                //rebindBoostCloakButton.GetComponent<Button>().Select();
+                rebindBoostCloakButton.GetComponent<Button>().Select();
+                return;
+            case "Cloaking":
+                controls.GameplayControls.Cloaking.RemoveAllBindingOverrides();
+                rebindBoostCloakButton.GetComponent<Button>().Select();
                 return;
             case "Hacking":
                 controls.GameplayControls.Hacking.RemoveAllBindingOverrides();
-                //rebindHackButton.GetComponent<Button>().Select();
+                rebindHackButton.GetComponent<Button>().Select();
                 return;
         }
     }
-
-    
 
 
 

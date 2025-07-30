@@ -18,7 +18,6 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     Camera mainCamera;
     GameObject reticle;
 
-    bool usingMouse = true;
     Vector2 gamepadDirection = Vector2.zero;
 
     public Hackable target;
@@ -63,13 +62,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         //    usingMouse = true;
         //}
 
-        if (usingMouse) {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        } else {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+
 
         if (!movementScript.InputLocked) {
             if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
@@ -86,7 +79,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
 
 
-            if (usingMouse || (target == null && !usingMouse)) {
+            if (Cursor.visible || (target == null && !Cursor.visible)) {
                 target = null;
                 float distance = 1000;
         
@@ -169,7 +162,6 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         } //else No target
     }
     public void OnAimHack(InputAction.CallbackContext context) {
-        usingMouse = false;
         gamepadDirection = context.ReadValue<Vector2>();
         float smallestAngle = 180;
 

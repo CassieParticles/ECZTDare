@@ -46,7 +46,6 @@ public class DeathWall : MonoBehaviour
     private float currentSpeed;
     private float currentAcc;
 
-    private UpdateChaseDisplayText chaseDisplayText;
     private bool wallVisible;
     Vector3 edgeOfScreenPos;
 
@@ -73,7 +72,6 @@ public class DeathWall : MonoBehaviour
 
         Player = FindAnyObjectByType<MovementScript>().gameObject;
 
-        chaseDisplayText = FindAnyObjectByType<UpdateChaseDisplayText>(FindObjectsInactive.Include);
         wallVisible = true;
         edgeOfScreenPos = Vector3.zero;
 
@@ -146,39 +144,6 @@ public class DeathWall : MonoBehaviour
         currentSpeed += currentAcc * Mathf.Sign(delta) * Time.fixedDeltaTime;
     }
 
-    private void DisplayDistance()
-    {
-        //Display or hide the GUI if wall is on or off screen
-        Vector2 viewportPos = Camera.main.WorldToViewportPoint(transform.position);
-        if (wallVisible && viewportPos.x < 0)
-        {
-            //No longer on screen
-            wallVisible = false;
-            chaseDisplayText.StartDisplay();
-        }
-        if(!wallVisible && viewportPos.x > 0)
-        {
-            //Now visible on screen
-            wallVisible = true;
-            chaseDisplayText.StopDisplay();
-        }
-
-        //No point updating GUI if it's not visible
-        if (wallVisible)
-        { return; }
-
-
-
-        //Update text on the UI
-        edgeOfScreenPos.z = -Camera.main.transform.position.z;
-        float distanceFromEdge = Camera.main.ViewportToWorldPoint(edgeOfScreenPos).x - transform.position.x;
-
-        if (chaseDisplayText)
-        {
-            chaseDisplayText.UpdateDistance(distanceFromEdge);
-        }
-    }
-
     private void FixedUpdate()
     {
         //Handle updating the distance
@@ -187,8 +152,6 @@ public class DeathWall : MonoBehaviour
         //Handle updating speed
         UpdateSpeed();
 
-        //Handle updating the GUI
-        DisplayDistance();
 
         //Move the object
         transform.position += new Vector3(currentSpeed * Time.fixedDeltaTime,0,0);
@@ -198,17 +161,12 @@ public class DeathWall : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<MovementScript>())
         {
-            chaseDisplayText.StopDisplay();
             FindAnyObjectByType<MenuScript>().Lose();
         }
     }
 
     private void OnDestroy()
     {
-        if(chaseDisplayText)
-        {
-            chaseDisplayText.StopDisplay();
-        }
         if(spawnDelayCoroutine!=null)
         {
             StopCoroutine(spawnDelayCoroutine);
