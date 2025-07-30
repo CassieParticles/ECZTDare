@@ -30,16 +30,4 @@ public class SubtitleManager : MonoBehaviour
     void Start() {
         textBox = GetComponent<TextMeshProUGUI>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        //if (subtitles.Count != 0) {
-        //    foreach (Subtitle subtitle in subtitles) {
-        //        currentSubtitles += subtitle.writtenText + "\n";
-        //    }
-       // }
-        //textBox.text = currentSubtitles;
-    }
 }
