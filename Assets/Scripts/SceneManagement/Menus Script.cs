@@ -98,6 +98,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     GameObject resetCloakButton;
     GameObject resetHackButton;
 
+    public StealthCamera currentCameraPan = null;
 
     public static MenuScript instance { get; private set; }
     private void Awake() {
@@ -127,6 +128,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     }
     public void ChangeScene(string sceneName)
     {
+        //Immediately remove current camera pan
+        currentCameraPan = null;
+
         if (transitioning) {
             return;
         }
@@ -672,6 +676,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
         if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
             StartCoroutine(LoseFinalize());
+        }
+        if(currentCameraPan)
+        {
+            currentCameraPan.ExitCutscene();
         }
     }
 
