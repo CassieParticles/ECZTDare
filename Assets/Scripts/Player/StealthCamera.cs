@@ -29,6 +29,8 @@ public class StealthCamera : MonoBehaviour
     [Header("Defaults:\nBlend Type:\t\tHard Out\nBlend Duration:\t1\nWait Duration:\t\t1\nZoom:\t\t\t8.44")]
     [SerializeField] private List<CameraSettings> cameras = new List<CameraSettings>();
 
+    private Coroutine cutsceneCoroutine;
+
     private float fov;
 
 
@@ -51,11 +53,45 @@ public class StealthCamera : MonoBehaviour
         if (collision == player.GetComponent<Collider2D>()) {
 
             player.GetComponent<MovementScript>().InputLocked = true;
-            StartCoroutine(CameraPreviewCutscene());
+            cutsceneCoroutine = StartCoroutine(CameraPreviewCutscene());
+        }
+    }
+
+    public bool IsPlaying()
+    {
+        return cutsceneCoroutine != null;
+    }
+
+    public void ExitCutscene()
+    {
+        //Reset as the camera cutscene is over
+        virtualCamera1.Priority = 9;
+        virtualCamera2.Priority = 9;
+        GetComponent<BoxCollider2D>().enabled = false;
+        player.GetComponent<MovementScript>().InputLocked = false;
+
+        MenuScript menu = FindAnyObjectByType<MenuScript>();
+        if(menu)
+        {
+            menu.canPause = true;
+            menu.currentCameraPan = null;
+        }
+
+        if (cutsceneCoroutine != null)
+        {
+            StopCoroutine(cutsceneCoroutine);
+            cutsceneCoroutine = null;
         }
     }
 
     private IEnumerator CameraPreviewCutscene() {
+
+        MenuScript menu = FindAnyObjectByType<MenuScript>();
+        if(menu)
+        {
+            menu.canPause = false;
+            menu.currentCameraPan = this;
+        }
         CinemachineVirtualCamera currentCamera = virtualCamera1;
         CinemachineVirtualCamera targetCamera = virtualCamera2;
 
@@ -104,11 +140,13 @@ public class StealthCamera : MonoBehaviour
             
         }
 
-        //Reset as the camera cutscene is over
-        targetCamera.Priority = 9;
-        currentCamera.Priority = 9;
-        GetComponent<BoxCollider2D>().enabled = false;
-        player.GetComponent<MovementScript>().InputLocked = false;
+        //coroutine ends
+        cutsceneCoroutine = null;
+
+        //Cutscene over, exit
+        ExitCutscene();
+
+
     }
 
     private void OnDrawGizmosSelected() {
