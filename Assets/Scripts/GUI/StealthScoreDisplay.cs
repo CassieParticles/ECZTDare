@@ -19,7 +19,7 @@ public class StealthScoreDisplay : MonoBehaviour
         remainder = Mathf.FloorToInt(hundred % 100);
         int ten = Mathf.FloorToInt(remainder / 10);
         remainder = Mathf.FloorToInt(ten % 10);
-        string niceScore = string.Format("{0} {1}{2}{3}", thousand, hundred, ten, remainder);
+        string niceScore = string.Format("{0} {1}{2}{3}", thousand.ToString(), hundred.ToString(), ten.ToString(), remainder.ToString());
         stealthScoreText.text = niceScore;
     }
 }

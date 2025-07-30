@@ -111,11 +111,6 @@ public class StealthCamera : MonoBehaviour
         player.GetComponent<MovementScript>().InputLocked = false;
     }
 
-    // Update is called once per frame
-    private void Update() {
-
-    }
-
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;
         for(int i = 0; i < cameras.Count; i++) {
