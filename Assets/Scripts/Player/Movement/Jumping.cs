@@ -35,13 +35,13 @@ public class Jumping
             player.rb.velocityY = player.verticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
-            player.StartCoroutine("WalljumpInputDelay", -1);
+            player.StartCoroutine(player.WalljumpInputDelay(-1));
         } else if (whichWallJump == 1) { //Jumping off a right wall
             player.rb.velocityX = -player.horizontalWalljumpStrength;
             player.rb.velocityY = player.verticalWalljumpStrength;
             //Plays the Player_Jump sound
             AkSoundEngine.PostEvent("Player_Jump", player.gameObject);
-            player.StartCoroutine("WalljumpInputDelay", 1);
+            player.StartCoroutine(player.WalljumpInputDelay(1));
         }
     }
 
