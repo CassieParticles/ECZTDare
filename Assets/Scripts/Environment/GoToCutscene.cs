@@ -10,9 +10,10 @@ public class GoToCutscene : MonoBehaviour
     {
         if(collision.GetComponent<MovementScript>())
         {
-            if (GetComponent<MenuScript>())
+            MenuScript menu = FindAnyObjectByType<MenuScript>();
+            if (menu)
             {
-                GetComponent<MenuScript>().ChangeScene(sceneName);
+                menu.ChangeScene(sceneName);
             }
             else
             {

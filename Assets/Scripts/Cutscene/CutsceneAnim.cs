@@ -30,15 +30,16 @@ public class CutsceneAnim : MonoBehaviour
 
 
         //================= REBECCA SCENE EXITS HERE ======================================//
-        if(GetComponent<MenuScript>())
+        MenuScript menu = FindAnyObjectByType<MenuScript>();
+        if (menu)
         {
-            GetComponent<MenuScript>().ChangeScene(nextSceneName);
+            menu.ChangeScene(nextSceneName);
         }
         else
         {
             SceneManager.LoadScene(nextSceneName);
         }
-        
+
     }
 
     private void EndReached(VideoPlayer vp)
