@@ -175,7 +175,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     [NonSerialized] public bool jumpInput;
     [NonSerialized] public bool hasJumped; //If the player has jumped while holding the jump key
     [NonSerialized] public bool slideInput;
-    [NonSerialized] public bool hasSlid; //If the player has slid while holding the slide key
     [NonSerialized] public bool dashInput;
     [NonSerialized] public bool hasDashed; //If the player has dashed while holding the dash key
     [NonSerialized] public bool cloakInput;
@@ -311,9 +310,6 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
         }
 
         slideInput = slideAction.ReadValue<float>() > 0;
-        if (!slideInput) {
-            hasSlid = false;
-        }
 
         dashInput = dashAction.ReadValue<float>() > 0;
         if (!dashInput) {
@@ -578,7 +574,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     void RunSlide() {
 
         //Handle Sliding and Crouching
-        if (slideInput && grounded && !hasSlid && !sliding && !crouching) { //Conditions to either crouch or slide
+        if (slideInput && grounded && !sliding && !crouching) { //Conditions to either crouch or slide
             if (Mathf.Abs(rb.velocityX) >= velocityToSlide) { 
                 slideScript.StartSliding();
             } else { //Depending on speed, crouch or slide will begin
