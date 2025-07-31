@@ -19,6 +19,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
     public AK.Wwise.Event loseSound;
+    public AK.Wwise.Event playerDeath;
     private AK.Wwise.Event sliderSound;
     private AlarmMusicHandler gameMusicScript;
 
@@ -424,12 +425,15 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         canPause = false;
         player = GameObject.Find("Player");
-        GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
-        //Bec add your music mode change
-
-        //
+        GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
         player.SetActive(false);
         loseGroup.SetActive(true);
+
+        //Death SFX
+        playerDeath.Post(gameObject);
+        //Turns off the music event
+        FindAnyObjectByType<AlarmMusicHandler>().TurnOffMusic();
+        Debug.Log("Turned Off Music");
 
         //Check if player should have upgrade
         if (!hasUpgrade)
@@ -441,6 +445,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
     IEnumerator LoseFinalize() {
         loseSound.Stop(gameObject);
+        playerDeath.Stop(gameObject);
         deathCounter++;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
@@ -525,6 +530,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         controls = controlScript.controls;
         controls.MenuControls.SetCallbacks(this);
 
+        gameMusicScript = FindAnyObjectByType<AlarmMusicHandler>();
 
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();

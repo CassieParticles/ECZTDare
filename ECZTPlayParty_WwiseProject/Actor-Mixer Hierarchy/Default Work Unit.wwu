@@ -4072,6 +4072,10 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="Player_Death" ID="{C1DF32C5-4135-44C9-B88B-A8BCCF5B8861}">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="4.96007853403142"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>Player_Death.wav</AudioFile>
 									<MediaIDList>
