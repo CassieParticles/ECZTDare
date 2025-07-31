@@ -292,7 +292,13 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
     }
 
     void HandleInputs() {
-        if(inputLocked)
+        if (!inputLocked || dashing && Time.timeScale != 0)
+        cloakInput = cloakAction.ReadValue<float>() > 0;
+        if (!cloakInput) {
+            hasCloaked = false;
+        }
+
+        if (inputLocked)
         {
             return;
         }
@@ -314,10 +320,7 @@ public class MovementScript : MonoBehaviour, IGameplayControlsActions {
             hasDashed = false;
         }
 
-        cloakInput = cloakAction.ReadValue<float>() > 0;
-        if (!cloakInput) {
-            hasCloaked = false;
-        }
+
     }
 
     void CheckGrounded() {

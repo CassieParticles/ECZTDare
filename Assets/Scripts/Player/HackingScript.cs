@@ -64,7 +64,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
 
 
-        if (!movementScript.InputLocked) {
+        if (!movementScript.InputLocked || (movementScript.dashing && !menu.paused)) {
             if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
                 hackCharge += hackChargeRate * Time.deltaTime;
             }
