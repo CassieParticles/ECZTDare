@@ -16,7 +16,7 @@ public class BackwallChild : MonoBehaviour
     {
         if (collision.GetComponent<MovementScript>())
         {
-            parentBackwall.playerVisible = true;
+            parentBackwall.collidersFiring++;
         }
     }
 
@@ -24,7 +24,7 @@ public class BackwallChild : MonoBehaviour
     {
         if (collision.GetComponent<MovementScript>())
         {
-            parentBackwall.playerVisible = false;
+            parentBackwall.collidersFiring--;
         }
     }
 }
