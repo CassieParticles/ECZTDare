@@ -18,11 +18,6 @@ public class PodGuardBehaviour : GuardBehaviour
         guardBehaviour.MoveToState(GuardStates.ReturnToPod);
     }
 
-    public void Reset()
-    {
-        
-    }
-
     protected new void Awake()
     {
         base.Awake();
