@@ -115,6 +115,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (hasUpgrade) {
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
+
+        controls.MenuControls.Pause.started += ctx => Pause();
     }
 
     public void FinishAndSaveLevel(string sceneName) {
@@ -562,7 +564,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             }
         }
 
-        controls.MenuControls.Pause.started += ctx => Pause();
+        
 
         //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
         //    if (!paused) {

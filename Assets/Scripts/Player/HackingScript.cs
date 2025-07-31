@@ -51,13 +51,15 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         controls.GameplayControls.Enable();
         hackAction = controls.FindAction("Hacking");
         aimHackAction = controls.FindAction("AimHack");
+
+        aimHackAction.performed += ctx => OnAimHack(ctx);
     }
 
     // Update is called once per frame
     void Update() {
 
         //aimHackInput = aimHackAction.ReadValue<Vector2>();
-        aimHackAction.performed += ctx => OnAimHack(ctx);
+        
         //if (Mouse.current.wasUpdatedThisFrame) {
         //    usingMouse = true;
         //}
