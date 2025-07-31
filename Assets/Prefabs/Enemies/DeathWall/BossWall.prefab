@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5887781366302917327}
   - component: {fileID: 3402424936968046404}
   - component: {fileID: 7989030877124338535}
-  - component: {fileID: -179597132771623276}
   - component: {fileID: 8468885250540709781}
   - component: {fileID: 7453042908579525156}
+  - component: {fileID: 4923449025807286306}
   m_Layer: 2
   m_Name: BossWall
   m_TagString: Untagged
@@ -157,28 +157,6 @@ MonoBehaviour:
   closeMusic: Overseer_Chasing
   mediumMusic: Overseer_Chasing
   farMusic: Overseer_Looming
---- !u!95 &-179597132771623276
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2063730992982731228}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 961de8b4fb00dc54189aaff0fa9b374a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8468885250540709781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +215,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   multiPositionArray: []
+--- !u!95 &4923449025807286306
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063730992982731228}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 873b0f85f4264404fa24e3f6a2bc39f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2537411923537598019
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ Animator:
   m_GameObject: {fileID: 2537411923537598019}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 961de8b4fb00dc54189aaff0fa9b374a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 873b0f85f4264404fa24e3f6a2bc39f8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
