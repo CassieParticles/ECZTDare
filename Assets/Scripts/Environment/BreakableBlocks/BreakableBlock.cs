@@ -23,12 +23,6 @@ public class BreakableBlock : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void BeginBreaking() {
         StartCoroutine(Wait());
     }

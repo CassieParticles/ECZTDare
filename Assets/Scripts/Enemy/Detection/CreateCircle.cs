@@ -16,6 +16,19 @@ public class CreateCircle : MonoBehaviour
     private LineRenderer lineRendererOuter;
     private float outerRadius;
 
+    public void StartCircle(float maxRadius)
+    {
+        gameObject.SetActive(true);
+        innerRadius = 0;
+        outerRadius = 0;
+        Setup(maxRadius);
+    }
+
+    public void StopCircle()
+    {
+        gameObject.SetActive(false);
+        setUp = false;
+    }
 
     public void Setup(float maxRadius)
     {
@@ -27,7 +40,7 @@ public class CreateCircle : MonoBehaviour
     private IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(lifetime);
-        Destroy(gameObject);
+        StopCircle();
     }
 
     private void GenerateCircle()
@@ -52,7 +65,6 @@ public class CreateCircle : MonoBehaviour
         lineRendererOuter.positionCount = 80;
 
         setUp = false;
-
     }
 
 

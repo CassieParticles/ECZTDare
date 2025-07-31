@@ -53,6 +53,9 @@ public class SectionUIChange : MonoBehaviour
     }
 
     public void BreakRoomDisplayScore(List<ScoreData> scores) {
+        if (!breakroomUI.activeSelf) {
+            SwitchUIType(UITypes.breakroom);
+        }
         breakroomScoreDisplay.AddScore(scores);
     }
 }

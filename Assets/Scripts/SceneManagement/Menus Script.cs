@@ -98,6 +98,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     GameObject resetCloakButton;
     GameObject resetHackButton;
 
+    public StealthCamera currentCameraPan = null;
 
     public static MenuScript instance { get; private set; }
     private void Awake() {
@@ -127,6 +128,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     }
     public void ChangeScene(string sceneName)
     {
+        //Immediately remove current camera pan
+        currentCameraPan = null;
+
         if (transitioning) {
             return;
         }
@@ -388,43 +392,50 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         canPause = false;
         Time.timeScale = 0;
         uiCanvas = GameObject.Find("UICanvas");
-        uiCanvas.SetActive(false);
+        uiCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        uiCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        //uiCanvas.SetActive(false);
         if (SceneManager.GetActiveScene().name == "Tutorial") {
             scoringSubGroup.SetActive(false);
         } else {
             scoringSubGroup.SetActive(true);
         }
+
+        StartCoroutine(WinFinalize());
+    }
+
+    IEnumerator WinFinalize() {
+        BreakroomDisplay breakroomDisplay = FindAnyObjectByType<BreakroomDisplay>();
+        if (breakroomDisplay != null) {
+            while (breakroomDisplay.scoringCoroutineRunning) {
+                yield return new WaitForSecondsRealtime(0.016f);
+            }
+        }
+        
         winGroup.SetActive(true);
         nextLevelButton.GetComponent<Button>().Select();
     }
     
     public void Lose() {
+
+        //Already losing
+        if (loseGroup.activeSelf){ return; }
+        //INITIAL LOSE STEPS
+
         canPause = false;
-        if (!loseGroup.activeSelf) {
-            player = GameObject.Find("Player");
-            GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
-            //Bec add your music mode change
+        player = GameObject.Find("Player");
+        GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
+        //Bec add your music mode change
 
-            //
-            player.SetActive(false);
-            loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(7f));
-        }
-    }
+        //
+        player.SetActive(false);
+        loseGroup.SetActive(true);
 
-    IEnumerator LoseDelay(float seconds) {
-        if (!hasUpgrade) {
+        //Check if player should have upgrade
+        if (!hasUpgrade)
+        {
             hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
         }
-
-        int currentDeaths = deathCounter;
-        yield return new WaitForSeconds(loseSoundDelay);
-        loseSound.Post(gameObject);
-        yield return new WaitForSeconds(seconds-loseSoundDelay);
-        if (currentDeaths == deathCounter) {
-            StartCoroutine(LoseFinalize());
-        }
-
     }
 
     IEnumerator LoseFinalize() {
@@ -679,6 +690,10 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         }
         if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
             StartCoroutine(LoseFinalize());
+        }
+        if(currentCameraPan)
+        {
+            currentCameraPan.ExitCutscene();
         }
     }
 
