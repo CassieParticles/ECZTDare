@@ -21,6 +21,8 @@ public class BreakroomDisplay : MonoBehaviour
     [Tooltip("How long the script takes to visually scale the numbers up until it reaches the final score for that section")] 
     public float scoreScalingDuration = 1f;
 
+    [HideInInspector] public bool scoringCoroutineRunning;
+
 
     public List<ScoreData> scores;
     public List<string> scoresText;
@@ -45,6 +47,7 @@ public class BreakroomDisplay : MonoBehaviour
     }
 
     public void AddScore(List<ScoreData> importedScores) {
+        scoringCoroutineRunning = true;
         TextBox = GetComponentInChildren<TextMeshProUGUI>();
         scores = importedScores;
         scoresText = new List<string>();
@@ -96,20 +99,22 @@ public class BreakroomDisplay : MonoBehaviour
     }
 
     public IEnumerator DisplayAnimation(int index) {
+        scoringCoroutineRunning = true;
         //Setup the text that comes before the animted one
         TextBox.text = "";
+        LetterTextbox.text = "";
         for (int i = 0; i < scoresText.Count && i < index; i++) {
             TextBox.text += scoresText[i];
             LetterTextbox.text += lettersText[i];
         }
         //Display the score piece by piece
-        yield return new WaitForSeconds(scoreDisplayDelay);
+        yield return new WaitForSecondsRealtime(scoreDisplayDelay);
         TextBox.text += sectionText[scores.Count - 1].sectionNumberText + "\n";
-        yield return new WaitForSeconds(scoreDisplayGapDuration);
+        yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
         TextBox.text += sectionText[scores.Count - 1].sectionTypeText + "\n";
-        yield return new WaitForSeconds(scoreDisplayGapDuration);
+        yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
         TextBox.text += sectionText[scores.Count - 1].scoreUnitText;
-        yield return new WaitForSeconds(scoreDisplayGapDuration);
+        yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
 
         ScoreManager scoreManager = ScoreManager.GetInstance();
 
@@ -117,6 +122,7 @@ public class BreakroomDisplay : MonoBehaviour
         float scalingTimer = 0;
         string tempTextboxText = TextBox.text;
         string tempLetterText = LetterTextbox.text;
+        string letter = "";
         if (scores[scores.Count - 1].chaseSection) {
             //Setup for scaling the time
             float time = scores[scores.Count - 1].chaseTimeSeconds;
@@ -128,11 +134,13 @@ public class BreakroomDisplay : MonoBehaviour
                 TextBox.text = tempTextboxText + FormatTime(scaledTime);
                 LetterTextbox.text = tempLetterText + scoreManager.TimeToLetter(scaledTime);
 
-                scalingTimer += Time.deltaTime;
-                yield return new WaitForFixedUpdate();
+                scalingTimer += Time.fixedUnscaledDeltaTime;
+                yield return new WaitForSecondsRealtime(0.016f);
             }
+            
             TextBox.text = tempTextboxText + FormatTime(time);
-            LetterTextbox.text = tempLetterText + scoreManager.TimeToLetter(time);
+            letter = scoreManager.TimeToLetter(time);
+            LetterTextbox.text = tempLetterText + letter;
 
         } else if (scores[scores.Count - 1].stealthSection) {
             //Setup for scaling the stealth score
@@ -145,18 +153,29 @@ public class BreakroomDisplay : MonoBehaviour
                 TextBox.text = tempTextboxText + FormatStealth(scaledScore);
                 LetterTextbox.text = tempLetterText + scoreManager.ScoreToLetter(scaledScore);
 
-                scalingTimer += Time.deltaTime;
-                yield return new WaitForFixedUpdate();
+                scalingTimer += Time.fixedUnscaledDeltaTime;
+                yield return new WaitForSecondsRealtime(0.016f);
             }
             TextBox.text = tempTextboxText + FormatStealth(score);
-            LetterTextbox.text = tempLetterText + scoreManager.ScoreToLetter(score);
+            letter = scoreManager.ScoreToLetter(score);
+            LetterTextbox.text = tempLetterText + letter;
+
+        }
+
+        // REBECCA ADD AUDIO FOR FINAL LETTER SOUND HERE
+        if (letter == "S") {
+            //S rank
+        } else if (letter == "A") {
+            //A rank
+        } else if (letter == "B") {
+            //guess
+        } else {
+            //C rank
         }
         
 
-
-
-
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForSecondsRealtime(0.5f);
+        scoringCoroutineRunning = false;
     }
 
     private string FormatTime(float time) {

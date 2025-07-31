@@ -392,12 +392,26 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         canPause = false;
         Time.timeScale = 0;
         uiCanvas = GameObject.Find("UICanvas");
-        uiCanvas.SetActive(false);
+        uiCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        uiCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        //uiCanvas.SetActive(false);
         if (SceneManager.GetActiveScene().name == "Tutorial") {
             scoringSubGroup.SetActive(false);
         } else {
             scoringSubGroup.SetActive(true);
         }
+
+        StartCoroutine(WinFinalize());
+    }
+
+    IEnumerator WinFinalize() {
+        BreakroomDisplay breakroomDisplay = FindAnyObjectByType<BreakroomDisplay>();
+        if (breakroomDisplay != null) {
+            while (breakroomDisplay.scoringCoroutineRunning) {
+                yield return new WaitForSecondsRealtime(0.016f);
+            }
+        }
+        
         winGroup.SetActive(true);
         nextLevelButton.GetComponent<Button>().Select();
     }
