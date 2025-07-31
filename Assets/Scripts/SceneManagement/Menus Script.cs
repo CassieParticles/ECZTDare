@@ -84,6 +84,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     bool transitioning = false;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
+    TextMeshProUGUI controlSchemeText;
+    TextMeshProUGUI aimHackText;
+
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
     TextMeshProUGUI rebindJumpButtonKey;
@@ -501,6 +504,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
+        controlSchemeText = GameObject.Find("ControlSchemeText").GetComponent<TextMeshProUGUI>();
+        aimHackText = GameObject.Find("AimhackText").GetComponent<TextMeshProUGUI>();
+
         rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
         rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
         rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
@@ -616,6 +622,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     private void KeybindDisplay() {
         if (keybindsOpen) {
             if (controlScript.playerInput.currentControlScheme == "KeyboardMouse") {
+                controlSchemeText.text = "Currently using: Keyboard and Mouse";
+                aimHackText.text = "To aim the Hacking Reticle, move the Mouse";
+
                 rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
@@ -624,6 +633,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[0].ToDisplayString();
                 rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
             } else {
+                controlSchemeText.text = "Currently using: Gamepad";
+                aimHackText.text = "To aim the Hacking Reticle, use the Right Stick";
+
                 if (controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides) { 
                     rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString();
                 } else {
