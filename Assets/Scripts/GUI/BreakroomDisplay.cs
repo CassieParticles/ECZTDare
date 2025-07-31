@@ -186,10 +186,25 @@ public class BreakroomDisplay : MonoBehaviour
 
     private string FormatTime(float time) {
         //Format the time in the way we want
-        int minutes = Mathf.FloorToInt(time / 60F);
+        int minutes = Mathf.FloorToInt(time / 60);
+        int minuteTens = Mathf.FloorToInt(minutes / 10);
+        int minuteOnes = Mathf.FloorToInt(minutes % 10);
+
         int seconds = Mathf.FloorToInt(time - minutes * 60);
+        int secondTens = Mathf.FloorToInt(seconds / 10);
+        int secondOnes = Mathf.FloorToInt(seconds % 10);
+
         int milliseconds = Mathf.FloorToInt((time * 100) % 100);
-        return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+        int millisecondTens = Mathf.FloorToInt(milliseconds / 10);
+        int millisecondOnes = Mathf.FloorToInt(milliseconds % 10);
+
+        
+
+        return string.Format(string.Format("{0}{1}:{2}{3}:{4}{5}", 
+            minuteTens.ToString(), minuteOnes.ToString(), 
+            secondTens.ToString(), secondOnes.ToString(), 
+            millisecondTens.ToString(), millisecondOnes.ToString()
+            ));
     }
 
     private string FormatStealth(int stealth) {
