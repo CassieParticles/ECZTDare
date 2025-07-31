@@ -19,6 +19,11 @@ public class AlarmMusicHandler : MonoBehaviour
     private byte currentStates=0;
     private byte prevStates=0;
 
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
     private void Awake()
     {
         AkSoundEngine.StopAll();
@@ -115,6 +120,12 @@ public class AlarmMusicHandler : MonoBehaviour
         prevStates = currentStates;
     }
 
+    public void TurnOffMusic()
+    {
+        //Turns off the music
+        music.Stop(gameObject);
+    }
+
     private void AlarmUpdate(AlarmSystem newAlarm)
     {
         if(alarm)
@@ -138,7 +149,6 @@ public class AlarmMusicHandler : MonoBehaviour
             AlarmOn(Vector3.zero,null);
         }
     }
-
 
     private void Start()
     {
