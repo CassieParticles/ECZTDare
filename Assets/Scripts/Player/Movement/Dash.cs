@@ -23,7 +23,12 @@ public class Dash
         player.dashing = true;
         player.animator.SetBool("Dashing", true); //>>>>>>>>Mark Addition<<<<<<<<<<
         player.rb.gravityScale = 0f;
-        dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
+        if (!player.onWall) {
+            dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
+        } else {
+            dashDir = -(Convert.ToInt32(player.onRightWall) * 2 - 1);
+            player.facingRight = !player.onRightWall;
+        }
         player.rb.velocity = new Vector2(dashDir * player.dashSpeed, 0);
         player.batteryCharge -= player.dashBatteryCost;
         player.dashChargesRemaining--;
