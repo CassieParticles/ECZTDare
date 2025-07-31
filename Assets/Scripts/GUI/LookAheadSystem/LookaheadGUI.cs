@@ -1,3 +1,4 @@
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class LookaheadGUI : MonoBehaviour
 
     private RectTransform rectTransform;
 
+    private StringBuilder stringBuilder;
+
     public float distance { get; private set; }
     public bool onLeftSide { get; private set; }
 
@@ -23,6 +26,7 @@ public class LookaheadGUI : MonoBehaviour
     {
         text = GetComponentInChildren<TextMeshProUGUI>(true);
         rectTransform = GetComponent<RectTransform>();
+        stringBuilder = new StringBuilder();
     }
     public void LookaheadStart(LookaheadTracker tracker, bool onLeftSide)
     {
@@ -60,7 +64,9 @@ public class LookaheadGUI : MonoBehaviour
         if (!text){
             return;
         }
-        text.text = Mathf.Floor(distance).ToString() + "m";
+        
+        //Update text using a string builder (less allocations then direct string concatenation)
+        text.text = stringBuilder.Clear().Append(Mathf.Floor(distance).ToString()).Append("m").ToString();
         Vector3 pos = rectTransform.localPosition;
         pos.y = order * - 120;
         rectTransform.localPosition = pos;

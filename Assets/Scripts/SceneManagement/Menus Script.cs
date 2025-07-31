@@ -1,15 +1,11 @@
 using Cinemachine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using static ControlsScript;
 using static PlayerControls;
@@ -100,6 +96,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
     public StealthCamera currentCameraPan = null;
 
+
+    private StringBuilder stringBuilder;
+
     public static MenuScript instance { get; private set; }
     private void Awake() {
         if (instance != null && instance != this) {
@@ -115,7 +114,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (hasUpgrade) {
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
-
+        stringBuilder = new StringBuilder();
         controls.MenuControls.Pause.started += ctx => Pause();
     }
 
@@ -624,18 +623,18 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 if (controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides) { 
                     rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString();
                 } else {
-                    rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Running.bindings[7].ToDisplayString();
+                    rebindLeftButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Running.bindings[7].ToDisplayString()).ToString();
                 } //Running Left
                 if (controlScript.controls.GameplayControls.Running.bindings[5].hasOverrides) {
                     rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString();
                 } else {
-                    rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Running.bindings[8].ToDisplayString();
+                    rebindRightButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Running.bindings[8].ToDisplayString()).ToString();
                 } //Running Right
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[1].ToDisplayString(); //Jumping
                 if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
                     rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString();
                 } else {
-                    rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString() + "\n" + controlScript.controls.GameplayControls.Sliding.bindings[2].ToDisplayString();
+                    rebindSlideButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Sliding.bindings[2].ToDisplayString()).ToString();
                 } //Sliding
                 rebindDashButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[1].ToDisplayString(); //Dashing
                 rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[1].ToDisplayString(); //Cloaking

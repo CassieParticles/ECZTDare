@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
 public class SubtitleManager : MonoBehaviour
 {
     public List<Subtitle> subtitles;
-    public TextMeshProUGUI textBox;
-    public string currentSubtitles;
+    [SerializeField]
+    private TextMeshProUGUI textBox;
+    private StringBuilder stringBuilder;
     public void AddSubtitle(Subtitle subtitle) {
         subtitles.Add(subtitle);
     }
@@ -17,17 +19,18 @@ public class SubtitleManager : MonoBehaviour
     }
 
     public void UpdateText() {
-        currentSubtitles = "";
+        stringBuilder.Clear();
         if (subtitles.Count != 0) {
             foreach (Subtitle subtitle in subtitles) {
-                currentSubtitles += subtitle.writtenText + "\n";
+                stringBuilder.Append(subtitle.writtenText).Append("\n");
             }
         }
-        textBox.text = currentSubtitles;
+        textBox.text = stringBuilder.ToString();
     }
 
     // Start is called before the first frame update
     void Start() {
         textBox = GetComponent<TextMeshProUGUI>();
+        stringBuilder = new StringBuilder();
     }
 }
