@@ -46,8 +46,13 @@ public class Dash
     public void StopDashing() {
         player.dashing = false;
         player.rb.gravityScale = 1f;
-        player.InputLocked = false;
         player.animator.SetBool("Dashing", false); //>>>>>>>>Mark Addition<<<<<<<<<<
+        //Make sure you cant dash past cutscenes
+        if (GameObject.FindAnyObjectByType<MenuScript>().currentCameraPan == null) {
+            
+            player.InputLocked = false;
+        }
+        
         player.StartCoroutine(DashCooldown());
         
         //Debug.Log("dashDir = " + dashDir + ", runInput = " + player.runInput);
