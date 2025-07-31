@@ -6957,7 +6957,7 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Cutscene" ID="{05EE756A-6E35-4DAB-AFC7-B5F3AD2DF55D}" ShortID="172892082">
+				<Folder Name="OLD_Cutscene" ID="{05EE756A-6E35-4DAB-AFC7-B5F3AD2DF55D}" ShortID="172892082">
 					<ChildrenList>
 						<Sound Name="Spotlight_Turn_On" ID="{8565C4B8-3CD2-467A-B79F-4185B4A21A38}" ShortID="532797405">
 							<PropertyList>
@@ -7165,6 +7165,32 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022" ID="{70BDFF4D-E0BD-44BD-8C53-0B4A73ED042B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Cutscenes" ID="{B11F6E95-4255-434E-B049-06477F7F2FDF}" ShortID="991580666">
+					<ChildrenList>
+						<Sound Name="Ending_Cutscene_VER1" ID="{697DAADF-39CE-4B9D-9721-945DED092D1F}" ShortID="199143926">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6B0F2671-A8ED-4AE4-8111-C82FF0C21B2F}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Sound" ID="{7AE83DAD-9FA0-47F1-A811-FD75BE143EEA}" WorkUnitID="{CC12E69C-BA62-4424-9962-BDE4E39B19C7}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Ending_Cutscene_VER1" ID="{ED2BB33A-92B3-4263-A3C4-644C69A1C002}">
+									<Language>SFX</Language>
+									<AudioFile>Ending_Cutscene_VER1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="224924725"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Ending_Cutscene_VER1" ID="{ED2BB33A-92B3-4263-A3C4-644C69A1C002}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
