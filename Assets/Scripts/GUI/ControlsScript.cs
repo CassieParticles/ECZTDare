@@ -41,23 +41,77 @@ public class ControlsScript : MonoBehaviour {
         RunningRight,
         Jumping,
         Sliding,
-        BoostCloaking,
-        Hacking,
+        Dash,
+        Cloak,
+        Hacking
+    }
+
+    public string GetBoundControl(Controls control)
+    {
+        if(playerInput.currentControlScheme == "KeyboardMouse")
+        {
+            return getKeyboardControl(control);
+        }
+        else
+        {
+            return getControllerControl(control);
+        }
+    }
+
+    private string getKeyboardControl(Controls control)
+    {
+        switch (control)
+        {
+            case Controls.RunningLeft:
+                return controls.GameplayControls.Running.bindings[1].ToDisplayString();
+            case Controls.RunningRight:
+                return controls.GameplayControls.Running.bindings[2].ToDisplayString();
+            case Controls.Jumping:
+                return controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
+            case Controls.Sliding:
+                return controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
+            case Controls.Dash:
+                return controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
+            case Controls.Cloak:
+                return controls.GameplayControls.Cloaking.bindings[0].ToDisplayString();
+            case Controls.Hacking:
+                return controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+            default:    //Never hit, unless new controls are added
+                Debug.LogWarning("WARNING: UNKNOWN KEY, PLEASE UPDATE WITH NEW BINDING");
+                return null;
+        }
+    }
+
+    private string getControllerControl(Controls control)
+    {
+        switch (control)
+        {
+            case Controls.RunningLeft:
+                return controls.GameplayControls.Running.bindings[4].ToDisplayString();
+            case Controls.RunningRight:
+                return controls.GameplayControls.Running.bindings[5].ToDisplayString();
+            case Controls.Jumping:
+                return controls.GameplayControls.Jumping.bindings[1].ToDisplayString();
+            case Controls.Sliding:
+                return controls.GameplayControls.Sliding.bindings[1].ToDisplayString();
+            case Controls.Dash:
+                return controls.GameplayControls.Dashing.bindings[1].ToDisplayString();
+            case Controls.Cloak:
+                return controls.GameplayControls.Cloaking.bindings[1].ToDisplayString();
+            case Controls.Hacking:
+                return controls.GameplayControls.Hacking.bindings[1].ToDisplayString();
+            default:    //Never hit, unless new controls are added
+                Debug.LogWarning("WARNING: UNKNOWN KEY, PLEASE UPDATE WITH NEW BINDING");
+                return null;
+        }
     }
 
     public void Setup() {
-        //controls = GameObject.Find("PlayerControls").GetComponent<PlayerControls.GameplayControlsActions>();
         controls = new PlayerControls();
         menu = GetComponent<MenuScript>();
         playerInput = GetComponent<PlayerInput>();
-        //kTransform = transform.Find("KeybindsGroup");
 
-        //rebindLeftButton = kTransform.Find("RebindLeftButton").gameObject;
-        //rebindRightButton = kTransform.Find("RebindRightButton").gameObject;
-        //rebindJumpButton = kTransform.Find("RebindJumpButton").gameObject;
-        //rebindSlideButton = kTransform.Find("RebindSlideButton").gameObject;
-        //rebindBoostCloakButton = kTransform.Find("RebindBoostCloakButton").gameObject;
-        //rebindHackButton = kTransform.Find("RebindHackButton").gameObject;
+        
 
         rebindLeftButtonKey = rebindLeftButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         rebindRightButtonKey = rebindRightButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
@@ -65,19 +119,6 @@ public class ControlsScript : MonoBehaviour {
         rebindSlideButtonKey = rebindSlideButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         rebindBoostCloakButtonKey = rebindBoostCloakButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         rebindHackButtonKey = rebindHackButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-
-        //rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
-        //rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
-        //rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
-        //rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
-        //rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
-        //rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
-
-        //resetRunButton = kTransform.Find("ResetRunButton").gameObject;
-        //resetJumpButton = kTransform.Find("ResetJumpButton").gameObject;
-        //resetSlideButton = kTransform.Find("ResetSlideButton").gameObject;
-        //resetBoostCloakButton = kTransform.Find("ResetBoostCloakButton").gameObject;
-        //resetHackButton = kTransform.Find("ResetHackButton").gameObject;
 
     }
 
@@ -259,10 +300,4 @@ public class ControlsScript : MonoBehaviour {
                 return;
         }
     }
-
-
-
-
-
-
 }
