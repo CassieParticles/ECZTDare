@@ -47,6 +47,7 @@ public class BreakroomDisplay : MonoBehaviour
     }
 
     public void AddScore(List<ScoreData> importedScores) {
+        scoringCoroutineRunning = true;
         TextBox = GetComponentInChildren<TextMeshProUGUI>();
         scores = importedScores;
         scoresText = new List<string>();
