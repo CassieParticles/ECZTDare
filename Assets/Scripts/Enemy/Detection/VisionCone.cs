@@ -137,19 +137,18 @@ public class VisionCone : EnemySight
         return distance;
     }
 
+    private int[] newTriangles;
+    Vector3[] newVertices;
+    Vector2[] newUVs;
+
     private void GenerateConeMesh()
     {
         visionConeMesh.Clear();
 
-        //Create arrays for mesh
-        Vector3[] newVertices =  new Vector3[2 + sectorCount];
-        Vector2[] newUVs = new Vector2[2 + sectorCount];
-        int[] newTriangles= new int[3 * sectorCount];
-
         //Create array for colldider
         Vector2[] colliderVertices = new Vector2[2 + sectorCount];
         
-        //Create vertices
+        //Create vertices (overwrites old data)
         newVertices[0] = new Vector3(0,0,0);
         newUVs[0] = new Vector2(0, 0);
         colliderVertices[0] = new Vector2(0, 0);
@@ -195,6 +194,11 @@ public class VisionCone : EnemySight
     private new void Awake()
     {
         base.Awake();
+
+        //Initialize arrays, so they don't have ot be re-allocated every frame
+        newTriangles= new int[3 * sectorCount];
+        newVertices= new Vector3[2 + sectorCount];
+        newUVs= new  Vector2[2 + sectorCount];
 
         //Set intiial desired angle to the angle it starts facing
         desiredAngle = transform.rotation.z;
