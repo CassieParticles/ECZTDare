@@ -128,7 +128,7 @@ public class BreakroomDisplay : MonoBehaviour
         if (scores[scores.Count - 1].chaseSection) {
             //Setup for scaling the time
             float time = scores[scores.Count - 1].chaseTimeSeconds;
-            float startTime = time + 60;
+            float startTime = Mathf.Max(time + 60, scoreManager.BRankTime + 30);
 
             while (scalingTimer < scoreScalingDuration) {
                 float scalingProgress = scalingTimer / scoreScalingDuration;
