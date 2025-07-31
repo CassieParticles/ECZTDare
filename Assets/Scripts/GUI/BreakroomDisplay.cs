@@ -36,8 +36,6 @@ public class BreakroomDisplay : MonoBehaviour
     private string scoreUnitText;
     private string scoreValue;
 
-
-
     private void Awake() {
         if (scores == null) {
             scores = new List<ScoreData>();
@@ -97,6 +95,10 @@ public class BreakroomDisplay : MonoBehaviour
         StartCoroutine(DisplayAnimation(scores.Count - 1));
 
     }
+
+    public AK.Wwise.Event sRankBeep;
+    public AK.Wwise.Event goodBeep;
+    public AK.Wwise.Event badBeep;
 
     public IEnumerator DisplayAnimation(int index) {
         scoringCoroutineRunning = true;
@@ -165,12 +167,16 @@ public class BreakroomDisplay : MonoBehaviour
         // REBECCA ADD AUDIO FOR FINAL LETTER SOUND HERE
         if (letter == "S") {
             //S rank
+            sRankBeep.Post(gameObject);
         } else if (letter == "A") {
             //A rank
+            goodBeep.Post(gameObject);
         } else if (letter == "B") {
             //guess
+            badBeep.Post(gameObject);
         } else {
             //C rank
+            badBeep.Post(gameObject);
         }
         
 

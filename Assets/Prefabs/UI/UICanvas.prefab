@@ -3241,11 +3241,24 @@ MonoBehaviour:
   scoreDisplayDelay: 0.5
   scoreDisplayGapDuration: 1
   scoreScalingDuration: 2
+  scoringCoroutineRunning: 0
   scores: []
   scoresText: []
   lettersText: []
   TextBox: {fileID: 8733866920291491216}
   LetterTextbox: {fileID: 6033198366746896670}
+  sRankBeep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2d105e50289a43b4087abf8718621d16, type: 2}
+  goodBeep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 48fe5e83e8f18ff47be8c1067f511315, type: 2}
+  badBeep:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e86e3e4d9ee935d48a4dd908c36955d8, type: 2}
 --- !u!1 &9045253345578160882
 GameObject:
   m_ObjectHideFlags: 0
