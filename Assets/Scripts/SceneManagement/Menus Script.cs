@@ -435,6 +435,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (!hasUpgrade)
         {
             hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
+            
         }
     }
 
@@ -528,9 +529,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
-            if (SceneManager.GetActiveScene().name == "Level2") {
-                hasUpgrade = true;
-            }
             CloseMenu();
         }
 
@@ -555,8 +553,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
+                if (hasUpgrade) {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+                    FindAnyObjectByType<BatteryBar>().SetCloakBar();
                     hasUpgrade = true;
                 }
             }
