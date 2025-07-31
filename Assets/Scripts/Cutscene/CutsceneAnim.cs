@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
@@ -10,6 +11,12 @@ using UnityEngine.Video;
 public class CutsceneAnim : MonoBehaviour
 {
     [SerializeField] string nextSceneName;
+
+    public AK.Wwise.Event cutsceneSound;
+    public AK.Wwise.Event cutsceneMusic;
+    public AK.Wwise.Event cutsceneAmbience;
+    public AK.Wwise.Event buttonClick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +24,10 @@ public class CutsceneAnim : MonoBehaviour
         VideoPlayer player = GetComponent<VideoPlayer>();
         player.Play();
         //================= REBECCA ANIMATION STARTS PLAYING HERE ========================//
+        cutsceneSound.Post(gameObject);
+        cutsceneMusic.Post(gameObject);
+        cutsceneAmbience.Post(gameObject);
 
-
-        //================= REBECCA ANIMATION STARTS PLAYING HERE ========================//
         InputSystem.onAnyButtonPress.CallOnce(ExitScene);
         player.loopPointReached += EndReached;
     }
@@ -27,10 +35,12 @@ public class CutsceneAnim : MonoBehaviour
     private void ExitScene(InputControl control)
     {
         //================= REBECCA SCENE EXITS HERE ======================================//
+        cutsceneSound.Stop(gameObject);
+        cutsceneMusic.Stop(gameObject);
+        cutsceneAmbience.Stop(gameObject);
+        buttonClick.Post(gameObject);
 
-
-        //================= REBECCA SCENE EXITS HERE ======================================//
-        if(GetComponent<MenuScript>())
+        if (GetComponent<MenuScript>())
         {
             GetComponent<MenuScript>().ChangeScene(nextSceneName);
         }
