@@ -16,6 +16,13 @@ public class ScoreManager : MonoBehaviour
 
     private SaveData currentSaveData = new SaveData();
 
+    public float SRankTime = 120;
+    public float ARankTime = 150;
+    public float BRankTime = 180;
+
+    public int SRankScore = 9800;
+    public int ARankScore = 8500;
+    public int BRankScore = 6000;
 
     private int level = 1;
     public string level1Name = "Level 1";
@@ -105,6 +112,30 @@ public class ScoreManager : MonoBehaviour
 
         GameObject.Find("SectionUIChanger").GetComponent<SectionUIChange>().BreakRoomDisplayScore(scores);
         Debug.Log("Found Section Changer");
+    }
+
+    public string ScoreToLetter(int stealthScore) {
+        if (stealthScore < BRankScore) {
+            return "C";
+        } else if (stealthScore < ARankScore) {
+            return "B";
+        } else if (stealthScore < SRankScore) {
+            return "A";
+        } else {
+            return "S";
+        }
+    }
+
+    public string TimeToLetter(float chaseTime) {
+        if (chaseTime > BRankTime) {
+            return "C";
+        } else if (chaseTime > ARankTime) {
+            return "B";
+        } else if (chaseTime > SRankTime) {
+            return "A";
+        } else {
+            return "S";
+        }
     }
 
     //Singleton stuff
