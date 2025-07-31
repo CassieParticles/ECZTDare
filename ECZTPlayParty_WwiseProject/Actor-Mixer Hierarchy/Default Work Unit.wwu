@@ -6877,6 +6877,9 @@
 									</ModifierList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
 											<Modifier Name="" ID="{519B45CC-D6EB-48DF-86C4-29E41A8E11D4}">
@@ -6926,6 +6929,9 @@
 									</ModifierList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
 											<Modifier Name="" ID="{375D66C2-CA01-46BF-84F6-7FF9133A6B96}">
@@ -6962,7 +6968,15 @@
 						</Sound>
 						<Sound Name="S_Beep" ID="{4EEF26D8-95FE-4122-A64B-9FF654224EFA}" ShortID="968438044">
 							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
 									<ModifierList>
 										<ModifierInfo>
 											<Modifier Name="" ID="{1477BE60-ECEC-4841-9245-71A82EAD7FF6}"/>
@@ -6980,6 +6994,10 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="S_Beep" ID="{524321C1-E4EF-4B40-8320-2D2BBC7DFB7B}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="1.23985602094241"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>S_Beep.wav</AudioFile>
 									<MediaIDList>
