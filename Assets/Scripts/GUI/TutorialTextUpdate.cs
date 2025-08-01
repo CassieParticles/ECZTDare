@@ -17,6 +17,7 @@ public class TutorialTextUpdate : MonoBehaviour
 
     public void RefreshText()
     {
+        if (!textGUI){ return; }
         //Put the first part of the string in
         stringBuilder.Clear().Append(splitString[0]);
 
