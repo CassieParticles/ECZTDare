@@ -6547,8 +6547,13 @@
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>-80</Value>
+										<Value>-200</Value>
 									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{A7AAC68D-59C2-43CA-921E-BEB3075FCE0F}"/>
+										</ModifierInfo>
+									</ModifierList>
 								</Property>
 								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
 							</PropertyList>
