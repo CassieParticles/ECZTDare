@@ -405,12 +405,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         uiCanvas = GameObject.Find("UICanvas");
         uiCanvas.transform.GetChild(0).gameObject.SetActive(false);
         uiCanvas.transform.GetChild(1).gameObject.SetActive(false);
-        //uiCanvas.SetActive(false);
-        if (SceneManager.GetActiveScene().name == "Tutorial") {
-            scoringSubGroup.SetActive(false);
-        } else {
-            scoringSubGroup.SetActive(true);
-        }
 
         StartCoroutine(WinFinalize());
     }

@@ -49,7 +49,7 @@ public class MainScoreController : MonoBehaviour
         timer.paused = false;
     }
 
-    public void EndSection()
+    public void EndSection(bool endOfLevel)
     {
         //Only end section if it was tracking
         if(!currentlyScoring){ return; }
@@ -77,7 +77,7 @@ public class MainScoreController : MonoBehaviour
         };
 
         if (GameObject.Find("ScoreManager") != null) {
-            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().SaveSectionScore(sectionScore);
+            GameObject.Find("ScoreManager").GetComponent<ScoreManager>().SaveSectionScore(sectionScore, endOfLevel);
         }
 
         //Destroy old stealth objects
