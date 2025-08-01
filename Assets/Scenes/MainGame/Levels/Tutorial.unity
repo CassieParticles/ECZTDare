@@ -1435,6 +1435,7 @@ GameObject:
   - component: {fileID: 87494178}
   - component: {fileID: 87494180}
   - component: {fileID: 87494179}
+  - component: {fileID: 87494181}
   m_Layer: 0
   m_Name: Jump (2)
   m_TagString: Untagged
@@ -1599,6 +1600,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &87494181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87494177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Hold _ While Running to Slide
+  controls: 03000000
 --- !u!1001 &97341067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3491,6 +3506,7 @@ GameObject:
   - component: {fileID: 464142293}
   - component: {fileID: 464142295}
   - component: {fileID: 464142294}
+  - component: {fileID: 464142296}
   m_Layer: 0
   m_Name: Jump
   m_TagString: Untagged
@@ -3655,6 +3671,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &464142296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464142292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Press _ to Jump
+  controls: 02000000
 --- !u!1001 &465531590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7405,6 +7435,7 @@ GameObject:
   - component: {fileID: 837969298}
   - component: {fileID: 837969300}
   - component: {fileID: 837969299}
+  - component: {fileID: 837969301}
   m_Layer: 0
   m_Name: Jump (1)
   m_TagString: Untagged
@@ -7569,6 +7600,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &837969301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837969297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Hold _ to Jump Higher
+  controls: 02000000
 --- !u!1 &844150076
 GameObject:
   m_ObjectHideFlags: 0
@@ -101270,6 +101315,7 @@ GameObject:
   - component: {fileID: 971463151}
   - component: {fileID: 971463153}
   - component: {fileID: 971463152}
+  - component: {fileID: 971463154}
   m_Layer: 0
   m_Name: Hack
   m_TagString: Untagged
@@ -101437,6 +101483,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &971463154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971463150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Aim hacking with the mouse\n\n Press _ to Hack
+  controls: 06000000
 --- !u!1 &981418639
 GameObject:
   m_ObjectHideFlags: 0
@@ -103896,6 +103956,7 @@ GameObject:
   - component: {fileID: 1383037163}
   - component: {fileID: 1383037162}
   - component: {fileID: 1383037161}
+  - component: {fileID: 1383037164}
   m_Layer: 0
   m_Name: Move
   m_TagString: Untagged
@@ -104060,6 +104121,20 @@ RectTransform:
   m_AnchoredPosition: {x: -161.79, y: 19.42}
   m_SizeDelta: {x: 12.9974, y: 3.0902}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1383037164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383037159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Use _ & _ to Move
+  controls: 0000000001000000
 --- !u!1 &1406263722
 GameObject:
   m_ObjectHideFlags: 0
@@ -105883,6 +105958,7 @@ GameObject:
   - component: {fileID: 1661620685}
   - component: {fileID: 1661620687}
   - component: {fileID: 1661620686}
+  - component: {fileID: 1661620688}
   m_Layer: 0
   m_Name: Jump (3)
   m_TagString: Untagged
@@ -106047,6 +106123,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1661620688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661620684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Hold _ when Slow to Crouch
+  controls: 03000000
 --- !u!1 &1677816872
 GameObject:
   m_ObjectHideFlags: 0
@@ -106829,6 +106919,7 @@ GameObject:
   - component: {fileID: 1800897397}
   - component: {fileID: 1800897399}
   - component: {fileID: 1800897398}
+  - component: {fileID: 1800897400}
   m_Layer: 0
   m_Name: Dash
   m_TagString: Untagged
@@ -106993,6 +107084,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1800897400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800897396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Press _ to Dash
+  controls: 04000000
 --- !u!1 &1817059892
 GameObject:
   m_ObjectHideFlags: 0
@@ -157436,6 +157541,7 @@ GameObject:
   - component: {fileID: 1981717748}
   - component: {fileID: 1981717750}
   - component: {fileID: 1981717749}
+  - component: {fileID: 1981717751}
   m_Layer: 0
   m_Name: Walljump
   m_TagString: Untagged
@@ -157602,6 +157708,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1981717751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981717747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71baddb2dd5733c4f8bb82d33cb2e712, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Rapidly Press _ to Wall Jump
+  controls: 02000000
 --- !u!1 &1995221965
 GameObject:
   m_ObjectHideFlags: 0

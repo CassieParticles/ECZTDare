@@ -364,6 +364,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         Time.timeScale = 1f;
         CloseSubMenu();
+
+        //Update all GUIs
+        foreach (TutorialTextUpdate text in FindObjectsByType<TutorialTextUpdate>(FindObjectsSortMode.None))
+        {
+            text.RefreshText();
+        }
     }
 
     public void CloseSubMenu() {    
