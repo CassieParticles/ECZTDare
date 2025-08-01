@@ -57,7 +57,7 @@ public class ScoreManager : MonoBehaviour
             if (level == 1) {
 
                 if (currentSaveData.level1Scores.Count == scores.Count) {
-                    for (int i = 0; i < scores.Count - 1; i++) {
+                    for (int i = 0; i < scores.Count; i++) {
                         if (scores[i].chaseSection) { //If chase section, compare times
                             if (scores[i].chaseTimeSeconds < currentSaveData.level1Scores[i].chaseTimeSeconds) {
                                 currentSaveData.level1Scores[i].chaseTimeSeconds = scores[i].chaseTimeSeconds;
@@ -101,7 +101,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Score Data saved successfully to " + filePath);
     }
 
-    public void SaveSectionScore(ScoreData score) {
+    public void SaveSectionScore(ScoreData score, bool endOfLevel) {
         if (scores.Count >= section) {
             scores[section - 1] = score;
         } else {
@@ -110,7 +110,7 @@ public class ScoreManager : MonoBehaviour
         //Debug.Log("Saved Section " + section);
         section++;
 
-        GameObject.Find("SectionUIChanger").GetComponent<SectionUIChange>().BreakRoomDisplayScore(scores);
+        GameObject.Find("SectionUIChanger").GetComponent<SectionUIChange>().BreakRoomDisplayScore(scores, endOfLevel);
         Debug.Log("Found Section Changer");
     }
 
