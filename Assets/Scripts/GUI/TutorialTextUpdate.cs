@@ -12,7 +12,8 @@ public class TutorialTextUpdate : MonoBehaviour
     string[] splitString;
 
     StringBuilder stringBuilder;
-    TextMeshPro textGUI;
+    TMP_Text textGUI;
+
 
     public void RefreshText()
     {
@@ -33,7 +34,15 @@ public class TutorialTextUpdate : MonoBehaviour
 
     private void Awake()
     {
-        textGUI = GetComponent<TextMeshPro>();
+        //Get either the TextMeshPro sprite or GUI object (TMP_Text is base class)
+        if(GetComponent<TextMeshPro>())
+        {
+            textGUI = GetComponent<TextMeshPro>();
+        }
+        if (GetComponent<TextMeshProUGUI>())
+        {
+            textGUI = GetComponent<TextMeshProUGUI>();
+        }
         stringBuilder = new StringBuilder(text);
         splitString = text.Split('_');
         if(splitString.Length != controls.Length + 1 )
