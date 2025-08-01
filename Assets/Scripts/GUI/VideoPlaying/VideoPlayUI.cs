@@ -1,13 +1,13 @@
-using Cinemachine.Utility;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class VideoPlayUI : MonoBehaviour
 {
     VideoPlayer videoPlayer;
-
 
     public void OpenVideo(VideoClip clipToPlay)
     {
@@ -15,6 +15,13 @@ public class VideoPlayUI : MonoBehaviour
         if (!clipToPlay){ return; }
         if (!videoPlayer){ videoPlayer = GetComponent<VideoPlayer>(); }
         videoPlayer.enabled = true;
+
+        
+
+        foreach (Light2D light in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
+        {
+            light.enabled = false;
+        }
 
         //Play video
         videoPlayer.clip = clipToPlay;
@@ -49,6 +56,11 @@ public class VideoPlayUI : MonoBehaviour
         //Stop video
         videoPlayer.Pause();
         videoPlayer.time = 0;
+
+        foreach (Light2D light in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
+        {
+            light.enabled = true;
+        }
 
         //Resume game stuff
         //Set timescale to 1
