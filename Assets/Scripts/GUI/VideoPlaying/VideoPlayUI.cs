@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -9,7 +10,9 @@ public class VideoPlayUI : MonoBehaviour
 {
     VideoPlayer videoPlayer;
 
-    public void OpenVideo(VideoClip clipToPlay)
+    TextMeshProUGUI additionalText;
+
+    public void OpenVideo(VideoClip clipToPlay, TextMeshProUGUI additionalText = null)
     {
         gameObject.SetActive(true);
         if (!clipToPlay){ return; }
@@ -23,6 +26,13 @@ public class VideoPlayUI : MonoBehaviour
             light.enabled = false;
         }
 
+        //Enable additional text if there is any
+        if(additionalText)
+        {
+            additionalText.gameObject.SetActive(true);
+            this.additionalText=additionalText;
+        }
+
         //Play video
         videoPlayer.clip = clipToPlay;
         if (videoPlayer.enabled)
@@ -33,6 +43,8 @@ public class VideoPlayUI : MonoBehaviour
         {
             Debug.Log("Object is not active???");
         }
+
+
 
 
 
@@ -60,6 +72,16 @@ public class VideoPlayUI : MonoBehaviour
         foreach (Light2D light in FindObjectsByType<Light2D>(FindObjectsSortMode.None))
         {
             light.enabled = true;
+        }
+
+        //Disable additional text if there was one
+        if(additionalText)
+        {
+            if (additionalText)
+            {
+                additionalText.gameObject.SetActive(false);
+                additionalText = null;
+            }
         }
 
         //Resume game stuff
