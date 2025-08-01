@@ -2,10 +2,12 @@ using NUnit.Framework;
 using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AlarmMusicHandler : MonoBehaviour
 {
     public AK.Wwise.Event music;
+    public AK.Wwise.Event bossMusic;
     public AK.Wwise.Event rain;
     public AK.Wwise.Event ambience;
 
@@ -124,6 +126,9 @@ public class AlarmMusicHandler : MonoBehaviour
     {
         //Turns off the music
         music.Stop(gameObject);
+        bossMusic.Stop(gameObject);
+        //Sets the "Ambience" State Group's active State to "Inside"
+        AkSoundEngine.SetState("Ambience", "Inside");
     }
 
     private void AlarmUpdate(AlarmSystem newAlarm)
@@ -159,13 +164,25 @@ public class AlarmMusicHandler : MonoBehaviour
             alarm.AddAlarmDisableFunc(AlarmOff);
         }
 
-
-        music.Post(gameObject);
-        rain.Post(gameObject);
-        ambience.Post(gameObject);
-        //Sets the "Music" State Group's active State to "Hidden"
-        AkSoundEngine.SetState("Music", "Hidden");
-        //Sets the "Ambience" State Group's active State to "Outside"
-        AkSoundEngine.SetState("Ambience", "Outside");
+        if (SceneManager.GetActiveScene().name== "Tutorial" || SceneManager.GetActiveScene().name == "Level 1")
+        {
+            music.Post(gameObject);
+            rain.Post(gameObject);
+            ambience.Post(gameObject);
+            //Sets the "Music" State Group's active State to "Hidden"
+            AkSoundEngine.SetState("Music", "Hidden");
+            //Sets the "Ambience" State Group's active State to "Inside"
+            AkSoundEngine.SetState("Ambience", "Inside");
+        }
+        if (SceneManager.GetActiveScene().name == "Boss Level (2v3)")
+        {
+            bossMusic.Post(gameObject);
+            rain.Post(gameObject);
+            ambience.Post(gameObject);
+            //Sets the "Music" State Group's active State to "Overseer_Looming"
+            AkSoundEngine.SetState("Music", "Overseer_Looming");
+            //Sets the "Ambience" State Group's active State to "Inside"
+            AkSoundEngine.SetState("Ambience", "Inside");
+        }
     }
 }
