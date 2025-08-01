@@ -17,15 +17,15 @@ public class TutorialTextUpdate : MonoBehaviour
     public void RefreshText()
     {
         //Put the first part of the string in
-        stringBuilder.Clear().Append(splitString[0]).Append(' ');
+        stringBuilder.Clear().Append(splitString[0]);
 
         //Iterate through the rest of the string, adding all the controls in
         ControlsScript controlsScript = FindAnyObjectByType<ControlsScript>();
         if (!controlsScript){ return; }
         for(int i=0;i<controls.Length;++i)
         {
-            stringBuilder.Append(controlsScript.GetBoundControl(controls[i])).Append(' ');
-            stringBuilder.Append(splitString[i + 1]).Append(' ');
+            stringBuilder.Append(controlsScript.GetBoundControl(controls[i]));
+            stringBuilder.Append(splitString[i + 1]);
         }
 
         textGUI.text = stringBuilder.ToString();
