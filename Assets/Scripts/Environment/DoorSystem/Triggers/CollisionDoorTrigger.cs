@@ -7,6 +7,9 @@ public class CollisionDoorTrigger : ITriggerDoor
     [SerializeField] protected DoorAction action;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SetState(action);
+        if(collision.GetComponent<MovementScript>())
+        {
+            SetState(action);
+        }
     }
 }
