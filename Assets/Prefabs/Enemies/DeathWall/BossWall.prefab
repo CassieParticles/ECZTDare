@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8468885250540709781}
   - component: {fileID: 7453042908579525156}
   - component: {fileID: 4923449025807286306}
+  - component: {fileID: -7855405945695921233}
   m_Layer: 2
   m_Name: BossWall
   m_TagString: Untagged
@@ -214,6 +215,7 @@ MonoBehaviour:
   LargeModePositions:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   multiPositionArray: []
 --- !u!95 &4923449025807286306
 Animator:
@@ -237,6 +239,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7855405945695921233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063730992982731228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cf0bf41a1927049a09ad47a636cc6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 1000
+  displaySprite: {fileID: 21300000, guid: f78c7ebf411de2a46b4e9e0f17e00c69, type: 3}
+  TrackLeft: 1
+  TrackRight: 0
 --- !u!1 &2537411923537598019
 GameObject:
   m_ObjectHideFlags: 0
