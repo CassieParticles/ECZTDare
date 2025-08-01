@@ -13,12 +13,8 @@ public class TutorialTextUpdate : MonoBehaviour
 
     StringBuilder stringBuilder;
     TextMeshPro textGUI;
-    private void UpdateControl(PlayerInput input)
-    {
-        RefreshText();
-    }
 
-    private void RefreshText()
+    public void RefreshText()
     {
         //Put the first part of the string in
         stringBuilder.Clear().Append(splitString[0]).Append(' ');
@@ -45,14 +41,6 @@ public class TutorialTextUpdate : MonoBehaviour
             Debug.LogError("ERROR: CONTROLS AND STRING GAP MISMATCH");
             return;
         }
-
-        //Get Player input
-        PlayerInput input = FindAnyObjectByType<PlayerInput>();
-        if(input)
-        {
-            input.onControlsChanged += UpdateControl;
-        }
-        
     }
 
     private void Start()
