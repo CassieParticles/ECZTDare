@@ -127,6 +127,8 @@ public class AlarmMusicHandler : MonoBehaviour
         //Turns off the music
         music.Stop(gameObject);
         bossMusic.Stop(gameObject);
+        //Sets the "Ambience" State Group's active State to "Inside"
+        AkSoundEngine.SetState("Ambience", "Inside");
     }
 
     private void AlarmUpdate(AlarmSystem newAlarm)
@@ -169,8 +171,8 @@ public class AlarmMusicHandler : MonoBehaviour
             ambience.Post(gameObject);
             //Sets the "Music" State Group's active State to "Hidden"
             AkSoundEngine.SetState("Music", "Hidden");
-            //Sets the "Ambience" State Group's active State to "Outside"
-            AkSoundEngine.SetState("Ambience", "Outside");
+            //Sets the "Ambience" State Group's active State to "Inside"
+            AkSoundEngine.SetState("Ambience", "Inside");
         }
         if (SceneManager.GetActiveScene().name == "Boss Level (2v3)")
         {
