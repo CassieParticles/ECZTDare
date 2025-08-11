@@ -11,7 +11,6 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     AlarmMusicHandler musicHandler;
     [SerializeField] private PatrolRoute patrolRoute;
-    [SerializeField] private bool investigateAlarmLoc = false;
 
     //The speed at which footstep sounds are triggered. Whenever footstepRate is 1 a footstep is played
     [SerializeField][Range(0.01f, 3.0f)] private float footstepRate = 1f;
@@ -61,7 +60,7 @@ public class GuardBehaviour : BaseEnemyBehaviour
 
     [NonSerialized]public Vector3 PointOfInterest;
 
-    private Animator guardMoveAnimation;
+    public Animator guardMoveAnimation { get; private set; }
     private SpriteRenderer spriteRenderer;
 
     //Disables user input, if set to true, also sets all movement to 0 (prevent directions being "held down")

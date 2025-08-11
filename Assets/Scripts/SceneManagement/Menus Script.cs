@@ -1,15 +1,11 @@
 using Cinemachine;
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Text;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using static ControlsScript;
 using static PlayerControls;
@@ -19,6 +15,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     public AK.Wwise.Event titleMusic;
     public AK.Wwise.Event titleRain;
     public AK.Wwise.Event loseSound;
+    public AK.Wwise.Event playerDeath;
     private AK.Wwise.Event sliderSound;
     private AlarmMusicHandler gameMusicScript;
 
@@ -83,19 +80,28 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     bool transitioning = false;
 
     //I didnt want to do this but due to controlsScript's update function literally just not running in exclusively build mode I had to move all of this shit here instead :(
+    TextMeshProUGUI controlSchemeText;
+    TextMeshProUGUI aimHackText;
+
     TextMeshProUGUI rebindLeftButtonKey;
     TextMeshProUGUI rebindRightButtonKey;
     TextMeshProUGUI rebindJumpButtonKey;
     TextMeshProUGUI rebindSlideButtonKey;
-    TextMeshProUGUI rebindBoostCloakButtonKey;
+    TextMeshProUGUI rebindDashButtonKey;
+    TextMeshProUGUI rebindCloakButtonKey;
     TextMeshProUGUI rebindHackButtonKey;
 
     GameObject resetRunButton;
     GameObject resetJumpButton;
     GameObject resetSlideButton;
-    GameObject resetBoostCloakButton;
+    GameObject resetDashButton;
+    GameObject resetCloakButton;
     GameObject resetHackButton;
 
+    public StealthCamera currentCameraPan = null;
+
+
+    private StringBuilder stringBuilder;
 
     public static MenuScript instance { get; private set; }
     private void Awake() {
@@ -112,6 +118,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (hasUpgrade) {
             GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
         }
+        stringBuilder = new StringBuilder();
+        controls.MenuControls.Pause.started += ctx => Pause();
     }
 
     public void FinishAndSaveLevel(string sceneName) {
@@ -125,6 +133,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     }
     public void ChangeScene(string sceneName)
     {
+        //Immediately remove current camera pan
+        currentCameraPan = null;
+
         if (transitioning) {
             return;
         }
@@ -200,12 +211,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         transitioning = false;
 
 
-    }
-
-    public void ReturnToLevel() {
-        buttonClick.Post(gameObject);
-
-        SceneChangeTracker.GetTracker().GoBack();
     }
 
     public void Quit() {
@@ -359,6 +364,12 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
 
         Time.timeScale = 1f;
         CloseSubMenu();
+
+        //Update all GUIs
+        foreach (TutorialTextUpdate text in FindObjectsByType<TutorialTextUpdate>(FindObjectsSortMode.None))
+        {
+            text.RefreshText();
+        }
     }
 
     public void CloseSubMenu() {    
@@ -392,48 +403,59 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         canPause = false;
         Time.timeScale = 0;
         uiCanvas = GameObject.Find("UICanvas");
-        uiCanvas.SetActive(false);
+        uiCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        uiCanvas.transform.GetChild(1).gameObject.SetActive(false);
+        //uiCanvas.SetActive(false);
         if (SceneManager.GetActiveScene().name == "Tutorial") {
             scoringSubGroup.SetActive(false);
         } else {
             scoringSubGroup.SetActive(true);
         }
+
+        StartCoroutine(WinFinalize());
+    }
+
+    IEnumerator WinFinalize() {
+        BreakroomDisplay breakroomDisplay = FindAnyObjectByType<BreakroomDisplay>();
+        if (breakroomDisplay != null) {
+            while (breakroomDisplay.scoringCoroutineRunning) {
+                yield return new WaitForSecondsRealtime(0.016f);
+            }
+        }
+        
         winGroup.SetActive(true);
         nextLevelButton.GetComponent<Button>().Select();
     }
     
     public void Lose() {
+
+        //Already losing
+        if (loseGroup.activeSelf){ return; }
+        //INITIAL LOSE STEPS
+
         canPause = false;
-        if (!loseGroup.activeSelf) {
-            player = GameObject.Find("Player");
-            GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000; 
-            GameObject.Find("StealthFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
-            //Bec add your music mode change
+        player = GameObject.Find("Player");
+        GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
+        player.SetActive(false);
+        loseGroup.SetActive(true);
 
-            //
-            player.SetActive(false);
-            loseGroup.SetActive(true);
-            StartCoroutine(LoseDelay(7f));
-        }
-    }
+        //Death SFX
+        playerDeath.Post(gameObject);
+        //Turns off the music event
+        FindAnyObjectByType<AlarmMusicHandler>().TurnOffMusic();
+        Debug.Log("Turned Off Music");
 
-    IEnumerator LoseDelay(float seconds) {
-        if (!hasUpgrade) {
+        //Check if player should have upgrade
+        if (!hasUpgrade)
+        {
             hasUpgrade = player.GetComponent<MovementScript>().cloakUnlocked;
+            
         }
-
-        int currentDeaths = deathCounter;
-        yield return new WaitForSeconds(loseSoundDelay);
-        loseSound.Post(gameObject);
-        yield return new WaitForSeconds(seconds-loseSoundDelay);
-        if (currentDeaths == deathCounter) {
-            StartCoroutine(LoseFinalize());
-        }
-
     }
 
     IEnumerator LoseFinalize() {
         loseSound.Stop(gameObject);
+        playerDeath.Stop(gameObject);
         deathCounter++;
         switchingScene = true;
         previousScene = SceneManager.GetActiveScene().name;
@@ -450,7 +472,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
     // Start is called before the first frame update
     void Starts()
     {
-        //controlScript = GetComponent<ControlsScript>();
+        controlScript = GetComponent<ControlsScript>();
 
         //Find all references
         resumeButton = GameObject.Find("ResumeButton");
@@ -489,17 +511,22 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         quitButton.GetComponent<Button>().onClick.AddListener(Quit);
         //toMainMenuButton.
 
+        controlSchemeText = GameObject.Find("ControlSchemeText").GetComponent<TextMeshProUGUI>();
+        aimHackText = GameObject.Find("AimhackText").GetComponent<TextMeshProUGUI>();
+
         rebindLeftButtonKey = GameObject.Find("RebindLeftKey").GetComponent<TextMeshProUGUI>();
         rebindRightButtonKey = GameObject.Find("RebindRightKey").GetComponent<TextMeshProUGUI>();
         rebindJumpButtonKey = GameObject.Find("RebindJumpKey").GetComponent<TextMeshProUGUI>();
         rebindSlideButtonKey = GameObject.Find("RebindSlideKey").GetComponent<TextMeshProUGUI>();
-        rebindBoostCloakButtonKey = GameObject.Find("RebindBoostCloakKey").GetComponent<TextMeshProUGUI>();
+        rebindDashButtonKey = GameObject.Find("RebindDashKey").GetComponent<TextMeshProUGUI>();
+        rebindCloakButtonKey = GameObject.Find("RebindCloakKey").GetComponent<TextMeshProUGUI>();
         rebindHackButtonKey = GameObject.Find("RebindHackKey").GetComponent<TextMeshProUGUI>();
 
         resetRunButton = GameObject.Find("ResetRunButton");
         resetJumpButton = GameObject.Find("ResetJumpButton");
         resetSlideButton = GameObject.Find("ResetSlideButton");
-        resetBoostCloakButton = GameObject.Find("ResetBoostCloakButton");
+        resetDashButton = GameObject.Find("ResetDashButton");
+        resetCloakButton = GameObject.Find("ResetCloakButton");
         resetHackButton = GameObject.Find("ResetHackButton");
 
         defaultMenuGroup.SetActive(true);
@@ -511,16 +538,16 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         loseGroup.SetActive(false);
         creditsGroup.SetActive(false);
 
-        //controls = controlScript.controls;
-        //controls.MenuControls.SetCallbacks(this);
+        controlScript.Setup();
 
+        controls = controlScript.controls;
+        controls.MenuControls.SetCallbacks(this);
+
+        gameMusicScript = FindAnyObjectByType<AlarmMusicHandler>();
 
         if (SceneManager.GetActiveScene().name == "Main Menu") {
             OpenMenu();
         } else {
-            if (SceneManager.GetActiveScene().name == "Level2") {
-                hasUpgrade = true;
-            }
             CloseMenu();
         }
 
@@ -545,14 +572,15 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade || SceneManager.GetActiveScene().name == "Level3") {
+                if (hasUpgrade) {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
+                    FindAnyObjectByType<BatteryBar>().SetCloakBar();
                     hasUpgrade = true;
                 }
             }
         }
 
-        //controls.MenuControls.Pause.started += ctx => Pause();
+        
 
         //if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
         //    if (!paused) {
@@ -564,9 +592,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         //    }
         //}
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Pause();
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape)) {
+        //    Pause();
+        //}
 
         //if (Input.GetKeyDown(KeyCode.Escape) && loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
         //    StartCoroutine(LoseFinalize());
@@ -593,47 +621,84 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 if (!Input.GetMouseButton(0)) {
                     //sliderSound.Stop(gameObject);
                 }
-            } if (keybindsOpen) {
+            }
+            KeybindDisplay();
+        }
+    }
+
+    private void KeybindDisplay() {
+        if (keybindsOpen) {
+            if (controlScript.playerInput.currentControlScheme == "KeyboardMouse") {
+                controlSchemeText.text = "Currently using: Keyboard and Mouse";
+                aimHackText.text = "To aim the Hacking Reticle, move the Mouse";
+
                 rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[1].ToDisplayString();
                 rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[2].ToDisplayString();
                 rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[0].ToDisplayString();
                 rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[0].ToDisplayString();
-                rebindBoostCloakButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
+                rebindDashButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[0].ToDisplayString();
+                rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[0].ToDisplayString();
                 rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+            } else {
+                controlSchemeText.text = "Currently using: Gamepad";
+                aimHackText.text = "To aim the Hacking Reticle, use the Right Stick";
 
-                if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides) {
-                    resetRunButton.SetActive(true);
+                if (controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides) { 
+                    rebindLeftButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString();
                 } else {
-                    resetRunButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
-                    resetJumpButton.SetActive(true);
+                    rebindLeftButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Running.bindings[4].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Running.bindings[7].ToDisplayString()).ToString();
+                } //Running Left
+                if (controlScript.controls.GameplayControls.Running.bindings[5].hasOverrides) {
+                    rebindRightButtonKey.text = controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString();
                 } else {
-                    resetJumpButton.SetActive(false);
-                }
+                    rebindRightButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Running.bindings[5].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Running.bindings[8].ToDisplayString()).ToString();
+                } //Running Right
+                rebindJumpButtonKey.text = controlScript.controls.GameplayControls.Jumping.bindings[1].ToDisplayString(); //Jumping
                 if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
-                    resetSlideButton.SetActive(true);
+                    rebindSlideButtonKey.text = controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString();
                 } else {
-                    resetSlideButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
-                    resetBoostCloakButton.SetActive(true);
-                } else {
-                    resetBoostCloakButton.SetActive(false);
-                }
-                if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
-                    resetHackButton.SetActive(true);
-                } else {
-                    resetHackButton.SetActive(false);
-                }
+                    rebindSlideButtonKey.text = stringBuilder.Clear().Append(controlScript.controls.GameplayControls.Sliding.bindings[1].ToDisplayString()).Append('\n').Append(controlScript.controls.GameplayControls.Sliding.bindings[2].ToDisplayString()).ToString();
+                } //Sliding
+                rebindDashButtonKey.text = controlScript.controls.GameplayControls.Dashing.bindings[1].ToDisplayString(); //Dashing
+                rebindCloakButtonKey.text = controlScript.controls.GameplayControls.Cloaking.bindings[1].ToDisplayString(); //Cloaking
+                rebindHackButtonKey.text = controlScript.controls.GameplayControls.Hacking.bindings[1].ToDisplayString(); //Hacking
+            }
+
+            if (controlScript.controls.GameplayControls.Running.bindings[1].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[2].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[4].hasOverrides || controlScript.controls.GameplayControls.Running.bindings[5].hasOverrides) {
+                resetRunButton.SetActive(true);
+            } else {
+                resetRunButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Jumping.bindings[0].hasOverrides) {
+                resetJumpButton.SetActive(true);
+            } else {
+                resetJumpButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Sliding.bindings[0].hasOverrides) {
+                resetSlideButton.SetActive(true);
+            } else {
+                resetSlideButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Dashing.bindings[0].hasOverrides) {
+                resetDashButton.SetActive(true);
+            } else {
+                resetDashButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Cloaking.bindings[0].hasOverrides) {
+                resetCloakButton.SetActive(true);
+            } else {
+                resetCloakButton.SetActive(false);
+            }
+            if (controlScript.controls.GameplayControls.Hacking.bindings[0].hasOverrides) {
+                resetHackButton.SetActive(true);
+            } else {
+                resetHackButton.SetActive(false);
             }
         }
-
-        
     }
 
     public void Pause() {
-        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause) {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && canPause && !keybindsOpen) {
             if (!paused) {
                 OpenMenu();
                 GetComponent<ControlsScript>().controls.GameplayControls.Disable();
@@ -650,15 +715,24 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (loseGroup.activeSelf && SceneManager.GetActiveScene().name != "Main Menu") {
             StartCoroutine(LoseFinalize());
         }
+        if(currentCameraPan)
+        {
+            currentCameraPan.ExitCutscene();
+        }
     }
+
+    
 
     public void OnPause(InputAction.CallbackContext context) {
 
     }
 
     public void OnReset(InputAction.CallbackContext context) {
-        if (SceneManager.GetActiveScene().name != "Main Menu") {
+        if (SceneManager.GetActiveScene().name != "Main Menu" && !settingsOpen && !keybindsOpen) {
             StartCoroutine(LoseFinalize());
+            if (paused) {
+                Pause();
+            }
         }
     }
 }

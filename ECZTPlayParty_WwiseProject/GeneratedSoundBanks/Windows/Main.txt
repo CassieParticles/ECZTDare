@@ -19,7 +19,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	1135143673	Guard_SheDisappeared			\Default Work Unit\Guard_SheDisappeared	
 	1305133589	Player_Jump			\Default Work Unit\Player_Jump	
 	1416075388	Bosslight_Turn_On			\Default Work Unit\Bosslight_Turn_On	
-	1478300588	Guard_GodDamnIt			\Default Work Unit\Guard_GodDamnIt	
 	1481508790	Conveyor_Belt			\Default Work Unit\Conveyor_Belt	
 	1515494175	Camera_Stop			\Default Work Unit\Camera_Stop	
 	1518276258	Cloak_Stop			\Default Work Unit\Cloak_Stop	
@@ -52,7 +51,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3444806577	Hack_Fail			\Default Work Unit\Hack_Fail	
 	3469803670	Guard_ISeeYou			\Default Work Unit\Guard_ISeeYou	
 	3629196698	Player_Land			\Default Work Unit\Player_Land	
+	3863980008	S_Rank_Beep			\Default Work Unit\S_Rank_Beep	
 	3937862197	Good_Beep			\Default Work Unit\Good_Beep	
+	3993144914	Final_Cutscene			\Default Work Unit\Final_Cutscene	
 	4043448287	Boost_Rush			\Default Work Unit\Boost_Rush	
 	4099402511	Hack_Start			\Default Work Unit\Hack_Start	
 	4245309516	Player_Wall_Jump			\Default Work Unit\Player_Wall_Jump	
@@ -122,7 +123,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	84978133	G_C_Footstep_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_C_Footstep_3_C2CFDE6B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_C_Footsteps\G_C_Footstep_3		23720
 	105685707	P_C_Footstep_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_2		48096
 	118186165	In_View_Cone	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\In_View_Cone_CE70BCCE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\In_View_Cone		1469752
-	130288872	G_VO_GodDamnIt	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO_GodDamnIt_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Lost_Emira\G_VO_GodDamnIt		252096
 	144557377	P_M_Jump_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_M_Jump\P_M_Jump_3		96096
 	145173678	C_Breakable_Floor_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\C_Breakable_Floor_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\C_Breakable_Floor\C_Breakable_Floor_3		192096
 	146773433	G_VO2_ShesBack	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO2_ShesBack_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Refound_Emira\G_VO2_ShesBack		184916
@@ -135,6 +135,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	219646802	P_D_Landing_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Landing_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_D_Land\P_D_Landing_2		96096
 	222009116	Ambience_Death_Wall_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Death_Pit_11A93380.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Ambience_Death_Wall_1		336096
 	223349616	Good_Beep	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Good_Beep_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Good_Beep		384096
+	224924725	Ending_Cutscene_VER1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Ending_Cutscene_VER1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cutscenes\Ending_Cutscene_VER1		1411296
 	234892113	G_D_Footstep_8	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_8		48096
 	237665786	P_D_Footstep_5	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Footstep_5_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_D_Footsteps\P_D_Footstep_5		48096
 	243988086	P_C_Jump_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_C_Jump\P_C_Jump_3		96096
@@ -154,7 +155,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	347285092	P_R_Footstep_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_1		48096
 	347630337	P_R_Sliding_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Sliding_2_AB0DE62F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_R_Slide\P_R_Sliding_2		408144
 	350571898	G_D_Footstep_4	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_4		48096
-	353367165	O_VO_NowhereLeftToGoEmira	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\O_VO_NowhereLeftToGoEmira_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cutscene\O_VO_NowhereLeftToGoEmira		382340
+	353367165	O_VO_NowhereLeftToGoEmira	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\O_VO_NowhereLeftToGoEmira_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\OLD_Cutscene\O_VO_NowhereLeftToGoEmira		382340
 	365276779	G_M_Footstep_8	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_M_Footsteps\G_M_Footstep_8		48096
 	372349657	P_D_Sliding_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Sliding_2_D7086770.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_D_Slide\P_D_Sliding_2		408144
 	378817786	Hack_Start_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Designed, Impact, Hit, Morph, Gritty, Electric SND121091 1_E138AE02.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Hack_Start\Hack_Start_3		323568
@@ -178,7 +179,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	572495188	P_D_Jump_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_D_Jump\P_D_Jump_3		96096
 	577735311	P_C_Sliding_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Sliding_3_3664C6B6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_C_Slide\P_C_Sliding_3		348144
 	588932112	P_R_Jump_3	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Jump_3_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_R_Jump\P_R_Jump_3		96096
-	591365294	Bosslight_Turn_On	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cutscene\Bosslight_Turn_On		692452
+	591365294	Bosslight_Turn_On	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Mechanical, Switch, Designed, Big Metal Switch, Lever, Spotlight, Reverberant SND110022_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\OLD_Cutscene\Bosslight_Turn_On		692452
 	593670482	P_M_Footstep_8	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_8_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_8		48096
 	598826268	Boost_Rush	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Boost_Rush_BE10BA2A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Boost_Rush		1920144
 	605867480	C_Breakable_Floor_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\C_Breakable_Floor_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\C_Breakable_Floor\C_Breakable_Floor_1		192096
@@ -225,6 +226,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	873232323	P_D_Jump_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_D_Jump_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Jump\P_D_Jump\P_D_Jump_2		96096
 	879620409	P_C_Footstep_4	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Footstep_4_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_C_Footsteps\P_C_Footstep_4		48096
 	892620616	P_M_Footstep_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_M_Footsteps\P_M_Footstep_2		48096
+	897230809	S_Beep	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\S_Beep_64AD11F2.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\S_Beep		396996
 	899660334	G_R_Footstep_6	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_R_Footstep_6_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_6		48096
 	899669011	Hunter_Killer_Activate_Arm	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Soundly Audio\Scifi, Weapon, Energy Retract SND122803_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Hunter_Killer_Activate_Arm		577100
 	901982837	G_D_Footstep_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_D_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_D_Footsteps\G_D_Footstep_2		48096
@@ -243,7 +245,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	994456261	P_M_Landing_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_M_Landing_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Land\P_M_Land\P_M_Landing_2		96096
 	1007922345	G_VO_Intruder	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_VO_Intruder_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Found_Emira\G_VO_Intruder		192096
 	1010966096	Enemy_Alerted	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Enemy_Alerted_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Enemy_Alerted		816096
-	1011429898	Player_Death	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Player_Death_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Death		1248096
+	1011429898	Player_Death	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\Player_Death_BB76503F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Death		295760
 	1026799594	P_R_Footstep_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_R_Footstep_2_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Footsteps\P_R_Footsteps\P_R_Footstep_2		48096
 	1031402310	P_C_Sliding_2	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\P_C_Sliding_2_61AB1538.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Player_Slide\P_C_Slide\P_C_Sliding_2		492144
 	1031678536	G_R_Footstep_1	C:\Users\Test\GitHub\ECZTDare\ECZTPlayParty_WwiseProject\.cache\Windows\SFX\G_R_Footstep_1_818F3B66.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemies\Guard_Footsteps\G_R_Footsteps\G_R_Footstep_1		48096

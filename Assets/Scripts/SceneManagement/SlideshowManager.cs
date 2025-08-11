@@ -21,9 +21,12 @@ public class SlideshowManager : MonoBehaviour
         StartCoroutine(RepeatStart());
     }
 
-    public IEnumerator RepeatStart() {
-        while (Image1 == null) {
-            if (GameObject.Find("Image1") != null) {
+    public IEnumerator RepeatStart()
+    {
+        while (Image1 == null)
+        {
+            if (GameObject.Find("Image1") != null)
+            {
                 Image1 = GameObject.Find("Image1").GetComponent<Image>();
                 Image2 = GameObject.Find("Image2").GetComponent<Image>();
                 Image1.sprite = sprites[0];
@@ -34,10 +37,6 @@ public class SlideshowManager : MonoBehaviour
             }
             yield return null;
         }
-    }
-
-    private void Update() {
-
     }
 
     public IEnumerator Slideshow() {

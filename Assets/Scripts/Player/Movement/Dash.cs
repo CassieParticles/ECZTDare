@@ -10,11 +10,11 @@ public class Dash
         player = GameObject.Find("Player").GetComponent<MovementScript>();
     }
 
-    public void StartDashing() {
+    public int StartDashing() {
         //If the player is sliding, take them out of it if possible
         if (player.sliding || player.crouching) {
             if (!player.canStandUp) {
-                return;
+                return 0; //Dash doesnt happen
             }
             player.slideScript.StandUp();
         }
@@ -23,7 +23,12 @@ public class Dash
         player.dashing = true;
         player.animator.SetBool("Dashing", true); //>>>>>>>>Mark Addition<<<<<<<<<<
         player.rb.gravityScale = 0f;
-        dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
+        if (!player.onWall) {
+            dashDir = player.runInput == 0 ? (Convert.ToInt32(player.facingRight) * 2 - 1) : player.runInput; //Use the inputted direction, or the facing direction if no inputted direction exists
+        } else {
+            dashDir = -(Convert.ToInt32(player.onRightWall) * 2 - 1);
+            player.facingRight = !player.onRightWall;
+        }
         player.rb.velocity = new Vector2(dashDir * player.dashSpeed, 0);
         player.batteryCharge -= player.dashBatteryCost;
         player.dashChargesRemaining--;
@@ -31,7 +36,7 @@ public class Dash
         player.InputLocked = true;
         
         player.StartCoroutine(WhileDashing());
-        
+        return dashDir;
     }
 
     public IEnumerator WhileDashing() {
@@ -46,8 +51,13 @@ public class Dash
     public void StopDashing() {
         player.dashing = false;
         player.rb.gravityScale = 1f;
-        player.InputLocked = false;
         player.animator.SetBool("Dashing", false); //>>>>>>>>Mark Addition<<<<<<<<<<
+        //Make sure you cant dash past cutscenes
+        if (GameObject.FindAnyObjectByType<MenuScript>().currentCameraPan == null) {
+            
+            player.InputLocked = false;
+        }
+        
         player.StartCoroutine(DashCooldown());
         
         //Debug.Log("dashDir = " + dashDir + ", runInput = " + player.runInput);

@@ -22,8 +22,6 @@ public class SectionUIChange : MonoBehaviour
         stealthUI = transform.GetChild(1).gameObject;
         breakroomUI = transform.GetChild(2).gameObject;
         breakroomScoreDisplay = breakroomUI.GetComponentInChildren<BreakroomDisplay>();
-        breakroomScoreDisplay.scores = new List<ScoreData>();
-        breakroomScoreDisplay.scoresText = new List<string>();
 
         chaseUI.SetActive(false);
         stealthUI.SetActive(false);
@@ -54,7 +52,10 @@ public class SectionUIChange : MonoBehaviour
         }
     }
 
-    public void BreakRoomDisplayScore(ScoreData score) {
-        breakroomScoreDisplay.AddScore(score);
+    public void BreakRoomDisplayScore(List<ScoreData> scores) {
+        if (!breakroomUI.activeSelf) {
+            SwitchUIType(UITypes.breakroom);
+        }
+        breakroomScoreDisplay.AddScore(scores);
     }
 }

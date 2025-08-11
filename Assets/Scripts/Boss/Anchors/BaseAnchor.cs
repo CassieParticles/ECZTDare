@@ -18,4 +18,9 @@ public abstract class BaseAnchor : MonoBehaviour
     {
         spotlight = null;
     }
+
+    public bool IsDistractible()
+    {
+        return Distractable;
+    }
 }

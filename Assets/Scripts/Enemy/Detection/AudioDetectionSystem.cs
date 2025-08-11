@@ -10,13 +10,27 @@ public enum AudioSource
 
 public class AudioDetectionSystem : MonoBehaviour
 {
-
-
     public delegate void HearNoise(Vector3 soundLocation, float suspicionIncrease, AudioSource source);
 
     private Dictionary<GameObject, HearNoise> listeners;
 
     [SerializeField] private GameObject SoundVisualizeCirclePrefab;
+
+    private List<GameObject> soundCirclePool;
+    private readonly int poolSize = 5;
+
+    private GameObject GetInactiveCircle()
+    {
+        for(int i=0;i<poolSize;++i)
+        {
+            if (!soundCirclePool[i].activeSelf)
+            {
+                return soundCirclePool[i];
+            }
+        }
+        Debug.LogError("ERROR: INSUFFICIENT POOL SIZE, INCREASE SIZE OF POOL");
+        return null;
+    }
 
     public static AudioDetectionSystem getAudioSystem()
     {
@@ -34,9 +48,12 @@ public class AudioDetectionSystem : MonoBehaviour
 
     public void PlaySound(Vector3 noiseLocation, float noiseRadius, float suspicionIncrease,AudioSource source)
     {
-        GameObject soundCircle = Instantiate(SoundVisualizeCirclePrefab);
+        GameObject soundCircle = GetInactiveCircle();
+        if (!soundCircle){ return; }
+
+
         soundCircle.transform.position = noiseLocation;
-        soundCircle.GetComponent<CreateCircle>().Setup(noiseRadius);
+        soundCircle.GetComponent<CreateCircle>().StartCircle(noiseRadius);
 
 
         foreach (KeyValuePair<GameObject, HearNoise> listener in listeners)
@@ -52,5 +69,12 @@ public class AudioDetectionSystem : MonoBehaviour
     public void Awake()
     {
         listeners = new Dictionary<GameObject, HearNoise>();
+        soundCirclePool = new List<GameObject>(poolSize);
+
+        for(int i=0;i<poolSize;++i)
+        {
+            soundCirclePool.Add(Instantiate(SoundVisualizeCirclePrefab));
+            soundCirclePool[i].SetActive(false);
+        }
     }
 }

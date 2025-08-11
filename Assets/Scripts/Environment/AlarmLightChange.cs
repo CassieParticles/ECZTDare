@@ -9,7 +9,7 @@ public class AlarmLightChange : MonoBehaviour
     [SerializeField] private Color alarmColour;
     private Color defaultColour;
 
-    Light2D[] lights;
+    List<Light2D> lights;
 
     AlarmSystem alarmSystem;
 
@@ -32,10 +32,15 @@ public class AlarmLightChange : MonoBehaviour
     private void Awake()
     {
         alarmSystem = GetComponent<AlarmSystem>();
+        lights = new List<Light2D>();
 
         //Get attached lights
-        lights = alarmLights.transform.GetComponentsInChildren<Light2D>();
-        defaultColour = lights[0].color;
+        if (alarmLights)
+        {
+            alarmLights.transform.GetComponentsInChildren<Light2D>(lights);
+            defaultColour = lights[0].color;
+        }
+
     }
 
     private void Start()

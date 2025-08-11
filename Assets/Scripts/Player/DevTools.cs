@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class DevTools : MonoBehaviour
 {
-    private bool debugDown = false;
     private void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Comma))

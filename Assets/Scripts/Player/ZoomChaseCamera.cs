@@ -14,7 +14,7 @@ public class ChaseCameraZoom : MonoBehaviour
     [SerializeField] private CinemachineBlendDefinition.Style blendType = CinemachineBlendDefinition.Style.HardOut;
     [SerializeField][Range(0.1f, 5f)] private float blendDuration = 1;
     [SerializeField][Range(5f, 20f)] private float zoom = 8.44f; //Perspective 79 calculations to solve ortho to fov in start
-    [SerializeField][Range(10, 20)] private int priority = 12; //What priority the camera uses
+    //[SerializeField][Range(10, 20)] private int priority = 12; //What priority the camera uses
 
     private float fov;
 

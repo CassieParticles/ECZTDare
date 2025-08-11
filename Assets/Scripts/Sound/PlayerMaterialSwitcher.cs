@@ -31,7 +31,7 @@ public class PlayerMaterialSwitcher : MonoBehaviour
         playerCollider = GameObject.Find("Player").GetComponent<BoxCollider2D>();
 
         // Takes the tag assigned to the game object and converts that string into an enum if it's one of the materials.
-        if (tag == "Concrete" || tag == "Dirt" || tag == "Rubber" || tag == "Metal")
+        if (CompareTag("Concrete") || CompareTag("Dirt") || CompareTag("Rubber") || CompareTag("Metal"))
         {
             materialType = (MaterialTypes)System.Enum.Parse(typeof(MaterialTypes), tag);
         }

@@ -26,6 +26,7 @@
 						<ObjectRef Name="Player_Dash" ID="{11801B98-F095-45C6-89A4-708BB076978F}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Ambience_Rain" ID="{77E5C655-4770-45EE-A835-4FDDAADD00DB}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="HK_Slide" ID="{C2A6CAFD-706C-45F1-935B-29FA9A9A4255}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Final_Cutscene" ID="{C8EEAB20-0D66-4613-AAB2-556D4EA3F895}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Player_Mode_Shift" ID="{A67BCC4C-4246-462C-8411-F34CDA300EC1}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Death_Wall_1" ID="{7B228A35-845E-4640-A20E-93E4502AD115}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Spotlight_Turn_On" ID="{D9FEF3F1-208B-4689-ADD2-965592C6450F}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
@@ -38,10 +39,10 @@
 						<ObjectRef Name="Turret_Fire" ID="{C5C7F487-B1F2-47D0-BFA0-2CAAB4E7203D}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Overseer_Ending" ID="{61D68016-8472-4819-9FC7-A53406DF690A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Activate_Alarm" ID="{B5F7FB17-8872-481D-A62E-60BE5BEEB834}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
-						<ObjectRef Name="Guard_GodDamnIt" ID="{BAD1C39A-6445-482D-B8F2-81E2F9A7679B}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Outside_Steps" ID="{4440665A-7B55-4924-A3E4-81FFDE0D4EDE}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Guard_Footstep" ID="{58F6E0DD-DE18-492A-BA9D-9B45DE0AAE8A}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Rush" ID="{392675AE-D581-497B-BBB4-B1748C3002E8}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="S_Rank_Beep" ID="{1F1E0B94-CA6D-49C9-BE49-440A4258DD5B}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="HK_Activate_Arm" ID="{0FB353F8-56EC-4A0A-86E6-67A355C79ECD}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Player_Jump" ID="{E3F6FD3F-26C0-4B0E-85CD-848368598098}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="Boost_Stop" ID="{4B306739-2B38-4B7E-9607-3FC50D3A25E4}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
@@ -78,6 +79,7 @@
 				<SoundBank Name="Music_2" ID="{9311DE1D-8538-4E96-A1C3-0F1123F5B280}">
 					<ObjectInclusionList>
 						<ObjectRef Name="Break_Music" ID="{00FD9CF5-9F17-40ED-86A5-8243EC7BC31D}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="Boss_Music" ID="{37FAE88F-9E18-4881-A227-C0A7FF1CCAA6}" WorkUnitID="{0C61E80C-4EE5-4C58-BB88-336642B88671}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>

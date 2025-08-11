@@ -10,17 +10,14 @@ public class PodGuardBehaviour : GuardBehaviour
 
     public void StartGuard()
     {
+        guardMoveAnimation.SetBool("Awake", false);
         guardBehaviour.MoveToState(GuardStates.StartUp);
+
     }
 
     public void ReturnToPod()
     {
         guardBehaviour.MoveToState(GuardStates.ReturnToPod);
-    }
-
-    public void Reset()
-    {
-        
     }
 
     protected new void Awake()

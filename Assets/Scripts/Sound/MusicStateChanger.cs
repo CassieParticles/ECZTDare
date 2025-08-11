@@ -10,7 +10,9 @@ public class MusicStateChanger : MonoBehaviour
         Alarm_High,
         Menu,
         Cutscene,
-        NoMusic
+        NoMusic,
+        Overseer_Looming,
+        Overseer_Chasing
     }
 
     [SerializeField] private MusicTypes musicTypes;
@@ -70,6 +72,18 @@ public class MusicStateChanger : MonoBehaviour
             {
                 //Sets the "Music" State Group's active State to "NoMusic"
                 AkSoundEngine.SetState("Music", "NoMusic");
+            }
+
+            if (musicTypes == MusicTypes.Overseer_Looming)
+            {
+                //Sets the "Music" State Group's active State to "Overseer_Looming"
+                AkSoundEngine.SetState("Music", "Overseer_Looming");
+            }
+
+            if (musicTypes == MusicTypes.Overseer_Chasing)
+            {
+                //Sets the "Music" State Group's active State to "Overseer_Chasing"
+                AkSoundEngine.SetState("Music", "Overseer_Chasing");
             }
         }
     }

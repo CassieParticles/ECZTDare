@@ -18,7 +18,6 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
     Camera mainCamera;
     GameObject reticle;
 
-    bool usingMouse = true;
     Vector2 gamepadDirection = Vector2.zero;
 
     public Hackable target;
@@ -30,6 +29,11 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
     public float hackCharge = 100;
     public bool hasHacked = false;
+    [Tooltip("How far ahead of the player the automatic aiming is")]
+    public float gamepadHackOffset = 300f;
+    [Tooltip("How long the game waits after releasing the right stick before returning to automatically aiming in front of the player")]
+    public float rightStickInputResetTime= 1f;
+    public float InputResetTimer = 0f;
 
     MenuScript menu;
 
@@ -52,26 +56,23 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         controls.GameplayControls.Enable();
         hackAction = controls.FindAction("Hacking");
         aimHackAction = controls.FindAction("AimHack");
+        aimHackAction.performed += ctx => OnAimHack(ctx);
     }
 
     // Update is called once per frame
     void Update() {
 
         //aimHackInput = aimHackAction.ReadValue<Vector2>();
-        aimHackAction.performed += ctx => OnAimHack(ctx);
+
+
+        InputResetTimer -= Time.deltaTime;
         //if (Mouse.current.wasUpdatedThisFrame) {
         //    usingMouse = true;
         //}
 
-        if (usingMouse) {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        } else {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
 
-        if (!movementScript.InputLocked) {
+
+        if (!movementScript.InputLocked || (movementScript.dashing && !menu.paused)) {
             if (hackCharge + hackChargeRate * Time.deltaTime < 100f) {
                 hackCharge += hackChargeRate * Time.deltaTime;
             }
@@ -86,7 +87,12 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
 
 
 
-            if (usingMouse || (target == null && !usingMouse)) {
+            if (Cursor.visible || (InputResetTimer < 0 && !Cursor.visible)) {
+                Vector3 mousePos = Input.mousePosition;
+                if (target == null && !Cursor.visible) {
+                    mousePos += Vector3.right * gamepadHackOffset;
+                }
+
                 target = null;
                 float distance = 1000;
         
@@ -105,7 +111,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
                     }
 
                     //Makes a vector and gets its direction
-                    Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+                    Vector3 MouseToHackableVector = hackable.transform.position - mainCamera.ScreenToWorldPoint(mousePos + new Vector3(0, 0, 10));
                     //bool direction = Convert.ToBoolean((Mathf.Sign(PlayerToHackableVector.x) + 1) / 2);
                     //If within range and in the direction the player is facing
                     if (MouseToHackableVector.magnitude < distance && hackable.enabled) {
@@ -169,7 +175,7 @@ public class HackingScript: MonoBehaviour, IGameplayControlsActions {
         } //else No target
     }
     public void OnAimHack(InputAction.CallbackContext context) {
-        usingMouse = false;
+        InputResetTimer = rightStickInputResetTime;
         gamepadDirection = context.ReadValue<Vector2>();
         float smallestAngle = 180;
 

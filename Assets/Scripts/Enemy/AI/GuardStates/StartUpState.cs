@@ -33,6 +33,7 @@ public class StartUpState : BaseState
             guardBehaviour.StopCoroutine(StartUp);
             StartUp = null;
         }
+        guardBehaviour.guardMoveAnimation.SetBool("Awake", true);
     }
 
     public override GuardStates RunTick()

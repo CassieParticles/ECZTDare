@@ -41,6 +41,16 @@ public class SpotlightMovement : MonoBehaviour
         travelTimeCheck = StartCoroutine(TravelTimeCheck());
     }
 
+    public void TeleportTo(Vector2 location)
+    {
+        if(travelTimeCheck != null)
+        {
+            StopCoroutine(travelTimeCheck);
+        }
+        desiredLocation = location;
+        transform.position = location;
+    }
+
     private void Awake()
     {
         desiredLocation = transform.position;

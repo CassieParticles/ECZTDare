@@ -10,6 +10,12 @@ public class StopTrigger : MonoBehaviour
         DeathWall wall = FindAnyObjectByType<DeathWall>();
         if (!wall){ return; }
 
+        ////NEEDS FIXED////
+        //Stops the audio
+        wall.deathWall.Stop(gameObject);
+        //Sets the "Music" State Group's active State to "NoMusic"
+        AkSoundEngine.SetState("Music", "NoMusic");
+
         Destroy(wall.gameObject);
 
         FindAnyObjectByType<DeathwallRespawn>().DeathWallStop();
