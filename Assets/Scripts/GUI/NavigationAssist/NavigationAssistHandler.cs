@@ -12,7 +12,8 @@ public class NavigationAssistHandler : MonoBehaviour
         //Ensure this is singleton
         if(instance)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
+            return;
         }
         instance = this;
         DontDestroyOnLoad(gameObject);
@@ -21,16 +22,30 @@ public class NavigationAssistHandler : MonoBehaviour
     public void EnableNavAssist()
     {
         navigationAssistEnabled = true;
+        NavigationAssistSprites sprites = FindAnyObjectByType<NavigationAssistSprites>(FindObjectsInactive.Include);
+        if (sprites)
+        {
+            sprites.gameObject.SetActive(true);
+        }
     }
 
     public void DisableNavAssist()
     {
         navigationAssistEnabled = false;
+        NavigationAssistSprites sprites = FindAnyObjectByType<NavigationAssistSprites>(FindObjectsInactive.Include);
+        if (sprites)
+        {
+            sprites.gameObject.SetActive(false);
+        }
     }
 
     public void SetNavAssist(bool navAssist)
     {
         navigationAssistEnabled = navAssist;
-        Debug.Log(navAssist.ToString());
+        NavigationAssistSprites sprites = FindAnyObjectByType<NavigationAssistSprites>(FindObjectsInactive.Include);
+        if (sprites)
+        {
+            sprites.gameObject.SetActive(navAssist);
+        }
     }
 }
