@@ -6,7 +6,11 @@ public class NavigationAssistPrompt : MonoBehaviour
 {
     public void ChangeValue(bool newValue)
     {
-        FindAnyObjectByType<NavigationAssistHandler>().SetNavAssist(newValue);
+        NavigationAssistHandler handler = FindAnyObjectByType<NavigationAssistHandler>();
+        if(handler)
+        {
+            handler.SetNavAssist(newValue);
+        }
     }
 
     public void OpenPrompt()
