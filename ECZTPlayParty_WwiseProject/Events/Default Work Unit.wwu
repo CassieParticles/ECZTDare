@@ -745,6 +745,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Middle_Cutscene" ID="{E850241A-5A24-47D1-9285-08BC53888ED4}">
+					<ChildrenList>
+						<Action Name="" ID="{719E6EC7-078A-4326-A658-DEDDE9AFCF0D}" ShortID="57248641">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Middle_Cutscene_FINAL" ID="{96430C6B-0BB6-4753-BAA7-CA0332365242}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
