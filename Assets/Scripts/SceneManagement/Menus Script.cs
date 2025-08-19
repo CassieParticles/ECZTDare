@@ -144,9 +144,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
                 sceneName = "Level 1";
             } else if (SceneManager.GetActiveScene().name == "Level 1") {
-                sceneName = "Boss Level (2v3)";
+                sceneName = "MiddleCutscene";
             } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
-                sceneName = "Main Menu";
+                sceneName = "FinalCutscene";
             }
         }
         if (GameObject.Find("Lights") != null) {
