@@ -17,6 +17,8 @@ public class CutsceneAnim : MonoBehaviour
     public AK.Wwise.Event cutsceneAmbience;
     public AK.Wwise.Event buttonClick;
 
+    [Range(0f, 10f)] public float audioDelay = 0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +26,19 @@ public class CutsceneAnim : MonoBehaviour
         VideoPlayer player = GetComponent<VideoPlayer>();
         player.Play();
         //================= REBECCA ANIMATION STARTS PLAYING HERE ========================//
-        cutsceneSound.Post(gameObject);
+        
         cutsceneMusic.Post(gameObject);
         cutsceneAmbience.Post(gameObject);
+        StartCoroutine(PlaySoundAfterDelay());
 
         InputSystem.onAnyButtonPress.CallOnce(ExitScene);
         player.loopPointReached += EndReached;
+    }
+
+    IEnumerator PlaySoundAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(audioDelay);
+        cutsceneSound.Post(gameObject);
     }
 
     private void ExitScene(InputControl control)
