@@ -1798,6 +1798,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3851361679861753086, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f440b63e4a587014ba1affd6235bc192, type: 3}
+    - target: {fileID: 3851361679861753086, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_ShapeLightFalloffSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: 0.00090003014
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.017050028
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 1.9678
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336618568076234148, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 2.00315
+      objectReference: {fileID: 0}
     - target: {fileID: 8242095879168895058, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
       propertyPath: m_Size.y
       value: 8.037001
@@ -1805,6 +1837,14 @@ PrefabInstance:
     - target: {fileID: 8242095879168895058, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
       propertyPath: m_Offset.y
       value: 1.8854418
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658460351915790649, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658460351915790649, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9139203564883545263, guid: 33fce512f979b3e439a7f3a6a662c358, type: 3}
       propertyPath: m_Name
