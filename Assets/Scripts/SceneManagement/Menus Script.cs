@@ -370,6 +370,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         {
             text.RefreshText();
         }
+
+        
     }
 
     public void CloseSubMenu() {    
@@ -426,6 +428,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         //Already losing
         if (loseGroup.activeSelf){ return; }
         //INITIAL LOSE STEPS
+
+        loseGroup.transform.Find("PressEscToRespawnTEXT").GetComponent<TutorialTextUpdate>().RefreshText();
 
         canPause = false;
         player = GameObject.Find("Player");

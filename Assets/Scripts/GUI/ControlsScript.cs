@@ -43,7 +43,8 @@ public class ControlsScript : MonoBehaviour {
         Sliding,
         Dash,
         Cloak,
-        Hacking
+        Hacking,
+        Pause
     }
 
     public string GetBoundControl(Controls control)
@@ -76,6 +77,8 @@ public class ControlsScript : MonoBehaviour {
                 return controls.GameplayControls.Cloaking.bindings[0].ToDisplayString();
             case Controls.Hacking:
                 return controls.GameplayControls.Hacking.bindings[0].ToDisplayString();
+            case Controls.Pause:
+                return "ESC";
             default:    //Never hit, unless new controls are added
                 Debug.LogWarning("WARNING: UNKNOWN KEY, PLEASE UPDATE WITH NEW BINDING");
                 return null;
@@ -100,6 +103,8 @@ public class ControlsScript : MonoBehaviour {
                 return controls.GameplayControls.Cloaking.bindings[1].ToDisplayString();
             case Controls.Hacking:
                 return controls.GameplayControls.Hacking.bindings[1].ToDisplayString();
+            case Controls.Pause:
+                return "PAUSE";
             default:    //Never hit, unless new controls are added
                 Debug.LogWarning("WARNING: UNKNOWN KEY, PLEASE UPDATE WITH NEW BINDING");
                 return null;
