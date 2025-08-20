@@ -756,6 +756,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="Opening_Cutscene" ID="{86339531-E723-4090-92AF-D8E7C95E2766}">
+					<ChildrenList>
+						<Action Name="" ID="{8C058DF1-8687-4649-BC57-6E4E07375387}" ShortID="800701112">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Opening_Cutscene_TEST" ID="{0998B401-3BAB-4423-A195-3CD88FEB2F36}" WorkUnitID="{E79BFA34-42B2-441A-951A-8570DDEF2286}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
