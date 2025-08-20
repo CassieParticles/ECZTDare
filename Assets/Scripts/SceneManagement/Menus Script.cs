@@ -566,7 +566,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade) {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     FindAnyObjectByType<BatteryBar>().SetCloakBar();
                     hasUpgrade = true;
