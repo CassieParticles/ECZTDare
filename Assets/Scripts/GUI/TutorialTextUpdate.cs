@@ -4,6 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class TutorialTextUpdate : MonoBehaviour
 {
@@ -17,14 +18,14 @@ public class TutorialTextUpdate : MonoBehaviour
 
     public void RefreshText()
     {
-        if (!textGUI){ return; }
+        if (!textGUI) { return; }
         //Put the first part of the string in
         stringBuilder.Clear().Append(splitString[0]);
 
         //Iterate through the rest of the string, adding all the controls in
         ControlsScript controlsScript = FindAnyObjectByType<ControlsScript>();
-        if (!controlsScript){ return; }
-        for(int i=0;i<controls.Length;++i)
+        if (!controlsScript) { return; }
+        for (int i = 0; i < controls.Length; ++i)
         {
             stringBuilder.Append(controlsScript.GetBoundControl(controls[i]));
             stringBuilder.Append(splitString[i + 1]);
@@ -36,7 +37,7 @@ public class TutorialTextUpdate : MonoBehaviour
     private void Awake()
     {
         //Get either the TextMeshPro sprite or GUI object (TMP_Text is base class)
-        if(GetComponent<TextMeshPro>())
+        if (GetComponent<TextMeshPro>())
         {
             textGUI = GetComponent<TextMeshPro>();
         }
@@ -46,7 +47,7 @@ public class TutorialTextUpdate : MonoBehaviour
         }
         stringBuilder = new StringBuilder(text);
         splitString = text.Split('_');
-        if(splitString.Length != controls.Length + 1 )
+        if (splitString.Length != controls.Length + 1)
         {
             Debug.LogError("ERROR: CONTROLS AND STRING GAP MISMATCH");
             return;
@@ -55,6 +56,14 @@ public class TutorialTextUpdate : MonoBehaviour
 
     private void Start()
     {
+        InputSystem.onAnyButtonPress.CallOnce(UpdateText);
+    }
+
+    private void UpdateText(InputControl control)
+    {
         RefreshText();
     }
 }
+
+
+    
