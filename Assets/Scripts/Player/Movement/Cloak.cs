@@ -20,7 +20,7 @@ public class Cloak
         player.hasCloaked = true;
         //Make player transparent
         Color color = player.GetComponent<SpriteRenderer>().color;
-        color.a = 0.2f;
+        color.a = 0.6f;
         player.GetComponent<SpriteRenderer>().color = color;
     }
 
