@@ -183,7 +183,7 @@
 				</SwitchGroup>
 			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{5BA4545B-28CD-CEF7-F488-C89D0CB7B8B2}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{6255D0BD-272E-6019-B319-DFA1D8E7F290}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -202,6 +202,10 @@
 				<File Id="23973740" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>G_M_Footstep_1.wav</ShortName>
 					<CachePath>SFX/G_M_Footstep_1_818F3B66.wem</CachePath>
+				</File>
+				<File Id="24130048" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Middle_Cutscene_FINAL.wav</ShortName>
+					<CachePath>SFX/Middle_Cutscene_FINAL_818F3B66.wem</CachePath>
 				</File>
 				<File Id="25523959" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Footstep_5.wav</ShortName>
@@ -466,6 +470,10 @@
 				<File Id="508671079" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_R_Sliding_1.wav</ShortName>
 					<CachePath>SFX/P_R_Sliding_1_CC02D225.wem</CachePath>
+				</File>
+				<File Id="518322907" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Opening_Cutscene_TEST.wav</ShortName>
+					<CachePath>SFX/Opening_Cutscene_TEST_818F3B66.wem</CachePath>
 				</File>
 				<File Id="545539049" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>P_M_Jump_2.wav</ShortName>
@@ -1337,6 +1345,16 @@
 						<MediaRef Id="118186165"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="3687119961" Name="Middle_Cutscene" DurationType="OneShot" DurationMin="12" DurationMax="12">
+					<MediaRefs>
+						<MediaRef Id="24130048"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1917576450" Name="Opening_Cutscene" DurationType="OneShot" DurationMin="8.020022" DurationMax="8.020022">
+					<MediaRefs>
+						<MediaRef Id="518322907"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="2908710288" Name="Overseer_Ending" MaxAttenuation="40" DurationType="OneShot" DurationMin="1.9908541" DurationMax="1.9908541">
 					<MediaRefs>
 						<MediaRef Id="353367165"/>
@@ -1753,5 +1771,5 @@
 			</Events>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{DF6F0E81-E637-31AA-62B2-2BFD08FAC2D8}</FileHash>
+	<FileHash>{61946641-95A3-3082-9C16-183369BD5AC0}</FileHash>
 </SoundBanksInfo>

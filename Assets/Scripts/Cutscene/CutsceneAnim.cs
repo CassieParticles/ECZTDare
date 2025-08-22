@@ -17,6 +17,10 @@ public class CutsceneAnim : MonoBehaviour
     public AK.Wwise.Event cutsceneAmbience;
     public AK.Wwise.Event buttonClick;
 
+    [Range(0f, 10f)] public float audioDelay = 0f;
+
+    private IDisposable disposableCallback;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +28,31 @@ public class CutsceneAnim : MonoBehaviour
         VideoPlayer player = GetComponent<VideoPlayer>();
         player.Play();
         //================= REBECCA ANIMATION STARTS PLAYING HERE ========================//
-        cutsceneSound.Post(gameObject);
+        
         cutsceneMusic.Post(gameObject);
         cutsceneAmbience.Post(gameObject);
+        StartCoroutine(PlaySoundAfterDelay());
 
-        InputSystem.onAnyButtonPress.CallOnce(ExitScene);
+        disposableCallback = InputSystem.onAnyButtonPress.Call(ExitScene);
         player.loopPointReached += EndReached;
+
+        MenuScript menu = FindAnyObjectByType<MenuScript>();
+        if (menu)
+        {
+            menu.canPause = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Callback disposed of");
+        disposableCallback.Dispose();
+    }
+
+    IEnumerator PlaySoundAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(audioDelay);
+        cutsceneSound.Post(gameObject);
     }
 
     private void ExitScene(InputControl control)
@@ -46,10 +69,12 @@ public class CutsceneAnim : MonoBehaviour
         if (menu)
         {
             menu.ChangeScene(nextSceneName);
+            Debug.Log("Change sceneA");
         }
         else
         {
             SceneManager.LoadScene(nextSceneName);
+            Debug.Log("Change sceneB");
         }
 
     }

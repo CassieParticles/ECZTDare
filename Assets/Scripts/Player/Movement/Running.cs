@@ -15,7 +15,7 @@ public class Running
         if (!player.onWall) {
             player.facingRight = Convert.ToBoolean((runInput + 1) / 2);
         }
-        if (player.horizontalVelocity < 0.5) {
+        if (player.horizontalVelocity < 0.5 && player.grounded) {
             player.rb.velocityX = runInput * player.startingSpeed;
         } else {
             player.rb.velocityX += runInput * player.effectiveAcceleration * Time.deltaTime;

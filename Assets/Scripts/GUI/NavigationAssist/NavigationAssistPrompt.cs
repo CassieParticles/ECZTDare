@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NavigationAssistPrompt : MonoBehaviour
 {
     public void ChangeValue(bool newValue)
     {
-        FindAnyObjectByType<NavigationAssistHandler>().SetNavAssist(newValue);
+        NavigationAssistHandler handler = FindAnyObjectByType<NavigationAssistHandler>();
+        if(handler)
+        {
+            handler.SetNavAssist(newValue);
+        }
     }
 
     public void OpenPrompt()
@@ -22,6 +27,7 @@ public class NavigationAssistPrompt : MonoBehaviour
         //Maybe some audio stuff
         //Open the prompt
         gameObject.SetActive(true);
+        transform.GetComponentInChildren<Toggle>().Select();
     }
 
     public void ClosePrompt()

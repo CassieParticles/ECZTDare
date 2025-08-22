@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -30,6 +31,10 @@ public class BreakroomDisplay : MonoBehaviour
     public List<SectionStrings> sectionText;
     [SerializeField] TextMeshProUGUI TextBox;
     [SerializeField] TextMeshProUGUI LetterTextbox;
+    [SerializeField] ComparisonDisplay comparisonScript;
+    [SerializeField] TextMeshProUGUI HighscoreTextbox;
+    //[SerializeField] TextMeshProUGUI CompareTextBox;
+    //[SerializeField] TextMeshProUGUI CompareLetterTextbox;
 
     private string sectionNumberText;
     private string sectionTypeText;
@@ -37,10 +42,15 @@ public class BreakroomDisplay : MonoBehaviour
     private string scoreValue;
 
     private void Awake() {
+
         if (scores == null) {
             scores = new List<ScoreData>();
             scoresText = new List<string>();
             sectionText = new List<SectionStrings>();
+        }
+
+        if (comparisonScript != null) {
+            comparisonScript.gameObject.SetActive(false);
         }
     }
 
@@ -83,16 +93,7 @@ public class BreakroomDisplay : MonoBehaviour
             formattedText = string.Format("{0}\n{1}\n{2}{3}\n\n", tempSectionString.sectionNumberText, tempSectionString.sectionTypeText, tempSectionString.scoreUnitText, tempSectionString.scoreValue);
             scoresText.Add(formattedText);
 
-            
-
-            
         }
-
-
-        
-
-
-        StartCoroutine(DisplayAnimation(scores.Count - 1));
 
     }
 
@@ -100,7 +101,7 @@ public class BreakroomDisplay : MonoBehaviour
     public AK.Wwise.Event goodBeep;
     public AK.Wwise.Event badBeep;
 
-    public IEnumerator DisplayAnimation(int index) {
+    public IEnumerator DisplayAnimation(int index, bool instant) {
         scoringCoroutineRunning = true;
         //Setup the text that comes before the animted one
         TextBox.text = "";
@@ -109,14 +110,21 @@ public class BreakroomDisplay : MonoBehaviour
             TextBox.text += scoresText[i];
             LetterTextbox.text += lettersText[i];
         }
-        //Display the score piece by piece
-        yield return new WaitForSecondsRealtime(scoreDisplayDelay);
-        TextBox.text += sectionText[scores.Count - 1].sectionNumberText + "\n";
+        //Display the score piece by piece, unless instant is true
+        if (instant) {
+            TextBox.text += sectionText[index].sectionNumberText + "\n";
+            TextBox.text += sectionText[index].sectionTypeText + "\n";
+            TextBox.text += sectionText[index].scoreUnitText;
+        } else {
+            yield return new WaitForSecondsRealtime(scoreDisplayDelay);
+            TextBox.text += sectionText[index].sectionNumberText + "\n";
+            yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
+            TextBox.text += sectionText[index].sectionTypeText + "\n";
+            yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
+            TextBox.text += sectionText[index].scoreUnitText;
+        }
         yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
-        TextBox.text += sectionText[scores.Count - 1].sectionTypeText + "\n";
-        yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
-        TextBox.text += sectionText[scores.Count - 1].scoreUnitText;
-        yield return new WaitForSecondsRealtime(scoreDisplayGapDuration);
+
 
         ScoreManager scoreManager = ScoreManager.GetInstance();
 
@@ -125,9 +133,9 @@ public class BreakroomDisplay : MonoBehaviour
         string tempTextboxText = TextBox.text;
         string tempLetterText = LetterTextbox.text;
         string letter = "";
-        if (scores[scores.Count - 1].chaseSection) {
+        if (scores[index].chaseSection) {
             //Setup for scaling the time
-            float time = scores[scores.Count - 1].chaseTimeSeconds;
+            float time = scores[index].chaseTimeSeconds;
             float startTime = Mathf.Max(time + 60, scoreManager.BRankTime + 30);
 
             while (scalingTimer < scoreScalingDuration) {
@@ -144,9 +152,9 @@ public class BreakroomDisplay : MonoBehaviour
             letter = scoreManager.TimeToLetter(time);
             LetterTextbox.text = tempLetterText + letter;
 
-        } else if (scores[scores.Count - 1].stealthSection) {
+        } else if (scores[index].stealthSection) {
             //Setup for scaling the stealth score
-            int score = scores[scores.Count - 1].stealthScore;
+            int score = scores[index].stealthScore;
             int startScore = 0;
 
             while (scalingTimer < scoreScalingDuration) {
@@ -181,6 +189,32 @@ public class BreakroomDisplay : MonoBehaviour
         
 
         yield return new WaitForSecondsRealtime(0.5f);
+        
+    }
+
+    public IEnumerator CompareScores() {
+        TextBox.text = "";
+        LetterTextbox.text = "";
+        comparisonScript.ClearTextBoxes();
+        HighscoreTextbox.text = "";
+        comparisonScript.gameObject.SetActive(true);
+        comparisonScript.SaveHighscoresFromJson();
+        for (int i = 0; i < 3; i++) {
+            comparisonScript.DisplayScore(i);
+            yield return new WaitForSecondsRealtime(0.5f);
+            StartCoroutine(DisplayAnimation(i, true));
+            yield return new WaitForSecondsRealtime(scoreDisplayGapDuration + scoreScalingDuration + 0.2f);
+
+            //Add "New Highscore!" to the highscore textbox if a new highscore was reached
+            if ((scores[i].chaseSection && scores[i].chaseTimeSeconds < comparisonScript.scores[i].chaseTimeSeconds) || 
+                (scores[i].stealthSection && scores[i].stealthScore > comparisonScript.scores[i].stealthScore) || 
+                comparisonScript.lettersText[i] == "N/A\n\n") {
+                HighscoreTextbox.text += "Section " + (i + 1) + "\nNew Highscore!\n\n";
+            } else {
+                HighscoreTextbox.text += "\n\n\n";
+            }
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
         scoringCoroutineRunning = false;
     }
 

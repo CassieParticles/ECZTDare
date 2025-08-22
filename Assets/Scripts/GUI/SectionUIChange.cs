@@ -52,10 +52,16 @@ public class SectionUIChange : MonoBehaviour
         }
     }
 
-    public void BreakRoomDisplayScore(List<ScoreData> scores) {
+    public void BreakRoomDisplayScore(List<ScoreData> scores, bool endOfLevel) {
         if (!breakroomUI.activeSelf) {
             SwitchUIType(UITypes.breakroom);
         }
         breakroomScoreDisplay.AddScore(scores);
+        //Only compare scores at the end of the level
+        if (!endOfLevel) {
+            StartCoroutine(breakroomScoreDisplay.DisplayAnimation(scores.Count - 1, false));
+        } else {
+            StartCoroutine(breakroomScoreDisplay.CompareScores());
+        }
     }
 }

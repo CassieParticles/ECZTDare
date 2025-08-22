@@ -144,9 +144,9 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
             if (SceneManager.GetActiveScene().name == "Tutorial") {
                 sceneName = "Level 1";
             } else if (SceneManager.GetActiveScene().name == "Level 1") {
-                sceneName = "Boss Level (2v3)";
+                sceneName = "MiddleCutscene";
             } else if (SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
-                sceneName = "Main Menu";
+                sceneName = "FinalCutscene";
             }
         }
         if (GameObject.Find("Lights") != null) {
@@ -370,6 +370,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         {
             text.RefreshText();
         }
+
+        
     }
 
     public void CloseSubMenu() {    
@@ -405,12 +407,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         uiCanvas = GameObject.Find("UICanvas");
         uiCanvas.transform.GetChild(0).gameObject.SetActive(false);
         uiCanvas.transform.GetChild(1).gameObject.SetActive(false);
-        //uiCanvas.SetActive(false);
-        if (SceneManager.GetActiveScene().name == "Tutorial") {
-            scoringSubGroup.SetActive(false);
-        } else {
-            scoringSubGroup.SetActive(true);
-        }
 
         StartCoroutine(WinFinalize());
     }
@@ -433,6 +429,8 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         if (loseGroup.activeSelf){ return; }
         //INITIAL LOSE STEPS
 
+        loseGroup.transform.Find("PressEscToRespawnTEXT").GetComponent<TutorialTextUpdate>().RefreshText();
+
         canPause = false;
         player = GameObject.Find("Player");
         GameObject.Find("MovementFollowerCamera").GetComponent<CinemachineVirtualCamera>().Follow.position += Vector3.up * 1000;
@@ -443,7 +441,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         playerDeath.Post(gameObject);
         //Turns off the music event
         FindAnyObjectByType<AlarmMusicHandler>().TurnOffMusic();
-        Debug.Log("Turned Off Music");
 
         //Check if player should have upgrade
         if (!hasUpgrade)
@@ -572,7 +569,7 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
                 OpenMenu();
             } else {
                 CloseMenu();
-                if (hasUpgrade) {
+                if (hasUpgrade || SceneManager.GetActiveScene().name == "Boss Level (2v3)") {
                     GameObject.Find("GameController").GetComponent<UIModeChange>().CollectUpgrade();
                     FindAnyObjectByType<BatteryBar>().SetCloakBar();
                     hasUpgrade = true;
