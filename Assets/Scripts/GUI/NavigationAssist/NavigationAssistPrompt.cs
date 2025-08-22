@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NavigationAssistPrompt : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class NavigationAssistPrompt : MonoBehaviour
         //Maybe some audio stuff
         //Open the prompt
         gameObject.SetActive(true);
+        transform.GetComponentInChildren<Toggle>().Select();
     }
 
     public void ClosePrompt()
