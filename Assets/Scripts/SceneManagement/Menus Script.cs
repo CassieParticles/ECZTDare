@@ -441,7 +441,6 @@ public class MenuScript : MonoBehaviour, IMenuControlsActions {
         playerDeath.Post(gameObject);
         //Turns off the music event
         FindAnyObjectByType<AlarmMusicHandler>().TurnOffMusic();
-        Debug.Log("Turned Off Music");
 
         //Check if player should have upgrade
         if (!hasUpgrade)
